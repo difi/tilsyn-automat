@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Difi.Sjalvdeklaration.Api
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DeclarationController : ControllerBase
+
+    {
+        private readonly IDeclarationRepository declarationRepository;
+
+        public DeclarationController(IDeclarationRepository declarationRepository)
+        {
+            this.declarationRepository = declarationRepository;
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public IEnumerable<DeclarationItem> GetAll()
+        {
+            return declarationRepository.GetAll();
+        }
+    }
+}

@@ -1,0 +1,243 @@
+//
+// Variables
+//
+
+$roboto: Roboto, Helvetica, Arial, sans-serif;
+$roboto-m: "Roboto-Medium", Helvetica, Arial, sans-serif;
+$roboto-b: "Roboto-Bold", Helvetica, Arial, sans-serif;
+
+
+$proxima-nova-sb: "Proxima-nova-semibold", Helvetica, Arial, sans-serif;
+
+$header-font-family: $proxima-nova-sb;
+$header-font-family-smaller: $proxima-nova-sb;
+
+// We use these to control header font sizes
+$h1-font-size-special: 47px;
+
+$h1-font-size-start: 45px;
+$h2-font-size-start: 36px;
+
+
+
+
+// We use these to style ingress
+$ingress-font-family: $proxima-nova-sb;
+$ingress-font-size: 20px;
+
+//--------------------------------------------------------------*/
+// FUNKAs CSS
+//--------------------------------------------------------------*/
+
+// CSS FOR ALL DEVICES
+
+
+
+// Ingress
+.ingress {
+    font-size: $ingress-font-size - 2px;
+    line-height: 1.35;
+    color: $color-gray-1;
+    padding-top: 0.2rem;
+    font-family: $ingress-font-family;
+    max-width: 36rem;
+}
+
+img {
+    &.full-width-image {
+        max-width: none !important;
+    }
+}
+
+// Header font
+h1, h2, h3, h4, h5, h6 {
+    //font-family: $header-font-family;
+}
+
+h1 {
+    margin: 0 0 8px 0;
+    line-height: 1.1;
+
+    &.h2 {
+        margin: 0 0 8px 0;
+        line-height: 1.1;
+    }
+}
+
+h2 {
+    margin: 16px 0 10px 0;
+    clear:both;
+    line-height: 1.1;
+}
+
+ h3, h4 {
+    margin: 0;
+}
+
+h2, h3 {
+    a {
+        //background: url('/css/cssimg/icons-sprite.svg') 0 -2094px no-repeat;
+        padding: 3px;
+        display: inline-block;
+        line-height: 1.2;
+        font-size: rem-calc(map-deep-get($header-styles, medium, h4, font-size));
+
+        &:before {
+            background: url('/css/cssimg/icons-sprite.svg') 0 -2102px no-repeat;
+            display: inline-block;
+            content: "";
+            width: 10px;
+            height: 18px;
+        }
+
+        &:hover, &:focus {
+            text-decoration: underline;
+        }
+
+        &:hover {
+            color: $color-blue-darker;
+        }
+
+        &.tabbed {
+            &:before {
+                background-position: 0 -2002px;
+            }
+        }
+    }
+}
+
+h6 {
+    font-family: $header-font-family;
+}
+
+// ul + ol + li
+
+ul, ol, .test {
+    padding-left: 0.5em;
+
+    li {
+        padding-left: 0.5em;
+    }
+
+    &.listing, &.no-bullet {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+
+        li {
+            padding-left: 0;
+        }
+    }
+
+    &.listing {
+        padding-left: 0;
+        margin: 1rem 0;
+
+        ul, ol {
+            padding-left: 0;
+            margin-left: 0;
+            list-style: none;
+        }
+    }
+
+    &.pink-bullets {
+        padding-left: 1em;
+        margin-left: 0;
+
+        li {
+            padding-left: 0;
+            list-style: none;
+
+            &:before {
+                content: "";
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                margin-left: -1em;
+                border: 1px solid $color-pink-2;
+                border-radius: 100px;
+                margin-right: 0.5rem;
+                margin-bottom: 2px;
+            }
+        }
+    }
+}
+
+a {
+
+
+    &.standard {
+        &:before {
+            background: url('/css/cssimg/icons-sprite.svg') 0 -2102px no-repeat;
+            display: inline-block;
+            content: "";
+            width: 15px;
+            height: 18px;
+        }
+
+        padding: 3px;
+        display: inline-block;
+
+        &:hover, &:focus {
+            text-decoration: underline;
+        }
+
+        &:hover {
+            color: $color-blue-darker;
+        }
+
+        &.tabbed {
+            &:before {
+                background-position: 0 -2002px;
+            }
+        }
+    }
+}
+
+
+
+
+
+a, input[type=button], input[type=submit], button, textarea, select {
+    &.tabbed {
+        background-color: $tabbed-color !important;
+        color: $color-white !important;
+        text-decoration: underline !important;
+        outline: none;
+    }
+}
+
+input[type=text] {
+    &.tabbed {
+        outline: 2px solid $tabbed-color;
+    }
+}
+
+//--------------------------------------------------------------*/
+// CODE ABOVE IS FOR ALL SCREENS
+// MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+
+
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+    // Ingress
+    .ingress {
+        font-size: $ingress-font-size;
+    }
+
+    html {
+        box-sizing: border-box;
+        font-size: 17px;
+    }
+}
+
+// LARGE SCREEN
+@include breakpoint(large) {
+
+    .ingress {
+
+    }
+
+}

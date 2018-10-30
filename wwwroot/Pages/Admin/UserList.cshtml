@@ -1,0 +1,53 @@
+﻿@page
+@using Sjalvdeklaration.Pages
+@using Sjalvdeklaration.Pages.Admin
+@model Sjalvdeklaration.Pages.Admin.UserListModel
+
+@{
+    ViewData["Title"] = "Administrere interne brukere";
+}
+
+<h1>Administrere interne brukere</h1>
+
+<nav>
+    <ul>
+        <li>
+            <a asp-page="DeclarationList">Administrere selvdeklarasjoner</a>
+        </li>
+        <li>
+            <a asp-page="CompanyList">Administrere virksomheter</a>
+        </li>
+        <li>
+            <span>Administrere interne brukere</span>
+        </li>
+    </ul>
+</nav>
+
+<table class="table">
+    <caption>
+        <h2>Brukere</h2>
+    </caption>
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Social Security Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.UserList)
+    {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.SocialSecurityNumber
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

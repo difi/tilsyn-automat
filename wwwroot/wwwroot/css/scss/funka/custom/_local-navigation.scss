@@ -1,0 +1,86 @@
+//
+// Variables
+//
+
+
+//--------------------------------------------------------------*/
+// FUNKAs CSS
+//--------------------------------------------------------------*/
+
+// CSS FOR ALL DEVICES
+
+.local-navigation {
+    margin-top: 10px;
+
+    a, span {
+        padding: 9px 5px 9px 15px;
+        text-decoration: none;
+    }
+
+    a {
+        color: $color-white;
+
+        &:hover, &:focus {
+            text-decoration: underline;
+            background-color: $color-blue-darker;
+        }
+
+        &:focus {
+            background-color: $color-blue-darkest;
+        }
+    }
+
+    span {
+        display: block;
+        color: $color-green-5;
+        font-weight: bold;
+        background-color: $color-blue-darker;
+        line-height: 1;
+    }
+
+    ul, li {
+        padding-left: 0;
+    }
+
+    ul {
+        border-top: 1px solid $local-navigation-border;
+
+        li {
+            border-bottom: 1px solid $local-navigation-border;
+        }
+
+        ul {
+            border-top: 0;
+            margin-left: 0;
+
+            li {
+                border: 0;
+
+                a, span {
+                    padding-left: 40px;
+                }
+            }
+        }
+    }
+}
+
+
+
+//--------------------------------------------------------------*/
+// CODE ABOVE IS FOR ALL SCREENS
+// MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+
+
+
+}
+
+// LARGE SCREEN
+@include breakpoint(large) {
+
+
+
+}

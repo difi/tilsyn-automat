@@ -1,0 +1,140 @@
+//
+// Variables
+//
+
+$border-width: 1px;
+$mobileNavigation-border-color: #59a4c5;
+$mobileNavigation-font-color-light: #fff;
+$mobileNavigation-font-color-dark: #000;
+$color-gray-dark: gray;
+$color-gray-light: #ddd;
+
+$mobileNavigation-font-size: 16px;
+$bgColor-mobileNavigation-active: dark-blue;
+
+//--------------------------------------------------------------*/
+// FUNKAs CSS
+//--------------------------------------------------------------*/
+// CSS FOR ALL DEVICES
+
+
+// ----------------------------------------------- */
+/* MOBILENAVIGATION */
+// ----------------------------------------------- */
+.mobileMenuArea {
+    a {
+        color: $color-white;
+        font-size: 17px;
+        padding: 11px 11px 11px 15px;
+        display: inline-block;
+        margin: 0;
+        text-decoration: none;
+        min-height: 43px;
+
+        &:hover, &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    a, button {
+        &.tabbed {
+            outline: 2px solid $color-white;
+            outline-offset: -2px;
+        }
+    }
+
+    li {
+        border-bottom: $border-width solid $mobileNavigation-border-color;
+        padding: 0;
+        display: block;
+
+        li:last-of-type {
+            border-bottom: 0;
+        }
+    }
+
+    ul {
+        background-color: $color-blue-darker;
+
+        ul {
+            background-color: $color-blue-darker;
+            border: 0;
+            border-top: $border-width solid $mobileNavigation-border-color;
+            padding-left: 16px;
+
+            li {
+                background-color: $color-blue-dark;
+            }
+
+            ul {
+                background-color: $color-blue-dark;
+                padding-left: 26px;
+
+                li {
+                    background-color: $color-blue-darker;
+                }
+            }
+        }
+    }
+
+    button {
+        border-radius: 0;
+        border: 0;
+        border-left: $border-width solid $mobileNavigation-border-color;
+        color: transparent;
+        height: 48px;
+        overflow: hidden;
+        margin: 0;
+        line-height: 1.5em;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-image: url('/css/cssimg/icons-sprite.svg');
+        float: right;
+        width: 50px;
+        text-indent: 100px;
+
+        &:hover,
+        &:focus {
+            background-color: transparent;
+        }
+
+        &[aria-expanded="true"] {
+            background-position: 16px -885px;
+            //&:focus, &:hover, &:active { background-position: 8px -1137px; }
+        }
+
+        &[aria-expanded="false"] {
+            background-position: 16px -785px;
+            //&:focus, &:hover, &:active { background-position: 8px -1037px; }
+        }
+    }
+
+    .active {
+        & > a {
+            color: $color-green-5;
+            box-shadow: inset 8px 0px 0px 0px $color-green-5;
+        }
+    }
+}
+
+
+
+
+//--------------------------------------------------------------*/
+// CODE ABOVE IS FOR ALL SCREENS
+// MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+
+
+
+}
+
+// LARGE SCREEN
+@include breakpoint(large) {
+
+
+
+}

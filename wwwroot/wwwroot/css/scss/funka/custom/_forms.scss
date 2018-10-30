@@ -1,0 +1,83 @@
+//
+// Variables
+//
+
+
+//--------------------------------------------------------------*/
+// FUNKAs CSS
+//--------------------------------------------------------------*/
+
+// CSS FOR ALL DEVICES
+
+.form-field {
+    padding: 0 0 0.75rem 0;
+}
+
+input[type=radio], input[type=checkbox] {
+
+    &.tabbed {
+        outline: 0;
+
+        & + label {
+            outline: 2px solid $tabbed-color;
+        }
+    }
+}
+
+textarea {
+    padding: 0.6em 0.3em;
+    min-height: 7em;
+}
+
+label {
+    span {
+        display: none;
+    }
+}
+
+.errorOnThis {
+    background-color: $color-error;
+    padding: 0.5rem 1rem;
+    margin: 0 0 1rem 0;
+
+    input {
+        border-color: $color-gray-1;
+    }
+
+    label {
+        span {
+            display: block;
+            font-weight: bold;
+
+            &:before {
+                background: url("/css/cssimg/icons-sprite.svg") 0 -2797px no-repeat;
+                width: 25px;
+                height: 25px;
+                overflow: hidden;
+                content: "";
+                display: inline-block;
+            }
+        }
+    }
+}
+
+
+//--------------------------------------------------------------*/
+// CODE ABOVE IS FOR ALL SCREENS
+// MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+}
+
+//--------------------------------------------------------------*/
+
+
+
+//--------------------------------------------------------------*/
+// LARGE SCREEN
+@include breakpoint(large) {
+}
+//--------------------------------------------------------------*/

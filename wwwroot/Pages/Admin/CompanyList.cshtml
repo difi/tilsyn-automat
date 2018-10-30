@@ -1,0 +1,71 @@
+﻿@page
+@using Sjalvdeklaration.Pages
+@using Sjalvdeklaration.Pages.Admin
+@model Sjalvdeklaration.Pages.Admin.CompanyListModel
+
+@{
+    ViewData["Title"] = "Start";
+}
+
+<h1>Administrere virksamheter</h1>
+
+<nav>
+    <ul>
+        <li>
+            <a asp-page="DeclarationList">Administrere selvdeklarasjoner</a>
+        </li>
+        <li>
+            <span>Administrere virksomheter</span>
+        </li>
+        <li>
+            <a asp-page="UserList">Administrere interne brukere</a>
+        </li>
+    </ul>
+</nav>
+
+<form method="post">
+    <table class="table">
+        <caption>
+            <h2>Virksamheter</h2>
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">Corporate Identity Number</th>
+                <th scope="col">Name</th>
+                <th scope="col">ContactPerson Name</th>
+                <th scope="col">ContactPerson Email</th>
+                <th scope="col">ContactPerson Phone</th>
+                <th scope="col">Radera</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CompanyList)
+            {
+                var contactPerson = item.ContactPersonList.FirstOrDefault();
+
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.CorporateIdentityNumber
+                </td>
+                <td>
+                    @contactPerson?.Name
+                </td>
+                <td>
+                    @contactPerson?.Email
+                </td>
+                <td>
+                    @contactPerson?.Phone
+                </td>
+                <td>
+                    <button type="submit" asp-page-handler="RemoveCompany" asp-route-id="@item.Id">Radera</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+<a asp-page="AddCompany">Ny virksamhet</a><br/>

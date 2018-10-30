@@ -1,0 +1,207 @@
+//
+// Variables
+//
+
+// We use these to control button text styles.
+
+// We use these to controls background-color. Alert and success colors is in forms.scss
+$button-bgColor-std:                    #72616c;
+$button-bgColor-white:					$color-white;
+
+// We use this to set the default radius used throughout the core.
+$button-radius:							0px;
+
+
+
+//--------------------------------------------------------------*/
+// FUNKAs CSS
+//--------------------------------------------------------------*/
+
+// CSS FOR ALL DEVICES
+
+
+
+
+button, .button, input[type="button"], input[type="submit"] {
+    position: relative;
+    width: 100%;
+
+    @include button;
+    border-radius: 5px;
+
+    .active & {
+        &.nocursor {
+            cursor: default;
+
+            &:hover {
+                background-color: initial;
+                background-color: $color-black;
+                border: 1px solid $color-black;
+                color: $color-white;
+            }
+        }
+    }
+
+    &:active {
+        background-color: lighten($color-black, 50%);
+    }
+
+    &.tiny {
+        padding: 0.3em 1em;
+        font-size: map-get($button-sizes, tiny);
+    }
+
+    &.small {
+        padding: 0.4em 1em;
+        font-size: map-get($button-sizes, small);
+    }
+
+    &.large {
+        padding: 0.9em 1em;
+        font-size: map-get($button-sizes, large);
+        width: 100%;
+        margin: 0;
+    }
+
+
+    &.blue {
+        background-color: $color-blue;
+        color: $color-white;
+
+        &:hover {
+            background-color: darken($color-blue, 5%);
+        }
+    }
+
+
+    &.dark-blue {
+        background-color: $color-blue-darker;
+        color: $color-white;
+
+        &:hover {
+            background-color: darken($color-blue-darker, 5%);
+        }
+    }
+
+
+    &.light-blue {
+        background-color: $color-blue-6;
+        color: $color-blue-darkest;
+
+        &:hover {
+            background-color: darken($color-blue-6, 5%);
+        }
+    }
+
+
+    &.green {
+        background-color: $color-green;
+        color: $color-white;
+
+        &:hover {
+            background-color: darken($color-green, 5%);
+        }
+    }
+
+
+    &.pink {
+        background-color: $color-pink;
+        color: $color-white;
+
+        &:hover {
+            background-color: darken($color-pink, 5%);
+        }
+    }
+
+
+    &.black {
+        background-color: $color-black;
+        color: $color-white;
+        border-color: $color-black;
+
+        &:hover, &:focus {
+            background-color: $button-bgColor-std;
+            border-color: $button-bgColor-std;
+            color: $color-black;
+        }
+
+        &:active {
+            background-color: darken($button-bgColor-std, 5%);
+            border-color: darken($border-color, 5%);
+        }
+    }
+
+
+    &.toogle-filter-button {
+        background-image: url('/css/cssimg/icons-sprite.svg');
+        background-color: transparent;
+        background-repeat: no-repeat;
+        padding-left: 30px;
+        padding-bottom: 0.5em;
+        padding-top: 0.6em;
+        margin-bottom: 0;
+        border: 0;
+        width: auto;
+
+        &[aria-expanded="false"] {
+            background-position: 2px -585px;
+        }
+
+        &[aria-expanded="true"] {
+            background-position: 2px -685px;
+        }
+    }
+
+    &.tabbed {
+        outline: none;
+        border: 0;
+        background-color: $tabbed-color;
+        color: $color-white;
+    }
+
+    &.wide {
+        padding-left: 0rem;
+        padding-right: 0rem;
+        min-width: 60%;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+}
+
+
+
+$button-palette: ( black: #000000, red: #ff0000, purple: #bb00ff ) !default;
+
+
+// Create a variable for my custom color.
+//$custom-color: get-color(custom);
+
+
+//--------------------------------------------------------------*/
+// CODE ABOVE IS FOR ALL SCREENS
+// MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+
+
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+
+    button, .button, input[type="button"], input[type="submit"] {
+        width: auto;
+
+        &.text-button {
+            margin: 0 1rem;
+        }
+
+        &.wide {
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
+    }
+}
+
+// LARGE SCREEN
+@include breakpoint(large) {
+
+}

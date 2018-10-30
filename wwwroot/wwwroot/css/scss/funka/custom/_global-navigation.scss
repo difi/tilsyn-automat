@@ -1,0 +1,105 @@
+//
+// Variables
+//
+
+
+//--------------------------------------------------------------*/
+// FUNKAs CSS
+//--------------------------------------------------------------*/
+
+// CSS FOR ALL DEVICES
+
+.global-navigation {
+    position: relative;
+
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+
+    ul {
+        position: relative;
+    }
+
+    li {
+        display: inline-block;
+
+        a, span {
+            padding: 18px 20px 16px;
+            display: block;
+            color: $color-white;
+            position: relative;
+        }
+
+        span, a:hover, &.active a {
+            color: $color-green-5;
+            //padding-bottom: 9px;
+            &:after {
+                position: relative;
+                content: "";
+                top: 4px;
+                width: 100%;
+                display: block;
+                border-bottom: 5px solid $color-green-5;
+                transition: all 0.3s ease 0s;
+            }
+        }
+
+        a {
+            &:after {
+                position: relative;
+                content: "";
+                top: 4px;
+                width: 43px;
+                display: block;
+                border-bottom: 1px solid $color-green-5;
+            }
+
+            &.tabbed {
+                text-decoration: none !important;
+
+                &:after {
+                    position: relative;
+                    content: "";
+                    top: 4px;
+                    width: 100%;
+                    display: block;
+                    border-bottom: 5px solid $color-white;
+                    transition: all 0.2s ease 0s;
+                }
+            }
+
+            &:hover {
+            }
+        }
+
+        &.active {
+            a, span {
+                color: $color-green-5;
+            }
+        }
+    }
+}
+
+
+
+//--------------------------------------------------------------*/
+// CODE ABOVE IS FOR ALL SCREENS
+// MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
+//--------------------------------------------------------------*/
+//--------------------------------------------------------------*/
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+
+
+
+}
+
+// LARGE SCREEN
+@include breakpoint(large) {
+
+
+
+}

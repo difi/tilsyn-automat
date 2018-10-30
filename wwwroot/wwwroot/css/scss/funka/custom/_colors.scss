@@ -1,0 +1,65 @@
+﻿//
+// Variables
+//
+
+
+//--------------------------------------------------------------*/
+// COLORS
+//--------------------------------------------------------------*/
+
+// WHITE/GRAY/BLACK
+$color-white:						#fff; 
+$color-black:						#000;
+$color-gray-1:                      #44303C;
+$color-gray-2:                      #72616c;
+$color-gray-3:                      #393036;
+$color-gray-4:                      #f6f5f6;
+
+
+// BLUE
+$color-blue:                        #127dac;
+$color-blue-light:                  #e8f5fa;
+$color-blue-dark:                   #177299;
+$color-blue-darker:                 #0e6489;
+$color-blue-darkest:                #04364b;
+
+ 
+
+
+$color-blue-1:                      #017caf;
+$color-blue-2:                      #59a4c5;
+$color-blue-3:                      #6eb0cc;
+$color-blue-4:                      #cce5ef;
+$color-blue-5:                      #daebf2;
+$color-blue-6:                      #b2d6e3;
+
+// GREEN
+$color-green:                       #1d754f;
+$color-green-light:                 #d3f5df;
+$color-green-1:                     #368663;
+$color-green-2:                     #7ad296;
+$color-green-3:                     #9fdfb4;
+$color-green-4:                     #c4ead2;
+$color-green-5:                     #7fffc7;
+
+// PINK
+$color-pink:                        #d41472;
+$color-pink-light:                  #ffeef6;
+$color-pink-1:                      #dd308B;
+$color-pink-2:                      #e570a9;
+
+$local-navigation-border:            #478dac;
+
+
+// Tabbed - border -etc
+$tabbed-color:                      $color-blue-darkest;
+$border-color:                      $color-gray-4;
+
+$searchlist-category-color:         #d3f5df;
+$searchlist-search-word-color:      #cfe5ee;
+
+$searchresult-filter-color:         #f1f9fc;
+
+
+// Error colors
+$color-error: $color-pink-light;

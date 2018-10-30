@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "css/foundation.css",
+    "inputFile": "css/scss/_foundation.scss",
+
+    "minify": {
+      "enabled": true
+    }
+  }
+]

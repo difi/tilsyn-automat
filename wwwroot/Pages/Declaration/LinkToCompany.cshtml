@@ -1,0 +1,35 @@
+﻿@page
+@using Difi.Sjalvdeklaration.Pages.Declaration
+@model Difi.Sjalvdeklaration.Pages.Declaration.LinkToCompanyModel
+@{
+    ViewData["Title"] = "LinkToCompany";
+}
+
+<h1>LinkToCompany</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+    <div>
+        <label asp-for="AddLinkToCompany.CorporateIdentityNumber">
+            Corporate Identity Number:
+            <span asp-validation-for="AddLinkToCompany.CorporateIdentityNumber"></span>
+        </label>
+        <input type="text" asp-for="AddLinkToCompany.CorporateIdentityNumber" />
+    </div>
+
+    <div>
+        <label asp-for="AddLinkToCompany.Code">
+            Code:
+            <span asp-validation-for="AddLinkToCompany.Code"></span>
+        </label>
+        <input type="text" asp-for="AddLinkToCompany.Code" />
+    </div>
+    
+    <div>
+        <input type="submit" value="Lägg till" />
+    </div>
+</form>
+
+@section Scripts {
+@{     await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+    }

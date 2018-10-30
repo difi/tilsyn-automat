@@ -1,0 +1,37 @@
+{
+  "compilers": {
+    "sass": {
+      "includePath": "",
+      "indentType": "space",
+      "indentWidth": 2,
+      "outputStyle": "nested",
+      "Precision": 5,
+      "relativeUrls": true,
+      "sourceMapRoot": "",
+      "sourceMap": false
+    },
+    "stylus": {
+      "sourceMap": false
+    },
+    "babel": {
+      "sourceMap": false
+    },
+    "coffeescript": {
+      "bare": false,
+      "runtimeMode": "node",
+      "sourceMap": false
+    }
+  },
+  "minifiers": {
+    "css": {
+      "enabled": false,
+      "termSemicolons": false,
+      "gzip": false
+    },
+    "javascript": {
+      "enabled": true,
+      "termSemicolons": true,
+      "gzip": false
+    }
+  }
+}

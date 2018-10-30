@@ -1,0 +1,48 @@
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Interface;
+
+namespace Difi.Sjalvdeklaration.Api
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CompanyController : ControllerBase
+    {
+        private readonly ICompanyRepository companyRepository;
+
+        public CompanyController(ICompanyRepository companyRepository)
+        {
+            this.companyRepository = companyRepository;
+        }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public IEnumerable<CompanyItem> GetAll()
+        {
+            return companyRepository.GetAll();
+        }
+
+        [HttpGet]
+        [Route("Get/{corporateIdentityNumber}")]
+        public CompanyItem Get(string corporateIdentityNumber)
+        {
+            return companyRepository.Get(corporateIdentityNumber);
+        }
+
+        [HttpPost]
+        [Route("Add")]
+        public bool Add(CompanyItem companyItem)
+        {
+            return companyRepository.Add(companyItem).Result;
+        }
+
+        [HttpGet]
+        [Route("Remove/{id}")]
+        public bool Remove(string id)
+        {
+            return companyRepository.Remove(Guid.Parse(id)).Result;
+        }
+    }
+}

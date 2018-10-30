@@ -1,0 +1,23 @@
+﻿@page
+@using Sjalvdeklaration.Pages
+
+@model Sjalvdeklaration.Pages.IndexModel
+@{
+    ViewData["Title"] = "Start";
+}
+
+<h1>Velkommen!</h1>
+
+<h2>
+    Info om selvdeklarering av automater
+</h2>
+
+<p>
+    Du trenger følgende verktøy: Målebånd eller tommestokk, kamera.
+    <br /><br />
+    For betalingsterminaler, er dette området kassen.
+    <br /><br />
+    Gå bort til området der automaten er.
+</p>
+
+<a href="@Model.LoginUrl">Logg inn</a>
