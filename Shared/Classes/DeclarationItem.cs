@@ -14,6 +14,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public DateTime CreatedDate { get; set; }
 
+        public DateTime DeadLineDate { get; set; }
+
+        public DateTime SentInDate{ get; set; }
+
         public DeclarationStatus Status { get; set; }
 
         public CompanyItem Company { get; set; }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "DeclarationList";
 }
 
-<h1>Administrere selvdeklarasjoner</h1>
+<h1>Selvdeklarasjoner</h1>
 
 <nav>
     <ul>
@@ -12,51 +12,69 @@
             <span>Administrere selvdeklarasjoner</span>
         </li>
         <li>
-            <a asp-page="CompanyList">Administrere virksomheter</a>
+            <a asp-page="UserList">Administrere interne brukere</a>
         </li>
         <li>
-            <a asp-page="UserList">Administrere interne brukere</a>
+            <a asp-page="CompanyList">Administrere virksomheter</a>
         </li>
     </ul>
 </nav>
 
-<table class="table">
-    <caption>
-        <h2>Selvdeklarasjoner</h2>
-    </caption>
-    <thead>
-    <tr>
-        <th scope="col">Automat</th>
-        <th scope="col">Virksamhet</th>
-        <th scope="col">Dato</th>
-        <th scope="col">Saksbehandler</th>
-        <th scope="col">Status</th>
-        <th scope="col">Eksporter</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.DeclarationList)
-    {
+<h2>
+    Filtrering
+</h2>
+
+<form method="post">
+    <h3>@Model.ViewCount Selvdeklarasjoner av totalt @Model.TotalCount</h3>
+
+    <button type="submit" asp-page-handler="ExportDeclarationList">Eksporter alle i listen</button>
+
+    <table class="table">
+        <caption>
+            <h2>Selvdeklarasjoner</h2>
+        </caption>
+        <thead>
         <tr>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                @item.Company.Name
-            </td>
-            <td>
-                @item.CreatedDate.ToString("yyyy-MM-dd")
-            </td>
-            <td>
-                @item.User.Name
-            </td>
-            <td>
-                @item.Status
-            </td>
-            <td>
-                <button>Eksporter</button>
-            </td>
+            <th scope="col">Virksamhet</th>
+            <th scope="col">Automat</th>
+            <th scope="col">E-post kontaktperson</th>
+            <th scope="col">Frist for innsending</th>
+            <th scope="col">Dato sendt inn</th>
+            <th scope="col">Status for selvdeklarasjon</th>
+            <th scope="col">Status for tilsyn</th>
+            <th scope="col">Eksporter</th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.DeclarationList)
+        {
+            <tr>
+                <td>
+                    @item.Company.Name
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.User.Email
+                </td>
+                <td>
+                    @item.DeadLineDate.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @item.SentInDate.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    <button type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id">Eksporter</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</form>

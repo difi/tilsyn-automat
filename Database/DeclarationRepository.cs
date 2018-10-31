@@ -20,15 +20,26 @@ namespace Difi.Sjalvdeklaration.Database
         {
             try
             {
+                var declarationItems = dbContext.DeclarationList.Include(x => x.Company).Include(x => x.User).AsNoTracking().ToList();
 
-                var temp = dbContext.DeclarationList.Include(x => x.Company).Include(x => x.User).AsNoTracking().ToList();
-
-                return temp;
+                return declarationItems;
             }
-            catch (Exception exception)
+            catch
             {
-                var temp = exception;
+                return null;
+            }
+        }
 
+        public DeclarationItem Get(Guid id)
+        {
+            try
+            {
+                var declarationItem = dbContext.DeclarationList.Include(x => x.Company).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
+
+                return declarationItem;
+            }
+            catch
+            {
                 return null;
             }
         }

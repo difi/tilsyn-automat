@@ -71,6 +71,8 @@ namespace Difi.Sjalvdeklaration.Database
                 SocialSecurityNumber = "12089400420",
                 IdPortenSub = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
                 Name = "Thea",
+                Email = "thea@difi.no",
+                Phone = "712345678"
             };
 
             var user2 = new UserItem
@@ -79,6 +81,8 @@ namespace Difi.Sjalvdeklaration.Database
                 SocialSecurityNumber = "12089400269",
                 IdPortenSub = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
                 Name = "Martin",
+                Email = "martin@difi.no",
+                Phone = "912345678"
             };
 
             var user3 = new UserItem
