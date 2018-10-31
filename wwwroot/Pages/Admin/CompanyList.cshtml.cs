@@ -43,5 +43,24 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
                 return Page();
             }
         }
+
+        public async Task<IActionResult> OnPostExcelImportAsync()
+        {
+            try
+            {
+                var result = await apiHttpClient.Post<bool>("/api/Company/ExcelImport", null);
+
+                if (result)
+                {
+                    return RedirectToPage("/Admin/CompanyList");
+                }
+
+                return Page();
+            }
+            catch
+            {
+                return Page();
+            }
+        }
     }
 }

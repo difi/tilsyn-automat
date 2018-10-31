@@ -14,5 +14,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
         Task<bool> Add(CompanyItem companyItem);
 
         Task<bool> Remove(Guid id);
+
+        Task<bool> ExcelImport();
     }
 }

@@ -38,6 +38,13 @@ namespace Difi.Sjalvdeklaration.Api
             return companyRepository.Add(companyItem).Result;
         }
 
+        [HttpPost]
+        [Route("ExcelImport")]
+        public bool ExcelImport()
+        {
+            return companyRepository.ExcelImport().Result;
+        }
+
         [HttpGet]
         [Route("Remove/{id}")]
         public bool Remove(string id)

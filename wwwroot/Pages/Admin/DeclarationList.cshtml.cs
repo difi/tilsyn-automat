@@ -81,7 +81,7 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
                 var excelWorksheet = pck.Workbook.Worksheets.Add("Data");
                 excelWorksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
 
-                using (var excelRange = excelWorksheet.Cells["A1:F1"])
+                using (var excelRange = excelWorksheet.Cells["A1:H1"])
                 {
                     excelRange.Style.Font.Bold = true;
                     excelRange.Style.Font.Size = excelRange.Style.Font.Size + 2;
@@ -90,7 +90,7 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
                     excelRange.Style.Font.Color.SetColor(System.Drawing.Color.White);
                 }
 
-                using (var excelRange = excelWorksheet.Cells["A1:F100"])
+                using (var excelRange = excelWorksheet.Cells["A1:H100"])
                 {
                     excelRange.AutoFitColumns();
                 }
@@ -109,6 +109,8 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
             dataTable.Columns.Add(new DataColumn("Virksomhet - Namn"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Organisationsnummer"));
             dataTable.Columns.Add(new DataColumn("Automat - Namn"));
+            dataTable.Columns.Add(new DataColumn("Frist for innsending"));
+            dataTable.Columns.Add(new DataColumn("Dato sendt inn"));
             dataTable.Columns.Add(new DataColumn("Kontaktperson - Namn"));
             dataTable.Columns.Add(new DataColumn("Kontaktperson - E-post"));
             dataTable.Columns.Add(new DataColumn("Kontaktperson - Telefon"));
@@ -120,6 +122,8 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
                 dataRow["Virksomhet - Namn"] = declarationItem.Company.Name;
                 dataRow["Virksomhet - Organisationsnummer"] = declarationItem.Company.CorporateIdentityNumber;
                 dataRow["Automat - Namn"] = declarationItem.Name;
+                dataRow["Frist for innsending"] = declarationItem.DeadLineDate;
+                dataRow["Dato sendt inn"] = declarationItem.SentInDate;
                 dataRow["Kontaktperson - Namn"] = declarationItem.User.Name;
                 dataRow["Kontaktperson - E-post"] = declarationItem.User.Email;
                 dataRow["Kontaktperson - Telefon"] = declarationItem.User.Phone;
