@@ -6,20 +6,6 @@
 
 <h1>Selvdeklarasjoner</h1>
 
-<nav>
-    <ul>
-        <li>
-            <span>Administrere selvdeklarasjoner</span>
-        </li>
-        <li>
-            <a asp-page="UserList">Administrere interne brukere</a>
-        </li>
-        <li>
-            <a asp-page="CompanyList">Administrere virksomheter</a>
-        </li>
-    </ul>
-</nav>
-
 <h2>
     Filtrering
 </h2>
@@ -27,7 +13,7 @@
 <form method="post">
     <h3>@Model.ViewCount Selvdeklarasjoner av totalt @Model.TotalCount</h3>
 
-    <button type="submit" asp-page-handler="ExportDeclarationList">Eksporter alle i listen</button>
+    <button class="button" type="submit" asp-page-handler="ExportDeclarationList">Eksporter alle i listen</button>
 
     <table class="table">
         <caption>
@@ -71,7 +57,7 @@
                     @item.Status
                 </td>
                 <td>
-                    <button type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id">Eksporter</button>
+                    <button class="button" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id">Eksporter</button>
                 </td>
             </tr>
         }

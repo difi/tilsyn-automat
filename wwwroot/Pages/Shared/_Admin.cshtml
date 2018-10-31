@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "_Layout.cshtml";
+}
+
+<header>
+    <div class="row column">
+        <br/>
+        <nav>
+            <ul class="menu">
+                <li>
+                    <a class="button" asp-page="CompanyList">Administrere virksomheter</a>
+                </li>
+                <li>
+                    <a class="button" asp-page="DeclarationList">Administrere selvdeklarasjoner</a>
+                </li>
+                <li>
+                    <a class="button" asp-page="UserList">Administrere interne brukere</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="row column">
+    <br/>
+    @RenderBody()
+</div>

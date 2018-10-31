@@ -1,6 +1,4 @@
 ﻿@page
-@using Sjalvdeklaration.Pages
-@using Sjalvdeklaration.Pages.Admin
 @model Sjalvdeklaration.Pages.Admin.CompanyListModel
 
 @{
@@ -8,20 +6,6 @@
 }
 
 <h1>Administrere virksamheter</h1>
-
-<nav>
-    <ul>
-        <li>
-            <a asp-page="DeclarationList">Administrere selvdeklarasjoner</a>
-        </li>
-        <li>
-            <a asp-page="UserList">Administrere interne brukere</a>
-        </li>
-        <li>
-            <span>Administrere virksomheter</span>
-        </li>
-    </ul>
-</nav>
 
 <form method="post">
     <table class="table">
@@ -68,8 +52,7 @@
     </table>
 </form>
 
-<a asp-page="AddCompany">Opprett ny virksomhet</a><br />
-
 <form method="post">
-    <button type="submit" asp-page-handler="ExcelImport">Importer virksomheter fra excel</button>
+    <a class="button" asp-page="AddCompany">Opprett ny virksomhet</a>
+    <button type="submit" class="button" asp-page-handler="ExcelImport">Importer virksomheter fra excel</button>
 </form>
