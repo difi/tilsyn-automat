@@ -41,7 +41,7 @@
                     @item.Title
                 </td>
                 <td>
-                    @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + " , " + roleItem.Name).Replace(" , ", "")
+                    @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
                 </td>
             </tr>
         }

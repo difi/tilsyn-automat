@@ -16,8 +16,6 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
         [BindProperty]
         public UserItem UserItemForm { get; set; }
 
-        public List<RoleItem> RoleList { get; set; }
-
         public UserAddModel(ApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -27,7 +25,10 @@ namespace Difi.Sjalvdeklaration.Pages.Admin
         {
             try
             {
-                RoleList = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll");
+                UserItemForm = new UserItem
+                {
+                    RoleListForm = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll")
+                };
             }
             catch
             {

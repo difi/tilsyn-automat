@@ -50,7 +50,24 @@
         <input type="text" asp-for="UserItemForm.Title" />
     </div>
 
-    @Model.RoleList.Aggregate(" ", (current, roleItem) => current + " , " + roleItem.Name).Replace(" , ", "")
+    <div>
+        <fieldset>
+            <legend>Roller:</legend>
+
+            <ul>
+                @for (var i = 0; i < Model.UserItemForm.RoleListForm.Count; i++)
+                {
+                    <li>
+                        <input type="checkbox" asp-for="@Model.UserItemForm.RoleListForm[i].Selected" />
+                        <label asp-for="@Model.UserItemForm.RoleListForm[i].Selected">@Model.UserItemForm.RoleListForm[i].Name</label>
+                        <input type="hidden" asp-for="@Model.UserItemForm.RoleListForm[i].Id" />
+                        <input type="hidden" asp-for="@Model.UserItemForm.RoleListForm[i].Name" />
+                    </li>
+                }
+            </ul>
+
+        </fieldset>
+    </div>
 
     <div>
         <input type="submit" value="Lägg till" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
@@ -10,5 +11,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public String Name { get; set; }
 
         public ICollection<UserRole> UserList { get; set; }
+
+        [NotMapped]
+        public Boolean Selected { get; set; }
     }
 }
