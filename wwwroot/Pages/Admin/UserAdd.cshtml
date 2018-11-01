@@ -1,0 +1,62 @@
+﻿@page
+@model Sjalvdeklaration.Pages.Admin.UserAddModel
+
+@{
+    ViewData["Title"] = "Ny interne brukere";
+}
+
+<h1>Ny interne brukere</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="UserItemForm.Name">
+            Name:
+            <span asp-validation-for="UserItemForm.Name"></span>
+        </label>
+        <input type="text" asp-for="UserItemForm.Name" />
+    </div>
+
+    <div>
+        <label asp-for="UserItemForm.SocialSecurityNumber">
+            SocialSecurityNumber:
+            <span asp-validation-for="UserItemForm.SocialSecurityNumber"></span>
+        </label>
+        <input type="text" asp-for="UserItemForm.SocialSecurityNumber" />
+    </div>
+
+    <div>
+        <label asp-for="UserItemForm.Email">
+            Email:
+            <span asp-validation-for="UserItemForm.Email"></span>
+        </label>
+        <input type="text" asp-for="UserItemForm.Email" />
+    </div>
+
+    <div>
+        <label asp-for="UserItemForm.Phone">
+            Phone:
+            <span asp-validation-for="UserItemForm.Phone"></span>
+        </label>
+        <input type="text" asp-for="UserItemForm.Phone" />
+    </div>
+
+    <div>
+        <label asp-for="UserItemForm.Title">
+            Title:
+            <span asp-validation-for="UserItemForm.Title"></span>
+        </label>
+        <input type="text" asp-for="UserItemForm.Title" />
+    </div>
+
+    @Model.RoleList.Aggregate(" ", (current, roleItem) => current + " , " + roleItem.Name).Replace(" , ", "")
+
+    <div>
+        <input type="submit" value="Lägg till" />
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}

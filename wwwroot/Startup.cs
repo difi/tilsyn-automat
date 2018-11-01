@@ -36,6 +36,8 @@ namespace Difi.Sjalvdeklaration
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IDeclarationRepository, DeclarationRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+
             services.AddScoped<ApiHttpClient, ApiHttpClient>();
 
             services.AddDistributedMemoryCache();

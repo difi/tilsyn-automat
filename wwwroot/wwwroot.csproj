@@ -41,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Pages\Admin\UserAdd.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Admin\UserList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

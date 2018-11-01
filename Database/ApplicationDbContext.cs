@@ -70,9 +70,11 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.NewGuid(),
                 SocialSecurityNumber = "12089400420",
                 IdPortenSub = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
-                Name = "Thea",
-                Email = "thea@difi.no",
-                Phone = "712345678"
+                Name = "Martin Swartling",
+                Email = "martin@difi.no",
+                Phone = "912345678",
+                Title = "Avdelingssjef",
+                Created = DateTime.Now
             };
 
             var user2 = new UserItem
@@ -80,20 +82,14 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.NewGuid(),
                 SocialSecurityNumber = "12089400269",
                 IdPortenSub = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
-                Name = "Martin",
-                Email = "martin@difi.no",
-                Phone = "912345678"
+                Name = "Thea Sneve",
+                Email = "thea@difi.no",
+                Phone = "712345678",
+                Title = "Handläggare",
+                Created = DateTime.Now
             };
 
-            var user3 = new UserItem
-            {
-                Id = Guid.NewGuid(),
-                SocialSecurityNumber = "12089400188",
-                IdPortenSub = "8zrqvL9yMbkJAfU_53_WE1jbTFUehgxmf7MADGcv98g=",
-                Name = "",
-            };
-
-            modelBuilder.Entity<UserItem>().HasData(user1, user2, user3);
+            modelBuilder.Entity<UserItem>().HasData(user1, user2);
             modelBuilder.Entity<RoleItem>().HasData(role1, role2, role3);
 
             modelBuilder.Entity<UserRole>().HasData(
@@ -111,13 +107,8 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     UserItemId = user2.Id,
                     RoleItemId = role2.Id
-                },
-                new UserRole
-                {
-                    UserItemId = user3.Id,
-                    RoleItemId = role3.Id
                 });
-
+            
             base.OnModelCreating(modelBuilder);
         }
 

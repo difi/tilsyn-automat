@@ -12,26 +12,42 @@
         <h2>Brukere</h2>
     </caption>
     <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Social Security Number</th>
-    </tr>
+        <tr>
+            <th scope="col">SocialSecurityNumber</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Title</th>
+            <th scope="col">RoleList</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.UserList)
-    {
-        <tr>
-            <td>
-                @item.Id
-            </td>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                @item.SocialSecurityNumber
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model.UserList)
+        {
+            <tr>
+                <td>
+                    @item.SocialSecurityNumber
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Phone
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + " , " + roleItem.Name).Replace(" , ", "")
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<form method="post">
+    <a class="button" asp-page="UserAdd">Opprett ny interne brukere</a>
+</form>

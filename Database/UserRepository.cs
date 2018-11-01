@@ -17,7 +17,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public IEnumerable<UserItem> GetAll()
         {
-            return dbContext.UserList.AsNoTracking().ToList();
+            return dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().ToList();
         }
 
         public UserItem GetByIdPortenSub(string idPortenSub)
