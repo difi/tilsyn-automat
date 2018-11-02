@@ -1,17 +1,10 @@
 ﻿@model string
 
-@{
-    var id = String.Empty;
-    var uniqueId = Guid.NewGuid();
-    var classname = ViewData.ContainsKey("class") ? ViewData["class"] : "";
-}
-
 <div class="form-field">
-    <label for="@Html.IdFor(m => m)">
+    <label for="@Html.IdForModel()">
         @Html.DisplayNameFor(m => m)
+        @Html.ValidationMessageFor(m=>m)
     </label>
 
-    <span data-valmsg-replace="true" data-valmsg-for="@Html.IdFor(m => m)"></span>
-
-    @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), @class = classname })
+    @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m)})
 </div>

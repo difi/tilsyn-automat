@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>Difi.Sjalvdeklaration.Api</RootNamespace>
+    <AssemblyName>Difi.Sjalvdeklaration.Api</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
@@ -10,9 +12,11 @@ namespace Difi.Sjalvdeklaration.Pages
 
         public string LoginUrl { get; set; }
 
-        [Required]
-        [Display]
-        public string TestarMedLangreNamn { get; set; }
+        public UserItem UserItemForm { get; set; }
+
+        [Required(ErrorMessage = "SocialSecurityNumberRequired")]
+        [Display(Name = "SocialSecurityNumberDisplay")]
+        public String SocialSecurityNumber { get; set; }
 
         public IndexModel(IConfiguration configuration)
         {

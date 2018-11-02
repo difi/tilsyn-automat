@@ -1,5 +1,10 @@
 ﻿@page
 
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+
 @model IndexModel
 @{
     ViewData["Title"] = "Start";
@@ -23,9 +28,11 @@
 
 <br /><br />
 
-<form method="post">
+@Localizer["Test"]
 
-    @Html.EditorFor(x => x.TestarMedLangreNamn, "TextBox")
+
+<form method="post">
+    @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
 
     <div>
         <input type="submit" value="Lägg till" />

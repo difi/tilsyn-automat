@@ -12,7 +12,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public String IdPortenSub { get; set; }
 
-        [Required]
+        [Display(Name = "Social Security Number")]
+        [Required(ErrorMessage = "The Social Security Number field is required!")]
         public String SocialSecurityNumber { get; set; }
 
         public String Name { get; set; }
