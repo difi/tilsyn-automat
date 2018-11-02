@@ -11,6 +11,7 @@ namespace Difi.Sjalvdeklaration.Pages
         public string LoginUrl { get; set; }
 
         [Required]
+        [Display]
         public string TestarMedLangreNamn { get; set; }
 
         public IndexModel(IConfiguration configuration)

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+    <Content Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+    <EmbeddedResource Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+    <None Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 

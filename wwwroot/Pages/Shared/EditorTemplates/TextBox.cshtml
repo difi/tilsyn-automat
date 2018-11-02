@@ -11,7 +11,7 @@
         @Html.DisplayNameFor(m => m)
     </label>
 
-    <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="@Html.IdFor(m => m)"></span>
+    <span data-valmsg-replace="true" data-valmsg-for="@Html.IdFor(m => m)"></span>
 
     @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), @class = classname })
 </div>

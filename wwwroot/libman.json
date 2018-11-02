@@ -9,13 +9,13 @@
     },
     {
       "library": "jquery-validate@1.18.0",
-      "files": [ "jquery.validate.min.js" ],
-      "destination": "wwwroot/js/jquery"
+      "files": [ "jquery.validate.js", "jquery.validate.min.js" ],
+      "destination": "wwwroot/js/jquery.validate"
     },
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
-      "files": [ "jquery.validate.unobtrusive.min.js" ],
-      "destination": "wwwroot/js/jquery/"
+      "files": [ "jquery.validate.unobtrusive.js", "jquery.validate.unobtrusive.min.js" ],
+      "destination": "wwwroot/js/jquery.validate.unobtrusive"
     }
   ]
 }
