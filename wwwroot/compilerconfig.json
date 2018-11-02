@@ -2,9 +2,5 @@
   {
     "outputFile": "wwwroot/css/scss/_foundation.css",
     "inputFile": "wwwroot/css/scss/_foundation.scss"
-  },
-  {
-    "outputFile": "wwwroot/js/jquery.es5.js",
-    "inputFile": "wwwroot/js/jquery.js"
   }
 ]

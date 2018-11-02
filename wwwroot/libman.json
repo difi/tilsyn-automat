@@ -1,5 +1,21 @@
 {
   "version": "1.0",
   "defaultProvider": "cdnjs",
-  "libraries": []
+  "libraries": [
+    {
+      "library": "jquery@3.3.1",
+      "files": [ "jquery.js", "jquery.min.js", "jquery.min.map" ],
+      "destination": "wwwroot/js/jquery"
+    },
+    {
+      "library": "jquery-validate@1.18.0",
+      "files": [ "jquery.validate.min.js" ],
+      "destination": "wwwroot/js/jquery"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "files": [ "jquery.validate.unobtrusive.min.js" ],
+      "destination": "wwwroot/js/jquery/"
+    }
+  ]
 }
