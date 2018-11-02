@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -33,7 +34,7 @@ namespace Difi.Sjalvdeklaration.Database
             return item;
         }
 
-        public bool Add(UserItem userItem)
+        public async Task<bool> Add(UserItem userItem, List<RoleItem> roleList)
         {
             if (GetByIdPortenSub(userItem.IdPortenSub) != null)
             {
@@ -44,18 +45,18 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 userItem.Id = Guid.NewGuid();
                 userItem.Created = DateTime.Now;
+                userItem.RoleList = new List<UserRole>();
 
-                dbContext.UserList.Add(userItem);
-
-                if (userItem.RoleListForm != null && userItem.RoleListForm.Any(x => x.Selected))
+                if (roleList != null && roleList.Any())
                 {
-                    foreach (var roleItem in userItem.RoleListForm.Where(x => x.Selected))
+                    foreach (var roleItem in roleList)
                     {
                         dbContext.UserRoleList.Add(new UserRole { RoleItemId = roleItem.Id, UserItemId = userItem.Id });
                     }
                 }
 
-                dbContext.SaveChangesAsync();
+                dbContext.UserList.Add(userItem);
+                await dbContext.SaveChangesAsync();
 
                 return true;
             }
@@ -65,12 +66,12 @@ namespace Difi.Sjalvdeklaration.Database
             }
         }
 
-        public bool AddLink(UserCompany userCompanyItem)
+        public async Task<bool> AddLink(UserCompany userCompanyItem)
         {
             try
             {
                 dbContext.UserCompanyList.Add(userCompanyItem);
-                dbContext.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
 
                 return true;
             }

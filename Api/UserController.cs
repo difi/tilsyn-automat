@@ -2,6 +2,7 @@
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -39,16 +40,16 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("Add")]
-        public bool Add(UserItem userItem)
+        public bool Add(UserAddItem addUserObject)
         {
-            return userRepository.Add(userItem);
+            return userRepository.Add(addUserObject.UserItem, addUserObject.RoleList).Result;
         }
 
         [HttpPost]
         [Route("AddLink")]
         public bool AddLink(UserCompany userCompanyItem)
         {
-            return userRepository.AddLink(userCompanyItem);
+            return userRepository.AddLink(userCompanyItem).Result;
         }
     }
 }

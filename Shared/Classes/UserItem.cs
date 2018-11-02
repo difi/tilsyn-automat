@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
@@ -31,8 +30,5 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public ICollection<UserRole> RoleList { get; set; }
 
         public ICollection<UserCompany> CompanyList { get; set; }
-
-        [NotMapped]
-        public List<RoleItem> RoleListForm { get; set; }
     }
 }

@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
-    public class RoleItem
+    public class SelectItem
     {
         public Guid Id { get; set; }
 
         public String Name { get; set; }
 
-        public ICollection<UserRole> UserList { get; set; }
+        public Boolean Selected { get; set; }
     }
 }

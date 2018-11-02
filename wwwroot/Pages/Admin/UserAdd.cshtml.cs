@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -16,6 +18,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [BindProperty]
         public UserItem UserItemForm { get; set; }
 
+        [BindProperty]
+        [Display(Name = "Välj roller")]
+        public List<SelectItem> SelectRoleList { get; set; }
+
         public UserAddModel(ApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -25,10 +31,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                UserItemForm = new UserItem
+                var list = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll");
+
+                SelectRoleList = list.Select(x => new SelectItem
                 {
-                    RoleListForm = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll")
-                };
+                    Id = x.Id,
+                    Name = x.Name,
+                    Selected = false
+                }).ToList();
             }
             catch
             {
@@ -44,7 +54,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             try
             {
-                var result = await apiHttpClient.Post<bool>("/api/User/Add", UserItemForm);
+                var roleList = SelectRoleList.Where(x => x.Selected).Select(x => new RoleItem { Id = x.Id, Name = x.Name }).ToList();
+                var result = await apiHttpClient.Post<bool>("/api/User/Add", new UserAddItem {UserItem = UserItemForm, RoleList = roleList});
 
                 if (result)
                 {

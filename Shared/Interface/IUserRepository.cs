@@ -1,5 +1,6 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
@@ -9,8 +10,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         UserItem GetByIdPortenSub(string idPortenSub);
 
-        bool Add(UserItem userItem);
+        Task<bool> Add(UserItem userItem, List<RoleItem> roleList);
 
-        bool AddLink(UserCompany userCompanyItem);
+        Task<bool> AddLink(UserCompany userCompanyItem);
     }
 }
