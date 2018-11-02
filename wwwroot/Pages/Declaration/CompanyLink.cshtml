@@ -1,0 +1,22 @@
+﻿@page
+@model CompanyLinkModel
+@{
+    ViewData["Title"] = "CompanyLink";
+}
+
+<h1>LinkToCompany</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    @Html.EditorFor(x => x.AddLinkToCompany.CorporateIdentityNumber, "TextBox")
+    @Html.EditorFor(x => x.AddLinkToCompany.Code, "TextBox")
+
+    <div>
+        <input type="submit" value="Lägg till" />
+    </div>
+</form>
+
+@section Scripts {
+@{     await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+    }

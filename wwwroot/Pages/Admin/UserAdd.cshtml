@@ -10,45 +10,11 @@
 <form method="post">
     <div asp-validation-summary="All"></div>
 
-    <div>
-        <label asp-for="UserItemForm.Name">
-            Name:
-            <span asp-validation-for="UserItemForm.Name"></span>
-        </label>
-        <input type="text" asp-for="UserItemForm.Name" />
-    </div>
-
-    <div>
-        <label asp-for="UserItemForm.SocialSecurityNumber">
-            SocialSecurityNumber:
-            <span asp-validation-for="UserItemForm.SocialSecurityNumber"></span>
-        </label>
-        <input type="text" asp-for="UserItemForm.SocialSecurityNumber" />
-    </div>
-
-    <div>
-        <label asp-for="UserItemForm.Email">
-            Email:
-            <span asp-validation-for="UserItemForm.Email"></span>
-        </label>
-        <input type="text" asp-for="UserItemForm.Email" />
-    </div>
-
-    <div>
-        <label asp-for="UserItemForm.Phone">
-            Phone:
-            <span asp-validation-for="UserItemForm.Phone"></span>
-        </label>
-        <input type="text" asp-for="UserItemForm.Phone" />
-    </div>
-
-    <div>
-        <label asp-for="UserItemForm.Title">
-            Title:
-            <span asp-validation-for="UserItemForm.Title"></span>
-        </label>
-        <input type="text" asp-for="UserItemForm.Title" />
-    </div>
+    @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
+    @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
+    @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
+    @Html.EditorFor(x => x.UserItemForm.Phone, "TextBox")
+    @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
 
     <div>
         <fieldset>

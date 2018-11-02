@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
     [Authorize(Roles = "Admin,Saksbehandlare")]
-    public class AddCompanyModel : PageModel
+    public class CompanyAddModel : PageModel
     {
         private readonly ApiHttpClient apiHttpClient;
 
         [BindProperty]
         public AddCompanyFormModel AddCompanyForm { get; set; }
 
-        public AddCompanyModel(ApiHttpClient apiHttpClient)
+        public CompanyAddModel(ApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

@@ -9,14 +9,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
-    public class LinkToCompanyModel : PageModel
+    public class CompanyLinkModel : PageModel
     {
         private readonly ApiHttpClient apiHttpClient;
 
         [BindProperty]
         public AddLinkToCompanyModel AddLinkToCompany { get; set; }
 
-        public LinkToCompanyModel(ApiHttpClient apiHttpClient)
+        public CompanyLinkModel(ApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

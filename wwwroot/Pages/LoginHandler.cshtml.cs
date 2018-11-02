@@ -86,7 +86,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                 }
                 else
                 {
-                    Response.Redirect(userItem.CompanyList.Any() ? "/Declaration/DeclarationList" : "/Declaration/LinkToCompany");
+                    Response.Redirect(userItem.CompanyList.Any() ? "/Declaration/DeclarationList" : "/Declaration/CompanyLink");
                 }
             }
         }

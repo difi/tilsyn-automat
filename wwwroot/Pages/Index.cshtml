@@ -27,19 +27,6 @@
 
 <a href="@Model.LoginUrl">Logg inn</a>
 
-<br /><br />
-
-@Localizer["Test"]
-
-
-<form method="post">
-    @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
-
-    <div>
-        <input type="submit" value="Lägg till" />
-    </div>
-</form>
-
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }

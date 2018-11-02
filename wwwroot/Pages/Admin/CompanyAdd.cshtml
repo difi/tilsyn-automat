@@ -1,0 +1,33 @@
+﻿@page
+@model CompanyAddModel
+
+@{
+    ViewData["Title"] = "Ny virksamhet";
+}
+
+<h1>Ny virksamhet</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    @Html.EditorFor(x => x.AddCompanyForm.CorporateIdentityNumber, "TextBox")
+    @Html.EditorFor(x => x.AddCompanyForm.Code, "TextBox")
+
+    <fieldset>
+        <legend>
+            Kontaktperson Virksomhet
+        </legend>
+
+        @Html.EditorFor(x => x.AddCompanyForm.ContactPersonName, "TextBox")
+        @Html.EditorFor(x => x.AddCompanyForm.ContactPersonEmail, "TextBox")
+        @Html.EditorFor(x => x.AddCompanyForm.ContactPersonPhone, "TextBox")
+    </fieldset>
+
+    <div>
+        <input type="submit" value="Lägg till" />
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}
