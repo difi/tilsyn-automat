@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Business;
+using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Threading.Tasks;
 
-namespace Difi.Sjalvdeklaration.Pages.Admin
+namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
     [Authorize(Roles = "Admin")]
     public class UserAddModel : PageModel

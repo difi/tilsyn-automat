@@ -4,7 +4,7 @@ using Difi.Sjalvdeklaration.Shared.Classes;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
-namespace Difi.Sjalvdeklaration.Pages
+namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
     public class IndexModel : PageModel
     {

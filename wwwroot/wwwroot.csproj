@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Sjalvdeklaration-67225D40-198C-44B4-9148-775BD207EE66</UserSecretsId>
-    <RootNamespace>Difi.Sjalvdeklaration</RootNamespace>
-    <AssemblyName>Difi.Sjalvdeklaration</AssemblyName>
+    <RootNamespace>Difi.Sjalvdeklaration.wwwroot</RootNamespace>
+    <AssemblyName>Difi.Sjalvdeklaration.wwwroot</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -54,7 +54,13 @@
     <Content Update="Pages\Admin\UserList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Admin\_ViewImports.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Admin\_ViewStart.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Declaration\_ViewImports.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Declaration\_ViewStart.cshtml">

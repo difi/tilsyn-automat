@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Business;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Difi.Sjalvdeklaration.Pages.Admin
+namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
     [Authorize(Roles = "Admin,Saksbehandlare")]
     public class AddCompanyModel : PageModel

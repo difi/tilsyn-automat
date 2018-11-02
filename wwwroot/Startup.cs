@@ -1,8 +1,8 @@
 using System;
 using System.Globalization;
-using Difi.Sjalvdeklaration.Business;
 using Difi.Sjalvdeklaration.Database;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Difi.Sjalvdeklaration
+namespace Difi.Sjalvdeklaration.wwwroot
 {
     public class Startup
     {

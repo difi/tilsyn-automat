@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using Difi.Sjalvdeklaration.Business;
 using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Difi.Sjalvdeklaration.Pages.Declaration
+namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationListModel : PageModel
     {

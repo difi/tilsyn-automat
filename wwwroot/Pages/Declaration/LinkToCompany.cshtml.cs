@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Business;
-using Difi.Sjalvdeklaration.Pages.Admin;
 using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Difi.Sjalvdeklaration.Pages.Declaration
+namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class LinkToCompanyModel : PageModel
     {

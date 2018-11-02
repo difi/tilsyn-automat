@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Difi.Sjalvdeklaration
+namespace Difi.Sjalvdeklaration.wwwroot
 {
     public class Program
     {

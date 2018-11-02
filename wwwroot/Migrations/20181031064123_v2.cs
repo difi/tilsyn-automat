@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Difi.Sjalvdeklaration.Migrations
+namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     public partial class v2 : Migration
     {

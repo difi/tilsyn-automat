@@ -1,12 +1,12 @@
-﻿using Difi.Sjalvdeklaration.Shared;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
-namespace Difi.Sjalvdeklaration.Business
+namespace Difi.Sjalvdeklaration.wwwroot.Business
 {
     public class ApiHttpClient
     {
