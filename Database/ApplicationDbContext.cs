@@ -1,7 +1,6 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -23,7 +22,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserRole>().HasKey(bc => new {bc.UserItemId, bc.RoleItemId});
+            modelBuilder.Entity<UserRole>().HasKey(bc => new { bc.UserItemId, bc.RoleItemId });
 
             modelBuilder.Entity<UserRole>()
                 .HasOne(bc => bc.UserItem)
@@ -35,7 +34,7 @@ namespace Difi.Sjalvdeklaration.Database
                 .WithMany(c => c.UserList)
                 .HasForeignKey(bc => bc.RoleItemId);
 
-            modelBuilder.Entity<UserCompany>().HasKey(bc => new {bc.UserItemId, bc.CompanyItemId});
+            modelBuilder.Entity<UserCompany>().HasKey(bc => new { bc.UserItemId, bc.CompanyItemId });
 
             modelBuilder.Entity<UserCompany>()
                 .HasOne(bc => bc.UserItem)
@@ -108,7 +107,7 @@ namespace Difi.Sjalvdeklaration.Database
                     UserItemId = user2.Id,
                     RoleItemId = role2.Id
                 });
-            
+
             base.OnModelCreating(modelBuilder);
         }
 

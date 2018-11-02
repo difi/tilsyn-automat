@@ -16,7 +16,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public DateTime DeadLineDate { get; set; }
 
-        public DateTime SentInDate{ get; set; }
+        public DateTime SentInDate { get; set; }
 
         public DeclarationStatus Status { get; set; }
 

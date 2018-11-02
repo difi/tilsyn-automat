@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Api
 {

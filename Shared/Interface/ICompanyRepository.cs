@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {

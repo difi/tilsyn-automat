@@ -1,7 +1,7 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,7 +51,7 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     foreach (var roleItem in userItem.RoleListForm.Where(x => x.Selected))
                     {
-                        dbContext.UserRoleList.Add(new UserRole {RoleItemId = roleItem.Id, UserItemId = userItem.Id});
+                        dbContext.UserRoleList.Add(new UserRole { RoleItemId = roleItem.Id, UserItemId = userItem.Id });
                     }
                 }
 

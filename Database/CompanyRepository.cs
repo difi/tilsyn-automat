@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Enhetsregisteret;
+using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.Enhetsregisteret;
-using Difi.Sjalvdeklaration.Shared.Interface;
-using Newtonsoft.Json;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -211,7 +211,6 @@ namespace Difi.Sjalvdeklaration.Database
                     Status = DeclarationStatus.NotChecked
                 };
 
-
                 var declarationItem4 = new DeclarationItem
                 {
                     Id = Guid.NewGuid(),
@@ -222,7 +221,6 @@ namespace Difi.Sjalvdeklaration.Database
                     Status = DeclarationStatus.NotChecked
                 };
 
-
                 var declarationItem5 = new DeclarationItem
                 {
                     Id = Guid.NewGuid(),
@@ -232,7 +230,6 @@ namespace Difi.Sjalvdeklaration.Database
                     CreatedDate = DateTime.Today.AddDays(-5),
                     Status = DeclarationStatus.MoreInfoNeed
                 };
-
 
                 var declarationItem6 = new DeclarationItem
                 {

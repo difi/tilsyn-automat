@@ -25,6 +25,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Enhetsregisteret
         public List<Link> links { get; set; }
         public string organisasjonsform { get; set; }
     }
+
     public class Orgform
     {
         public string kode { get; set; }
@@ -59,6 +60,4 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Enhetsregisteret
         public string rel { get; set; }
         public string href { get; set; }
     }
-
-
 }
