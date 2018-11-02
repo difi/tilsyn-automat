@@ -21,3 +21,18 @@
 </p>
 
 <a href="@Model.LoginUrl">Logg inn</a>
+
+<br /><br />
+
+<form method="post">
+
+    @Html.EditorFor(x => x.TestarMedLangreNamn, "TextBox")
+
+    <div>
+        <input type="submit" value="Lägg till" />
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}

@@ -8,12 +8,10 @@
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
-    <Content Remove="wwwroot\js\jquery.es5.js" />
   </ItemGroup>
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\foundation.min.css" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.es5.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,11 +25,11 @@
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
-    <None Include="wwwroot\js\jquery.es5.js" />
   </ItemGroup>
 
   <ItemGroup>
