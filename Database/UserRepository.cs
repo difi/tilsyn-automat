@@ -119,15 +119,15 @@ namespace Difi.Sjalvdeklaration.Database
         {
             try
             {
-                var userItemDb = Get(userItem.Id);
+                var dbItem = Get(userItem.Id);
 
-                userItemDb.Name = userItem.Name;
-                userItemDb.SocialSecurityNumber = userItem.SocialSecurityNumber;
-                userItemDb.Email = userItem.Email;
-                userItemDb.Phone = userItem.Phone;
-                userItemDb.Title = userItem.Title;
+                dbItem.Name = userItem.Name;
+                dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
+                dbItem.Email = userItem.Email;
+                dbItem.Phone = userItem.Phone;
+                dbItem.Title = userItem.Title;
 
-                dbContext.UserRoleList.RemoveRange(dbContext.UserRoleList.Where(x => x.UserItemId == userItemDb.Id));
+                dbContext.UserRoleList.RemoveRange(dbContext.UserRoleList.Where(x => x.UserItemId == dbItem.Id));
 
                 if (roleList != null && roleList.Any())
                 {
@@ -137,7 +137,7 @@ namespace Difi.Sjalvdeklaration.Database
                     }
                 }
 
-                dbContext.UserList.Update(userItemDb);
+                dbContext.UserList.Update(dbItem);
                 await dbContext.SaveChangesAsync();
 
                 return true;

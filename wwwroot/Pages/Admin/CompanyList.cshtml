@@ -27,32 +27,32 @@
             {
                 var contactPerson = item.ContactPersonList.FirstOrDefault();
 
-                <tr>
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.CorporateIdentityNumber
-                    </td>
-                    <td>
-                        @contactPerson?.Name
-                    </td>
-                    <td>
-                        @contactPerson?.Email
-                    </td>
-                    <td>
-                        @contactPerson?.Phone
-                    </td>
-                    <td>
-                        <button type="submit" asp-page-handler="RemoveCompany" asp-route-id="@item.Id">Radera</button>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @contactPerson?.Name
+                </td>
+                <td>
+                    @contactPerson?.Email
+                </td>
+                <td>
+                    @contactPerson?.Phone
+                </td>
+                <td>
+                    <button type="submit" asp-page-handler="RemoveCompany" asp-route-id="@item.Id">Radera</button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 </form>
 
 <form method="post">
-    <a class="button" asp-page="CompanyAdd">Opprett ny virksomhet</a>
+    <a class="button" asp-page="CompanyForm">Opprett ny virksomhet</a>
     <button type="submit" class="button" asp-page-handler="ExcelImport">Importer virksomheter fra excel</button>
 </form>

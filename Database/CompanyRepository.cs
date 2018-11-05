@@ -21,9 +21,14 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public CompanyItem Get(string corporateIdentityNumber)
+        public CompanyItem Get(Guid id)
         {
-            return dbContext.CompanyList.SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).SingleOrDefault(x => x.Id == id);
+        }
+
+        public CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber)
+        {
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
         }
 
         public IEnumerable<CompanyItem> GetAll()
@@ -33,28 +38,50 @@ namespace Difi.Sjalvdeklaration.Database
 
         public async Task<bool> Add(CompanyItem companyItem)
         {
-            if (Get(companyItem.CorporateIdentityNumber) != null)
+            if (GetByCorporateIdentityNumber(companyItem.CorporateIdentityNumber) != null)
             {
                 return false;
             }
 
             try
             {
-                using (var httpClient = new HttpClient())
+                dbContext.CompanyList.Add(companyItem);
+                await dbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> Update(CompanyItem companyItem)
+        {
+            try
+            {
+                var dbItem = Get(companyItem.Id);
+
+                dbItem.Code = companyItem.Code;
+                dbItem.Name = companyItem.Name;
+                dbItem.CustomName = companyItem.CustomName;
+                dbItem.AddressStreet = companyItem.AddressStreet;
+                dbItem.AddressZip = companyItem.AddressZip;
+                dbItem.AddressCity = companyItem.AddressCity;
+
+                dbContext.ContactPersonList.RemoveRange(dbContext.ContactPersonList.Where(x => x.CompanyItemId == dbItem.Id));
+
+                if (companyItem.ContactPersonList != null && companyItem.ContactPersonList.Any())
                 {
-                    httpClient.DefaultRequestHeaders.Accept.Clear();
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                    var responseMessage = await httpClient.GetStringAsync("https://data.brreg.no/enhetsregisteret/enhet/" + companyItem.CorporateIdentityNumber + ".json");
-
-                    var responseData = responseMessage;
-                    var deserializeObject = JsonConvert.DeserializeObject<EnhetsregisteretRootObject>(responseData);
-
-                    companyItem.Name = deserializeObject.navn;
+                    foreach (var contactPersonItem in companyItem.ContactPersonList)
+                    {
+                        dbContext.ContactPersonList.Add(new ContactPersonItem {Name = contactPersonItem.Name, Email = contactPersonItem.Email, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id});
+                    }
                 }
 
-                dbContext.CompanyList.Add(companyItem);
-                dbContext.SaveChanges();
+                dbContext.CompanyList.Update(dbItem);
+
+                await dbContext.SaveChangesAsync();
 
                 return true;
             }
@@ -90,6 +117,9 @@ namespace Difi.Sjalvdeklaration.Database
                     Name = "Narvesen",
                     CorporateIdentityNumber = "123456789",
                     Code = "1111",
+                    AddressStreet = "Triangelbygget 12",
+                    AddressZip = "4200",
+                    AddressCity = "SAUDA"
                 };
 
                 var company2 = new CompanyItem
@@ -97,7 +127,10 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Norwegian",
                     CorporateIdentityNumber = "987654321",
-                    Code = "2222"
+                    Code = "2222",
+                    AddressStreet = "Triangelbygget 12",
+                    AddressZip = "4200",
+                    AddressCity = "SAUDA"
                 };
 
                 var company3 = new CompanyItem
@@ -105,7 +138,10 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "NSB",
                     CorporateIdentityNumber = "1122334455",
-                    Code = "3333"
+                    Code = "3333",
+                    AddressStreet = "Triangelbygget 12",
+                    AddressZip = "4200",
+                    AddressCity = "SAUDA"
                 };
 
                 var company4 = new CompanyItem
@@ -113,7 +149,10 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Esso",
                     CorporateIdentityNumber = "1122334455",
-                    Code = "4444"
+                    Code = "4444",
+                    AddressStreet = "Triangelbygget 12",
+                    AddressZip = "4200",
+                    AddressCity = "SAUDA"
                 };
 
                 var company5 = new CompanyItem
@@ -121,7 +160,10 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "7 - eleven",
                     CorporateIdentityNumber = "1122334455",
-                    Code = "5555"
+                    Code = "5555",
+                    AddressStreet = "Triangelbygget 12",
+                    AddressZip = "4200",
+                    AddressCity = "SAUDA"
                 };
 
                 var company6 = new CompanyItem
@@ -129,7 +171,10 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Norske bank",
                     CorporateIdentityNumber = "1122334455",
-                    Code = "6666"
+                    Code = "6666",
+                    AddressStreet = "Triangelbygget 12",
+                    AddressZip = "4200",
+                    AddressCity = "SAUDA"
                 };
 
                 var contactPerson1 = new ContactPersonItem
@@ -137,7 +182,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
-                    Phone = "070-601 75 46",
+                    Phone = "0706017546",
                     CompanyItemId = company1.Id
                 };
                 var contactPerson2 = new ContactPersonItem
@@ -145,7 +190,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
-                    Phone = "070-601 75 46",
+                    Phone = "0706017546",
                     CompanyItemId = company2.Id
                 };
                 var contactPerson3 = new ContactPersonItem
@@ -153,7 +198,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
-                    Phone = "070-601 75 46",
+                    Phone = "0706017546",
                     CompanyItemId = company3.Id
                 };
                 var contactPerson4 = new ContactPersonItem
@@ -161,7 +206,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
-                    Phone = "070-601 75 46",
+                    Phone = "0706017546",
                     CompanyItemId = company4.Id
                 };
                 var contactPerson5 = new ContactPersonItem
@@ -169,7 +214,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
-                    Phone = "070-601 75 46",
+                    Phone = "0706017546",
                     CompanyItemId = company5.Id
                 };
                 var contactPerson6 = new ContactPersonItem
@@ -177,7 +222,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
-                    Phone = "070-601 75 46",
+                    Phone = "0706017546",
                     CompanyItemId = company6.Id
                 };
 
@@ -187,7 +232,7 @@ namespace Difi.Sjalvdeklaration.Database
                     CompanyItemId = company1.Id,
                     UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400269").Id,
                     Name = "Automat for betaling på Oslo S",
-                    CreatedDate = DateTime.Today.AddDays(-10),
+                    CreatedDate = DateTime.Now,
                     Status = DeclarationStatus.Started
                 };
 
@@ -197,7 +242,7 @@ namespace Difi.Sjalvdeklaration.Database
                     CompanyItemId = company2.Id,
                     UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400269").Id,
                     Name = "Billettautomat Gardemoen",
-                    CreatedDate = DateTime.Today.AddDays(-5),
+                    CreatedDate = DateTime.Now,
                     Status = DeclarationStatus.NotStarted
                 };
 
@@ -207,7 +252,7 @@ namespace Difi.Sjalvdeklaration.Database
                     CompanyItemId = company3.Id,
                     UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400420").Id,
                     Name = "Billettautomat på Oslo S",
-                    CreatedDate = DateTime.Today.AddDays(-5),
+                    CreatedDate = DateTime.Now,
                     Status = DeclarationStatus.NotChecked
                 };
 
@@ -217,7 +262,7 @@ namespace Difi.Sjalvdeklaration.Database
                     CompanyItemId = company4.Id,
                     UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400269").Id,
                     Name = "Betalingsautomat Trondheim",
-                    CreatedDate = DateTime.Today.AddDays(-3),
+                    CreatedDate = DateTime.Now,
                     Status = DeclarationStatus.NotChecked
                 };
 
@@ -227,7 +272,7 @@ namespace Difi.Sjalvdeklaration.Database
                     CompanyItemId = company5.Id,
                     UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400420").Id,
                     Name = "Automat Grensen",
-                    CreatedDate = DateTime.Today.AddDays(-5),
+                    CreatedDate = DateTime.Now,
                     Status = DeclarationStatus.MoreInfoNeed
                 };
 
@@ -237,7 +282,7 @@ namespace Difi.Sjalvdeklaration.Database
                     CompanyItemId = company6.Id,
                     UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400420").Id,
                     Name = "Billettautomat Kristiansand",
-                    CreatedDate = DateTime.Today.AddDays(-3),
+                    CreatedDate = DateTime.Now,
                     Status = DeclarationStatus.Done
                 };
 

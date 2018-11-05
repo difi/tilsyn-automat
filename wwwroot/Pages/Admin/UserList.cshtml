@@ -19,7 +19,6 @@
             <th scope="col">Phone</th>
             <th scope="col">Title</th>
             <th scope="col">RoleList</th>
-            <th scope="col">Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +26,7 @@
         {
             <tr>
                 <td>
-                    @item.SocialSecurityNumber
+                    <a asp-page="UserForm" asp-route-id="@item.Id">@item.SocialSecurityNumber</a>
                 </td>
                 <td>
                     @item.Name
@@ -43,9 +42,6 @@
                 </td>
                 <td>
                     @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
-                </td>
-                <td>
-                    <a class="button" asp-page="UserForm" asp-route-id="@item.Id">Edit</a>
                 </td>
             </tr>
         }

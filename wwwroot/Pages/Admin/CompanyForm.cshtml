@@ -1,0 +1,53 @@
+﻿@page
+@model CompanyFormModel
+
+@{
+    var title = Model.CompanyItemForm.Id != Guid.Empty ? "Uppdatera " + Model.CompanyItemForm.Name : "Ny interne virksamhet";
+
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    @Html.HiddenFor(x => x.CompanyItemForm.Id)
+    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBox")
+    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBox")
+    @Html.EditorFor(x => x.CompanyItemForm.Name, "TextBox")
+    @Html.EditorFor(x => x.CompanyItemForm.CustomName, "TextBox")
+
+    <fieldset>
+        <legend>
+            Forretningsadresse
+        </legend>
+
+        @Html.EditorFor(x => x.CompanyItemForm.AddressStreet, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.AddressZip, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.AddressCity, "TextBox")
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Kontaktperson Virksomhet
+        </legend>
+
+        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Name, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Email, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
+    </fieldset>
+
+    @if (Model.CompanyItemForm.Id != Guid.Empty)
+    {
+        <input type="submit" value="Update" />
+    }
+    else
+    {
+        <input type="submit" value="Add" />
+    }
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}

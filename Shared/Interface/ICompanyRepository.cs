@@ -7,11 +7,15 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface ICompanyRepository
     {
-        CompanyItem Get(string corporateIdentityNumber);
+        CompanyItem Get(Guid id);
+
+        CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber);
 
         IEnumerable<CompanyItem> GetAll();
 
         Task<bool> Add(CompanyItem companyItem);
+
+        Task<bool> Update(CompanyItem companyItem);
 
         Task<bool> Remove(Guid id);
 
