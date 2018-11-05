@@ -97,9 +97,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("RoleList");
 
                     b.HasData(
-                        new { Id = new Guid("86256d80-3c70-4143-a4aa-0662a0c7d247"), IsAdminRole = true, Name = "Admin" },
-                        new { Id = new Guid("b12ddbf6-1e3d-4a11-9880-fe4ff5b14c01"), IsAdminRole = true, Name = "Saksbehandlare" },
-                        new { Id = new Guid("8f53bf26-92ca-405b-af3e-22fe6cc07dad"), IsAdminRole = false, Name = "Virksomhet" }
+                        new { Id = new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe"), IsAdminRole = true, Name = "Admin" },
+                        new { Id = new Guid("ceb3e909-2d86-42de-951f-7646949718c1"), IsAdminRole = true, Name = "Saksbehandlare" },
+                        new { Id = new Guid("799cb2c6-ef81-4d43-aee5-c28fb405bcd6"), IsAdminRole = false, Name = "Virksomhet" }
                     );
                 });
 
@@ -144,8 +144,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserList");
 
                     b.HasData(
-                        new { Id = new Guid("9604fda2-43ed-41f2-af64-bbcc81afb4f9"), Created = new DateTime(2018, 11, 5, 11, 28, 11, 806, DateTimeKind.Local), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                        new { Id = new Guid("4658d37d-b3d8-47e3-a0fb-e18a4c73734b"), Created = new DateTime(2018, 11, 5, 11, 28, 11, 808, DateTimeKind.Local), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                        new { Id = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                        new { Id = new Guid("04be8925-63ae-4253-8930-828e624cbea1"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                     );
                 });
 
@@ -162,9 +162,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserRoleList");
 
                     b.HasData(
-                        new { UserItemId = new Guid("9604fda2-43ed-41f2-af64-bbcc81afb4f9"), RoleItemId = new Guid("86256d80-3c70-4143-a4aa-0662a0c7d247") },
-                        new { UserItemId = new Guid("9604fda2-43ed-41f2-af64-bbcc81afb4f9"), RoleItemId = new Guid("b12ddbf6-1e3d-4a11-9880-fe4ff5b14c01") },
-                        new { UserItemId = new Guid("4658d37d-b3d8-47e3-a0fb-e18a4c73734b"), RoleItemId = new Guid("b12ddbf6-1e3d-4a11-9880-fe4ff5b14c01") }
+                        new { UserItemId = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), RoleItemId = new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe") },
+                        new { UserItemId = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), RoleItemId = new Guid("ceb3e909-2d86-42de-951f-7646949718c1") },
+                        new { UserItemId = new Guid("04be8925-63ae-4253-8930-828e624cbea1"), RoleItemId = new Guid("ceb3e909-2d86-42de-951f-7646949718c1") }
                     );
                 });
 

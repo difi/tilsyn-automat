@@ -48,46 +48,46 @@ namespace Difi.Sjalvdeklaration.Database
 
             var role1 = new RoleItem
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("BDB5182D-8D56-4034-BFB3-36888E719EBE"),
                 Name = "Admin",
                 IsAdminRole = true
             };
 
             var role2 = new RoleItem
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("CEB3E909-2D86-42DE-951F-7646949718C1"),
                 Name = "Saksbehandlare",
                 IsAdminRole = true
             };
 
             var role3 = new RoleItem
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("799CB2C6-EF81-4D43-AEE5-C28FB405BCD6"),
                 Name = "Virksomhet"
             };
 
             var user1 = new UserItem
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("1B21A2A1-36F5-47A3-A27B-49E241FAAFBE"),
                 SocialSecurityNumber = "12089400420",
                 Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
                 Name = "Martin Swartling",
                 Email = "martin@difi.no",
                 Phone = "912345678",
                 Title = "Avdelingssjef",
-                Created = DateTime.Now
+                Created = new DateTime(2011, 1, 1, 12, 00, 00)
             };
 
             var user2 = new UserItem
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("04BE8925-63AE-4253-8930-828E624CBEA1"),
                 SocialSecurityNumber = "12089400269",
                 Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
                 Name = "Thea Sneve",
                 Email = "thea@difi.no",
                 Phone = "712345678",
                 Title = "Handläggare",
-                Created = DateTime.Now
+                Created = new DateTime(2011, 1, 1, 12, 00, 00)
             };
 
             modelBuilder.Entity<UserItem>().HasData(user1, user2);

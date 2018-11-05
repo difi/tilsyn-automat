@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
-    public partial class v1 : Migration
+    public partial class V1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,9 +39,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdPortenSub = table.Column<string>(nullable: true),
+                    Token = table.Column<string>(nullable: true),
                     SocialSecurityNumber = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
@@ -157,34 +157,34 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: new[] { "Id", "IsAdminRole", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("b06763ff-349d-4366-9856-443303e308d0"), true, "Admin" },
-                    { new Guid("a8eb1103-23c1-4c65-bb46-4c891fe25121"), true, "Saksbehandlare" },
-                    { new Guid("400a7c12-ef37-4cb9-ac3e-da4d4a621a8f"), false, "Verksamhet" }
+                    { new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe"), true, "Admin" },
+                    { new Guid("ceb3e909-2d86-42de-951f-7646949718c1"), true, "Saksbehandlare" },
+                    { new Guid("799cb2c6-ef81-4d43-aee5-c28fb405bcd6"), false, "Virksomhet" }
                 });
 
             migrationBuilder.InsertData(
                 table: "UserList",
-                columns: new[] { "Id", "Created", "Email", "IdPortenSub", "LastOnline", "Name", "Phone", "SocialSecurityNumber", "Title" },
+                columns: new[] { "Id", "Created", "Email", "LastOnline", "Name", "Phone", "SocialSecurityNumber", "Title", "Token" },
                 values: new object[,]
                 {
-                    { new Guid("9ffecba1-0658-4f04-bc15-2a140722503f"), new DateTime(2018, 11, 5, 6, 38, 6, 216, DateTimeKind.Local), "martin@difi.no", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef" },
-                    { new Guid("b53d85c0-2f39-4bd1-98db-fdfc2b01ab11"), new DateTime(2018, 11, 5, 6, 38, 6, 218, DateTimeKind.Local), "thea@difi.no", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare" }
+                    { new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                    { new Guid("04be8925-63ae-4253-8930-828e624cbea1"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                 });
 
             migrationBuilder.InsertData(
                 table: "UserRoleList",
                 columns: new[] { "UserItemId", "RoleItemId" },
-                values: new object[] { new Guid("9ffecba1-0658-4f04-bc15-2a140722503f"), new Guid("b06763ff-349d-4366-9856-443303e308d0") });
+                values: new object[] { new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe") });
 
             migrationBuilder.InsertData(
                 table: "UserRoleList",
                 columns: new[] { "UserItemId", "RoleItemId" },
-                values: new object[] { new Guid("9ffecba1-0658-4f04-bc15-2a140722503f"), new Guid("a8eb1103-23c1-4c65-bb46-4c891fe25121") });
+                values: new object[] { new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), new Guid("ceb3e909-2d86-42de-951f-7646949718c1") });
 
             migrationBuilder.InsertData(
                 table: "UserRoleList",
                 columns: new[] { "UserItemId", "RoleItemId" },
-                values: new object[] { new Guid("b53d85c0-2f39-4bd1-98db-fdfc2b01ab11"), new Guid("a8eb1103-23c1-4c65-bb46-4c891fe25121") });
+                values: new object[] { new Guid("04be8925-63ae-4253-8930-828e624cbea1"), new Guid("ceb3e909-2d86-42de-951f-7646949718c1") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ContactPersonList_CompanyItemId",

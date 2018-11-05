@@ -13,7 +13,3 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public RoleItem RoleItem { get; set; }
     }
 }
-
-namespace Difi.Sjalvdeklaration.Shared.Classes
-{
-}
