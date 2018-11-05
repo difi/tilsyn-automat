@@ -19,7 +19,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         Task<bool> Remove(Guid id);
 
-        Task<bool> ExcelImport();
+        Task<bool> ExcelImport(ExcelItemRow excelRow);
 
         Task<bool> AddLink(UserCompany userCompanyItem);
     }

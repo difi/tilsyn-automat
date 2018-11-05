@@ -28,9 +28,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 return Page();
             }
 
-            var token = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
             var companyDbItem = await apiHttpClient.Get<CompanyItem>("/api/Company/GetByCorporateIdentityNumber/" + AddLinkToCompany.CorporateIdentityNumber);
-            var userDbItem = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + token);
+            var userDbItem = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);
 
             if (companyDbItem != null && companyDbItem.Code == AddLinkToCompany.Code)
             {

@@ -54,9 +54,9 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("ExcelImport")]
-        public bool ExcelImport()
+        public bool ExcelImport(ExcelItemRow excelItemRow)
         {
-            return companyRepository.ExcelImport().Result;
+            return companyRepository.ExcelImport(excelItemRow).Result;
         }
 
         [HttpGet]

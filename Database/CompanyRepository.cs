@@ -107,209 +107,23 @@ namespace Difi.Sjalvdeklaration.Database
             return true;
         }
 
-        public async Task<bool> ExcelImport()
+        public async Task<bool> ExcelImport(ExcelItemRow excelRow)
         {
             try
             {
-                var company1 = new CompanyItem
+                if (GetByCorporateIdentityNumber(excelRow.CompanyItem.CorporateIdentityNumber) != null)
                 {
-                    Id = Guid.NewGuid(),
-                    Name = "Narvesen",
-                    CorporateIdentityNumber = "123456789",
-                    Code = "1111",
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
-                };
+                    return false;
+                }
 
-                var company2 = new CompanyItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Norwegian",
-                    CorporateIdentityNumber = "987654321",
-                    Code = "2222",
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
-                };
-
-                var company3 = new CompanyItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "NSB",
-                    CorporateIdentityNumber = "1122334455",
-                    Code = "3333",
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
-                };
-
-                var company4 = new CompanyItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Esso",
-                    CorporateIdentityNumber = "1122334455",
-                    Code = "4444",
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
-                };
-
-                var company5 = new CompanyItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "7 - eleven",
-                    CorporateIdentityNumber = "1122334455",
-                    Code = "5555",
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
-                };
-
-                var company6 = new CompanyItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Norske bank",
-                    CorporateIdentityNumber = "1122334455",
-                    Code = "6666",
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
-                };
-
-                var contactPerson1 = new ContactPersonItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    Phone = "0706017546",
-                    CompanyItemId = company1.Id
-                };
-                var contactPerson2 = new ContactPersonItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    Phone = "0706017546",
-                    CompanyItemId = company2.Id
-                };
-                var contactPerson3 = new ContactPersonItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    Phone = "0706017546",
-                    CompanyItemId = company3.Id
-                };
-                var contactPerson4 = new ContactPersonItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    Phone = "0706017546",
-                    CompanyItemId = company4.Id
-                };
-                var contactPerson5 = new ContactPersonItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    Phone = "0706017546",
-                    CompanyItemId = company5.Id
-                };
-                var contactPerson6 = new ContactPersonItem
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    Phone = "0706017546",
-                    CompanyItemId = company6.Id
-                };
-
-                var declarationItem1 = new DeclarationItem
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyItemId = company1.Id,
-                    UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400269").Id,
-                    Name = "Automat for betaling på Oslo S",
-                    CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.Started
-                };
-
-                var declarationItem2 = new DeclarationItem
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyItemId = company2.Id,
-                    UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400269").Id,
-                    Name = "Billettautomat Gardemoen",
-                    CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.NotStarted
-                };
-
-                var declarationItem3 = new DeclarationItem
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyItemId = company3.Id,
-                    UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400420").Id,
-                    Name = "Billettautomat på Oslo S",
-                    CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.NotChecked
-                };
-
-                var declarationItem4 = new DeclarationItem
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyItemId = company4.Id,
-                    UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400269").Id,
-                    Name = "Betalingsautomat Trondheim",
-                    CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.NotChecked
-                };
-
-                var declarationItem5 = new DeclarationItem
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyItemId = company5.Id,
-                    UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400420").Id,
-                    Name = "Automat Grensen",
-                    CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.MoreInfoNeed
-                };
-
-                var declarationItem6 = new DeclarationItem
-                {
-                    Id = Guid.NewGuid(),
-                    CompanyItemId = company6.Id,
-                    UserItemId = dbContext.UserList.Single(x => x.SocialSecurityNumber == "12089400420").Id,
-                    Name = "Billettautomat Kristiansand",
-                    CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.Done
-                };
-
-                dbContext.CompanyList.Add(company1);
-                dbContext.CompanyList.Add(company2);
-                dbContext.CompanyList.Add(company3);
-                dbContext.CompanyList.Add(company4);
-                dbContext.CompanyList.Add(company5);
-                dbContext.CompanyList.Add(company6);
-
-                dbContext.ContactPersonList.Add(contactPerson1);
-                dbContext.ContactPersonList.Add(contactPerson2);
-                dbContext.ContactPersonList.Add(contactPerson3);
-                dbContext.ContactPersonList.Add(contactPerson4);
-                dbContext.ContactPersonList.Add(contactPerson5);
-                dbContext.ContactPersonList.Add(contactPerson6);
-
-                dbContext.DeclarationList.Add(declarationItem1);
-                dbContext.DeclarationList.Add(declarationItem2);
-                dbContext.DeclarationList.Add(declarationItem3);
-                dbContext.DeclarationList.Add(declarationItem4);
-                dbContext.DeclarationList.Add(declarationItem5);
-                dbContext.DeclarationList.Add(declarationItem6);
+                dbContext.CompanyList.Add(excelRow.CompanyItem);
+                dbContext.ContactPersonList.Add(excelRow.ContactPersonItem);
+                dbContext.DeclarationList.Add(excelRow.DeclarationItem);
 
                 await dbContext.SaveChangesAsync();
 
                 return true;
+
             }
             catch
             {
