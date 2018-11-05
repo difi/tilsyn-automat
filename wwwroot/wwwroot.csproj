@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Sjalvdeklaration-67225D40-198C-44B4-9148-775BD207EE66</UserSecretsId>
     <RootNamespace>Difi.Sjalvdeklaration.wwwroot</RootNamespace>
-    <AssemblyName>wwwroot</AssemblyName>
+    <AssemblyName>Difi.Sjalvdeklaration.wwwroot</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Pages\Admin\UserAdd.cshtml">
+    <Content Update="Pages\Admin\UserForm.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Admin\UserList.cshtml">

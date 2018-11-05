@@ -1,11 +1,15 @@
 ﻿@page
-@model UserAddModel
+@model UserFormModel
+
 
 @{
-    ViewData["Title"] = "Ny interne brukere";
+    var title = Model.UserItemForm!=null ? "Uppdatera " + Model.UserItemForm.Name : "Ny interne brukere";
+    ViewData["Title"] = title;
 }
 
-<h1>Ny interne brukere</h1>
+<h1>
+    @title
+</h1>
 
 <form method="post">
     <div asp-validation-summary="All"></div>
@@ -17,7 +21,14 @@
     @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
     @Html.EditorFor(x => x.SelectRoleList, "CheckBoxList")
 
-    <input type="submit" value="Lägg till" />
+    @if (Model.UserItemForm!=null)
+    {
+        <input type="submit" value="Update" />
+    }
+    else
+    {
+        <input type="submit" value="Add" />
+    }
 </form>
 
 @section Scripts {

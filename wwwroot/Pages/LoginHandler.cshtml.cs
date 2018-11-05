@@ -62,7 +62,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                     var status = apiHttpClient.Post<bool>("/api/User/Add", userItemCreate);
                 }
 
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/Get/" + Sub).Result;
+                var userItem = apiHttpClient.Get<UserItem>("/api/User/GetIdPorten/" + Sub).Result;
 
                 var claims = new List<Claim>
                 {

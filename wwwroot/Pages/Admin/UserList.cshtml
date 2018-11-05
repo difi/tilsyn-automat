@@ -19,6 +19,7 @@
             <th scope="col">Phone</th>
             <th scope="col">Title</th>
             <th scope="col">RoleList</th>
+            <th scope="col">Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -43,11 +44,14 @@
                 <td>
                     @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
                 </td>
+                <td>
+                    <a class="button" asp-page="UserForm" asp-route-id="@item.Id">Edit</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
 <form method="post">
-    <a class="button" asp-page="UserAdd">Opprett ny interne brukere</a>
+    <a class="button" asp-page="UserForm">Opprett ny interne brukere</a>
 </form>

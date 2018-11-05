@@ -1,4 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -25,17 +26,24 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
+        [Route("Get/{id}")]
+        public UserItem Get(Guid id)
+        {
+            return userRepository.Get(id);
+        }
+
+        [HttpGet]
+        [Route("GetIdPorten/{sub}")]
+        public UserItem GetIdPorten(string sub)
+        {
+            return userRepository.GetByIdPortenSub(sub);
+        }
+
+        [HttpGet]
         [Route("Exists/{sub}")]
         public bool Exists(string sub)
         {
             return userRepository.GetByIdPortenSub(sub) != null;
-        }
-
-        [HttpGet]
-        [Route("Get/{sub}")]
-        public UserItem Get(string sub)
-        {
-            return userRepository.GetByIdPortenSub(sub);
         }
 
         [HttpPost]
@@ -43,6 +51,13 @@ namespace Difi.Sjalvdeklaration.Api
         public bool Add(UserAddItem addUserObject)
         {
             return userRepository.Add(addUserObject.UserItem, addUserObject.RoleList).Result;
+        }
+
+        [HttpPost]
+        [Route("Update")]
+        public bool Update(UserAddItem addUserObject)
+        {
+            return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList).Result;
         }
 
         [HttpPost]
