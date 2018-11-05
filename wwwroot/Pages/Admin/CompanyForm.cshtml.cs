@@ -79,5 +79,24 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 return Page();
             }
         }
+
+        public async Task<IActionResult> OnPostRemoveCompanyAsync(string id)
+        {
+            try
+            {
+                var result = await apiHttpClient.Get<bool>("/api/Company/Remove/" + id);
+
+                if (result)
+                {
+                    return RedirectToPage("/Admin/CompanyList");
+                }
+
+                return Page();
+            }
+            catch
+            {
+                return Page();
+            }
+        }
     }
 }

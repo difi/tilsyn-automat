@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
@@ -7,10 +8,13 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
     {
         public Guid Id { get; set; }
 
+        [Required]
         public String Code { get; set; }
 
+        [Required]
         public String CorporateIdentityNumber { get; set; }
 
+        [Required]
         public String Name { get; set; }
 
         public String CustomName { get; set; }
