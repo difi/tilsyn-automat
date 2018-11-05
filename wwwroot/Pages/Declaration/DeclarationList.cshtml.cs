@@ -24,7 +24,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/Get/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value).Result;
+                var userItem = apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value).Result;
 
                 CompanyList = new List<CompanyItem>();
                 DeclarationList = new List<DeclarationItem>();

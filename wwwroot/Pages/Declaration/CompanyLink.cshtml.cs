@@ -28,9 +28,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 return Page();
             }
 
-            var idPortenId = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            var token = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
             var companyDbItem = await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + AddLinkToCompany.CorporateIdentityNumber);
-            var userDbItem = await apiHttpClient.Get<CompanyItem>("/api/User/Get/" + idPortenId);
+            var userDbItem = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + token);
 
             if (companyDbItem != null && companyDbItem.Code == AddLinkToCompany.Code)
             {
@@ -40,7 +40,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     UserItemId = userDbItem.Id
                 };
 
-                var result = await apiHttpClient.Post<bool>("/api/User/AddLink", userCompanyItem);
+                var result = await apiHttpClient.Post<bool>("/api/Company/AddLink", userCompanyItem);
 
                 if (result)
                 {

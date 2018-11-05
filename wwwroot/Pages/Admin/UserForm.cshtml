@@ -3,7 +3,7 @@
 
 
 @{
-    var title = Model.UserItemForm!=null ? "Uppdatera " + Model.UserItemForm.Name : "Ny interne brukere";
+    var title = Model.UserItemForm.Id != Guid.Empty ? "Uppdatera " + Model.UserItemForm.Name : "Ny interne brukere";
     ViewData["Title"] = title;
 }
 
@@ -13,7 +13,8 @@
 
 <form method="post">
     <div asp-validation-summary="All"></div>
-
+    
+    @Html.HiddenFor(x=>x.UserItemForm.Id)
     @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
     @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
     @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
@@ -21,7 +22,7 @@
     @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
     @Html.EditorFor(x => x.SelectRoleList, "CheckBoxList")
 
-    @if (Model.UserItemForm!=null)
+    @if (Model.UserItemForm.Id != Guid.Empty)
     {
         <input type="submit" value="Update" />
     }

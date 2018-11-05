@@ -47,25 +47,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                 Pid = jwtSecurityToken.Payload["pid"].ToString();
                 Sub = jwtSecurityToken.Payload["sub"].ToString();
 
-                var userExists = apiHttpClient.Get<bool>("/api/User/Exists/" + Sub).Result;
-
-                if (!userExists)
-                {
-                    var userItemCreate = new UserItem
-                    {
-                        IdPortenSub = Sub,
-                        SocialSecurityNumber = Pid,
-                        Id = Guid.NewGuid(),
-                        Name = "Okänd"
-                    };
-
-                    var status = apiHttpClient.Post<bool>("/api/User/Add", userItemCreate);
-                }
-
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/GetIdPorten/" + Sub).Result;
+                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + Sub + "/" + Pid).Result;
 
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.PrimarySid, userItem.Id.ToString()),
                     new Claim(ClaimTypes.NameIdentifier, userItem.IdPortenSub),
                     new Claim(ClaimTypes.Name, userItem.Name + ""),
                     new Claim(ClaimTypes.Email, userItem.Email + ""),

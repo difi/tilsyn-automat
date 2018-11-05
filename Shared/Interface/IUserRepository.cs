@@ -11,12 +11,12 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         UserItem Get(Guid id);
 
-        UserItem GetByIdPortenSub(string idPortenSub);
+        UserItem GetByToken(string token);
 
         Task<bool> Add(UserItem userItem, List<RoleItem> roleList);
 
         Task<bool> Update(UserItem userItem, List<RoleItem> roleList);
 
-        Task<bool> AddLink(UserCompany userCompanyItem);
+        Task<UserItem> Login(string idPortenSub, string socialSecurityNumber);
     }
 }

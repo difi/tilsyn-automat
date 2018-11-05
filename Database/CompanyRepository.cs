@@ -271,5 +271,20 @@ namespace Difi.Sjalvdeklaration.Database
                 return false;
             }
         }
+
+        public async Task<bool> AddLink(UserCompany userCompanyItem)
+        {
+            try
+            {
+                dbContext.UserCompanyList.Add(userCompanyItem);
+                await dbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

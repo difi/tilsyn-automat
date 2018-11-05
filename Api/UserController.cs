@@ -33,17 +33,17 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("GetIdPorten/{sub}")]
-        public UserItem GetIdPorten(string sub)
+        [Route("GetByToken/{token}")]
+        public UserItem GetByToken(String token)
         {
-            return userRepository.GetByIdPortenSub(sub);
+            return userRepository.GetByToken(token);
         }
 
         [HttpGet]
-        [Route("Exists/{sub}")]
-        public bool Exists(string sub)
+        [Route("Login/{idPortenSub}/{socialSecurityNumber}")]
+        public UserItem Login(string idPortenSub, string socialSecurityNumber)
         {
-            return userRepository.GetByIdPortenSub(sub) != null;
+            return userRepository.Login(idPortenSub, socialSecurityNumber).Result;
         }
 
         [HttpPost]
@@ -58,13 +58,6 @@ namespace Difi.Sjalvdeklaration.Api
         public bool Update(UserAddItem addUserObject)
         {
             return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList).Result;
-        }
-
-        [HttpPost]
-        [Route("AddLink")]
-        public bool AddLink(UserCompany userCompanyItem)
-        {
-            return userRepository.AddLink(userCompanyItem).Result;
         }
     }
 }

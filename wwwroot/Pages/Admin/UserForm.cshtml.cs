@@ -1,9 +1,9 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -46,19 +46,20 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     UserItemForm = await apiHttpClient.Get<UserItem>("/api/User/Get/" + id);
 
-                    if (UserItemForm != null)
+                    foreach (var userRole in UserItemForm.RoleList)
                     {
-                        foreach (var userRole in UserItemForm.RoleList)
+                        foreach (var selectItem in SelectRoleList)
                         {
-                            foreach (var selectItem in SelectRoleList)
+                            if (userRole.RoleItemId == selectItem.Id)
                             {
-                                if (userRole.RoleItemId == selectItem.Id)
-                                {
-                                    selectItem.Selected = true;
-                                }
+                                selectItem.Selected = true;
                             }
                         }
                     }
+                }
+                else
+                {
+                    UserItemForm = new UserItem();
                 }
             }
             catch
@@ -80,7 +81,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (UserItemForm.Id != Guid.Empty)
                 {
-                    result = await apiHttpClient.Post<bool>("/api/User/Update", new UserAddItem {UserItem = UserItemForm, RoleList = roleList});
+                    result = await apiHttpClient.Post<bool>("/api/User/Update", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
                 }
                 else
                 {

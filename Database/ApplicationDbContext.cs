@@ -63,7 +63,7 @@ namespace Difi.Sjalvdeklaration.Database
             var role3 = new RoleItem
             {
                 Id = Guid.NewGuid(),
-                Name = "Verksamhet"
+                Name = "Virksomhet"
             };
 
             var user1 = new UserItem

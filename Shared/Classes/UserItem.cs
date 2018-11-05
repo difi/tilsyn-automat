@@ -15,6 +15,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         [Required(ErrorMessage = "The Social Security Number field is required!")]
         public String SocialSecurityNumber { get; set; }
 
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Name field is required!")]
         public String Name { get; set; }
 
         public String Email { get; set; }

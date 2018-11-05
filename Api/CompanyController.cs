@@ -51,5 +51,12 @@ namespace Difi.Sjalvdeklaration.Api
         {
             return companyRepository.Remove(Guid.Parse(id)).Result;
         }
+
+        [HttpPost]
+        [Route("AddLink")]
+        public bool AddLink(UserCompany userCompanyItem)
+        {
+            return companyRepository.AddLink(userCompanyItem).Result;
+        }
     }
 }
