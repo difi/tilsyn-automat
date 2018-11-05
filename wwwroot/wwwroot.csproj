@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-Sjalvdeklaration-67225D40-198C-44B4-9148-775BD207EE66</UserSecretsId>
     <RootNamespace>Difi.Sjalvdeklaration.wwwroot</RootNamespace>
-    <AssemblyName>Difi.Sjalvdeklaration.wwwroot</AssemblyName>
+    <AssemblyName>wwwroot</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

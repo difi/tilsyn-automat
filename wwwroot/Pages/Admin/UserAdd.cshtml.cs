@@ -33,7 +33,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 var list = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll");
 
-                SelectRoleList = list.Select(x => new SelectItem
+                SelectRoleList = list.Where(x => x.IsAdminRole).Select(x => new SelectItem
                 {
                     Id = x.Id,
                     Name = x.Name,

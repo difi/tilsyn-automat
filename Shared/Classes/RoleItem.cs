@@ -9,6 +9,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public String Name { get; set; }
 
+        public Boolean IsAdminRole { get; set; }
+
         public ICollection<UserRole> UserList { get; set; }
     }
 }

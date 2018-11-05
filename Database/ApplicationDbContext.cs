@@ -49,13 +49,15 @@ namespace Difi.Sjalvdeklaration.Database
             var role1 = new RoleItem
             {
                 Id = Guid.NewGuid(),
-                Name = "Admin"
+                Name = "Admin",
+                IsAdminRole = true
             };
 
             var role2 = new RoleItem
             {
                 Id = Guid.NewGuid(),
-                Name = "Saksbehandlare"
+                Name = "Saksbehandlare",
+                IsAdminRole = true
             };
 
             var role3 = new RoleItem
