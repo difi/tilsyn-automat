@@ -17,9 +17,9 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<UserItem> GetAll()
+        public IEnumerable<UserItem> GetAllInternal()
         {
-            return dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().ToList();
+            return dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).ToList();
         }
 
         public UserItem Get(Guid id)
@@ -31,23 +31,23 @@ namespace Difi.Sjalvdeklaration.Database
 
         public UserItem GetByToken(string token)
         {
-            var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.IdPortenSub == token);
+            var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
 
             return item;
         }
 
-        public async Task<UserItem> Login(string idPortenSub, string socialSecurityNumber)
+        public async Task<UserItem> Login(string token, string socialSecurityNumber)
         {
-            var idPortenSubItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.IdPortenSub == idPortenSub);
-            if (idPortenSubItem != null)
+            var tokenItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
+            if (tokenItem != null)
             {
-                return idPortenSubItem;
+                return tokenItem;
             }
 
             var socialSecurityNumberItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.SocialSecurityNumber == socialSecurityNumber);
             if (socialSecurityNumberItem != null)
             {
-                socialSecurityNumberItem.IdPortenSub = idPortenSub;
+                socialSecurityNumberItem.Token = token;
                 await dbContext.SaveChangesAsync();
 
                 return socialSecurityNumberItem;
@@ -55,7 +55,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             var newUserItem = new UserItem
             {
-                IdPortenSub = idPortenSub,
+                Token = token,
                 SocialSecurityNumber = socialSecurityNumber,
                 Id = Guid.NewGuid(),
                 Name = "Virksomhet",
@@ -80,7 +80,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (userItemInDb != null)
                 {
-                    userItemInDb.IdPortenSub = userItem.IdPortenSub;
+                    userItemInDb.Token = userItem.Token;
                     await dbContext.SaveChangesAsync();
 
                     return true;

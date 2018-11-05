@@ -70,7 +70,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Id = Guid.NewGuid(),
                 SocialSecurityNumber = "12089400420",
-                IdPortenSub = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
+                Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
                 Name = "Martin Swartling",
                 Email = "martin@difi.no",
                 Phone = "912345678",
@@ -82,7 +82,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Id = Guid.NewGuid(),
                 SocialSecurityNumber = "12089400269",
-                IdPortenSub = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
+                Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
                 Name = "Thea Sneve",
                 Email = "thea@difi.no",
                 Phone = "712345678",

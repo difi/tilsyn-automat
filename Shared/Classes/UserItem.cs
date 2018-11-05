@@ -9,7 +9,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         [Required]
         public Guid Id { get; set; }
 
-        public String IdPortenSub { get; set; }
+        public String Token { get; set; }
 
         [Display(Name = "Social Security Number")]
         [Required(ErrorMessage = "The Social Security Number field is required!")]

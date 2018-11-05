@@ -7,7 +7,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IUserRepository
     {
-        IEnumerable<UserItem> GetAll();
+        IEnumerable<UserItem> GetAllInternal();
 
         UserItem Get(Guid id);
 
@@ -17,6 +17,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         Task<bool> Update(UserItem userItem, List<RoleItem> roleList);
 
-        Task<UserItem> Login(string idPortenSub, string socialSecurityNumber);
+        Task<UserItem> Login(string token, string socialSecurityNumber);
     }
 }

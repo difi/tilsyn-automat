@@ -52,7 +52,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.PrimarySid, userItem.Id.ToString()),
-                    new Claim(ClaimTypes.NameIdentifier, userItem.IdPortenSub),
+                    new Claim(ClaimTypes.NameIdentifier, userItem.Token),
                     new Claim(ClaimTypes.Name, userItem.Name + ""),
                     new Claim(ClaimTypes.Email, userItem.Email + ""),
                     new Claim(ClaimTypes.OtherPhone, userItem.Phone + ""),

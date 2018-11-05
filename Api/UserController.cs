@@ -19,10 +19,10 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public IEnumerable<UserItem> GetAll()
+        [Route("GetAllInternal")]
+        public IEnumerable<UserItem> GetAllInternal()
         {
-            return userRepository.GetAll();
+            return userRepository.GetAllInternal();
         }
 
         [HttpGet]
@@ -40,10 +40,10 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("Login/{idPortenSub}/{socialSecurityNumber}")]
-        public UserItem Login(string idPortenSub, string socialSecurityNumber)
+        [Route("Login/{token}/{socialSecurityNumber}")]
+        public UserItem Login(string token, string socialSecurityNumber)
         {
-            return userRepository.Login(idPortenSub, socialSecurityNumber).Result;
+            return userRepository.Login(token, socialSecurityNumber).Result;
         }
 
         [HttpPost]
