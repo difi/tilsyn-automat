@@ -41,6 +41,9 @@ namespace Difi.Sjalvdeklaration.Database
             var tokenItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
             if (tokenItem != null)
             {
+                tokenItem.LastOnline = DateTime.Now;
+                await dbContext.SaveChangesAsync();
+
                 return tokenItem;
             }
 
@@ -48,6 +51,7 @@ namespace Difi.Sjalvdeklaration.Database
             if (socialSecurityNumberItem != null)
             {
                 socialSecurityNumberItem.Token = token;
+                socialSecurityNumberItem.LastOnline = DateTime.Now;
                 await dbContext.SaveChangesAsync();
 
                 return socialSecurityNumberItem;
@@ -58,6 +62,9 @@ namespace Difi.Sjalvdeklaration.Database
                 Token = token,
                 SocialSecurityNumber = socialSecurityNumber,
                 Id = Guid.NewGuid(),
+                Created = DateTime.Now,
+                LastOnline = DateTime.Now,
+                
                 Name = "Virksomhet",
             };
 
