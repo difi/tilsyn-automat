@@ -8,6 +8,7 @@ using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -81,7 +82,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 var excelWorksheet = pck.Workbook.Worksheets.Add("Data");
                 excelWorksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
 
-                using (var excelRange = excelWorksheet.Cells["A1:H1"])
+                using (var excelRange = excelWorksheet.Cells["A1:R1"])
                 {
                     excelRange.Style.Font.Bold = true;
                     excelRange.Style.Font.Size = excelRange.Style.Font.Size + 2;
@@ -90,7 +91,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     excelRange.Style.Font.Color.SetColor(System.Drawing.Color.White);
                 }
 
-                using (var excelRange = excelWorksheet.Cells["A1:H100"])
+                using (var excelRange = excelWorksheet.Cells["A1:R100"])
                 {
                     excelRange.AutoFitColumns();
                 }
@@ -106,27 +107,61 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             var dataTable = new DataTable();
 
-            dataTable.Columns.Add(new DataColumn("Virksomhet - Namn"));
-            dataTable.Columns.Add(new DataColumn("Virksomhet - Organisationsnummer"));
             dataTable.Columns.Add(new DataColumn("Automat - Namn"));
             dataTable.Columns.Add(new DataColumn("Frist for innsending"));
             dataTable.Columns.Add(new DataColumn("Dato sendt inn"));
+            dataTable.Columns.Add(new DataColumn("Status"));
+
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Unikt passord"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Organisationsnummer"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Navn"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Endret navn"));
+
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Adresse gate"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Adresse postnr"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Adresse poststed"));
+
             dataTable.Columns.Add(new DataColumn("Kontaktperson - Namn"));
             dataTable.Columns.Add(new DataColumn("Kontaktperson - E-post"));
             dataTable.Columns.Add(new DataColumn("Kontaktperson - Telefon"));
+
+            dataTable.Columns.Add(new DataColumn("Saksbehandler - Namn"));
+            dataTable.Columns.Add(new DataColumn("Saksbehandler - E-post"));
+            dataTable.Columns.Add(new DataColumn("Saksbehandler - Telefon"));
+            dataTable.Columns.Add(new DataColumn("Saksbehandler - Title"));
 
             foreach (var declarationItem in declarationItems)
             {
                 var dataRow = dataTable.NewRow();
 
-                dataRow["Virksomhet - Namn"] = declarationItem.Company.Name;
-                dataRow["Virksomhet - Organisationsnummer"] = declarationItem.Company.CorporateIdentityNumber;
                 dataRow["Automat - Namn"] = declarationItem.Name;
                 dataRow["Frist for innsending"] = declarationItem.DeadLineDate;
                 dataRow["Dato sendt inn"] = declarationItem.SentInDate;
-                dataRow["Kontaktperson - Namn"] = declarationItem.User.Name;
-                dataRow["Kontaktperson - E-post"] = declarationItem.User.Email;
-                dataRow["Kontaktperson - Telefon"] = declarationItem.User.Phone;
+                dataRow["Status"] = declarationItem.Status;
+
+                dataRow["Virksomhet - Unikt passord"] = declarationItem.Company.Code;
+                dataRow["Virksomhet - Organisationsnummer"] = declarationItem.Company.CorporateIdentityNumber;
+                dataRow["Virksomhet - Navn"] = declarationItem.Company.Name;
+                dataRow["Virksomhet - Endret navn"] = declarationItem.Company.CustomName;
+
+                dataRow["Virksomhet - Adresse gate"] = declarationItem.Company.AddressStreet;
+                dataRow["Virksomhet - Adresse postnr"] = declarationItem.Company.AddressZip;
+                dataRow["Virksomhet - Adresse poststed"] = declarationItem.Company.AddressCity;
+
+                if (declarationItem.Company.ContactPersonList != null && declarationItem.Company.ContactPersonList.Any())
+                {
+                    dataRow["Kontaktperson - Namn"] = declarationItem.Company.ContactPersonList[0]?.Name;
+                    dataRow["Kontaktperson - E-post"] = declarationItem.Company.ContactPersonList[0]?.Email;
+                    dataRow["Kontaktperson - Telefon"] = declarationItem.Company.ContactPersonList[0]?.Phone;
+                }
+
+                if (declarationItem.User != null)
+                {
+                    dataRow["Saksbehandler - Namn"] = declarationItem.User.Name;
+                    dataRow["Saksbehandler - E-post"] = declarationItem.User.Email;
+                    dataRow["Saksbehandler - Telefon"] = declarationItem.User.Phone;
+                    dataRow["Saksbehandler - Title"] = declarationItem.User.Title;
+                }
 
                 dataTable.Rows.Add(dataRow);
             }

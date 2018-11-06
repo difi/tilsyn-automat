@@ -20,7 +20,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
             try
             {
-                var declarationItems = dbContext.DeclarationList.Include(x => x.Company).Include(x => x.User).AsNoTracking().ToList();
+                var declarationItems = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().ToList();
 
                 return declarationItems;
             }
@@ -34,7 +34,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
             try
             {
-                var declarationItem = dbContext.DeclarationList.Include(x => x.Company).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
+                var declarationItem = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
 
                 return declarationItem;
             }
