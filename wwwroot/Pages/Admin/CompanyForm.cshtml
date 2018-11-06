@@ -20,7 +20,7 @@
 
     <fieldset>
         <legend>
-            Forretningsadresse
+            Virksomhetens adresse
         </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.AddressStreet, "TextBox")
@@ -38,6 +38,26 @@
         @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
     </fieldset>
     
+    @if (Model.CompanyItemForm.Id != Guid.Empty)
+    {
+        <fieldset>
+            <legend>Brukere</legend>
+
+            @foreach (var user in Model.CompanyItemForm.UserList)
+            {
+            <div class="row">
+                <div class="medium-6 column">
+                    @user.UserItem.SocialSecurityNumber
+                </div>
+                <div class="medium-6 column">
+                    <button class="button" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">Radera <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
+                </div>
+            </div>
+
+            }
+        </fieldset>
+    }
+
     @if (Model.CompanyItemForm.Id != Guid.Empty)
     {
         <button class="button" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">Radera</button>

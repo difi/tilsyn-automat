@@ -23,7 +23,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public CompanyItem Get(Guid id)
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).SingleOrDefault(x => x.Id == id);
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x=>x.UserItem).SingleOrDefault(x => x.Id == id);
         }
 
         public CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber)
@@ -139,6 +139,28 @@ namespace Difi.Sjalvdeklaration.Database
                 await dbContext.SaveChangesAsync();
 
                 return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> RemoveLink(UserCompany userCompanyItem)
+        {
+            try
+            {
+                var dbItem = dbContext.UserCompanyList.SingleOrDefault(x => x.UserItemId == userCompanyItem.UserItemId && x.CompanyItemId == userCompanyItem.CompanyItemId);
+
+                if (dbItem != null)
+                {
+                    dbContext.UserCompanyList.Remove(dbItem);
+                    await dbContext.SaveChangesAsync();
+
+                    return true;
+                }
+
+                return false;
             }
             catch
             {

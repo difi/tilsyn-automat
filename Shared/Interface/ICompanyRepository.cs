@@ -22,5 +22,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
         Task<bool> ExcelImport(ExcelItemRow excelRow);
 
         Task<bool> AddLink(UserCompany userCompanyItem);
+
+        Task<bool> RemoveLink(UserCompany userCompanyItem);
     }
 }

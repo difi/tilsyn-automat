@@ -98,5 +98,30 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 return Page();
             }
         }
+
+        public async Task<IActionResult> OnPostRemoveLinkAsync(string id)
+        {
+            try
+            {
+                var user = new UserCompany
+                {
+                    UserItemId = Guid.Parse(id),
+                    CompanyItemId = CompanyItemForm.Id
+                };
+
+                var result = await apiHttpClient.Post<bool>("/api/Company/RemoveLink/", user);
+
+                if (result)
+                {
+                    return RedirectToPage("/Admin/CompanyForm", new {id = CompanyItemForm.Id});
+                }
+
+                return Page();
+            }
+            catch
+            {
+                return Page();
+            }
+        }
     }
 }
