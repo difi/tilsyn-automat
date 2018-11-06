@@ -78,7 +78,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                     Name = declarationName,
                     CreatedDate = DateTime.Now,
-                    Status = DeclarationStatus.NotStarted
+                    Status = DeclarationStatus.Created
                 }
             };
         }

@@ -16,6 +16,7 @@
     @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
     @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
     @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
+    @Html.EditorFor(x => x.DeclarationItemForm.Status, "DropdownList")
 
     @if (Model.DeclarationItemForm.Id != Guid.Empty)
     {

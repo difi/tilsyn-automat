@@ -2,10 +2,12 @@
 {
     public enum DeclarationStatus
     {
-        NotStarted,
+        Created,
+        Sent,
         Started,
-        MoreInfoNeed,
-        NotChecked,
-        Done
+        Complete,
+        Return,
+        Terminated,
+        Canceled
     }
 }
