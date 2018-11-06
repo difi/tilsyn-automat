@@ -19,6 +19,7 @@
                 <th scope="col">ContactPerson Name</th>
                 <th scope="col">ContactPerson Email</th>
                 <th scope="col">ContactPerson Phone</th>
+                <th scope="col">Have Declaration</th>
             </tr>
         </thead>
         <tbody>
@@ -26,23 +27,26 @@
             {
                 var contactPerson = item.ContactPersonList.FirstOrDefault();
 
-            <tr>
-                <td>
-                    <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
-                </td>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @contactPerson?.Name
-                </td>
-                <td>
-                    @contactPerson?.Email
-                </td>
-                <td>
-                    @contactPerson?.Phone
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @contactPerson?.Name
+                    </td>
+                    <td>
+                        @contactPerson?.Email
+                    </td>
+                    <td>
+                        @contactPerson?.Phone
+                    </td>
+                    <td>
+                        @(item.DeclarationList.Count > 0 ? "Ja" : "Nej")
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

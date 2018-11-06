@@ -1,0 +1,10 @@
+﻿@model DateTime
+
+<div class="form-field">
+    <label for="@Html.IdForModel()">
+        @Html.DisplayNameFor(m => m)
+        @Html.ValidationMessageFor(m=>m)
+    </label>
+
+    @Html.TextBoxFor(m => m, "{0:yyyy-MM-dd}", new { data_label = Html.DisplayNameFor(m => m), type = "date"})
+</div>

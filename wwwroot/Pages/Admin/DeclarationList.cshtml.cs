@@ -135,7 +135,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 var dataRow = dataTable.NewRow();
 
                 dataRow["Automat - Namn"] = declarationItem.Name;
-                dataRow["Frist for innsending"] = declarationItem.DeadLineDate;
+                dataRow["Frist for innsending"] = declarationItem.DeadlineDate;
                 dataRow["Dato sendt inn"] = declarationItem.SentInDate;
                 dataRow["Status"] = declarationItem.Status;
 

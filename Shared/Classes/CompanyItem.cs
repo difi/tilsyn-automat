@@ -28,5 +28,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public List<ContactPersonItem> ContactPersonList { get; set; }
 
         public ICollection<UserCompany> UserList { get; set; }
+
+        public ICollection<DeclarationItem> DeclarationList { get; set; }
     }
 }

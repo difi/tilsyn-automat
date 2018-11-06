@@ -23,17 +23,17 @@ namespace Difi.Sjalvdeklaration.Database
 
         public CompanyItem Get(Guid id)
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x=>x.UserItem).SingleOrDefault(x => x.Id == id);
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x=>x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
         }
 
         public CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber)
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
         }
 
         public IEnumerable<CompanyItem> GetAll()
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).AsNoTracking().ToList();
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().ToList();
         }
 
         public async Task<bool> Add(CompanyItem companyItem)
@@ -45,6 +45,8 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
+                companyItem.Id = Guid.NewGuid();
+
                 dbContext.CompanyList.Add(companyItem);
                 await dbContext.SaveChangesAsync();
 

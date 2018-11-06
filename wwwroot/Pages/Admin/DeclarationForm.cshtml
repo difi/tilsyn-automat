@@ -1,0 +1,32 @@
+﻿@page
+@model DeclarationFormModel
+
+@{
+    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Uppdatera " + Model.DeclarationItemForm.Name : "Ny selvdeklarasjon";
+
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    @Html.HiddenFor(x => x.DeclarationItemForm.Id)
+    @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
+    @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
+    @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
+
+    @if (Model.DeclarationItemForm.Id != Guid.Empty)
+    {
+        <input type="submit" value="Update" />
+    }
+    else
+    {
+        <input type="submit" value="Add" />
+    }
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}

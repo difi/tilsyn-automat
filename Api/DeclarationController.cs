@@ -31,5 +31,19 @@ namespace Difi.Sjalvdeklaration.Api
         {
             return declarationRepository.GetAll();
         }
+
+        [HttpPost]
+        [Route("Add")]
+        public bool Add(DeclarationItem declarationItem)
+        {
+            return declarationRepository.Add(declarationItem).Result;
+        }
+
+        [HttpPost]
+        [Route("Update")]
+        public bool Update(DeclarationItem declarationItem)
+        {
+            return declarationRepository.Update(declarationItem).Result;
+        }
     }
 }

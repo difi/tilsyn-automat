@@ -54,6 +54,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Pages\Admin\DeclarationForm.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Admin\UserForm.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -73,6 +76,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\CheckBoxList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\DateTime.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\_Public.cshtml">

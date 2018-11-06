@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
@@ -10,11 +11,13 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public Guid UserItemId { get; set; }
 
+        [Required]
         public String Name { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
-        public DateTime DeadLineDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DeadlineDate { get; set; }
 
         public DateTime SentInDate { get; set; }
 

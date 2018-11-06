@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -41,6 +42,44 @@ namespace Difi.Sjalvdeklaration.Database
             catch
             {
                 return null;
+            }
+        }
+
+        public async Task<bool> Add(DeclarationItem declarationItem)
+        {
+            try
+            {
+                declarationItem.Id = Guid.NewGuid();
+                declarationItem.CreatedDate = DateTime.Now;
+
+                dbContext.DeclarationList.Add(declarationItem);
+                await dbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> Update(DeclarationItem declarationItem)
+        {
+            try
+            {
+                var dbItem = Get(declarationItem.Id);
+
+                dbItem.Name = declarationItem.Name;
+
+                dbContext.DeclarationList.Update(dbItem);
+
+                await dbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
