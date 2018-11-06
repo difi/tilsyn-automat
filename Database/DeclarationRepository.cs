@@ -11,10 +11,12 @@ namespace Difi.Sjalvdeklaration.Database
     public class DeclarationRepository : IDeclarationRepository
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IUserRepository userRepository;
 
-        public DeclarationRepository(ApplicationDbContext dbContext)
+        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository)
         {
             this.dbContext = dbContext;
+            this.userRepository = userRepository;
         }
 
         public IEnumerable<DeclarationItem> GetAll()
@@ -51,6 +53,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 declarationItem.Id = Guid.NewGuid();
                 declarationItem.CreatedDate = DateTime.Now;
+                declarationItem.User = userRepository.Get(declarationItem.UserItemId);
 
                 dbContext.DeclarationList.Add(declarationItem);
                 await dbContext.SaveChangesAsync();
@@ -72,6 +75,28 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.Name = declarationItem.Name;
                 dbItem.DeadlineDate = declarationItem.DeadlineDate;
                 dbItem.Status = declarationItem.Status;
+                dbItem.User = userRepository.Get(declarationItem.UserItemId);
+
+                dbContext.DeclarationList.Update(dbItem);
+
+                await dbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> SendIn(Guid id)
+        {
+            try
+            {
+                var dbItem = Get(id);
+
+                dbItem.Status = DeclarationStatus.Complete;
+                dbItem.SentInDate = DateTime.Now;
 
                 dbContext.DeclarationList.Update(dbItem);
 

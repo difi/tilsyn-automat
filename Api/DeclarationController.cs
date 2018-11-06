@@ -45,5 +45,12 @@ namespace Difi.Sjalvdeklaration.Api
         {
             return declarationRepository.Update(declarationItem).Result;
         }
+
+        [HttpGet]
+        [Route("SendIn/{id}")]
+        public bool SendIn(Guid id)
+        {
+            return declarationRepository.SendIn(id).Result;
+        }
     }
 }

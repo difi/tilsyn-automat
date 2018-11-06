@@ -14,5 +14,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
         Task<bool> Add(DeclarationItem declarationItem);
 
         Task<bool> Update(DeclarationItem declarationItem);
+
+        Task<bool> SendIn(Guid id);
     }
 }

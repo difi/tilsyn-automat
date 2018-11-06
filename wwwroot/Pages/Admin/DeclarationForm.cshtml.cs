@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -18,6 +21,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [BindProperty]
         public DeclarationItem DeclarationItemForm { get; set; }
 
+        [BindProperty]
+        [Display(Name = "Välj saksbehandler")]
+        public List<SelectListItem> SelectUserList { get; set; }
+
         public DeclarationFormModel(ApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -28,6 +35,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
+                var list = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal");
+
+                SelectUserList = list.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
+                    Selected = false
+                }).ToList();
+
                 if (id != Guid.Empty)
                 {
                     DeclarationItemForm = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
@@ -37,6 +53,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     DeclarationItemForm = new DeclarationItem
                     {
                         CompanyItemId = companyId,
+                        UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                         DeadlineDate = DateTime.Now.Date.AddMonths(6)
                         
                     };
@@ -64,7 +81,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
                 else
                 {
-                    DeclarationItemForm.UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value);
                     result = await apiHttpClient.Post<bool>("/api/Declaration/Add", DeclarationItemForm);
                 }
 

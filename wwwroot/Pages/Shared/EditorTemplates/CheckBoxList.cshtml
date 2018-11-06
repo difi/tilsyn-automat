@@ -1,5 +1,4 @@
-﻿@using Difi.Sjalvdeklaration.Shared.Classes
-@model List<SelectItem>
+﻿@model List<SelectListItem>
 
 <fieldset>
     <legend>@Html.DisplayNameFor(m => m)</legend>
@@ -9,9 +8,9 @@
         {
             <li>
                 <input type="checkbox" asp-for="@Model[i].Selected" />
-                <label asp-for="@Model[i].Selected">@Model[i].Name</label>
-                <input type="hidden" asp-for="@Model[i].Id" />
-                <input type="hidden" asp-for="@Model[i].Name" />
+                <label asp-for="@Model[i].Selected">@Model[i].Text</label>
+                <input type="hidden" asp-for="@Model[i].Value" />
+                <input type="hidden" asp-for="@Model[i].Text" />
             </li>
         }
     </ul> 

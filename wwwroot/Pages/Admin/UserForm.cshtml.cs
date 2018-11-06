@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -21,7 +22,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         [BindProperty]
         [Display(Name = "Välj roller")]
-        public List<SelectItem> SelectRoleList { get; set; }
+        public List<SelectListItem> SelectRoleList { get; set; }
 
         public UserFormModel(ApiHttpClient apiHttpClient)
         {
@@ -35,10 +36,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 var list = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll");
 
-                SelectRoleList = list.Where(x => x.IsAdminRole).Select(x => new SelectItem
+                SelectRoleList = list.Where(x => x.IsAdminRole).Select(x => new SelectListItem
                 {
-                    Id = x.Id,
-                    Name = x.Name,
+                    Value = x.Id.ToString(),
+                    Text = x.Name,
                     Selected = false
                 }).ToList();
 
@@ -50,7 +51,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     {
                         foreach (var selectItem in SelectRoleList)
                         {
-                            if (userRole.RoleItemId == selectItem.Id)
+                            if (userRole.RoleItemId == Guid.Parse(selectItem.Value))
                             {
                                 selectItem.Selected = true;
                             }
@@ -76,7 +77,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             try
             {
-                var roleList = SelectRoleList.Where(x => x.Selected).Select(x => new RoleItem { Id = x.Id, Name = x.Name }).ToList();
+                var roleList = SelectRoleList.Where(x => x.Selected).Select(x => new RoleItem {Id = Guid.Parse(x.Value), Name = x.Text}).ToList();
                 bool result;
 
                 if (UserItemForm.Id != Guid.Empty)

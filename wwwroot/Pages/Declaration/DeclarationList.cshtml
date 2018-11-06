@@ -4,7 +4,7 @@
     ViewData["Title"] = "DeclarationList";
 }
 
-<h2>DeclarationList</h2>
+<h1>DeclarationList</h1>
 
 <table class="table">
     <caption>
@@ -54,22 +54,32 @@
             <th scope="col">Automat</th>
             <th scope="col">Virksamhet</th>
             <th scope="col">Dato</th>
+            <th scope="col">Status</th>
+            <th scope="col">Skicka in</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.DeclarationList)
         {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Company.Name
-                </td>
-                <td>
-                    @item.CreatedDate.ToString("yyyy-MM-dd")
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Company.Name
+            </td>
+            <td>
+                @item.CreatedDate.ToString("yyyy-MM-dd")
+            </td>
+            <td>
+                @item.Status
+            </td>
+            <td>
+                <form method="post">
+                    <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@item.Id">Skicka in</button>
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

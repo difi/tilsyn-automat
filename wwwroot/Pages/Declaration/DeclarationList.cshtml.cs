@@ -1,9 +1,12 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -49,6 +52,25 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             }
             catch
             {
+            }
+        }
+
+        public async Task<IActionResult> OnPostSendInAsync(string id)
+        {
+            try
+            {
+                var result = await apiHttpClient.Get<bool>("/api/Declaration/SendIn/" + Guid.Parse(id));
+
+                if (result)
+                {
+                    return RedirectToPage("/Declaration/Thanks");
+                }
+
+                return Page();
+            }
+            catch
+            {
+                return Page();
             }
         }
     }

@@ -1,0 +1,11 @@
+﻿@using Difi.Sjalvdeklaration.Shared.Classes
+@model Enum
+
+<div class="form-field">
+    <label for="@Html.IdForModel()">
+        @Html.DisplayNameFor(m => m)
+        @Html.ValidationMessageFor(m => m)
+    </label>
+
+    @Html.DropDownListFor(m=>m, Html.GetEnumSelectList<DeclarationStatus>(), new { data_label = Html.DisplayNameFor(m => m)})
+</div>
