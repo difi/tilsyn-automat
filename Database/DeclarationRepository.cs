@@ -70,6 +70,7 @@ namespace Difi.Sjalvdeklaration.Database
                 var dbItem = Get(declarationItem.Id);
 
                 dbItem.Name = declarationItem.Name;
+                dbItem.DeadlineDate = declarationItem.DeadlineDate;
 
                 dbContext.DeclarationList.Update(dbItem);
 

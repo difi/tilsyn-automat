@@ -36,10 +36,10 @@
         {
             <tr>
                 <td>
-                    @item.Company.Name
+                    <a asp-page="/Admin/CompanyForm" asp-route-id="@item.Company.Id">@item.Company.Name</a>
                 </td>
                 <td>
-                    @item.Name
+                    <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
                 </td>
                 <td>
                     @item.User.Email
