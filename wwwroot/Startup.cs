@@ -71,6 +71,11 @@ namespace Difi.Sjalvdeklaration.wwwroot
                     options.ExpireTimeSpan = TimeSpan.FromDays(60);
                     options.SlidingExpiration = true;
                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

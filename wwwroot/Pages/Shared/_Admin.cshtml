@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@{
     Layout = "_Layout.cshtml";
 }
 
@@ -13,9 +16,12 @@
                 <li>
                     <a class="button" asp-page="CompanyList">Administrere virksomheter</a>
                 </li>
-                <li>
-                    <a class="button" asp-page="UserList">Administrere interne brukere</a>
-                </li>
+                @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+                {
+                    <li>
+                        <a class="button" asp-page="UserList">Administrere interne brukere</a>
+                    </li>
+                }
             </ul>
         </nav>
     </div>
