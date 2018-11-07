@@ -15,7 +15,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Admin")]
     public class UserFormModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
         public UserItem UserItemForm { get; set; }
@@ -24,7 +24,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Välj roller")]
         public List<SelectListItem> SelectRoleList { get; set; }
 
-        public UserFormModel(ApiHttpClient apiHttpClient)
+        public UserFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

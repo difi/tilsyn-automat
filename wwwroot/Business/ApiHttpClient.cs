@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Business
 {
-    public class ApiHttpClient
+    public class ApiHttpClient : IApiHttpClient
     {
         private readonly IConfiguration configuration;
 
@@ -43,7 +43,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
         {
             httpClient.DefaultRequestHeaders.Remove("Authorization");
 
-            var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + url, jsonObject.AsJson());
+            var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + url, jsonObject.AsJsonStringContent());
 
             if (!responseMessage.IsSuccessStatusCode)
             {

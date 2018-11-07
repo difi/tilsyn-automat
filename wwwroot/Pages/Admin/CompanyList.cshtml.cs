@@ -14,11 +14,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Admin,Saksbehandlare")]
     public class CompanyListModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         public IList<CompanyItem> CompanyList { get; private set; }
 
-        public CompanyListModel(ApiHttpClient apiHttpClient)
+        public CompanyListModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

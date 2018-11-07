@@ -10,11 +10,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Admin")]
     public class UserListModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         public IList<UserItem> UserList { get; private set; }
 
-        public UserListModel(ApiHttpClient apiHttpClient)
+        public UserListModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

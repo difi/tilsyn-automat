@@ -12,13 +12,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationListModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         public IList<CompanyItem> CompanyList { get; private set; }
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
-        public DeclarationListModel(ApiHttpClient apiHttpClient)
+        public DeclarationListModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

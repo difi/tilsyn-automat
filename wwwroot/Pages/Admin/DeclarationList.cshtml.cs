@@ -16,7 +16,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Admin,Saksbehandlare")]
     public class DeclarationListModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
@@ -24,7 +24,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public Int32 TotalCount { get; set; }
 
-        public DeclarationListModel(ApiHttpClient apiHttpClient)
+        public DeclarationListModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

@@ -16,7 +16,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Admin,Saksbehandlare")]
     public class DeclarationFormModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
         public DeclarationItem DeclarationItemForm { get; set; }
@@ -25,7 +25,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Välj saksbehandler")]
         public List<SelectListItem> SelectUserList { get; set; }
 
-        public DeclarationFormModel(ApiHttpClient apiHttpClient)
+        public DeclarationFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

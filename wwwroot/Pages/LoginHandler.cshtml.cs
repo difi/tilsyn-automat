@@ -18,7 +18,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
     public class LoginHandlerModel : PageModel
     {
         private readonly IConfiguration configuration;
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         public string Pid { get; set; }
 
@@ -26,7 +26,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
         public List<RoleItem> RoleList { get; set; }
 
-        public LoginHandlerModel(IConfiguration configuration, ApiHttpClient apiHttpClient)
+        public LoginHandlerModel(IConfiguration configuration, IApiHttpClient apiHttpClient)
         {
             this.configuration = configuration;
             this.apiHttpClient = apiHttpClient;

@@ -12,12 +12,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Admin,Saksbehandlare")]
     public class CompanyFormModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
         public CompanyItem CompanyItemForm { get; set; }
 
-        public CompanyFormModel(ApiHttpClient apiHttpClient)
+        public CompanyFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

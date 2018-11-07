@@ -20,6 +20,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<DeclarationItem> DeclarationList { get; set; }
 
+        public DbSet<LogItem> LogList { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserRole>().HasKey(bc => new { bc.UserItemId, bc.RoleItemId });

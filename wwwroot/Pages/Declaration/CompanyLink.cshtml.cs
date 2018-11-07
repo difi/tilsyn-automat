@@ -11,12 +11,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class CompanyLinkModel : PageModel
     {
-        private readonly ApiHttpClient apiHttpClient;
+        private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
         public AddLinkToCompanyModel AddLinkToCompany { get; set; }
 
-        public CompanyLinkModel(ApiHttpClient apiHttpClient)
+        public CompanyLinkModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }

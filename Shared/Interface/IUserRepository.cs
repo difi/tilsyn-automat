@@ -17,7 +17,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList);
 
-        Task<ApiResult> Remove(Guid parse);
+        Task<ApiResult> Remove(Guid id);
 
         Task<UserItem> Login(string token, string socialSecurityNumber);
     }

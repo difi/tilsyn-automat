@@ -3,6 +3,7 @@ using System.Globalization;
 using Difi.Sjalvdeklaration.Database;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Difi.Sjalvdeklaration.wwwroot.Business;
+using Log;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,19 +44,16 @@ namespace Difi.Sjalvdeklaration.wwwroot
                 .AddDataAnnotationsLocalization();
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.Decorate<IUserRepository, UserRepositoryLogDecorator>();
+
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IDeclarationRepository, DeclarationRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ILogRepository, LogRepository>();
 
-            services.AddScoped<ApiHttpClient, ApiHttpClient>();
+            services.AddScoped<IApiHttpClient, ApiHttpClient>();
 
             services.AddDistributedMemoryCache();
-
-            //services.AddSession(options =>
-            //{
-            //    options.IdleTimeout = TimeSpan.FromMinutes(20);
-            //    options.Cookie.HttpOnly = true;
-            //});
 
             services.AddAuthentication(options =>
                 {
@@ -108,8 +106,6 @@ namespace Difi.Sjalvdeklaration.wwwroot
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
-            //app.UseSession();
-
             app.UseMvc();
         }
     }
