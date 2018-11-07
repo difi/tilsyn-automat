@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181107075430_V5")]
+    partial class V5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,8 +162,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserList");
 
                     b.HasData(
-                        new { Id = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                        new { Id = new Guid("04be8925-63ae-4253-8930-828e624cbea1"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                        new { Id = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                        new { Id = new Guid("04be8925-63ae-4253-8930-828e624cbea1"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                     );
                 });
 

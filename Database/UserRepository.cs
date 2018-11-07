@@ -132,6 +132,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.Name = userItem.Name;
                 dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
                 dbItem.Email = userItem.Email;
+                dbItem.PhoneCountryCode = userItem.PhoneCountryCode;
                 dbItem.Phone = userItem.Phone;
                 dbItem.Title = userItem.Title;
 

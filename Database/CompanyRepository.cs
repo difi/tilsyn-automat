@@ -81,7 +81,7 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     foreach (var contactPersonItem in companyItem.ContactPersonList)
                     {
-                        dbContext.ContactPersonList.Add(new ContactPersonItem { Name = contactPersonItem.Name, Email = contactPersonItem.Email, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id });
+                        dbContext.ContactPersonList.Add(new ContactPersonItem {Name = contactPersonItem.Name, Email = contactPersonItem.Email, PhoneCountryCode = contactPersonItem.PhoneCountryCode, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id});
                     }
                 }
 
