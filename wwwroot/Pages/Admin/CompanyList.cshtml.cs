@@ -25,7 +25,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public async Task OnGetAsync()
         {
-            CompanyList = await apiHttpClient.Get<List<CompanyItem>>("/api/Company/GetAll");
+            CompanyList = (await apiHttpClient.Get<List<CompanyItem>>("/api/Company/GetAll")).Data;
         }
 
         public async Task<IActionResult> OnPostExcelImportAsync()

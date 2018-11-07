@@ -7,18 +7,18 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IUserRepository
     {
-        IEnumerable<UserItem> GetAllInternal();
+        ApiResult<T> Get<T>(Guid id) where T : UserItem;
 
-        UserItem Get(Guid id);
+        ApiResult<T> GetByToken<T>(string token) where T : UserItem;
 
-        UserItem GetByToken(string token);
+        ApiResult<T> GetAllInternal<T>() where T : IEnumerable<UserItem>;
+
+        Task<ApiResult<T>> Login<T>(string token, string socialSecurityNumber) where T : UserItem;
 
         Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList);
 
         Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList);
 
         Task<ApiResult> Remove(Guid id);
-
-        Task<UserItem> Login(string token, string socialSecurityNumber);
     }
 }

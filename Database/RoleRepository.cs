@@ -1,4 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -15,9 +16,23 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<RoleItem> GetAll()
+        public ApiResult<T> GetAll<T>() where T : IEnumerable<RoleItem>
         {
-            return dbContext.RoleList.AsNoTracking().OrderBy(x => x.Name).ToList();
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.RoleList.AsNoTracking().OrderBy(x => x.Name);
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
         }
     }
 }

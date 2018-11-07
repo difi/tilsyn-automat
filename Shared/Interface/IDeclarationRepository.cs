@@ -7,9 +7,9 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IDeclarationRepository
     {
-        IEnumerable<DeclarationItem> GetAll();
+        ApiResult<T> Get<T>(Guid id) where T : DeclarationItem;
 
-        DeclarationItem Get(Guid id);
+        ApiResult<T> GetAll<T>() where T : IEnumerable<DeclarationItem>;
 
         Task<ApiResult> Add(DeclarationItem declarationItem);
 

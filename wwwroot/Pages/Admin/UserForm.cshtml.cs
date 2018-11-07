@@ -34,7 +34,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var list = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll");
+                var list = (await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll")).Data;
 
                 SelectRoleList = list.Where(x => x.IsAdminRole).Select(x => new SelectListItem
                 {
@@ -45,7 +45,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (id != Guid.Empty)
                 {
-                    UserItemForm = await apiHttpClient.Get<UserItem>("/api/User/Get/" + id);
+                    UserItemForm = (await apiHttpClient.Get<UserItem>("/api/User/Get/" + id)).Data;
 
                     foreach (var userRole in UserItemForm.RoleList)
                     {

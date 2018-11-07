@@ -33,7 +33,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                DeclarationList = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
+                DeclarationList = (await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll")).Data;
 
                 ViewCount = DeclarationList.Count;
                 TotalCount = DeclarationList.Count;
@@ -47,7 +47,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + Guid.Parse(id));
+                var result = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + Guid.Parse(id))).Data;
 
                 await GenerateExcel(new List<DeclarationItem> { result });
 
@@ -63,7 +63,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                await GenerateExcel(await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll"));
+                await GenerateExcel((await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll")).Data);
 
                 return Page();
             }

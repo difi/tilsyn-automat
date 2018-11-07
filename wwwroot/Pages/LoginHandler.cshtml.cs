@@ -47,7 +47,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                 Pid = jwtSecurityToken.Payload["pid"].ToString();
                 Sub = jwtSecurityToken.Payload["sub"].ToString();
 
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + Sub + "/" + Pid).Result;
+                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + Sub + "/" + Pid).Result.Data;
 
                 var claims = new List<Claim>
                 {

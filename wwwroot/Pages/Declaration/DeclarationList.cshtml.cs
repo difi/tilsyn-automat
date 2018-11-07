@@ -27,7 +27,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value).Result;
+                var userItem = (apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value).Result).Data;
 
                 CompanyList = new List<CompanyItem>();
                 DeclarationList = new List<DeclarationItem>();
@@ -37,7 +37,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     CompanyList.Add(userCompany.CompanyItem);
                 }
 
-                var declarationListDb = apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll").Result;
+                var declarationListDb = (apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll").Result).Data;
 
                 foreach (var declarationItem in declarationListDb)
                 {

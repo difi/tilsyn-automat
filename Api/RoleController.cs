@@ -17,9 +17,9 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("GetAll")]
-        public IEnumerable<RoleItem> GetAll()
+        public ApiResult<IEnumerable<RoleItem>> GetAll()
         {
-            return roleRepository.GetAll();
+            return roleRepository.GetAll<IEnumerable<RoleItem>>();
         }
     }
 }

@@ -17,67 +17,125 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<UserItem> GetAllInternal()
+        public ApiResult<T> Get<T>(Guid id) where T : UserItem
         {
-            return dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).OrderBy(x => x.Name).ToList();
-        }
+            var result = new ApiResult<T>();
 
-        public UserItem Get(Guid id)
-        {
-            var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Id == id);
-
-            return item;
-        }
-
-        public UserItem GetByToken(string token)
-        {
-            var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
-
-            return item;
-        }
-
-        public async Task<UserItem> Login(string token, string socialSecurityNumber)
-        {
-            var tokenItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
-            if (tokenItem != null)
+            try
             {
-                tokenItem.LastOnline = DateTime.Now;
-                await dbContext.SaveChangesAsync();
+                var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Id == id);
 
-                return tokenItem;
+                if (item != null)
+                {
+                    result.Data = (T)item;
+                    result.Succeeded = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
             }
 
-            var socialSecurityNumberItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.SocialSecurityNumber == socialSecurityNumber);
-            if (socialSecurityNumberItem != null)
-            {
-                socialSecurityNumberItem.Token = token;
-                socialSecurityNumberItem.LastOnline = DateTime.Now;
-                await dbContext.SaveChangesAsync();
-
-                return socialSecurityNumberItem;
-            }
-
-            var newUserItem = new UserItem
-            {
-                Token = token,
-                SocialSecurityNumber = socialSecurityNumber,
-                Id = Guid.NewGuid(),
-                Created = DateTime.Now,
-                LastOnline = DateTime.Now,
-                
-                Name = "Virksomhet",
-            };
-
-            var role = dbContext.RoleList.Single(x => x.Name == "Virksomhet");
-
-            if ((await Add(newUserItem, new List<RoleItem> { role })).Succeeded)
-            {
-                return Get(newUserItem.Id);
-            }
-
-            return null;
+            return result;
         }
 
+        public ApiResult<T> GetByToken<T>(string token) where T : UserItem
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
+
+                if (item != null)
+                {
+                    result.Data = (T)item;
+                    result.Succeeded = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
+        public ApiResult<T> GetAllInternal<T>() where T : IEnumerable<UserItem>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).OrderBy(x => x.Name);
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
+        public async Task<ApiResult<T>> Login<T>(string token, string socialSecurityNumber) where T : UserItem
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var tokenItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
+                if (tokenItem != null)
+                {
+                    tokenItem.LastOnline = DateTime.Now;
+                    await dbContext.SaveChangesAsync();
+
+                    result.Data = (T)tokenItem;
+                    result.Succeeded = true;
+
+                    return result;
+                }
+
+                var socialSecurityNumberItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.SocialSecurityNumber == socialSecurityNumber);
+                if (socialSecurityNumberItem != null)
+                {
+                    socialSecurityNumberItem.Token = token;
+                    socialSecurityNumberItem.LastOnline = DateTime.Now;
+                    await dbContext.SaveChangesAsync();
+
+                    result.Data = (T)socialSecurityNumberItem;
+                    result.Succeeded = true;
+
+                    return result;
+                }
+
+                var newUserItem = new UserItem
+                {
+                    Token = token,
+                    SocialSecurityNumber = socialSecurityNumber,
+                    Id = Guid.NewGuid(),
+                    Created = DateTime.Now,
+                    LastOnline = DateTime.Now,
+
+                    Name = "Virksomhet"
+                };
+
+                var role = dbContext.RoleList.Single(x => x.Name == "Virksomhet");
+
+                if ((await Add(newUserItem, new List<RoleItem> { role })).Succeeded)
+                {
+                    return Get<T>(newUserItem.Id);
+                }
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
 
         public async Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList)
         {
@@ -101,7 +159,7 @@ namespace Difi.Sjalvdeklaration.Database
                     {
                         foreach (var roleItem in roleList)
                         {
-                            dbContext.UserRoleList.Add(new UserRole {RoleItemId = roleItem.Id, UserItemId = userItem.Id});
+                            dbContext.UserRoleList.Add(new UserRole { RoleItemId = roleItem.Id, UserItemId = userItem.Id });
                         }
                     }
 
@@ -114,7 +172,6 @@ namespace Difi.Sjalvdeklaration.Database
             }
             catch (Exception exception)
             {
-                result.Succeeded = false;
                 result.Exception = exception;
             }
 
@@ -127,7 +184,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get(userItem.Id);
+                var dbItem = Get<UserItem>(userItem.Id).Data;
 
                 dbItem.Name = userItem.Name;
                 dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
@@ -154,7 +211,6 @@ namespace Difi.Sjalvdeklaration.Database
             }
             catch (Exception exception)
             {
-                result.Succeeded = false;
                 result.Exception = exception;
             }
 
@@ -182,7 +238,6 @@ namespace Difi.Sjalvdeklaration.Database
             }
             catch (Exception exception)
             {
-                result.Succeeded = false;
                 result.Exception = exception;
             }
 

@@ -17,19 +17,19 @@ namespace Log
             this.logRepository = logRepository;
         }
 
-        public IEnumerable<UserItem> GetAllInternal()
+        public ApiResult<T> GetAllInternal<T>() where T : IEnumerable<UserItem>
         {
-            return inner.GetAllInternal();
+            return inner.GetAllInternal<T>();
         }
 
-        public UserItem Get(Guid id)
+        public ApiResult<T> Get<T>(Guid id) where T : UserItem
         {
-            return inner.Get(id);
+            return inner.Get<T>(id);
         }
 
-        public UserItem GetByToken(string token)
+        public ApiResult<T> GetByToken<T>(string token) where T : UserItem
         {
-            return inner.GetByToken(token);
+            return inner.GetByToken<T>(token);
         }
 
         public Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList)
@@ -59,9 +59,9 @@ namespace Log
             return result;
         }
 
-        public Task<UserItem> Login(string token, string socialSecurityNumber)
+        public Task<ApiResult<T>> Login<T>(string token, string socialSecurityNumber) where T : UserItem
         {
-            var result = inner.Login(token, socialSecurityNumber);
+            var result = inner.Login<T>(token, socialSecurityNumber);
 
             logRepository.Add(new LogItem(null, token, socialSecurityNumber, result));
 

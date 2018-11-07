@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
@@ -23,7 +24,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<T> Get<T>(string url)
+        public async Task<ApiResult<T>> Get<T>(string url)
         {
             httpClient.DefaultRequestHeaders.Remove("Authorization");
 
@@ -36,7 +37,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-            return JsonConvert.DeserializeObject<T>(responseData);
+            var apiResult = JsonConvert.DeserializeObject<ApiResult<T>>(responseData);
+
+            return apiResult;
+
+            //if (apiResult.Data is T data)
+            //{
+            //    return data;
+            //}
+
+            //if ((object) apiResult is T result)
+            //{
+            //    return result;
+            //}
+
+            throw new Exception("Wrong type!");
         }
 
         public async Task<T> Post<T>(string url, object jsonObject)

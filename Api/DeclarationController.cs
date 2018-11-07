@@ -20,16 +20,16 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("Get/{id}")]
-        public DeclarationItem Get(Guid id)
+        public ApiResult<DeclarationItem> Get(Guid id)
         {
-            return declarationRepository.Get(id);
+            return declarationRepository.Get<DeclarationItem>(id);
         }
 
         [HttpGet]
         [Route("GetAll")]
-        public IEnumerable<DeclarationItem> GetAll()
+        public ApiResult<IEnumerable<DeclarationItem>> GetAll()
         {
-            return declarationRepository.GetAll();
+            return declarationRepository.GetAll<IEnumerable<DeclarationItem>>();
         }
 
         [HttpPost]

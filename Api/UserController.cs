@@ -18,24 +18,31 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("GetAllInternal")]
-        public IEnumerable<UserItem> GetAllInternal()
-        {
-            return userRepository.GetAllInternal();
-        }
-
-        [HttpGet]
         [Route("Get/{id}")]
-        public UserItem Get(Guid id)
+        public ApiResult<UserItem> Get(Guid id)
         {
-            return userRepository.Get(id);
+            return userRepository.Get<UserItem>(id);
         }
 
         [HttpGet]
         [Route("GetByToken/{token}")]
-        public UserItem GetByToken(String token)
+        public ApiResult<UserItem> GetByToken(String token)
         {
-            return userRepository.GetByToken(token);
+            return userRepository.GetByToken<UserItem>(token);
+        }
+
+        [HttpGet]
+        [Route("GetAllInternal")]
+        public ApiResult<IEnumerable<UserItem>> GetAllInternal()
+        {
+            return userRepository.GetAllInternal<IEnumerable<UserItem>>();
+        }
+
+        [HttpGet]
+        [Route("Login/{token}/{socialSecurityNumber}")]
+        public ApiResult<UserItem> Login(string token, string socialSecurityNumber)
+        {
+            return userRepository.Login<UserItem>(token, socialSecurityNumber).Result;
         }
 
         [HttpPost]
@@ -57,13 +64,6 @@ namespace Difi.Sjalvdeklaration.Api
         public ApiResult Remove(string id)
         {
             return userRepository.Remove(Guid.Parse(id)).Result;
-        }
-
-        [HttpGet]
-        [Route("Login/{token}/{socialSecurityNumber}")]
-        public UserItem Login(string token, string socialSecurityNumber)
-        {
-            return userRepository.Login(token, socialSecurityNumber).Result;
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {

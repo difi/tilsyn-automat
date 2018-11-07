@@ -21,32 +21,42 @@ namespace Difi.Sjalvdeklaration.Database
             this.companyRepository = companyRepository;
         }
 
-        public IEnumerable<DeclarationItem> GetAll()
+        public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
         {
+            var result = new ApiResult<T>();
+
             try
             {
-                var declarationItems = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().OrderBy(x => x.Name).ToList();
+                var item = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
 
-                return declarationItems;
+                result.Data = (T)item;
+                result.Succeeded = true;
             }
-            catch
+            catch (Exception exception)
             {
-                return null;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public DeclarationItem Get(Guid id)
+        public ApiResult<T> GetAll<T>() where T : IEnumerable<DeclarationItem>
         {
+            var result = new ApiResult<T>();
+
             try
             {
-                var declarationItem = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
+                var list = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().OrderBy(x => x.Name);
 
-                return declarationItem;
+                result.Data = (T)list;
+                result.Succeeded = true;
             }
-            catch
+            catch (Exception exception)
             {
-                return null;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
         public async Task<ApiResult> Add(DeclarationItem declarationItem)
@@ -58,7 +68,7 @@ namespace Difi.Sjalvdeklaration.Database
                 declarationItem.Id = Guid.NewGuid();
                 declarationItem.CreatedDate = DateTime.Now;
                 declarationItem.Status = DeclarationStatus.Created;
-                declarationItem.User = userRepository.Get(declarationItem.UserItemId);
+                declarationItem.User = userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
 
                 dbContext.DeclarationList.Add(declarationItem);
                 await dbContext.SaveChangesAsync();
@@ -81,18 +91,18 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get(declarationItem.Id);
+                var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
 
                 dbItem.Name = declarationItem.Name;
                 dbItem.DeadlineDate = declarationItem.DeadlineDate;
                 dbItem.Status = declarationItem.Status;
-                dbItem.User = userRepository.Get(declarationItem.UserItemId);
+                dbItem.User = (UserItem) userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
 
                 dbContext.DeclarationList.Update(dbItem);
 
                 if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
                 {
-                    var companyItem = companyRepository.Get(declarationItem.CompanyItemId);
+                    var companyItem = companyRepository.Get<CompanyItem>(declarationItem.CompanyItemId).Data;
 
                     foreach (var userCompany in companyItem.UserList)
                     {
@@ -120,7 +130,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get(id);
+                var dbItem = Get<DeclarationItem>(id).Data;
 
                 dbItem.Status = DeclarationStatus.Complete;
                 dbItem.SentInDate = DateTime.Now;

@@ -29,7 +29,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 if (id != Guid.Empty)
                 {
-                    CompanyItemForm = await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + id);
+                    CompanyItemForm = (await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + id)).Data;
                 }
                 else
                 {
@@ -56,15 +56,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             try
             {
-                ApiResult result;
+                ApiResult<bool> result;
 
                 if (CompanyItemForm.Id != Guid.Empty)
                 {
-                    result = await apiHttpClient.Post<ApiResult>("/api/Company/Update", CompanyItemForm);
+                    result = await apiHttpClient.Post<ApiResult<bool>>("/api/Company/Update", CompanyItemForm);
                 }
                 else
                 {
-                    result = await apiHttpClient.Post<ApiResult>("/api/Company/Add", CompanyItemForm);
+                    result = await apiHttpClient.Post<ApiResult<bool>>("/api/Company/Add", CompanyItemForm);
                 }
 
                 if (result.Succeeded)

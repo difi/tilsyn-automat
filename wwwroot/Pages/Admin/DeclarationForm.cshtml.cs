@@ -35,7 +35,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var list = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal");
+                var list = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal")).Data;
 
                 SelectUserList = list.Select(x => new SelectListItem
                 {
@@ -46,7 +46,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (id != Guid.Empty)
                 {
-                    DeclarationItemForm = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
+                    DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
                 }
                 else
                 {

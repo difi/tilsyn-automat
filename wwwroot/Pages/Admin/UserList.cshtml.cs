@@ -23,7 +23,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                UserList = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal");
+                UserList = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal")).Data;
             }
             catch
             {

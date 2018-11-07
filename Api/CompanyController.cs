@@ -18,25 +18,26 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public IEnumerable<CompanyItem> GetAll()
-        {
-            return companyRepository.GetAll();
-        }
-
-        [HttpGet]
         [Route("Get/{id}")]
-        public CompanyItem Get(Guid id)
+        public ApiResult<CompanyItem> Get(Guid id)
         {
-            return companyRepository.Get(id);
+            return companyRepository.Get<CompanyItem>(id);
         }
 
         [HttpGet]
         [Route("GetByCorporateIdentityNumber/{corporateIdentityNumber}")]
-        public CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber)
+        public ApiResult<CompanyItem> GetByCorporateIdentityNumber(string corporateIdentityNumber)
         {
-            return companyRepository.GetByCorporateIdentityNumber(corporateIdentityNumber);
+            return companyRepository.GetByCorporateIdentityNumber<CompanyItem>(corporateIdentityNumber);
         }
+
+        [HttpGet]
+        [Route("GetAll")]
+        public ApiResult<IEnumerable<CompanyItem>> GetAll()
+        {
+            return companyRepository.GetAll<IEnumerable<CompanyItem>>();
+        }
+
 
         [HttpPost]
         [Route("Add")]

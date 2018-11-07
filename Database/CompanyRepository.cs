@@ -17,26 +17,68 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public CompanyItem Get(Guid id)
+        public ApiResult<T> Get<T>(Guid id) where T : CompanyItem
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
+
+                result.Data = (T)item;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
         }
 
-        public CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber)
+        public ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
+
+                result.Data = (T)item;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
         }
 
-        public IEnumerable<CompanyItem> GetAll()
+        public ApiResult<T> GetAll<T>() where T : IEnumerable<CompanyItem>
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().OrderBy(x => x.Name).ToList();
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().OrderBy(x => x.Name);
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
         }
 
         public async Task<ApiResult> Add(CompanyItem companyItem)
         {
             var result = new ApiResult();
 
-            if (GetByCorporateIdentityNumber(companyItem.CorporateIdentityNumber) != null)
+            if (GetByCorporateIdentityNumber<CompanyItem>(companyItem.CorporateIdentityNumber).Data != null)
             {
                 return result;
             }
@@ -66,7 +108,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get(companyItem.Id);
+                var dbItem = Get<CompanyItem>(companyItem.Id).Data;
 
                 dbItem.Code = companyItem.Code;
                 dbItem.Name = companyItem.Name;
@@ -135,7 +177,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                if (GetByCorporateIdentityNumber(excelRow.CompanyItem.CorporateIdentityNumber) != null)
+                if (GetByCorporateIdentityNumber<CompanyItem>(excelRow.CompanyItem.CorporateIdentityNumber).Data != null)
                 {
                     return result;
                 }

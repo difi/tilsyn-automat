@@ -1,11 +1,12 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Business
 {
     public interface IApiHttpClient
     {
-        Task<T> Get<T>(string url);
+        Task<ApiResult<T>> Get<T>(string url);
 
         Task<string> GetWithAuthorization<T>(string url, string authorizationType, string authorizationKey);
 
