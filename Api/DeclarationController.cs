@@ -27,30 +27,30 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("GetAll")]
-        public ApiResult<IEnumerable<DeclarationItem>> GetAll()
+        public ApiResult<List<DeclarationItem>> GetAll()
         {
-            return declarationRepository.GetAll<IEnumerable<DeclarationItem>>();
+            return declarationRepository.GetAll<List<DeclarationItem>>();
         }
 
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(DeclarationItem declarationItem)
         {
-            return declarationRepository.Add(declarationItem).Result;
+            return declarationRepository.Add(declarationItem);
         }
 
         [HttpPost]
         [Route("Update")]
         public ApiResult Update(DeclarationItem declarationItem)
         {
-            return declarationRepository.Update(declarationItem).Result;
+            return declarationRepository.Update(declarationItem);
         }
 
         [HttpGet]
         [Route("SendIn/{id}")]
         public ApiResult SendIn(Guid id)
         {
-            return declarationRepository.SendIn(id).Result;
+            return declarationRepository.SendIn(id);
         }
     }
 }

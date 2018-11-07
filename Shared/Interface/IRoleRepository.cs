@@ -5,6 +5,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IRoleRepository
     {
-        ApiResult<T> GetAll<T>() where T : IEnumerable<RoleItem>;
+        ApiResult<T> GetAll<T>() where T : List<RoleItem>;
     }
 }

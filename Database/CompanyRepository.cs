@@ -55,13 +55,13 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult<T> GetAll<T>() where T : IEnumerable<CompanyItem>
+        public ApiResult<T> GetAll<T>() where T : List<CompanyItem>
         {
             var result = new ApiResult<T>();
 
             try
             {
-                var list = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().OrderBy(x => x.Name);
+                var list = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -74,7 +74,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> Add(CompanyItem companyItem)
+        public ApiResult Add(CompanyItem companyItem)
         {
             var result = new ApiResult();
 
@@ -88,7 +88,7 @@ namespace Difi.Sjalvdeklaration.Database
                 companyItem.Id = Guid.NewGuid();
 
                 dbContext.CompanyList.Add(companyItem);
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
                 result.Id = companyItem.Id;
@@ -102,7 +102,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> Update(CompanyItem companyItem)
+        public ApiResult Update(CompanyItem companyItem)
         {
             var result = new ApiResult();
 
@@ -129,7 +129,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.CompanyList.Update(dbItem);
 
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
                 result.Id = companyItem.Id;
@@ -143,7 +143,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> Remove(Guid id)
+        public ApiResult Remove(Guid id)
         {
             var result = new ApiResult();
 
@@ -158,7 +158,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.CompanyList.Remove(dbItem);
 
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
             }
@@ -171,7 +171,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> ExcelImport(ExcelItemRow excelRow)
+        public ApiResult ExcelImport(ExcelItemRow excelRow)
         {
             var result = new ApiResult();
 
@@ -186,7 +186,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbContext.ContactPersonList.Add(excelRow.ContactPersonItem);
                 dbContext.DeclarationList.Add(excelRow.DeclarationItem);
 
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
             }
@@ -199,14 +199,14 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> AddLink(UserCompany userCompanyItem)
+        public ApiResult AddLink(UserCompany userCompanyItem)
         {
             var result = new ApiResult();
 
             try
             {
                 dbContext.UserCompanyList.Add(userCompanyItem);
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
             }
@@ -219,7 +219,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> RemoveLink(UserCompany userCompanyItem)
+        public ApiResult RemoveLink(UserCompany userCompanyItem)
         {
             var result = new ApiResult();
 
@@ -230,7 +230,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (dbItem != null)
                 {
                     dbContext.UserCompanyList.Remove(dbItem);
-                    await dbContext.SaveChangesAsync();
+                    dbContext.SaveChanges();
 
                     result.Succeeded = true;
                 }

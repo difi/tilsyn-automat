@@ -33,9 +33,9 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("GetAll")]
-        public ApiResult<IEnumerable<CompanyItem>> GetAll()
+        public ApiResult<List<CompanyItem>> GetAll()
         {
-            return companyRepository.GetAll<IEnumerable<CompanyItem>>();
+            return companyRepository.GetAll<List<CompanyItem>>();
         }
 
 
@@ -43,42 +43,42 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Add")]
         public ApiResult Add(CompanyItem companyItem)
         {
-            return companyRepository.Add(companyItem).Result;
+            return companyRepository.Add(companyItem);
         }
 
         [HttpPost]
         [Route("Update")]
         public ApiResult Update(CompanyItem companyItem)
         {
-            return companyRepository.Update(companyItem).Result;
+            return companyRepository.Update(companyItem);
         }
 
         [HttpPost]
         [Route("ExcelImport")]
         public ApiResult ExcelImport(ExcelItemRow excelItemRow)
         {
-            return companyRepository.ExcelImport(excelItemRow).Result;
+            return companyRepository.ExcelImport(excelItemRow);
         }
 
         [HttpGet]
         [Route("Remove/{id}")]
         public ApiResult Remove(string id)
         {
-            return companyRepository.Remove(Guid.Parse(id)).Result;
+            return companyRepository.Remove(Guid.Parse(id));
         }
 
         [HttpPost]
         [Route("AddLink")]
         public ApiResult AddLink(UserCompany userCompanyItem)
         {
-            return companyRepository.AddLink(userCompanyItem).Result;
+            return companyRepository.AddLink(userCompanyItem);
         }
 
         [HttpPost]
         [Route("RemoveLink")]
         public ApiResult RemoveLink(UserCompany userCompanyItem)
         {
-            return companyRepository.RemoveLink(userCompanyItem).Result;
+            return companyRepository.RemoveLink(userCompanyItem);
         }
     }
 }

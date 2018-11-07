@@ -17,7 +17,7 @@ namespace Log
             this.logRepository = logRepository;
         }
 
-        public ApiResult<T> GetAllInternal<T>() where T : IEnumerable<UserItem>
+        public ApiResult<T> GetAllInternal<T>() where T : List<UserItem>
         {
             return inner.GetAllInternal<T>();
         }
@@ -32,38 +32,45 @@ namespace Log
             return inner.GetByToken<T>(token);
         }
 
-        public Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList)
-        {
-            var result = inner.Add(userItem, roleList);
-
-            logRepository.Add(new LogItem(result.Result, userItem, roleList));
-
-            return result;
-        }
-
-        public Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList)
-        {
-            var result = inner.Update(userItem, roleList);
-
-            logRepository.Add(new LogItem(result.Result, userItem, roleList));
-
-            return result;
-        }
-
-        public Task<ApiResult> Remove(Guid id)
-        {
-            var result = inner.Remove(id);
-
-            logRepository.Add(new LogItem(result.Result, id));
-
-            return result;
-        }
-
-        public Task<ApiResult<T>> Login<T>(string token, string socialSecurityNumber) where T : UserItem
+        public ApiResult<T> Login<T>(string token, string socialSecurityNumber) where T : UserItem
         {
             var result = inner.Login<T>(token, socialSecurityNumber);
 
-            logRepository.Add(new LogItem(null, token, socialSecurityNumber, result));
+            var apiResutlt = new ApiResult
+            {
+                Succeeded = result.Succeeded,
+                Exception = result.Exception,
+                Id = result.Id
+            };
+
+            logRepository.Add(new LogItem(apiResutlt, token, socialSecurityNumber, result.Data));
+
+            return result;
+        }
+
+        public ApiResult Add(UserItem userItem, List<RoleItem> roleList)
+        {
+            var result = inner.Add(userItem, roleList);
+
+            logRepository.Add(new LogItem(result, userItem, roleList));
+
+            return result;
+        }
+
+        public ApiResult Update(UserItem userItem, List<RoleItem> roleList)
+        {
+            var result = inner.Update(userItem, roleList);
+
+            logRepository.Add(new LogItem(result, userItem, roleList));
+
+            return result;
+        }
+
+        public ApiResult Remove(Guid id)
+        {
+            var result = inner.Remove(id);
+
+            logRepository.Add(new LogItem(result, id));
 
             return result;
         }

@@ -11,14 +11,14 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult<T> GetByToken<T>(string token) where T : UserItem;
 
-        ApiResult<T> GetAllInternal<T>() where T : IEnumerable<UserItem>;
+        ApiResult<T> GetAllInternal<T>() where T : List<UserItem>;
 
-        Task<ApiResult<T>> Login<T>(string token, string socialSecurityNumber) where T : UserItem;
+        ApiResult<T> Login<T>(string token, string socialSecurityNumber) where T : UserItem;
 
-        Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList);
+        ApiResult Add(UserItem userItem, List<RoleItem> roleList);
 
-        Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList);
+        ApiResult Update(UserItem userItem, List<RoleItem> roleList);
 
-        Task<ApiResult> Remove(Guid id);
+        ApiResult Remove(Guid id);
     }
 }

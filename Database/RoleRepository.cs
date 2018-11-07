@@ -16,13 +16,13 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public ApiResult<T> GetAll<T>() where T : IEnumerable<RoleItem>
+        public ApiResult<T> GetAll<T>() where T : List<RoleItem>
         {
             var result = new ApiResult<T>();
 
             try
             {
-                var list = dbContext.RoleList.AsNoTracking().OrderBy(x => x.Name);
+                var list = dbContext.RoleList.AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

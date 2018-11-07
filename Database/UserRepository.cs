@@ -61,13 +61,13 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult<T> GetAllInternal<T>() where T : IEnumerable<UserItem>
+        public ApiResult<T> GetAllInternal<T>() where T : List<UserItem>
         {
             var result = new ApiResult<T>();
 
             try
             {
-                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).OrderBy(x => x.Name);
+                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).OrderBy(x => x.Name).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -80,7 +80,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult<T>> Login<T>(string token, string socialSecurityNumber) where T : UserItem
+        public ApiResult<T> Login<T>(string token, string socialSecurityNumber) where T : UserItem
         {
             var result = new ApiResult<T>();
 
@@ -90,7 +90,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (tokenItem != null)
                 {
                     tokenItem.LastOnline = DateTime.Now;
-                    await dbContext.SaveChangesAsync();
+                    dbContext.SaveChanges();
 
                     result.Data = (T)tokenItem;
                     result.Succeeded = true;
@@ -103,7 +103,7 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     socialSecurityNumberItem.Token = token;
                     socialSecurityNumberItem.LastOnline = DateTime.Now;
-                    await dbContext.SaveChangesAsync();
+                    dbContext.SaveChanges();
 
                     result.Data = (T)socialSecurityNumberItem;
                     result.Succeeded = true;
@@ -124,7 +124,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 var role = dbContext.RoleList.Single(x => x.Name == "Virksomhet");
 
-                if ((await Add(newUserItem, new List<RoleItem> { role })).Succeeded)
+                if (Add(newUserItem, new List<RoleItem> { role }).Succeeded)
                 {
                     return Get<T>(newUserItem.Id);
                 }
@@ -137,7 +137,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList)
+        public ApiResult Add(UserItem userItem, List<RoleItem> roleList)
         {
             var result = new ApiResult();
 
@@ -148,7 +148,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (userItemInDb != null)
                 {
                     userItemInDb.Token = userItem.Token;
-                    await dbContext.SaveChangesAsync();
+                    dbContext.SaveChanges();
                 }
                 else
                 {
@@ -164,7 +164,7 @@ namespace Difi.Sjalvdeklaration.Database
                     }
 
                     dbContext.UserList.Add(userItem);
-                    await dbContext.SaveChangesAsync();
+                    dbContext.SaveChanges();
                 }
 
                 result.Succeeded = true;
@@ -178,7 +178,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList)
+        public ApiResult Update(UserItem userItem, List<RoleItem> roleList)
         {
             var result = new ApiResult();
 
@@ -204,7 +204,7 @@ namespace Difi.Sjalvdeklaration.Database
                 }
 
                 dbContext.UserList.Update(dbItem);
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
                 result.Id = userItem.Id;
@@ -217,7 +217,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<ApiResult> Remove(Guid id)
+        public ApiResult Remove(Guid id)
         {
             var result = new ApiResult();
 
@@ -232,7 +232,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.UserList.Remove(dbItem);
 
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 result.Succeeded = true;
             }

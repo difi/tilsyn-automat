@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface ILogRepository
     {
-        Task<bool> Add(LogItem logItem);
+        bool Add(LogItem logItem);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
@@ -9,12 +8,12 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
     {
         ApiResult<T> Get<T>(Guid id) where T : DeclarationItem;
 
-        ApiResult<T> GetAll<T>() where T : IEnumerable<DeclarationItem>;
+        ApiResult<T> GetAll<T>() where T : List<DeclarationItem>;
 
-        Task<ApiResult> Add(DeclarationItem declarationItem);
+        ApiResult Add(DeclarationItem declarationItem);
 
-        Task<ApiResult> Update(DeclarationItem declarationItem);
+        ApiResult Update(DeclarationItem declarationItem);
 
-        Task<ApiResult> SendIn(Guid id);
+        ApiResult SendIn(Guid id);
     }
 }

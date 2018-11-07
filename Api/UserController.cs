@@ -33,37 +33,37 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("GetAllInternal")]
-        public ApiResult<IEnumerable<UserItem>> GetAllInternal()
+        public ApiResult<List<UserItem>> GetAllInternal()
         {
-            return userRepository.GetAllInternal<IEnumerable<UserItem>>();
+            return userRepository.GetAllInternal<List<UserItem>>();
         }
 
         [HttpGet]
         [Route("Login/{token}/{socialSecurityNumber}")]
         public ApiResult<UserItem> Login(string token, string socialSecurityNumber)
         {
-            return userRepository.Login<UserItem>(token, socialSecurityNumber).Result;
+            return userRepository.Login<UserItem>(token, socialSecurityNumber);
         }
 
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(UserAddItem addUserObject)
         {
-            return userRepository.Add(addUserObject.UserItem, addUserObject.RoleList).Result;
+            return userRepository.Add(addUserObject.UserItem, addUserObject.RoleList);
         }
 
         [HttpPost]
         [Route("Update")]
         public ApiResult Update(UserAddItem addUserObject)
         {
-            return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList).Result;
+            return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList);
         }
 
         [HttpGet]
         [Route("Remove/{id}")]
         public ApiResult Remove(string id)
         {
-            return userRepository.Remove(Guid.Parse(id)).Result;
+            return userRepository.Remove(Guid.Parse(id));
         }
     }
 }

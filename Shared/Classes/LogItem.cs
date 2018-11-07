@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
     public class LogItem
     {
-        public LogItem(ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null)
+        public LogItem(ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null, [CallerMemberName] string callerFunctionName = null)
         {
             Id = Guid.NewGuid();
             Created = DateTime.Now;
+
+            Function = callerFunctionName;
 
             if (apiResult != null)
             {
@@ -21,12 +24,16 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
             ResultString = resultString?.AsJsonString();
         }
 
+        
+
         public LogItem()
         {
             
         }
 
         public Guid Id { get; set; }
+
+        public String Function { get; set; }
 
         public DateTime Created { get; set; }
 

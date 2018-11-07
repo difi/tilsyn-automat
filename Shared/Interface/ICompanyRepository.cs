@@ -1,7 +1,6 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
@@ -11,18 +10,18 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem;
 
-        ApiResult<T> GetAll<T>() where T : IEnumerable<CompanyItem>;
+        ApiResult<T> GetAll<T>() where T : List<CompanyItem>;
 
-        Task<ApiResult> Add(CompanyItem companyItem);
+        ApiResult Add(CompanyItem companyItem);
 
-        Task<ApiResult> Update(CompanyItem companyItem);
+        ApiResult Update(CompanyItem companyItem);
 
-        Task<ApiResult> Remove(Guid id);
+        ApiResult Remove(Guid id);
 
-        Task<ApiResult> ExcelImport(ExcelItemRow excelRow);
+        ApiResult ExcelImport(ExcelItemRow excelRow);
 
-        Task<ApiResult> AddLink(UserCompany userCompanyItem);
+        ApiResult AddLink(UserCompany userCompanyItem);
 
-        Task<ApiResult> RemoveLink(UserCompany userCompanyItem);
+        ApiResult RemoveLink(UserCompany userCompanyItem);
     }
 }

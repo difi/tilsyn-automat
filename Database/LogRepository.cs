@@ -1,6 +1,5 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
-using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -13,12 +12,12 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public async Task<bool> Add(LogItem logItem)
+        public bool Add(LogItem logItem)
         {
             try
             {
                 dbContext.LogList.Add(logItem);
-                await dbContext.SaveChangesAsync();
+                dbContext.SaveChanges();
 
                 return true;
             }
