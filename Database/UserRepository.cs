@@ -36,6 +36,29 @@ namespace Difi.Sjalvdeklaration.Database
             return item;
         }
 
+        public async Task<bool> Remove(Guid id)
+        {
+            try
+            {
+                var dbItem = dbContext.UserList.SingleOrDefault(x => x.Id == id);
+
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                dbContext.UserList.Remove(dbItem);
+
+                await dbContext.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<UserItem> Login(string token, string socialSecurityNumber)
         {
             var tokenItem = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);

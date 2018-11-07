@@ -17,6 +17,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         Task<bool> Update(UserItem userItem, List<RoleItem> roleList);
 
+        Task<bool> Remove(Guid parse);
+
         Task<UserItem> Login(string token, string socialSecurityNumber);
     }
 }

@@ -13,8 +13,8 @@
 
 <form method="post">
     <div asp-validation-summary="All"></div>
-    
-    @Html.HiddenFor(x=>x.UserItemForm.Id)
+
+    @Html.HiddenFor(x => x.UserItemForm.Id)
     @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
     @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
     @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
@@ -24,6 +24,7 @@
 
     @if (Model.UserItemForm.Id != Guid.Empty)
     {
+        <button class="button" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">Radera</button>
         <input type="submit" value="Update" />
     }
     else

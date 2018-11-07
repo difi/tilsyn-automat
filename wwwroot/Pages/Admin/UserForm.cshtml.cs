@@ -101,5 +101,24 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 return Page();
             }
         }
+
+        public async Task<IActionResult> OnPostRemoveUserAsync(string id)
+        {
+            try
+            {
+                var result = await apiHttpClient.Get<bool>("/api/User/Remove/" + id);
+
+                if (result)
+                {
+                    return RedirectToPage("/Admin/UserList");
+                }
+
+                return Page();
+            }
+            catch
+            {
+                return Page();
+            }
+        }
     }
 }

@@ -39,13 +39,6 @@ namespace Difi.Sjalvdeklaration.Api
             return userRepository.GetByToken(token);
         }
 
-        [HttpGet]
-        [Route("Login/{token}/{socialSecurityNumber}")]
-        public UserItem Login(string token, string socialSecurityNumber)
-        {
-            return userRepository.Login(token, socialSecurityNumber).Result;
-        }
-
         [HttpPost]
         [Route("Add")]
         public bool Add(UserAddItem addUserObject)
@@ -58,6 +51,20 @@ namespace Difi.Sjalvdeklaration.Api
         public bool Update(UserAddItem addUserObject)
         {
             return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList).Result;
+        }
+
+        [HttpGet]
+        [Route("Remove/{id}")]
+        public bool Remove(string id)
+        {
+            return userRepository.Remove(Guid.Parse(id)).Result;
+        }
+
+        [HttpGet]
+        [Route("Login/{token}/{socialSecurityNumber}")]
+        public UserItem Login(string token, string socialSecurityNumber)
+        {
+            return userRepository.Login(token, socialSecurityNumber).Result;
         }
     }
 }

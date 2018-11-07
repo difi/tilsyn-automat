@@ -95,18 +95,25 @@ namespace Difi.Sjalvdeklaration.Database
 
         public async Task<bool> Remove(Guid id)
         {
-            var dbItem = dbContext.CompanyList.SingleOrDefault(x => x.Id == id);
-
-            if (dbItem == null)
+            try
             {
-                throw new InvalidOperationException();
+                var dbItem = dbContext.CompanyList.SingleOrDefault(x => x.Id == id);
+
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                dbContext.CompanyList.Remove(dbItem);
+
+                await dbContext.SaveChangesAsync();
+
+                return true;
             }
-
-            dbContext.CompanyList.Remove(dbItem);
-
-            await dbContext.SaveChangesAsync();
-
-            return true;
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<bool> ExcelImport(ExcelItemRow excelRow)
