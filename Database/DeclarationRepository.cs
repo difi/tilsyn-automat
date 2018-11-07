@@ -55,6 +55,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 declarationItem.Id = Guid.NewGuid();
                 declarationItem.CreatedDate = DateTime.Now;
+                declarationItem.Status = DeclarationStatus.Created;
                 declarationItem.User = userRepository.Get(declarationItem.UserItemId);
 
                 dbContext.DeclarationList.Add(declarationItem);
