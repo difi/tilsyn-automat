@@ -40,14 +40,14 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("Add")]
-        public bool Add(CompanyItem companyItem)
+        public ApiResult Add(CompanyItem companyItem)
         {
             return companyRepository.Add(companyItem).Result;
         }
 
         [HttpPost]
         [Route("Update")]
-        public bool Update(CompanyItem companyItem)
+        public ApiResult Update(CompanyItem companyItem)
         {
             return companyRepository.Update(companyItem).Result;
         }

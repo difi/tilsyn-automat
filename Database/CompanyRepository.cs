@@ -36,11 +36,13 @@ namespace Difi.Sjalvdeklaration.Database
             return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().ToList();
         }
 
-        public async Task<bool> Add(CompanyItem companyItem)
+        public async Task<ApiResult> Add(CompanyItem companyItem)
         {
+            var result = new ApiResult();
+
             if (GetByCorporateIdentityNumber(companyItem.CorporateIdentityNumber) != null)
             {
-                return false;
+                return result;
             }
 
             try
@@ -50,16 +52,22 @@ namespace Difi.Sjalvdeklaration.Database
                 dbContext.CompanyList.Add(companyItem);
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
+                result.Id = companyItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> Update(CompanyItem companyItem)
+        public async Task<ApiResult> Update(CompanyItem companyItem)
         {
+            var result = new ApiResult();
+
             try
             {
                 var dbItem = Get(companyItem.Id);
@@ -85,12 +93,16 @@ namespace Difi.Sjalvdeklaration.Database
 
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
+                result.Id = companyItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
         public async Task<bool> Remove(Guid id)

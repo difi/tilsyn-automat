@@ -47,7 +47,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string type)
         {
             if (!ModelState.IsValid)
             {
@@ -56,19 +56,24 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             try
             {
-                bool result;
+                ApiResult result;
 
                 if (CompanyItemForm.Id != Guid.Empty)
                 {
-                    result = await apiHttpClient.Post<bool>("/api/Company/Update", CompanyItemForm);
+                    result = await apiHttpClient.Post<ApiResult>("/api/Company/Update", CompanyItemForm);
                 }
                 else
                 {
-                    result = await apiHttpClient.Post<bool>("/api/Company/Add", CompanyItemForm);
+                    result = await apiHttpClient.Post<ApiResult>("/api/Company/Add", CompanyItemForm);
                 }
 
-                if (result)
+                if (result.Succeeded)
                 {
+                    if (type == "declaration")
+                    {
+                        return RedirectToPage("/Admin/DeclarationForm", new {companyId = result.Id});
+                    }
+
                     return RedirectToPage("/Admin/CompanyList");
                 }
 

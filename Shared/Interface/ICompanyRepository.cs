@@ -13,9 +13,9 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         IEnumerable<CompanyItem> GetAll();
 
-        Task<bool> Add(CompanyItem companyItem);
+        Task<ApiResult> Add(CompanyItem companyItem);
 
-        Task<bool> Update(CompanyItem companyItem);
+        Task<ApiResult> Update(CompanyItem companyItem);
 
         Task<bool> Remove(Guid id);
 
