@@ -17,12 +17,12 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         Task<ApiResult> Update(CompanyItem companyItem);
 
-        Task<bool> Remove(Guid id);
+        Task<ApiResult> Remove(Guid id);
 
-        Task<bool> ExcelImport(ExcelItemRow excelRow);
+        Task<ApiResult> ExcelImport(ExcelItemRow excelRow);
 
-        Task<bool> AddLink(UserCompany userCompanyItem);
+        Task<ApiResult> AddLink(UserCompany userCompanyItem);
 
-        Task<bool> RemoveLink(UserCompany userCompanyItem);
+        Task<ApiResult> RemoveLink(UserCompany userCompanyItem);
     }
 }

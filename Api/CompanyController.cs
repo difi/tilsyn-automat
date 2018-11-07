@@ -54,28 +54,28 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("ExcelImport")]
-        public bool ExcelImport(ExcelItemRow excelItemRow)
+        public ApiResult ExcelImport(ExcelItemRow excelItemRow)
         {
             return companyRepository.ExcelImport(excelItemRow).Result;
         }
 
         [HttpGet]
         [Route("Remove/{id}")]
-        public bool Remove(string id)
+        public ApiResult Remove(string id)
         {
             return companyRepository.Remove(Guid.Parse(id)).Result;
         }
 
         [HttpPost]
         [Route("AddLink")]
-        public bool AddLink(UserCompany userCompanyItem)
+        public ApiResult AddLink(UserCompany userCompanyItem)
         {
             return companyRepository.AddLink(userCompanyItem).Result;
         }
 
         [HttpPost]
         [Route("RemoveLink")]
-        public bool RemoveLink(UserCompany userCompanyItem)
+        public ApiResult RemoveLink(UserCompany userCompanyItem)
         {
             return companyRepository.RemoveLink(userCompanyItem).Result;
         }

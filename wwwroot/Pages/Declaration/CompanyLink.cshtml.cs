@@ -39,9 +39,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     UserItemId = userDbItem.Id
                 };
 
-                var result = await apiHttpClient.Post<bool>("/api/Company/AddLink", userCompanyItem);
+                var result = await apiHttpClient.Post<ApiResult>("/api/Company/AddLink", userCompanyItem);
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Declaration/DeclarationList");
                 }

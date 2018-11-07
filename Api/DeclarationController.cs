@@ -34,21 +34,21 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("Add")]
-        public bool Add(DeclarationItem declarationItem)
+        public ApiResult Add(DeclarationItem declarationItem)
         {
             return declarationRepository.Add(declarationItem).Result;
         }
 
         [HttpPost]
         [Route("Update")]
-        public bool Update(DeclarationItem declarationItem)
+        public ApiResult Update(DeclarationItem declarationItem)
         {
             return declarationRepository.Update(declarationItem).Result;
         }
 
         [HttpGet]
         [Route("SendIn/{id}")]
-        public bool SendIn(Guid id)
+        public ApiResult SendIn(Guid id)
         {
             return declarationRepository.SendIn(id).Result;
         }

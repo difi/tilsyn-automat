@@ -1,9 +1,8 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -41,21 +40,21 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("Add")]
-        public bool Add(UserAddItem addUserObject)
+        public ApiResult Add(UserAddItem addUserObject)
         {
             return userRepository.Add(addUserObject.UserItem, addUserObject.RoleList).Result;
         }
 
         [HttpPost]
         [Route("Update")]
-        public bool Update(UserAddItem addUserObject)
+        public ApiResult Update(UserAddItem addUserObject)
         {
             return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList).Result;
         }
 
         [HttpGet]
         [Route("Remove/{id}")]
-        public bool Remove(string id)
+        public ApiResult Remove(string id)
         {
             return userRepository.Remove(Guid.Parse(id)).Result;
         }

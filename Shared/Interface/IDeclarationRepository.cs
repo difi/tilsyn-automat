@@ -11,10 +11,10 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         DeclarationItem Get(Guid id);
 
-        Task<bool> Add(DeclarationItem declarationItem);
+        Task<ApiResult> Add(DeclarationItem declarationItem);
 
-        Task<bool> Update(DeclarationItem declarationItem);
+        Task<ApiResult> Update(DeclarationItem declarationItem);
 
-        Task<bool> SendIn(Guid id);
+        Task<ApiResult> SendIn(Guid id);
     }
 }

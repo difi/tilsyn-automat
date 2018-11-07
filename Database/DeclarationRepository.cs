@@ -23,7 +23,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
             try
             {
-                var declarationItems = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().ToList();
+                var declarationItems = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 return declarationItems;
             }
@@ -47,8 +47,10 @@ namespace Difi.Sjalvdeklaration.Database
             }
         }
 
-        public async Task<bool> Add(DeclarationItem declarationItem)
+        public async Task<ApiResult> Add(DeclarationItem declarationItem)
         {
+            var result = new ApiResult();
+
             try
             {
                 declarationItem.Id = Guid.NewGuid();
@@ -58,16 +60,22 @@ namespace Difi.Sjalvdeklaration.Database
                 dbContext.DeclarationList.Add(declarationItem);
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
+                result.Id = declarationItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> Update(DeclarationItem declarationItem)
+        public async Task<ApiResult> Update(DeclarationItem declarationItem)
         {
+            var result = new ApiResult();
+
             try
             {
                 var dbItem = Get(declarationItem.Id);
@@ -81,16 +89,22 @@ namespace Difi.Sjalvdeklaration.Database
 
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
+                result.Id = declarationItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> SendIn(Guid id)
+        public async Task<ApiResult> SendIn(Guid id)
         {
+            var result = new ApiResult();
+
             try
             {
                 var dbItem = Get(id);
@@ -102,12 +116,16 @@ namespace Difi.Sjalvdeklaration.Database
 
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
+                result.Id = id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
     }
 }

@@ -13,11 +13,11 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         UserItem GetByToken(string token);
 
-        Task<bool> Add(UserItem userItem, List<RoleItem> roleList);
+        Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList);
 
-        Task<bool> Update(UserItem userItem, List<RoleItem> roleList);
+        Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList);
 
-        Task<bool> Remove(Guid parse);
+        Task<ApiResult> Remove(Guid parse);
 
         Task<UserItem> Login(string token, string socialSecurityNumber);
     }

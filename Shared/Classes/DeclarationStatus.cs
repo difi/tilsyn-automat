@@ -7,7 +7,7 @@
         Started,
         Complete,
         Return,
-        Terminated,
+        Finished,
         Canceled
     }
 }

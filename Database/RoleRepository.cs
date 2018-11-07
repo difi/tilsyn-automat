@@ -17,7 +17,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public IEnumerable<RoleItem> GetAll()
         {
-            return dbContext.RoleList.AsNoTracking().ToList();
+            return dbContext.RoleList.AsNoTracking().OrderBy(x => x.Name).ToList();
         }
     }
 }

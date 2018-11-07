@@ -78,18 +78,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             try
             {
                 var roleList = SelectRoleList.Where(x => x.Selected).Select(x => new RoleItem {Id = Guid.Parse(x.Value), Name = x.Text}).ToList();
-                bool result;
+                ApiResult result;
 
                 if (UserItemForm.Id != Guid.Empty)
                 {
-                    result = await apiHttpClient.Post<bool>("/api/User/Update", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
+                    result = await apiHttpClient.Post<ApiResult>("/api/User/Update", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
                 }
                 else
                 {
-                    result = await apiHttpClient.Post<bool>("/api/User/Add", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
+                    result = await apiHttpClient.Post<ApiResult>("/api/User/Add", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
                 }
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Admin/UserList");
                 }
@@ -106,9 +106,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var result = await apiHttpClient.Get<bool>("/api/User/Remove/" + id);
+                var result = await apiHttpClient.Get<ApiResult>("/api/User/Remove/" + id);
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Admin/UserList");
                 }

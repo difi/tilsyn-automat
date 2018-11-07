@@ -73,18 +73,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             try
             {
-                bool result;
+                ApiResult result;
 
                 if (DeclarationItemForm.Id != Guid.Empty)
                 {
-                    result = await apiHttpClient.Post<bool>("/api/Declaration/Update", DeclarationItemForm);
+                    result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Update", DeclarationItemForm);
                 }
                 else
                 {
-                    result = await apiHttpClient.Post<bool>("/api/Declaration/Add", DeclarationItemForm);
+                    result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Add", DeclarationItemForm);
                 }
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Admin/DeclarationList");
                 }

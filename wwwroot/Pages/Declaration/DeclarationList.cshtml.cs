@@ -59,9 +59,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                var result = await apiHttpClient.Get<bool>("/api/Declaration/SendIn/" + Guid.Parse(id));
+                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/SendIn/" + Guid.Parse(id));
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Declaration/Thanks");
                 }

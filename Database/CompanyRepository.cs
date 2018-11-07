@@ -1,13 +1,9 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.Enhetsregisteret;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -23,7 +19,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public CompanyItem Get(Guid id)
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x=>x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
         }
 
         public CompanyItem GetByCorporateIdentityNumber(string corporateIdentityNumber)
@@ -33,7 +29,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public IEnumerable<CompanyItem> GetAll()
         {
-            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().ToList();
+            return dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().OrderBy(x => x.Name).ToList();
         }
 
         public async Task<ApiResult> Add(CompanyItem companyItem)
@@ -85,7 +81,7 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     foreach (var contactPersonItem in companyItem.ContactPersonList)
                     {
-                        dbContext.ContactPersonList.Add(new ContactPersonItem {Name = contactPersonItem.Name, Email = contactPersonItem.Email, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id});
+                        dbContext.ContactPersonList.Add(new ContactPersonItem { Name = contactPersonItem.Name, Email = contactPersonItem.Email, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id });
                     }
                 }
 
@@ -105,8 +101,10 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public async Task<bool> Remove(Guid id)
+        public async Task<ApiResult> Remove(Guid id)
         {
+            var result = new ApiResult();
+
             try
             {
                 var dbItem = dbContext.CompanyList.SingleOrDefault(x => x.Id == id);
@@ -120,21 +118,26 @@ namespace Difi.Sjalvdeklaration.Database
 
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> ExcelImport(ExcelItemRow excelRow)
+        public async Task<ApiResult> ExcelImport(ExcelItemRow excelRow)
         {
+            var result = new ApiResult();
+
             try
             {
                 if (GetByCorporateIdentityNumber(excelRow.CompanyItem.CorporateIdentityNumber) != null)
                 {
-                    return false;
+                    return result;
                 }
 
                 dbContext.CompanyList.Add(excelRow.CompanyItem);
@@ -143,32 +146,41 @@ namespace Difi.Sjalvdeklaration.Database
 
                 await dbContext.SaveChangesAsync();
 
-                return true;
-
+                result.Succeeded = true;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> AddLink(UserCompany userCompanyItem)
+        public async Task<ApiResult> AddLink(UserCompany userCompanyItem)
         {
+            var result = new ApiResult();
+
             try
             {
                 dbContext.UserCompanyList.Add(userCompanyItem);
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> RemoveLink(UserCompany userCompanyItem)
+        public async Task<ApiResult> RemoveLink(UserCompany userCompanyItem)
         {
+            var result = new ApiResult();
+
             try
             {
                 var dbItem = dbContext.UserCompanyList.SingleOrDefault(x => x.UserItemId == userCompanyItem.UserItemId && x.CompanyItemId == userCompanyItem.CompanyItemId);
@@ -178,15 +190,16 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.UserCompanyList.Remove(dbItem);
                     await dbContext.SaveChangesAsync();
 
-                    return true;
+                    result.Succeeded = true;
                 }
-
-                return false;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
     }
 }

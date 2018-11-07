@@ -89,9 +89,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var result = await apiHttpClient.Get<bool>("/api/Company/Remove/" + id);
+                var result = await apiHttpClient.Get<ApiResult>("/api/Company/Remove/" + id);
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Admin/CompanyList");
                 }
@@ -114,9 +114,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     CompanyItemId = CompanyItemForm.Id
                 };
 
-                var result = await apiHttpClient.Post<bool>("/api/Company/RemoveLink/", user);
+                var result = await apiHttpClient.Post<ApiResult>("/api/Company/RemoveLink/", user);
 
-                if (result)
+                if (result.Succeeded)
                 {
                     return RedirectToPage("/Admin/CompanyForm", new {id = CompanyItemForm.Id});
                 }

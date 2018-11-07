@@ -19,7 +19,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public IEnumerable<UserItem> GetAllInternal()
         {
-            return dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).ToList();
+            return dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).OrderBy(x => x.Name).ToList();
         }
 
         public UserItem Get(Guid id)
@@ -34,29 +34,6 @@ namespace Difi.Sjalvdeklaration.Database
             var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
 
             return item;
-        }
-
-        public async Task<bool> Remove(Guid id)
-        {
-            try
-            {
-                var dbItem = dbContext.UserList.SingleOrDefault(x => x.Id == id);
-
-                if (dbItem == null)
-                {
-                    throw new InvalidOperationException();
-                }
-
-                dbContext.UserList.Remove(dbItem);
-
-                await dbContext.SaveChangesAsync();
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
         }
 
         public async Task<UserItem> Login(string token, string socialSecurityNumber)
@@ -93,7 +70,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             var role = dbContext.RoleList.Single(x => x.Name == "Virksomhet");
 
-            if (await Add(newUserItem, new List<RoleItem> {role}))
+            if ((await Add(newUserItem, new List<RoleItem> { role })).Succeeded)
             {
                 return Get(newUserItem.Id);
             }
@@ -102,8 +79,10 @@ namespace Difi.Sjalvdeklaration.Database
         }
 
 
-        public async Task<bool> Add(UserItem userItem, List<RoleItem> roleList)
+        public async Task<ApiResult> Add(UserItem userItem, List<RoleItem> roleList)
         {
+            var result = new ApiResult();
+
             try
             {
                 var userItemInDb = dbContext.UserList.SingleOrDefault(x => x.SocialSecurityNumber == userItem.SocialSecurityNumber);
@@ -112,34 +91,40 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     userItemInDb.Token = userItem.Token;
                     await dbContext.SaveChangesAsync();
-
-                    return true;
                 }
-
-                userItem.Id = Guid.NewGuid();
-                userItem.Created = DateTime.Now;
-
-                if (roleList != null && roleList.Any())
+                else
                 {
-                    foreach (var roleItem in roleList)
+                    userItem.Id = Guid.NewGuid();
+                    userItem.Created = DateTime.Now;
+
+                    if (roleList != null && roleList.Any())
                     {
-                        dbContext.UserRoleList.Add(new UserRole { RoleItemId = roleItem.Id, UserItemId = userItem.Id });
+                        foreach (var roleItem in roleList)
+                        {
+                            dbContext.UserRoleList.Add(new UserRole {RoleItemId = roleItem.Id, UserItemId = userItem.Id});
+                        }
                     }
+
+                    dbContext.UserList.Add(userItem);
+                    await dbContext.SaveChangesAsync();
                 }
 
-                dbContext.UserList.Add(userItem);
-                await dbContext.SaveChangesAsync();
-
-                return true;
+                result.Succeeded = true;
+                result.Id = userItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
         }
 
-        public async Task<bool> Update(UserItem userItem, List<RoleItem> roleList)
+        public async Task<ApiResult> Update(UserItem userItem, List<RoleItem> roleList)
         {
+            var result = new ApiResult();
+
             try
             {
                 var dbItem = Get(userItem.Id);
@@ -163,12 +148,44 @@ namespace Difi.Sjalvdeklaration.Database
                 dbContext.UserList.Update(dbItem);
                 await dbContext.SaveChangesAsync();
 
-                return true;
+                result.Succeeded = true;
+                result.Id = userItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Succeeded = false;
+                result.Exception = exception;
             }
+
+            return result;
+        }
+
+        public async Task<ApiResult> Remove(Guid id)
+        {
+            var result = new ApiResult();
+
+            try
+            {
+                var dbItem = dbContext.UserList.SingleOrDefault(x => x.Id == id);
+
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                dbContext.UserList.Remove(dbItem);
+
+                await dbContext.SaveChangesAsync();
+
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Succeeded = false;
+                result.Exception = exception;
+            }
+
+            return result;
         }
     }
 }
