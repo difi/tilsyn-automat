@@ -12,11 +12,13 @@ namespace Difi.Sjalvdeklaration.Database
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IUserRepository userRepository;
+        private readonly ICompanyRepository companyRepository;
 
-        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository)
+        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository, ICompanyRepository companyRepository)
         {
             this.dbContext = dbContext;
             this.userRepository = userRepository;
+            this.companyRepository = companyRepository;
         }
 
         public IEnumerable<DeclarationItem> GetAll()
@@ -87,6 +89,16 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.User = userRepository.Get(declarationItem.UserItemId);
 
                 dbContext.DeclarationList.Update(dbItem);
+
+                if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
+                {
+                    var companyItem = companyRepository.Get(declarationItem.CompanyItemId);
+
+                    foreach (var userCompany in companyItem.UserList)
+                    {
+                        dbContext.Remove(userCompany);
+                    }
+                }
 
                 await dbContext.SaveChangesAsync();
 

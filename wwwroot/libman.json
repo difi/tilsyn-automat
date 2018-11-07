@@ -4,18 +4,23 @@
   "libraries": [
     {
       "library": "jquery@3.3.1",
-      "files": [ "jquery.js", "jquery.min.js", "jquery.min.map" ],
+      "files": ["jquery.js", "jquery.min.js", "jquery.min.map"],
       "destination": "wwwroot/js/jquery"
     },
     {
       "library": "jquery-validate@1.18.0",
-      "files": [ "jquery.validate.js", "jquery.validate.min.js" ],
+      "files": ["jquery.validate.js", "jquery.validate.min.js"],
       "destination": "wwwroot/js/jquery.validate"
     },
     {
       "library": "jquery-validation-unobtrusive@3.2.11",
-      "files": [ "jquery.validate.unobtrusive.js", "jquery.validate.unobtrusive.min.js" ],
+      "files": ["jquery.validate.unobtrusive.js", "jquery.validate.unobtrusive.min.js"],
       "destination": "wwwroot/js/jquery.validate.unobtrusive"
+    },
+    {
+      "library": "jquery.tablesorter@2.31.0",
+      "files": [ "js/jquery.tablesorter.js", "js/jquery.tablesorter.min.js", "css/theme.default.min.css" ],
+      "destination": "wwwroot/js/jquery.tablesorter"
     }
   ]
 }
