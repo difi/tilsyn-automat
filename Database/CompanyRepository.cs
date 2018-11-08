@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -15,6 +14,10 @@ namespace Difi.Sjalvdeklaration.Database
         public CompanyRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public void SetCurrentUser(Guid parse)
+        {
         }
 
         public ApiResult<T> Get<T>(Guid id) where T : CompanyItem
@@ -123,7 +126,7 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     foreach (var contactPersonItem in companyItem.ContactPersonList)
                     {
-                        dbContext.ContactPersonList.Add(new ContactPersonItem {Name = contactPersonItem.Name, Email = contactPersonItem.Email, PhoneCountryCode = contactPersonItem.PhoneCountryCode, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id});
+                        dbContext.ContactPersonList.Add(new ContactPersonItem { Name = contactPersonItem.Name, Email = contactPersonItem.Email, PhoneCountryCode = contactPersonItem.PhoneCountryCode, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id });
                     }
                 }
 

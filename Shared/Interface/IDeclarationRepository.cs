@@ -6,6 +6,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IDeclarationRepository
     {
+        void SetCurrentUser(Guid parse);
+
         ApiResult<T> Get<T>(Guid id) where T : DeclarationItem;
 
         ApiResult<T> GetAll<T>() where T : List<DeclarationItem>;
@@ -14,6 +16,5 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult Update(DeclarationItem declarationItem);
 
-        ApiResult SendIn(Guid id);
-    }
+        ApiResult SendIn(Guid id);    }
 }

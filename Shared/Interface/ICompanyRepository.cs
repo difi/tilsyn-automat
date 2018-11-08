@@ -6,6 +6,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface ICompanyRepository
     {
+        void SetCurrentUser(Guid parse);
+
         ApiResult<T> Get<T>(Guid id) where T : CompanyItem;
 
         ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem;

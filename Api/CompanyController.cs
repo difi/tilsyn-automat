@@ -21,6 +21,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Get/{id}")]
         public ApiResult<CompanyItem> Get(Guid id)
         {
+            HandleRequest();
+
             return companyRepository.Get<CompanyItem>(id);
         }
 
@@ -28,6 +30,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetByCorporateIdentityNumber/{corporateIdentityNumber}")]
         public ApiResult<CompanyItem> GetByCorporateIdentityNumber(string corporateIdentityNumber)
         {
+            HandleRequest();
+
             return companyRepository.GetByCorporateIdentityNumber<CompanyItem>(corporateIdentityNumber);
         }
 
@@ -35,6 +39,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAll")]
         public ApiResult<List<CompanyItem>> GetAll()
         {
+            HandleRequest();
+
             return companyRepository.GetAll<List<CompanyItem>>();
         }
 
@@ -43,6 +49,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Add")]
         public ApiResult Add(CompanyItem companyItem)
         {
+            HandleRequest();
+
             return companyRepository.Add(companyItem);
         }
 
@@ -50,6 +58,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Update")]
         public ApiResult Update(CompanyItem companyItem)
         {
+            HandleRequest();
+
             return companyRepository.Update(companyItem);
         }
 
@@ -57,6 +67,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("ExcelImport")]
         public ApiResult ExcelImport(ExcelItemRow excelItemRow)
         {
+            HandleRequest();
+
             return companyRepository.ExcelImport(excelItemRow);
         }
 
@@ -64,6 +76,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Remove/{id}")]
         public ApiResult Remove(string id)
         {
+            HandleRequest();
+
             return companyRepository.Remove(Guid.Parse(id));
         }
 
@@ -71,6 +85,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("AddLink")]
         public ApiResult AddLink(UserCompany userCompanyItem)
         {
+            HandleRequest();
+
             return companyRepository.AddLink(userCompanyItem);
         }
 
@@ -78,7 +94,14 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("RemoveLink")]
         public ApiResult RemoveLink(UserCompany userCompanyItem)
         {
+            HandleRequest();
+
             return companyRepository.RemoveLink(userCompanyItem);
+        }
+
+        private void HandleRequest()
+        {
+            companyRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }
 }

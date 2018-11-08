@@ -3,6 +3,7 @@ using System.Globalization;
 using Difi.Sjalvdeklaration.Database;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Difi.Sjalvdeklaration.wwwroot.Business;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Log;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,8 @@ namespace Difi.Sjalvdeklaration.wwwroot
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -47,8 +50,14 @@ namespace Difi.Sjalvdeklaration.wwwroot
             services.Decorate<IUserRepository, UserRepositoryLogDecorator>();
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.Decorate<ICompanyRepository, CompanyRepositoryLogDecorator>();
+
             services.AddScoped<IDeclarationRepository, DeclarationRepository>();
+            services.Decorate<IDeclarationRepository, DeclarationRepositoryLogDecorator>();
+
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.Decorate<IRoleRepository, RoleRepositoryLogDecorator>();
+
             services.AddScoped<ILogRepository, LogRepository>();
 
             services.AddScoped<IApiHttpClient, ApiHttpClient>();

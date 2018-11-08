@@ -30,14 +30,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Function = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
-                    ResultSucceeded = table.Column<bool>(nullable: false),
-                    ResultId = table.Column<Guid>(nullable: false),
-                    ResultException = table.Column<string>(nullable: true),
+                    Class = table.Column<string>(nullable: true),
+                    Function = table.Column<string>(nullable: true),
                     CallParameter1 = table.Column<string>(nullable: true),
                     CallParameter2 = table.Column<string>(nullable: true),
-                    ResultString = table.Column<string>(nullable: true)
+                    ResultSucceeded = table.Column<bool>(nullable: false),
+                    ResultId = table.Column<Guid>(nullable: false),
+                    ResultString = table.Column<string>(nullable: true),
+                    ResultException = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

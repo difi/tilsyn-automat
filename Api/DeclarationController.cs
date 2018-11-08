@@ -22,6 +22,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Get/{id}")]
         public ApiResult<DeclarationItem> Get(Guid id)
         {
+            HandleRequest();
+
             return declarationRepository.Get<DeclarationItem>(id);
         }
 
@@ -29,6 +31,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAll")]
         public ApiResult<List<DeclarationItem>> GetAll()
         {
+            HandleRequest();
+
             return declarationRepository.GetAll<List<DeclarationItem>>();
         }
 
@@ -36,6 +40,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Add")]
         public ApiResult Add(DeclarationItem declarationItem)
         {
+            HandleRequest();
+
             return declarationRepository.Add(declarationItem);
         }
 
@@ -43,6 +49,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Update")]
         public ApiResult Update(DeclarationItem declarationItem)
         {
+            HandleRequest();
+
             return declarationRepository.Update(declarationItem);
         }
 
@@ -50,7 +58,14 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("SendIn/{id}")]
         public ApiResult SendIn(Guid id)
         {
+            HandleRequest();
+
             return declarationRepository.SendIn(id);
+        }
+
+        private void HandleRequest()
+        {
+            declarationRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }
 }

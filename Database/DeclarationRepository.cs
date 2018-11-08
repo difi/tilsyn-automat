@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -19,6 +18,10 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
             this.userRepository = userRepository;
             this.companyRepository = companyRepository;
+        }
+
+        public void SetCurrentUser(Guid parse)
+        {
         }
 
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
@@ -96,7 +99,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.Name = declarationItem.Name;
                 dbItem.DeadlineDate = declarationItem.DeadlineDate;
                 dbItem.Status = declarationItem.Status;
-                dbItem.User = (UserItem) userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
+                dbItem.User = (UserItem)userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
 
                 dbContext.DeclarationList.Update(dbItem);
 

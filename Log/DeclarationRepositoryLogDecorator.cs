@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using System;
+using System.Collections.Generic;
 
 namespace Log
 {
-    public class DeclarationRepositoryLogDecorator: IDeclarationRepository
+    public class DeclarationRepositoryLogDecorator : IDeclarationRepository
     {
+        private Guid userId;
         private readonly IDeclarationRepository inner;
         private readonly ILogRepository logRepository;
 
@@ -16,29 +17,46 @@ namespace Log
             this.logRepository = logRepository;
         }
 
+        public void SetCurrentUser(Guid id)
+        {
+            userId = id;
+        }
+
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
         {
-            throw new NotImplementedException();
+            return inner.Get<T>(id);
         }
 
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
         {
-            throw new NotImplementedException();
+            return inner.GetAll<T>();
         }
 
         public ApiResult Add(DeclarationItem declarationItem)
         {
-            throw new NotImplementedException();
+            var result = inner.Add(declarationItem);
+
+            logRepository.Add(new LogItem(userId, result, declarationItem));
+
+            return result;
         }
 
         public ApiResult Update(DeclarationItem declarationItem)
         {
-            throw new NotImplementedException();
+            var result = inner.Update(declarationItem);
+
+            logRepository.Add(new LogItem(userId, result, declarationItem));
+
+            return result;
         }
 
         public ApiResult SendIn(Guid id)
         {
-            throw new NotImplementedException();
+            var result = inner.SendIn(id);
+
+            logRepository.Add(new LogItem(userId, result, id));
+
+            return result;
         }
     }
 }

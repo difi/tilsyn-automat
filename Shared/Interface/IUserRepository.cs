@@ -7,6 +7,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IUserRepository
     {
+        void SetCurrentUser(Guid id);
+
         ApiResult<T> Get<T>(Guid id) where T : UserItem;
 
         ApiResult<T> GetByToken<T>(string token) where T : UserItem;

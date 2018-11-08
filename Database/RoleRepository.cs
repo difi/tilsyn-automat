@@ -1,7 +1,7 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +14,11 @@ namespace Difi.Sjalvdeklaration.Database
         public RoleRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public void SetCurrentUser(Guid parse)
+        {
+            throw new NotImplementedException();
         }
 
         public ApiResult<T> GetAll<T>() where T : List<RoleItem>

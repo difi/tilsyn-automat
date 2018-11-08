@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {

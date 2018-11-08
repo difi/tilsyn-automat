@@ -21,6 +21,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Get/{id}")]
         public ApiResult<UserItem> Get(Guid id)
         {
+            HandleRequest();
+
             return userRepository.Get<UserItem>(id);
         }
 
@@ -28,6 +30,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetByToken/{token}")]
         public ApiResult<UserItem> GetByToken(String token)
         {
+            HandleRequest();
+
             return userRepository.GetByToken<UserItem>(token);
         }
 
@@ -35,6 +39,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAllInternal")]
         public ApiResult<List<UserItem>> GetAllInternal()
         {
+            HandleRequest();
+
             return userRepository.GetAllInternal<List<UserItem>>();
         }
 
@@ -42,6 +48,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Login/{token}/{socialSecurityNumber}")]
         public ApiResult<UserItem> Login(string token, string socialSecurityNumber)
         {
+            HandleRequest();
+
             return userRepository.Login<UserItem>(token, socialSecurityNumber);
         }
 
@@ -49,6 +57,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Add")]
         public ApiResult Add(UserAddItem addUserObject)
         {
+            HandleRequest();
+
             return userRepository.Add(addUserObject.UserItem, addUserObject.RoleList);
         }
 
@@ -56,6 +66,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Update")]
         public ApiResult Update(UserAddItem addUserObject)
         {
+            HandleRequest();
+
             return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList);
         }
 
@@ -63,7 +75,14 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Remove/{id}")]
         public ApiResult Remove(string id)
         {
+            HandleRequest();
+
             return userRepository.Remove(Guid.Parse(id));
+        }
+
+        private void HandleRequest()
+        {
+            userRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }
 }

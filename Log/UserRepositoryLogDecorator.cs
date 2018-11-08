@@ -1,5 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,7 @@ namespace Log
 {
     public class UserRepositoryLogDecorator : IUserRepository
     {
+        private Guid userId;
         private readonly IUserRepository inner;
         private readonly ILogRepository logRepository;
 
@@ -20,6 +21,12 @@ namespace Log
         public ApiResult<T> GetAllInternal<T>() where T : List<UserItem>
         {
             return inner.GetAllInternal<T>();
+        }
+
+        public void SetCurrentUser(Guid id)
+        {
+            userId = id;
+            inner.SetCurrentUser(id);
         }
 
         public ApiResult<T> Get<T>(Guid id) where T : UserItem
@@ -36,7 +43,7 @@ namespace Log
         {
             var result = inner.Login<T>(token, socialSecurityNumber);
 
-            logRepository.Add(new LogItem(result.GetApiResutlt(), token, socialSecurityNumber, result.Data));
+            logRepository.Add(new LogItem(userId, result.GetApiResutlt(), token, socialSecurityNumber, result.Data));
 
             return result;
         }
@@ -45,7 +52,7 @@ namespace Log
         {
             var result = inner.Add(userItem, roleList);
 
-            logRepository.Add(new LogItem(result, userItem, roleList));
+            logRepository.Add(new LogItem(userId, result, userItem, roleList));
 
             return result;
         }
@@ -54,7 +61,7 @@ namespace Log
         {
             var result = inner.Update(userItem, roleList);
 
-            logRepository.Add(new LogItem(result, userItem, roleList));
+            logRepository.Add(new LogItem(userId, result, userItem, roleList));
 
             return result;
         }
@@ -63,7 +70,7 @@ namespace Log
         {
             var result = inner.Remove(id);
 
-            logRepository.Add(new LogItem(result, id));
+            logRepository.Add(new LogItem(userId, result, id));
 
             return result;
         }

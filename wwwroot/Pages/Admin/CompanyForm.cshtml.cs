@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {

@@ -16,6 +16,10 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
+        public void SetCurrentUser(Guid id)
+        {
+        }
+
         public ApiResult<T> Get<T>(Guid id) where T : UserItem
         {
             var result = new ApiResult<T>();
