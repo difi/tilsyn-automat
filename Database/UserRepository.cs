@@ -242,6 +242,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbContext.SaveChanges();
 
                 result.Succeeded = true;
+                result.Id = id;
             }
             catch (Exception exception)
             {

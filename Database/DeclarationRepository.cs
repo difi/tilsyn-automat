@@ -32,8 +32,12 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var item = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
 
-                result.Data = (T)item;
-                result.Succeeded = true;
+                if (item != null)
+                {
+                    result.Data = (T) item;
+                    result.Id = item.Id;
+                    result.Succeeded = true;
+                }
             }
             catch (Exception exception)
             {

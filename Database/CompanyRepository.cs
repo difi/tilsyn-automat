@@ -28,8 +28,12 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
 
-                result.Data = (T)item;
-                result.Succeeded = true;
+                if (item != null)
+                {
+                    result.Data = (T) item;
+                    result.Id = item.Id;
+                    result.Succeeded = true;
+                }
             }
             catch (Exception exception)
             {
@@ -47,8 +51,12 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
 
-                result.Data = (T)item;
-                result.Succeeded = true;
+                if (item != null)
+                {
+                    result.Data = (T) item;
+                    result.Id = item.Id;
+                    result.Succeeded = true;
+                }
             }
             catch (Exception exception)
             {
@@ -163,6 +171,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.SaveChanges();
 
+                result.Id = id;
                 result.Succeeded = true;
             }
             catch (Exception exception)
@@ -191,6 +200,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.SaveChanges();
 
+                result.Id = excelRow.CompanyItem.Id;
                 result.Succeeded = true;
             }
             catch (Exception exception)
@@ -211,6 +221,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbContext.UserCompanyList.Add(userCompanyItem);
                 dbContext.SaveChanges();
 
+                result.Id = userCompanyItem.CompanyItemId;
                 result.Succeeded = true;
             }
             catch (Exception exception)
@@ -235,6 +246,7 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.UserCompanyList.Remove(dbItem);
                     dbContext.SaveChanges();
 
+                    result.Id = userCompanyItem.CompanyItemId;
                     result.Succeeded = true;
                 }
             }
