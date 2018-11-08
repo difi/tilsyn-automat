@@ -1,6 +1,11 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -22,8 +27,12 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<LogItem> LogList { get; set; }
 
+        public DbSet<Image> ImageList { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<DeclarationItem>().HasOne(x => x.DeclarationTestItem).WithOne(x => x.DeclarationItem).HasForeignKey<DeclarationTestItem>(x => x.Id);
+
             modelBuilder.Entity<UserRole>().HasKey(bc => new { bc.UserItemId, bc.RoleItemId });
 
             modelBuilder.Entity<UserRole>()
@@ -113,6 +122,49 @@ namespace Difi.Sjalvdeklaration.Database
                     UserItemId = user2.Id,
                     RoleItemId = role2.Id
                 });
+
+            modelBuilder.Entity<ValueListTypeOfMachine>().HasData(new List<ValueListTypeOfMachine>
+            {
+                new ValueListTypeOfMachine {Id = 1, Text = "Betalingsterminal"},
+                new ValueListTypeOfMachine {Id = 2, Text = "Billettautomat"},
+                new ValueListTypeOfMachine {Id = 3, Text = "Selvbetjent kasse"},
+                new ValueListTypeOfMachine {Id = 4, Text = "Minibank"},
+                new ValueListTypeOfMachine {Id = 5, Text = "Vareautomat"},
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListTypeOfTest>().HasData(new List<ValueListTypeOfTest>
+            {
+                new ValueListTypeOfTest {Id = 1, Text = "Automat"},
+                new ValueListTypeOfTest {Id = 2, Text = "Webside"},
+                new ValueListTypeOfTest {Id = 3, Text = "Applikasjon"}
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListTypeOfSupplierAndVersion>().HasData(new List<ValueListTypeOfSupplierAndVersion>
+            {
+                new ValueListTypeOfSupplierAndVersion {Id = 1, Text = "Vet ikke"},
+                new ValueListTypeOfSupplierAndVersion {Id = 2, Text = "Ingenico iCT250"},
+                new ValueListTypeOfSupplierAndVersion {Id = 3, Text = "Ingenico iCT250E"},
+                new ValueListTypeOfSupplierAndVersion {Id = 4, Text = "Ingenico iCT250r"},
+                new ValueListTypeOfSupplierAndVersion {Id = 5, Text = "Ingenico iPP350"},
+                new ValueListTypeOfSupplierAndVersion {Id = 6, Text = "Ingenico iSelf"},
+                new ValueListTypeOfSupplierAndVersion {Id = 7, Text = "Ingenico iSMP"},
+                new ValueListTypeOfSupplierAndVersion {Id = 8, Text = "Ingenico isMP4"},
+                new ValueListTypeOfSupplierAndVersion {Id = 9, Text = "Ingenico iUP"},
+                new ValueListTypeOfSupplierAndVersion {Id = 10, Text = "Ingenico iWL250"},
+                new ValueListTypeOfSupplierAndVersion {Id = 11, Text = "Ingenico iWL250B "},
+                new ValueListTypeOfSupplierAndVersion {Id = 12, Text = "Ingenico iWL250G"},
+                new ValueListTypeOfSupplierAndVersion {Id = 13, Text = "Ingenico iWL251"},
+                new ValueListTypeOfSupplierAndVersion {Id = 14, Text = "Ingenico iWL252"},
+                new ValueListTypeOfSupplierAndVersion {Id = 15, Text = "iZettle Reader"},
+                new ValueListTypeOfSupplierAndVersion {Id = 16, Text = "SumUp Air"},
+                new ValueListTypeOfSupplierAndVersion {Id = 17, Text = "Verifone VX 520 C"},
+                new ValueListTypeOfSupplierAndVersion {Id = 18, Text = "Verifone VX 680"},
+                new ValueListTypeOfSupplierAndVersion {Id = 19, Text = "Verifone VX 690"},
+                new ValueListTypeOfSupplierAndVersion {Id = 20, Text = "Verifone VX 820"},
+                new ValueListTypeOfSupplierAndVersion {Id = 21, Text = "Verifone VX 820 Duet"},
+                new ValueListTypeOfSupplierAndVersion {Id = 22, Text = "Verifone Xenteo ECO"},
+                new ValueListTypeOfSupplierAndVersion {Id = 23, Text = "Verifone Yomani XR"},
+            }.ToArray());
 
             base.OnModelCreating(modelBuilder);
         }

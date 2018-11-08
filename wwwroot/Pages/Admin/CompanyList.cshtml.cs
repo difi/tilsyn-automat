@@ -1,14 +1,15 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -34,11 +35,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             try
             {
                 await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Narvesen", "123456789", "1111", "Automat for betaling på Oslo S"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norwegian", "987654321", "2222", "Billettautomat Gardemoen"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("NSB", "1122334451", "3333", "Billettautomat på Oslo S"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Esso", "1122334452", "4444", "Betalingsautomat Trondheim"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("7 - eleven", "1122334453", "5555", "Automat Grensen"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norske bank", "1122334454", "6666", "Billettautomat Kristiansand"));
+                //await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norwegian", "987654321", "2222", "Billettautomat Gardemoen"));
+                //await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("NSB", "1122334451", "3333", "Billettautomat på Oslo S"));
+                //await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Esso", "1122334452", "4444", "Betalingsautomat Trondheim"));
+                //await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("7 - eleven", "1122334453", "5555", "Automat Grensen"));
+                //await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norske bank", "1122334454", "6666", "Billettautomat Kristiansand"));
 
                 return RedirectToPage("/Admin/CompanyList");
             }
@@ -80,7 +81,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = declarationName,
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddMonths(6),
-                    Status = DeclarationStatus.Created
+                    Status = DeclarationStatus.Created,
+                    DeclarationTestItem = new DeclarationTestItem
+                    {
+                        TypeOfMachine = 1,
+                        TypeOfTest = 1
+                    }
                 }
             };
         }

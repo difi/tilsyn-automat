@@ -2,6 +2,7 @@
 using Difi.Sjalvdeklaration.Shared.Classes;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {

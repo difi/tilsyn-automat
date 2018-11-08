@@ -1,6 +1,7 @@
 ﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes
+namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {
     [Serializable]
     public class ExcelItemRow

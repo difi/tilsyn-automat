@@ -1,4 +1,5 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Shared.Extensions
 {

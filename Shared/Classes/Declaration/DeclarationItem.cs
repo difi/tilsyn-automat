@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes
+namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 {
     [Serializable]
     public class DeclarationItem
@@ -27,5 +29,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public CompanyItem Company { get; set; }
 
         public UserItem User { get; set; }
+
+        public DeclarationTestItem DeclarationTestItem { get; set; }
     }
 }

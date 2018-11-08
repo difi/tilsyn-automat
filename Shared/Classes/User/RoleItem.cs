@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes
+namespace Difi.Sjalvdeklaration.Shared.Classes.User
 {
     [Serializable]
     public class RoleItem
