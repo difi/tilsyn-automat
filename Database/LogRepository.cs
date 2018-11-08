@@ -1,5 +1,8 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -16,14 +19,37 @@ namespace Difi.Sjalvdeklaration.Database
         {
             try
             {
+                RejectChanges();
+
                 dbContext.LogList.Add(logItem);
                 dbContext.SaveChanges();
 
                 return true;
             }
-            catch
+            catch (Exception exception)
             {
                 return false;
+            }
+        }
+
+        public void RejectChanges()
+        {
+            foreach (var entry in dbContext.ChangeTracker.Entries().ToList())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.State = EntityState.Unchanged;
+                        break;
+
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Unchanged;
+                        break;
+
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached;
+                        break;
+                }
             }
         }
     }

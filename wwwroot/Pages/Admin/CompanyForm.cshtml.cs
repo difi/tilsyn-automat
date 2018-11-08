@@ -1,14 +1,13 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -74,7 +73,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     if (type == "declaration")
                     {
-                        return RedirectToPage("/Admin/DeclarationForm", new {companyId = result.Id});
+                        return RedirectToPage("/Admin/DeclarationForm", new { companyId = result.Id });
                     }
 
                     return RedirectToPage("/Admin/CompanyList");
@@ -121,7 +120,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Admin/CompanyForm", new {id = CompanyItemForm.Id});
+                    return RedirectToPage("/Admin/CompanyForm", new { id = CompanyItemForm.Id });
                 }
 
                 return Page();

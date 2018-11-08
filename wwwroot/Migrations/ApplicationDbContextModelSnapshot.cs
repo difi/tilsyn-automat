@@ -19,7 +19,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.CompanyItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Company.CompanyItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -46,7 +46,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("CompanyList");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ContactPersonItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Company.ContactPersonItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -68,7 +68,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("ContactPersonList");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.DeclarationItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -78,6 +78,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("DeadlineDate");
+
+                    b.Property<Guid?>("DeclarationTestItemId");
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -92,9 +94,51 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.HasIndex("CompanyItemId");
 
+                    b.HasIndex("DeclarationTestItemId");
+
                     b.HasIndex("UserItemId");
 
                     b.ToTable("DeclarationList");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationTestItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DescriptionInText");
+
+                    b.Property<Guid?>("Image1Id");
+
+                    b.Property<Guid?>("Image2Id");
+
+                    b.Property<int>("SupplierAndVersion");
+
+                    b.Property<string>("SupplierAndVersionOther");
+
+                    b.Property<int>("TypeOfMachine");
+
+                    b.Property<int>("TypeOfTest");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Image1Id");
+
+                    b.HasIndex("Image2Id");
+
+                    b.ToTable("DeclarationTestItem");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ImageList");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.LogItem", b =>
@@ -127,7 +171,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("LogList");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.RoleItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.RoleItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -147,7 +191,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.UserCompany", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserCompany", b =>
                 {
                     b.Property<Guid>("UserItemId");
 
@@ -160,7 +204,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserCompanyList");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.UserItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -195,7 +239,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.UserRole", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserRole", b =>
                 {
                     b.Property<Guid>("UserItemId");
 
@@ -214,48 +258,142 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ContactPersonItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfMachine", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.CompanyItem")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ValueListTypeOfMachine");
+
+                    b.HasData(
+                        new { Id = 1, Text = "Betalingsterminal" },
+                        new { Id = 2, Text = "Billettautomat" },
+                        new { Id = 3, Text = "Selvbetjent kasse" },
+                        new { Id = 4, Text = "Minibank" },
+                        new { Id = 5, Text = "Vareautomat" }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfSupplierAndVersion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ValueListTypeOfSupplierAndVersion");
+
+                    b.HasData(
+                        new { Id = 1, Text = "Vet ikke" },
+                        new { Id = 2, Text = "Ingenico iCT250" },
+                        new { Id = 3, Text = "Ingenico iCT250E" },
+                        new { Id = 4, Text = "Ingenico iCT250r" },
+                        new { Id = 5, Text = "Ingenico iPP350" },
+                        new { Id = 6, Text = "Ingenico iSelf" },
+                        new { Id = 7, Text = "Ingenico iSMP" },
+                        new { Id = 8, Text = "Ingenico isMP4" },
+                        new { Id = 9, Text = "Ingenico iUP" },
+                        new { Id = 10, Text = "Ingenico iWL250" },
+                        new { Id = 11, Text = "Ingenico iWL250B " },
+                        new { Id = 12, Text = "Ingenico iWL250G" },
+                        new { Id = 13, Text = "Ingenico iWL251" },
+                        new { Id = 14, Text = "Ingenico iWL252" },
+                        new { Id = 15, Text = "iZettle Reader" },
+                        new { Id = 16, Text = "SumUp Air" },
+                        new { Id = 17, Text = "Verifone VX 520 C" },
+                        new { Id = 18, Text = "Verifone VX 680" },
+                        new { Id = 19, Text = "Verifone VX 690" },
+                        new { Id = 20, Text = "Verifone VX 820" },
+                        new { Id = 21, Text = "Verifone VX 820 Duet" },
+                        new { Id = 22, Text = "Verifone Xenteo ECO" },
+                        new { Id = 23, Text = "Verifone Yomani XR" }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfTest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ValueListTypeOfTest");
+
+                    b.HasData(
+                        new { Id = 1, Text = "Automat" },
+                        new { Id = 2, Text = "Webside" },
+                        new { Id = 3, Text = "Applikasjon" }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Company.ContactPersonItem", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Company.CompanyItem")
                         .WithMany("ContactPersonList")
                         .HasForeignKey("CompanyItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.DeclarationItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.CompanyItem", "Company")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Company.CompanyItem", "Company")
                         .WithMany("DeclarationList")
                         .HasForeignKey("CompanyItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.UserItem", "User")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationTestItem", "DeclarationTestItem")
+                        .WithMany()
+                        .HasForeignKey("DeclarationTestItemId");
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.User.UserItem", "User")
                         .WithMany()
                         .HasForeignKey("UserItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.UserCompany", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationTestItem", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.CompanyItem", "CompanyItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Image", "Image1")
+                        .WithMany()
+                        .HasForeignKey("Image1Id");
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Image", "Image2")
+                        .WithMany()
+                        .HasForeignKey("Image2Id");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserCompany", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Company.CompanyItem", "CompanyItem")
                         .WithMany("UserList")
                         .HasForeignKey("CompanyItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.UserItem", "UserItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.User.UserItem", "UserItem")
                         .WithMany("CompanyList")
                         .HasForeignKey("UserItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.UserRole", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserRole", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.RoleItem", "RoleItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.User.RoleItem", "RoleItem")
                         .WithMany("UserList")
                         .HasForeignKey("RoleItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.UserItem", "UserItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.User.UserItem", "UserItem")
                         .WithMany("RoleList")
                         .HasForeignKey("UserItemId")
                         .OnDelete(DeleteBehavior.Cascade);

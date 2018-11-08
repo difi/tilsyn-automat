@@ -29,5 +29,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public CompanyItem Company { get; set; }
 
         public UserItem User { get; set; }
+
+        public DeclarationTestItem DeclarationTestItem { get; set; }
     }
 }
