@@ -12,6 +12,14 @@
 header {
     background-color: #daebf2;
     min-height: 100px;
+
+    ul li, ol li {
+        padding: 0 16px 0 0;
+    }
+
+    .menu .button {
+        margin: 5px 0;
+    }
 }
 
 

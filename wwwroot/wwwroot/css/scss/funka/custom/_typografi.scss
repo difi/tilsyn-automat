@@ -83,7 +83,7 @@ h2, h3 {
         font-size: rem-calc(map-deep-get($header-styles, medium, h4, font-size));
 
         &:before {
-            background: url('/css/cssimg/icons-sprite.svg') 0 -2102px no-repeat;
+            //background: url('/css/cssimg/icons-sprite.svg') 0 -2102px no-repeat;
             display: inline-block;
             content: "";
             width: 10px;
@@ -106,9 +106,6 @@ h2, h3 {
     }
 }
 
-h6 {
-    font-family: $header-font-family;
-}
 
 // ul + ol + li
 
@@ -213,6 +210,15 @@ input[type=text] {
     }
 }
 
+tbody {
+    tr {
+        button, .button {
+            margin: 3px 0;
+        }
+    }
+}
+
+
 //--------------------------------------------------------------*/
 // CODE ABOVE IS FOR ALL SCREENS
 // MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
@@ -229,7 +235,7 @@ input[type=text] {
 
     html {
         box-sizing: border-box;
-        font-size: 17px;
+        font-size: 16px;
     }
 }
 

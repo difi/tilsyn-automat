@@ -83,41 +83,40 @@ $input-radius: $global-radius !default;
 $form-button-radius: $global-radius !default;
 
 @mixin form-element {
-  $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
+    $height: ($input-font-size * unitless-calc($input-line-height)) + (get-side($input-padding, 'top') + get-side($input-padding, 'bottom')) - rem-calc(1);
 
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  height: $height;
-  margin: 0 0 $form-spacing;
-  padding: $input-padding;
-
-  border: $input-border;
-  border-radius: $input-radius;
-  background-color: $input-background;
-  box-shadow: $input-shadow;
-
-  font-family: $input-font-family;
-  font-size: $input-font-size;
-  font-weight: $input-font-weight;
-  line-height: $input-line-height;
-  color: $input-color;
-
-  @if has-value($input-transition) {
-    transition: $input-transition;
-  }
-
-  // Focus state
-  &:focus {
-    //outline: none;
-    border: $input-border-focus;
-    background-color: $input-background-focus;
-    box-shadow: $input-shadow-focus;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    //height: $height;
+    height: 2.5rem;
+    //margin: 0 0 $form-spacing;
+    margin: 0 0 0.75rem 0;
+    padding: $input-padding;
+    border: $input-border;
+    border-radius: $input-radius;
+    background-color: $input-background;
+    box-shadow: $input-shadow;
+    font-family: $input-font-family;
+    font-size: $input-font-size;
+    font-weight: $input-font-weight;
+    line-height: $input-line-height;
+    color: $input-color;
 
     @if has-value($input-transition) {
-      transition: $input-transition;
+        transition: $input-transition;
     }
-  }
+    // Focus state
+    &:focus {
+        //outline: none;
+        border: $input-border-focus;
+        background-color: $input-background-focus;
+        box-shadow: $input-shadow-focus;
+
+        @if has-value($input-transition) {
+            transition: $input-transition;
+        }
+    }
 }
 
 @mixin foundation-form-text {

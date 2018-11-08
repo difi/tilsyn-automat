@@ -25,12 +25,12 @@
 
     @if (Model.UserItemForm.Id != Guid.Empty)
     {
-        <button class="button" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">Radera</button>
-        <input type="submit" value="Update" />
+        <input class="button update icon" type="submit" value="Oppdater" />
+        <button class="button delete icon" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">Radera</button>
     }
     else
     {
-        <input type="submit" value="Add" />
+        <input class="button add icon" type="submit" value="Add" />
     }
 </form>
 

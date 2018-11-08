@@ -51,7 +51,7 @@
                         @user.UserItem.SocialSecurityNumber
                     </div>
                     <div class="medium-6 column">
-                        <button class="button" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">Radera <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
+                        <button class="button delete icon" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">Radera <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
                     </div>
                 </div>
 
@@ -61,19 +61,21 @@
 
     @if (Model.CompanyItemForm.Id != Guid.Empty)
     {
-        <button class="button" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">Radera</button>
+
+        <input class="button update icon" type="submit" value="Update" />
 
         if (!Model.CompanyItemForm.DeclarationList.Any())
         {
-            <a class="button" asp-page="DeclarationForm" asp-route-companyId="@Model.CompanyItemForm.Id">Opprett selvdeklarasjon</a>
+            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@Model.CompanyItemForm.Id">Opprett selvdeklarasjon</a>
         }
 
-        <input type="submit" value="Update" />
+        <button class="button delete icon" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">Radera</button>
+
     }
     else
     {
-        <input type="submit" value="Opprett virksomhet" asp-route-type="add"/>
-        <input type="submit" value="Opprett selvdeklarasjon" asp-route-type="declaration" />
+        <input class="button add icon" type="submit" value="Opprett virksomhet" asp-route-type="add" />
+        <input class="button add icon" type="submit" value="Opprett selvdeklarasjon" asp-route-type="declaration" />
     }
 </form>
 

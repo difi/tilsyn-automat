@@ -63,17 +63,6 @@ button, .button, input[type="button"], input[type="submit"] {
         margin: 0;
     }
 
-
-    &.blue {
-        background-color: $color-blue;
-        color: $color-white;
-
-        &:hover {
-            background-color: darken($color-blue, 5%);
-        }
-    }
-
-
     &.dark-blue {
         background-color: $color-blue-darker;
         color: $color-white;
@@ -94,9 +83,30 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
 
-    &.green {
+    &.blue, &.add {
+        background-color: $color-blue;
+        color: $color-white;
+        margin-right: 1rem;
+
+        &.icon {
+            padding-left: 2rem;
+            background: url('/css/cssimg/icons-sprite.svg') $color-blue 10px -188px no-repeat;
+        }
+
+        &:hover {
+            background-color: darken($color-blue, 5%);
+        }
+    }
+
+    &.green, &.update {
         background-color: $color-green;
         color: $color-white;
+        margin-right: 1rem;
+
+        &.icon {
+            //padding-left: 2rem;
+            //background: url('/css/cssimg/icons-sprite.svg') $color-green 10px -188px no-repeat;
+        }
 
         &:hover {
             background-color: darken($color-green, 5%);
@@ -104,9 +114,15 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
 
-    &.pink {
+    &.pink, &.delete {
         background-color: $color-pink;
         color: $color-white;
+        margin-right: 1rem;
+
+        &.icon {
+            padding-left: 2rem;
+            background: url('/css/cssimg/icons-sprite.svg') $color-pink 10px -288px no-repeat;
+        }
 
         &:hover {
             background-color: darken($color-pink, 5%);
