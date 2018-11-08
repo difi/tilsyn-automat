@@ -75,7 +75,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
                 Name = "Martin Swartling",
                 Email = "martin@difi.no",
-                PhoneCountryCode = "0047",
+                CountryCode = "0047",
                 Phone = "912345678",
                 Title = "Avdelingssjef",
                 Created = new DateTime(2011, 1, 1, 12, 00, 00)
@@ -88,7 +88,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
                 Name = "Thea Sneve",
                 Email = "thea@difi.no",
-                PhoneCountryCode = "0047",
+                CountryCode = "0047",
                 Phone = "712345678",
                 Title = "Handläggare",
                 Created = new DateTime(2011, 1, 1, 12, 00, 00)

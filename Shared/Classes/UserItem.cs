@@ -26,7 +26,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public String Email { get; set; }
 
         [AutoComplete("tel-country-code")]
-        public String PhoneCountryCode { get; set; }
+        public String CountryCode { get; set; }
 
         [AutoComplete("tel")]
         public String Phone { get; set; }
