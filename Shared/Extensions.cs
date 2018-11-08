@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using Difi.Sjalvdeklaration.Shared.Classes;
 
 namespace Difi.Sjalvdeklaration.Shared
 {
@@ -12,5 +13,15 @@ namespace Difi.Sjalvdeklaration.Shared
         public static string AsJsonString(this object x) => JsonConvert.SerializeObject(x, Formatting.Indented, new JsonSerializerSettings {ReferenceLoopHandling = ReferenceLoopHandling.Ignore});
 
         public static string AsBase64(this string plainText) => Convert.ToBase64String(Encoding.UTF8.GetBytes(plainText));
+
+        public static ApiResult GetApiResutlt<T>(this ApiResult<T> result) where T : UserItem
+        {
+            return new ApiResult
+            {
+                Succeeded = result.Succeeded,
+                Exception = result.Exception,
+                Id = result.Id
+            };
+        }
     }
 }

@@ -1,8 +1,8 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Log
 {
@@ -36,14 +36,7 @@ namespace Log
         {
             var result = inner.Login<T>(token, socialSecurityNumber);
 
-            var apiResutlt = new ApiResult
-            {
-                Succeeded = result.Succeeded,
-                Exception = result.Exception,
-                Id = result.Id
-            };
-
-            logRepository.Add(new LogItem(apiResutlt, token, socialSecurityNumber, result.Data));
+            logRepository.Add(new LogItem(result.GetApiResutlt(), token, socialSecurityNumber, result.Data));
 
             return result;
         }

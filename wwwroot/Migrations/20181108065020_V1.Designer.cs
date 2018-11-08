@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181107095419_V6")]
-    partial class V6
+    [Migration("20181108065020_V1")]
+    partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,6 +107,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<string>("CallParameter1");
 
                     b.Property<string>("CallParameter2");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Function");
 
                     b.Property<string>("ResultException");
 

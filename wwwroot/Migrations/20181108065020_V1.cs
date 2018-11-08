@@ -12,13 +12,36 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    CorporateIdentityNumber = table.Column<string>(nullable: true),
-                    Code = table.Column<string>(nullable: true)
+                    Code = table.Column<string>(nullable: false),
+                    CorporateIdentityNumber = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    CustomName = table.Column<string>(nullable: true),
+                    AddressStreet = table.Column<string>(nullable: true),
+                    AddressZip = table.Column<string>(nullable: true),
+                    AddressCity = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LogList",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Function = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    ResultSucceeded = table.Column<bool>(nullable: false),
+                    ResultId = table.Column<Guid>(nullable: false),
+                    ResultException = table.Column<string>(nullable: true),
+                    CallParameter1 = table.Column<string>(nullable: true),
+                    CallParameter2 = table.Column<string>(nullable: true),
+                    ResultString = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LogList", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,6 +66,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     SocialSecurityNumber = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: true),
+                    PhoneCountryCode = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Created = table.Column<DateTime>(nullable: false),
@@ -60,6 +84,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
+                    PhoneCountryCode = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
                     CompanyItemId = table.Column<Guid>(nullable: false)
                 },
@@ -81,9 +106,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     CompanyItemId = table.Column<Guid>(nullable: false),
                     UserItemId = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     CreatedDate = table.Column<DateTime>(nullable: false),
-                    DeadLineDate = table.Column<DateTime>(nullable: false),
+                    DeadlineDate = table.Column<DateTime>(nullable: false),
                     SentInDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },
@@ -164,11 +189,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.InsertData(
                 table: "UserList",
-                columns: new[] { "Id", "Created", "Email", "LastOnline", "Name", "Phone", "SocialSecurityNumber", "Title", "Token" },
+                columns: new[] { "Id", "Created", "Email", "LastOnline", "Name", "Phone", "PhoneCountryCode", "SocialSecurityNumber", "Title", "Token" },
                 values: new object[,]
                 {
-                    { new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                    { new Guid("04be8925-63ae-4253-8930-828e624cbea1"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                    { new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "0047", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                    { new Guid("04be8925-63ae-4253-8930-828e624cbea1"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "0047", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                 });
 
             migrationBuilder.InsertData(
@@ -219,6 +244,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.DropTable(
                 name: "DeclarationList");
+
+            migrationBuilder.DropTable(
+                name: "LogList");
 
             migrationBuilder.DropTable(
                 name: "UserCompanyList");

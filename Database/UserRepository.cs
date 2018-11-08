@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -28,6 +27,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (item != null)
                 {
                     result.Data = (T)item;
+                    result.Id = item.Id;
                     result.Succeeded = true;
                 }
             }
@@ -50,6 +50,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (item != null)
                 {
                     result.Data = (T)item;
+                    result.Id = item.Id;
                     result.Succeeded = true;
                 }
             }
@@ -93,6 +94,7 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.SaveChanges();
 
                     result.Data = (T)tokenItem;
+                    result.Id = tokenItem.Id;
                     result.Succeeded = true;
 
                     return result;
@@ -106,6 +108,7 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.SaveChanges();
 
                     result.Data = (T)socialSecurityNumberItem;
+                    result.Id = socialSecurityNumberItem.Id;
                     result.Succeeded = true;
 
                     return result;

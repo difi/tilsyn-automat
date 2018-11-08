@@ -24,8 +24,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
             ResultString = resultString?.AsJsonString();
         }
 
-        
-
         public LogItem()
         {
             
