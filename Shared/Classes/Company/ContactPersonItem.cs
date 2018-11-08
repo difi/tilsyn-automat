@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes
+namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {
     [Serializable]
     public class ContactPersonItem

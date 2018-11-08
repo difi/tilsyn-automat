@@ -1,4 +1,4 @@
-﻿namespace Difi.Sjalvdeklaration.Shared.Classes
+﻿namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 {
     public enum DeclarationStatus
     {

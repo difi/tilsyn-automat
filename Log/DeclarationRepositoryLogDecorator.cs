@@ -2,6 +2,7 @@
 using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 
 namespace Log

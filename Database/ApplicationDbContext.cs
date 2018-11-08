@@ -1,6 +1,9 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Database
 {

@@ -1,6 +1,7 @@
 ﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes
+namespace Difi.Sjalvdeklaration.Shared.Classes.User
 {
     [Serializable]
     public class UserCompany

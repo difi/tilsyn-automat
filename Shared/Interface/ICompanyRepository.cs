@@ -1,6 +1,8 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
