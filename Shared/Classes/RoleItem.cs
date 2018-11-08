@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
+    [Serializable]
     public class RoleItem
     {
         public Guid Id { get; set; }

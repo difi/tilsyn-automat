@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
+    [Serializable]
     public class CompanyItem
     {
         public Guid Id { get; set; }

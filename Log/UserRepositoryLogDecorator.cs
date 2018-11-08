@@ -50,18 +50,24 @@ namespace Log
 
         public ApiResult Add(UserItem userItem, List<RoleItem> roleList)
         {
+            var userItemBefore = userItem.DeepClone();
+            var roleListBefore = roleList.DeepClone();
+
             var result = inner.Add(userItem, roleList);
 
-            logRepository.Add(new LogItem(userId, result, userItem, roleList));
+            logRepository.Add(new LogItem(userId, result, userItemBefore, roleListBefore));
 
             return result;
         }
 
         public ApiResult Update(UserItem userItem, List<RoleItem> roleList)
         {
+            var userItemBefore = userItem.DeepClone();
+            var roleListBefore = roleList.DeepClone();
+
             var result = inner.Update(userItem, roleList);
 
-            logRepository.Add(new LogItem(userId, result, userItem, roleList));
+            logRepository.Add(new LogItem(userId, result, userItemBefore, roleListBefore));
 
             return result;
         }

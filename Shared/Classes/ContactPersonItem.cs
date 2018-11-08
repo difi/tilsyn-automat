@@ -2,6 +2,7 @@
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
+    [Serializable]
     public class ContactPersonItem
     {
         public Guid Id { get; set; }

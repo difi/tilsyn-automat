@@ -5,6 +5,7 @@ using Difi.Sjalvdeklaration.Shared.Attributes;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
+    [Serializable]
     public class UserItem
     {
         [Required]

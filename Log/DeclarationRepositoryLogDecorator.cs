@@ -2,6 +2,7 @@
 using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 
 namespace Log
 {
@@ -34,18 +35,22 @@ namespace Log
 
         public ApiResult Add(DeclarationItem declarationItem)
         {
+            var declarationItemBefore = declarationItem.DeepClone();
+
             var result = inner.Add(declarationItem);
 
-            logRepository.Add(new LogItem(userId, result, declarationItem));
+            logRepository.Add(new LogItem(userId, result, declarationItemBefore));
 
             return result;
         }
 
         public ApiResult Update(DeclarationItem declarationItem)
         {
+            var declarationItemBefore = declarationItem.DeepClone();
+
             var result = inner.Update(declarationItem);
 
-            logRepository.Add(new LogItem(userId, result, declarationItem));
+            logRepository.Add(new LogItem(userId, result, declarationItemBefore));
 
             return result;
         }

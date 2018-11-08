@@ -2,6 +2,7 @@
 using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 
 namespace Log
 {
@@ -39,18 +40,22 @@ namespace Log
 
         public ApiResult Add(CompanyItem companyItem)
         {
+            var companyItemBefore = companyItem.DeepClone();
+
             var result = inner.Add(companyItem);
 
-            logRepository.Add(new LogItem(userId, result, companyItem));
+            logRepository.Add(new LogItem(userId, result, companyItemBefore));
 
             return result;
         }
 
         public ApiResult Update(CompanyItem companyItem)
         {
+            var companyItemBefore = companyItem.DeepClone();
+
             var result = inner.Update(companyItem);
 
-            logRepository.Add(new LogItem(userId, result, companyItem));
+            logRepository.Add(new LogItem(userId, result, companyItemBefore));
 
             return result;
         }
@@ -66,27 +71,33 @@ namespace Log
 
         public ApiResult ExcelImport(ExcelItemRow excelRow)
         {
+            var excelRowBefore = excelRow.DeepClone();
+
             var result = inner.ExcelImport(excelRow);
 
-            logRepository.Add(new LogItem(userId, result, excelRow));
+            logRepository.Add(new LogItem(userId, result, excelRowBefore));
 
             return result;
         }
 
         public ApiResult AddLink(UserCompany userCompanyItem)
         {
+            var userCompanyItemBefore = userCompanyItem.DeepClone();
+
             var result = inner.AddLink(userCompanyItem);
 
-            logRepository.Add(new LogItem(userId, result, userCompanyItem));
+            logRepository.Add(new LogItem(userId, result, userCompanyItemBefore));
 
             return result;
         }
 
         public ApiResult RemoveLink(UserCompany userCompanyItem)
         {
+            var userCompanyItemBefore = userCompanyItem.DeepClone();
+
             var result = inner.RemoveLink(userCompanyItem);
 
-            logRepository.Add(new LogItem(userId, result, userCompanyItem));
+            logRepository.Add(new LogItem(userId, result, userCompanyItemBefore));
 
             return result;
         }

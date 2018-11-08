@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
+    [Serializable]
     public class DeclarationItem
     {
         public Guid Id { get; set; }
