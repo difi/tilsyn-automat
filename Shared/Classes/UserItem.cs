@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Attributes;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
@@ -11,20 +12,26 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public String Token { get; set; }
 
-        [Display(Name = "Social Security Number")]
-        [Required(ErrorMessage = "The Social Security Number field is required!")]
-        public String SocialSecurityNumber { get; set; }
-
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name field is required!")]
+        [AutoComplete("name")]
         public String Name { get; set; }
 
+        [Display(Name = "Social Security Number")]
+        [Required(ErrorMessage = "The Social Security Number field is required!")]
+        [AutoComplete("off")]
+        public String SocialSecurityNumber { get; set; }
+
+        [AutoComplete("email ")]
         public String Email { get; set; }
 
+        [AutoComplete("tel-country-code")]
         public String PhoneCountryCode { get; set; }
 
+        [AutoComplete("tel")]
         public String Phone { get; set; }
 
+        [AutoComplete("organization-title")]
         public String Title { get; set; }
 
         public DateTime Created { get; set; }

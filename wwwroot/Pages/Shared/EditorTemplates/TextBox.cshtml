@@ -1,10 +1,24 @@
-﻿@model string
+﻿@using Difi.Sjalvdeklaration.Shared.Attributes
+@using Difi.Sjalvdeklaration.Shared.Classes
+@using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata
+@model string
+
+@{
+    var autoCompleteAttribute = (AutoCompleteAttribute)((DefaultModelMetadata)ViewData.ModelMetadata).Attributes.Attributes.SingleOrDefault(x => x is AutoCompleteAttribute);
+
+    var autoComplete = "off";
+
+    if (autoCompleteAttribute != null)
+    {
+        autoComplete = autoCompleteAttribute.Value;
+    }
+}
 
 <div class="form-field">
     <label for="@Html.IdForModel()">
         @Html.DisplayNameFor(m => m)
         @Html.ValidationMessageFor(m=>m)
     </label>
-
-    @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m)})
+    
+    @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), autocomplete  = autoComplete })
 </div>

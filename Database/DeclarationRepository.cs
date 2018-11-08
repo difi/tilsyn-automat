@@ -34,7 +34,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (item != null)
                 {
-                    result.Data = (T) item;
+                    result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
                 }

@@ -44,7 +44,6 @@ namespace Difi.Sjalvdeklaration.Api
             return companyRepository.GetAll<List<CompanyItem>>();
         }
 
-
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(CompanyItem companyItem)
