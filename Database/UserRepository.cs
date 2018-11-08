@@ -154,6 +154,14 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (userItemInDb != null)
                 {
+                    if (String.IsNullOrEmpty(userItem.Token))
+                    {
+                        result.Succeeded = false;
+                        result.Id = userItemInDb.Id;
+
+                        return result;
+                    }
+
                     userItemInDb.Token = userItem.Token;
                     dbContext.SaveChanges();
                 }
