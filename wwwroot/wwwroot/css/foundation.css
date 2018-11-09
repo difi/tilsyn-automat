@@ -1735,7 +1735,8 @@ legend {
   max-width: 100%;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  font-size: 18px; }
+  font-size: 18px;
+  margin-top: 32px; }
 
 .fieldset {
   margin: 1.125rem 0;
@@ -2346,7 +2347,8 @@ table {
     background-color: #fff; }
   caption {
     padding: 0.5rem 0.625rem 0.625rem;
-    font-weight: bold; }
+    font-weight: bold;
+    display: none; }
   thead {
     background: #f9f9f9;
     color: #44303C; }
@@ -2888,7 +2890,7 @@ label span {
       height: 25px;
       overflow: hidden;
       content: "";
-      display: inline-block; }
+      display: none; }
 
 @media print, screen and (min-width: 48em) {
   .form-field {
