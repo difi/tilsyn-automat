@@ -119,6 +119,7 @@ $table-stack-breakpoint: medium !default;
   caption {
     padding: $table-padding;
     font-weight: $global-weight-bold;
+    display: none;
   }
 
   // Table head
