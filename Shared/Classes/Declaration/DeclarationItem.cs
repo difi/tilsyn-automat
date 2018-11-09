@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
@@ -31,5 +32,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public UserItem User { get; set; }
 
         public DeclarationTestItem DeclarationTestItem { get; set; }
+
+        public List<OutcomeItem> OutcomeList { get; set; }
     }
 }

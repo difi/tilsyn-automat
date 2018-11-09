@@ -24,6 +24,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public String DescriptionInText { get; set; }
 
+        public String CaseNumber { get; set; }
+
+        public ValueListFinishedStatus FinishedStatus { get; set; }
+
         public Image Image1 { get; set; }
 
         public Image Image2 { get; set; }

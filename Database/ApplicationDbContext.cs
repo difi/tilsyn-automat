@@ -33,6 +33,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<ValueListTypeOfSupplierAndVersion> TypeOfSupplierAndVersionList { get; set; }
 
+        public DbSet<ValueListFinishedStatus> FinishedStatusList { get; set; }
+
         public DbSet<Image> ImageList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -170,6 +172,13 @@ namespace Difi.Sjalvdeklaration.Database
                 new ValueListTypeOfSupplierAndVersion {Id = 21, Text = "Verifone VX 820 Duet"},
                 new ValueListTypeOfSupplierAndVersion {Id = 22, Text = "Verifone Xenteo ECO"},
                 new ValueListTypeOfSupplierAndVersion {Id = 23, Text = "Verifone Yomani XR"},
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListFinishedStatus>().HasData(new List<ValueListFinishedStatus>
+            {
+                new ValueListFinishedStatus {Id = 1, Text = "Inget"},
+                new ValueListFinishedStatus {Id = 2, Text = "Avvik"},
+                new ValueListFinishedStatus {Id = 3, Text = "Merknad"}
             }.ToArray());
 
             base.OnModelCreating(modelBuilder);
