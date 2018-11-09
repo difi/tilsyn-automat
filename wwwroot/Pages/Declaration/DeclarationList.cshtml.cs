@@ -1,16 +1,11 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -18,7 +13,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
     {
         private readonly IApiHttpClient apiHttpClient;
 
-        public IList<CompanyItem> CompanyList { get; private set; }
+        public CompanyItem CompanyItem { get; private set; }
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
@@ -33,48 +28,28 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 var userItem = (apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value).Result).Data;
 
-                CompanyList = new List<CompanyItem>();
-                DeclarationList = new List<DeclarationItem>();
-
-                foreach (var userCompany in userItem.CompanyList)
+                if (userItem.CompanyList != null && userItem.CompanyList.Any())
                 {
-                    CompanyList.Add(userCompany.CompanyItem);
-                }
+                    CompanyItem = userItem.CompanyList.First().CompanyItem;
 
-                var declarationListDb = (apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll").Result).Data;
+                    DeclarationList = new List<DeclarationItem>();
+                    var declarationListDb = (apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll").Result).Data;
 
-                foreach (var declarationItem in declarationListDb)
-                {
-                    foreach (var companyItem in CompanyList)
+                    foreach (var declarationItem in declarationListDb)
                     {
-                        if (companyItem.Id == declarationItem.CompanyItemId)
+                        if (CompanyItem.Id == declarationItem.CompanyItemId)
                         {
                             DeclarationList.Add(declarationItem);
                         }
                     }
                 }
-            }
-            catch
-            {
-            }
-        }
-
-        public async Task<IActionResult> OnPostSendInAsync(string id)
-        {
-            try
-            {
-                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/SendIn/" + Guid.Parse(id));
-
-                if (result.Succeeded)
+                else
                 {
-                    return RedirectToPage("/Declaration/Thanks");
+                    Response.Redirect("/Declaration/CompanyLink");
                 }
-
-                return Page();
             }
             catch
             {
-                return Page();
             }
         }
     }

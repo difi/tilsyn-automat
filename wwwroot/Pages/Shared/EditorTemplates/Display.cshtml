@@ -1,9 +1,5 @@
-﻿@model Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueList
+﻿@model string
 
 <div class="form-field">
-    <label for="@Html.IdForModel()">
-        @Html.DisplayNameFor(m => m)
-    </label>
-    
-    @Model.Text<br/><br />
+    @Html.DisplayNameFor(m => m): @Model
 </div>
