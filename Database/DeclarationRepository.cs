@@ -94,6 +94,12 @@ namespace Difi.Sjalvdeklaration.Database
                 declarationItem.Status = DeclarationStatus.Created;
                 declarationItem.User = userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
 
+                declarationItem.DeclarationTestItem = new DeclarationTestItem
+                {
+                    TypeOfMachine = dbContext.TypeOfMachineList.Single(x => x.Id == 1),
+                    TypeOfTest = dbContext.TypeOfTestList.Single(x => x.Id == 1)
+                };
+
                 dbContext.DeclarationList.Add(declarationItem);
                 dbContext.SaveChanges();
 
