@@ -96,8 +96,8 @@ namespace Difi.Sjalvdeklaration.Database
 
                 declarationItem.DeclarationTestItem = new DeclarationTestItem
                 {
-                    TypeOfMachine = dbContext.TypeOfMachineList.Single(x => x.Id == 1),
-                    TypeOfTest = dbContext.TypeOfTestList.Single(x => x.Id == 1)
+                    TypeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == 1),
+                    TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1)
                 };
 
                 dbContext.DeclarationList.Add(declarationItem);

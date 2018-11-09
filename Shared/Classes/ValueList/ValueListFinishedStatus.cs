@@ -1,9 +1,8 @@
 ﻿using System;
-
 namespace Difi.Sjalvdeklaration.Shared.Classes.ValueList
 {
     [Serializable]
-    public class ValueListTypeOfSupplierAndVersion : ValueList
+    public class ValueListFinishedStatus : ValueList
     {
 
     }

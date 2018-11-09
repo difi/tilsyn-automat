@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181109214837_V4")]
+    partial class V4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,19 +185,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RequirementItem");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementUserPrerequisite", b =>
-                {
-                    b.Property<Guid>("RequirementItemId");
-
-                    b.Property<int>("ValueListUserPrerequisiteId");
-
-                    b.HasKey("RequirementItemId", "ValueListUserPrerequisiteId");
-
-                    b.HasIndex("ValueListUserPrerequisiteId");
-
-                    b.ToTable("RequirementUserPrerequisite");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Image", b =>
@@ -514,19 +503,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", "Requirement")
                         .WithMany()
                         .HasForeignKey("RequirementId");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementUserPrerequisite", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", "RequirementItem")
-                        .WithMany("RequirementUserPrerequisiteList")
-                        .HasForeignKey("RequirementItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListUserPrerequisite", "ValueListUserPrerequisite")
-                        .WithMany()
-                        .HasForeignKey("ValueListUserPrerequisiteId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserCompany", b =>

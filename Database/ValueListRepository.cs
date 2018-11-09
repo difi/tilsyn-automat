@@ -22,7 +22,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.TypeOfMachineList.OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfMachineList.OrderBy(x => x.Text).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -41,7 +41,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.TypeOfTestList.OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfTestList.OrderBy(x => x.Text).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -60,7 +60,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.TypeOfSupplierAndVersionList.OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfSupplierAndVersionList.OrderBy(x => x.Text).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

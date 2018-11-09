@@ -27,15 +27,17 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<LogItem> LogList { get; set; }
 
-        public DbSet<ValueListTypeOfMachine> TypeOfMachineList { get; set; }
-
-        public DbSet<ValueListTypeOfTest> TypeOfTestList { get; set; }
-
-        public DbSet<ValueListTypeOfSupplierAndVersion> TypeOfSupplierAndVersionList { get; set; }
-
-        public DbSet<ValueListFinishedStatus> FinishedStatusList { get; set; }
-
         public DbSet<Image> ImageList { get; set; }
+
+        public DbSet<ValueListTypeOfMachine> VlTypeOfMachineList { get; set; }
+
+        public DbSet<ValueListTypeOfTest> VlTypeOfTestList { get; set; }
+
+        public DbSet<ValueListTypeOfSupplierAndVersion> VlTypeOfSupplierAndVersionList { get; set; }
+
+        public DbSet<ValueListFinishedStatus> VlFinishedStatusList { get; set; }
+
+        public DbSet<ValueListUserPrerequisite> VlUserPrerequisiteList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -64,6 +66,11 @@ namespace Difi.Sjalvdeklaration.Database
                 .HasOne(bc => bc.CompanyItem)
                 .WithMany(c => c.UserList)
                 .HasForeignKey(bc => bc.CompanyItemId);
+
+            modelBuilder.Entity<RequirementUserPrerequisite>().HasKey(bc => new { bc.RequirementItemId, bc.ValueListUserPrerequisiteId });
+
+            modelBuilder.Entity<RequirementItem>()
+                .HasMany(bc => bc.RequirementUserPrerequisiteList);
 
             var role1 = new RoleItem
             {
@@ -179,6 +186,21 @@ namespace Difi.Sjalvdeklaration.Database
                 new ValueListFinishedStatus {Id = 1, Text = "Inget"},
                 new ValueListFinishedStatus {Id = 2, Text = "Avvik"},
                 new ValueListFinishedStatus {Id = 3, Text = "Merknad"}
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListUserPrerequisite>().HasData(new List<ValueListUserPrerequisite>
+            {
+                new ValueListUserPrerequisite {Id = 1, Text = "Blinde"},
+                new ValueListUserPrerequisite {Id = 2, Text = "Svaksynte"},
+                new ValueListUserPrerequisite {Id = 3, Text = "Fargeblinde"},
+                new ValueListUserPrerequisite {Id = 4, Text = "Døvblinde"},
+                new ValueListUserPrerequisite {Id = 5, Text = "Døve"},
+                new ValueListUserPrerequisite {Id = 6, Text = "Nedsett høyrsel/tunghøyrde"},
+                new ValueListUserPrerequisite {Id = 7, Text = "Nedsett kognisjon"},
+                new ValueListUserPrerequisite {Id = 8, Text = "Nedsett motorikk"},
+                new ValueListUserPrerequisite {Id = 9, Text = "Fotosensitivitet/anfall"},
+                new ValueListUserPrerequisite {Id = 10, Text = "Fysisk størrelse"},
+                new ValueListUserPrerequisite {Id = 11, Text = "Redusert taktil sensibilitet"},
             }.ToArray());
 
             base.OnModelCreating(modelBuilder);

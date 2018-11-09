@@ -3,7 +3,7 @@
 namespace Difi.Sjalvdeklaration.Shared.Classes.ValueList
 {
     [Serializable]
-    public class ValueListTypeOfSupplierAndVersion : ValueList
+    public class ValueListUserPrerequisite : ValueList
     {
 
     }

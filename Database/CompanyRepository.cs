@@ -196,8 +196,8 @@ namespace Difi.Sjalvdeklaration.Database
                     return result;
                 }
 
-                var typeOfMachine = dbContext.TypeOfMachineList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine.Id);
-                var typeOfTest = dbContext.TypeOfTestList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest.Id);
+                var typeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine.Id);
+                var typeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest.Id);
 
                 excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine = typeOfMachine;
                 excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest = typeOfTest;
