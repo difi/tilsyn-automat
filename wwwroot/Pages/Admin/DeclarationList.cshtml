@@ -26,8 +26,7 @@
             <th scope="col">E-post kontaktperson</th>
             <th scope="col">Frist for innsending</th>
             <th scope="col">Dato sendt inn</th>
-            <th scope="col">Status for selvdeklarasjon</th>
-            <th scope="col">Status for tilsyn</th>
+            <th scope="col">Status</th>
             <th scope="col">Eksporter</th>
         </tr>
         </thead>
@@ -48,10 +47,10 @@
                     @item.DeadlineDate.ToString("yyyy-MM-dd")
                 </td>
                 <td>
-                    @item.SentInDate.ToString("yyyy-MM-dd")
-                </td>
-                <td>
-                    @item.Status
+                    @if (item.SentInDate != DateTime.MinValue)
+                    {
+                        @item.SentInDate.ToString("yyyy-MM-dd")
+                    }
                 </td>
                 <td>
                     @item.Status
