@@ -4,82 +4,57 @@
     ViewData["Title"] = "DeclarationList";
 }
 
-<h1>DeclarationList</h1>
+@if (Model.CompanyItem != null)
+{
+    <h1>Selvdeklarasjon for @Model.CompanyItem.Name</h1>
 
-<table class="table">
-    <caption>
-        <h2>Virksamheter</h2>
-    </caption>
-    <thead>
-    <tr>
-        <th scope="col">Corporate Identity Number</th>
-        <th scope="col">Name</th>
-        <th scope="col">ContactPerson Name</th>
-        <th scope="col">ContactPerson Email</th>
-        <th scope="col">ContactPerson Phone</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.CompanyList)
-    {
-        var contactPerson = item.ContactPersonList.FirstOrDefault();
+    <fieldset>
+        <legend>Virksomhetsinformasjon</legend>
 
-        <tr>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                @item.CorporateIdentityNumber
-            </td>
-            <td>
-                @contactPerson?.Name
-            </td>
-            <td>
-                @contactPerson?.Email
-            </td>
-            <td>
-                @contactPerson?.Phone
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
+        @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "Display")
+        @Html.EditorFor(x => x.CompanyItem.Name, "Display")
+        @Html.EditorFor(x => x.CompanyItem.CustomName, "TextBox")
+    </fieldset>
 
-<table class="table">
-    <caption>
-        <h2>Selvdeklarasjoner</h2>
-    </caption>
-    <thead>
+    <fieldset>
+        <legend>Virksomhetens adresse</legend>
+        @Html.EditorFor(x => x.CompanyItem.AddressStreet, "Display")
+        @Html.EditorFor(x => x.CompanyItem.AddressCity, "Display")
+        @Html.EditorFor(x => x.CompanyItem.AddressCity, "Display")
+    </fieldset>
+
+    <table class="table">
+        <caption>
+            <h2>Selvdeklarasjoner</h2>
+        </caption>
+        <thead>
         <tr>
             <th scope="col">Automat</th>
-            <th scope="col">Virksamhet</th>
-            <th scope="col">Dato</th>
+            <th scope="col">DeadlineDate</th>
             <th scope="col">Status</th>
-            <th scope="col">Skicka in</th>
+            <th scope="col">Öppna</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var item in Model.DeclarationList)
         {
-        <tr>
-            <td>
-                @item.Name
-            </td>
-            <td>
-                @item.Company.Name
-            </td>
-            <td>
-                @item.CreatedDate.ToString("yyyy-MM-dd")
-            </td>
-            <td>
-                @item.Status
-            </td>
-            <td>
-                <form method="post">
-                    <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@item.Id">Skicka in</button>
-                </form>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.DeadlineDate.ToString("yyyy-MM-dd")
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    <form method="post">
+                        <a asp-page="/Declaration/DeclarationForm" class="button" asp-route-id="@item.Id">Öppna</a>
+                    </form>
+                </td>
+            </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+}

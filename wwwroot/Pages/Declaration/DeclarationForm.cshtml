@@ -1,0 +1,21 @@
+﻿@page
+@model DeclarationFormModel
+
+@{
+    var title = "Selvdeklarasjon";
+
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+<form method="post">
+    Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate
+    <br />
+    <br />
+    <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}
