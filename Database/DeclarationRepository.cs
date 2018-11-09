@@ -33,7 +33,14 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var item = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().SingleOrDefault(x => x.Id == id);
+                var item = dbContext.DeclarationList
+                    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
+                    .Include(x => x.Company).ThenInclude(x => x.UserList)
+                    .Include(x => x.User)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .AsNoTracking().SingleOrDefault(x => x.Id == id);
 
                 if (item != null)
                 {

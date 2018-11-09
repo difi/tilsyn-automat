@@ -93,6 +93,9 @@
     <Content Update="Pages\Shared\EditorTemplates\DropdownListEnum.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\Display.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\_Public.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

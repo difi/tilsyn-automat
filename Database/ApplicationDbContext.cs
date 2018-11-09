@@ -27,6 +27,12 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<LogItem> LogList { get; set; }
 
+        public DbSet<ValueListTypeOfMachine> TypeOfMachineList { get; set; }
+
+        public DbSet<ValueListTypeOfTest> TypeOfTestList { get; set; }
+
+        public DbSet<ValueListTypeOfSupplierAndVersion> TypeOfSupplierAndVersionList { get; set; }
+
         public DbSet<Image> ImageList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

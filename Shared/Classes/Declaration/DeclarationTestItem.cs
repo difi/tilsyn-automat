@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 {
@@ -9,11 +11,14 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [ForeignKey("DeclarationItem")]
         public Guid Id { get; set; }
 
-        public Int32 TypeOfMachine { get; set; }
+        [Display(Name = "TypeOfMachine")]
+        public ValueListTypeOfMachine TypeOfMachine { get; set; }
 
-        public Int32 TypeOfTest { get; set; }
+        [Display(Name = "TypeOfTest")]
+        public ValueListTypeOfTest TypeOfTest { get; set; }
 
-        public Int32 SupplierAndVersion { get; set; }
+        [Display(Name = "SupplierAndVersion")]
+        public ValueListTypeOfSupplierAndVersion SupplierAndVersion { get; set; }
 
         public String SupplierAndVersionOther { get; set; }
 

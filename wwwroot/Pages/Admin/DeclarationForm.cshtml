@@ -24,6 +24,9 @@
 
     @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownList", new { list = Model.SelectUserList })
 
+    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "Display")
+    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "Display")
+
     @if (Model.DeclarationItemForm.Id != Guid.Empty)
     {
         <input class="button update" type="submit" value="Update" />

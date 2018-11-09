@@ -8,7 +8,6 @@ namespace Log
 {
     public class RoleRepositoryLogDecorator : IRoleRepository
     {
-        private Guid userId;
         private readonly IRoleRepository inner;
 
         public RoleRepositoryLogDecorator(IRoleRepository inner)
@@ -18,7 +17,6 @@ namespace Log
 
         public void SetCurrentUser(Guid id)
         {
-            userId = id;
         }
 
         public ApiResult<T> GetAll<T>() where T : List<RoleItem>

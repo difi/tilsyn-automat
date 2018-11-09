@@ -1,18 +1,17 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -58,7 +57,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                         CompanyItemId = companyId,
                         UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                         DeadlineDate = DateTime.Now.Date.AddMonths(6)
-                        
                     };
                 }
             }
