@@ -10,9 +10,10 @@
 <h1>@title</h1>
 
 <form method="post">
-    Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate
-    <br />
-    <br />
+    Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
+    TypeOfMachine: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfMachine.Text<br />
+    TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
+    <br /><br />
     <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
 </form>
 

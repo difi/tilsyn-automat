@@ -53,7 +53,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 await GenerateExcel(new List<DeclarationItem> { result });
 
-                return Page();
+                return RedirectToPage("/Declaration/DeclarationList");
             }
             catch
             {
@@ -67,7 +67,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 await GenerateExcel((await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll")).Data);
 
-                return Page();
+                return RedirectToPage("/Declaration/DeclarationList");
             }
             catch
             {
@@ -84,7 +84,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 var excelWorksheet = pck.Workbook.Worksheets.Add("Data");
                 excelWorksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
 
-                using (var excelRange = excelWorksheet.Cells["A1:R1"])
+                using (var excelRange = excelWorksheet.Cells["A1:T1"])
                 {
                     excelRange.Style.Font.Bold = true;
                     excelRange.Style.Font.Size = excelRange.Style.Font.Size + 2;
@@ -93,7 +93,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     excelRange.Style.Font.Color.SetColor(System.Drawing.Color.White);
                 }
 
-                using (var excelRange = excelWorksheet.Cells["A1:R100"])
+                using (var excelRange = excelWorksheet.Cells["A1:T100"])
                 {
                     excelRange.AutoFitColumns();
                 }
@@ -114,6 +114,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             dataTable.Columns.Add(new DataColumn("Dato sendt inn"));
             dataTable.Columns.Add(new DataColumn("Status"));
 
+            dataTable.Columns.Add(new DataColumn("TypeOfMachine"));
+            dataTable.Columns.Add(new DataColumn("TypeOfTest"));
+
             dataTable.Columns.Add(new DataColumn("Virksomhet - Unikt passord"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Organisationsnummer"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Navn"));
@@ -132,6 +135,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             dataTable.Columns.Add(new DataColumn("Saksbehandler - Telefon"));
             dataTable.Columns.Add(new DataColumn("Saksbehandler - Title"));
 
+
             foreach (var declarationItem in declarationItems)
             {
                 var dataRow = dataTable.NewRow();
@@ -140,6 +144,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 dataRow["Frist for innsending"] = declarationItem.DeadlineDate;
                 dataRow["Dato sendt inn"] = declarationItem.SentInDate;
                 dataRow["Status"] = declarationItem.Status;
+
+                dataRow["TypeOfMachine"] = declarationItem.DeclarationTestItem.TypeOfMachine.Text;
+                dataRow["TypeOfTest"] = declarationItem.DeclarationTestItem.TypeOfTest.Text;
 
                 dataRow["Virksomhet - Unikt passord"] = declarationItem.Company.Code;
                 dataRow["Virksomhet - Organisationsnummer"] = declarationItem.Company.CorporateIdentityNumber;

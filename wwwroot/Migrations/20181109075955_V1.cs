@@ -73,6 +73,45 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TypeOfMachineList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeOfMachineList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TypeOfSupplierAndVersionList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeOfSupplierAndVersionList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TypeOfTestList",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeOfTestList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserList",
                 columns: table => new
                 {
@@ -90,45 +129,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserList", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ValueListTypeOfMachine",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Text = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ValueListTypeOfMachine", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ValueListTypeOfSupplierAndVersion",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Text = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ValueListTypeOfSupplierAndVersion", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ValueListTypeOfTest",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Text = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ValueListTypeOfTest", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -158,9 +158,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    TypeOfMachine = table.Column<int>(nullable: false),
-                    TypeOfTest = table.Column<int>(nullable: false),
-                    SupplierAndVersion = table.Column<int>(nullable: false),
+                    TypeOfMachineId = table.Column<int>(nullable: true),
+                    TypeOfTestId = table.Column<int>(nullable: true),
+                    SupplierAndVersionId = table.Column<int>(nullable: true),
                     SupplierAndVersionOther = table.Column<string>(nullable: true),
                     DescriptionInText = table.Column<string>(nullable: true),
                     Image1Id = table.Column<Guid>(nullable: true),
@@ -179,6 +179,24 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         name: "FK_DeclarationTestItem_ImageList_Image2Id",
                         column: x => x.Image2Id,
                         principalTable: "ImageList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DeclarationTestItem_TypeOfSupplierAndVersionList_SupplierAndVersionId",
+                        column: x => x.SupplierAndVersionId,
+                        principalTable: "TypeOfSupplierAndVersionList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DeclarationTestItem_TypeOfMachineList_TypeOfMachineId",
+                        column: x => x.TypeOfMachineId,
+                        principalTable: "TypeOfMachineList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_DeclarationTestItem_TypeOfTestList_TypeOfTestId",
+                        column: x => x.TypeOfTestId,
+                        principalTable: "TypeOfTestList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -273,9 +291,61 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: new[] { "Id", "IsAdminRole", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("799cb2c6-ef81-4d43-aee5-c28fb405bcd6"), false, "Virksomhet" },
+                    { new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe"), true, "Admin" },
                     { new Guid("ceb3e909-2d86-42de-951f-7646949718c1"), true, "Saksbehandlare" },
-                    { new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe"), true, "Admin" }
+                    { new Guid("799cb2c6-ef81-4d43-aee5-c28fb405bcd6"), false, "Virksomhet" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TypeOfMachineList",
+                columns: new[] { "Id", "Text" },
+                values: new object[,]
+                {
+                    { 4, "Minibank" },
+                    { 3, "Selvbetjent kasse" },
+                    { 2, "Billettautomat" },
+                    { 5, "Vareautomat" },
+                    { 1, "Betalingsterminal" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TypeOfSupplierAndVersionList",
+                columns: new[] { "Id", "Text" },
+                values: new object[,]
+                {
+                    { 22, "Verifone Xenteo ECO" },
+                    { 23, "Verifone Yomani XR" },
+                    { 13, "Ingenico iWL251" },
+                    { 21, "Verifone VX 820 Duet" },
+                    { 20, "Verifone VX 820" },
+                    { 19, "Verifone VX 690" },
+                    { 18, "Verifone VX 680" },
+                    { 17, "Verifone VX 520 C" },
+                    { 16, "SumUp Air" },
+                    { 15, "iZettle Reader" },
+                    { 14, "Ingenico iWL252" },
+                    { 12, "Ingenico iWL250G" },
+                    { 8, "Ingenico isMP4" },
+                    { 10, "Ingenico iWL250" },
+                    { 9, "Ingenico iUP" },
+                    { 7, "Ingenico iSMP" },
+                    { 6, "Ingenico iSelf" },
+                    { 5, "Ingenico iPP350" },
+                    { 4, "Ingenico iCT250r" },
+                    { 3, "Ingenico iCT250E" },
+                    { 2, "Ingenico iCT250" },
+                    { 1, "Vet ikke" },
+                    { 11, "Ingenico iWL250B " }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TypeOfTestList",
+                columns: new[] { "Id", "Text" },
+                values: new object[,]
+                {
+                    { 2, "Webside" },
+                    { 1, "Automat" },
+                    { 3, "Applikasjon" }
                 });
 
             migrationBuilder.InsertData(
@@ -285,58 +355,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     { new Guid("04be8925-63ae-4253-8930-828e624cbea1"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" },
                     { new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ValueListTypeOfMachine",
-                columns: new[] { "Id", "Text" },
-                values: new object[,]
-                {
-                    { 1, "Betalingsterminal" },
-                    { 2, "Billettautomat" },
-                    { 3, "Selvbetjent kasse" },
-                    { 4, "Minibank" },
-                    { 5, "Vareautomat" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ValueListTypeOfSupplierAndVersion",
-                columns: new[] { "Id", "Text" },
-                values: new object[,]
-                {
-                    { 2, "Ingenico iCT250" },
-                    { 23, "Verifone Yomani XR" },
-                    { 22, "Verifone Xenteo ECO" },
-                    { 21, "Verifone VX 820 Duet" },
-                    { 20, "Verifone VX 820" },
-                    { 19, "Verifone VX 690" },
-                    { 18, "Verifone VX 680" },
-                    { 17, "Verifone VX 520 C" },
-                    { 1, "Vet ikke" },
-                    { 16, "SumUp Air" },
-                    { 14, "Ingenico iWL252" },
-                    { 12, "Ingenico iWL250G" },
-                    { 11, "Ingenico iWL250B " },
-                    { 10, "Ingenico iWL250" },
-                    { 9, "Ingenico iUP" },
-                    { 8, "Ingenico isMP4" },
-                    { 7, "Ingenico iSMP" },
-                    { 6, "Ingenico iSelf" },
-                    { 5, "Ingenico iPP350" },
-                    { 4, "Ingenico iCT250r" },
-                    { 3, "Ingenico iCT250E" },
-                    { 15, "iZettle Reader" },
-                    { 13, "Ingenico iWL251" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "ValueListTypeOfTest",
-                columns: new[] { "Id", "Text" },
-                values: new object[,]
-                {
-                    { 1, "Automat" },
-                    { 2, "Webside" },
-                    { 3, "Applikasjon" }
                 });
 
             migrationBuilder.InsertData(
@@ -385,6 +403,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 column: "Image2Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DeclarationTestItem_SupplierAndVersionId",
+                table: "DeclarationTestItem",
+                column: "SupplierAndVersionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeclarationTestItem_TypeOfMachineId",
+                table: "DeclarationTestItem",
+                column: "TypeOfMachineId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeclarationTestItem_TypeOfTestId",
+                table: "DeclarationTestItem",
+                column: "TypeOfTestId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserCompanyList_CompanyItemId",
                 table: "UserCompanyList",
                 column: "CompanyItemId");
@@ -413,15 +446,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "UserRoleList");
 
             migrationBuilder.DropTable(
-                name: "ValueListTypeOfMachine");
-
-            migrationBuilder.DropTable(
-                name: "ValueListTypeOfSupplierAndVersion");
-
-            migrationBuilder.DropTable(
-                name: "ValueListTypeOfTest");
-
-            migrationBuilder.DropTable(
                 name: "DeclarationTestItem");
 
             migrationBuilder.DropTable(
@@ -435,6 +459,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.DropTable(
                 name: "ImageList");
+
+            migrationBuilder.DropTable(
+                name: "TypeOfSupplierAndVersionList");
+
+            migrationBuilder.DropTable(
+                name: "TypeOfMachineList");
+
+            migrationBuilder.DropTable(
+                name: "TypeOfTestList");
         }
     }
 }

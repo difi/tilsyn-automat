@@ -63,7 +63,14 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.DeclarationList.Include(x => x.Company).ThenInclude(x => x.ContactPersonList).Include(x => x.Company).ThenInclude(x => x.UserList).Include(x => x.User).AsNoTracking().OrderBy(x => x.Name).ToList();
+                var list = dbContext.DeclarationList
+                    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
+                    .Include(x => x.Company).ThenInclude(x => x.UserList)
+                    .Include(x => x.User)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
