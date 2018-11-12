@@ -12,11 +12,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public String Description { get; set; }
 
-        public String Standard { get; set; }
-
-        public String ChapterNumber { get; set; }
-
-        public String ChapterHeading { get; set; }
+        public ICollection<RuleItem> RuleList { get; set; }
 
         public ICollection<RequirementUserPrerequisite> RequirementUserPrerequisiteList { get; set; }
     }

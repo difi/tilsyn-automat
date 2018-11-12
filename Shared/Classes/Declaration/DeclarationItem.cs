@@ -32,7 +32,5 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public UserItem User { get; set; }
 
         public DeclarationTestItem DeclarationTestItem { get; set; }
-
-        public List<OutcomeItem> OutcomeList { get; set; }
     }
 }

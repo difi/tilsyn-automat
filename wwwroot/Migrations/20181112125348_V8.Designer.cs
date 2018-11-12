@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181112125348_V8")]
+    partial class V8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,9 +173,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ChapterHeading");
+
+                    b.Property<string>("ChapterNumber");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Standard");
 
                     b.HasKey("Id");
 
@@ -191,40 +199,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasIndex("ValueListUserPrerequisiteId");
 
                     b.ToTable("RequirementUserPrerequisite");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ChapterHeading");
-
-                    b.Property<string>("ChapterNumber");
-
-                    b.Property<string>("HelpText");
-
-                    b.Property<string>("Illustration");
-
-                    b.Property<string>("Instruction");
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid?>("RequirementItemId");
-
-                    b.Property<string>("Standard");
-
-                    b.Property<string>("ToolsNeed");
-
-                    b.Property<int?>("TypeOfAnswerId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequirementItemId");
-
-                    b.HasIndex("TypeOfAnswerId");
-
-                    b.ToTable("RuleItem");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Image", b =>
@@ -372,26 +346,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = 1, Text = "Inget" },
                         new { Id = 2, Text = "Avvik" },
                         new { Id = 3, Text = "Merknad" }
-                    );
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfAnswer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VlTypeOfAnswer");
-
-                    b.HasData(
-                        new { Id = 1, Text = "string" },
-                        new { Id = 2, Text = "bool" },
-                        new { Id = 3, Text = "image" },
-                        new { Id = 4, Text = "int" }
                     );
                 });
 
@@ -576,17 +530,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .WithMany()
                         .HasForeignKey("ValueListUserPrerequisiteId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleItem", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem")
-                        .WithMany("RuleList")
-                        .HasForeignKey("RequirementItemId");
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfAnswer", "TypeOfAnswer")
-                        .WithMany()
-                        .HasForeignKey("TypeOfAnswerId");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserCompany", b =>

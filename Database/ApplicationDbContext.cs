@@ -39,6 +39,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<ValueListUserPrerequisite> VlUserPrerequisiteList { get; set; }
 
+        public DbSet<ValueListTypeOfAnswer> VlTypeOfAnswer { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<DeclarationItem>().HasOne(x => x.DeclarationTestItem).WithOne(x => x.DeclarationItem).HasForeignKey<DeclarationTestItem>(x => x.Id);
@@ -201,6 +203,14 @@ namespace Difi.Sjalvdeklaration.Database
                 new ValueListUserPrerequisite {Id = 9, Text = "Fotosensitivitet/anfall"},
                 new ValueListUserPrerequisite {Id = 10, Text = "Fysisk størrelse"},
                 new ValueListUserPrerequisite {Id = 11, Text = "Redusert taktil sensibilitet"},
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListTypeOfAnswer>().HasData(new List<ValueListTypeOfAnswer>
+            {
+                new ValueListTypeOfAnswer {Id = 1, Text = "string"},
+                new ValueListTypeOfAnswer {Id = 2, Text = "bool"},
+                new ValueListTypeOfAnswer {Id = 3, Text = "image"},
+                new ValueListTypeOfAnswer {Id = 4, Text = "int"}
             }.ToArray());
 
             base.OnModelCreating(modelBuilder);
