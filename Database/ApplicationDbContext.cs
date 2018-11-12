@@ -27,7 +27,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<LogItem> LogList { get; set; }
 
-        public DbSet<Image> ImageList { get; set; }
+        public DbSet<ImageItem> ImageList { get; set; }
 
         public DbSet<ValueListTypeOfMachine> VlTypeOfMachineList { get; set; }
 
@@ -40,6 +40,8 @@ namespace Difi.Sjalvdeklaration.Database
         public DbSet<ValueListUserPrerequisite> VlUserPrerequisiteList { get; set; }
 
         public DbSet<ValueListTypeOfAnswer> VlTypeOfAnswer { get; set; }
+
+        public DbSet<ValueListTypeOfResult> VlTypeOfResult { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -209,8 +211,17 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 new ValueListTypeOfAnswer {Id = 1, Text = "string"},
                 new ValueListTypeOfAnswer {Id = 2, Text = "bool"},
-                new ValueListTypeOfAnswer {Id = 3, Text = "image"},
-                new ValueListTypeOfAnswer {Id = 4, Text = "int"}
+                new ValueListTypeOfAnswer {Id = 3, Text = "int"},
+                new ValueListTypeOfAnswer {Id = 4, Text = "image"}
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListTypeOfResult>().HasData(new List<ValueListTypeOfResult>
+            {
+                new ValueListTypeOfResult {Id = 1, Text = "Samsvar"},
+                new ValueListTypeOfResult {Id = 2, Text = "Brudd"},
+                new ValueListTypeOfResult {Id = 3, Text = "Ikke-forekomst"},
+                new ValueListTypeOfResult {Id = 4, Text = "Ikke testbar"},
+                new ValueListTypeOfResult {Id = 5, Text = "Ikke testa"}
             }.ToArray());
 
             base.OnModelCreating(modelBuilder);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
@@ -30,12 +31,12 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public ValueListFinishedStatus FinishedStatus { get; set; }
 
-        public Image Image1 { get; set; }
+        public ImageItem Image1 { get; set; }
 
-        public Image Image2 { get; set; }
+        public ImageItem Image2 { get; set; }
 
         public DeclarationItem DeclarationItem { get; set; }
 
-        public List<OutcomeItem> OutcomeList { get; set; }
+        public List<OutcomeData> OutcomeDataList { get; set; }
     }
 }

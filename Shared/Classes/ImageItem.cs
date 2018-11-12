@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
     [Serializable]
-    public class Image
+    public class ImageItem
     {
         [Key]
         public Guid Id { get; set; }

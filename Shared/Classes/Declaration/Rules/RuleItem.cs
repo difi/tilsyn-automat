@@ -7,6 +7,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
     {
         public Guid Id { get; set; }
 
+        public RequirementItem Requirement { get; set; }
+
         public String Name { get; set; }
 
         public String Instruction { get; set; }
