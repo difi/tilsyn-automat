@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -98,6 +99,17 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     TypeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == 1),
                     TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1)
+                };
+
+                var testGroup1 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Kundens betjeningsområde");
+                var testGroup2 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Skilt");
+                var testGroup3 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Betjeningshøyde");
+
+                declarationItem.TestGroupList = new List<DeclarationTestGroup>
+                {
+                    new DeclarationTestGroup {TestGroupItem = testGroup1, Order = 1},
+                    new DeclarationTestGroup {TestGroupItem = testGroup2, Order = 2},
+                    new DeclarationTestGroup {TestGroupItem = testGroup3, Order = 3}
                 };
 
                 dbContext.DeclarationList.Add(declarationItem);

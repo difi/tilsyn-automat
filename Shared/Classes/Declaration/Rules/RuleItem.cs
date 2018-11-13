@@ -1,15 +1,18 @@
 ﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
+namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
     public class RuleItem
     {
         public Guid Id { get; set; }
 
-        public RequirementItem Requirement { get; set; }
+        public Guid RequirementItemId { get; set; }
 
-        public String Name { get; set; }
+        public Guid StandardChapterItemId { get; set; }
+
+        public int Order { get; set; }
 
         public String Instruction { get; set; }
 
@@ -19,12 +22,11 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public String ToolsNeed { get; set; }
 
-        public String Standard { get; set; }
+        public ICollection<AnswerItem> AnswerList { get; set; }
 
-        public String ChapterNumber { get; set; }
+        public StandardChapterItem StandardChapter { get; set; }
 
-        public String ChapterHeading { get; set; }
-
-        public ValueListTypeOfAnswer TypeOfAnswer { get; set; }
+        [Required]
+        public RequirementItem Requirement { get; set; }
     }
 }

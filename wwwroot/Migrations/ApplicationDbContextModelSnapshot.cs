@@ -68,6 +68,95 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("ContactPersonList");
                 });
 
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.AnswerData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AnswerItemId");
+
+                    b.Property<bool>("Bool");
+
+                    b.Property<Guid?>("ImageId");
+
+                    b.Property<int>("Int");
+
+                    b.Property<Guid>("RuleDataId");
+
+                    b.Property<string>("String");
+
+                    b.Property<int>("TypeOfAnswerId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerItemId");
+
+                    b.HasIndex("ImageId");
+
+                    b.HasIndex("RuleDataId");
+
+                    b.HasIndex("TypeOfAnswerId");
+
+                    b.ToTable("AnswerData");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("DeclarationTestItemId");
+
+                    b.Property<Guid>("RequirementDataId");
+
+                    b.Property<int?>("ResultId");
+
+                    b.Property<string>("ResultText");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeclarationTestItemId");
+
+                    b.HasIndex("RequirementDataId")
+                        .IsUnique();
+
+                    b.HasIndex("ResultId");
+
+                    b.ToTable("OutcomeData");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("RequirementId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequirementId");
+
+                    b.ToTable("RequirementData");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("RequirementDataId");
+
+                    b.Property<Guid?>("RuleId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequirementDataId");
+
+                    b.HasIndex("RuleId");
+
+                    b.ToTable("RuleData");
+                });
+
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -142,36 +231,57 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("DeclarationTestItem");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.OutcomeData", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("DeclarationTestItemId");
+                    b.Property<bool>("Bool");
 
-                    b.Property<Guid>("OutcomeItemId");
+                    b.Property<int>("MaxInt");
 
-                    b.Property<Guid>("RequirementDataId");
+                    b.Property<int>("MiniInt");
 
-                    b.Property<int?>("ResultId");
+                    b.Property<int>("Order");
 
-                    b.Property<string>("ResultText");
+                    b.Property<Guid>("RuleItemId");
+
+                    b.Property<string>("String");
+
+                    b.Property<int>("TypeOfAnswerId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeclarationTestItemId");
+                    b.HasIndex("RuleItemId");
 
-                    b.HasIndex("OutcomeItemId");
+                    b.HasIndex("TypeOfAnswerId");
 
-                    b.HasIndex("RequirementDataId")
-                        .IsUnique();
+                    b.ToTable("AnswerList");
 
-                    b.HasIndex("ResultId");
-
-                    b.ToTable("OutcomeData");
+                    b.HasData(
+                        new { Id = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 1, RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 2 },
+                        new { Id = new Guid("c4870935-ee11-4557-a9c3-aca678c17565"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 2, RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 4 },
+                        new { Id = new Guid("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 1, RuleItemId = new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), TypeOfAnswerId = 2 },
+                        new { Id = new Guid("f69c1e45-99d8-4293-a242-c5ed9e126e99"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 1, RuleItemId = new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), TypeOfAnswerId = 2 }
+                    );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.OutcomeItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationTestGroup", b =>
+                {
+                    b.Property<Guid>("TestGroupItemId");
+
+                    b.Property<Guid>("DeclarationItemId");
+
+                    b.Property<int>("Order");
+
+                    b.HasKey("TestGroupItemId", "DeclarationItemId");
+
+                    b.HasIndex("DeclarationItemId");
+
+                    b.ToTable("DeclarationTestGroupList");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -180,47 +290,25 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<int>("IndicatorId");
 
-                    b.Property<string>("Type");
+                    b.Property<int>("Order");
+
+                    b.Property<Guid>("TestGroupItemId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("OutcomeItem");
+                    b.HasIndex("TestGroupItemId");
+
+                    b.ToTable("RequirementList");
+
+                    b.HasData(
+                        new { Id = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), Description = "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.", IndicatorId = 1, Order = 1, TestGroupItemId = new Guid("aec1869a-30f8-403c-b909-df115173f009") },
+                        new { Id = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), Description = "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.", IndicatorId = 1, Order = 2, TestGroupItemId = new Guid("aec1869a-30f8-403c-b909-df115173f009") },
+                        new { Id = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), Description = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", IndicatorId = 1, Order = 3, TestGroupItemId = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb") },
+                        new { Id = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.", IndicatorId = 1, Order = 4, TestGroupItemId = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6") }
+                    );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("RequirementId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequirementId");
-
-                    b.ToTable("RequirementData");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid>("OutcomeItemId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OutcomeItemId")
-                        .IsUnique();
-
-                    b.ToTable("RequirementItem");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementUserPrerequisite", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementUserPrerequisite", b =>
                 {
                     b.Property<Guid>("RequirementItemId");
 
@@ -230,38 +318,44 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.HasIndex("ValueListUserPrerequisiteId");
 
-                    b.ToTable("RequirementUserPrerequisite");
+                    b.ToTable("RequirementUserPrerequisiteList");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleData", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("Bool");
+                    b.Property<string>("HelpText");
 
-                    b.Property<Guid?>("ImageId");
+                    b.Property<string>("Illustration");
 
-                    b.Property<int>("Int");
+                    b.Property<string>("Instruction");
 
-                    b.Property<Guid?>("RequirementDataId");
+                    b.Property<int>("Order");
 
-                    b.Property<Guid?>("RuleId");
+                    b.Property<Guid>("RequirementItemId");
 
-                    b.Property<string>("String");
+                    b.Property<Guid>("StandardChapterItemId");
+
+                    b.Property<string>("ToolsNeed");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImageId");
+                    b.HasIndex("RequirementItemId");
 
-                    b.HasIndex("RequirementDataId");
+                    b.HasIndex("StandardChapterItemId");
 
-                    b.HasIndex("RuleId");
+                    b.ToTable("RuleList");
 
-                    b.ToTable("RuleData");
+                    b.HasData(
+                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", Instruction = "Finnes det et skilt som viser hvor kunden skal betale varene sine?", Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), Instruction = "Er skiltet plassert over området der kunden skal betale varene sine?", Order = 2, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), Instruction = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", Order = 3, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ToolsNeed = "Ingen" }
+                    );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.StandardChapterItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -270,29 +364,35 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("ChapterNumber");
 
-                    b.Property<string>("HelpText");
-
-                    b.Property<string>("Illustration");
-
-                    b.Property<string>("Instruction");
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid?>("RequirementId");
+                    b.Property<string>("RequirementsInSupervisor");
 
                     b.Property<string>("Standard");
 
-                    b.Property<string>("ToolsNeed");
+                    b.HasKey("Id");
 
-                    b.Property<int?>("TypeOfAnswerId");
+                    b.ToTable("StandardChapterList");
+
+                    b.HasData(
+                        new { Id = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ChapterHeading = "Location signs and visual indications ", ChapterNumber = "15291:2006 5.2", RequirementsInSupervisor = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", Standard = "CEN/TS" }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RequirementId");
+                    b.ToTable("TestGroupList");
 
-                    b.HasIndex("TypeOfAnswerId");
-
-                    b.ToTable("RuleItem");
+                    b.HasData(
+                        new { Id = new Guid("aec1869a-30f8-403c-b909-df115173f009"), Name = "Kundens betjeningsområde" },
+                        new { Id = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), Name = "Skilt" },
+                        new { Id = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), Name = "Betjeningshøyde" }
+                    );
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.ImageItem", b =>
@@ -351,9 +451,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("RoleList");
 
                     b.HasData(
-                        new { Id = new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe"), IsAdminRole = true, Name = "Admin" },
-                        new { Id = new Guid("ceb3e909-2d86-42de-951f-7646949718c1"), IsAdminRole = true, Name = "Saksbehandlare" },
-                        new { Id = new Guid("799cb2c6-ef81-4d43-aee5-c28fb405bcd6"), IsAdminRole = false, Name = "Virksomhet" }
+                        new { Id = new Guid("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"), IsAdminRole = true, Name = "Admin" },
+                        new { Id = new Guid("9e184394-81bb-45cf-a157-dba79a3286d7"), IsAdminRole = true, Name = "Saksbehandlare" },
+                        new { Id = new Guid("5ae2ea91-e0a2-48e7-a77b-c1ede6b973e1"), IsAdminRole = false, Name = "Virksomhet" }
                     );
                 });
 
@@ -400,8 +500,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserList");
 
                     b.HasData(
-                        new { Id = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), CountryCode = "0047", Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                        new { Id = new Guid("04be8925-63ae-4253-8930-828e624cbea1"), CountryCode = "0047", Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), CountryCode = "0047", Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), CountryCode = "0047", Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                     );
                 });
 
@@ -418,9 +518,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserRoleList");
 
                     b.HasData(
-                        new { UserItemId = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), RoleItemId = new Guid("bdb5182d-8d56-4034-bfb3-36888e719ebe") },
-                        new { UserItemId = new Guid("1b21a2a1-36f5-47a3-a27b-49e241faafbe"), RoleItemId = new Guid("ceb3e909-2d86-42de-951f-7646949718c1") },
-                        new { UserItemId = new Guid("04be8925-63ae-4253-8930-828e624cbea1"), RoleItemId = new Guid("ceb3e909-2d86-42de-951f-7646949718c1") }
+                        new { UserItemId = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), RoleItemId = new Guid("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb") },
+                        new { UserItemId = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), RoleItemId = new Guid("9e184394-81bb-45cf-a157-dba79a3286d7") },
+                        new { UserItemId = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), RoleItemId = new Guid("9e184394-81bb-45cf-a157-dba79a3286d7") }
                     );
                 });
 
@@ -598,6 +698,63 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.AnswerData", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItem", "AnswerItem")
+                        .WithMany("AnswerDataList")
+                        .HasForeignKey("AnswerItemId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ImageItem", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData")
+                        .WithMany("AnswerDataList")
+                        .HasForeignKey("RuleDataId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfAnswer", "TypeOfAnswer")
+                        .WithMany()
+                        .HasForeignKey("TypeOfAnswerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationTestItem")
+                        .WithMany("OutcomeDataList")
+                        .HasForeignKey("DeclarationTestItemId");
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", "RequirementData")
+                        .WithOne("OutcomeData")
+                        .HasForeignKey("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", "RequirementDataId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
+                        .WithMany()
+                        .HasForeignKey("ResultId");
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
+                        .WithMany("RequirementDataList")
+                        .HasForeignKey("RequirementId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", "RequirementData")
+                        .WithMany("RuleDataList")
+                        .HasForeignKey("RequirementDataId");
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "Rule")
+                        .WithMany()
+                        .HasForeignKey("RuleId");
+                });
+
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Company.CompanyItem", "Company")
@@ -643,45 +800,43 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .HasForeignKey("TypeOfTestId");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.OutcomeData", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItem", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationTestItem")
-                        .WithMany("OutcomeDataList")
-                        .HasForeignKey("DeclarationTestItemId");
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.OutcomeItem", "Outcome")
-                        .WithMany()
-                        .HasForeignKey("OutcomeItemId")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "RuleItem")
+                        .WithMany("AnswerList")
+                        .HasForeignKey("RuleItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementData", "RequirementData")
-                        .WithOne("OutcomeData")
-                        .HasForeignKey("Difi.Sjalvdeklaration.Shared.Classes.Declaration.OutcomeData", "RequirementDataId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfAnswer", "TypeOfAnswer")
                         .WithMany()
-                        .HasForeignKey("ResultId");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementData", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", "Requirement")
-                        .WithMany()
-                        .HasForeignKey("RequirementId");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.OutcomeItem", "Outcome")
-                        .WithOne("Requirement")
-                        .HasForeignKey("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", "OutcomeItemId")
+                        .HasForeignKey("TypeOfAnswerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementUserPrerequisite", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationTestGroup", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", "RequirementItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", "DeclarationItem")
+                        .WithMany("TestGroupList")
+                        .HasForeignKey("DeclarationItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
+                        .WithMany("DeclarationList")
+                        .HasForeignKey("TestGroupItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroup")
+                        .WithMany("RequirementList")
+                        .HasForeignKey("TestGroupItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementUserPrerequisite", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "RequirementItem")
                         .WithMany("RequirementUserPrerequisiteList")
                         .HasForeignKey("RequirementItemId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -692,30 +847,17 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleData", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ImageItem", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementData", "RequirementData")
-                        .WithMany("RuleDataList")
-                        .HasForeignKey("RequirementDataId");
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleItem", "Rule")
-                        .WithMany()
-                        .HasForeignKey("RuleId");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RuleItem", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.RequirementItem", "Requirement")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
                         .WithMany("RuleList")
-                        .HasForeignKey("RequirementId");
+                        .HasForeignKey("RequirementItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfAnswer", "TypeOfAnswer")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.StandardChapterItem", "StandardChapter")
                         .WithMany()
-                        .HasForeignKey("TypeOfAnswerId");
+                        .HasForeignKey("StandardChapterItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.UserCompany", b =>

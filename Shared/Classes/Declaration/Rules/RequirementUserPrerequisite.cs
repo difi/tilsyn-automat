@@ -1,7 +1,7 @@
 ﻿using System;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
+namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
     [Serializable]
     public class RequirementUserPrerequisite

@@ -1,4 +1,5 @@
 ﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
@@ -9,10 +10,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
         public Guid Id { get; set; }
 
         public Guid RequirementDataId { get; set; }
-
-        public Guid OutcomeItemId { get; set; }
-
-        public OutcomeItem Outcome { get; set; }
 
         public RequirementData RequirementData { get; set; }
 

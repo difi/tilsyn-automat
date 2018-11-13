@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 {

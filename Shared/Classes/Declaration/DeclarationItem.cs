@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 {
@@ -32,5 +33,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public UserItem User { get; set; }
 
         public DeclarationTestItem DeclarationTestItem { get; set; }
+
+        public List<DeclarationTestGroup> TestGroupList { get; set; }
     }
 }
