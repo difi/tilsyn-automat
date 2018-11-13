@@ -14,6 +14,32 @@
     TypeOfMachine: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfMachine.Text<br />
     TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
     <br /><br />
+
+    @foreach (var declarationTestGroup in Model.DeclarationItemForm.TestGroupList.OrderBy(x => x.Order))
+    {
+        <h2>@declarationTestGroup.TestGroupItem.Name</h2>
+
+        foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList.OrderBy(x => x.Order))
+        {
+            <h3>@requirementItem.Description</h3>
+
+            foreach (var ruleItem in requirementItem.RuleList.OrderBy(x => x.Order))
+            {
+                <h4>@ruleItem.Instruction</h4>
+
+                foreach (var answerItem in ruleItem.AnswerList)
+                {
+                    <div>@answerItem.TypeOfAnswer.Text</div>
+                }
+                <br />
+            }
+
+            <br/>
+        }
+        <hr/>
+    }
+
+
     <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
 </form>
 

@@ -41,6 +41,9 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
+                    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RuleList).ThenInclude(x => x.StandardChapter)
+                    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RequirementUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
                     .AsNoTracking().SingleOrDefault(x => x.Id == id);
 
                 if (item != null)
