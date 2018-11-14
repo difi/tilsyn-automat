@@ -22,8 +22,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [Required]
         public String Name { get; set; }
 
-        public String CustomName { get; set; }
-
         public String MailingAddressStreet { get; set; }
 
         public String MailingAddressZip { get; set; }
@@ -59,5 +57,14 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public ICollection<UserCompany> UserList { get; set; }
 
         public ICollection<DeclarationItem> DeclarationList { get; set; }
+
+        public String CustomName { get; set; }
+
+        public String CustomAddressStreet { get; set; }
+
+        public String CustomAddressZip { get; set; }
+
+        public String CustomAddressCity { get; set; }
+
     }
 }

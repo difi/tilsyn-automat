@@ -6,6 +6,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
@@ -53,7 +54,9 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<RequirementItem> RequirementList { get; set; }
 
-        public DbSet<StandardChapterItem> StandardChapterList { get; set; }
+        public DbSet<ChapterItem> ChapterList { get; set; }
+
+        public DbSet<StandardItem> StandardList { get; set; }
 
         public DbSet<TestGroupItem> TestGroupList { get; set; }
 
@@ -101,7 +104,10 @@ namespace Difi.Sjalvdeklaration.Database
             modelBuilder.Entity<RequirementItem>().HasMany(x => x.RequirementUserPrerequisiteList);
 
             modelBuilder.Entity<AnswerData>().HasOne(x => x.AnswerItem).WithMany(x=>x.AnswerDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
-            modelBuilder.Entity<RequirementData>().HasOne(x => x.Requirement).WithMany(x => x.RequirementDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+            modelBuilder.Entity<OutcomeData>().HasOne(x => x.Requirement).WithMany(x => x.OutcomeDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+            modelBuilder.Entity<RuleItem>().HasOne(x => x.Chapter).WithMany(x => x.RuleList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+            modelBuilder.Entity<RuleItem>().HasOne(x => x.Standard).WithMany(x => x.RuleList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+
 
             var role1 = new RoleItem
             {
@@ -304,13 +310,19 @@ namespace Difi.Sjalvdeklaration.Database
                 TestGroupItemId = testGroup3.Id
             };
 
-            var standardChapterItem1 = new StandardChapterItem
+            var standardItem1 = new StandardItem
+            {
+                Id = Guid.Parse("7851b33f-4cec-405c-8533-53cf7a6832e2"),
+                Standard = "CEN/TS"
+            };
+
+            var chapterItem1 = new ChapterItem
             {
                 Id = Guid.Parse("75468cd0-478b-45e9-8a8e-51b0e574fb3b"),
                 RequirementsInSupervisor = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.",
-                Standard = "CEN/TS",
                 ChapterHeading = "Location signs and visual indications ",
-                ChapterNumber = "15291:2006 5.2"
+                ChapterNumber = "15291:2006 5.2",
+                StandardItemId = standardItem1.Id
             };
 
             var ruleItem1 = new RuleItem
@@ -321,7 +333,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Instruction = "Finnes det et skilt som viser hvor kunden skal betale varene sine?",
                 HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />",
                 ToolsNeed = "Ingen",
-                StandardChapterItemId = standardChapterItem1.Id
+                ChapterItemId = chapterItem1.Id,
+                StandardItemId = standardItem1.Id,
             };
 
             var ruleItem2 = new RuleItem
@@ -331,7 +344,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"),
                 Instruction = "Er skiltet plassert over området der kunden skal betale varene sine?",
                 ToolsNeed = "Ingen",
-                StandardChapterItemId = standardChapterItem1.Id
+                ChapterItemId = chapterItem1.Id,
+                StandardItemId = standardItem1.Id,
             };
 
             var ruleItem3 = new RuleItem
@@ -341,7 +355,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"),
                 Instruction = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?",
                 ToolsNeed = "Ingen",
-                StandardChapterItemId = standardChapterItem1.Id
+                ChapterItemId = chapterItem1.Id,
+                StandardItemId = standardItem1.Id,
             };
 
             var answerItem1 = new AnswerItem
@@ -381,7 +396,8 @@ namespace Difi.Sjalvdeklaration.Database
             };
 
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
-            modelBuilder.Entity<StandardChapterItem>().HasData(standardChapterItem1);
+            modelBuilder.Entity<StandardItem>().HasData(standardItem1);
+            modelBuilder.Entity<ChapterItem>().HasData(chapterItem1);
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem1, ruleItem2, ruleItem3);
             modelBuilder.Entity<AnswerItem>().HasData(answerItem1, answerItem2, answerItem3, answerItem4);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
@@ -10,7 +11,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public Guid RequirementItemId { get; set; }
 
-        public Guid StandardChapterItemId { get; set; }
+        public Guid ChapterItemId { get; set; }
+
+        public Guid StandardItemId { get; set; }
 
         public int Order { get; set; }
 
@@ -24,7 +27,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public ICollection<AnswerItem> AnswerList { get; set; }
 
-        public StandardChapterItem StandardChapter { get; set; }
+        public ChapterItem Chapter { get; set; }
+
+        public StandardItem Standard { get; set; }
 
         [Required]
         public RequirementItem Requirement { get; set; }

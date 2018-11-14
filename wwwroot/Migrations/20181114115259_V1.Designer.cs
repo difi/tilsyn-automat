@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181113125706_V1")]
+    [Migration("20181114115259_V1")]
     partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AddressCity");
+                    b.Property<string>("BusinessAddressCity");
 
-                    b.Property<string>("AddressStreet");
+                    b.Property<string>("BusinessAddressStreet");
 
-                    b.Property<string>("AddressZip");
+                    b.Property<string>("BusinessAddressZip");
 
                     b.Property<string>("Code")
                         .IsRequired();
@@ -38,10 +38,42 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<string>("CorporateIdentityNumber")
                         .IsRequired();
 
+                    b.Property<string>("CustomAddressCity");
+
+                    b.Property<string>("CustomAddressStreet");
+
+                    b.Property<string>("CustomAddressZip");
+
                     b.Property<string>("CustomName");
+
+                    b.Property<string>("ExternalId");
+
+                    b.Property<string>("IndustryGroupAggregated");
+
+                    b.Property<string>("IndustryGroupCode");
+
+                    b.Property<string>("IndustryGroupDescription");
+
+                    b.Property<string>("InstitutionalSectorCode");
+
+                    b.Property<string>("InstitutionalSectorDescription");
+
+                    b.Property<string>("LocationAddressCity");
+
+                    b.Property<string>("LocationAddressStreet");
+
+                    b.Property<string>("LocationAddressZip");
+
+                    b.Property<string>("MailingAddressCity");
+
+                    b.Property<string>("MailingAddressStreet");
+
+                    b.Property<string>("MailingAddressZip");
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<string>("OwenerCorporateIdentityNumber");
 
                     b.HasKey("Id");
 
@@ -109,7 +141,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid?>("DeclarationTestItemId");
 
-                    b.Property<Guid>("RequirementDataId");
+                    b.Property<Guid>("RequirementItemId");
 
                     b.Property<int?>("ResultId");
 
@@ -119,26 +151,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.HasIndex("DeclarationTestItemId");
 
-                    b.HasIndex("RequirementDataId")
-                        .IsUnique();
+                    b.HasIndex("RequirementItemId");
 
                     b.HasIndex("ResultId");
 
                     b.ToTable("OutcomeData");
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("RequirementId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequirementId");
-
-                    b.ToTable("RequirementData");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData", b =>
@@ -146,13 +163,17 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("RequirementDataId");
+                    b.Property<Guid?>("OutcomeDataId");
+
+                    b.Property<int?>("ResultId");
 
                     b.Property<Guid?>("RuleId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RequirementDataId");
+                    b.HasIndex("OutcomeDataId");
+
+                    b.HasIndex("ResultId");
 
                     b.HasIndex("RuleId");
 
@@ -328,6 +349,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid>("ChapterItemId");
+
                     b.Property<string>("HelpText");
 
                     b.Property<string>("Illustration");
@@ -338,26 +361,28 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid>("RequirementItemId");
 
-                    b.Property<Guid>("StandardChapterItemId");
+                    b.Property<Guid>("StandardItemId");
 
                     b.Property<string>("ToolsNeed");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ChapterItemId");
+
                     b.HasIndex("RequirementItemId");
 
-                    b.HasIndex("StandardChapterItemId");
+                    b.HasIndex("StandardItemId");
 
                     b.ToTable("RuleList");
 
                     b.HasData(
-                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", Instruction = "Finnes det et skilt som viser hvor kunden skal betale varene sine?", Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), Instruction = "Er skiltet plassert over området der kunden skal betale varene sine?", Order = 2, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), Instruction = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", Order = 3, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ToolsNeed = "Ingen" }
+                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", Instruction = "Finnes det et skilt som viser hvor kunden skal betale varene sine?", Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), Instruction = "Er skiltet plassert over området der kunden skal betale varene sine?", Order = 2, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), Instruction = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", Order = 3, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" }
                     );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.StandardChapterItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.ChapterItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -368,14 +393,32 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("RequirementsInSupervisor");
 
+                    b.Property<Guid>("StandardItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StandardItemId");
+
+                    b.ToTable("ChapterList");
+
+                    b.HasData(
+                        new { Id = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ChapterHeading = "Location signs and visual indications ", ChapterNumber = "15291:2006 5.2", RequirementsInSupervisor = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.StandardItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
                     b.Property<string>("Standard");
 
                     b.HasKey("Id");
 
-                    b.ToTable("StandardChapterList");
+                    b.ToTable("StandardList");
 
                     b.HasData(
-                        new { Id = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ChapterHeading = "Location signs and visual indications ", ChapterNumber = "15291:2006 5.2", RequirementsInSupervisor = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", Standard = "CEN/TS" }
+                        new { Id = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), Standard = "CEN/TS" }
                     );
                 });
 
@@ -728,29 +771,25 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .WithMany("OutcomeDataList")
                         .HasForeignKey("DeclarationTestItemId");
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", "RequirementData")
-                        .WithOne("OutcomeData")
-                        .HasForeignKey("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", "RequirementDataId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
+                        .WithMany("OutcomeDataList")
+                        .HasForeignKey("RequirementItemId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
                         .WithMany()
                         .HasForeignKey("ResultId");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
-                        .WithMany("RequirementDataList")
-                        .HasForeignKey("RequirementId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData", b =>
                 {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RequirementData", "RequirementData")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", "OutcomeData")
                         .WithMany("RuleDataList")
-                        .HasForeignKey("RequirementDataId");
+                        .HasForeignKey("OutcomeDataId");
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
+                        .WithMany()
+                        .HasForeignKey("ResultId");
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "Rule")
                         .WithMany()
@@ -851,14 +890,27 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", b =>
                 {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.ChapterItem", "Chapter")
+                        .WithMany("RuleList")
+                        .HasForeignKey("ChapterItemId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
                         .WithMany("RuleList")
                         .HasForeignKey("RequirementItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.StandardChapterItem", "StandardChapter")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.StandardItem", "Standard")
+                        .WithMany("RuleList")
+                        .HasForeignKey("StandardItemId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.ChapterItem", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.StandardItem", "Standard")
                         .WithMany()
-                        .HasForeignKey("StandardChapterItemId")
+                        .HasForeignKey("StandardItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

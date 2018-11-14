@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using System;
+using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
-using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 {
@@ -9,12 +10,14 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
     {
         public Guid Id { get; set; }
 
-        public Guid RequirementDataId { get; set; }
-
-        public RequirementData RequirementData { get; set; }
+        public Guid RequirementItemId { get; set; }
 
         public ValueListTypeOfResult Result { get; set; }
 
         public String ResultText { get; set; }
+
+        public RequirementItem Requirement { get; set; }
+
+        public ICollection<RuleData> RuleDataList { get; set; }
     }
 }

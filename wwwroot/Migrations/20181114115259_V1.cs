@@ -13,13 +13,29 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    ExternalId = table.Column<string>(nullable: true),
                     Code = table.Column<string>(nullable: false),
                     CorporateIdentityNumber = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
+                    MailingAddressStreet = table.Column<string>(nullable: true),
+                    MailingAddressZip = table.Column<string>(nullable: true),
+                    MailingAddressCity = table.Column<string>(nullable: true),
+                    LocationAddressStreet = table.Column<string>(nullable: true),
+                    LocationAddressZip = table.Column<string>(nullable: true),
+                    LocationAddressCity = table.Column<string>(nullable: true),
+                    BusinessAddressStreet = table.Column<string>(nullable: true),
+                    BusinessAddressZip = table.Column<string>(nullable: true),
+                    BusinessAddressCity = table.Column<string>(nullable: true),
+                    IndustryGroupCode = table.Column<string>(nullable: true),
+                    IndustryGroupDescription = table.Column<string>(nullable: true),
+                    IndustryGroupAggregated = table.Column<string>(nullable: true),
+                    InstitutionalSectorCode = table.Column<string>(nullable: true),
+                    InstitutionalSectorDescription = table.Column<string>(nullable: true),
+                    OwenerCorporateIdentityNumber = table.Column<string>(nullable: true),
                     CustomName = table.Column<string>(nullable: true),
-                    AddressStreet = table.Column<string>(nullable: true),
-                    AddressZip = table.Column<string>(nullable: true),
-                    AddressCity = table.Column<string>(nullable: true)
+                    CustomAddressStreet = table.Column<string>(nullable: true),
+                    CustomAddressZip = table.Column<string>(nullable: true),
+                    CustomAddressCity = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,18 +89,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StandardChapterList",
+                name: "StandardList",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Standard = table.Column<string>(nullable: true),
-                    ChapterNumber = table.Column<string>(nullable: true),
-                    ChapterHeading = table.Column<string>(nullable: true),
-                    RequirementsInSupervisor = table.Column<string>(nullable: true)
+                    Standard = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StandardChapterList", x => x.Id);
+                    table.PrimaryKey("PK_StandardList", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,6 +246,27 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ChapterList",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    StandardItemId = table.Column<Guid>(nullable: false),
+                    ChapterNumber = table.Column<string>(nullable: true),
+                    ChapterHeading = table.Column<string>(nullable: true),
+                    RequirementsInSupervisor = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChapterList", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChapterList_StandardList_StandardItemId",
+                        column: x => x.StandardItemId,
+                        principalTable: "StandardList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RequirementList",
                 columns: table => new
                 {
@@ -332,24 +366,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RequirementData",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    RequirementId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RequirementData", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RequirementData_RequirementList_RequirementId",
-                        column: x => x.RequirementId,
-                        principalTable: "RequirementList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "RequirementUserPrerequisiteList",
                 columns: table => new
                 {
@@ -379,7 +395,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     RequirementItemId = table.Column<Guid>(nullable: false),
-                    StandardChapterItemId = table.Column<Guid>(nullable: false),
+                    ChapterItemId = table.Column<Guid>(nullable: false),
+                    StandardItemId = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     Instruction = table.Column<string>(nullable: true),
                     Illustration = table.Column<string>(nullable: true),
@@ -390,17 +407,23 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     table.PrimaryKey("PK_RuleList", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_RuleList_ChapterList_ChapterItemId",
+                        column: x => x.ChapterItemId,
+                        principalTable: "ChapterList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_RuleList_RequirementList_RequirementItemId",
                         column: x => x.RequirementItemId,
                         principalTable: "RequirementList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RuleList_StandardChapterList_StandardChapterItemId",
-                        column: x => x.StandardChapterItemId,
-                        principalTable: "StandardChapterList",
+                        name: "FK_RuleList_StandardList_StandardItemId",
+                        column: x => x.StandardItemId,
+                        principalTable: "StandardList",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -522,36 +545,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RuleData",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    RuleId = table.Column<Guid>(nullable: true),
-                    RequirementDataId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RuleData", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RuleData_RequirementData_RequirementDataId",
-                        column: x => x.RequirementDataId,
-                        principalTable: "RequirementData",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_RuleData_RuleList_RuleId",
-                        column: x => x.RuleId,
-                        principalTable: "RuleList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "OutcomeData",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    RequirementDataId = table.Column<Guid>(nullable: false),
+                    RequirementItemId = table.Column<Guid>(nullable: false),
                     ResultId = table.Column<int>(nullable: true),
                     ResultText = table.Column<string>(nullable: true),
                     DeclarationTestItemId = table.Column<Guid>(nullable: true)
@@ -566,15 +564,47 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OutcomeData_RequirementData_RequirementDataId",
-                        column: x => x.RequirementDataId,
-                        principalTable: "RequirementData",
+                        name: "FK_OutcomeData_RequirementList_RequirementItemId",
+                        column: x => x.RequirementItemId,
+                        principalTable: "RequirementList",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OutcomeData_VlTypeOfResult_ResultId",
                         column: x => x.ResultId,
                         principalTable: "VlTypeOfResult",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RuleData",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    RuleId = table.Column<Guid>(nullable: true),
+                    ResultId = table.Column<int>(nullable: true),
+                    OutcomeDataId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RuleData", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RuleData_OutcomeData_OutcomeDataId",
+                        column: x => x.OutcomeDataId,
+                        principalTable: "OutcomeData",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RuleData_VlTypeOfResult_ResultId",
+                        column: x => x.ResultId,
+                        principalTable: "VlTypeOfResult",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RuleData_RuleList_RuleId",
+                        column: x => x.RuleId,
+                        principalTable: "RuleList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -632,9 +662,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "StandardChapterList",
-                columns: new[] { "Id", "ChapterHeading", "ChapterNumber", "RequirementsInSupervisor", "Standard" },
-                values: new object[] { new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Location signs and visual indications ", "15291:2006 5.2", "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", "CEN/TS" });
+                table: "StandardList",
+                columns: new[] { "Id", "Standard" },
+                values: new object[] { new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "CEN/TS" });
 
             migrationBuilder.InsertData(
                 table: "TestGroupList",
@@ -759,6 +789,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ChapterList",
+                columns: new[] { "Id", "ChapterHeading", "ChapterNumber", "RequirementsInSupervisor", "StandardItemId" },
+                values: new object[] { new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Location signs and visual indications ", "15291:2006 5.2", "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") });
+
+            migrationBuilder.InsertData(
                 table: "RequirementList",
                 columns: new[] { "Id", "Description", "IndicatorId", "Order", "TestGroupItemId" },
                 values: new object[,]
@@ -781,18 +816,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.InsertData(
                 table: "RuleList",
-                columns: new[] { "Id", "HelpText", "Illustration", "Instruction", "Order", "RequirementItemId", "StandardChapterItemId", "ToolsNeed" },
-                values: new object[] { new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", null, "Finnes det et skilt som viser hvor kunden skal betale varene sine?", 1, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Ingen" });
+                columns: new[] { "Id", "ChapterItemId", "HelpText", "Illustration", "Instruction", "Order", "RequirementItemId", "StandardItemId", "ToolsNeed" },
+                values: new object[] { new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", null, "Finnes det et skilt som viser hvor kunden skal betale varene sine?", 1, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" });
 
             migrationBuilder.InsertData(
                 table: "RuleList",
-                columns: new[] { "Id", "HelpText", "Illustration", "Instruction", "Order", "RequirementItemId", "StandardChapterItemId", "ToolsNeed" },
-                values: new object[] { new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), null, null, "Er skiltet plassert over området der kunden skal betale varene sine?", 2, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Ingen" });
+                columns: new[] { "Id", "ChapterItemId", "HelpText", "Illustration", "Instruction", "Order", "RequirementItemId", "StandardItemId", "ToolsNeed" },
+                values: new object[] { new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), null, null, "Er skiltet plassert over området der kunden skal betale varene sine?", 2, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" });
 
             migrationBuilder.InsertData(
                 table: "RuleList",
-                columns: new[] { "Id", "HelpText", "Illustration", "Instruction", "Order", "RequirementItemId", "StandardChapterItemId", "ToolsNeed" },
-                values: new object[] { new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), null, null, "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", 3, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Ingen" });
+                columns: new[] { "Id", "ChapterItemId", "HelpText", "Illustration", "Instruction", "Order", "RequirementItemId", "StandardItemId", "ToolsNeed" },
+                values: new object[] { new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), null, null, "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", 3, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" });
 
             migrationBuilder.InsertData(
                 table: "AnswerList",
@@ -834,6 +869,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "IX_AnswerList_TypeOfAnswerId",
                 table: "AnswerList",
                 column: "TypeOfAnswerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChapterList_StandardItemId",
+                table: "ChapterList",
+                column: "StandardItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ContactPersonList_CompanyItemId",
@@ -897,20 +937,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 column: "DeclarationTestItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OutcomeData_RequirementDataId",
+                name: "IX_OutcomeData_RequirementItemId",
                 table: "OutcomeData",
-                column: "RequirementDataId",
-                unique: true);
+                column: "RequirementItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OutcomeData_ResultId",
                 table: "OutcomeData",
                 column: "ResultId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequirementData_RequirementId",
-                table: "RequirementData",
-                column: "RequirementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RequirementList_TestGroupItemId",
@@ -923,9 +957,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 column: "ValueListUserPrerequisiteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RuleData_RequirementDataId",
+                name: "IX_RuleData_OutcomeDataId",
                 table: "RuleData",
-                column: "RequirementDataId");
+                column: "OutcomeDataId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RuleData_ResultId",
+                table: "RuleData",
+                column: "ResultId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RuleData_RuleId",
@@ -933,14 +972,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 column: "RuleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RuleList_ChapterItemId",
+                table: "RuleList",
+                column: "ChapterItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RuleList_RequirementItemId",
                 table: "RuleList",
                 column: "RequirementItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RuleList_StandardChapterItemId",
+                name: "IX_RuleList_StandardItemId",
                 table: "RuleList",
-                column: "StandardChapterItemId");
+                column: "StandardItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserCompanyList_CompanyItemId",
@@ -968,9 +1012,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "LogList");
 
             migrationBuilder.DropTable(
-                name: "OutcomeData");
-
-            migrationBuilder.DropTable(
                 name: "RequirementUserPrerequisiteList");
 
             migrationBuilder.DropTable(
@@ -986,12 +1027,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "RuleData");
 
             migrationBuilder.DropTable(
-                name: "DeclarationTestItem");
-
-            migrationBuilder.DropTable(
-                name: "VlTypeOfResult");
-
-            migrationBuilder.DropTable(
                 name: "VlUserPrerequisiteList");
 
             migrationBuilder.DropTable(
@@ -1001,10 +1036,22 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "VlTypeOfAnswer");
 
             migrationBuilder.DropTable(
-                name: "RequirementData");
+                name: "OutcomeData");
 
             migrationBuilder.DropTable(
                 name: "RuleList");
+
+            migrationBuilder.DropTable(
+                name: "DeclarationTestItem");
+
+            migrationBuilder.DropTable(
+                name: "VlTypeOfResult");
+
+            migrationBuilder.DropTable(
+                name: "ChapterList");
+
+            migrationBuilder.DropTable(
+                name: "RequirementList");
 
             migrationBuilder.DropTable(
                 name: "DeclarationList");
@@ -1025,19 +1072,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "VlTypeOfTestList");
 
             migrationBuilder.DropTable(
-                name: "RequirementList");
+                name: "StandardList");
 
             migrationBuilder.DropTable(
-                name: "StandardChapterList");
+                name: "TestGroupList");
 
             migrationBuilder.DropTable(
                 name: "CompanyList");
 
             migrationBuilder.DropTable(
                 name: "UserList");
-
-            migrationBuilder.DropTable(
-                name: "TestGroupList");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 {
@@ -10,7 +11,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 
         public RuleItem Rule { get; set; }
 
-        public RequirementData RequirementData { get; set; }
+        public ValueListTypeOfResult Result { get; set; }
+
+        public OutcomeData OutcomeData { get; set; }
 
         public ICollection<AnswerData> AnswerDataList { get; set; }
     }
