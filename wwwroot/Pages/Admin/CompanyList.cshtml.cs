@@ -70,9 +70,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = companyName,
                     CorporateIdentityNumber = corporateIdentityNumber,
                     Code = code,
-                    AddressStreet = "Triangelbygget 12",
-                    AddressZip = "4200",
-                    AddressCity = "SAUDA"
+                    MailingAddressStreet = "Triangelbygget 12",
+                    MailingAddressZip = "4200",
+                    MailingAddressCity = "SAUDA"
                 },
                 ContactPersonItem = new ContactPersonItem
                 {

@@ -153,9 +153,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 dataRow["Virksomhet - Navn"] = declarationItem.Company.Name;
                 dataRow["Virksomhet - Endret navn"] = declarationItem.Company.CustomName;
 
-                dataRow["Virksomhet - Adresse gate"] = declarationItem.Company.AddressStreet;
-                dataRow["Virksomhet - Adresse postnr"] = declarationItem.Company.AddressZip;
-                dataRow["Virksomhet - Adresse poststed"] = declarationItem.Company.AddressCity;
+                dataRow["Virksomhet - Adresse gate"] = declarationItem.Company.MailingAddressStreet;
+                dataRow["Virksomhet - Adresse postnr"] = declarationItem.Company.MailingAddressZip;
+                dataRow["Virksomhet - Adresse poststed"] = declarationItem.Company.MailingAddressCity;
 
                 if (declarationItem.Company.ContactPersonList != null && declarationItem.Company.ContactPersonList.Any())
                 {

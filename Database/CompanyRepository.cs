@@ -127,9 +127,9 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.Code = companyItem.Code;
                 dbItem.Name = companyItem.Name;
                 dbItem.CustomName = companyItem.CustomName;
-                dbItem.AddressStreet = companyItem.AddressStreet;
-                dbItem.AddressZip = companyItem.AddressZip;
-                dbItem.AddressCity = companyItem.AddressCity;
+                dbItem.MailingAddressStreet = companyItem.MailingAddressStreet;
+                dbItem.MailingAddressZip = companyItem.MailingAddressZip;
+                dbItem.MailingAddressCity = companyItem.MailingAddressCity;
 
                 dbContext.ContactPersonList.RemoveRange(dbContext.ContactPersonList.Where(x => x.CompanyItemId == dbItem.Id));
 
