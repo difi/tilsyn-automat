@@ -1,6 +1,7 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
@@ -13,6 +14,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
         public Guid RequirementItemId { get; set; }
 
         public Guid DeclarationTestItemId { get; set; }
+
+        [ForeignKey("ValueListTypeOfResult")]
+        public Int32 ResultId { get; set; }
 
         public ValueListTypeOfResult Result { get; set; }
 

@@ -112,7 +112,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             modelBuilder.Entity<OutcomeData>().HasMany(x => x.RuleDataList).WithOne(x => x.OutcomeData).Metadata.DeleteBehavior = DeleteBehavior.Cascade;
 
-
             var role1 = new RoleItem
             {
                 Id = Guid.Parse("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"),

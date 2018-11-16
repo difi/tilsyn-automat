@@ -9,6 +9,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Enum;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -181,17 +182,61 @@ namespace Difi.Sjalvdeklaration.Database
                     foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
                     {
                         var outcomeData = requirementItem.OutcomeData;
+                        outcomeData.ResultId = (int)TypeOfResult.NotTested;
+
+                        foreach (var ruleData in outcomeData.RuleDataList)
+                        {
+                            ruleData.ResultId = (int)TypeOfResult.NotTested;
+
+                            foreach (var answerData in ruleData.AnswerDataList)
+                            {
+                                answerData.ResultId = (int)TypeOfResult.NotTested;
+
+                                var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).Single(x => x.Id == answerData.AnswerItemId);
+
+                                if (answerItem.TypeOfAnswer.Text == "bool")
+                                {
+                                    if (answerData.Bool == answerItem.Bool)
+                                    {
+                                        answerData.ResultId = (int)TypeOfResult.Ok;
+                                    }
+
+                                    if (answerData.Bool != answerItem.Bool)
+                                    {
+                                        answerData.ResultId = (int) TypeOfResult.Fail;
+                                    }
+                                }
+                            }
+
+                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                            {
+                                ruleData.ResultId = (int)TypeOfResult.Fail;
+                            }
+                            else
+                            {
+                                ruleData.ResultId = (int) TypeOfResult.Ok;
+                            }
+                        }
+
+                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                        {
+                            outcomeData.ResultId = (int)TypeOfResult.Fail;
+                        }
+                        else
+                        {
+                            outcomeData.ResultId = (int)TypeOfResult.Ok;
+                        }
 
                         dbContext.OutcomeData.Add(outcomeData);
                     }
                 }
 
-                //var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
+                var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
 
-                //dbItem.Status = DeclarationStatus.Complete;
-                //dbItem.SentInDate = DateTime.Now;
+                dbItem.Status = DeclarationStatus.Complete;
+                dbItem.SentInDate = DateTime.Now;
 
-                //dbContext.DeclarationList.Update(dbItem);
+                dbContext.DeclarationList.Update(dbItem);
 
                 dbContext.SaveChanges();
 

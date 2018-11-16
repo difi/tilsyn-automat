@@ -14,6 +14,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 
         public Guid AnswerItemId { get; set; }
 
+        public Int32 ResultId { get; set; }
+
         public ValueListTypeOfAnswer TypeOfAnswer { get; set; }
 
         public AnswerItem AnswerItem { get; set; }
@@ -25,5 +27,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
         public int Int { get; set; }
 
         public ImageItem Image { get; set; }
+
+        public ValueListTypeOfResult Result { get; set; }
     }
 }

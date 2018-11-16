@@ -11,6 +11,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 
         public Guid RuleItemId { get; set; }
 
+        public Int32 ResultId { get; set; }
+
         public RuleItem Rule { get; set; }
 
         public ValueListTypeOfResult Result { get; set; }

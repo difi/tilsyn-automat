@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using Difi.Sjalvdeklaration.Shared.Enum;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
