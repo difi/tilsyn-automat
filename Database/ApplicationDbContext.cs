@@ -319,7 +319,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Standard = "CEN/TS"
             };
 
-            var chapterItem1 = new ChapterItem
+            var chapterItem31 = new ChapterItem
             {
                 Id = Guid.Parse("75468cd0-478b-45e9-8a8e-51b0e574fb3b"),
                 RequirementsInSupervisor = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.",
@@ -328,82 +328,112 @@ namespace Difi.Sjalvdeklaration.Database
                 StandardItemId = standardItem1.Id
             };
 
-            var ruleItem1 = new RuleItem
+            var chapterItem41 = new ChapterItem
+            {
+                Id = Guid.Parse("6c0f12f8-0a91-4849-b18f-2af735017fcd"),
+                RequirementsInSupervisor = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet. ",
+                ChapterHeading = "Layout of operating features",
+                ChapterNumber = "15291:2006 6.3.1",
+                StandardItemId = standardItem1.Id
+            };
+
+            var ruleItem31 = new RuleItem
             {
                 Order = 1,
-                RequirementItemId = requirementItem4.Id,
+                RequirementItemId = requirementItem3.Id,
                 Id = Guid.Parse("832e0843-cab3-4dbc-9799-974e283fcc0b"),
                 Instruction = "Finnes det et skilt som viser hvor kunden skal betale varene sine?",
                 HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />",
                 ToolsNeed = "Ingen",
-                ChapterItemId = chapterItem1.Id,
+                ChapterItemId = chapterItem31.Id,
                 StandardItemId = standardItem1.Id,
             };
 
-            var ruleItem2 = new RuleItem
+            var ruleItem32 = new RuleItem
             {
                 Order = 2,
-                RequirementItemId = requirementItem4.Id,
+                RequirementItemId = requirementItem3.Id,
                 Id = Guid.Parse("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"),
                 Instruction = "Er skiltet plassert over området der kunden skal betale varene sine?",
                 ToolsNeed = "Ingen",
-                ChapterItemId = chapterItem1.Id,
+                ChapterItemId = chapterItem31.Id,
                 StandardItemId = standardItem1.Id,
             };
 
-            var ruleItem3 = new RuleItem
+            var ruleItem33 = new RuleItem
             {
                 Order = 3,
-                RequirementItemId = requirementItem4.Id,
+                RequirementItemId = requirementItem3.Id,
                 Id = Guid.Parse("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"),
                 Instruction = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?",
                 ToolsNeed = "Ingen",
-                ChapterItemId = chapterItem1.Id,
+                ChapterItemId = chapterItem31.Id,
                 StandardItemId = standardItem1.Id,
             };
 
-            var answerItem1 = new AnswerItem
+            var ruleItem41 = new RuleItem
+            {
+                Order = 1,
+                RequirementItemId = requirementItem4.Id,
+                Id = Guid.Parse("5b3af04b-f6c6-4425-a22f-c2e7479839a5"),
+                Instruction = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
+                ToolsNeed = "Ingen",
+                ChapterItemId = chapterItem41.Id,
+                StandardItemId = standardItem1.Id,
+            };
+
+            var answerItem31 = new AnswerItem
             {
                 Order = 1,
                 Id = Guid.Parse("d8611e84-0f00-4d75-bcab-cbf127fb68b5"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool =  true,
-                RuleItemId = ruleItem1.Id,
+                RuleItemId = ruleItem31.Id,
             };
 
-            var answerItem2 = new AnswerItem
+            var answerItem32 = new AnswerItem
             {
                 Order = 2,
                 Id = Guid.Parse("c4870935-ee11-4557-a9c3-aca678c17565"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 Bool = true,
-                RuleItemId = ruleItem1.Id,
+                RuleItemId = ruleItem31.Id,
             };
 
-            var answerItem3 = new AnswerItem
+            var answerItem33 = new AnswerItem
             {
                 Order = 1,
                 Id = Guid.Parse("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
-                RuleItemId = ruleItem2.Id,
+                RuleItemId = ruleItem32.Id,
             };
 
-            var answerItem4 = new AnswerItem
+            var answerItem34 = new AnswerItem
             {
                 Order = 1,
                 Id = Guid.Parse("f69c1e45-99d8-4293-a242-c5ed9e126e99"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
-                RuleItemId = ruleItem3.Id,
+                RuleItemId = ruleItem33.Id,
+            };
+
+            var answerItem41 = new AnswerItem
+            {
+                Order = 1,
+                Id = Guid.Parse("f98f67e5-cf6a-4afe-8998-3132640f9d70"),
+                TypeOfAnswerId = typeOfAnswer3.Id,
+                MaxInt = 130,
+                MinInt = 75,
+                RuleItemId = ruleItem41.Id
             };
 
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
             modelBuilder.Entity<StandardItem>().HasData(standardItem1);
-            modelBuilder.Entity<ChapterItem>().HasData(chapterItem1);
+            modelBuilder.Entity<ChapterItem>().HasData(chapterItem31, chapterItem41);
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
-            modelBuilder.Entity<RuleItem>().HasData(ruleItem1, ruleItem2, ruleItem3);
-            modelBuilder.Entity<AnswerItem>().HasData(answerItem1, answerItem2, answerItem3, answerItem4);
+            modelBuilder.Entity<RuleItem>().HasData(ruleItem31, ruleItem32, ruleItem33, ruleItem41);
+            modelBuilder.Entity<AnswerItem>().HasData(answerItem31, answerItem32, answerItem33, answerItem34, answerItem41);
 
             base.OnModelCreating(modelBuilder);
         }

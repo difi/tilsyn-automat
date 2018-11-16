@@ -21,7 +21,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public string String { get; set; }
 
-        public int MiniInt { get; set; }
+        public int MinInt { get; set; }
 
         public int MaxInt { get; set; }
 
