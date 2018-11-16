@@ -3,6 +3,7 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 
 namespace Log
@@ -34,6 +35,11 @@ namespace Log
             return inner.GetAll<T>();
         }
 
+        public ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>
+        {
+            return inner.GetOutcomeDataList<T>(id);
+        }
+
         public ApiResult Add(DeclarationItem declarationItem)
         {
             var declarationItemBefore = declarationItem.DeepClone();
@@ -56,9 +62,9 @@ namespace Log
             return result;
         }
 
-        public ApiResult SendIn(DeclarationItem declarationItem)
+        public ApiResult Save(DeclarationItem declarationItem)
         {
-            var result = inner.SendIn(declarationItem);
+            var result = inner.Save(declarationItem);
 
             logRepository.Add(new LogItem(userId, result, declarationItem));
 

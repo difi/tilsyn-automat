@@ -1,0 +1,35 @@
+﻿@page
+@using Difi.Sjalvdeklaration.Shared.Enum
+@model wwwroot.Pages.Declaration.DeclarationReadModel
+
+@{
+    var title = "Selvdeklarasjon - Läsa";
+
+    ViewData["Title"] = title;
+}
+
+<h1>@title</h1>
+
+@foreach (var outcomeData in Model.OutcomeDataList.OrderBy(x => x.Requirement.Order))
+{
+    <h2>@outcomeData.Requirement.TestGroup.Name <span>(@outcomeData.Result.Text)</span></h2>
+    
+
+    <h3>@outcomeData.Requirement.Description</h3>
+
+    foreach (var ruleData in outcomeData.RuleDataList.OrderBy(x => x.Rule.Order))
+    {
+        <h4>@ruleData.Rule.Instruction<span>(@ruleData.Result.Text)</span></h4>
+
+
+        foreach (var answerData in ruleData.AnswerDataList)
+        {
+            if (answerData.TypeOfAnswerId == (int) TypeOfAnswer.Bool)
+            {
+                <h5>@answerData.Bool <span>(@answerData.Result.Text)</span></h5>
+            }
+        }
+    }
+
+    <hr />
+}

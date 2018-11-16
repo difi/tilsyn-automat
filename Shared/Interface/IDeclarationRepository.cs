@@ -2,6 +2,7 @@
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
@@ -13,10 +14,12 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult<T> GetAll<T>() where T : List<DeclarationItem>;
 
+        ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>;
+
         ApiResult Add(DeclarationItem declarationItem);
 
         ApiResult Update(DeclarationItem declarationItem);
 
-        ApiResult SendIn(DeclarationItem declarationItem);
+        ApiResult Save(DeclarationItem declarationItem);
     }
 }

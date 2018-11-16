@@ -62,6 +62,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         private ExcelItemRow CreateExcelItemRow(string companyName, string corporateIdentityNumber, string code, string declarationName)
         {
             var companyId = Guid.NewGuid();
+            var declarationItemId = Guid.NewGuid();
 
             return new ExcelItemRow
             {
@@ -85,7 +86,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 },
                 DeclarationItem = new DeclarationItem
                 {
-                    Id = Guid.NewGuid(),
+                    Id = declarationItemId,
                     CompanyItemId = companyId,
                     UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                     Name = declarationName,
@@ -94,6 +95,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Status = DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
+                        Id = declarationItemId,
                         TypeOfMachine = valueListTypeOfMachine.Single(x => x.Id == 1),
                         TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1)
                     }

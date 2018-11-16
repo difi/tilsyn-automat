@@ -89,6 +89,32 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
+        public ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.OutcomeData
+                    .Include(x => x.Result)
+                    .Include(x => x.Requirement).ThenInclude(x => x.TestGroup)
+                    .Include(x => x.RuleDataList).ThenInclude(x=>x.Result)
+                    .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
+                    .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Result)
+                    .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.AnswerItem)
+                    .AsNoTracking().Where(x => x.DeclarationTestItemId == id).ToList();
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
         public ApiResult Add(DeclarationItem declarationItem)
         {
             var result = new ApiResult();
@@ -102,6 +128,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 declarationItem.DeclarationTestItem = new DeclarationTestItem
                 {
+                    Id = declarationItem.Id,
                     TypeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == 1),
                     TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1)
                 };
@@ -171,7 +198,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult SendIn(DeclarationItem declarationItem)
+        public ApiResult Save(DeclarationItem declarationItem)
         {
             var result = new ApiResult();
 
@@ -231,12 +258,12 @@ namespace Difi.Sjalvdeklaration.Database
                     }
                 }
 
-                var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
+                //var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
 
-                dbItem.Status = DeclarationStatus.Complete;
-                dbItem.SentInDate = DateTime.Now;
+                //dbItem.Status = DeclarationStatus.Complete;
+                //dbItem.SentInDate = DateTime.Now;
 
-                dbContext.DeclarationList.Update(dbItem);
+                //dbContext.DeclarationList.Update(dbItem);
 
                 dbContext.SaveChanges();
 

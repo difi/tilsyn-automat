@@ -1,5 +1,6 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,8 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
-using Difi.Sjalvdeklaration.Shared.Extensions;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -18,8 +17,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         [BindProperty]
         public DeclarationItem DeclarationItemForm { get; set; }
-
-        public List<OutcomeData> OutcomeDataForm { get; set; }
 
         public DeclarationFormModel(IApiHttpClient apiHttpClient)
         {
@@ -74,17 +71,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     }
                 }
 
-                await apiHttpClient.Post<ApiResult>("/api/Declaration/SendIn/", DeclarationItemForm);
+                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", DeclarationItemForm);
 
-                //    }
-                //}
-
-                //var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/SendIn/" + Guid.Parse(id));
-
-                //if (result.Succeeded)
-                //{
-                //    return RedirectToPage("/Declaration/Thanks");
-                //}
+                if (result.Succeeded)
+                {
+                    return RedirectToPage("/Declaration/DeclarationRead/", new { id = DeclarationItemForm.DeclarationTestItem.Id });
+                }
 
                 return Page();
             }
@@ -100,7 +92,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
             if (!String.IsNullOrEmpty(formValue))
             {
-                return (T) Convert.ChangeType(formValue, typeof(T));
+                return (T)Convert.ChangeType(formValue, typeof(T));
             }
 
             return new T();

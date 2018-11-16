@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -37,6 +38,15 @@ namespace Difi.Sjalvdeklaration.Api
             return declarationRepository.GetAll<List<DeclarationItem>>();
         }
 
+        [HttpGet]
+        [Route("GetOutcomeDataList/{id}")]
+        public ApiResult<List<OutcomeData>> GetOutcomeDataList(Guid id)
+        {
+            HandleRequest();
+
+            return declarationRepository.GetOutcomeDataList<List<OutcomeData>>(id);
+        }
+
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(DeclarationItem declarationItem)
@@ -56,12 +66,12 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpPost]
-        [Route("SendIn")]
-        public ApiResult SendIn(DeclarationItem declarationItem)
+        [Route("Save")]
+        public ApiResult Save(DeclarationItem declarationItem)
         {
             HandleRequest();
 
-            return declarationRepository.SendIn(declarationItem);
+            return declarationRepository.Save(declarationItem);
         }
 
         private void HandleRequest()
