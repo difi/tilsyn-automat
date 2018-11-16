@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181116125143_V7")]
+    partial class V7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -284,13 +286,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("AnswerList");
 
                     b.HasData(
-                        new { Id = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 2 },
+                        new { Id = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), Bool = true, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 4 },
                         new { Id = new Guid("d7b40e3c-e7fa-44e5-b44f-750759c971cc"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 1 },
-                        new { Id = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("a1a1b0f2-441a-4726-ab6c-85e8d08ffed0"), TypeOfAnswerId = 2 },
+                        new { Id = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), Bool = true, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("a1a1b0f2-441a-4726-ab6c-85e8d08ffed0"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("8a12d92b-8a6a-44e7-9517-74331a4c2483"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, RuleItemId = new Guid("a1a1b0f2-441a-4726-ab6c-85e8d08ffed0"), TypeOfAnswerId = 4 },
                         new { Id = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("b504bde7-1394-4e5c-84d3-a3ac53fc7dd6"), TypeOfAnswerId = 3 },
-                        new { Id = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 2 },
+                        new { Id = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), Bool = true, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("13d6d530-e533-4510-9a66-8b862899dbdf"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 4 },
                         new { Id = new Guid("89fd2205-1047-403d-a5bd-f70a1de2f247"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("b9498453-f173-499a-b01d-91cb469cc5ec"), TypeOfAnswerId = 3 },
                         new { Id = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), Bool = true, MaxInt = 0, MinInt = 0, Order = 1, RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 2 },

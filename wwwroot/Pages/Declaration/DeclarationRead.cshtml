@@ -21,7 +21,7 @@
 
     foreach (var ruleData in outcomeData.RuleDataList.OrderBy(x => x.Rule.Order))
     {
-        <h4>@ruleData.Rule.Instruction<span>(@ruleData.Result.Text)</span></h4>
+        <h4>@ruleData.Rule.Instruction <span>(@ruleData.Result.Text)</span></h4>
 
 
         foreach (var answerData in ruleData.AnswerDataList)
@@ -37,7 +37,6 @@
             }
         }
         <br /><br />
-
     }
 
     <hr />
