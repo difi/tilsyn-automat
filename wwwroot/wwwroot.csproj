@@ -84,6 +84,9 @@
     <Content Update="Pages\Declaration\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\RadioButtonBool.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\EditorTemplates\CheckBoxList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

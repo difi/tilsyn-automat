@@ -56,11 +56,11 @@ namespace Log
             return result;
         }
 
-        public ApiResult SendIn(Guid id)
+        public ApiResult SendIn(DeclarationItem declarationItem)
         {
-            var result = inner.SendIn(id);
+            var result = inner.SendIn(declarationItem);
 
-            logRepository.Add(new LogItem(userId, result, id));
+            logRepository.Add(new LogItem(userId, result, declarationItem));
 
             return result;
         }

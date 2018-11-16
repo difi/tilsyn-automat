@@ -12,6 +12,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 
         public Guid RequirementItemId { get; set; }
 
+        public Guid DeclarationTestItemId { get; set; }
+
         public ValueListTypeOfResult Result { get; set; }
 
         public String ResultText { get; set; }

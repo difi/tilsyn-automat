@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {

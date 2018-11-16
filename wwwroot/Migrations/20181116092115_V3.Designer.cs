@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181116092115_V3")]
+    partial class V3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,7 +155,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.HasIndex("ResultId");
 
-                    b.ToTable("OutcomeData");
+                    b.ToTable("OutcomeDataList");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData", b =>
@@ -784,8 +786,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", "OutcomeData")
                         .WithMany("RuleDataList")
-                        .HasForeignKey("OutcomeDataId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OutcomeDataId");
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
                         .WithMany()

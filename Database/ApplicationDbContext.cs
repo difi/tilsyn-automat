@@ -62,6 +62,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<DeclarationTestGroup> DeclarationTestGroupList { get; set; }
 
+        public DbSet<OutcomeData> OutcomeData { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserRole>().HasKey(x => new {x.UserItemId, x.RoleItemId});
@@ -107,6 +109,8 @@ namespace Difi.Sjalvdeklaration.Database
             modelBuilder.Entity<OutcomeData>().HasOne(x => x.Requirement).WithMany(x => x.OutcomeDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<RuleItem>().HasOne(x => x.Chapter).WithMany(x => x.RuleList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<RuleItem>().HasOne(x => x.Standard).WithMany(x => x.RuleList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+
+            modelBuilder.Entity<OutcomeData>().HasMany(x => x.RuleDataList).WithOne(x => x.OutcomeData).Metadata.DeleteBehavior = DeleteBehavior.Cascade;
 
 
             var role1 = new RoleItem

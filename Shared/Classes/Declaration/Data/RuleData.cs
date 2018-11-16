@@ -9,6 +9,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
     {
         public Guid Id { get; set; }
 
+        public Guid RuleItemId { get; set; }
+
         public RuleItem Rule { get; set; }
 
         public ValueListTypeOfResult Result { get; set; }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 
@@ -169,23 +170,33 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult SendIn(Guid id)
+        public ApiResult SendIn(DeclarationItem declarationItem)
         {
             var result = new ApiResult();
 
             try
             {
-                var dbItem = Get<DeclarationItem>(id).Data;
+                foreach (var declarationTestGroup in declarationItem.TestGroupList)
+                {
+                    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
+                    {
+                        var outcomeData = requirementItem.OutcomeData;
 
-                dbItem.Status = DeclarationStatus.Complete;
-                dbItem.SentInDate = DateTime.Now;
+                        dbContext.OutcomeData.Add(outcomeData);
+                    }
+                }
 
-                dbContext.DeclarationList.Update(dbItem);
+                //var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
+
+                //dbItem.Status = DeclarationStatus.Complete;
+                //dbItem.SentInDate = DateTime.Now;
+
+                //dbContext.DeclarationList.Update(dbItem);
 
                 dbContext.SaveChanges();
 
                 result.Succeeded = true;
-                result.Id = id;
+                result.Id = declarationItem.Id;
             }
             catch (Exception exception)
             {

@@ -1,7 +1,7 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using System;
 using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
@@ -17,5 +17,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult Update(DeclarationItem declarationItem);
 
-        ApiResult SendIn(Guid id);    }
+        ApiResult SendIn(DeclarationItem declarationItem);
+    }
 }

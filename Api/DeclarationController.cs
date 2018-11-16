@@ -55,13 +55,13 @@ namespace Difi.Sjalvdeklaration.Api
             return declarationRepository.Update(declarationItem);
         }
 
-        [HttpGet]
-        [Route("SendIn/{id}")]
-        public ApiResult SendIn(Guid id)
+        [HttpPost]
+        [Route("SendIn")]
+        public ApiResult SendIn(DeclarationItem declarationItem)
         {
             HandleRequest();
 
-            return declarationRepository.SendIn(id);
+            return declarationRepository.SendIn(declarationItem);
         }
 
         private void HandleRequest()

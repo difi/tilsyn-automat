@@ -31,7 +31,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public StandardItem Standard { get; set; }
 
-        [Required]
         public RequirementItem Requirement { get; set; }
     }
 }
