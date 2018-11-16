@@ -1,0 +1,29 @@
+﻿@model bool
+
+@{
+    var name = ViewData["id"];
+    var idTrue = name + "_true";
+    var idFalse = name + "_false";
+    var text = ViewData["text"];
+}
+
+<fieldset>
+    <legend>@text</legend>
+
+
+    <div class="form-field">
+        <label for="@idTrue">
+            Ja
+        </label>
+
+        <input type="radio" id="@idTrue" name="@name" value="true" />
+    </div>
+
+    <div class="form-field">
+        <label for="@idFalse">
+            Nej
+        </label>
+
+        <input type="radio" id="@idFalse" name="@name" value="false" />
+    </div>
+</fieldset>

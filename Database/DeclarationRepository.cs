@@ -217,22 +217,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                             foreach (var answerData in ruleData.AnswerDataList)
                             {
-                                answerData.ResultId = (int)TypeOfResult.NotTested;
-
-                                var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).Single(x => x.Id == answerData.AnswerItemId);
-
-                                if (answerItem.TypeOfAnswer.Text == "bool")
-                                {
-                                    if (answerData.Bool == answerItem.Bool)
-                                    {
-                                        answerData.ResultId = (int)TypeOfResult.Ok;
-                                    }
-
-                                    if (answerData.Bool != answerItem.Bool)
-                                    {
-                                        answerData.ResultId = (int) TypeOfResult.Fail;
-                                    }
-                                }
+                                answerData.ResultId = (int) GetResultId(answerData);
                             }
 
                             if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
@@ -277,6 +262,28 @@ namespace Difi.Sjalvdeklaration.Database
             }
 
             return result;
+        }
+
+        private TypeOfResult GetResultId(AnswerData answerData)
+        {
+            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).Single(x => x.Id == answerData.AnswerItemId);
+
+            switch (answerItem.TypeOfAnswer.Id)
+            {
+                case (int) TypeOfAnswer.Bool when answerData.Bool == answerItem.Bool:
+                    return TypeOfResult.Ok;
+
+                case (int) TypeOfAnswer.Bool when answerData.Bool != answerItem.Bool:
+                    return TypeOfResult.Fail;
+
+                case (int) TypeOfAnswer.Int when answerData.Int > 0:
+                {
+                    return answerData.Int >= answerItem.MinInt && answerData.Int <= answerItem.MaxInt ? TypeOfResult.Ok : TypeOfResult.Fail;
+                }
+
+                default:
+                    return TypeOfResult.NotTested;
+            }
         }
     }
 }

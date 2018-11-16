@@ -84,7 +84,7 @@
     <Content Update="Pages\Declaration\_ViewStart.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\RadioButtonBool.cshtml">
+    <Content Update="Pages\Shared\EditorTemplates\CustomRadioButtonBool.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\CheckBoxList.cshtml">
@@ -103,6 +103,9 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\Display.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\CustomTextBoxInt.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\_Public.cshtml">

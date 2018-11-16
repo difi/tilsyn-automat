@@ -64,7 +64,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                                     Id = Guid.NewGuid(),
                                     AnswerItemId = x.Id,
                                     TypeOfAnswerId = x.TypeOfAnswerId,
-                                    Bool = GetAnswerFromForm<Boolean>($"answer_bool_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}")
+                                    Bool = GetAnswerFromForm<Boolean>($"answer_bool_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
+                                    Int = GetAnswerFromForm<Int32>($"answer_int_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}")
                                 }).ToList()
                             });
                         }
@@ -75,7 +76,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationRead/", new { id = DeclarationItemForm.DeclarationTestItem.Id });
+                    return RedirectToPage("/Declaration/DeclarationRead", new { id = DeclarationItemForm.DeclarationTestItem.Id });
                 }
 
                 return Page();

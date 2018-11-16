@@ -1,4 +1,5 @@
 ﻿@page
+@using Difi.Sjalvdeklaration.Shared.Enum
 @model DeclarationFormModel
 
 @{
@@ -29,20 +30,21 @@
             {
                 foreach (var answerItem in ruleItem.AnswerList)
                 {
-                    if (answerItem.TypeOfAnswer.Text == "bool")
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                     {
-                        <fieldset>
-                            <legend>@ruleItem.Instruction</legend>
+                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new {text = ruleItem.Instruction, id = "answer_bool_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
+                    }
 
-                            @Html.EditorFor(x => answerItem.Bool, "RadioButtonBool", new {id = "answer_bool_"+ declarationTestGroup.TestGroupItemId+"_"+ requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id})
-                        </fieldset>
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                    {
+                        @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = ruleItem.Instruction, id = "answer_int_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
                     }
                 }
-                <br/>
+                <br />
             }
-            <br/>
+            <br />
         }
-        <hr/>
+        <hr />
     }
 
     <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>

@@ -1,0 +1,14 @@
+﻿@model int
+
+@{
+    var name = ViewData["id"];
+    var text = ViewData["text"];
+}
+
+<div class="form-field">
+    <label for="@name">
+        @text
+    </label>
+
+    <input type="number" autocomplete="off" id="@name" name="@name" value="" />
+</div>
