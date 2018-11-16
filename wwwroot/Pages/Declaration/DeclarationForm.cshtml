@@ -30,9 +30,14 @@
             {
                 foreach (var answerItem in ruleItem.AnswerList)
                 {
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                    {
+                        @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = ruleItem.Instruction, id = "answer_string_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
+                    }
+
                     if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                     {
-                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new {text = ruleItem.Instruction, id = "answer_bool_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
+                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = ruleItem.Instruction, id = "answer_bool_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
                     }
 
                     if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)

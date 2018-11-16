@@ -64,6 +64,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                                     Id = Guid.NewGuid(),
                                     AnswerItemId = x.Id,
                                     TypeOfAnswerId = x.TypeOfAnswerId,
+                                    String = GetAnswerFromFormString($"answer_string_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
                                     Bool = GetAnswerFromForm<Boolean>($"answer_bool_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
                                     Int = GetAnswerFromForm<Int32>($"answer_int_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}")
                                 }).ToList()
@@ -85,6 +86,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 return Page();
             }
+        }
+
+        private String GetAnswerFromFormString(string idString)
+        {
+            var formValue = Request.Form[idString].ToString();
+
+            if (!String.IsNullOrEmpty(formValue))
+            {
+                return formValue;
+            }
+
+            return String.Empty;
         }
 
         private T GetAnswerFromForm<T>(string idString) where T : new()

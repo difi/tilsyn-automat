@@ -26,6 +26,11 @@
 
         foreach (var answerData in ruleData.AnswerDataList)
         {
+            if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.String)
+            {
+                <b>@answerData.String</b> <span>(@answerData.Result.Text)</span>
+            }
+
             if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Bool)
             {
                 <b>@answerData.Bool</b> <span>(@answerData.Result.Text)</span>

@@ -90,6 +90,9 @@
     <Content Update="Pages\Shared\EditorTemplates\CheckBoxList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\CustomTextBoxString.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\EditorTemplates\DateTime.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
