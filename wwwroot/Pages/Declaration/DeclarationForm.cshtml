@@ -28,23 +28,36 @@
 
             foreach (var ruleItem in requirementItem.RuleList.OrderBy(x => x.Order))
             {
-                foreach (var answerItem in ruleItem.AnswerList)
-                {
-                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                <div class="jsRuleItem" id="@ruleItem.Id" data-ViewIfParentFailed="@ruleItem.ViewIfParentFailed">
+
+                    @foreach (var answerItem in ruleItem.AnswerList)
                     {
-                        @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = ruleItem.Instruction, id = "answer_string_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
+                        var id = declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+
+                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                        {
+                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt">
+                                @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = ruleItem.Instruction, id = "answer_string_" + id })
+                            </div>
+                        }
+
+                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                        {
+                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt">
+                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = ruleItem.Instruction, id = "answer_bool_" + id })
+                            </div>
+                        }
+
+                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                        {
+                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt">
+                                @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = ruleItem.Instruction, id = "answer_int_" + id })
+                            </div>
+                        }
                     }
 
-                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                    {
-                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = ruleItem.Instruction, id = "answer_bool_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
-                    }
+                </div>
 
-                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                    {
-                        @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = ruleItem.Instruction, id = "answer_int_" + declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id })
-                    }
-                }
                 <br />
             }
             <br />
@@ -56,5 +69,6 @@
 </form>
 
 @section Scripts {
+    <script src="~/js/declarationForm.js"></script>
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }

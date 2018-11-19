@@ -382,6 +382,7 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem1.Id,
                 Id = Guid.Parse("b64cac7e-6525-49e8-9112-0238e1588ed8"),
                 Instruction = "Beskriv hindringene i kundens betjeningsområde.",
+                ViewIfParentFailed = true,
                 HelpText = "",
                 ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem111.Id,
@@ -406,6 +407,7 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem1.Id,
                 Id = Guid.Parse("b504bde7-1394-4e5c-84d3-a3ac53fc7dd6"),
                 Instruction = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
+                ViewIfParentFailed = true,
                 HelpText = "",
                 ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem112.Id,
@@ -430,6 +432,7 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem2.Id,
                 Id = Guid.Parse("b9498453-f173-499a-b01d-91cb469cc5ec"),
                 Instruction = "Hvor mange cm er det mellom betalingsterminalene?",
+                ViewIfParentFailed = true,
                 HelpText = "",
                 ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem21.Id,
@@ -528,6 +531,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 1,
                 Id = Guid.Parse("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
+                MinInt = 220,
+                MaxInt = -1,
                 RuleItemId = ruleItem17.Id,
             };
 
@@ -553,6 +558,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 1,
                 Id = Guid.Parse("89fd2205-1047-403d-a5bd-f70a1de2f247"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
+                MinInt = 150,
+                MaxInt = -1,
                 RuleItemId = ruleItem22.Id,
             };
 

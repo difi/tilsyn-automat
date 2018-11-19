@@ -25,6 +25,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public String ToolsNeed { get; set; }
 
+        public bool ViewIfParentFailed { get; set; }
+
         public ICollection<AnswerItem> AnswerList { get; set; }
 
         public ChapterItem Chapter { get; set; }
