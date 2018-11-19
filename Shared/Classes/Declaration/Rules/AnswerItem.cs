@@ -18,6 +18,12 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public int Order { get; set; }
 
+        public String Question { get; set; }
+
+        public bool ViewIfOtherFailed { get; set; }
+
+        public Guid ViewIfOtherFaildId { get; set; }
+
         public bool Bool { get; set; }
 
         public int MinInt { get; set; }

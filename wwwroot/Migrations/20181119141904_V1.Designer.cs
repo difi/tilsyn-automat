@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181114115259_V1")]
+    [Migration("20181119141904_V1")]
     partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,6 +115,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<int>("Int");
 
+                    b.Property<int>("ResultId");
+
                     b.Property<Guid>("RuleDataId");
 
                     b.Property<string>("String");
@@ -126,6 +128,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasIndex("AnswerItemId");
 
                     b.HasIndex("ImageId");
+
+                    b.HasIndex("ResultId");
 
                     b.HasIndex("RuleDataId");
 
@@ -139,11 +143,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("DeclarationTestItemId");
+                    b.Property<Guid>("DeclarationTestItemId");
 
                     b.Property<Guid>("RequirementItemId");
 
-                    b.Property<int?>("ResultId");
+                    b.Property<int>("ResultId");
 
                     b.Property<string>("ResultText");
 
@@ -165,9 +169,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid?>("OutcomeDataId");
 
-                    b.Property<int?>("ResultId");
+                    b.Property<int>("ResultId");
 
-                    b.Property<Guid?>("RuleId");
+                    b.Property<Guid>("RuleItemId");
 
                     b.HasKey("Id");
 
@@ -175,7 +179,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.HasIndex("ResultId");
 
-                    b.HasIndex("RuleId");
+                    b.HasIndex("RuleItemId");
 
                     b.ToTable("RuleData");
                 });
@@ -263,15 +267,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<int>("MaxInt");
 
-                    b.Property<int>("MiniInt");
+                    b.Property<int>("MinInt");
 
                     b.Property<int>("Order");
 
+                    b.Property<string>("Question");
+
                     b.Property<Guid>("RuleItemId");
 
-                    b.Property<string>("String");
-
                     b.Property<int>("TypeOfAnswerId");
+
+                    b.Property<Guid>("ViewIfOtherFaildId");
+
+                    b.Property<bool>("ViewIfOtherFailed");
 
                     b.HasKey("Id");
 
@@ -282,10 +290,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("AnswerList");
 
                     b.HasData(
-                        new { Id = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 1, RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 2 },
-                        new { Id = new Guid("c4870935-ee11-4557-a9c3-aca678c17565"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 2, RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 4 },
-                        new { Id = new Guid("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 1, RuleItemId = new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), TypeOfAnswerId = 2 },
-                        new { Id = new Guid("f69c1e45-99d8-4293-a242-c5ed9e126e99"), Bool = true, MaxInt = 0, MiniInt = 0, Order = 1, RuleItemId = new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), TypeOfAnswerId = 2 }
+                        new { Id = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, Question = "Finnes det hindringer i kundens betjeningsområde?", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 2, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, Question = "Ta bilde", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 4, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("d7b40e3c-e7fa-44e5-b44f-750759c971cc"), Bool = false, MaxInt = 0, MinInt = 0, Order = 3, Question = "Beskriv hindringene i kundens betjeningsområde.", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 1, ViewIfOtherFaildId = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), ViewIfOtherFailed = true },
+                        new { Id = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, Question = "Henger det gjenstander over kundens betjeningsområde?", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 2, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("8a12d92b-8a6a-44e7-9517-74331a4c2483"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, Question = "Ta bilde", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 4, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), Bool = false, MaxInt = -1, MinInt = 220, Order = 3, Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 3, ViewIfOtherFaildId = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), ViewIfOtherFailed = true },
+                        new { Id = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), Bool = false, MaxInt = 0, MinInt = 0, Order = 1, Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?", RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 2, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("13d6d530-e533-4510-9a66-8b862899dbdf"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, Question = "Ta bilde", RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 4, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("89fd2205-1047-403d-a5bd-f70a1de2f247"), Bool = false, MaxInt = -1, MinInt = 150, Order = 3, Question = "Hvor mange cm er det mellom betalingsterminalene?", RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 3, ViewIfOtherFaildId = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), ViewIfOtherFailed = true },
+                        new { Id = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), Bool = true, MaxInt = 0, MinInt = 0, Order = 1, Question = "Finnes det et skilt som viser hvor kunden skal betale varene sine?", RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 2, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("c4870935-ee11-4557-a9c3-aca678c17565"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, Question = "Ta bilde", RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 4, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"), Bool = true, MaxInt = 0, MinInt = 0, Order = 3, Question = "Er skiltet plassert over området der kunden skal betale varene sine?", RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 2, ViewIfOtherFaildId = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), ViewIfOtherFailed = true },
+                        new { Id = new Guid("f69c1e45-99d8-4293-a242-c5ed9e126e99"), Bool = true, MaxInt = 0, MinInt = 0, Order = 4, Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), TypeOfAnswerId = 2, ViewIfOtherFaildId = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), ViewIfOtherFailed = true },
+                        new { Id = new Guid("f98f67e5-cf6a-4afe-8998-3132640f9d70"), Bool = false, MaxInt = 130, MinInt = 75, Order = 1, Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?", RuleItemId = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), TypeOfAnswerId = 3, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false },
+                        new { Id = new Guid("438787f3-b33b-489c-b5a8-2f046a634dea"), Bool = false, MaxInt = 0, MinInt = 0, Order = 2, Question = "Ta bilde", RuleItemId = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), TypeOfAnswerId = 4, ViewIfOtherFaildId = new Guid("00000000-0000-0000-0000-000000000000"), ViewIfOtherFailed = false }
                     );
                 });
 
@@ -355,8 +374,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("Illustration");
 
-                    b.Property<string>("Instruction");
-
                     b.Property<int>("Order");
 
                     b.Property<Guid>("RequirementItemId");
@@ -376,9 +393,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("RuleList");
 
                     b.HasData(
-                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", Instruction = "Finnes det et skilt som viser hvor kunden skal betale varene sine?", Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("4c4cd93b-ad4c-49b3-af05-f9e9fc7cb15a"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), Instruction = "Er skiltet plassert over området der kunden skal betale varene sine?", Order = 2, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("5cec30b8-2c28-4f7e-b9d7-6655a745c2ef"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), Instruction = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?", Order = 3, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" }
+                        new { Id = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), ChapterItemId = new Guid("731a0f5c-f586-471f-b32c-ceb8027f735a"), HelpText = "", Order = 4, RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), ChapterItemId = new Guid("b80b9b15-8f0e-4702-b7d9-95cafa68f9fb"), HelpText = "", Order = 5, RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), ChapterItemId = new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), HelpText = "", Order = 1, RequirementItemId = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", Order = 1, RequirementItemId = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), ChapterItemId = new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" }
                     );
                 });
 
@@ -391,8 +410,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("ChapterNumber");
 
-                    b.Property<string>("RequirementsInSupervisor");
-
                     b.Property<Guid>("StandardItemId");
 
                     b.HasKey("Id");
@@ -402,7 +419,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("ChapterList");
 
                     b.HasData(
-                        new { Id = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ChapterHeading = "Location signs and visual indications ", ChapterNumber = "15291:2006 5.2", RequirementsInSupervisor = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") }
+                        new { Id = new Guid("731a0f5c-f586-471f-b32c-ceb8027f735a"), ChapterHeading = "User operating space", ChapterNumber = "D.6.2", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
+                        new { Id = new Guid("b80b9b15-8f0e-4702-b7d9-95cafa68f9fb"), ChapterHeading = "Overhead obstructions", ChapterNumber = "D.5.5", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
+                        new { Id = new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), ChapterHeading = "Access from user operating area", ChapterNumber = "D.6.6", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
+                        new { Id = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), ChapterHeading = "Location signs and visual indications", ChapterNumber = "5.2", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
+                        new { Id = new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), ChapterHeading = "Layout of operating features", ChapterNumber = "6.3.1", StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") }
                     );
                 });
 
@@ -411,6 +432,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Name");
+
                     b.Property<string>("Standard");
 
                     b.HasKey("Id");
@@ -418,7 +441,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("StandardList");
 
                     b.HasData(
-                        new { Id = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), Standard = "CEN/TS" }
+                        new { Id = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), Name = "Identification Card Systems - Guidance on design for accessible card-activated devices", Standard = "CEN/TS 15291:2006" }
                     );
                 });
 
@@ -754,6 +777,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .WithMany()
                         .HasForeignKey("ImageId");
 
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
+                        .WithMany()
+                        .HasForeignKey("ResultId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData")
                         .WithMany("AnswerDataList")
                         .HasForeignKey("RuleDataId")
@@ -769,7 +797,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationTestItem")
                         .WithMany("OutcomeDataList")
-                        .HasForeignKey("DeclarationTestItemId");
+                        .HasForeignKey("DeclarationTestItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
                         .WithMany("OutcomeDataList")
@@ -778,22 +807,26 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
                         .WithMany()
-                        .HasForeignKey("ResultId");
+                        .HasForeignKey("ResultId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.RuleData", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data.OutcomeData", "OutcomeData")
                         .WithMany("RuleDataList")
-                        .HasForeignKey("OutcomeDataId");
+                        .HasForeignKey("OutcomeDataId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
                         .WithMany()
-                        .HasForeignKey("ResultId");
+                        .HasForeignKey("ResultId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "Rule")
                         .WithMany()
-                        .HasForeignKey("RuleId");
+                        .HasForeignKey("RuleItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", b =>

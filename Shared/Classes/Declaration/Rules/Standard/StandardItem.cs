@@ -9,6 +9,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard
 
         public String Standard { get; set; }
 
+        public String Name { get; set; }
+
         public List<RuleItem> RuleList { get; set; }
     }
 }

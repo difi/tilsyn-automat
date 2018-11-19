@@ -15,8 +15,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard
 
         public String ChapterHeading { get; set; }
 
-        public String RequirementsInSupervisor { get; set; }
-
         public List<RuleItem> RuleList { get; set; }
     }
 }

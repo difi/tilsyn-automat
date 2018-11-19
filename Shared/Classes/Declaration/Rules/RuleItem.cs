@@ -17,15 +17,11 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public int Order { get; set; }
 
-        public String Instruction { get; set; }
-
         public String Illustration { get; set; }
 
         public String HelpText { get; set; }
 
         public String ToolsNeed { get; set; }
-
-        public bool ViewIfParentFailed { get; set; }
 
         public ICollection<AnswerItem> AnswerList { get; set; }
 
