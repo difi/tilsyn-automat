@@ -34,7 +34,7 @@
         }
 
         span, a:hover, &.active a {
-            color: $color-green-5;
+            color: $color-green-dark;
             //padding-bottom: 9px;
             &:after {
                 position: relative;
@@ -42,7 +42,7 @@
                 top: 4px;
                 width: 100%;
                 display: block;
-                border-bottom: 5px solid $color-green-5;
+                border-bottom: 5px solid $color-green-dark;
                 transition: all 0.3s ease 0s;
             }
         }
@@ -54,7 +54,7 @@
                 top: 4px;
                 width: 43px;
                 display: block;
-                border-bottom: 1px solid $color-green-5;
+                border-bottom: 1px solid $color-green-dark;
             }
 
             &.tabbed {
@@ -77,7 +77,7 @@
 
         &.active {
             a, span {
-                color: $color-green-5;
+                color: $color-green-dark;
             }
         }
     }

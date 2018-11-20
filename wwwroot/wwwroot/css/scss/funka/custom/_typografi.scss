@@ -2,15 +2,18 @@
 // Variables
 //
 
-$roboto: Roboto, Helvetica, Arial, sans-serif;
-$roboto-m: "Roboto-Medium", Helvetica, Arial, sans-serif;
-$roboto-b: "Roboto-Bold", Helvetica, Arial, sans-serif;
+// $SofiaPro: "SofiaPro", Helvetica, Arial, sans-serif;
+// $SofiaPro-b: "SofiaPro Bold", Helvetica, Arial, sans-serif;
+// $SofiaPro-i: "SofiaPro Italic", Helvetica, Arial, sans-serif;
+
+$sofiapro-reg: SofiaPro, Helvetica, Arial, sans-serif;
+$sofiapro-bold: SofiaPro, Helvetica, Arial, sans-serif;
 
 
-$proxima-nova-sb: "Proxima-nova-semibold", Helvetica, Arial, sans-serif;
+$sofiapro-reg: "Proxima-nova-semibold", Helvetica, Arial, sans-serif;
 
-$header-font-family: $proxima-nova-sb;
-$header-font-family-smaller: $proxima-nova-sb;
+$header-font-family: $sofiapro-reg;
+$header-font-family-smaller: $sofiapro-reg;
 
 // We use these to control header font sizes
 $h1-font-size-special: 47px;
@@ -22,7 +25,7 @@ $h2-font-size-start: 36px;
 
 
 // We use these to style ingress
-$ingress-font-family: $proxima-nova-sb;
+$ingress-font-family: $sofiapro-reg;
 $ingress-font-size: 20px;
 
 //--------------------------------------------------------------*/
@@ -30,6 +33,8 @@ $ingress-font-size: 20px;
 //--------------------------------------------------------------*/
 
 // CSS FOR ALL DEVICES
+
+
 
 
 
@@ -43,6 +48,22 @@ $ingress-font-size: 20px;
     max-width: 36rem;
 }
 
+.card {
+    //padding: 0.5rem;
+    h3 {
+        font-size: 19px;
+        font-family: $sofiapro-bold;
+
+        span {
+            display: inline-block;
+            width: 45px;
+            padding: 5px 10px;
+            background-color: #B5D2DB;
+            font-weight: bold;
+        }
+    }
+}
+
 img {
     &.full-width-image {
         max-width: none !important;
@@ -50,6 +71,14 @@ img {
 }
 
 // Header font
+
+.h2-toggle {
+    background-color: #B5D2DB;
+    padding: 1rem 0 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
     //font-family: $header-font-family;
 }
@@ -137,27 +166,6 @@ ul, ol, .test {
         }
     }
 
-    &.pink-bullets {
-        padding-left: 1em;
-        margin-left: 0;
-
-        li {
-            padding-left: 0;
-            list-style: none;
-
-            &:before {
-                content: "";
-                display: inline-block;
-                width: 7px;
-                height: 7px;
-                margin-left: -1em;
-                border: 1px solid $color-pink-2;
-                border-radius: 100px;
-                margin-right: 0.5rem;
-                margin-bottom: 2px;
-            }
-        }
-    }
 }
 
 a {
@@ -233,10 +241,6 @@ tbody {
         font-size: $ingress-font-size;
     }
 
-    html {
-        box-sizing: border-box;
-        font-size: 16px;
-    }
 }
 
 // LARGE SCREEN

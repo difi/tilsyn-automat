@@ -111,8 +111,8 @@ $bgColor-mobileNavigation-active: dark-blue;
 
     .active {
         & > a {
-            color: $color-green-5;
-            box-shadow: inset 8px 0px 0px 0px $color-green-5;
+            color: $color-green-dark;
+            box-shadow: inset 8px 0px 0px 0px $color-green-dark;
         }
     }
 }

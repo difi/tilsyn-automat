@@ -65,11 +65,11 @@
 // 1. Global
 // ---------
 
-$global-font-size: 16px;
+$global-font-size: 17px;
 $global-width: rem-calc(984);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #72616c,
+  primary: #458596,
   secondary: #cce5ef,
   success: #3adb76,
   warning: #ffae00,
@@ -80,16 +80,16 @@ $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: #000;
 $white: #fff;
-$body-background: $white;
-$body-font-color: #44303C;
-$body-font-family: Roboto, Helvetica, Arial, sans-serif;
+$body-background: #e7eff1;
+$body-font-color: #303132;
+$body-font-family: "Open Sans", Helvetica, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
 $global-position: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius: 4px;
 $global-menu-padding: 0.7rem 1rem;
 $global-menu-nested-margin: 1rem;
 $global-text-direction: ltr;
@@ -131,7 +131,7 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: "Proxima-nova-semibold", Helvetica, Arial, sans-serif;
+$header-font-family: SofiaPro, Helvetica, Arial, sans-serif;
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
@@ -328,12 +328,12 @@ $callout-link-tint: 30%;
 
 $card-background: $white;
 $card-font-color: $body-font-color;
-$card-divider-background: $light-gray;
-$card-border: 1px solid $light-gray;
-$card-shadow: none;
-$card-border-radius: $global-radius;
-$card-padding: $global-padding;
-$card-margin-bottom: $global-margin;
+$card-divider-background: $white;
+$card-border: 0;
+$card-shadow: 0px 0px 9px 0px rgba(0,0,0,0.09);
+$card-border-radius: 3px;
+$card-padding: 1rem 2rem;
+$card-margin-bottom: 2rem;
 
 // 15. Close Button
 // ----------------

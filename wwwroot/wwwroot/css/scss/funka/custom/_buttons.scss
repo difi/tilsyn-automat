@@ -5,11 +5,8 @@
 // We use these to control button text styles.
 
 // We use these to controls background-color. Alert and success colors is in forms.scss
-$button-bgColor-std:                    #72616c;
+$button-bgColor-std:                    #458596;
 $button-bgColor-white:					$color-white;
-
-// We use this to set the default radius used throughout the core.
-$button-radius:							0px;
 
 
 
@@ -27,7 +24,7 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 100%;
 
     @include button;
-    border-radius: 5px;
+    //border-radius: 5px;
 
     .active & {
         &.nocursor {
@@ -74,11 +71,11 @@ button, .button, input[type="button"], input[type="submit"] {
 
 
     &.light-blue {
-        background-color: $color-blue-6;
+        background-color: $color-blue-light;
         color: $color-blue-darkest;
 
         &:hover {
-            background-color: darken($color-blue-6, 5%);
+            background-color: darken($color-blue-light, 5%);
         }
     }
 
