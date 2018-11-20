@@ -41,37 +41,37 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
 
-                foreach (var declarationTestGroup in DeclarationItemForm.TestGroupList)
-                {
-                    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
-                    {
-                        requirementItem.OutcomeData = new OutcomeData
-                        {
-                            Id = Guid.NewGuid(),
-                            RequirementItemId = requirementItem.Id,
-                            RuleDataList = new List<RuleData>(),
-                            DeclarationTestItemId = DeclarationItemForm.DeclarationTestItem.Id
-                        };
+                //foreach (var declarationTestGroup in DeclarationItemForm.TestGroupList)
+                //{
+                //    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
+                //    {
+                //        requirementItem.OutcomeData = new OutcomeData
+                //        {
+                //            Id = Guid.NewGuid(),
+                //            RequirementItemId = requirementItem.Id,
+                //            RuleDataList = new List<RuleData>(),
+                //            DeclarationTestItemId = DeclarationItemForm.DeclarationTestItem.Id
+                //        };
 
-                        foreach (var ruleItem in requirementItem.RuleList)
-                        {
-                            requirementItem.OutcomeData.RuleDataList.Add(new RuleData
-                            {
-                                Id = Guid.NewGuid(),
-                                RuleItemId = ruleItem.Id,
-                                AnswerDataList = ruleItem.AnswerList.Select(x => new AnswerData
-                                {
-                                    Id = Guid.NewGuid(),
-                                    AnswerItemId = x.Id,
-                                    TypeOfAnswerId = x.TypeOfAnswerId,
-                                    String = GetAnswerFromFormString($"answer_string_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
-                                    Bool = GetAnswerFromForm<Boolean>($"answer_bool_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
-                                    Int = GetAnswerFromForm<Int32>($"answer_int_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}")
-                                }).ToList()
-                            });
-                        }
-                    }
-                }
+                //        foreach (var ruleItem in requirementItem.RuleList)
+                //        {
+                //            requirementItem.OutcomeData.RuleDataList.Add(new RuleData
+                //            {
+                //                Id = Guid.NewGuid(),
+                //                RuleItemId = ruleItem.Id,
+                //                AnswerDataList = ruleItem.AnswerList.Select(x => new AnswerData
+                //                {
+                //                    Id = Guid.NewGuid(),
+                //                    AnswerItemId = x.Id,
+                //                    TypeOfAnswerId = x.TypeOfAnswerId,
+                //                    String = GetAnswerFromFormString($"answer_string_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
+                //                    Bool = GetAnswerFromForm<Boolean>($"answer_bool_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
+                //                    Int = GetAnswerFromForm<Int32>($"answer_int_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}")
+                //                }).ToList()
+                //            });
+                //        }
+                //    }
+                //}
 
                 var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", DeclarationItemForm);
 
