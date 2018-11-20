@@ -28,35 +28,43 @@
 
             foreach (var ruleItem in requirementItem.RuleList.OrderBy(x => x.Order))
             {
-                <div class="jsRuleItem" id="@ruleItem.Id">
+            <div class="jsRuleItem" id="@ruleItem.Id">
 
-                    @foreach (var answerItem in ruleItem.AnswerList)
+                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                {
+                    var id = declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                     {
-                        var id = declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                        {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt">
-                                @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + id })
-                            </div>
-                        }
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                        {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt">
-                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + id })
-                            </div>
-                        }
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                        {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt">
-                                @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + id })
-                            </div>
-                        }
+                        <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                            @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + id })
+                        </div>
                     }
 
-                </div>
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                    {
+                        <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                            @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + id })
+                        </div>
+                    }
+
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                    {
+                        <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                            @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + id })
+                        </div>
+                    }
+
+                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                    {
+                        <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                            Välj bild:
+                            <input type="file" accept="image/*">
+                        </div>
+                    }
+                }
+
+            </div>
 
                 <br />
             }
