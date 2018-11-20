@@ -11,6 +11,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
     {
         public Guid Id { get; set; }
 
+        public Guid IndicatorItemId { get; set; }
+
         public Guid RequirementItemId { get; set; }
 
         public Guid DeclarationTestItemId { get; set; }
@@ -21,6 +23,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
         public ValueListTypeOfResult Result { get; set; }
 
         public String ResultText { get; set; }
+
+        public IndicatorItem Indicator { get; set; }
 
         public RequirementItem Requirement { get; set; }
 

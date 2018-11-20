@@ -9,7 +9,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public String Name { get; set; }
 
-        public ICollection<RequirementItem> RequirementList { get; set; }
+        public ICollection<IndicatorTestGroup> IndicatorList { get; set; }
 
         public ICollection<DeclarationTestGroup> DeclarationList { get; set; }
     }

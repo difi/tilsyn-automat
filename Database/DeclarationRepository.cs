@@ -36,24 +36,24 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var item = dbContext.DeclarationList
-                    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
-                    .Include(x => x.Company).ThenInclude(x => x.UserList)
-                    .Include(x => x.User)
-                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
-                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
-                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
-                    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
-                    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
-                    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RequirementUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
-                    .AsNoTracking().SingleOrDefault(x => x.Id == id);
+                //var item = dbContext.DeclarationList
+                //    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
+                //    .Include(x => x.Company).ThenInclude(x => x.UserList)
+                //    .Include(x => x.User)
+                //    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                //    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
+                //    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                //    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.IndicatorList).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
+                //    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
+                //    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RequirementUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
+                //    .AsNoTracking().SingleOrDefault(x => x.Id == id);
 
-                if (item != null)
-                {
-                    result.Data = (T)item;
-                    result.Id = item.Id;
-                    result.Succeeded = true;
-                }
+                //if (item != null)
+                //{
+                //    result.Data = (T)item;
+                //    result.Id = item.Id;
+                //    result.Succeeded = true;
+                //}
             }
             catch (Exception exception)
             {
@@ -97,7 +97,8 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var list = dbContext.OutcomeData
                     .Include(x => x.Result)
-                    .Include(x => x.Requirement).ThenInclude(x => x.TestGroup)
+                    .Include(x => x.Requirement)
+                    .Include(x => x.Indicator).ThenInclude(x => x.TestGroupList)
                     .Include(x => x.RuleDataList).ThenInclude(x=>x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Result)
@@ -202,46 +203,48 @@ namespace Difi.Sjalvdeklaration.Database
         {
             var result = new ApiResult();
 
+            return result;
+
             try
             {
-                foreach (var declarationTestGroup in declarationItem.TestGroupList)
-                {
-                    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
-                    {
-                        var outcomeData = requirementItem.OutcomeData;
-                        outcomeData.ResultId = (int)TypeOfResult.NotTested;
+                //foreach (var declarationTestGroup in declarationItem.TestGroupList)
+                //{
+                //    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
+                //    {
+                //        var outcomeData = requirementItem.OutcomeData;
+                //        outcomeData.ResultId = (int)TypeOfResult.NotTested;
 
-                        foreach (var ruleData in outcomeData.RuleDataList)
-                        {
-                            ruleData.ResultId = (int)TypeOfResult.NotTested;
+                //        foreach (var ruleData in outcomeData.RuleDataList)
+                //        {
+                //            ruleData.ResultId = (int)TypeOfResult.NotTested;
 
-                            foreach (var answerData in ruleData.AnswerDataList)
-                            {
-                                answerData.ResultId = (int) GetResultId(answerData);
-                            }
+                //            foreach (var answerData in ruleData.AnswerDataList)
+                //            {
+                //                answerData.ResultId = (int) GetResultId(answerData);
+                //            }
 
-                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
-                            {
-                                ruleData.ResultId = (int)TypeOfResult.Fail;
-                            }
-                            else
-                            {
-                                ruleData.ResultId = (int) TypeOfResult.Ok;
-                            }
-                        }
+                //            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                //            {
+                //                ruleData.ResultId = (int)TypeOfResult.Fail;
+                //            }
+                //            else
+                //            {
+                //                ruleData.ResultId = (int) TypeOfResult.Ok;
+                //            }
+                //        }
 
-                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
-                        {
-                            outcomeData.ResultId = (int)TypeOfResult.Fail;
-                        }
-                        else
-                        {
-                            outcomeData.ResultId = (int)TypeOfResult.Ok;
-                        }
+                //        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                //        {
+                //            outcomeData.ResultId = (int)TypeOfResult.Fail;
+                //        }
+                //        else
+                //        {
+                //            outcomeData.ResultId = (int)TypeOfResult.Ok;
+                //        }
 
-                        dbContext.OutcomeData.Add(outcomeData);
-                    }
-                }
+                //        dbContext.OutcomeData.Add(outcomeData);
+                //    }
+                //}
 
                 //var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
 
