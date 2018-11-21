@@ -17,9 +17,5 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
         public ICollection<RuleItem> RuleList { get; set; }
 
         public ICollection<RequirementUserPrerequisite> RequirementUserPrerequisiteList { get; set; }
-
-        [NotMapped]
-        public OutcomeData OutcomeData { get; set; }
-
     }
 }

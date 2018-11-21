@@ -20,6 +20,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult Update(DeclarationItem declarationItem);
 
-        ApiResult Save(DeclarationItem declarationItem);
+        ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList);
     }
 }

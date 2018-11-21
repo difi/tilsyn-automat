@@ -11,11 +11,11 @@
         if (type === "bool") {
             $(this).find("input:checked").each(function () {
                 if ($(this).val() === bool) {
-                    $('[data-ViewIfParentCorrectId="' + id + '"]').show();
-                    $('[data-ViewIfParentFailedId="' + id + '"]').hide();
+                    $('[data-ViewIfParentCorrectId="' + id + '"]').slideDown("fast");
+                    $('[data-ViewIfParentFailedId="' + id + '"]').slideUp("fast");
                 } else {
-                    $('[data-ViewIfParentCorrectId="' + id + '"]').hide();
-                    $('[data-ViewIfParentFailedId="' + id + '"]').show();
+                    $('[data-ViewIfParentCorrectId="' + id + '"]').slideUp("fast");
+                    $('[data-ViewIfParentFailedId="' + id + '"]').slideDown("fast");
                 }
             });
         }

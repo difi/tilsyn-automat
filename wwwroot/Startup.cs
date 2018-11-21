@@ -38,6 +38,7 @@ namespace Difi.Sjalvdeklaration.wwwroot
             });
 
             services.AddDbContext<ApplicationDbContext>(optionsBuilder1 => optionsBuilder1.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), optionsBuilder2 => optionsBuilder2.MigrationsAssembly("Difi.Sjalvdeklaration.wwwroot")));
+            services.AddDbContext<LogDbContext>(optionsBuilder1 => optionsBuilder1.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), optionsBuilder2 => optionsBuilder2.MigrationsAssembly("Difi.Sjalvdeklaration.wwwroot")));
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 

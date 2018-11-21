@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181121145803_V7")]
+    partial class V7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,6 +147,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid>("IndicatorItemId");
 
+                    b.Property<Guid?>("RequirementId");
+
                     b.Property<int>("ResultId");
 
                     b.Property<string>("ResultText");
@@ -154,6 +158,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasIndex("DeclarationTestItemId");
 
                     b.HasIndex("IndicatorItemId");
+
+                    b.HasIndex("RequirementId");
 
                     b.HasIndex("ResultId");
 
@@ -531,6 +537,36 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("ImageList");
                 });
 
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.LogItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CallParameter1");
+
+                    b.Property<string>("CallParameter2");
+
+                    b.Property<string>("Class");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Function");
+
+                    b.Property<string>("ResultException");
+
+                    b.Property<Guid>("ResultId");
+
+                    b.Property<string>("ResultString");
+
+                    b.Property<bool>("ResultSucceeded");
+
+                    b.Property<Guid>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogList");
+                });
+
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.User.RoleItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -830,6 +866,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .WithMany("OutcomeDataList")
                         .HasForeignKey("IndicatorItemId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
+                        .WithMany()
+                        .HasForeignKey("RequirementId");
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
                         .WithMany("OutcomeDataList")

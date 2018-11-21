@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
@@ -23,5 +24,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public ICollection<DeclarationIndicatorGroup> DeclarationList { get; set; }
 
+        [NotMapped]
+        public OutcomeData OutcomeData { get; set; }
     }
 }

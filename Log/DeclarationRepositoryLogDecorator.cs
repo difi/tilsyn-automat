@@ -62,11 +62,11 @@ namespace Log
             return result;
         }
 
-        public ApiResult Save(DeclarationItem declarationItem)
+        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList)
         {
-            var result = inner.Save(declarationItem);
+            var result = inner.Save(declarationItemId, outcomeDataList);
 
-            logRepository.Add(new LogItem(userId, result, declarationItem));
+            logRepository.Add(new LogItem(userId, result, declarationItemId, outcomeDataList));
 
             return result;
         }

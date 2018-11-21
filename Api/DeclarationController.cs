@@ -67,11 +67,11 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("Save")]
-        public ApiResult Save(DeclarationItem declarationItem)
+        public ApiResult Save(DeclarationSave declarationSave)
         {
             HandleRequest();
 
-            return declarationRepository.Save(declarationItem);
+            return declarationRepository.Save(declarationSave.Id, declarationSave.OutcomeDataList);
         }
 
         private void HandleRequest()

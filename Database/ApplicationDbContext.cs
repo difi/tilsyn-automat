@@ -28,8 +28,6 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<DeclarationItem> DeclarationList { get; set; }
 
-        public DbSet<LogItem> LogList { get; set; }
-
         public DbSet<ImageItem> ImageList { get; set; }
 
         public DbSet<ValueListTypeOfMachine> VlTypeOfMachineList { get; set; }

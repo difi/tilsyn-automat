@@ -4,7 +4,10 @@ using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -38,39 +41,42 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
 
-                //foreach (var declarationTestGroup in DeclarationItemForm.TestGroupList)
-                //{
-                //    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
-                //    {
-                //        requirementItem.OutcomeData = new OutcomeData
-                //        {
-                //            Id = Guid.NewGuid(),
-                //            RequirementItemId = requirementItem.Id,
-                //            RuleDataList = new List<RuleData>(),
-                //            DeclarationTestItemId = DeclarationItemForm.DeclarationTestItem.Id
-                //        };
+                var outcomeDataList = new List<OutcomeData>();
 
-                //        foreach (var ruleItem in requirementItem.RuleList)
-                //        {
-                //            requirementItem.OutcomeData.RuleDataList.Add(new RuleData
-                //            {
-                //                Id = Guid.NewGuid(),
-                //                RuleItemId = ruleItem.Id,
-                //                AnswerDataList = ruleItem.AnswerList.Select(x => new AnswerData
-                //                {
-                //                    Id = Guid.NewGuid(),
-                //                    AnswerItemId = x.Id,
-                //                    TypeOfAnswerId = x.TypeOfAnswerId,
-                //                    String = GetAnswerFromFormString($"answer_string_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
-                //                    Bool = GetAnswerFromForm<Boolean>($"answer_bool_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}"),
-                //                    Int = GetAnswerFromForm<Int32>($"answer_int_{declarationTestGroup.TestGroupItemId}_{requirementItem.Id}_{ruleItem.Id}_{x.Id}")
-                //                }).ToList()
-                //            });
-                //        }
-                //    }
-                //}
+                foreach (var declarationTestGroup in DeclarationItemForm.IndicatorList)
+                {
+                    var indicator = declarationTestGroup.IndicatorItem;
 
-                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", DeclarationItemForm);
+                    var outcomeData = new OutcomeData
+                    {
+                        Id = Guid.NewGuid(),
+                        IndicatorItemId = indicator.Id,
+                        RuleDataList = new List<RuleData>(),
+                        DeclarationTestItemId = DeclarationItemForm.DeclarationTestItem.Id
+                    };
+
+                    foreach (var ruleItem in indicator.RuleList)
+                    {
+                        outcomeData.RuleDataList.Add(new RuleData
+                        {
+                            Id = Guid.NewGuid(),
+                            RuleItemId = ruleItem.Id,
+                            AnswerDataList = ruleItem.AnswerList.Select(x => new AnswerData
+                            {
+                                Id = Guid.NewGuid(),
+                                AnswerItemId = x.Id,
+                                TypeOfAnswerId = x.TypeOfAnswerId,
+                                String = GetAnswerFromFormString($"answer_string_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
+                                Bool = GetAnswerFromForm<Boolean>($"answer_bool_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
+                                Int = GetAnswerFromForm<Int32>($"answer_int_{indicator.Id}__{ruleItem.Id}_{x.Id}")
+                            }).ToList()
+                        });
+                    }
+
+                    outcomeDataList.Add(outcomeData);
+                }
+
+                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, OutcomeDataList = outcomeDataList});
 
                 if (result.Succeeded)
                 {

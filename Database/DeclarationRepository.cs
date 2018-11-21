@@ -95,7 +95,6 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var list = dbContext.OutcomeData
                     .Include(x => x.Result)
-                    .Include(x => x.Requirement)
                     .Include(x => x.Indicator).ThenInclude(x => x.TestGroupList)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
@@ -197,64 +196,58 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult Save(DeclarationItem declarationItem)
+        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList)
         {
             var result = new ApiResult();
 
-            return result;
-
             try
             {
-                //foreach (var declarationTestGroup in declarationItem.TestGroupList)
-                //{
-                //    foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList)
-                //    {
-                //        var outcomeData = requirementItem.OutcomeData;
-                //        outcomeData.ResultId = (int)TypeOfResult.NotTested;
+                foreach (var outcomeData in outcomeDataList)
+                {
+                        outcomeData.ResultId = (int)TypeOfResult.NotTested;
 
-                //        foreach (var ruleData in outcomeData.RuleDataList)
-                //        {
-                //            ruleData.ResultId = (int)TypeOfResult.NotTested;
+                        foreach (var ruleData in outcomeData.RuleDataList)
+                        {
+                            ruleData.ResultId = (int)TypeOfResult.NotTested;
 
-                //            foreach (var answerData in ruleData.AnswerDataList)
-                //            {
-                //                answerData.ResultId = (int) GetResultId(answerData);
-                //            }
+                            foreach (var answerData in ruleData.AnswerDataList)
+                            {
+                                answerData.ResultId = (int)GetResultId(answerData);
+                            }
 
-                //            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
-                //            {
-                //                ruleData.ResultId = (int)TypeOfResult.Fail;
-                //            }
-                //            else
-                //            {
-                //                ruleData.ResultId = (int) TypeOfResult.Ok;
-                //            }
-                //        }
+                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                            {
+                                ruleData.ResultId = (int)TypeOfResult.Fail;
+                            }
+                            else
+                            {
+                                ruleData.ResultId = (int)TypeOfResult.Ok;
+                            }
+                        }
 
-                //        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
-                //        {
-                //            outcomeData.ResultId = (int)TypeOfResult.Fail;
-                //        }
-                //        else
-                //        {
-                //            outcomeData.ResultId = (int)TypeOfResult.Ok;
-                //        }
+                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                        {
+                            outcomeData.ResultId = (int)TypeOfResult.Fail;
+                        }
+                        else
+                        {
+                            outcomeData.ResultId = (int)TypeOfResult.Ok;
+                        }
 
-                //        dbContext.OutcomeData.Add(outcomeData);
-                //    }
-                //}
+                        dbContext.OutcomeData.Add(outcomeData);
+                }
 
-                //var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
+                var dbItem = Get<DeclarationItem>(declarationItemId).Data;
 
-                //dbItem.Status = DeclarationStatus.Complete;
-                //dbItem.SentInDate = DateTime.Now;
+                dbItem.Status = DeclarationStatus.Complete;
+                dbItem.SentInDate = DateTime.Now;
 
-                //dbContext.DeclarationList.Update(dbItem);
+                dbContext.DeclarationList.Update(dbItem);
 
                 dbContext.SaveChanges();
 
                 result.Succeeded = true;
-                result.Id = declarationItem.Id;
+                result.Id = dbItem.Id;
             }
             catch (Exception exception)
             {
