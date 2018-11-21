@@ -15,6 +15,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public DateTime LastChanged { get; set; }
 
+        public RequirementItem RequirementItem { get; set; }
+
         public ICollection<RuleItem> RuleList { get; set; }
 
         public ICollection<IndicatorUserPrerequisite> IndicatorUserPrerequisiteList { get; set; }

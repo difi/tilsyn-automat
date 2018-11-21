@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
@@ -30,5 +31,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
         public StandardItem Standard { get; set; }
 
         public RequirementItem Requirement { get; set; }
+
+        public ICollection<RuleData> RuleDataList { get; set; }
     }
 }
