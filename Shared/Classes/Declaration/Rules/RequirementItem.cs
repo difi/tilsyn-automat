@@ -18,8 +18,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public ICollection<RequirementUserPrerequisite> RequirementUserPrerequisiteList { get; set; }
 
-        public IndicatorItem Indicator { get; set; }
-
         [NotMapped]
         public OutcomeData OutcomeData { get; set; }
 
