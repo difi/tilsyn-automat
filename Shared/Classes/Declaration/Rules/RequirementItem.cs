@@ -12,8 +12,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public Guid IndicatorItemId { get; set; }
 
-        public int Order { get; set; }
-
         public String Description { get; set; }
 
         public ICollection<RuleItem> RuleList { get; set; }

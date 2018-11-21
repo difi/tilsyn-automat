@@ -9,8 +9,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
     {
         public Guid Id { get; set; }
 
-        public int Order { get; set; }
-
         public String Name { get; set; }
 
         public DateTime LastChanged { get; set; }

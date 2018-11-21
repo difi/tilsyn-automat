@@ -1,6 +1,6 @@
-﻿@*@page
+﻿@page
 @using Difi.Sjalvdeklaration.Shared.Enum
-@model DeclarationFormModel
+@model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.DeclarationFormModel
 
 @{
     var title = "Selvdeklarasjon";
@@ -16,28 +16,23 @@
     TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
     <br /><br />
 
-
-
     @foreach (var declarationTestGroup in Model.DeclarationItemForm.TestGroupList.OrderBy(x => x.Order))
     {
         <h2 class="h2-toggle">@declarationTestGroup.TestGroupItem.Name</h2>
 
         <div>
-
-
-
-            @foreach (var requirementItem in declarationTestGroup.TestGroupItem.RequirementList.OrderBy(x => x.Order))
+            @foreach (var requirementItem in declarationTestGroup.TestGroupItem.IndicatorList.OrderBy(x => x.Order))
             {
             <div class="card">
-                <h3><span>1.2</span>@requirementItem.Description</h3>
+                <h3><span>1.2</span>@requirementItem.IndicatorItem.Name</h3>
 
-                @foreach (var ruleItem in requirementItem.RuleList.OrderBy(x => x.Order))
+                @foreach (var ruleItem in requirementItem.IndicatorItem.RuleList.OrderBy(x => x.Order))
                 {
                 <div class="card-divider jsRuleItem" id="@ruleItem.Id">
 
                     @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                     {
-                        var id = declarationTestGroup.TestGroupItemId + "_" + requirementItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                        var id = declarationTestGroup.TestGroupItemId + "_" + requirementItem.IndicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
 
                         if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                         {
@@ -84,4 +79,4 @@
 @section Scripts {
     <script src="~/js/declarationForm.js"></script>
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
-}*@
+}

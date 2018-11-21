@@ -353,7 +353,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var indicatorItem1 = new IndicatorItem
             {
-                Order = 1,
                 Id = Guid.Parse("692627b2-53bc-43f2-900d-44a40a21e7e9"),
                 Name = "1 Kundens betjeningsområde ",
                 LastChanged = new DateTime(2018,11,21)
@@ -361,7 +360,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var indicatorItem2 = new IndicatorItem
             {
-                Order = 2,
                 Id = Guid.Parse("6b4bf385-9174-4634-bc9e-bfbdab98586e"),
                 Name = "2 avstand mellom automater ",
                 LastChanged = new DateTime(2018, 11, 21)
@@ -369,7 +367,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var indicatorItem3 = new IndicatorItem
             {
-                Order = 3,
                 Id = Guid.Parse("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"),
                 Name = "3 Plassering av skilt",
                 LastChanged = new DateTime(2018, 11, 21)
@@ -377,7 +374,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var indicatorItem4 = new IndicatorItem
             {
-                Order = 4,
                 Id = Guid.Parse("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"),
                 Name = "Utfall 4 Høyde på betalingsterm",
                 LastChanged = new DateTime(2018, 11, 21)
@@ -418,25 +414,29 @@ namespace Difi.Sjalvdeklaration.Database
             var indicatorTestGroup1 = new IndicatorTestGroup
             {
                 IndicatorItemId = indicatorItem1.Id,
-                TestGroupItemId = testGroup1.Id
+                TestGroupItemId = testGroup1.Id,
+                Order = 1
             };
 
             var indicatorTestGroup2 = new IndicatorTestGroup
             {
                 IndicatorItemId = indicatorItem2.Id,
-                TestGroupItemId = testGroup1.Id
+                TestGroupItemId = testGroup1.Id,
+                Order = 2
             };
 
             var indicatorTestGroup3 = new IndicatorTestGroup
             {
                 IndicatorItemId = indicatorItem3.Id,
-                TestGroupItemId = testGroup2.Id
+                TestGroupItemId = testGroup2.Id,
+                Order = 3
             };
 
             var indicatorTestGroup4 = new IndicatorTestGroup
             {
                 IndicatorItemId = indicatorItem4.Id,
-                TestGroupItemId = testGroup3.Id
+                TestGroupItemId = testGroup3.Id,
+                Order = 4
             };
 
             var ruleItem11 = new RuleItem
