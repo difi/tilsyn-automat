@@ -20,9 +20,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public String Question { get; set; }
 
-        public bool ViewIfOtherFailed { get; set; }
+        public Guid ViewIfParentFailedId { get; set; }
 
-        public Guid ViewIfOtherFaildId { get; set; }
+        public Guid ViewIfParentCorrectId { get; set; }
 
         public bool Bool { get; set; }
 

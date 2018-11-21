@@ -523,8 +523,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("d7b40e3c-e7fa-44e5-b44f-750759c971cc"),
                 TypeOfAnswerId = typeOfAnswer1.Id,
                 RuleItemId = ruleItem11.Id,
-                ViewIfOtherFailed = true,
-                ViewIfOtherFaildId = answerItem111.Id,
+                ViewIfParentFailedId = answerItem111.Id,
             };
 
             var answerItem121 = new AnswerItem
@@ -555,8 +554,7 @@ namespace Difi.Sjalvdeklaration.Database
                 MinInt = 220,
                 MaxInt = -1,
                 RuleItemId = ruleItem12.Id,
-                ViewIfOtherFailed = true,
-                ViewIfOtherFaildId = answerItem121.Id,
+                ViewIfParentFailedId = answerItem121.Id,
             };
 
             var answerItem211 = new AnswerItem
@@ -587,8 +585,7 @@ namespace Difi.Sjalvdeklaration.Database
                 MinInt = 150,
                 MaxInt = -1,
                 RuleItemId = ruleItem21.Id,
-                ViewIfOtherFailed = true,
-                ViewIfOtherFaildId = answerItem211.Id
+                ViewIfParentFailedId = answerItem211.Id
             };
 
             var answerItem311 = new AnswerItem
@@ -618,8 +615,7 @@ namespace Difi.Sjalvdeklaration.Database
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
-                ViewIfOtherFailed = true,
-                ViewIfOtherFaildId = answerItem311.Id
+                ViewIfParentCorrectId = answerItem311.Id
             };
 
             var answerItem314 = new AnswerItem
@@ -630,8 +626,7 @@ namespace Difi.Sjalvdeklaration.Database
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
-                ViewIfOtherFailed = true,
-                ViewIfOtherFaildId = answerItem311.Id
+                ViewIfParentCorrectId = answerItem311.Id
             };
 
             var answerItem141 = new AnswerItem

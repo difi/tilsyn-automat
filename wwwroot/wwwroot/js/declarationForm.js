@@ -1,40 +1,23 @@
 ﻿$(function () {
-    console.log($('[data-viewifotherfailed="True"]').length);
+    $('[data-hide="True"]').hide();
 
-    $('[data-viewifotherfailed="True"]').hide();
-
-    $(".jsAnswerItem").change(function () {
-        var answerItem = $(this);
-
+    $('.jsAnswerItem').change(function () {
         var type = $(this).data("type");
         var id = $(this).data("id");
         var bool = $(this).data("bool").toLowerCase();
-        var min = $(this).data("min");
-        var max = $(this).data("max");
-        var viewifotherfailed = $(this).data("data-viewifotherfailed");
+        //var min = $(this).data("min");
+        //var max = $(this).data("max");
         
         if (type === "bool") {
-
-            console.log("Hmmm1");
-
             $(this).find("input:checked").each(function () {
-
-                console.log("Hmmm2");
-
                 if ($(this).val() === bool) {
-                    //answerItem.removeClass("errorOnThis");
-                    answerItem.data("correct", true);
-                    answerItem.next().next().hide();
+                    $('[data-ViewIfParentCorrectId="' + id + '"]').show();
+                    $('[data-ViewIfParentFailedId="' + id + '"]').hide();
                 } else {
-                    //answerItem.addClass("errorOnThis");
-                    answerItem.data("correct", false);
-                    answerItem.next().next().show();
+                    $('[data-ViewIfParentCorrectId="' + id + '"]').hide();
+                    $('[data-ViewIfParentFailedId="' + id + '"]').show();
                 }
             });
         }
-
-        console.log(id);
-        console.log(type);
-        console.log(bool);
     });
 });

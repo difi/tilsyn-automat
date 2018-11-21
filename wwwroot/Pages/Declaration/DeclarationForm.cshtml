@@ -6,6 +6,8 @@
     var title = "Selvdeklarasjon";
     var lastTestGroupOrder = 0;
     ViewData["Title"] = title;
+    var mainIndex = 1;
+    var subIndex = 0;
 }
 
 <h1>@title</h1>
@@ -18,55 +20,56 @@
 
     @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
     {
+
         var indicatorItem = declarationIndicatorGroup.IndicatorItem;
 
         if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
         {
+            subIndex = 0;
+            mainIndex++;
+
             lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-            <h2 class="h2-toggle">@declarationIndicatorGroup.TestGroupOrder @declarationIndicatorGroup.IndicatorItem.Name</h2>
+            <h2 class="h2-toggle">@mainIndex @declarationIndicatorGroup.IndicatorItem.Name</h2>
         }
 
         <div>
             @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
             {
                 var firstQuestion = true;
+                subIndex++;
 
                 <div class="card">
                     <div class="card-divider jsRuleItem" id="@ruleItem.Id">
                         @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                         {
-                            var id = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                            var orderText = declarationIndicatorGroup.IndicatorInTestGroupOrder + "." + ruleItem.Order;
+                            var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
 
-                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                            {
-                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                    @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + id, firstQuestion = firstQuestion, orderText = orderText })
-                                </div>
-                            }
+                            var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                            var orderText = mainIndex + "." + subIndex;
 
-                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                            {
-                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                    @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + id, firstQuestion = firstQuestion, orderText = orderText })
-                                </div>
-                            }
+                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                {
+                                    @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                }
 
-                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                            {
-                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                    @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + id, firstQuestion = firstQuestion, orderText = orderText })
-                                </div>
-                            }
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                {
+                                    @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                }
 
-                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                            {
-                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                    Välj bild:
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                {
+                                    @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                }
+
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                {
+                                    <span>Välj bild:</span>
                                     <input type="file" accept="image/*">
-                                </div>
-                            }
+                                }
+                            </div>
 
                             firstQuestion = false;
                         }
