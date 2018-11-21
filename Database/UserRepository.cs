@@ -27,7 +27,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Id == id);
+                var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).AsNoTracking().SingleOrDefault(x => x.Id == id);
 
                 if (item != null)
                 {
@@ -50,7 +50,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).SingleOrDefault(x => x.Token == token);
+                var item = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).Include(x => x.CompanyList).ThenInclude(x => x.CompanyItem).ThenInclude(x => x.ContactPersonList).AsNoTracking().SingleOrDefault(x => x.Token == token);
 
                 if (item != null)
                 {
@@ -73,7 +73,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).OrderBy(x => x.Name).ToList();
+                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

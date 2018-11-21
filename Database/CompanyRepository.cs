@@ -30,7 +30,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.Id == id);
+                var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().SingleOrDefault(x => x.Id == id);
 
                 if (item != null)
                 {
@@ -53,7 +53,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
+                var item = dbContext.CompanyList.Include(x => x.ContactPersonList).Include(x => x.UserList).ThenInclude(x => x.UserItem).Include(x => x.DeclarationList).AsNoTracking().SingleOrDefault(x => x.CorporateIdentityNumber == corporateIdentityNumber);
 
                 if (item != null)
                 {

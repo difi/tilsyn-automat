@@ -4,6 +4,7 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -22,7 +23,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfMachineList.OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfMachineList.AsNoTracking().OrderBy(x => x.Text).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -41,7 +42,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfTestList.OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfTestList.AsNoTracking().OrderBy(x => x.Text).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -60,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfSupplierAndVersionList.OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfSupplierAndVersionList.AsNoTracking().OrderBy(x => x.Text).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

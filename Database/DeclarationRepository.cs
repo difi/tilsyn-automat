@@ -260,7 +260,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         private TypeOfResult GetResultId(AnswerData answerData)
         {
-            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).Single(x => x.Id == answerData.AnswerItemId);
+            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
 
             switch (answerItem.TypeOfAnswer.Id)
             {
