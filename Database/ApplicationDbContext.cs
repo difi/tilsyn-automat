@@ -336,46 +336,49 @@ namespace Difi.Sjalvdeklaration.Database
             var testGroup1 = new TestGroupItem
             {
                 Id = Guid.Parse("aec1869a-30f8-403c-b909-df115173f009"),
-                Name = "Kundens betjeningsområde",
+                Name = "Betjeningsområde",
+                Order =  1,
             };
 
             var testGroup2 = new TestGroupItem
             {
                 Id = Guid.Parse("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"),
                 Name = "Skilt",
+                Order = 2,
             };
 
             var testGroup3 = new TestGroupItem
             {
                 Id = Guid.Parse("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"),
-                Name = "Betjeningshøyde"
+                Name = "Betjeningshøyde",
+                Order = 3,
             };
 
             var indicatorItem1 = new IndicatorItem
             {
                 Id = Guid.Parse("692627b2-53bc-43f2-900d-44a40a21e7e9"),
-                Name = "1 Kundens betjeningsområde ",
+                Name = "Kundens betjeningsområde",
                 LastChanged = new DateTime(2018,11,21)
             };
 
             var indicatorItem2 = new IndicatorItem
             {
                 Id = Guid.Parse("6b4bf385-9174-4634-bc9e-bfbdab98586e"),
-                Name = "2 avstand mellom automater ",
+                Name = "Avstand mellom automater",
                 LastChanged = new DateTime(2018, 11, 21)
             };
 
             var indicatorItem3 = new IndicatorItem
             {
                 Id = Guid.Parse("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"),
-                Name = "3 Plassering av skilt",
+                Name = "Plassering av skilt",
                 LastChanged = new DateTime(2018, 11, 21)
             };
 
             var indicatorItem4 = new IndicatorItem
             {
                 Id = Guid.Parse("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"),
-                Name = "Utfall 4 Høyde på betalingsterm",
+                Name = "Høyde på betalingsterm",
                 LastChanged = new DateTime(2018, 11, 21)
             };
 
@@ -425,20 +428,21 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 IndicatorItemId = indicatorItem3.Id,
                 TestGroupItemId = testGroup2.Id,
-                Order = 3
+                Order = 1
             };
 
             var indicatorTestGroup4 = new IndicatorTestGroup
             {
                 IndicatorItemId = indicatorItem4.Id,
                 TestGroupItemId = testGroup3.Id,
-                Order = 4
+                Order = 1
             };
 
             var ruleItem11 = new RuleItem
             {
-                Order = 4,
+                Order = 1,
                 RequirementItemId = requirementItem1.Id,
+                IndicatorItemId = indicatorItem1.Id,
                 Id = Guid.Parse("eb160c6c-3a9e-4dff-93df-577d9eab4e09"),
                 HelpText = "",
                 ToolsNeed = "Ingen",
@@ -448,8 +452,9 @@ namespace Difi.Sjalvdeklaration.Database
 
             var ruleItem12 = new RuleItem
             {
-                Order = 5,
+                Order = 2,
                 RequirementItemId = requirementItem1.Id,
+                IndicatorItemId = indicatorItem1.Id,
                 Id = Guid.Parse("b64cac7e-6525-49e8-9112-0238e1588ed8"),
                 HelpText = "",
                 ToolsNeed = "Ingen",
@@ -461,6 +466,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Order = 1,
                 RequirementItemId = requirementItem2.Id,
+                IndicatorItemId = indicatorItem2.Id,
                 Id = Guid.Parse("0d6c763e-e0f6-4049-adeb-ae9429262b57"),
                 HelpText = "",
                 ToolsNeed = "Ingen",
@@ -472,6 +478,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Order = 1,
                 RequirementItemId = requirementItem3.Id,
+                IndicatorItemId = indicatorItem3.Id,
                 Id = Guid.Parse("832e0843-cab3-4dbc-9799-974e283fcc0b"),
                 HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />",
                 ToolsNeed = "Ingen",
@@ -483,6 +490,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Order = 1,
                 RequirementItemId = requirementItem4.Id,
+                IndicatorItemId = indicatorItem4.Id,
                 Id = Guid.Parse("5b3af04b-f6c6-4425-a22f-c2e7479839a5"),
                 ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem41.Id,

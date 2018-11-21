@@ -3,13 +3,20 @@
 @{
     var name = ViewData["id"];
     var text = ViewData["text"];
+    var orderText = ViewData["orderText"];
+    var firstQuestion = (bool)ViewData["firstQuestion"];
 }
 
 <div class="form-field">
     <label for="@name">
+        @if (firstQuestion)
+        {
+            <span>@orderText</span>
+        }
+
         @text
     </label>
-    
+
     <textarea id="@name" name="@name" value="">
     </textarea>
 </div>

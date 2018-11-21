@@ -316,7 +316,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid>("IndicatorItemId");
 
-                    b.Property<int>("Order");
+                    b.Property<int>("IndicatorInTestGroupOrder");
+
+                    b.Property<int>("TestGroupOrder");
 
                     b.HasKey("DeclarationItemId", "IndicatorItemId");
 
@@ -339,10 +341,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("IndicatorList");
 
                     b.HasData(
-                        new { Id = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "1 Kundens betjeningsområde " },
-                        new { Id = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "2 avstand mellom automater " },
-                        new { Id = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "3 Plassering av skilt" },
-                        new { Id = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Utfall 4 Høyde på betalingsterm" }
+                        new { Id = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Kundens betjeningsområde" },
+                        new { Id = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Avstand mellom automater" },
+                        new { Id = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Plassering av skilt" },
+                        new { Id = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), LastChanged = new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Høyde på betalingsterm" }
                     );
                 });
 
@@ -363,8 +365,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasData(
                         new { TestGroupItemId = new Guid("aec1869a-30f8-403c-b909-df115173f009"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 1 },
                         new { TestGroupItemId = new Guid("aec1869a-30f8-403c-b909-df115173f009"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 2 },
-                        new { TestGroupItemId = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 3 },
-                        new { TestGroupItemId = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 4 }
+                        new { TestGroupItemId = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 1 },
+                        new { TestGroupItemId = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 1 }
                     );
                 });
 
@@ -429,7 +431,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("Illustration");
 
-                    b.Property<Guid?>("IndicatorItemId");
+                    b.Property<Guid>("IndicatorItemId");
 
                     b.Property<int>("Order");
 
@@ -452,11 +454,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("RuleList");
 
                     b.HasData(
-                        new { Id = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), ChapterItemId = new Guid("731a0f5c-f586-471f-b32c-ceb8027f735a"), HelpText = "", Order = 4, RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), ChapterItemId = new Guid("b80b9b15-8f0e-4702-b7d9-95cafa68f9fb"), HelpText = "", Order = 5, RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), ChapterItemId = new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), HelpText = "", Order = 1, RequirementItemId = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", Order = 1, RequirementItemId = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
-                        new { Id = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), ChapterItemId = new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" }
+                        new { Id = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), ChapterItemId = new Guid("731a0f5c-f586-471f-b32c-ceb8027f735a"), HelpText = "", IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 1, RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), ChapterItemId = new Guid("b80b9b15-8f0e-4702-b7d9-95cafa68f9fb"), HelpText = "", IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 2, RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), ChapterItemId = new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), HelpText = "", IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, RequirementItemId = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 1, RequirementItemId = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" },
+                        new { Id = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), ChapterItemId = new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), ToolsNeed = "Ingen" }
                     );
                 });
 
@@ -511,14 +513,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int>("Order");
+
                     b.HasKey("Id");
 
                     b.ToTable("TestGroupList");
 
                     b.HasData(
-                        new { Id = new Guid("aec1869a-30f8-403c-b909-df115173f009"), Name = "Kundens betjeningsområde" },
-                        new { Id = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), Name = "Skilt" },
-                        new { Id = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), Name = "Betjeningshøyde" }
+                        new { Id = new Guid("aec1869a-30f8-403c-b909-df115173f009"), Name = "Betjeningsområde", Order = 1 },
+                        new { Id = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), Name = "Skilt", Order = 2 },
+                        new { Id = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), Name = "Betjeningshøyde", Order = 3 }
                     );
                 });
 
@@ -1018,9 +1022,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .HasForeignKey("ChapterItemId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem", "Indicator")
                         .WithMany("RuleList")
-                        .HasForeignKey("IndicatorItemId");
+                        .HasForeignKey("IndicatorItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "Requirement")
                         .WithMany("RuleList")

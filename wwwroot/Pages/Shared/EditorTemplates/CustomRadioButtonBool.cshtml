@@ -5,11 +5,19 @@
     var idTrue = name + "_true";
     var idFalse = name + "_false";
     var text = ViewData["text"];
+    var orderText = ViewData["orderText"];
+    var firstQuestion = (bool)ViewData["firstQuestion"];
 }
 
 <fieldset>
-    <legend>@text</legend>
+    <legend>
+        @if (firstQuestion)
+        {
+            <span>@orderText</span>
+        } 
 
+        @text
+    </legend>
 
     <ul class="menu">
         <li>

@@ -1,15 +1,14 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Interface;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Enum;
+using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -17,13 +16,11 @@ namespace Difi.Sjalvdeklaration.Database
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IUserRepository userRepository;
-        private readonly ICompanyRepository companyRepository;
 
-        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository, ICompanyRepository companyRepository)
+        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository)
         {
             this.dbContext = dbContext;
             this.userRepository = userRepository;
-            this.companyRepository = companyRepository;
         }
 
         public void SetCurrentUser(Guid parse)
@@ -36,24 +33,25 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                //var item = dbContext.DeclarationList
-                //    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
-                //    .Include(x => x.Company).ThenInclude(x => x.UserList)
-                //    .Include(x => x.User)
-                //    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
-                //    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
-                //    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
-                //    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.IndicatorList).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
-                //    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
-                //    .Include(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.RequirementList).ThenInclude(x => x.RequirementUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
-                //    .AsNoTracking().SingleOrDefault(x => x.Id == id);
+                var item = dbContext.DeclarationList
+                    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
+                    .Include(x => x.Company).ThenInclude(x => x.UserList)
+                    .Include(x => x.User)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.TestGroupList).ThenInclude(x => x.TestGroupItem)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
+                    .AsNoTracking().SingleOrDefault(x => x.Id == id);
 
-                //if (item != null)
-                //{
-                //    result.Data = (T)item;
-                //    result.Id = item.Id;
-                //    result.Succeeded = true;
-                //}
+                if (item != null)
+                {
+                    result.Data = (T)item;
+                    result.Id = item.Id;
+                    result.Succeeded = true;
+                }
             }
             catch (Exception exception)
             {
@@ -99,7 +97,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.Result)
                     .Include(x => x.Requirement)
                     .Include(x => x.Indicator).ThenInclude(x => x.TestGroupList)
-                    .Include(x => x.RuleDataList).ThenInclude(x=>x.Result)
+                    .Include(x => x.RuleDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.AnswerItem)
@@ -135,9 +133,14 @@ namespace Difi.Sjalvdeklaration.Database
                     TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1),
                 };
 
-                foreach (var indicatorItem in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem))
+                foreach (var indicatorTestGroup in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem).Include(x=>x.TestGroupItem))
                 {
-                    declarationItem.IndicatorList.Add(new DeclarationIndicatorGroup { IndicatorItem = indicatorItem.IndicatorItem, Order = indicatorItem.Order });
+                    declarationItem.IndicatorList.Add(new DeclarationIndicatorGroup
+                    {
+                        IndicatorItem = indicatorTestGroup.IndicatorItem,
+                        TestGroupOrder = indicatorTestGroup.TestGroupItem.Order,
+                        IndicatorInTestGroupOrder = indicatorTestGroup.Order
+                    });
                 }
 
                 dbContext.DeclarationList.Add(declarationItem);
@@ -170,15 +173,15 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.DeclarationList.Update(dbItem);
 
-                if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
-                {
-                    var companyItem = companyRepository.Get<CompanyItem>(declarationItem.CompanyItemId).Data;
+                //if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
+                //{
+                //    var companyItem =  companyRepository.Get<CompanyItem>(declarationItem.CompanyItemId).Data;
 
-                    foreach (var userCompany in companyItem.UserList)
-                    {
-                        dbContext.Remove(userCompany);
-                    }
-                }
+                //    foreach (var userCompany in companyItem.UserList)
+                //    {
+                //        dbContext.Remove(userCompany);
+                //    }
+                //}
 
                 dbContext.SaveChanges();
 
@@ -268,16 +271,16 @@ namespace Difi.Sjalvdeklaration.Database
 
             switch (answerItem.TypeOfAnswer.Id)
             {
-                case (int) TypeOfAnswer.Bool when answerData.Bool == answerItem.Bool:
+                case (int)TypeOfAnswer.Bool when answerData.Bool == answerItem.Bool:
                     return TypeOfResult.Ok;
 
-                case (int) TypeOfAnswer.Bool when answerData.Bool != answerItem.Bool:
+                case (int)TypeOfAnswer.Bool when answerData.Bool != answerItem.Bool:
                     return TypeOfResult.Fail;
 
-                case (int) TypeOfAnswer.Int when answerData.Int > 0:
-                {
-                    return answerData.Int >= answerItem.MinInt && answerData.Int <= answerItem.MaxInt ? TypeOfResult.Ok : TypeOfResult.Fail;
-                }
+                case (int)TypeOfAnswer.Int when answerData.Int > 0:
+                    {
+                        return answerData.Int >= answerItem.MinInt && answerData.Int <= answerItem.MaxInt ? TypeOfResult.Ok : TypeOfResult.Fail;
+                    }
 
                 default:
                     return TypeOfResult.NotTested;

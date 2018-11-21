@@ -12,6 +12,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public Guid RequirementItemId { get; set; }
 
+        public Guid IndicatorItemId { get; set; }
+
         public Guid ChapterItemId { get; set; }
 
         public Guid StandardItemId { get; set; }
@@ -31,6 +33,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
         public StandardItem Standard { get; set; }
 
         public RequirementItem Requirement { get; set; }
+
+        public IndicatorItem Indicator { get; set; }
 
         public ICollection<RuleData> RuleDataList { get; set; }
     }

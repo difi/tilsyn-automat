@@ -1,23 +1,23 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Database
 {
     public class CompanyRepository : ICompanyRepository
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IDeclarationRepository declarationRepository;
 
-        public CompanyRepository(ApplicationDbContext dbContext)
+        public CompanyRepository(ApplicationDbContext dbContext, IDeclarationRepository declarationRepository)
         {
             this.dbContext = dbContext;
+            this.declarationRepository = declarationRepository;
         }
 
         public void SetCurrentUser(Guid parse)
@@ -198,26 +198,24 @@ namespace Difi.Sjalvdeklaration.Database
                     return result;
                 }
 
-                var typeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine.Id);
-                var typeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest.Id);
-
-                excelRow.DeclarationItem.IndicatorList = new List<DeclarationIndicatorGroup>();
-                excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine = typeOfMachine;
-                excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest = typeOfTest;
-
-                foreach (var indicatorItem in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem))
-                {
-                    excelRow.DeclarationItem.IndicatorList.Add(new DeclarationIndicatorGroup {IndicatorItem = indicatorItem.IndicatorItem, Order = indicatorItem.Order});
-                }
-
                 dbContext.CompanyList.Add(excelRow.CompanyItem);
                 dbContext.ContactPersonList.Add(excelRow.ContactPersonItem);
-                dbContext.DeclarationList.Add(excelRow.DeclarationItem);
 
                 dbContext.SaveChanges();
 
                 result.Id = excelRow.CompanyItem.Id;
-                result.Succeeded = true;
+
+                var addDeclarationResult = declarationRepository.Add(excelRow.DeclarationItem);
+
+                if (addDeclarationResult.Succeeded)
+                {
+                    result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception("Problem with adding declaration, se inner exception", addDeclarationResult.Exception);
+                    result.Succeeded = addDeclarationResult.Succeeded;
+                }
             }
             catch (Exception exception)
             {

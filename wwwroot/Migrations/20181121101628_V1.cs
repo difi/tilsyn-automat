@@ -59,7 +59,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     LastChanged = table.Column<DateTime>(nullable: false)
                 },
@@ -120,7 +119,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Order = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -266,7 +266,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     IndicatorItemId = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -305,7 +304,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: table => new
                 {
                     IndicatorItemId = table.Column<Guid>(nullable: false),
-                    TestGroupItemId = table.Column<Guid>(nullable: false)
+                    TestGroupItemId = table.Column<Guid>(nullable: false),
+                    Order = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -456,13 +456,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     RequirementItemId = table.Column<Guid>(nullable: false),
+                    IndicatorItemId = table.Column<Guid>(nullable: false),
                     ChapterItemId = table.Column<Guid>(nullable: false),
                     StandardItemId = table.Column<Guid>(nullable: false),
                     Order = table.Column<int>(nullable: false),
                     Illustration = table.Column<string>(nullable: true),
                     HelpText = table.Column<string>(nullable: true),
-                    ToolsNeed = table.Column<string>(nullable: true),
-                    IndicatorItemId = table.Column<Guid>(nullable: true)
+                    ToolsNeed = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -478,13 +478,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         column: x => x.IndicatorItemId,
                         principalTable: "IndicatorList",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_RuleList_RequirementList_RequirementItemId",
                         column: x => x.RequirementItemId,
                         principalTable: "RequirementList",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_RuleList_StandardList_StandardItemId",
                         column: x => x.StandardItemId,
@@ -494,26 +494,27 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeclarationTestGroupList",
+                name: "DeclarationIndicatorGroupList",
                 columns: table => new
                 {
                     DeclarationItemId = table.Column<Guid>(nullable: false),
-                    TestGroupItemId = table.Column<Guid>(nullable: false),
-                    Order = table.Column<int>(nullable: false)
+                    IndicatorItemId = table.Column<Guid>(nullable: false),
+                    IndicatorInTestGroupOrder = table.Column<int>(nullable: false),
+                    TestGroupOrder = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DeclarationTestGroupList", x => new { x.TestGroupItemId, x.DeclarationItemId });
+                    table.PrimaryKey("PK_DeclarationIndicatorGroupList", x => new { x.DeclarationItemId, x.IndicatorItemId });
                     table.ForeignKey(
-                        name: "FK_DeclarationTestGroupList_DeclarationList_DeclarationItemId",
+                        name: "FK_DeclarationIndicatorGroupList_DeclarationList_DeclarationItemId",
                         column: x => x.DeclarationItemId,
                         principalTable: "DeclarationList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DeclarationTestGroupList_TestGroupList_TestGroupItemId",
-                        column: x => x.TestGroupItemId,
-                        principalTable: "TestGroupList",
+                        name: "FK_DeclarationIndicatorGroupList_IndicatorList_IndicatorItemId",
+                        column: x => x.IndicatorItemId,
+                        principalTable: "IndicatorList",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -736,13 +737,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.InsertData(
                 table: "IndicatorList",
-                columns: new[] { "Id", "LastChanged", "Name", "Order" },
+                columns: new[] { "Id", "LastChanged", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "1 Kundens betjeningsområde ", 1 },
-                    { new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "2 avstand mellom automater ", 2 },
-                    { new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "3 Plassering av skilt", 3 },
-                    { new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Utfall 4 Høyde på betalingsterm", 4 }
+                    { new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kundens betjeningsområde" },
+                    { new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Avstand mellom automater" },
+                    { new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Plassering av skilt" },
+                    { new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), new DateTime(2018, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Høyde på betalingsterm" }
                 });
 
             migrationBuilder.InsertData(
@@ -762,12 +763,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.InsertData(
                 table: "TestGroupList",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "Order" },
                 values: new object[,]
                 {
-                    { new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), "Betjeningshøyde" },
-                    { new Guid("aec1869a-30f8-403c-b909-df115173f009"), "Kundens betjeningsområde" },
-                    { new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), "Skilt" }
+                    { new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), "Betjeningshøyde", 3 },
+                    { new Guid("aec1869a-30f8-403c-b909-df115173f009"), "Betjeningsområde", 1 },
+                    { new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), "Skilt", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -896,24 +897,24 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
             migrationBuilder.InsertData(
                 table: "IndicatorTestGroupList",
-                columns: new[] { "TestGroupItemId", "IndicatorItemId" },
+                columns: new[] { "TestGroupItemId", "IndicatorItemId", "Order" },
                 values: new object[,]
                 {
-                    { new Guid("aec1869a-30f8-403c-b909-df115173f009"), new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9") },
-                    { new Guid("aec1869a-30f8-403c-b909-df115173f009"), new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e") },
-                    { new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c") },
-                    { new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53") }
+                    { new Guid("aec1869a-30f8-403c-b909-df115173f009"), new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), 1 },
+                    { new Guid("aec1869a-30f8-403c-b909-df115173f009"), new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), 2 },
+                    { new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), 1 },
+                    { new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), 1 }
                 });
 
             migrationBuilder.InsertData(
                 table: "RequirementList",
-                columns: new[] { "Id", "Description", "IndicatorItemId", "Order" },
+                columns: new[] { "Id", "Description", "IndicatorItemId" },
                 values: new object[,]
                 {
-                    { new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.", new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), 1 },
-                    { new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.", new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), 2 },
-                    { new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), 3 },
-                    { new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.", new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), 4 }
+                    { new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.", new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9") },
+                    { new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.", new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e") },
+                    { new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c") },
+                    { new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.", new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53") }
                 });
 
             migrationBuilder.InsertData(
@@ -931,11 +932,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 columns: new[] { "Id", "ChapterItemId", "HelpText", "Illustration", "IndicatorItemId", "Order", "RequirementItemId", "StandardItemId", "ToolsNeed" },
                 values: new object[,]
                 {
-                    { new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), new Guid("731a0f5c-f586-471f-b32c-ceb8027f735a"), "", null, null, 4, new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
-                    { new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), new Guid("b80b9b15-8f0e-4702-b7d9-95cafa68f9fb"), "", null, null, 5, new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
-                    { new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), "", null, null, 1, new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
-                    { new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", null, null, 1, new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
-                    { new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), null, null, null, 1, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" }
+                    { new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), new Guid("731a0f5c-f586-471f-b32c-ceb8027f735a"), "", null, new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), 1, new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
+                    { new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), new Guid("b80b9b15-8f0e-4702-b7d9-95cafa68f9fb"), "", null, new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), 2, new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
+                    { new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), "", null, new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), 1, new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
+                    { new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />", null, new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), 1, new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" },
+                    { new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), null, null, new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), 1, new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2"), "Ingen" }
                 });
 
             migrationBuilder.InsertData(
@@ -1006,6 +1007,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 column: "CompanyItemId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DeclarationIndicatorGroupList_IndicatorItemId",
+                table: "DeclarationIndicatorGroupList",
+                column: "IndicatorItemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DeclarationList_CompanyItemId",
                 table: "DeclarationList",
                 column: "CompanyItemId");
@@ -1014,11 +1020,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "IX_DeclarationList_UserItemId",
                 table: "DeclarationList",
                 column: "UserItemId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DeclarationTestGroupList_DeclarationItemId",
-                table: "DeclarationTestGroupList",
-                column: "DeclarationItemId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeclarationTestItem_DeclarationItemId",
@@ -1152,7 +1153,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                 name: "ContactPersonList");
 
             migrationBuilder.DropTable(
-                name: "DeclarationTestGroupList");
+                name: "DeclarationIndicatorGroupList");
 
             migrationBuilder.DropTable(
                 name: "IndicatorTestGroupList");

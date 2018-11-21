@@ -1,12 +1,9 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
@@ -24,7 +21,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         }
 
         [HttpGet]
-        public async Task OnGetAsync(Guid id, Guid companyId)
+        public async Task OnGetAsync(Guid id)
         {
             try
             {

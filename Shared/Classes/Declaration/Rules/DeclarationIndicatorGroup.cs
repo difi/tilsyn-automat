@@ -12,6 +12,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public IndicatorItem IndicatorItem { get; set; }
 
-        public Int32 Order { get; set; }
+        public Int32 IndicatorInTestGroupOrder { get; set; }
+
+        public Int32 TestGroupOrder { get; set; }
     }
 }

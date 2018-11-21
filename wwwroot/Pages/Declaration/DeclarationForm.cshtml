@@ -1,10 +1,10 @@
-﻿@*@page
+﻿@page
 @using Difi.Sjalvdeklaration.Shared.Enum
-@model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.DeclarationFormModel
+@model Difi.Sjalvdeklaration.wwwroot.Pages.Declaration.DeclarationFormModel
 
 @{
     var title = "Selvdeklarasjon";
-
+    var lastTestGroupOrder = 0;
     ViewData["Title"] = title;
 }
 
@@ -16,61 +16,65 @@
     TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
     <br /><br />
 
-    @foreach (var declarationTestGroup in Model.DeclarationItemForm.TestGroupList.OrderBy(x => x.Order))
+    @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
     {
-        <h2 class="h2-toggle">@declarationTestGroup.TestGroupItem.Name</h2>
+        var indicatorItem = declarationIndicatorGroup.IndicatorItem;
+
+        if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
+        {
+            lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
+
+            <h2 class="h2-toggle">@declarationIndicatorGroup.TestGroupOrder @declarationIndicatorGroup.IndicatorItem.Name</h2>
+        }
 
         <div>
-            @foreach (var requirementItem in declarationTestGroup.TestGroupItem.IndicatorList.OrderBy(x => x.Order))
+            @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
             {
-            <div class="card">
-                <h3><span>1.2</span>@requirementItem.IndicatorItem.Name</h3>
+                var firstQuestion = true;
 
-                @foreach (var ruleItem in requirementItem.IndicatorItem.RuleList.OrderBy(x => x.Order))
-                {
-                <div class="card-divider jsRuleItem" id="@ruleItem.Id">
-
-                    @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                    {
-                        var id = declarationTestGroup.TestGroupItemId + "_" + requirementItem.IndicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                <div class="card">
+                    <div class="card-divider jsRuleItem" id="@ruleItem.Id">
+                        @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                         {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + id })
-                            </div>
+                            var id = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                            var orderText = declarationIndicatorGroup.IndicatorInTestGroupOrder + "." + ruleItem.Order;
+
+                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                            {
+                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                                    @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + id, firstQuestion = firstQuestion, orderText = orderText })
+                                </div>
+                            }
+
+                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                            {
+                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                                    @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + id, firstQuestion = firstQuestion, orderText = orderText })
+                                </div>
+                            }
+
+                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                            {
+                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                                    @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + id, firstQuestion = firstQuestion, orderText = orderText })
+                                </div>
+                            }
+
+                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                            {
+                                <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
+                                    Välj bild:
+                                    <input type="file" accept="image/*">
+                                </div>
+                            }
+
+                            firstQuestion = false;
                         }
 
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                        {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + id })
-                            </div>
-                        }
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                        {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + id })
-                            </div>
-                        }
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                        {
-                            <div class="jsAnswerItem" data-type="@answerItem.TypeOfAnswer.Text" data-id="@id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfOtherFailed="@answerItem.ViewIfOtherFailed" data-ViewIfOtherFaildId="@answerItem.ViewIfOtherFaildId">
-                                Välj bild:
-                                <input type="file" accept="image/*">
-                            </div>
-                        }
-                    }
-
+                    </div>
                 </div>
-
-                }
-            </div>
             }
         </div>
-
     }
 
     <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
@@ -79,4 +83,4 @@
 @section Scripts {
     <script src="~/js/declarationForm.js"></script>
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
-}*@
+}
