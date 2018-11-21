@@ -62,7 +62,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<TestGroupItem> TestGroupList { get; set; }
 
-        public DbSet<DeclarationTestGroup> DeclarationTestGroupList { get; set; }
+        public DbSet<DeclarationIndicatorGroup> DeclarationIndicatorGroupList { get; set; }
 
         public DbSet<IndicatorTestGroup> IndicatorTestGroupList { get; set; }
 
@@ -94,18 +94,6 @@ namespace Difi.Sjalvdeklaration.Database
                 .WithMany(x => x.UserList)
                 .HasForeignKey(x => x.CompanyItemId);
 
-            modelBuilder.Entity<DeclarationTestGroup>().HasKey(x => new { x.TestGroupItemId, x.DeclarationItemId });
-
-            modelBuilder.Entity<DeclarationTestGroup>()
-                .HasOne(x => x.DeclarationItem)
-                .WithMany(x => x.TestGroupList)
-                .HasForeignKey(x => x.DeclarationItemId);
-
-            modelBuilder.Entity<DeclarationTestGroup>()
-                .HasOne(x => x.TestGroupItem)
-                .WithMany(x => x.DeclarationList)
-                .HasForeignKey(x => x.TestGroupItemId);
-
             modelBuilder.Entity<IndicatorTestGroup>().HasKey(x => new { x.TestGroupItemId, x.IndicatorItemId });
 
             modelBuilder.Entity<IndicatorTestGroup>()
@@ -117,6 +105,18 @@ namespace Difi.Sjalvdeklaration.Database
                 .HasOne(x => x.TestGroupItem)
                 .WithMany(x => x.IndicatorList)
                 .HasForeignKey(x => x.TestGroupItemId);
+
+            modelBuilder.Entity<DeclarationIndicatorGroup>().HasKey(x => new { x.DeclarationItemId, x.IndicatorItemId });
+
+            modelBuilder.Entity<DeclarationIndicatorGroup>()
+                .HasOne(x => x.IndicatorItem)
+                .WithMany(x => x.DeclarationList)
+                .HasForeignKey(x => x.IndicatorItemId);
+
+            modelBuilder.Entity<DeclarationIndicatorGroup>()
+                .HasOne(x => x.DeclarationItem)
+                .WithMany(x => x.IndicatorList)
+                .HasForeignKey(x => x.DeclarationItemId);
 
             modelBuilder.Entity<RequirementUserPrerequisite>().HasKey(x => new { x.RequirementItemId, x.ValueListUserPrerequisiteId });
             modelBuilder.Entity<IndicatorUserPrerequisite>().HasKey(x => new { x.IndicatorItemId, x.ValueListUserPrerequisiteId });
@@ -381,7 +381,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var requirementItem1 = new RequirementItem
             {
-                Order = 1,
                 Id = Guid.Parse("875e76b5-c926-43a0-8738-c4f41c7a0b8b"),
                 Description = "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.",
                 IndicatorItemId = indicatorItem1.Id
@@ -389,7 +388,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var requirementItem2 = new RequirementItem
             {
-                Order = 2,
                 Id = Guid.Parse("c65786bb-1b93-4153-b88c-935cc2a7ab60"),
                 Description = "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.",
                 IndicatorItemId = indicatorItem2.Id
@@ -397,7 +395,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var requirementItem3 = new RequirementItem
             {
-                Order = 3,
                 Id = Guid.Parse("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"),
                 Description = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.",
                 IndicatorItemId = indicatorItem3.Id
@@ -405,7 +402,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var requirementItem4 = new RequirementItem
             {
-                Order = 4,
                 Id = Guid.Parse("e503322b-ed77-4b69-adc4-eca19b6eb97d"),
                 Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.",
                 IndicatorItemId = indicatorItem4.Id

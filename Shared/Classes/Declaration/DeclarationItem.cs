@@ -35,6 +35,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public DeclarationTestItem DeclarationTestItem { get; set; }
 
-        public List<DeclarationTestGroup> TestGroupList { get; set; }
+        public List<DeclarationIndicatorGroup> IndicatorList { get; set; }
     }
 }

@@ -22,5 +22,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
         public ICollection<IndicatorTestGroup> TestGroupList { get; set; }
 
         public ICollection<OutcomeData> OutcomeDataList { get; set; }
+
+        public ICollection<DeclarationIndicatorGroup> DeclarationList { get; set; }
+
     }
 }

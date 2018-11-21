@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
@@ -200,18 +201,14 @@ namespace Difi.Sjalvdeklaration.Database
                 var typeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine.Id);
                 var typeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest.Id);
 
-                var testGroup1 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Kundens betjeningsområde");
-                var testGroup2 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Skilt");
-                var testGroup3 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Betjeningshøyde");
-
+                excelRow.DeclarationItem.IndicatorList = new List<DeclarationIndicatorGroup>();
                 excelRow.DeclarationItem.DeclarationTestItem.TypeOfMachine = typeOfMachine;
                 excelRow.DeclarationItem.DeclarationTestItem.TypeOfTest = typeOfTest;
-                excelRow.DeclarationItem.TestGroupList = new List<DeclarationTestGroup>
+
+                foreach (var indicatorItem in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem))
                 {
-                    new DeclarationTestGroup {TestGroupItem = testGroup1, Order = 1},
-                    new DeclarationTestGroup {TestGroupItem = testGroup2, Order = 2},
-                    new DeclarationTestGroup {TestGroupItem = testGroup3, Order = 3}
-                };
+                    excelRow.DeclarationItem.IndicatorList.Add(new DeclarationIndicatorGroup {IndicatorItem = indicatorItem.IndicatorItem, Order = indicatorItem.Order});
+                }
 
                 dbContext.CompanyList.Add(excelRow.CompanyItem);
                 dbContext.ContactPersonList.Add(excelRow.ContactPersonItem);

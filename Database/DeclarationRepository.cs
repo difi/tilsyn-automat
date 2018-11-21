@@ -126,24 +126,19 @@ namespace Difi.Sjalvdeklaration.Database
                 declarationItem.CreatedDate = DateTime.Now;
                 declarationItem.Status = DeclarationStatus.Created;
                 declarationItem.User = userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
+                declarationItem.IndicatorList = new List<DeclarationIndicatorGroup>();
 
                 declarationItem.DeclarationTestItem = new DeclarationTestItem
                 {
                     Id = declarationItem.Id,
                     TypeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == 1),
-                    TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1)
+                    TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1),
                 };
 
-                var testGroup1 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Kundens betjeningsområde");
-                var testGroup2 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Skilt");
-                var testGroup3 = dbContext.TestGroupList.SingleOrDefault(x => x.Name == "Betjeningshøyde");
-
-                declarationItem.TestGroupList = new List<DeclarationTestGroup>
+                foreach (var indicatorItem in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem))
                 {
-                    new DeclarationTestGroup {TestGroupItem = testGroup1, Order = 1},
-                    new DeclarationTestGroup {TestGroupItem = testGroup2, Order = 2},
-                    new DeclarationTestGroup {TestGroupItem = testGroup3, Order = 3}
-                };
+                    declarationItem.IndicatorList.Add(new DeclarationIndicatorGroup { IndicatorItem = indicatorItem.IndicatorItem, Order = indicatorItem.Order });
+                }
 
                 dbContext.DeclarationList.Add(declarationItem);
                 dbContext.SaveChanges();

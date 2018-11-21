@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181121075109_V4")]
+    partial class V4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -310,19 +312,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationIndicatorGroup", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationTestGroup", b =>
                 {
-                    b.Property<Guid>("DeclarationItemId");
+                    b.Property<Guid>("TestGroupItemId");
 
-                    b.Property<Guid>("IndicatorItemId");
+                    b.Property<Guid>("DeclarationItemId");
 
                     b.Property<int>("Order");
 
-                    b.HasKey("DeclarationItemId", "IndicatorItemId");
+                    b.HasKey("TestGroupItemId", "DeclarationItemId");
 
-                    b.HasIndex("IndicatorItemId");
+                    b.HasIndex("DeclarationItemId");
 
-                    b.ToTable("DeclarationIndicatorGroupList");
+                    b.ToTable("DeclarationTestGroupList");
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem", b =>
@@ -951,16 +953,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationIndicatorGroup", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationTestGroup", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", "DeclarationItem")
-                        .WithMany("IndicatorList")
+                        .WithMany("TestGroupList")
                         .HasForeignKey("DeclarationItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem", "IndicatorItem")
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
                         .WithMany("DeclarationList")
-                        .HasForeignKey("IndicatorItemId")
+                        .HasForeignKey("TestGroupItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
