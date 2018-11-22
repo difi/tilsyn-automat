@@ -6,7 +6,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
     {
         public void OnGet()
         {
-            var test = new FineUploaderAzureServer();
+
         }
     }
 }
