@@ -23,6 +23,9 @@ namespace Difi.Sjalvdeklaration.wwwroot
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            var test = new FineUploaderAzureServer();
+
         }
 
         public IConfiguration Configuration { get; }

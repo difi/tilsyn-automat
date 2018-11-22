@@ -1,7 +1,6 @@
 ﻿@page
 
 @using Microsoft.AspNetCore.Mvc.Localization
-@using wwwroot.Pages
 
 @inject IViewLocalizer Localizer
 
@@ -25,6 +24,10 @@
 </p>
 
 <a href="@Model.LoginUrl">Logg inn</a>
+
+<br/><br />
+
+<a href="/UploadTest">UploadTest</a>
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}

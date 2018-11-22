@@ -85,5 +85,13 @@
 
 @section Scripts {
     <script src="~/js/declarationForm.js"></script>
+
+    <script src="~/js/fineuploader/azure.fine-uploader.core.js"></script>
+    <script src="~/js/fineuploader/azure.fine-uploader.js"></script>
+    
+    <script>
+        var uploader = new qq.azure.FineUploaderBasic({})
+    </script>
+
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }

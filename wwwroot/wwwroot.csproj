@@ -42,6 +42,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" PrivateAssets="All" />
     <PackageReference Include="Scrutor" Version="3.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.3.0" />
+    <PackageReference Include="WindowsAzure.Storage" Version="7.2.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,6 +51,26 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.min.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.min.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.min.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.min.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.jquery.fine-uploader.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.jquery.fine-uploader.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.jquery.fine-uploader.min.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\azure.jquery.fine-uploader.min.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\dnd.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\dnd.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\dnd.min.js" />
+    <None Include="wwwroot\js\azure.fine-uploader\dnd.min.js.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\fine-uploader-gallery.min.css.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\fine-uploader-new.min.css.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\fine-uploader.min.css.map" />
+    <None Include="wwwroot\js\azure.fine-uploader\LICENSE" />
   </ItemGroup>
 
   <ItemGroup>
