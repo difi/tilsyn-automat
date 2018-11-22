@@ -8,12 +8,16 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
     [IgnoreAntiforgeryToken(Order = 1001)]
     public class AzureHandlerModel : PageModel
     {
+        private readonly IApiHttpClient apiHttpClient;
         private const string StorageAccountName = "difiimagetest";
         private const string StorageAccountKey = "U60XxOSSbywQSAqlSZfRuj6C/4KOVaMnjRWvltkGr6W1GjYmdUR9Z/8UtnQoObs65QPDi5VG4Z8lJXPJs9Ar7A==";
         private static readonly List<String> AllowedCorsOrigins = new List<String> { "https://localhost:44343" };
@@ -21,8 +25,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         private const CorsHttpMethods AllowedCorsMethods = CorsHttpMethods.Delete | CorsHttpMethods.Put;
         private const int AllowedCorsAgeDays = 5;
 
-        public AzureHandlerModel()
+        public AzureHandlerModel(IApiHttpClient apiHttpClient)
         {
+            this.apiHttpClient = apiHttpClient;
         }
 
         public void OnGet()
@@ -32,7 +37,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
             var method = Request.Query["_method"];
             var qqtimestamp = Request.Query["qqtimestamp"];
 
-            //ConfigureCors(new CloudStorageAccount(accountAndKey, true));
+            ConfigureCors(new CloudStorageAccount(accountAndKey, true));
 
             var sas = GetSasForBlob(accountAndKey, blobUri, method);
 
@@ -44,8 +49,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        public IActionResult OnPost([FromBody] Object test)
+        public IActionResult OnPost()
         {
+            var imageItem = new ImageItem
+            {
+                Blob = Request.Form["blob"],
+                Uuid = Request.Form["uuid"],
+                Name = Request.Form["name"],
+                Container = Request.Form["container"]
+            };
+
+            var item = apiHttpClient.Post<ApiResult>("/api/Image/Add", imageItem);
+
             Response.StatusCode = 200;
             Response.Body.Close();
 

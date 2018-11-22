@@ -65,6 +65,9 @@ namespace Difi.Sjalvdeklaration.wwwroot
             services.AddScoped<IValueListRepository, ValueListRepository>();
             services.Decorate<IValueListRepository, ValueListRepositoryLogDecorator>();
 
+            services.AddScoped<IImageRepository, ImageRepository>();
+            services.Decorate<IImageRepository, ImageRepositoryLogDecorator>();
+
             services.AddScoped<ILogRepository, LogRepository>();
 
             services.AddScoped<IApiHttpClient, ApiHttpClient>();

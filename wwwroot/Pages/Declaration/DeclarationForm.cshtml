@@ -42,74 +42,74 @@
         <div class="jsToggleCardContainer">
 
 
-        <div class="row medium-uncollapse ">
-            <div class="small-12 medium-6 columns">
-                @if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
-                {
-                    subIndex = 0;
-                    mainIndex++;
-
-                    lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
-
-                    <h2 class="h2-toggle"><button id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
-                }
-            </div>
-        </div>
-
-        <div class="row ">
-            <div class="small-12 medium-6 columns">
-                <div class="jsToggleCardTarget" style="display: none;" aria-hidden="true">
-                    @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+            <div class="row medium-uncollapse ">
+                <div class="small-12 medium-6 columns">
+                    @if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
                     {
-                        var firstQuestion = true;
-                        subIndex++;
+                        subIndex = 0;
+                        mainIndex++;
 
-                        <div class="card">
+                        lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-                            <div class="jsRuleItem" id="@ruleItem.Id">
-                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                                {
-                                    var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
-
-                                    var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                                    var orderText = mainIndex + "." + subIndex;
-
-                                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
-                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                                        {
-                                            @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText })
-                                        }
-
-                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                        {
-                                            @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText })
-                                        }
-
-                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                        {
-                                            @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText })
-                                        }
-
-                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                        {
-                                        <div class="card-divider">
-                                            <span>Legg til bilde:</span>
-                                            <div class="uploader" id="@answerItem.Id"></div>
-                                        </div>
-
-                                        }
-                                    </div>
-
-                                    firstQuestion = false;
-                                }
-
-                            </div>
-                        </div>
+                        <h2 class="h2-toggle"><button id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
                     }
                 </div>
             </div>
+
+            <div class="row ">
+                <div class="small-12 medium-6 columns">
+                    <div class="jsToggleCardTarget" style="display: none;" aria-hidden="true">
+                        @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                        {
+                            var firstQuestion = true;
+                            subIndex++;
+
+                            <div class="card">
+
+                                <div class="jsRuleItem" id="@ruleItem.Id">
+                                    @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                    {
+                                        var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
+
+                                        var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                                        var orderText = mainIndex + "." + subIndex;
+
+                                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                            {
+                                                @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                            }
+
+                                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                            {
+                                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                            }
+
+                                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                            {
+                                                @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                            }
+
+                                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                            {
+                                                <div class="card-divider">
+                                                    <span>Legg til bilde:</span>
+                                                    <div class="uploader" id="@answerItem.Id"></div>
+                                                </div>
+
+                                            }
+                                        </div>
+
+                                        firstQuestion = false;
+                                    }
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
     }
 
     <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
@@ -154,7 +154,7 @@
             var uploader = new qq.azure.FineUploader({
                 element: document.getElementById($(this).attr("id")),
                 request: {
-                    endpoint: 'https://difiimagetest.blob.core.windows.net/test1'
+                    endpoint: 'https://difiimagetest.blob.core.windows.net/difi20181122'
                 },
                 signature: {
                     endpoint: '/AzureHandler'
@@ -168,8 +168,12 @@
                 deleteFile: {
                     enabled: true
                 },
-                multiple: false
-            })
+                multiple: false,
+                validation: {
+                    itemLimit: 1,
+                    allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
+                }
+            });
         });
     </script>
 

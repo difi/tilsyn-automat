@@ -99,7 +99,7 @@
         var uploader = new qq.azure.FineUploader({
             element: document.getElementById('uploader'),
             request: {
-                endpoint: 'https://difiimagetest.blob.core.windows.net/test1'
+                endpoint: 'https://difiimagetest.blob.core.windows.net/test2'
             },
             signature: {
                 endpoint: '/AzureHandler'
@@ -112,8 +112,12 @@
             },
             deleteFile: {
                 enabled: true
+            },
+            validation: {
+                itemLimit: 1,
+                allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
             }
-        })
+        });
     </script>
 </body>
 </html>

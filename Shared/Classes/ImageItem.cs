@@ -9,6 +9,12 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         [Key]
         public Guid Id { get; set; }
 
-        public String Path { get; set; }
+        public String Blob { get; set; }
+
+        public String Uuid { get; set; }
+
+        public String Name { get; set; }
+
+        public String Container { get; set; }
     }
 }
