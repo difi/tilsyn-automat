@@ -10,78 +10,90 @@
     var subIndex = 0;
 }
 
-<h1>@title</h1>
+<div class="row column">
+    <h1>@title</h1>
+</div>
+
 
 <form method="post">
-    Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
-    TypeOfMachine: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfMachine.Text<br />
-    TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
-    <br /><br />
+    <div class="row column">
+        Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
+        TypeOfMachine: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfMachine.Text<br />
+        TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
+        <br /><br />
+    </div>
+
 
     @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
     {
 
         var indicatorItem = declarationIndicatorGroup.IndicatorItem;
 
-        if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
-        {
-            subIndex = 0;
-            mainIndex++;
+        <div class="row medium-uncollapse small-collapse">
+            <div class="small-12 medium-6 columns jsToggleCardContainer">
+                @if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
+                {
+                    subIndex = 0;
+                    mainIndex++;
 
-            lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
+                    lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-            <h2 class="h2-toggle">@mainIndex @declarationIndicatorGroup.IndicatorItem.Name</h2>
-        }
+                    <h2 class="h2-toggle"><button id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+                }
 
-        <div>
-            @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
-            {
-                var firstQuestion = true;
-                subIndex++;
+                <div class="jsToggleCardTarget" style="display: none;" aria-hidden="true">
+                    @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                    {
+                        var firstQuestion = true;
+                        subIndex++;
 
-                <div class="card">
-                    <div class="card-divider jsRuleItem" id="@ruleItem.Id">
-                        @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                        {
-                            var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
+                        <div class="card">
+                            <div id="card-help" aria-labelledby="ett">
+                                card-help
+                            </div>
+                            <div class="card-divider jsRuleItem" id="@ruleItem.Id">
+                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                {
+                                    var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
 
-                            var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                            var orderText = mainIndex + "." + subIndex;
+                                    var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                                    var orderText = mainIndex + "." + subIndex;
 
-                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                            {
-                                @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText })
-                            }
+                                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                        {
+                                            @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                        }
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                            {
-                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText })
-                            }
+                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                        {
+                                            @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                        }
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                            {
-                                @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText })
-                            }
+                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                        {
+                                            @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                        }
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                            {
-                                <span>Legg til bilde:</span>
-                                <div class="uploader" id="@answerItem.Id"></div>
-                            }
+                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                        {
+                                            <span>Legg til bilde:</span>
+                                            <div class="uploader" id="@answerItem.Id"></div>
+                                        }
+                                    </div>
+
+                                    firstQuestion = false;
+                                }
+
+                            </div>
                         </div>
-
-                            firstQuestion = false;
-                        }
-
-                    </div>
+                    }
                 </div>
-            }
+            </div>
         </div>
     }
 
-
-    <button class="button" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
+    <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
 </form>
 
 @section Scripts {
