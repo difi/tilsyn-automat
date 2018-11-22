@@ -33,6 +33,6 @@ Imaging with any questions regarding Web Fonts:  http://webfonts.fonts.com
 
 /* SofiaPro */
 @font-face {
-    font-family: 'SofiaPro';
-    src: url('webfonts/sofiapro-light.otf');
+    /* font-family: 'SofiaPro'; */
+    /* src: url('webfonts/sofiapro-light.otf'); */
 }

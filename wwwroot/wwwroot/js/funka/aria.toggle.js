@@ -1,5 +1,4 @@
 
-
 var funkanu = funkanu || {};
 
 funkanu.ariatoggle = (function (_window, _document) {

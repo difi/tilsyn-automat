@@ -65,7 +65,7 @@
 // 1. Global
 // ---------
 
-$global-font-size: 17px;
+$global-font-size: 16px;
 $global-width: rem-calc(984);
 $global-lineheight: 1.5;
 $foundation-palette: (
@@ -131,8 +131,8 @@ $block-grid-max: 8;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: SofiaPro, Helvetica, Arial, sans-serif;
-$header-font-weight: $global-weight-normal;
+$header-font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+$header-font-weight: $global-weight-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
 $header-color: inherit;
@@ -140,9 +140,9 @@ $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 $header-styles: (
   small: (
-    'h1': ('font-size': 26),
-    'h2': ('font-size': 22),
-    'h3': ('font-size': 18),
+    'h1': ('font-size': 20),
+    'h2': ('font-size': 20),
+    'h3': ('font-size': 17),
     'h4': ('font-size': 17),
     'h5': ('font-size': 16),
     'h6': ('font-size': 16),
@@ -279,7 +279,7 @@ $breadcrumbs-item-separator-color: $medium-gray;
 // 11. Button
 // ----------
 
-$button-font-family: inherit;
+$button-font-family: "sofia-pro", Helvetica, Arial, sans-serif;
 $button-padding: 0.6em 1em 0.5em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
@@ -291,9 +291,9 @@ $button-radius: $global-radius;
 $button-hollow-border-width: 0px;
 $button-sizes: (
   tiny: 12px,
-  small: 15px,
-  default: 1rem,
-  large: 1.125rem,
+  small: 16px,
+  default: 18px,
+  large: 22px,
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;

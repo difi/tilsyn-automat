@@ -2,18 +2,12 @@
 // Variables
 //
 
-// $SofiaPro: "SofiaPro", Helvetica, Arial, sans-serif;
-// $SofiaPro-b: "SofiaPro Bold", Helvetica, Arial, sans-serif;
-// $SofiaPro-i: "SofiaPro Italic", Helvetica, Arial, sans-serif;
-
-$sofiapro-reg: SofiaPro, Helvetica, Arial, sans-serif;
-$sofiapro-bold: SofiaPro, Helvetica, Arial, sans-serif;
+$sofiapro: "sofia-pro", Helvetica, Arial, sans-serif;
 
 
-$sofiapro-reg: "Proxima-nova-semibold", Helvetica, Arial, sans-serif;
 
-$header-font-family: $sofiapro-reg;
-$header-font-family-smaller: $sofiapro-reg;
+$header-font-family: $sofiapro;
+$header-font-family-smaller: $sofiapro;
 
 // We use these to control header font sizes
 $h1-font-size-special: 47px;
@@ -25,7 +19,7 @@ $h2-font-size-start: 36px;
 
 
 // We use these to style ingress
-$ingress-font-family: $sofiapro-reg;
+$ingress-font-family: $sofiapro;
 $ingress-font-size: 20px;
 
 //--------------------------------------------------------------*/
@@ -52,7 +46,7 @@ $ingress-font-size: 20px;
     //padding: 0.5rem;
     h3 {
         font-size: 19px;
-        font-family: $sofiapro-bold;
+        font-family: $sofiapro;
 
         span {
             display: inline-block;
@@ -73,10 +67,12 @@ img {
 // Header font
 
 .h2-toggle {
-    background-color: #B5D2DB;
-    padding: 1rem 0 1rem 2rem;
-    margin-bottom: 2rem;
+    margin: 0;
+    padding: 0;
 }
+
+
+
 
 
 h1, h2, h3, h4, h5, h6 {
