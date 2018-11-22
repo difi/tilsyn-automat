@@ -23,14 +23,27 @@
         <br /><br />
     </div>
 
+    <div class="row medium-uncollapse">
+        <div class="small-12 medium-6 columns">
+            <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Demo, no function <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+        </div>
+    </div>
+
+
+
+
+
 
     @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
     {
 
         var indicatorItem = declarationIndicatorGroup.IndicatorItem;
 
-        <div class="row medium-uncollapse small-collapse">
-            <div class="small-12 medium-6 columns jsToggleCardContainer">
+        <div class="jsToggleCardContainer">
+
+
+        <div class="row medium-uncollapse ">
+            <div class="small-12 medium-6 columns">
                 @if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
                 {
                     subIndex = 0;
@@ -40,7 +53,11 @@
 
                     <h2 class="h2-toggle"><button id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
                 }
+            </div>
+        </div>
 
+        <div class="row ">
+            <div class="small-12 medium-6 columns">
                 <div class="jsToggleCardTarget" style="display: none;" aria-hidden="true">
                     @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                     {
@@ -48,10 +65,8 @@
                         subIndex++;
 
                         <div class="card">
-                            <div id="card-help" aria-labelledby="ett">
-                                card-help
-                            </div>
-                            <div class="card-divider jsRuleItem" id="@ruleItem.Id">
+
+                            <div class="jsRuleItem" id="@ruleItem.Id">
                                 @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                                 {
                                     var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
@@ -77,8 +92,11 @@
 
                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                         {
+                                        <div class="card-divider">
                                             <span>Legg til bilde:</span>
                                             <div class="uploader" id="@answerItem.Id"></div>
+                                        </div>
+
                                         }
                                     </div>
 
@@ -91,6 +109,7 @@
                 </div>
             </div>
         </div>
+    </div>
     }
 
     <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>

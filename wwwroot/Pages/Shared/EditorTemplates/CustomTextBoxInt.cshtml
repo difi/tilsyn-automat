@@ -7,15 +7,28 @@
     var firstQuestion = (bool)ViewData["firstQuestion"];
 }
 
+
 <div class="form-field">
-    <label for="@name">
+
+    <label class="legend" for="@name">
         @if (firstQuestion)
         {
-            <span>@orderText</span>
+            <span class="legend-number">@orderText</span>
         }
 
         @text
+
+        <span class="card-help">card-help</span>
     </label>
 
-    <input type="number" autocomplete="off" id="@name" name="@name" value="" />
+
+    <div class="card-help-text">
+        card-help-text
+    </div>
+
+    <div class="card-divider">
+        <input type="number" autocomplete="off" id="@name" name="@name" value="" />
+    </div>
+ 
 </div>
+

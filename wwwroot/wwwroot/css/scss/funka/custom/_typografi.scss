@@ -56,6 +56,25 @@ $ingress-font-size: 20px;
             font-weight: bold;
         }
     }
+
+    &.transparent {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    legend, .legend {
+        color: $dark-grey;
+    }
+
+
+    .legend-number {
+        background-color: $ice-blue;
+        width: 44px;
+        height: 44px;
+        display: inline-block;
+        text-align: center;
+        line-height: 1.15;
+    }
 }
 
 img {

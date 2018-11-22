@@ -1733,19 +1733,18 @@ fieldset {
   padding: 0;
   border: 0; }
 
-legend {
+legend, .legend {
   max-width: 100%;
   margin-bottom: 0.5rem;
   font-weight: bold;
   font-size: 17px;
-  margin-top: 32px;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 .fieldset {
   margin: 1.125rem 0;
   padding: 1.25rem;
-  border: 1px solid #cacaca; }
+  border: 0; }
   .fieldset legend {
     margin: 0;
     margin-left: -0.1875rem;
@@ -1810,7 +1809,7 @@ select {
   display: inline-block;
   margin: 0 0 1rem 0;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-  padding: 0.6em 1em 0.5em 1em;
+  padding: 0.7em 1em 0.7em 1em;
   -webkit-appearance: none;
   border: 0;
   border-radius: 4px;
@@ -2118,8 +2117,7 @@ a.button:hover, a.button:focus {
     margin-bottom: 0; }
 
 .card-divider {
-  padding: 1rem 2rem;
-  background: #fff; }
+  padding: 1rem; }
   .card-divider > :last-child {
     margin-bottom: 0; }
 
@@ -2654,6 +2652,21 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
     background-color: #B5D2DB;
     font-weight: bold; }
 
+.card.transparent {
+  background-color: transparent;
+  box-shadow: none; }
+
+.card legend, .card .legend {
+  color: #303132; }
+
+.card .legend-number {
+  background-color: #e7eff1;
+  width: 44px;
+  height: 44px;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.15; }
+
 img.full-width-image {
   max-width: none !important; }
 
@@ -2939,7 +2952,7 @@ button, .button, input[type="button"], input[type="submit"] {
   display: inline-block;
   margin: 0 0 1rem 0;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-  padding: 0.6em 1em 0.5em 1em;
+  padding: 0.7em 1em 0.7em 1em;
   -webkit-appearance: none;
   border: 0;
   border-radius: 4px;
@@ -2968,10 +2981,10 @@ button, .button, input[type="button"], input[type="submit"] {
     padding: 0.3em 1em;
     font-size: 12px; }
   button.small, .button.small, input[type="button"].small, input[type="submit"].small {
-    padding: 0.4em 1em;
+    padding: 0.5em 1em;
     font-size: 16px; }
   button.large, .button.large, input[type="button"].large, input[type="submit"].large {
-    padding: 0.9em 1em;
+    padding: 0.8em 1em;
     font-size: 22px;
     width: 100%;
     margin: 0; }
@@ -3024,18 +3037,18 @@ button, .button, input[type="button"], input[type="submit"] {
     text-align: left;
     font-weight: bold;
     background-color: #b5d2db;
-    padding: 1rem 10px;
+    padding: 1rem 12px 1rem 10px;
     margin-bottom: 20px;
     color: #1f3f43;
     font-size: 20px;
     border-radius: 0;
     width: 100%; }
     button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon {
-      top: -3px;
+      top: 6px;
       transform: rotate(-45deg); }
     button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="true"] .toggle-header-icon {
       transform: rotate(135deg);
-      top: 3px; }
+      top: 12px; }
     button.toogle-header-button .toggle-header-number, .button.toogle-header-button .toggle-header-number, input[type="button"].toogle-header-button .toggle-header-number, input[type="submit"].toogle-header-button .toggle-header-number {
       border: 1px solid #1f3f43;
       border-radius: 100px;
@@ -3053,7 +3066,8 @@ button, .button, input[type="button"], input[type="submit"] {
       display: inline-block;
       transform: rotate(-45deg);
       margin-left: 6px;
-      position: relative; }
+      position: relative;
+      float: right; }
   button.toogle-help-button, .button.toogle-help-button, input[type="button"].toogle-help-button, input[type="submit"].toogle-help-button {
     background-image: url("/css/cssimg/icons-sprite.svg");
     background-color: transparent;

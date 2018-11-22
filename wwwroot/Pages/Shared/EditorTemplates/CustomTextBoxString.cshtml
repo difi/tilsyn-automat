@@ -7,16 +7,27 @@
     var firstQuestion = (bool)ViewData["firstQuestion"];
 }
 
+
 <div class="form-field">
-    <label for="@name">
+
+    <label class="legend" for="@name">
         @if (firstQuestion)
         {
-            <span>@orderText</span>
+            <span class="legend-number">@orderText</span>
         }
 
         @text
+
+        <span class="card-help">card-help</span>
     </label>
 
-    <textarea id="@name" name="@name" value="">
-    </textarea>
+
+    <div class="card-help-text">
+        card-help-text
+    </div>
+
+    <div class="card-divider">
+        <textarea id="@name" name="@name"></textarea>
+    </div>
+        
 </div>

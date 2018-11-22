@@ -19,10 +19,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\css\scss\forms\_fieldset.css" />
+    <Content Remove="wwwroot\css\scss\forms\_fieldset.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="form.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="compilerconfig.json" />
     <_ContentIncludedByDefault Remove="wwwroot\css\foundation.min.css" />
   </ItemGroup>
 
@@ -46,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="compilerconfig.json" />
     <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.js" />
     <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.js.map" />
     <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.min.js" />

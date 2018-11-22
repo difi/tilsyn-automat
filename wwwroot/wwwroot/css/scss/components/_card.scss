@@ -77,7 +77,6 @@ $card-margin-bottom: $global-margin !default;
 
 /// Adds styles for a card divider.
 @mixin card-divider(
-  $background: $card-divider-background,
   $padding: $card-padding
 ) {
   @if $global-flexbox {
@@ -85,8 +84,7 @@ $card-margin-bottom: $global-margin !default;
     //display: flex;
   }
 
-  padding: $padding;
-  background: $background;
+  padding: 1rem ;
 
   & > :last-child {
     margin-bottom: 0;

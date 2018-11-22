@@ -12,7 +12,9 @@
     var subIndex = 0;
 }
 
-<h1>@title</h1>
+<div class="row column">
+    <h1>@title</h1>
+</div>
 
 <a asp-page="/Declaration/DeclarationList">DeclarationList</a>
 
@@ -28,7 +30,14 @@
 
         lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-        <h2 class="h2-toggle">@mainIndex @declarationIndicatorGroup.IndicatorItem.Name</h2>
+
+        <div class="row medium-uncollapse small-collapse">
+            <div class="small-12 medium-6 columns">
+                <h2 class="h2-toggle"><button id="ett" disabled aria-controls="card-help" aria-expanded="true" class="toogle-header-button"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+            </div>
+        </div>
+
+
     }
 
     <div>
@@ -40,7 +49,7 @@
 
             subIndex++;
 
-            <div class="card">
+            <div class="card transparent">
                 <div class="card-divider jsRuleItem" id="@ruleItem.Id">
                     @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                     {
@@ -51,34 +60,34 @@
                         var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                         var orderText = mainIndex + "." + subIndex;
 
-                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
 
-                        <h3>@answerItem.Question</h3>
+                            <h3>@answerItem.Question</h3>
 
-                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                        {
-                            @answerData.String
-                        }
+                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                            {
+                                @answerData.String
+                            }
 
-                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                        {
-                            @answerData.Bool
-                        }
+                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                            {
+                                @answerData.Bool
+                            }
 
-                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                        {
-                            @answerData.Int
-                        }
+                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                            {
+                                @answerData.Int
+                            }
 
-                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                        {
+                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                            {
 
-                        }
+                            }
 
-                        <br />
-                        <br />
+                            <br />
+                            <br />
 
-                    </div>
+                        </div>
 
                         firstQuestion = false;
                     }
@@ -87,38 +96,49 @@
             </div>
         }
     </div>
+
+
 }
 
+<div class="row column">
+    <hr><br />
+    <button class="button large">.button .large</button>
+    <br /><br />
+    <button class="button large">.button .large</button>
+    <br /><br />
+    <button class="button">.button</button>
+    <br /><br /><br /><br />
+</div>
 
 @*@foreach (var outcomeData in Model.OutcomeDataList)
-{
-    <h2>@outcomeData.Id <span>(@outcomeData.Result.Text)</span></h2>
-
-
-    foreach (var ruleData in outcomeData.RuleDataList.OrderBy(x => x.Rule.Order))
     {
+        <h2>@outcomeData.Id <span>(@outcomeData.Result.Text)</span></h2>
 
-        foreach (var answerData in ruleData.AnswerDataList)
+
+        foreach (var ruleData in outcomeData.RuleDataList.OrderBy(x => x.Rule.Order))
         {
-            <h4>@answerData.AnswerItem.Question <span>(@ruleData.Result.Text)</span></h4>
 
-            if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.String)
+            foreach (var answerData in ruleData.AnswerDataList)
             {
-                <b>@answerData.String</b> <span>(@answerData.Result.Text)</span>
-            }
+                <h4>@answerData.AnswerItem.Question <span>(@ruleData.Result.Text)</span></h4>
 
-            if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Bool)
-            {
-                <b>@answerData.Bool</b> <span>(@answerData.Result.Text)</span>
-            }
+                if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.String)
+                {
+                    <b>@answerData.String</b> <span>(@answerData.Result.Text)</span>
+                }
 
-            if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Int)
-            {
-                <b>@answerData.Int</b> <span>(@answerData.Result.Text)</span>
+                if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Bool)
+                {
+                    <b>@answerData.Bool</b> <span>(@answerData.Result.Text)</span>
+                }
+
+                if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Int)
+                {
+                    <b>@answerData.Int</b> <span>(@answerData.Result.Text)</span>
+                }
             }
+            <br /><br />
         }
-        <br /><br />
-    }
 
-    <hr />
-}*@
+        <hr />
+    }*@

@@ -24,6 +24,7 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 100%;
 
     @include button;
+
     //border-radius: 5px;
     .active & {
         &.nocursor {
@@ -48,12 +49,12 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.small {
-        padding: 0.4em 1em;
+        padding: 0.5em 1em;
         font-size: map-get($button-sizes, small);
     }
 
     &.large {
-        padding: 0.9em 1em;
+        padding: 0.8em 1em;
         font-size: map-get($button-sizes, large);
         width: 100%;
         margin: 0;
@@ -147,7 +148,7 @@ button, .button, input[type="button"], input[type="submit"] {
         text-align: left;
         font-weight: bold;
         background-color: $light-blue-grey;
-        padding: 1rem 10px;
+        padding: 1rem 12px 1rem 10px;
         margin-bottom: 20px;
         color: $dark-blue-grey;
         font-size: 20px;
@@ -156,7 +157,7 @@ button, .button, input[type="button"], input[type="submit"] {
 
         &[aria-expanded="false"] {
             .toggle-header-icon {
-                top: -3px;
+                top: 6px;
                 transform: rotate(-45deg);
             }
         }
@@ -164,7 +165,7 @@ button, .button, input[type="button"], input[type="submit"] {
         &[aria-expanded="true"] {
             .toggle-header-icon {
                 transform: rotate(135deg);
-                top: 3px;
+                top: 12px;
             }
         }
 
@@ -188,6 +189,7 @@ button, .button, input[type="button"], input[type="submit"] {
             transform: rotate(-45deg);
             margin-left: 6px;
             position: relative;
+            float: right;
         }
     }
 

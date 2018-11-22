@@ -10,29 +10,41 @@
 }
 
 <fieldset>
-    <legend>
+
+    <legend class="legend">
         @if (firstQuestion)
         {
-            <span>@orderText</span>
-        } 
+            <span class="legend-number">@orderText</span>
+        }
 
         @text
+
+        <span class="card-help">card-help</span>
     </legend>
 
-    <ul class="menu">
-        <li>
-            <label for="@idTrue">
-                Ja
-            </label>
+    <div class="card-help-text">
+        card-help-text
+    </div>
 
-            <input type="radio" id="@idTrue" name="@name" value="true" />
-        </li>
-        <li>
-            <label for="@idFalse">
-                Nej
-            </label>
+    <div class="card-divider">
 
-            <input type="radio" id="@idFalse" name="@name" value="false" />
-        </li>
-    </ul>
+        <ul class="menu">
+            <li>
+                <label for="@idTrue">
+                    Ja
+                </label>
+
+                <input type="radio" id="@idTrue" name="@name" value="true" />
+            </li>
+            <li>
+                <label for="@idFalse">
+                    Nej
+                </label>
+
+                <input type="radio" id="@idFalse" name="@name" value="false" />
+            </li>
+        </ul>
+
+    </div>
+
 </fieldset>
