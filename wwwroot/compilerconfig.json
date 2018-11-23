@@ -1,6 +1,10 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/scss/forms/_fieldset.css",
-    "inputFile": "wwwroot/css/scss/forms/_fieldset.scss"
+    "outputFile": "wwwroot/css/foundation.css",
+    "inputFile": "wwwroot/css/scss/_foundation.scss",
+
+    "minify": {
+      "enabled": true
+    }
   }
 ]

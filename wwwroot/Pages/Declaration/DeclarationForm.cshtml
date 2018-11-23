@@ -14,6 +14,22 @@
     <h1>@title</h1>
 </div>
 
+<hr />
+
+
+<div class="row column">
+
+    <div class="info-wrapper">
+        <h2>Du trenger følgende verktøy</h2>
+       
+        <div>
+            <img src="~/images/kamera.png" />
+            <img src="~/images/mata.png" />
+            Målebånd eller tommestokk, kamera.
+        </div>
+    </div>
+
+</div>
 
 <form method="post">
     <div class="row column">
@@ -25,7 +41,7 @@
 
     <div class="row medium-uncollapse">
         <div class="small-12 medium-6 columns">
-            <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Demo, no function <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+            <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help-button" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Demo, no function <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
         </div>
     </div>
 
@@ -51,13 +67,15 @@
 
                         lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-                        <h2 class="h2-toggle"><button id="ett" aria-controls="card-help" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+                        <h2 class="h2-toggle"><button id="unikt-id" aria-controls="" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
                     }
                 </div>
             </div>
 
             <div class="row ">
                 <div class="small-12 medium-6 columns">
+
+
                     <div class="jsToggleCardTarget" style="display: none;" aria-hidden="true">
                         @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                         {
@@ -90,10 +108,14 @@
                                                 @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText })
                                             }
 
+
+                                        </div>
+
+                                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+
                                             @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                             {
-                                                <div class="card-divider">
-                                                    <span>Legg til bilde:</span>
+                                                <div class="card-divider text-center medium-text-left">
                                                     <div class="uploader" id="@answerItem.Id"></div>
                                                 </div>
 
@@ -111,8 +133,11 @@
             </div>
         </div>
     }
-
-    <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
+    <div class="row column">
+        <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Spara sjelvdeklarasjon</button>
+    <br /><br />
+    </div>
+    
 </form>
 
 @section Scripts {
@@ -130,10 +155,7 @@
             <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
                 <span class="qq-upload-drop-area-text-selector"></span>
             </div>
-            <div class="qq-upload-button-selector qq-upload-button">
-                <button>Legg till bilde</button>
-            </div>
-            <ul class="qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+            <ul class="listing qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
                 <li>
                     <div class="qq-progress-bar-container-selector">
                         <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
@@ -141,9 +163,13 @@
                     <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
                     <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
 
-                    <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">Fjern bilde</button>
+                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">Fjern bilde</button>
                 </li>
             </ul>
+            <div class="qq-upload-button-selector qq-upload-button">
+                <button class="button upload-photo"><span></span>Legg till bilde</button>
+            </div>
+
         </div>
     </script>
 

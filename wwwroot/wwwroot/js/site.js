@@ -24,7 +24,19 @@ function attachEvents() {
             $target.toggleAttr("aria-hidden");
             $self.toggleAttr("aria-expanded");
 
-            $self.parent().parent().parent().addClass("small-collapse");
+            //$self.parent().parent().parent().addClass("small-collapse");
+        });
+    });
+
+    $("body").on("click", ".jsToggleHelpButton", function (e) {
+
+        e.preventDefault();
+        var $self = $(this),
+            $container = $self.closest(".card"),
+            $target = $container.find(".jsToggleHelpTarget");
+            $target.slideToggle("300", function () {
+            $target.toggleAttr("aria-hidden");
+            $self.toggleAttr("aria-expanded");
         });
     });
 

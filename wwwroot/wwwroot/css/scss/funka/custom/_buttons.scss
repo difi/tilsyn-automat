@@ -24,7 +24,6 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 100%;
 
     @include button;
-
     //border-radius: 5px;
     .active & {
         &.nocursor {
@@ -144,6 +143,20 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
+    &.link-button {
+        background-color: transparent;
+        color: $dirty-blue;
+        border-color: $color-black;
+        text-decoration: underline;
+        margin-bottom: 0.2rem;
+        font-size: 17px;
+
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+
+
     &.toogle-header-button {
         text-align: left;
         font-weight: bold;
@@ -159,13 +172,15 @@ button, .button, input[type="button"], input[type="submit"] {
             .toggle-header-icon {
                 top: 6px;
                 transform: rotate(-45deg);
+                transition: transform 200ms ease;
             }
         }
 
         &[aria-expanded="true"] {
             .toggle-header-icon {
-                transform: rotate(135deg);
+                transform: rotate(-225deg);
                 top: 12px;
+                transition: transform 200ms ease;
             }
         }
 
@@ -193,24 +208,31 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
-    &.toogle-help-button {
-        background-image: url('/css/cssimg/icons-sprite.svg');
-        background-color: transparent;
-        background-repeat: no-repeat;
-        padding-left: 30px;
-        padding-bottom: 0.5em;
-        padding-top: 0.6em;
+    &.upload-photo {
+        width: 90%;
+        font-size: 17px;
+
+        span {
+            display: inline-block;
+            width: 26px;
+            height: 20px;
+            background: url('/css/cssimg/icons-sprite.svg') transparent 0 -404px no-repeat;
+            vertical-align: text-bottom;
+        }
+    }
+
+    &.card-help-button {
+        background: url("/css/cssimg/icons-sprite.svg") transparent 0 -491px no-repeat;
+        width: 40px;
         margin-bottom: 0;
-        border: 0;
-        width: auto;
+        height: 40px;
+    }
 
-        &[aria-expanded="false"] {
-            background-position: 2px -585px;
-        }
-
-        &[aria-expanded="true"] {
-            background-position: 2px -685px;
-        }
+    &.card-help-close-button {
+        background: url("/css/cssimg/icons-sprite.svg") transparent 0 -591px no-repeat;
+        width: 40px;
+        margin-bottom: 0;
+        height: 40px;
     }
 
     &.tabbed {

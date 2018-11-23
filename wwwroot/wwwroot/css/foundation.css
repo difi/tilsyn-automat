@@ -2642,6 +2642,18 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
   max-width: 36rem; }
 
+.info-wrapper {
+  border-left-width: 7px;
+  border-left-style: solid;
+  border-image: linear-gradient(to bottom, #336699, #996699) 1 100%;
+  padding: 0.75rem 1rem; }
+  .info-wrapper img {
+    float: left;
+    margin-right: 8px; }
+  .info-wrapper h2 {
+    margin-top: 0;
+    margin-bottom: 18px; }
+
 .card h3 {
   font-size: 19px;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
@@ -2657,15 +2669,70 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   box-shadow: none; }
 
 .card legend, .card .legend {
-  color: #303132; }
+  color: #303132;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; }
+
+.card label span {
+  display: inline; }
 
 .card .legend-number {
   background-color: #e7eff1;
-  width: 44px;
-  height: 44px;
+  height: 42px;
+  width: 42px;
   display: inline-block;
   text-align: center;
-  line-height: 1.15; }
+  float: left;
+  margin-right: 10px;
+  padding-top: 6px; }
+
+.card .legend-text {
+  display: inline-block;
+  line-height: 20px;
+  padding-top: 8px; }
+
+.card .uploader img {
+  border: 1px dashed #618285;
+  padding: 6px;
+  border-radius: 3px; }
+
+.card .card-help-text {
+  padding: 1.1rem;
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.09); }
+
+.card .card-divider {
+  display: block; }
+
+.card .listing label {
+  display: inline-block; }
+
+.card .listing .radio {
+  margin: 0.5rem 0; }
+  .card .listing .radio input[type="radio"] {
+    position: absolute;
+    opacity: 0; }
+    .card .listing .radio input[type="radio"] + label:before {
+      content: '';
+      background: #e7eff1;
+      border-radius: 100%;
+      border: 1px solid #618285;
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      position: relative;
+      top: 0;
+      margin-right: 1em;
+      vertical-align: top;
+      cursor: pointer;
+      text-align: center;
+      transition: all 250ms ease; }
+    .card .listing .radio input[type="radio"]:checked + label:before {
+      background-color: #618285;
+      box-shadow: inset 0 0 0 4px #e7eff1; }
+    .card .listing .radio input[type="radio"]:focus + label:before {
+      outline: none;
+      border-color: #618285; }
 
 img.full-width-image {
   max-width: none !important; }
@@ -2706,20 +2773,27 @@ h2 a, h3 a {
   h2 a.tabbed:before, h3 a.tabbed:before {
     background-position: 0 -2002px; }
 
-ul, ol, .test {
+ul, ol {
   padding-left: 0.5em; }
-  ul li, ol li, .test li {
+  ul li, ol li {
     padding-left: 0.5em; }
-  ul.listing, ul.no-bullet, ol.listing, ol.no-bullet, .test.listing, .test.no-bullet {
+  ul.listing, ul.no-bullet, ol.listing, ol.no-bullet {
     list-style: none;
     margin-left: 0;
     padding-left: 0; }
-    ul.listing li, ul.no-bullet li, ol.listing li, ol.no-bullet li, .test.listing li, .test.no-bullet li {
+    ul.listing li, ul.no-bullet li, ol.listing li, ol.no-bullet li {
       padding-left: 0; }
-  ul.listing, ol.listing, .test.listing {
+  ul.listing, ol.listing {
     padding-left: 0;
     margin: 1rem 0; }
-    ul.listing ul, ul.listing ol, ol.listing ul, ol.listing ol, .test.listing ul, .test.listing ol {
+    ul.listing ul, ul.listing ol, ol.listing ul, ol.listing ol {
+      padding-left: 0;
+      margin-left: 0;
+      list-style: none; }
+  ul.qq-upload-list, ol.qq-upload-list {
+    padding-left: 0;
+    margin: 0; }
+    ul.qq-upload-list ul, ul.qq-upload-list ol, ol.qq-upload-list ul, ol.qq-upload-list ol {
       padding-left: 0;
       margin-left: 0;
       list-style: none; }
@@ -3033,6 +3107,15 @@ button, .button, input[type="button"], input[type="submit"] {
     button.black:active, .button.black:active, input[type="button"].black:active, input[type="submit"].black:active {
       background-color: #3d7685;
       border-color: #eae8ea; }
+  button.link-button, .button.link-button, input[type="button"].link-button, input[type="submit"].link-button {
+    background-color: transparent;
+    color: #458596;
+    border-color: #000;
+    text-decoration: underline;
+    margin-bottom: 0.2rem;
+    font-size: 17px; }
+    button.link-button:hover, button.link-button:focus, .button.link-button:hover, .button.link-button:focus, input[type="button"].link-button:hover, input[type="button"].link-button:focus, input[type="submit"].link-button:hover, input[type="submit"].link-button:focus {
+      text-decoration: none; }
   button.toogle-header-button, .button.toogle-header-button, input[type="button"].toogle-header-button, input[type="submit"].toogle-header-button {
     text-align: left;
     font-weight: bold;
@@ -3045,10 +3128,12 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 100%; }
     button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon {
       top: 6px;
-      transform: rotate(-45deg); }
+      transform: rotate(-45deg);
+      transition: transform 200ms ease; }
     button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="true"] .toggle-header-icon {
-      transform: rotate(135deg);
-      top: 12px; }
+      transform: rotate(-225deg);
+      top: 12px;
+      transition: transform 200ms ease; }
     button.toogle-header-button .toggle-header-number, .button.toogle-header-button .toggle-header-number, input[type="button"].toogle-header-button .toggle-header-number, input[type="submit"].toogle-header-button .toggle-header-number {
       border: 1px solid #1f3f43;
       border-radius: 100px;
@@ -3068,20 +3153,25 @@ button, .button, input[type="button"], input[type="submit"] {
       margin-left: 6px;
       position: relative;
       float: right; }
-  button.toogle-help-button, .button.toogle-help-button, input[type="button"].toogle-help-button, input[type="submit"].toogle-help-button {
-    background-image: url("/css/cssimg/icons-sprite.svg");
-    background-color: transparent;
-    background-repeat: no-repeat;
-    padding-left: 30px;
-    padding-bottom: 0.5em;
-    padding-top: 0.6em;
+  button.upload-photo, .button.upload-photo, input[type="button"].upload-photo, input[type="submit"].upload-photo {
+    width: 90%;
+    font-size: 17px; }
+    button.upload-photo span, .button.upload-photo span, input[type="button"].upload-photo span, input[type="submit"].upload-photo span {
+      display: inline-block;
+      width: 26px;
+      height: 20px;
+      background: url("/css/cssimg/icons-sprite.svg") transparent 0 -404px no-repeat;
+      vertical-align: text-bottom; }
+  button.card-help-button, .button.card-help-button, input[type="button"].card-help-button, input[type="submit"].card-help-button {
+    background: url("/css/cssimg/icons-sprite.svg") transparent 0 -491px no-repeat;
+    width: 40px;
     margin-bottom: 0;
-    border: 0;
-    width: auto; }
-    button.toogle-help-button[aria-expanded="false"], .button.toogle-help-button[aria-expanded="false"], input[type="button"].toogle-help-button[aria-expanded="false"], input[type="submit"].toogle-help-button[aria-expanded="false"] {
-      background-position: 2px -585px; }
-    button.toogle-help-button[aria-expanded="true"], .button.toogle-help-button[aria-expanded="true"], input[type="button"].toogle-help-button[aria-expanded="true"], input[type="submit"].toogle-help-button[aria-expanded="true"] {
-      background-position: 2px -685px; }
+    height: 40px; }
+  button.card-help-close-button, .button.card-help-close-button, input[type="button"].card-help-close-button, input[type="submit"].card-help-close-button {
+    background: url("/css/cssimg/icons-sprite.svg") transparent 0 -591px no-repeat;
+    width: 40px;
+    margin-bottom: 0;
+    height: 40px; }
   button.tabbed, .button.tabbed, input[type="button"].tabbed, input[type="submit"].tabbed {
     outline: none;
     border: 0;

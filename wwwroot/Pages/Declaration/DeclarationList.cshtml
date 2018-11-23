@@ -6,55 +6,62 @@
 
 @if (Model.CompanyItem != null)
 {
-    <h1>Selvdeklarasjon for @Model.CompanyItem.Name</h1>
+    <div class="row column">
+        <h1>Selvdeklarasjon for @Model.CompanyItem.Name</h1>
+    </div>
 
-    <fieldset>
-        <legend>Virksomhetsinformasjon</legend>
+    <div class="row column">
 
-        @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "Display")
-        @Html.EditorFor(x => x.CompanyItem.Name, "Display")
-        @Html.EditorFor(x => x.CompanyItem.CustomName, "TextBox")
-    </fieldset>
 
-    <fieldset>
-        <legend>Virksomhetens adresse</legend>
-        @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "Display")
-        @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "Display")
-        @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "Display")
-    </fieldset>
 
-    <table class="table">
-        <caption>
-            <h2>Selvdeklarasjoner</h2>
-        </caption>
-        <thead>
-        <tr>
-            <th scope="col">Automat</th>
-            <th scope="col">DeadlineDate</th>
-            <th scope="col">Status</th>
-            <th scope="col">Öppna</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.DeclarationList)
-        {
-            <tr>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.DeadlineDate.ToString("yyyy-MM-dd")
-                </td>
-                <td>
-                    @item.Status
-                </td>
-                <td>
-                    <form method="post">
-                        <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">Öppna</a>
-                    </form>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
+        <fieldset>
+            <legend>Virksomhetsinformasjon</legend>
+
+            @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "Display")
+            @Html.EditorFor(x => x.CompanyItem.Name, "Display")
+            @Html.EditorFor(x => x.CompanyItem.CustomName, "TextBox")
+        </fieldset>
+
+        <fieldset>
+            <legend>Virksomhetens adresse</legend>
+            @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "Display")
+            @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "Display")
+            @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "Display")
+        </fieldset>
+
+        <table class="table">
+            <caption>
+                <h2>Selvdeklarasjoner</h2>
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col">Automat</th>
+                    <th scope="col">DeadlineDate</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Öppna</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.DeclarationList)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.DeadlineDate.ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            @item.Status
+                        </td>
+                        <td>
+                            <form method="post">
+                                <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">Öppna</a>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
