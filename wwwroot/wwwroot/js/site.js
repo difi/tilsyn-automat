@@ -32,7 +32,7 @@ function attachEvents() {
 
         e.preventDefault();
         var $self = $(this),
-            $container = $self.closest(".card"),
+            $container = $self.closest(".jsAnswerItem"),
             $target = $container.find(".jsToggleHelpTarget");
             $target.slideToggle("300", function () {
             $target.toggleAttr("aria-hidden");
