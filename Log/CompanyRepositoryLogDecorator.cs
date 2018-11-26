@@ -1,12 +1,12 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Extensions;
+using Difi.Sjalvdeklaration.Shared.Interface;
 
-namespace Log
+namespace Difi.Sjalvdeklaration.Log
 {
     public class CompanyRepositoryLogDecorator : ICompanyRepository
     {

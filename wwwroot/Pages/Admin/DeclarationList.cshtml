@@ -29,6 +29,8 @@
         <tbody>
         @foreach (var item in Model.DeclarationList)
         {
+            var contactPerson = item.Company.ContactPersonList.FirstOrDefault();
+
             <tr>
                 <td>
                     <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
@@ -37,7 +39,7 @@
                     @item.Company.Name
                 </td>
                 <td>
-                    @item.User.Email
+                    @contactPerson?.Email
                 </td>
                 <td>
                     @item.DeadlineDate.ToString("yyyy-MM-dd")

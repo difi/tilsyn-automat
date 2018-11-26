@@ -1,9 +1,9 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.Shared.Interface;
-using System;
 
-namespace Log
+namespace Difi.Sjalvdeklaration.Log
 {
     public class ImageRepositoryLogDecorator : IImageRepository
     {

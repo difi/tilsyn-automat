@@ -8,13 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Resources\**" />
     <Compile Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
-    <Content Remove="Resources\**" />
     <Content Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
-    <EmbeddedResource Remove="Resources\**" />
     <EmbeddedResource Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
-    <None Remove="Resources\**" />
     <None Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
   </ItemGroup>
 

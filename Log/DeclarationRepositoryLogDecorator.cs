@@ -1,12 +1,12 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Extensions;
+using Difi.Sjalvdeklaration.Shared.Interface;
 
-namespace Log
+namespace Difi.Sjalvdeklaration.Log
 {
     public class DeclarationRepositoryLogDecorator : IDeclarationRepository
     {
@@ -66,7 +66,7 @@ namespace Log
         {
             var result = inner.Save(declarationItemId, outcomeDataList);
 
-            logRepository.Add(new LogItem(userId, result, declarationItemId, outcomeDataList));
+            //logRepository.Add(new LogItem(userId, result, declarationItemId, outcomeDataList));
 
             return result;
         }

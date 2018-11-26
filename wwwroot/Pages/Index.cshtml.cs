@@ -1,9 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.ComponentModel.DataAnnotations;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
@@ -12,12 +8,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         private readonly IConfiguration configuration;
 
         public string LoginUrl { get; set; }
-
-        public UserItem UserItemForm { get; set; }
-
-        [Required(ErrorMessage = "SocialSecurityNumberRequired")]
-        [Display(Name = "SocialSecurityNumberDisplay")]
-        public String SocialSecurityNumber { get; set; }
 
         public IndexModel(IConfiguration configuration)
         {

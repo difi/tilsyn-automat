@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 using Difi.Sjalvdeklaration.Database;
+using Difi.Sjalvdeklaration.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Difi.Sjalvdeklaration.wwwroot.Business;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
-using Log;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,9 +23,6 @@ namespace Difi.Sjalvdeklaration.wwwroot
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            
-
         }
 
         public IConfiguration Configuration { get; }

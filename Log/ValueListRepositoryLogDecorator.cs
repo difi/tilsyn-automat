@@ -1,9 +1,9 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Interface;
-using System.Collections.Generic;
 
-namespace Log
+namespace Difi.Sjalvdeklaration.Log
 {
     public class ValueListRepositoryLogDecorator : IValueListRepository
     {
