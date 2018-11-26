@@ -21,7 +21,7 @@
 
     <div class="info-wrapper">
         <h2>Du trenger følgende verktøy</h2>
-       
+
         <div>
             <img src="~/images/kamera.png" />
             <img src="~/images/mata.png" />
@@ -105,9 +105,9 @@
 
                                             @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                             {
-                                                <div class="card-divider text-center medium-text-left">
-                                                    <div class="uploader" id="@answerItem.Id"></div>
-                                                </div>
+                                            <div class="card-divider text-center medium-text-left">
+                                                <div class="uploader" id="@answerItem.Id"></div>
+                                            </div>
 
                                             }
                                         </div>
@@ -125,9 +125,9 @@
     }
     <div class="row column">
         <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Spara sjelvdeklarasjon</button>
-    <br /><br />
+        <br /><br />
     </div>
-    
+
 </form>
 
 @section Scripts {
@@ -137,8 +137,15 @@
     <link href="/js/azure.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet">
     <script src="/js/azure.fine-uploader/azure.fine-uploader.min.js"></script>
 
+
     <script type="text/template" id="qq-template">
+
+
+
+
+
         <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
+
             <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
                 <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
             </div>
@@ -157,10 +164,17 @@
                 </li>
             </ul>
             <div class="qq-upload-button-selector qq-upload-button">
-                <button class="button upload-photo"><span></span>Legg till bilde</button>
-            </div>
 
+                <div class="row ">
+                    <div class="small-10 small-centered medium-12 columns">
+                        <button class="button upload-photo"><span></span>Legg till bilde</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+
     </script>
 
     <script>
@@ -194,3 +208,4 @@
 
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }
+

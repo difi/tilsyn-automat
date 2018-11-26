@@ -125,3 +125,11 @@ $card-margin-bottom: $global-margin !default;
     min-height: 1px;
   }
 }
+
+@include breakpoint(medium) {
+
+
+    div .card-divider {
+        padding: 1rem 4rem;
+    }
+}

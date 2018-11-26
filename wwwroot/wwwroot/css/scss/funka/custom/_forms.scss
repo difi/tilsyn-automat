@@ -12,7 +12,7 @@
 .form-field {
     //padding: 0 0 0.75rem 0;
     padding: 0;
-    width: 100%;
+    //width: 100%;
 }
 
 input[type=radio], input[type=checkbox] {
@@ -75,7 +75,7 @@ label {
 @include breakpoint(medium) {
     .form-field {
         //padding: 0 0 0.75rem 0;
-        width: 60%;
+        //width: 60%;
     }
 }
 
@@ -86,5 +86,6 @@ label {
 //--------------------------------------------------------------*/
 // LARGE SCREEN
 @include breakpoint(large) {
+
 }
 //--------------------------------------------------------------*/
