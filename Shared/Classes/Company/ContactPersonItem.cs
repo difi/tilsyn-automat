@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {
@@ -7,14 +11,25 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
     {
         public Guid Id { get; set; }
 
+        [Display(Name = "Name")]
+        [Required(ErrorMessage = "Name - required field")]
         public String Name { get; set; }
 
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email - required field")]
         public String Email { get; set; }
 
+
+        [Display(Name = "PhoneCountryCode")]
+        [Required(ErrorMessage = "PhoneCountryCode - required field")]
         public String PhoneCountryCode { get; set; }
 
+        [Display(Name = "Phone")]
+        [Required(ErrorMessage = "Phone - required field")]
         public String Phone { get; set; }
 
+        [Display(Name = "CompanyItemId")]
+        [Required(ErrorMessage = "CompanyItemId - required field")]
         public Guid CompanyItemId { get; set; }
     }
 }

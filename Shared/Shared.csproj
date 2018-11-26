@@ -18,12 +18,19 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\Classes\Company\CompanyItem.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Company\ContactPersonItem.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CompanyItem.Designer.cs</LastGenOutput>
+      <LastGenOutput>ContactPersonItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationItem.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DeclarationItem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationTestItem.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeclarationTestItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\UserItem.'en-US.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -31,15 +38,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\Classes\Company\CompanyItem.Designer.cs">
+    <Compile Update="Resources\Classes\Company\ContactPersonItem.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>CompanyItem.resx</DependentUpon>
+      <DependentUpon>ContactPersonItem.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Classes\Declaration\DeclarationItem.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DeclarationItem.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Classes\Declaration\DeclarationTestItem.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeclarationTestItem.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 

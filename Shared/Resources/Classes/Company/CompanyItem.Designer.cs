@@ -59,5 +59,23 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 222Code.
+        /// </summary>
+        internal static string _Code___required_field_ {
+            get {
+                return ResourceManager.GetString("\"Code - required field\"", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 111Code.
+        /// </summary>
+        internal static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
     }
 }
