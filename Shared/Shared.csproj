@@ -17,9 +17,30 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Classes\Company\CompanyItem.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CompanyItem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationItem.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeclarationItem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\UserItem.'en-US.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Classes\Company\CompanyItem.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CompanyItem.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Classes\Declaration\DeclarationItem.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeclarationItem.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -23,7 +23,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         public UserItem UserItemForm { get; set; }
 
         [BindProperty]
-        [Display(Name = "Välj roller")]
+        [Display(Name = "Select roles")]
         public List<SelectListItem> SelectRoleList { get; set; }
 
         public UserFormModel(IApiHttpClient apiHttpClient)

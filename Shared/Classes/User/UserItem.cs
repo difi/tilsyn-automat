@@ -26,6 +26,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         [AutoComplete("email ")]
         public String Email { get; set; }
 
+        [Display(Name = "Country Code")]
         [AutoComplete("tel-country-code")]
         public String CountryCode { get; set; }
 
