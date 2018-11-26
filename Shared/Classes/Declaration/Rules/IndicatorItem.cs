@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Newtonsoft.Json;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
@@ -20,8 +21,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public ICollection<IndicatorTestGroup> TestGroupList { get; set; }
 
+        [JsonIgnore]
         public ICollection<OutcomeData> OutcomeDataList { get; set; }
 
+        [JsonIgnore]
         public ICollection<DeclarationIndicatorGroup> DeclarationList { get; set; }
 
         [NotMapped]
