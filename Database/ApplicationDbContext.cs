@@ -508,7 +508,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem112 = new AnswerItem
             {
                 Question = "Ta bilde",
-                Order = 2,
+                Order = 3,
                 Id = Guid.Parse("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem11.Id,
@@ -517,7 +517,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem113 = new AnswerItem
             {
                 Question = "Beskriv hindringene i kundens betjeningsområde.",
-                Order = 3,
+                Order = 2,
                 Id = Guid.Parse("d7b40e3c-e7fa-44e5-b44f-750759c971cc"),
                 TypeOfAnswerId = typeOfAnswer1.Id,
                 RuleItemId = ruleItem11.Id,
@@ -537,7 +537,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem122 = new AnswerItem
             {
                 Question = "Ta bilde",
-                Order = 2,
+                Order = 3,
                 Id = Guid.Parse("8a12d92b-8a6a-44e7-9517-74331a4c2483"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem12.Id,
@@ -546,7 +546,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem123 = new AnswerItem
             {
                 Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
-                Order = 3,
+                Order = 2,
                 Id = Guid.Parse("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
                 MinInt = 220,
@@ -568,7 +568,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem212 = new AnswerItem
             {
                 Question = "Ta bilde",
-                Order = 2,
+                Order = 3,
                 Id = Guid.Parse("13d6d530-e533-4510-9a66-8b862899dbdf"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem21.Id
@@ -577,7 +577,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem213 = new AnswerItem
             {
                 Question = "Hvor mange cm er det mellom betalingsterminalene?",
-                Order = 3,
+                Order = 2,
                 Id = Guid.Parse("89fd2205-1047-403d-a5bd-f70a1de2f247"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
                 MinInt = 150,
@@ -599,7 +599,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem312 = new AnswerItem
             {
                 Question = "Ta bilde",
-                Order = 2,
+                Order = 4,
                 Id = Guid.Parse("c4870935-ee11-4557-a9c3-aca678c17565"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem31.Id
@@ -608,7 +608,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem313 = new AnswerItem
             {
                 Question = "Er skiltet plassert over området der kunden skal betale varene sine?",
-                Order = 3,
+                Order = 2,
                 Id = Guid.Parse("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
@@ -619,7 +619,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerItem314 = new AnswerItem
             {
                 Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?",
-                Order = 4,
+                Order = 3,
                 Id = Guid.Parse("f69c1e45-99d8-4293-a242-c5ed9e126e99"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,

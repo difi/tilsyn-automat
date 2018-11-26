@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.LogDb
 {
     [DbContext(typeof(LogDbContext))]
-    [Migration("20181121163316_Log1")]
-    partial class Log1
+    [Migration("20181126071602_V1")]
+    partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

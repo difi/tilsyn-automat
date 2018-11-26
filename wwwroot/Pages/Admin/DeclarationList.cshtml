@@ -16,25 +16,25 @@
             <h2>Selvdeklarasjoner</h2>
         </caption>
         <thead>
-        <tr>
-            <th scope="col">Virksamhet</th>
-            <th scope="col">Automat</th>
-            <th scope="col">E-post kontaktperson</th>
-            <th scope="col">Frist for innsending</th>
-            <th scope="col">Dato sendt inn</th>
-            <th scope="col">Status</th>
-            <th scope="col">Eksporter</th>
-        </tr>
+            <tr>
+                <th scope="col">Automat</th>
+                <th scope="col">Virksamhet</th>
+                <th scope="col">E-post kontaktperson</th>
+                <th scope="col">Frist for innsending</th>
+                <th scope="col">Dato sendt inn</th>
+                <th scope="col">Status</th>
+                <th scope="col">Eksporter</th>
+            </tr>
         </thead>
         <tbody>
         @foreach (var item in Model.DeclarationList)
         {
             <tr>
                 <td>
-                    <a asp-page="/Admin/CompanyForm" asp-route-id="@item.Company.Id">@item.Company.Name</a>
+                    <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
                 </td>
                 <td>
-                    <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
+                    @item.Company.Name
                 </td>
                 <td>
                     @item.User.Email

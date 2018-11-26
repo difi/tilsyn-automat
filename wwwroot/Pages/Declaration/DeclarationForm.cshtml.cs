@@ -68,7 +68,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                                 TypeOfAnswerId = x.TypeOfAnswerId,
                                 String = GetAnswerFromFormString($"answer_string_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
                                 Bool = GetAnswerFromForm<Boolean>($"answer_bool_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
-                                Int = GetAnswerFromForm<Int32>($"answer_int_{indicator.Id}__{ruleItem.Id}_{x.Id}")
+                                Int = GetAnswerFromForm<Int32>($"answer_int_{indicator.Id}_{ruleItem.Id}_{x.Id}")
                             }).ToList()
                         });
                     }

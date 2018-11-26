@@ -122,7 +122,7 @@ namespace Difi.Sjalvdeklaration.Database
                 declarationItem.Id = Guid.NewGuid();
                 declarationItem.CreatedDate = DateTime.Now;
                 declarationItem.Status = DeclarationStatus.Created;
-                declarationItem.User = userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
+                declarationItem.UserItemId = userRepository.Get<UserItem>(declarationItem.UserItemId).Data.Id;
                 declarationItem.IndicatorList = new List<DeclarationIndicatorGroup>();
 
                 declarationItem.DeclarationTestItem = new DeclarationTestItem
@@ -132,7 +132,7 @@ namespace Difi.Sjalvdeklaration.Database
                     TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1),
                 };
 
-                foreach (var indicatorTestGroup in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem).Include(x=>x.TestGroupItem))
+                foreach (var indicatorTestGroup in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem).Include(x => x.TestGroupItem))
                 {
                     declarationItem.IndicatorList.Add(new DeclarationIndicatorGroup
                     {

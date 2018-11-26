@@ -30,14 +30,11 @@
 
         lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-
         <div class="row medium-uncollapse small-collapse">
             <div class="small-12 medium-6 columns">
                 <h2 class="h2-toggle"><button disabled aria-controls="card-help-button" aria-expanded="true" class="toogle-header-button"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
             </div>
         </div>
-
-
     }
 
     <div>
@@ -60,34 +57,40 @@
                         var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                         var orderText = mainIndex + "." + subIndex;
 
-                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                        {
 
-                            <h3>@answerItem.Question</h3>
+                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                            {
-                                @answerData.String
-                            }
+                                <h3>@answerItem.Question</h3>
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                            {
-                                @answerData.Bool
-                            }
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                {
+                                    @answerData.String
+                                }
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                            {
-                                @answerData.Int
-                            }
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                {
+                                    @answerData.Bool
+                                }
 
-                            @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                            {
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                {
+                                    @answerData.Int
+                                }
 
-                            }
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                {
 
-                            <br />
-                            <br />
+                                }
 
-                        </div>
+                                <br />
+                                <br />
+
+                            </div>
+
+                        }
+
 
                         firstQuestion = false;
                     }
@@ -96,49 +99,4 @@
             </div>
         }
     </div>
-
-
 }
-
-<div class="row column">
-    <hr><br />
-    <button class="button large">.button .large</button>
-    <br /><br />
-    <button class="button large">.button .large</button>
-    <br /><br />
-    <button class="button">.button</button>
-    <br /><br /><br /><br />
-</div>
-
-@*@foreach (var outcomeData in Model.OutcomeDataList)
-    {
-        <h2>@outcomeData.Id <span>(@outcomeData.Result.Text)</span></h2>
-
-
-        foreach (var ruleData in outcomeData.RuleDataList.OrderBy(x => x.Rule.Order))
-        {
-
-            foreach (var answerData in ruleData.AnswerDataList)
-            {
-                <h4>@answerData.AnswerItem.Question <span>(@ruleData.Result.Text)</span></h4>
-
-                if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.String)
-                {
-                    <b>@answerData.String</b> <span>(@answerData.Result.Text)</span>
-                }
-
-                if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Bool)
-                {
-                    <b>@answerData.Bool</b> <span>(@answerData.Result.Text)</span>
-                }
-
-                if (answerData.TypeOfAnswerId == (int)TypeOfAnswer.Int)
-                {
-                    <b>@answerData.Int</b> <span>(@answerData.Result.Text)</span>
-                }
-            }
-            <br /><br />
-        }
-
-        <hr />
-    }*@

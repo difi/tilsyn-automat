@@ -41,14 +41,9 @@
 
     <div class="row medium-uncollapse">
         <div class="small-12 medium-12 columns">
-            <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help-button" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Demo, no function <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+            <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help-button" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
         </div>
     </div>
-
-
-
-
-
 
     @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
     {
@@ -191,7 +186,6 @@
                 },
                 multiple: false,
                 validation: {
-                    itemLimit: 1,
                     allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
                 }
             });
