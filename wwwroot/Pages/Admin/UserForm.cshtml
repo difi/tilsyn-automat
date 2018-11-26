@@ -1,6 +1,5 @@
 ﻿@page
-@model UserFormModel
-
+@model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.UserFormModel
 
 @{
     var title = Model.UserItemForm.Id != Guid.Empty ? "Uppdatera " + Model.UserItemForm.Name : "Ny interne brukere";
@@ -13,7 +12,7 @@
 
 <form method="post">
     <div asp-validation-summary="All"></div>
-    
+
     @Html.HiddenFor(x => x.UserItemForm.Id)
     @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
     @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
@@ -25,8 +24,8 @@
 
     @if (Model.UserItemForm.Id != Guid.Empty)
     {
-        <input class="button update icon" type="submit" value="Oppdater" />
-        <button class="button delete icon" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">Radera</button>
+        <input class="button update icon" type="submit" value="@Localizer["Update"]" />
+        <button class="button delete icon" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
     }
     else
     {
