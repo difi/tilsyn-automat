@@ -61,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Epostadresse til kontaktperson.
+        ///   Looks up a localized string similar to Epostadresse .
         /// </summary>
         internal static string Email {
             get {
@@ -79,7 +79,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navn på kontaktperson.
+        ///   Looks up a localized string similar to Navn.
         /// </summary>
         internal static string Name {
             get {
@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer til kontaktperson.
+        ///   Looks up a localized string similar to Telefonnummer.
         /// </summary>
         internal static string Phone {
             get {
@@ -115,7 +115,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer Landskode til kontaktperson.
+        ///   Looks up a localized string similar to Telefonnummer Landskode.
         /// </summary>
         internal static string PhoneCountryCode {
             get {

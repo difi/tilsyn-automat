@@ -47,6 +47,7 @@
   <ItemGroup>
     <Folder Include="Migrations\ApplicationDb\" />
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Resources\Pages\Shared\EditorTemplates\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Email" xml:space="preserve">
-    <value>Epostadresse til kontaktperson</value>
+    <value>Epostadresse </value>
   </data>
   <data name="Email - required field" xml:space="preserve">
     <value>Epostadresse til kontaktperson er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Navn på kontaktperson</value>
+    <value>Navn</value>
   </data>
   <data name="Name - required field" xml:space="preserve">
     <value>Navn på kontaktperson er påkrevd</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Telefonnummer til kontaktperson</value>
+    <value>Telefonnummer</value>
   </data>
   <data name="Phone - required field" xml:space="preserve">
     <value>Telefonnummer til kontaktperson er påkrevd</value>
   </data>
   <data name="PhoneCountryCode" xml:space="preserve">
-    <value>Telefonnummer Landskode til kontaktperson</value>
+    <value>Telefonnummer Landskode</value>
   </data>
   <data name="PhoneCountryCode - required field" xml:space="preserve">
     <value>Telefonnummer Landskode til kontaktperson er påkrevd</value>

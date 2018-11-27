@@ -61,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1BusinessAddressCity.
+        ///   Looks up a localized string similar to Sted.
         /// </summary>
         internal static string BusinessAddressCity {
             get {
@@ -70,7 +70,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1BusinessAddressCity - er påkrevd.
+        ///   Looks up a localized string similar to Beliggenhetsadresse sted er påkrevd.
         /// </summary>
         internal static string BusinessAddressCity___required_field {
             get {
@@ -79,7 +79,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1BusinessAddressStreet.
+        ///   Looks up a localized string similar to Gatenavn og nummer.
         /// </summary>
         internal static string BusinessAddressStreet {
             get {
@@ -88,7 +88,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1BusinessAddressStreet - er påkrevd.
+        ///   Looks up a localized string similar to Beliggenhetsadresse gatenavn og nummer er påkrevd.
         /// </summary>
         internal static string BusinessAddressStreet___required_field {
             get {
@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1BusinessAddressZip.
+        ///   Looks up a localized string similar to Postnummer.
         /// </summary>
         internal static string BusinessAddressZip {
             get {
@@ -106,7 +106,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1BusinessAddressZip - er påkrevd.
+        ///   Looks up a localized string similar to Beliggenhetsadresse postnummer er påkrevd.
         /// </summary>
         internal static string BusinessAddressZip___required_field {
             get {
@@ -115,7 +115,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1Code.
+        ///   Looks up a localized string similar to Pinkode.
         /// </summary>
         internal static string Code {
             get {
@@ -124,7 +124,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1Code - er påkrevd.
+        ///   Looks up a localized string similar to Pinkode er påkrevd.
         /// </summary>
         internal static string Code___required_field {
             get {
@@ -133,7 +133,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organisationsnummer.
+        ///   Looks up a localized string similar to Virksomhet ID (tilsynets datamodell).
         /// </summary>
         internal static string CorporateIdentityNumber {
             get {
@@ -142,11 +142,11 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organisationsnummer er påkrevd.
+        ///   Looks up a localized string similar to Virksomhet ID er påkrevd.
         /// </summary>
-        internal static string CorporateIdentityNumber___required {
+        internal static string CorporateIdentityNumber___required_field {
             get {
-                return ResourceManager.GetString("CorporateIdentityNumber - required", resourceCulture);
+                return ResourceManager.GetString("CorporateIdentityNumber - required field", resourceCulture);
             }
         }
         
@@ -223,7 +223,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1IndustryGroupAggregated.
+        ///   Looks up a localized string similar to Næringsgruppe aggregert.
         /// </summary>
         internal static string IndustryGroupAggregated {
             get {
@@ -232,7 +232,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1IndustryGroupAggregated - er påkrevd.
+        ///   Looks up a localized string similar to Næringsgruppe aggregert er påkrevd.
         /// </summary>
         internal static string IndustryGroupAggregated___required_field {
             get {
@@ -241,7 +241,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1IndustryGroupCode.
+        ///   Looks up a localized string similar to Næringsgruppe kode.
         /// </summary>
         internal static string IndustryGroupCode {
             get {
@@ -250,7 +250,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1IndustryGroupCode - er påkrevd.
+        ///   Looks up a localized string similar to Næringsgruppe kode er påkrevd.
         /// </summary>
         internal static string IndustryGroupCode___required_field {
             get {
@@ -259,7 +259,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1IndustryGroupDescription.
+        ///   Looks up a localized string similar to Næringsgruppe beskrivelse.
         /// </summary>
         internal static string IndustryGroupDescription {
             get {
@@ -268,7 +268,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1IndustryGroupDescription - er påkrevd.
+        ///   Looks up a localized string similar to Næringsgruppe beskrivelse er påkrevd.
         /// </summary>
         internal static string IndustryGroupDescription___required_field {
             get {
@@ -277,7 +277,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1InstitutionalSectorCode.
+        ///   Looks up a localized string similar to Institusjonell sektorkode kode.
         /// </summary>
         internal static string InstitutionalSectorCode {
             get {
@@ -286,7 +286,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1InstitutionalSectorCode - er påkrevd.
+        ///   Looks up a localized string similar to Institusjonell sektorkode kode er påkrevd.
         /// </summary>
         internal static string InstitutionalSectorCode___required_field {
             get {
@@ -295,7 +295,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1InstitutionalSectorDescription.
+        ///   Looks up a localized string similar to Institusjonell sektorkode beskrivelse.
         /// </summary>
         internal static string InstitutionalSectorDescription {
             get {
@@ -304,7 +304,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1InstitutionalSectorDescription - er påkrevd.
+        ///   Looks up a localized string similar to Institusjonell sektorkode beskrivelse er påkrevd.
         /// </summary>
         internal static string InstitutionalSectorDescription___required_field {
             get {
@@ -313,7 +313,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1LocationAddressCity.
+        ///   Looks up a localized string similar to Sted.
         /// </summary>
         internal static string LocationAddressCity {
             get {
@@ -322,7 +322,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1LocationAddressCity - er påkrevd.
+        ///   Looks up a localized string similar to Forretningsadresse sted er påkrevd.
         /// </summary>
         internal static string LocationAddressCity___required_field {
             get {
@@ -331,7 +331,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1LocationAddressStreet.
+        ///   Looks up a localized string similar to Gatenavn og nummer.
         /// </summary>
         internal static string LocationAddressStreet {
             get {
@@ -340,7 +340,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1LocationAddressStreet - er påkrevd.
+        ///   Looks up a localized string similar to Forretningsadresse gatenavn og nummer er åkrevd.
         /// </summary>
         internal static string LocationAddressStreet___required_field {
             get {
@@ -349,7 +349,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1LocationAddressZip.
+        ///   Looks up a localized string similar to Postnummer.
         /// </summary>
         internal static string LocationAddressZip {
             get {
@@ -358,7 +358,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1LocationAddressZip - er påkrevd.
+        ///   Looks up a localized string similar to Forretningsadresse postnummer er påkrevd.
         /// </summary>
         internal static string LocationAddressZip___required_field {
             get {
@@ -367,7 +367,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1MailingAddressCity.
+        ///   Looks up a localized string similar to Sted.
         /// </summary>
         internal static string MailingAddressCity {
             get {
@@ -376,7 +376,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1MailingAddressCity - er påkrevd.
+        ///   Looks up a localized string similar to Sted er påkrevd.
         /// </summary>
         internal static string MailingAddressCity___required_field {
             get {
@@ -385,7 +385,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1MailingAddressStreet.
+        ///   Looks up a localized string similar to Gatenavn og nummer.
         /// </summary>
         internal static string MailingAddressStreet {
             get {
@@ -394,7 +394,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1MailingAddressStreet - er påkrevd.
+        ///   Looks up a localized string similar to Gatenavn og nummer er påkrevd.
         /// </summary>
         internal static string MailingAddressStreet___required_field {
             get {
@@ -403,7 +403,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1MailingAddressZip.
+        ///   Looks up a localized string similar to Postnummer.
         /// </summary>
         internal static string MailingAddressZip {
             get {
@@ -412,7 +412,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1MailingAddressZip - er påkrevd.
+        ///   Looks up a localized string similar to Postnummer er påkrevd.
         /// </summary>
         internal static string MailingAddressZip___required_field {
             get {
@@ -421,7 +421,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhetens navn.
+        ///   Looks up a localized string similar to Virksomhetens navn i Brreg.
         /// </summary>
         internal static string Name {
             get {
@@ -430,7 +430,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhetens navn er påkrevd.
+        ///   Looks up a localized string similar to Virksomhetens navn i Brreg er påkrevd.
         /// </summary>
         internal static string Name___required_field {
             get {
@@ -439,7 +439,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1OwnerCorporateIdentityNumber.
+        ///   Looks up a localized string similar to Organisationsnummer.
         /// </summary>
         internal static string OwnerCorporateIdentityNumber {
             get {
@@ -448,7 +448,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1OwnerCorporateIdentityNumber - er påkrevd.
+        ///   Looks up a localized string similar to Organisationsnummer er påkrevd.
         /// </summary>
         internal static string OwnerCorporateIdentityNumber___required_field {
             get {

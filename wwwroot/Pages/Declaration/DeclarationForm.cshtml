@@ -62,7 +62,7 @@
 
                         lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-                        <h2 class="h2-toggle"><button data-id="@indicatorItem.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+                        <h2 class="h2-toggle"><button data-id="@indicatorItem.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.IndicatorItem.Name</span></span> </button></h2>
                     }
                 </div>
             </div>
@@ -145,7 +145,7 @@
         </div>
     }
     <div class="row column">
-        <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Spara sjelvdeklarasjon</button>
+        <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
         <br /><br />
     </div>
 
@@ -181,14 +181,14 @@
                     <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
                     <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
 
-                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">Fjern bilde</button>
+                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["DeleteImage"]</button>
                 </li>
             </ul>
             <div class="qq-upload-button-selector qq-upload-button">
 
                 <div class="row ">
                     <div class="small-10 small-centered medium-12 columns">
-                        <button class="button upload-photo"><span></span>Legg till bilde</button>
+                        <button class="button upload-photo"><span></span>@Localizer["AddImage"]</button>
                     </div>
                 </div>
 
