@@ -53,7 +53,7 @@
         var outcomeData = declarationIndicatorGroup.IndicatorItem.OutcomeData;
 
         <div class="jsToggleCardContainer">
-            <div class="row medium-uncollapse ">
+            <div class="row medium-uncollapse">
                 <div class="small-12 medium-12 columns">
                     @if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
                     {
@@ -62,16 +62,14 @@
 
                         lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-                        <h2 class="h2-toggle"><button id="unikt-id" aria-controls="" aria-expanded="false" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+                        <h2 class="h2-toggle"><button data-id="@indicatorItem.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
                     }
                 </div>
             </div>
 
             <div class="row ">
                 <div class="small-12 medium-12 columns">
-
-
-                    <div class="jsToggleCardTarget" style="display: none;" aria-hidden="true">
+                    <div class="jsToggleCardTarget" data-id="@indicatorItem.Id">
                         @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                         {
                             RuleData ruleData = null;

@@ -6,35 +6,25 @@
         sortRestart: true
     });
 
-    attachEvents();
+    var questionToggle = new funkanu.ariatoggle({
+        container: ".jsToggleCardContainer",
+        triggerSelector: ".jsToggleCardButton",
+        target: function ($elem) {
+            return $elem.parents(".jsToggleCardContainer").find('.jsToggleCardTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
+
+    var helpToggle = new funkanu.ariatoggle({
+        container: ".jsAnswerItem",
+        triggerSelector: ".jsToggleHelpButton",
+        target: function ($elem) {
+            return $elem.parents(".jsAnswerItem").find('.jsToggleHelpTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
 });
-
-function attachEvents() {
-    $("body").on("click", ".jsToggleCardButton", function (e) {
-
-        e.preventDefault();
-        var $self = $(this),
-            $container = $self.closest(".jsToggleCardContainer"),
-            $target = $container.find(".jsToggleCardTarget");
-            $target.slideToggle("300", function () {
-            $target.toggleAttr("aria-hidden");
-            $self.toggleAttr("aria-expanded");
-
-            //$self.parent().parent().parent().addClass("small-collapse");
-        });
-    });
-
-    $("body").on("click", ".jsToggleHelpButton", function (e) {
-
-        e.preventDefault();
-        var $self = $(this),
-            $container = $self.closest(".jsAnswerItem"),
-            $target = $container.find(".jsToggleHelpTarget");
-            $target.slideToggle("300", function () {
-            $target.toggleAttr("aria-hidden");
-            $self.toggleAttr("aria-expanded");
-        });
-    });
-
-
-}
