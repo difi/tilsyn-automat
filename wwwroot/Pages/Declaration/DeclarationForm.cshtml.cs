@@ -82,8 +82,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                                 AnswerItemId = x.Id,
                                 TypeOfAnswerId = x.TypeOfAnswerId,
                                 String = GetAnswerFromFormString($"answer_string_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
-                                Bool = GetAnswerFromForm<Boolean>($"answer_bool_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
-                                Int = GetAnswerFromForm<Int32>($"answer_int_{indicator.Id}_{ruleItem.Id}_{x.Id}")
+                                Bool = GetAnswerFromFormBool($"answer_bool_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
+                                Int = GetAnswerFromFormInt($"answer_int_{indicator.Id}_{ruleItem.Id}_{x.Id}")
                             }).ToList()
                         });
                     }
@@ -100,7 +100,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 return Page();
             }
-            catch
+            catch (Exception exception)
             {
                 return Page();
             }
@@ -110,24 +110,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             var formValue = Request.Form[idString].ToString();
 
-            if (!String.IsNullOrEmpty(formValue))
-            {
-                return formValue;
-            }
-
-            return String.Empty;
+            return !String.IsNullOrEmpty(formValue) ? formValue : String.Empty;
         }
 
-        private T GetAnswerFromForm<T>(string idString) where T : new()
+        private int? GetAnswerFromFormInt(string idString)
         {
             var formValue = Request.Form[idString].ToString();
 
-            if (!String.IsNullOrEmpty(formValue))
-            {
-                return (T)Convert.ChangeType(formValue, typeof(T));
-            }
+            return !String.IsNullOrEmpty(formValue) ? (int?) Convert.ToInt32(formValue) : null;
+        }
 
-            return new T();
+        private bool? GetAnswerFromFormBool(string idString)
+        {
+            var formValue = Request.Form[idString].ToString();
+
+            return !String.IsNullOrEmpty(formValue) ? (bool?) Convert.ToBoolean(formValue) : null;
         }
     }
 }

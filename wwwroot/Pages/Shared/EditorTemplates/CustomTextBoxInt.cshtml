@@ -5,8 +5,10 @@
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
-    var value = ViewData["value"];
+    var value = (int?) ViewData["value"];
 }
+
+@value
 
 <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
     <div class="legend">
