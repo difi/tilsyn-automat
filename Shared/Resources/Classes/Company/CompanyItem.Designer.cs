@@ -61,20 +61,398 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 222Code.
+        ///   Looks up a localized string similar to 1BusinessAddressCity.
         /// </summary>
-        internal static string _Code___required_field_ {
+        internal static string BusinessAddressCity {
             get {
-                return ResourceManager.GetString("\"Code - required field\"", resourceCulture);
+                return ResourceManager.GetString("BusinessAddressCity", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 111Code.
+        ///   Looks up a localized string similar to 1BusinessAddressCity - er påkrevd.
+        /// </summary>
+        internal static string BusinessAddressCity___required_field {
+            get {
+                return ResourceManager.GetString("BusinessAddressCity - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1BusinessAddressStreet.
+        /// </summary>
+        internal static string BusinessAddressStreet {
+            get {
+                return ResourceManager.GetString("BusinessAddressStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1BusinessAddressStreet - er påkrevd.
+        /// </summary>
+        internal static string BusinessAddressStreet___required_field {
+            get {
+                return ResourceManager.GetString("BusinessAddressStreet - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1BusinessAddressZip.
+        /// </summary>
+        internal static string BusinessAddressZip {
+            get {
+                return ResourceManager.GetString("BusinessAddressZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1BusinessAddressZip - er påkrevd.
+        /// </summary>
+        internal static string BusinessAddressZip___required_field {
+            get {
+                return ResourceManager.GetString("BusinessAddressZip - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1Code.
         /// </summary>
         internal static string Code {
             get {
                 return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1Code - er påkrevd.
+        /// </summary>
+        internal static string Code___required_field {
+            get {
+                return ResourceManager.GetString("Code - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organisationsnummer.
+        /// </summary>
+        internal static string CorporateIdentityNumber {
+            get {
+                return ResourceManager.GetString("CorporateIdentityNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organisationsnummer er påkrevd.
+        /// </summary>
+        internal static string CorporateIdentityNumber___required {
+            get {
+                return ResourceManager.GetString("CorporateIdentityNumber - required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomAddressCity.
+        /// </summary>
+        internal static string CustomAddressCity {
+            get {
+                return ResourceManager.GetString("CustomAddressCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomAddressCity - er påkrevd.
+        /// </summary>
+        internal static string CustomAddressCity___required_field {
+            get {
+                return ResourceManager.GetString("CustomAddressCity - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomAddressStreet.
+        /// </summary>
+        internal static string CustomAddressStreet {
+            get {
+                return ResourceManager.GetString("CustomAddressStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomAddressStreet - er påkrevd.
+        /// </summary>
+        internal static string CustomAddressStreet___required_field {
+            get {
+                return ResourceManager.GetString("CustomAddressStreet - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomAddressZip.
+        /// </summary>
+        internal static string CustomAddressZip {
+            get {
+                return ResourceManager.GetString("CustomAddressZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomAddressZip - er påkrevd.
+        /// </summary>
+        internal static string CustomAddressZip___required_field {
+            get {
+                return ResourceManager.GetString("CustomAddressZip - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomName.
+        /// </summary>
+        internal static string CustomName {
+            get {
+                return ResourceManager.GetString("CustomName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1CustomName - er påkrevd.
+        /// </summary>
+        internal static string CustomName___required_field {
+            get {
+                return ResourceManager.GetString("CustomName - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1IndustryGroupAggregated.
+        /// </summary>
+        internal static string IndustryGroupAggregated {
+            get {
+                return ResourceManager.GetString("IndustryGroupAggregated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1IndustryGroupAggregated - er påkrevd.
+        /// </summary>
+        internal static string IndustryGroupAggregated___required_field {
+            get {
+                return ResourceManager.GetString("IndustryGroupAggregated - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1IndustryGroupCode.
+        /// </summary>
+        internal static string IndustryGroupCode {
+            get {
+                return ResourceManager.GetString("IndustryGroupCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1IndustryGroupCode - er påkrevd.
+        /// </summary>
+        internal static string IndustryGroupCode___required_field {
+            get {
+                return ResourceManager.GetString("IndustryGroupCode - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1IndustryGroupDescription.
+        /// </summary>
+        internal static string IndustryGroupDescription {
+            get {
+                return ResourceManager.GetString("IndustryGroupDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1IndustryGroupDescription - er påkrevd.
+        /// </summary>
+        internal static string IndustryGroupDescription___required_field {
+            get {
+                return ResourceManager.GetString("IndustryGroupDescription - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1InstitutionalSectorCode.
+        /// </summary>
+        internal static string InstitutionalSectorCode {
+            get {
+                return ResourceManager.GetString("InstitutionalSectorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1InstitutionalSectorCode - er påkrevd.
+        /// </summary>
+        internal static string InstitutionalSectorCode___required_field {
+            get {
+                return ResourceManager.GetString("InstitutionalSectorCode - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1InstitutionalSectorDescription.
+        /// </summary>
+        internal static string InstitutionalSectorDescription {
+            get {
+                return ResourceManager.GetString("InstitutionalSectorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1InstitutionalSectorDescription - er påkrevd.
+        /// </summary>
+        internal static string InstitutionalSectorDescription___required_field {
+            get {
+                return ResourceManager.GetString("InstitutionalSectorDescription - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1LocationAddressCity.
+        /// </summary>
+        internal static string LocationAddressCity {
+            get {
+                return ResourceManager.GetString("LocationAddressCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1LocationAddressCity - er påkrevd.
+        /// </summary>
+        internal static string LocationAddressCity___required_field {
+            get {
+                return ResourceManager.GetString("LocationAddressCity - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1LocationAddressStreet.
+        /// </summary>
+        internal static string LocationAddressStreet {
+            get {
+                return ResourceManager.GetString("LocationAddressStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1LocationAddressStreet - er påkrevd.
+        /// </summary>
+        internal static string LocationAddressStreet___required_field {
+            get {
+                return ResourceManager.GetString("LocationAddressStreet - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1LocationAddressZip.
+        /// </summary>
+        internal static string LocationAddressZip {
+            get {
+                return ResourceManager.GetString("LocationAddressZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1LocationAddressZip - er påkrevd.
+        /// </summary>
+        internal static string LocationAddressZip___required_field {
+            get {
+                return ResourceManager.GetString("LocationAddressZip - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1MailingAddressCity.
+        /// </summary>
+        internal static string MailingAddressCity {
+            get {
+                return ResourceManager.GetString("MailingAddressCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1MailingAddressCity - er påkrevd.
+        /// </summary>
+        internal static string MailingAddressCity___required_field {
+            get {
+                return ResourceManager.GetString("MailingAddressCity - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1MailingAddressStreet.
+        /// </summary>
+        internal static string MailingAddressStreet {
+            get {
+                return ResourceManager.GetString("MailingAddressStreet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1MailingAddressStreet - er påkrevd.
+        /// </summary>
+        internal static string MailingAddressStreet___required_field {
+            get {
+                return ResourceManager.GetString("MailingAddressStreet - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1MailingAddressZip.
+        /// </summary>
+        internal static string MailingAddressZip {
+            get {
+                return ResourceManager.GetString("MailingAddressZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1MailingAddressZip - er påkrevd.
+        /// </summary>
+        internal static string MailingAddressZip___required_field {
+            get {
+                return ResourceManager.GetString("MailingAddressZip - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virksomhetens navn.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virksomhetens navn er påkrevd.
+        /// </summary>
+        internal static string Name___required_field {
+            get {
+                return ResourceManager.GetString("Name - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1OwnerCorporateIdentityNumber.
+        /// </summary>
+        internal static string OwnerCorporateIdentityNumber {
+            get {
+                return ResourceManager.GetString("OwnerCorporateIdentityNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1OwnerCorporateIdentityNumber - er påkrevd.
+        /// </summary>
+        internal static string OwnerCorporateIdentityNumber___required_field {
+            get {
+                return ResourceManager.GetString("OwnerCorporateIdentityNumber - required field", resourceCulture);
             }
         }
     }

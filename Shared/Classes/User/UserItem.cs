@@ -43,22 +43,12 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         [AutoComplete("organization-title")]
         public String Title { get; set; }
 
-
-
-        [Display(Name = "Created")]
-        [Required(ErrorMessage = " Created- required field")]
         public DateTime Created { get; set; }
 
-        [Display(Name = "LastOnline")]
-        [Required(ErrorMessage = "LastOnline - required field")]
         public DateTime LastOnline { get; set; }
 
-        [Display(Name = "RoleList")]
-        [Required(ErrorMessage = "RoleList - required field")]
         public ICollection<UserRole> RoleList { get; set; }
 
-        [Display(Name = "CompanyList")]
-        [Required(ErrorMessage = "CompanyList - required field")]
         public ICollection<UserCompany> CompanyList { get; set; }
     }
 }

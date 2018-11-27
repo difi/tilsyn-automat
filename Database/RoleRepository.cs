@@ -28,7 +28,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.RoleList.Include(x => x.UserList).AsNoTracking().OrderBy(x => x.Name).ToList();
+                var list = dbContext.RoleList.Include(x => x.UserList).OrderBy(x => x.Name).AsNoTracking().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

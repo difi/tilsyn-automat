@@ -15,17 +15,38 @@
     @Html.HiddenFor(x => x.CompanyItemForm.Id)
     @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBox")
     @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBox")
+    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBox")
     @Html.EditorFor(x => x.CompanyItemForm.Name, "TextBox")
     @Html.EditorFor(x => x.CompanyItemForm.CustomName, "TextBox")
 
     <fieldset>
         <legend>
-            Virksomhetens adresse
+            Postadresse
         </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.MailingAddressStreet, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.MailingAddressZip, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.MailingAddressCity, "TextBox")
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Beliggenhetsadresse
+        </legend>
+
+        @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressStreet, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressZip, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressCity, "TextBox")
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Forretningsadresse
+        </legend>
+
+        @Html.EditorFor(x => x.CompanyItemForm.LocationAddressStreet, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.LocationAddressZip, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.LocationAddressCity, "TextBox")
     </fieldset>
 
     <fieldset>
@@ -37,6 +58,25 @@
         @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Email, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Næringsgruppe
+        </legend>
+
+        @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupCode, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupDescription, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupAggregated, "TextBox")
+    </fieldset>
+
+    <fieldset>
+        <legend>
+            Institusjonell sektorkode
+        </legend>
+
+        @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorCode, "TextBox")
+        @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorDescription, "TextBox")
     </fieldset>
 
     @if (Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())

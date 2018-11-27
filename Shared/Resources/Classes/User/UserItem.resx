@@ -117,35 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompanyList" xml:space="preserve">
-    <value>0CompanyList</value>
-  </data>
-  <data name="CompanyList- required field" xml:space="preserve">
-    <value>0CompanyList - er påkrevd</value>
-  </data>
   <data name="Country Code" xml:space="preserve">
     <value>Landskod</value>
   </data>
   <data name="Country Code - required field" xml:space="preserve">
     <value>Landskod er påkrevd</value>
   </data>
-  <data name="Created" xml:space="preserve">
-    <value>0Created</value>
-  </data>
-  <data name="Created - required field" xml:space="preserve">
-    <value>0Created - er påkrevd</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>E-postadresse</value>
   </data>
   <data name="Email - required field" xml:space="preserve">
     <value>E-postadresse er påkrevd</value>
-  </data>
-  <data name="LastOnline" xml:space="preserve">
-    <value>0LastOnline</value>
-  </data>
-  <data name="LastOnline - required field" xml:space="preserve">
-    <value>0LastOnline - er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Navn</value>
@@ -158,12 +140,6 @@
   </data>
   <data name="Phone - required field" xml:space="preserve">
     <value>Telefonnummer er påkrevd</value>
-  </data>
-  <data name="RoleList" xml:space="preserve">
-    <value>0RoleList</value>
-  </data>
-  <data name="RoleList - required field" xml:space="preserve">
-    <value>0RoleList - er påkrevd</value>
   </data>
   <data name="Social Security Number" xml:space="preserve">
     <value>Personnummer</value>

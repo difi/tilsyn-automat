@@ -123,12 +123,6 @@
   <data name="CaseNumber - required field" xml:space="preserve">
     <value>4CaseNumber - er påkrevd</value>
   </data>
-  <data name="DeclarationItem" xml:space="preserve">
-    <value>4DeclarationItem</value>
-  </data>
-  <data name="DeclarationItem - required field" xml:space="preserve">
-    <value>4DeclarationItem - er påkrevd</value>
-  </data>
   <data name="DescriptionInText" xml:space="preserve">
     <value>4DescriptionInText</value>
   </data>
@@ -152,12 +146,6 @@
   </data>
   <data name="Image2 - required field" xml:space="preserve">
     <value>4Image2 - er påkrevd</value>
-  </data>
-  <data name="OutcomeDataList" xml:space="preserve">
-    <value>4OutcomeDataList</value>
-  </data>
-  <data name="OutcomeDataList - required field" xml:space="preserve">
-    <value>4OutcomeDataList - er påkrevd</value>
   </data>
   <data name="SupplierAndVersion" xml:space="preserve">
     <value>4SupplierAndVersion</value>

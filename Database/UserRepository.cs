@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -209,14 +210,28 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.Phone = userItem.Phone;
                 dbItem.Title = userItem.Title;
 
-                dbContext.UserRoleList.RemoveRange(dbContext.UserRoleList.Where(x => x.UserItemId == dbItem.Id));
-
                 if (roleList != null && roleList.Any())
                 {
                     foreach (var roleItem in roleList)
                     {
-                        dbContext.UserRoleList.Add(new UserRole { RoleItemId = roleItem.Id, UserItemId = userItem.Id });
+                        if (dbItem.RoleList.All(x => x.RoleItemId != roleItem.Id))
+                        {
+                            dbContext.UserRoleList.Add(new UserRole { RoleItemId = roleItem.Id, UserItemId = userItem.Id });
+                        }
                     }
+
+                    foreach (var userRole in dbItem.RoleList)
+                    {
+                        if (roleList.All(x => x.Id != userRole.RoleItemId))
+                        {
+                            dbContext.UserRoleList.Remove(userRole);
+                        }
+                    }
+
+                }
+                else
+                {
+                    dbContext.UserRoleList.RemoveRange(dbItem.RoleList);
                 }
 
                 dbContext.UserList.Update(dbItem);

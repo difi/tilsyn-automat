@@ -61,24 +61,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2CompanyItemId.
-        /// </summary>
-        internal static string CompanyItemId {
-            get {
-                return ResourceManager.GetString("CompanyItemId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2CompanyItemId - er påkrevd.
-        /// </summary>
-        internal static string CompanyItemId___required_field {
-            get {
-                return ResourceManager.GetString("CompanyItemId - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Epostadresse til kontaktperson.
         /// </summary>
         internal static string Email {

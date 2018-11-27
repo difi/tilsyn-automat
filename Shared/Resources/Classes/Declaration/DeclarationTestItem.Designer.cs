@@ -79,24 +79,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4DeclarationItem.
-        /// </summary>
-        internal static string DeclarationItem {
-            get {
-                return ResourceManager.GetString("DeclarationItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4DeclarationItem - er påkrevd.
-        /// </summary>
-        internal static string DeclarationItem___required_field {
-            get {
-                return ResourceManager.GetString("DeclarationItem - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 4DescriptionInText.
         /// </summary>
         internal static string DescriptionInText {
@@ -165,24 +147,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         internal static string Image2___required_field {
             get {
                 return ResourceManager.GetString("Image2 - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4OutcomeDataList.
-        /// </summary>
-        internal static string OutcomeDataList {
-            get {
-                return ResourceManager.GetString("OutcomeDataList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4OutcomeDataList - er påkrevd.
-        /// </summary>
-        internal static string OutcomeDataList___required_field {
-            get {
-                return ResourceManager.GetString("OutcomeDataList - required field", resourceCulture);
             }
         }
         

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -18,7 +18,8 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\Classes\Company\CompanyItem.resx">
-      <Generator></Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CompanyItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\Company\ContactPersonItem.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -38,6 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Classes\Company\CompanyItem.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CompanyItem.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Classes\Company\ContactPersonItem.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

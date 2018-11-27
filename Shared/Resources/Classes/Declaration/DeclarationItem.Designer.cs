@@ -61,56 +61,11 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3Company.
-        /// </summary>
-        internal static string Company {
-            get {
-                return ResourceManager.GetString("Company", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3Company - er påkrevd.
-        /// </summary>
-        internal static string Company___required_field {
-            get {
-                return ResourceManager.GetString("Company - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3CompanyItemId.
-        /// </summary>
-        internal static string CompanyItemId {
-            get {
-                return ResourceManager.GetString("CompanyItemId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3CompanyItemId - er påkrevd.
-        /// </summary>
-        internal static string CompanyItemId___required_field {
-            get {
-                return ResourceManager.GetString("CompanyItemId - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 3CreatedDate.
         /// </summary>
         internal static string CreatedDate {
             get {
                 return ResourceManager.GetString("CreatedDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3CreatedDate - er påkrevd.
-        /// </summary>
-        internal static string CreatedDate___required_field {
-            get {
-                return ResourceManager.GetString("CreatedDate - required field", resourceCulture);
             }
         }
         
@@ -129,42 +84,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         internal static string DeadlineDate___required_field {
             get {
                 return ResourceManager.GetString("DeadlineDate - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3DeclarationTestItem.
-        /// </summary>
-        internal static string DeclarationTestItem {
-            get {
-                return ResourceManager.GetString("DeclarationTestItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3DeclarationTestItem - er påkrevd.
-        /// </summary>
-        internal static string DeclarationTestItem___required_field {
-            get {
-                return ResourceManager.GetString("DeclarationTestItem - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3IndicatorList.
-        /// </summary>
-        internal static string IndicatorList {
-            get {
-                return ResourceManager.GetString("IndicatorList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3IndicatorList - er påkrevd.
-        /// </summary>
-        internal static string IndicatorList___required_field {
-            get {
-                return ResourceManager.GetString("IndicatorList - required field", resourceCulture);
             }
         }
         
@@ -196,15 +115,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3SentInDate - er påkrevd.
-        /// </summary>
-        internal static string SentInDate___required_field {
-            get {
-                return ResourceManager.GetString("SentInDate - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 3Status.
         /// </summary>
         internal static string Status {
@@ -219,42 +129,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         internal static string Status___required_field {
             get {
                 return ResourceManager.GetString("Status - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3User.
-        /// </summary>
-        internal static string User {
-            get {
-                return ResourceManager.GetString("User", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3User - er påkrevd.
-        /// </summary>
-        internal static string User___required_field {
-            get {
-                return ResourceManager.GetString("User - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3UserItemId.
-        /// </summary>
-        internal static string UserItemId {
-            get {
-                return ResourceManager.GetString("UserItemId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3UserItemId - er påkrevd.
-        /// </summary>
-        internal static string UserItemId___required_field {
-            get {
-                return ResourceManager.GetString("UserItemId - required field", resourceCulture);
             }
         }
     }

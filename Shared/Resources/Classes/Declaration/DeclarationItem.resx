@@ -117,41 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Company" xml:space="preserve">
-    <value>3Company</value>
-  </data>
-  <data name="Company - required field" xml:space="preserve">
-    <value>3Company - er påkrevd</value>
-  </data>
-  <data name="CompanyItemId" xml:space="preserve">
-    <value>3CompanyItemId</value>
-  </data>
-  <data name="CompanyItemId - required field" xml:space="preserve">
-    <value>3CompanyItemId - er påkrevd</value>
-  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>3CreatedDate</value>
-  </data>
-  <data name="CreatedDate - required field" xml:space="preserve">
-    <value>3CreatedDate - er påkrevd</value>
   </data>
   <data name="DeadlineDate" xml:space="preserve">
     <value>3DeadlineDate</value>
   </data>
   <data name="DeadlineDate - required field" xml:space="preserve">
     <value>3DeadlineDate - er påkrevd</value>
-  </data>
-  <data name="DeclarationTestItem" xml:space="preserve">
-    <value>3DeclarationTestItem</value>
-  </data>
-  <data name="DeclarationTestItem - required field" xml:space="preserve">
-    <value>3DeclarationTestItem - er påkrevd</value>
-  </data>
-  <data name="IndicatorList" xml:space="preserve">
-    <value>3IndicatorList</value>
-  </data>
-  <data name="IndicatorList - required field" xml:space="preserve">
-    <value>3IndicatorList - er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>3Name</value>
@@ -162,25 +135,10 @@
   <data name="SentInDate" xml:space="preserve">
     <value>3SentInDate</value>
   </data>
-  <data name="SentInDate - required field" xml:space="preserve">
-    <value>3SentInDate - er påkrevd</value>
-  </data>
   <data name="Status" xml:space="preserve">
     <value>3Status</value>
   </data>
   <data name="Status - required field" xml:space="preserve">
     <value>3Status - er påkrevd</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>3User</value>
-  </data>
-  <data name="User - required field" xml:space="preserve">
-    <value>3User - er påkrevd</value>
-  </data>
-  <data name="UserItemId" xml:space="preserve">
-    <value>3UserItemId</value>
-  </data>
-  <data name="UserItemId - required field" xml:space="preserve">
-    <value>3UserItemId - er påkrevd</value>
   </data>
 </root>

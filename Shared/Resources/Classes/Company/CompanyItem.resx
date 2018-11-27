@@ -141,12 +141,6 @@
   <data name="Code - required field" xml:space="preserve">
     <value>1Code - er påkrevd</value>
   </data>
-  <data name="ContactPersonList" xml:space="preserve">
-    <value>1ContactPersonList</value>
-  </data>
-  <data name="ContactPersonList - required field" xml:space="preserve">
-    <value>1ContactPersonList - er påkrevd</value>
-  </data>
   <data name="CorporateIdentityNumber" xml:space="preserve">
     <value>Organisationsnummer</value>
   </data>
@@ -176,12 +170,6 @@
   </data>
   <data name="CustomName - required field" xml:space="preserve">
     <value>1CustomName - er påkrevd</value>
-  </data>
-  <data name="DeclarationList" xml:space="preserve">
-    <value>1DeclarationList</value>
-  </data>
-  <data name="DeclarationList - required field" xml:space="preserve">
-    <value>1DeclarationList - er påkrevd</value>
   </data>
   <data name="IndustryGroupAggregated" xml:space="preserve">
     <value>1IndustryGroupAggregated</value>
@@ -260,11 +248,5 @@
   </data>
   <data name="OwnerCorporateIdentityNumber - required field" xml:space="preserve">
     <value>1OwnerCorporateIdentityNumber - er påkrevd</value>
-  </data>
-  <data name="UserList" xml:space="preserve">
-    <value>1UserList</value>
-  </data>
-  <data name="UserList - required field" xml:space="preserve">
-    <value>1UserList - er påkrevd</value>
   </data>
 </root>

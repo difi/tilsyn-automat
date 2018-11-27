@@ -13,7 +13,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 
         public String ExternalId { get; set; }
 
-
         [Display(Name = "Code")]
         [Required(ErrorMessage = "Code - required field")]
         public String Code { get; set; }
@@ -86,33 +85,27 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [Required(ErrorMessage = "OwnerCorporateIdentityNumber - required field")]
         public String OwenerCorporateIdentityNumber { get; set; }
 
-        [Display(Name = "ContactPersonList")]
-        [Required(ErrorMessage = "ContactPersonList - required field")]
-        public List<ContactPersonItem> ContactPersonList { get; set; }
-
-        [Display(Name = "UserList")]
-        [Required(ErrorMessage = "UserList - required field")]
-        public ICollection<UserCompany> UserList { get; set; }
-
-        [Display(Name = "DeclarationList")]
-        [Required(ErrorMessage = "DeclarationList - required field")]
-        public ICollection<DeclarationItem> DeclarationList { get; set; }
-
         [Display(Name = "CustomName")]
-        [Required(ErrorMessage = "CustomName - required field")]
+        //[Required(ErrorMessage = "CustomName - required field")]
         public String CustomName { get; set; }
 
         [Display(Name = "CustomAddressStreet")]
-        [Required(ErrorMessage = "CustomAddressStreet - required field")]
+        //[Required(ErrorMessage = "CustomAddressStreet - required field")]
         public String CustomAddressStreet { get; set; }
 
         [Display(Name = "CustomAddressZip")]
-        [Required(ErrorMessage = "CustomAddressZip - required field")]
+        //[Required(ErrorMessage = "CustomAddressZip - required field")]
         public String CustomAddressZip { get; set; }
 
         [Display(Name = "CustomAddressCity")]
-        [Required(ErrorMessage = "CustomAddressCity - required field")]
+        //[Required(ErrorMessage = "CustomAddressCity - required field")]
         public String CustomAddressCity { get; set; }
+
+        public ICollection<UserCompany> UserList { get; set; }
+
+        public ICollection<DeclarationItem> DeclarationList { get; set; }
+
+        public List<ContactPersonItem> ContactPersonList { get; set; }
 
     }
 }

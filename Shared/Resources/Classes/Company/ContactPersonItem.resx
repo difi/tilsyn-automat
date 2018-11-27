@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompanyItemId" xml:space="preserve">
-    <value>2CompanyItemId</value>
-  </data>
-  <data name="CompanyItemId - required field" xml:space="preserve">
-    <value>2CompanyItemId - er påkrevd</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>Epostadresse til kontaktperson</value>
   </data>

@@ -74,15 +74,28 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Code = code,
                     MailingAddressStreet = "Triangelbygget 12",
                     MailingAddressZip = "4200",
-                    MailingAddressCity = "SAUDA"
+                    MailingAddressCity = "SAUDA",
+                    BusinessAddressStreet = "Triangelbygget 12",
+                    BusinessAddressZip = "4200",
+                    BusinessAddressCity = "SAUDA",
+                    LocationAddressStreet = "Triangelbygget 12",
+                    LocationAddressZip = "4200",
+                    LocationAddressCity = "SAUDA",
+                    IndustryGroupAggregated = "Test",
+                    IndustryGroupCode = "1234",
+                    IndustryGroupDescription = "Test",
+                    InstitutionalSectorCode = "1234",
+                    InstitutionalSectorDescription = "Test",
+                    OwenerCorporateIdentityNumber = "123456789"
                 },
                 ContactPersonItem = new ContactPersonItem
                 {
                     Id = Guid.NewGuid(),
                     Name = "Henrik Juhlin",
                     Email = "henrik.juhlin@funka.com",
+                    PhoneCountryCode = "0046",
                     Phone = "0706017546",
-                    CompanyItemId = companyId
+                    CompanyItemId = companyId,
                 },
                 DeclarationItem = new DeclarationItem
                 {
