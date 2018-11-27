@@ -22,9 +22,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public IList<CompanyItem> CompanyList { get; private set; }
 
+        public CompanyItem LocalizationItem { get; set; }
+
         private List<ValueListTypeOfMachine> valueListTypeOfMachine;
         private List<ValueListTypeOfTest> valueListTypeOfTest;
-        private List<ValueListTypeOfSupplierAndVersion> valueListTypeOfSupplierAndVersion;
 
         public CompanyListModel(IApiHttpClient apiHttpClient)
         {
@@ -42,7 +43,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 valueListTypeOfMachine = (await apiHttpClient.Get<List<ValueListTypeOfMachine>>("/api/ValueList/GetAllTypeOfMachine")).Data;
                 valueListTypeOfTest = (await apiHttpClient.Get<List<ValueListTypeOfTest>>("/api/ValueList/GetAllTypeOfTest")).Data;
-                valueListTypeOfSupplierAndVersion  = (await apiHttpClient.Get<List<ValueListTypeOfSupplierAndVersion>>("/api/ValueList/GetAllTypeOfSupplierAndVersion")).Data;
 
                 await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Narvesen", "123456789", "1111", "Automat for betaling på Oslo S"));
                 await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norwegian", "987654321", "2222", "Billettautomat Gardemoen"));

@@ -47,6 +47,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
 
         public DateTime LastOnline { get; set; }
 
+        [Display(Name = "RoleList")]
         public ICollection<UserRole> RoleList { get; set; }
 
         public ICollection<UserCompany> CompanyList { get; set; }

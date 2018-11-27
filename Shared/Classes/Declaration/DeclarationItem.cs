@@ -15,6 +15,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public Guid CompanyItemId { get; set; }
 
+        [Display(Name = "UserItemId")]
         public Guid UserItemId { get; set; }
 
         [Display(Name = "Name")]

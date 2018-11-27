@@ -1,11 +1,9 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -15,6 +13,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         private readonly IApiHttpClient apiHttpClient;
 
         public IList<UserItem> UserList { get; private set; }
+
+        public UserItem LocalizationItem { get; set; }
 
         public UserListModel(IApiHttpClient apiHttpClient)
         {

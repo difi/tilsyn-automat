@@ -21,6 +21,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [Required(ErrorMessage = "CorporateIdentityNumber - required field")]
         public String CorporateIdentityNumber { get; set; }
 
+        [Display(Name = "OwnerCorporateIdentityNumber")]
+        public String OwenerCorporateIdentityNumber { get; set; }
+
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name - required field")]
         public String Name { get; set; }
@@ -80,10 +83,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [Display(Name = "InstitutionalSectorDescription")]
         [Required(ErrorMessage = "InstitutionalSectorDescription - required field")]
         public String InstitutionalSectorDescription { get; set; }
-
-        [Display(Name = "OwnerCorporateIdentityNumber")]
-        [Required(ErrorMessage = "OwnerCorporateIdentityNumber - required field")]
-        public String OwenerCorporateIdentityNumber { get; set; }
 
         [Display(Name = "CustomName")]
         //[Required(ErrorMessage = "CustomName - required field")]

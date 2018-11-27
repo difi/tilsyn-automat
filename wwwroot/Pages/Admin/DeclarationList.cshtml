@@ -17,12 +17,12 @@
         </caption>
         <thead>
             <tr>
-                <th scope="col">Automat</th>
-                <th scope="col">Virksamhet</th>
-                <th scope="col">E-post kontaktperson</th>
-                <th scope="col">Frist for innsending</th>
-                <th scope="col">Dato sendt inn</th>
-                <th scope="col">Status</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.ContactPersonList.SingleOrDefault().Email)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Status)</th>
                 <th scope="col">Eksporter</th>
             </tr>
         </thead>

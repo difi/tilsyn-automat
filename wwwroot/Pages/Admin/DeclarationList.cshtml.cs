@@ -22,6 +22,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
+        public DeclarationItem LocalizationItem { get; set; }
+
         public Int32 ViewCount { get; set; }
 
         public Int32 TotalCount { get; set; }

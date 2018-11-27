@@ -14,12 +14,12 @@
         </caption>
         <thead>
             <tr>
-                <th scope="col">Corporate Identity Number</th>
-                <th scope="col">Name</th>
-                <th scope="col">ContactPerson Name</th>
-                <th scope="col">ContactPerson Email</th>
-                <th scope="col">ContactPerson Phone</th>
-                <th scope="col">Have Declaration</th>
+                <th scope="col">@Html.DisplayNameFor(x=>x.LocalizationItem.CorporateIdentityNumber)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Name)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Email)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Phone)</th>
+                <th scope="col">Opprett selvdeklarasjon</th>
             </tr>
         </thead>
         <tbody>
@@ -45,7 +45,14 @@
                         @contactPerson?.Phone
                     </td>
                     <td>
-                        @(item.DeclarationList.Count > 0 ? "Ja" : "Nej")
+                        @if (item.DeclarationList.Count > 0)
+                        {
+
+                        }
+                        else
+                        {
+                            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">Opprett selvdeklarasjon</a>
+                        }
                     </td>
                 </tr>
             }

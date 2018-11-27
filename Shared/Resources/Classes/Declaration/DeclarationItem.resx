@@ -121,24 +121,27 @@
     <value>3CreatedDate</value>
   </data>
   <data name="DeadlineDate" xml:space="preserve">
-    <value>3DeadlineDate</value>
+    <value>Frist for innsending</value>
   </data>
   <data name="DeadlineDate - required field" xml:space="preserve">
-    <value>3DeadlineDate - er påkrevd</value>
+    <value>Frist for innsending - er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>3Name</value>
+    <value>Automat</value>
   </data>
   <data name="Name - required field" xml:space="preserve">
-    <value>3Name - er påkrevd</value>
+    <value>Automat - er påkrevd</value>
   </data>
   <data name="SentInDate" xml:space="preserve">
-    <value>3SentInDate</value>
+    <value>Dato sendt inn</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>3Status</value>
   </data>
   <data name="Status - required field" xml:space="preserve">
     <value>3Status - er påkrevd</value>
+  </data>
+  <data name="UserItemId" xml:space="preserve">
+    <value>Saksbehandlare</value>
   </data>
 </root>

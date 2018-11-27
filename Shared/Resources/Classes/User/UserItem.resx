@@ -141,6 +141,9 @@
   <data name="Phone - required field" xml:space="preserve">
     <value>Telefonnummer er påkrevd</value>
   </data>
+  <data name="RoleList" xml:space="preserve">
+    <value>Roller</value>
+  </data>
   <data name="Social Security Number" xml:space="preserve">
     <value>Personnummer</value>
   </data>

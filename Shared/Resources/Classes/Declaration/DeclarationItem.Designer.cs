@@ -70,7 +70,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3DeadlineDate.
+        ///   Looks up a localized string similar to Frist for innsending.
         /// </summary>
         internal static string DeadlineDate {
             get {
@@ -79,7 +79,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3DeadlineDate - er påkrevd.
+        ///   Looks up a localized string similar to Frist for innsending - er påkrevd.
         /// </summary>
         internal static string DeadlineDate___required_field {
             get {
@@ -88,7 +88,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3Name.
+        ///   Looks up a localized string similar to Automat.
         /// </summary>
         internal static string Name {
             get {
@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3Name - er påkrevd.
+        ///   Looks up a localized string similar to Automat - er påkrevd.
         /// </summary>
         internal static string Name___required_field {
             get {
@@ -106,7 +106,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3SentInDate.
+        ///   Looks up a localized string similar to Dato sendt inn.
         /// </summary>
         internal static string SentInDate {
             get {
@@ -129,6 +129,15 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         internal static string Status___required_field {
             get {
                 return ResourceManager.GetString("Status - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saksbehandlare.
+        /// </summary>
+        internal static string UserItemId {
+            get {
+                return ResourceManager.GetString("UserItemId", resourceCulture);
             }
         }
     }

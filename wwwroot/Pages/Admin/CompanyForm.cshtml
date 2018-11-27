@@ -103,14 +103,7 @@
     {
 
         <input class="button update icon" type="submit" value="Update" />
-
-        if (!Model.CompanyItemForm.DeclarationList.Any())
-        {
-            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@Model.CompanyItemForm.Id">Opprett selvdeklarasjon</a>
-        }
-
         <button class="button delete icon" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">Radera</button>
-
     }
     else
     {
