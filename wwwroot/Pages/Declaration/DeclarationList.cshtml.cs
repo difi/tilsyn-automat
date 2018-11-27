@@ -17,6 +17,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
+        public DeclarationItem LocalizationItem { get; set; }
+
         public DeclarationListModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;

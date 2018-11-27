@@ -11,9 +11,6 @@
     </div>
 
     <div class="row column">
-
-
-
         <fieldset>
             <legend>Virksomhetsinformasjon</legend>
 
@@ -35,9 +32,9 @@
             </caption>
             <thead>
                 <tr>
-                    <th scope="col">Automat</th>
-                    <th scope="col">DeadlineDate</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
+                    <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Status)</th>
                     <th scope="col">Öppna</th>
                 </tr>
             </thead>
@@ -52,7 +49,7 @@
                             @item.DeadlineDate.ToString("yyyy-MM-dd")
                         </td>
                         <td>
-                            @item.Status
+                            @item.Status.TextCompany
                         </td>
                         <td>
                             <form method="post">
