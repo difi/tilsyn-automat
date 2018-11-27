@@ -256,6 +256,30 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
+        public ApiResult SendIn(Guid id)
+        {
+            var result = new ApiResult();
+
+            try
+            {
+                var dbItem = dbContext.DeclarationList.Single(x => x.Id == id);
+                dbItem.StatusId = (int)DeclarationStatus.SentIn;
+                dbItem.SentInDate = DateTime.Now;
+
+                dbContext.SaveChanges();
+
+                result.Succeeded = true;
+                result.Id = dbItem.Id;
+            }
+            catch (Exception exception)
+            {
+                result.Succeeded = false;
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
         private TypeOfResult GetResultId(AnswerData answerData)
         {
             var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);

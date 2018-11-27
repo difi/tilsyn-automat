@@ -66,7 +66,16 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.Save(declarationItemId, outcomeDataList);
 
-            //logRepository.Add(new LogItem(userId, result, declarationItemId, outcomeDataList));
+            logRepository.Add(new LogItem(userId, result, declarationItemId, outcomeDataList));
+
+            return result;
+        }
+
+        public ApiResult SendIn(Guid id)
+        {
+            var result = inner.SendIn(id);
+
+            logRepository.Add(new LogItem(userId, result, id));
 
             return result;
         }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -45,6 +46,26 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             }
             catch
             {
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostSendInAsync(string id)
+        {
+            try
+            {
+                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/SendIn/" + id);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToPage("/Declaration/DeclarationList");
+                }
+
+                return Page();
+            }
+            catch
+            {
+                return Page();
             }
         }
     }

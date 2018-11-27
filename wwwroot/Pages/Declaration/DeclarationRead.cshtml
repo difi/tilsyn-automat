@@ -18,85 +18,89 @@
 
 <a asp-page="/Declaration/DeclarationList">DeclarationList</a>
 
-@foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
-{
-    var indicatorItem = declarationIndicatorGroup.IndicatorItem;
-    var outcomeData = declarationIndicatorGroup.IndicatorItem.OutcomeData;
-
-    if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
+<form method="post">
+    @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
     {
-        subIndex = 0;
-        mainIndex++;
+        var indicatorItem = declarationIndicatorGroup.IndicatorItem;
+        var outcomeData = declarationIndicatorGroup.IndicatorItem.OutcomeData;
 
-        lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
-
-        <div class="row medium-uncollapse small-collapse">
-            <div class="small-12 medium-6 columns">
-                <h2 class="h2-toggle"><button disabled aria-controls="card-help-button" aria-expanded="true" class="toogle-header-button"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
-            </div>
-        </div>
-    }
-
-    <div>
-        @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+        if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
         {
-            var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+            subIndex = 0;
+            mainIndex++;
 
-            var firstQuestion = true;
+            lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
 
-            subIndex++;
-
-            <div class="card transparent">
-                <div class="card-divider jsRuleItem" id="@ruleItem.Id">
-                    @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                    {
-                        var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
-
-                        var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
-
-                        var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                        var orderText = mainIndex + "." + subIndex;
-
-                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                        {
-
-                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
-
-                                <h3>@answerItem.Question</h3>
-
-                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                                {
-                                    @answerData.String
-                                }
-
-                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                {
-                                    @answerData.Bool
-                                }
-
-                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                {
-                                    @answerData.Int
-                                }
-
-                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                {
-
-                                }
-
-                                <br />
-                                <br />
-
-                            </div>
-
-                        }
-
-
-                        firstQuestion = false;
-                    }
-
+            <div class="row medium-uncollapse small-collapse">
+                <div class="small-12 medium-6 columns">
+                    <h2 class="h2-toggle"><button disabled aria-controls="card-help-button" aria-expanded="true" class="toogle-header-button"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
                 </div>
             </div>
         }
-    </div>
-}
+
+        <div>
+            @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+            {
+                var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+
+                var firstQuestion = true;
+
+                subIndex++;
+
+                <div class="card transparent">
+                    <div class="card-divider jsRuleItem" id="@ruleItem.Id">
+                        @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                        {
+                            var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+
+                            var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
+
+                            var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                            var orderText = mainIndex + "." + subIndex;
+
+                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                            {
+
+                                <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+
+                                    <h3>@answerItem.Question</h3>
+
+                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                    {
+                                        @answerData.String
+                                    }
+
+                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                    {
+                                        @answerData.Bool
+                                    }
+
+                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                    {
+                                        @answerData.Int
+                                    }
+
+                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                    {
+
+                                    }
+
+                                    <br />
+                                    <br />
+
+                                </div>
+
+                            }
+
+
+                            firstQuestion = false;
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+    <button class="" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">Skicka in</button>
+</form>
