@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
+namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     public partial class V1 : Migration
     {
@@ -16,22 +16,22 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     ExternalId = table.Column<string>(nullable: true),
                     Code = table.Column<string>(nullable: false),
                     CorporateIdentityNumber = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    MailingAddressStreet = table.Column<string>(nullable: true),
-                    MailingAddressZip = table.Column<string>(nullable: true),
-                    MailingAddressCity = table.Column<string>(nullable: true),
-                    LocationAddressStreet = table.Column<string>(nullable: true),
-                    LocationAddressZip = table.Column<string>(nullable: true),
-                    LocationAddressCity = table.Column<string>(nullable: true),
-                    BusinessAddressStreet = table.Column<string>(nullable: true),
-                    BusinessAddressZip = table.Column<string>(nullable: true),
-                    BusinessAddressCity = table.Column<string>(nullable: true),
-                    IndustryGroupCode = table.Column<string>(nullable: true),
-                    IndustryGroupDescription = table.Column<string>(nullable: true),
-                    IndustryGroupAggregated = table.Column<string>(nullable: true),
-                    InstitutionalSectorCode = table.Column<string>(nullable: true),
-                    InstitutionalSectorDescription = table.Column<string>(nullable: true),
                     OwenerCorporateIdentityNumber = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    MailingAddressStreet = table.Column<string>(nullable: false),
+                    MailingAddressZip = table.Column<string>(nullable: false),
+                    MailingAddressCity = table.Column<string>(nullable: false),
+                    LocationAddressStreet = table.Column<string>(nullable: false),
+                    LocationAddressZip = table.Column<string>(nullable: false),
+                    LocationAddressCity = table.Column<string>(nullable: false),
+                    BusinessAddressStreet = table.Column<string>(nullable: false),
+                    BusinessAddressZip = table.Column<string>(nullable: false),
+                    BusinessAddressCity = table.Column<string>(nullable: false),
+                    IndustryGroupCode = table.Column<string>(nullable: false),
+                    IndustryGroupDescription = table.Column<string>(nullable: false),
+                    IndustryGroupAggregated = table.Column<string>(nullable: false),
+                    InstitutionalSectorCode = table.Column<string>(nullable: false),
+                    InstitutionalSectorDescription = table.Column<string>(nullable: false),
                     CustomName = table.Column<string>(nullable: true),
                     CustomAddressStreet = table.Column<string>(nullable: true),
                     CustomAddressZip = table.Column<string>(nullable: true),
@@ -130,10 +130,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     Token = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: false),
                     SocialSecurityNumber = table.Column<string>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    CountryCode = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: false),
+                    CountryCode = table.Column<string>(nullable: false),
+                    Phone = table.Column<string>(nullable: false),
+                    Title = table.Column<string>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
                     LastOnline = table.Column<DateTime>(nullable: false)
                 },
@@ -195,6 +195,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateTable(
+                name: "VlTypeOfStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(nullable: true),
+                    TextAdmin = table.Column<string>(nullable: true),
+                    TextCompany = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VlTypeOfStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "VlTypeOfSupplierAndVersionList",
                 columns: table => new
                 {
@@ -238,10 +253,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    PhoneCountryCode = table.Column<string>(nullable: true),
-                    Phone = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    PhoneCountryCode = table.Column<string>(nullable: false),
+                    Phone = table.Column<string>(nullable: false),
                     CompanyItemId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -301,36 +316,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "DeclarationList",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CompanyItemId = table.Column<Guid>(nullable: false),
-                    UserItemId = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    DeadlineDate = table.Column<DateTime>(nullable: false),
-                    SentInDate = table.Column<DateTime>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DeclarationList", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DeclarationList_CompanyList_CompanyItemId",
-                        column: x => x.CompanyItemId,
-                        principalTable: "CompanyList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DeclarationList_UserList_UserItemId",
-                        column: x => x.UserItemId,
-                        principalTable: "UserList",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserCompanyList",
                 columns: table => new
                 {
@@ -372,6 +357,42 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserRoleList_UserList_UserItemId",
+                        column: x => x.UserItemId,
+                        principalTable: "UserList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DeclarationList",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CompanyItemId = table.Column<Guid>(nullable: false),
+                    UserItemId = table.Column<Guid>(nullable: false),
+                    StatusId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    DeadlineDate = table.Column<DateTime>(nullable: false),
+                    SentInDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeclarationList", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DeclarationList_CompanyList_CompanyItemId",
+                        column: x => x.CompanyItemId,
+                        principalTable: "CompanyList",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DeclarationList_VlTypeOfStatus_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "VlTypeOfStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DeclarationList_UserList_UserItemId",
                         column: x => x.UserItemId,
                         principalTable: "UserList",
                         principalColumn: "Id",
@@ -664,9 +685,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     TypeOfAnswerId = table.Column<int>(nullable: false),
                     AnswerItemId = table.Column<Guid>(nullable: false),
                     ResultId = table.Column<int>(nullable: false),
-                    Bool = table.Column<bool>(nullable: false),
+                    Bool = table.Column<bool>(nullable: true),
                     String = table.Column<string>(nullable: true),
-                    Int = table.Column<int>(nullable: false),
+                    Int = table.Column<int>(nullable: true),
                     ImageId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -756,8 +777,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "CountryCode", "Created", "Email", "LastOnline", "Name", "Phone", "SocialSecurityNumber", "Title", "Token" },
                 values: new object[,]
                 {
-                    { new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                    { new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                    { new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" },
+                    { new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" }
                 });
 
             migrationBuilder.InsertData(
@@ -766,8 +787,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 values: new object[,]
                 {
                     { 3, "Merknad" },
-                    { 1, "Inget" },
-                    { 2, "Avvik" }
+                    { 2, "Avvik" },
+                    { 1, "Inget" }
                 });
 
             migrationBuilder.InsertData(
@@ -775,10 +796,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 4, "image" },
-                    { 3, "int" },
                     { 1, "string" },
-                    { 2, "bool" }
+                    { 2, "bool" },
+                    { 3, "int" },
+                    { 4, "image" }
                 });
 
             migrationBuilder.InsertData(
@@ -786,11 +807,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 1, "Betalingsterminal" },
-                    { 2, "Billettautomat" },
+                    { 5, "Vareautomat" },
                     { 3, "Selvbetjent kasse" },
                     { 4, "Minibank" },
-                    { 5, "Vareautomat" }
+                    { 1, "Betalingsterminal" },
+                    { 2, "Billettautomat" }
                 });
 
             migrationBuilder.InsertData(
@@ -798,11 +819,25 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 5, "Ikke testa" },
                     { 1, "Samsvar" },
                     { 2, "Brudd" },
                     { 3, "Ikke-forekomst" },
-                    { 4, "Ikke testbar" }
+                    { 4, "Ikke testbar" },
+                    { 5, "Ikke testa" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VlTypeOfStatus",
+                columns: new[] { "Id", "Text", "TextAdmin", "TextCompany" },
+                values: new object[,]
+                {
+                    { 6, "Avsluttet", "Avsluttet", "Fullført" },
+                    { 7, "Avlyst", "Avlyst", "Avlyst" },
+                    { 4, "Fullført", "Pågår", "Fullført" },
+                    { 5, "Sendt tilbake", "Pågår", "Sendt tilbake for korreksjon" },
+                    { 2, "Varslad", "Pågår", "Ikke påbegynt" },
+                    { 1, "Opprettet", "Opprettet", "Ikke påbegynt" },
+                    { 3, "Påbegynt", "Pågår", "Påbegynt" }
                 });
 
             migrationBuilder.InsertData(
@@ -810,29 +845,29 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 15, "iZettle Reader" },
-                    { 16, "SumUp Air" },
                     { 17, "Verifone VX 520 C" },
-                    { 18, "Verifone VX 680" },
-                    { 14, "Ingenico iWL252" },
-                    { 20, "Verifone VX 820" },
-                    { 21, "Verifone VX 820 Duet" },
-                    { 22, "Verifone Xenteo ECO" },
                     { 23, "Verifone Yomani XR" },
+                    { 22, "Verifone Xenteo ECO" },
+                    { 21, "Verifone VX 820 Duet" },
+                    { 20, "Verifone VX 820" },
                     { 19, "Verifone VX 690" },
+                    { 18, "Verifone VX 680" },
+                    { 16, "SumUp Air" },
+                    { 15, "iZettle Reader" },
                     { 13, "Ingenico iWL251" },
+                    { 12, "Ingenico iWL250G" },
+                    { 14, "Ingenico iWL252" },
+                    { 10, "Ingenico iWL250" },
+                    { 1, "Vet ikke" },
                     { 2, "Ingenico iCT250" },
                     { 11, "Ingenico iWL250B " },
-                    { 10, "Ingenico iWL250" },
-                    { 9, "Ingenico iUP" },
-                    { 8, "Ingenico isMP4" },
-                    { 7, "Ingenico iSMP" },
-                    { 6, "Ingenico iSelf" },
-                    { 5, "Ingenico iPP350" },
                     { 4, "Ingenico iCT250r" },
+                    { 5, "Ingenico iPP350" },
                     { 3, "Ingenico iCT250E" },
-                    { 1, "Vet ikke" },
-                    { 12, "Ingenico iWL250G" }
+                    { 7, "Ingenico iSMP" },
+                    { 8, "Ingenico isMP4" },
+                    { 9, "Ingenico iUP" },
+                    { 6, "Ingenico iSelf" }
                 });
 
             migrationBuilder.InsertData(
@@ -840,9 +875,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 3, "Applikasjon" },
+                    { 1, "Automat" },
                     { 2, "Webside" },
-                    { 1, "Automat" }
+                    { 3, "Applikasjon" }
                 });
 
             migrationBuilder.InsertData(
@@ -850,16 +885,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 10, "Fysisk størrelse" },
-                    { 1, "Blinde" },
-                    { 2, "Svaksynte" },
-                    { 3, "Fargeblinde" },
-                    { 4, "Døvblinde" },
-                    { 5, "Døve" },
-                    { 6, "Nedsett høyrsel/tunghøyrde" },
                     { 7, "Nedsett kognisjon" },
-                    { 8, "Nedsett motorikk" },
                     { 9, "Fotosensitivitet/anfall" },
+                    { 8, "Nedsett motorikk" },
+                    { 6, "Nedsett høyrsel/tunghøyrde" },
+                    { 10, "Fysisk størrelse" },
+                    { 4, "Døvblinde" },
+                    { 3, "Fargeblinde" },
+                    { 2, "Svaksynte" },
+                    { 1, "Blinde" },
+                    { 5, "Døve" },
                     { 11, "Redusert taktil sensibilitet" }
                 });
 
@@ -984,6 +1019,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 name: "IX_DeclarationList_CompanyItemId",
                 table: "DeclarationList",
                 column: "CompanyItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DeclarationList_StatusId",
+                table: "DeclarationList",
+                column: "StatusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeclarationList_UserItemId",
@@ -1190,6 +1230,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
             migrationBuilder.DropTable(
                 name: "CompanyList");
+
+            migrationBuilder.DropTable(
+                name: "VlTypeOfStatus");
 
             migrationBuilder.DropTable(
                 name: "UserList");

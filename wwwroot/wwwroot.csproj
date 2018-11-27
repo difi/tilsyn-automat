@@ -45,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\ApplicationDb\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
