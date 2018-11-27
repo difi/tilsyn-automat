@@ -127,16 +127,24 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Created = DateTime.Now,
                     LastOnline = DateTime.Now,
+                    Email = String.Empty,
+                    CountryCode = String.Empty,
+                    Phone = String.Empty,
+                    Title = String.Empty,
 
                     Name = "Virksomhet"
                 };
 
                 var role = dbContext.RoleList.Single(x => x.Name == "Virksomhet");
 
-                if (Add(newUserItem, new List<RoleItem> { role }).Succeeded)
+                var addResult = Add(newUserItem, new List<RoleItem> {role});
+
+                if (addResult.Succeeded)
                 {
                     return Get<T>(newUserItem.Id);
                 }
+
+                result.Exception = addResult.Exception;
             }
             catch (Exception exception)
             {
