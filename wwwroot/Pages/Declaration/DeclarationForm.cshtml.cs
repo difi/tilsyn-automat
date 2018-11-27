@@ -29,6 +29,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             try
             {
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
+                var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
+
+                if (outcomeDataList.Any())
+                {
+                    foreach (var item in DeclarationItemForm.IndicatorList)
+                    {
+                        foreach (var data in outcomeDataList)
+                        {
+                            if (data.IndicatorItemId == item.IndicatorItem.Id)
+                            {
+                                item.IndicatorItem.OutcomeData = data;
+                            }
+                        }
+                    }
+                }
             }
             catch
             {

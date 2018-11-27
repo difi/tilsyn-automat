@@ -9,11 +9,7 @@
     attachEvents();
 });
 
-
-
 function attachEvents() {
-
-
     $("body").on("click", ".jsToggleCardButton", function (e) {
 
         e.preventDefault();

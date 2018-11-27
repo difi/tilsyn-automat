@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
@@ -25,21 +26,22 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                var OutcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
-
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
+                var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
 
-                foreach (var item in DeclarationItemForm.IndicatorList)
+                if (outcomeDataList.Any())
                 {
-                    foreach (var data in OutcomeDataList)
+                    foreach (var item in DeclarationItemForm.IndicatorList)
                     {
-                        if (data.IndicatorItemId == item.IndicatorItem.Id)
+                        foreach (var data in outcomeDataList)
                         {
-                            item.IndicatorItem.OutcomeData = data;
+                            if (data.IndicatorItemId == item.IndicatorItem.Id)
+                            {
+                                item.IndicatorItem.OutcomeData = data;
+                            }
                         }
                     }
                 }
-
             }
             catch
             {

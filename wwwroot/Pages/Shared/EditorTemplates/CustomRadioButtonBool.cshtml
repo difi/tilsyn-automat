@@ -7,8 +7,10 @@
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
+    var value = (bool?) ViewData["value"];
 }
 
+@value
 
 <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
     <div class="legend">
@@ -52,9 +54,6 @@
 <fieldset>
 
     <legend class="legend">
-
-
-
         @if (firstQuestion)
         {
             <span class="collapse row">
@@ -79,39 +78,47 @@
                     <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
                 </span>
             </span>
-
         }
         else
         {
-
             <span class="card-divider">
                 <span class="legend-text">
                     @text
                 </span>
             </span>
-
         }
-
     </legend>
 
-
     <div class="card-divider">
-
         <ul class="listing">
             <li class="radio">
-                <input type="radio" id="@idTrue" name="@name" value="true" />
+                @if (value != null && value == true)
+                {
+                    <input type="radio" id="@idTrue" name="@name" value="true" checked="checked" />
+                }
+                else
+                {
+                    <input type="radio" id="@idTrue" name="@name" value="true" />
+                }
+
                 <label for="@idTrue">
                     Ja
                 </label>
             </li>
             <li class="radio">
-                <input type="radio" id="@idFalse" name="@name" value="false" />
+                @if (value != null && value == false)
+                {
+                    <input type="radio" id="@idFalse" name="@name" value="false" checked="checked" />
+                }
+                else
+                {
+                    <input type="radio" id="@idFalse" name="@name" value="false" />
+                }
+
                 <label for="@idFalse">
                     Nej
                 </label>
             </li>
         </ul>
-
     </div>
-
 </fieldset>

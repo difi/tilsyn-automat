@@ -5,6 +5,7 @@
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
+    var value = ViewData["value"];
 }
 
 <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
@@ -16,7 +17,6 @@
                     <span class="small-2 medium-1 columns">
                         @if (firstQuestion)
                         {
-
                             <span class="legend-number">@orderText</span>
                         }
                     </span>
@@ -46,18 +46,14 @@
 </div>
 
 <div class="form-field">
-
     <label class="legend" for="@name">
-
         @if (firstQuestion)
         {
             <span class="collapse row">
                 <span class="small-10 columns">
                     <span class="collapse row">
                         <span class="small-2 medium-1 columns">
-
                             <span class="legend-number">@orderText</span>
-
                         </span>
                         <span class="small-10 medium-11 columns">
                             <span class="legend-text">
@@ -71,23 +67,18 @@
                     <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
                 </span>
             </span>
-
         }
         else
         {
-
             <span class="card-divider">
                 <span class="legend-text">
                     @text
                 </span>
             </span>
-
         }
-
     </label>
 
     <div class="card-divider">
-        <textarea id="@name" name="@name"></textarea>
+        <textarea id="@name" name="@name">@value</textarea>
     </div>
-
 </div>

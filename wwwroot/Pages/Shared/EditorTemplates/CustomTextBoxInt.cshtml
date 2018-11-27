@@ -5,6 +5,7 @@
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
+    var value = ViewData["value"];
 }
 
 <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
@@ -15,7 +16,6 @@
                     <span class="small-2 medium-1 columns">
                         @if (firstQuestion)
                         {
-
                             <span class="legend-number">@orderText</span>
                         }
                     </span>
@@ -30,7 +30,6 @@
             <span class="small-2 columns text-right">
                 <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Lukk hjelp</span></button>
             </span>
-
         </span>
     </div>
 
@@ -41,13 +40,10 @@
         <h3>Hensikt</h3>
         <p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.</p>
     </div>
-
 </div>
 
 <div class="form-field">
-
     <label class="legend" for="@name">
-
         @if (firstQuestion)
         {
             <span class="collapse row">
@@ -70,24 +66,19 @@
                     <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
                 </span>
             </span>
-
         }
         else
         {
-
             <span class="card-divider">
                 <span class="legend-text">
                     @text
                 </span>
             </span>
-
         }
 
     </label>
 
     <div class="card-divider">
-        <input type="number" autocomplete="off" id="@name" name="@name" value="" />
+        <input type="number" autocomplete="off" id="@name" name="@name" value="@value" />
     </div>
-
 </div>
-
