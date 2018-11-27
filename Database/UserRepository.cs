@@ -209,7 +209,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get<UserItem>(userItem.Id).Data;
+                var dbItem = dbContext.UserList.Single(x => x.Id == userItem.Id);
 
                 dbItem.Name = userItem.Name;
                 dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
@@ -242,7 +242,6 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.UserRoleList.RemoveRange(dbItem.RoleList);
                 }
 
-                dbContext.UserList.Update(dbItem);
                 dbContext.SaveChanges();
 
                 result.Succeeded = true;

@@ -202,47 +202,45 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
+                dbContext.OutcomeData.RemoveRange(dbContext.OutcomeData.Where(x => x.DeclarationTestItemId == declarationItemId));
+
                 foreach (var outcomeData in outcomeDataList)
                 {
-                        outcomeData.ResultId = (int)TypeOfResult.NotTested;
+                    outcomeData.ResultId = (int) TypeOfResult.NotTested;
 
-                        foreach (var ruleData in outcomeData.RuleDataList)
+                    foreach (var ruleData in outcomeData.RuleDataList)
+                    {
+                        ruleData.ResultId = (int) TypeOfResult.NotTested;
+
+                        foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            ruleData.ResultId = (int)TypeOfResult.NotTested;
-
-                            foreach (var answerData in ruleData.AnswerDataList)
-                            {
-                                answerData.ResultId = (int)GetResultId(answerData);
-                            }
-
-                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
-                            {
-                                ruleData.ResultId = (int)TypeOfResult.Fail;
-                            }
-                            else
-                            {
-                                ruleData.ResultId = (int)TypeOfResult.Ok;
-                            }
+                            answerData.ResultId = (int) GetResultId(answerData);
                         }
 
-                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
                         {
-                            outcomeData.ResultId = (int)TypeOfResult.Fail;
+                            ruleData.ResultId = (int) TypeOfResult.Fail;
                         }
                         else
                         {
-                            outcomeData.ResultId = (int)TypeOfResult.Ok;
+                            ruleData.ResultId = (int) TypeOfResult.Ok;
                         }
+                    }
 
-                        dbContext.OutcomeData.Add(outcomeData);
+                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                    {
+                        outcomeData.ResultId = (int) TypeOfResult.Fail;
+                    }
+                    else
+                    {
+                        outcomeData.ResultId = (int) TypeOfResult.Ok;
+                    }
+
+                    dbContext.OutcomeData.Add(outcomeData);
                 }
 
-                var dbItem = Get<DeclarationItem>(declarationItemId).Data;
-
-                dbItem.StatusId = (int) DeclarationStatus.Complete;
-                dbItem.SentInDate = DateTime.Now;
-
-                dbContext.DeclarationList.Update(dbItem);
+                var dbItem = dbContext.DeclarationList.Single(x => x.Id == declarationItemId);
+                dbItem.StatusId = (int) DeclarationStatus.Started;
 
                 dbContext.SaveChanges();
 

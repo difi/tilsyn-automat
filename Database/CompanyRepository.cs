@@ -123,7 +123,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get<CompanyItem>(companyItem.Id).Data;
+                var dbItem = dbContext.CompanyList.Single(x => x.Id == companyItem.Id);
 
                 dbItem.Code = companyItem.Code;
                 dbItem.Name = companyItem.Name;
@@ -141,8 +141,6 @@ namespace Difi.Sjalvdeklaration.Database
                         dbContext.ContactPersonList.Add(new ContactPersonItem { Name = contactPersonItem.Name, Email = contactPersonItem.Email, PhoneCountryCode = contactPersonItem.PhoneCountryCode, Phone = contactPersonItem.Phone, CompanyItemId = dbItem.Id });
                     }
                 }
-
-                dbContext.CompanyList.Update(dbItem);
 
                 dbContext.SaveChanges();
 
