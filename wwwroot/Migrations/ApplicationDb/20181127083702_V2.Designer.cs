@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181127083702_V2")]
+    partial class V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,15 +218,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
                     b.Property<DateTime>("SentInDate");
 
-                    b.Property<int>("StatusId");
+                    b.Property<int>("Status");
 
                     b.Property<Guid>("UserItemId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyItemId");
-
-                    b.HasIndex("StatusId");
 
                     b.HasIndex("UserItemId");
 
@@ -737,8 +737,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
                     b.Property<string>("Text");
 
-                    b.Property<string>("TextAdmin");
-
                     b.Property<string>("TextCompany");
 
                     b.HasKey("Id");
@@ -746,13 +744,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.ToTable("VlTypeOfStatus");
 
                     b.HasData(
-                        new { Id = 1, Text = "Opprettet", TextAdmin = "Opprettet", TextCompany = "Ikke påbegynt" },
-                        new { Id = 2, Text = "Varslad", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt" },
-                        new { Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt" },
-                        new { Id = 4, Text = "Fullført", TextAdmin = "Pågår", TextCompany = "Fullført" },
-                        new { Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Sendt tilbake for korreksjon" },
-                        new { Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført" },
-                        new { Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst" }
+                        new { Id = 1, Text = "Created A", TextCompany = "Created C" },
+                        new { Id = 2, Text = "Sent A", TextCompany = "Sent C" },
+                        new { Id = 3, Text = "Started A", TextCompany = "Started C" },
+                        new { Id = 4, Text = "Complete A", TextCompany = "Complete C" },
+                        new { Id = 5, Text = "Return A", TextCompany = "Return C" },
+                        new { Id = 6, Text = "Finished A", TextCompany = "Finished C" },
+                        new { Id = 7, Text = "Canceled A", TextCompany = "Canceled C" }
                     );
                 });
 
@@ -917,11 +915,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Company.CompanyItem", "Company")
                         .WithMany("DeclarationList")
                         .HasForeignKey("CompanyItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfStatus", "Status")
-                        .WithMany()
-                        .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.User.UserItem", "User")

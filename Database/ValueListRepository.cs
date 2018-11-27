@@ -73,5 +73,24 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
+
+        public ApiResult<T> GetAllTypeOfStatus<T>() where T : List<ValueListTypeOfStatus>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.VlTypeOfStatus.AsNoTracking().OrderBy(x => x.Id).ToList();
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
     }
 }

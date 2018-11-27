@@ -11,5 +11,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
         ApiResult<T> GetAllTypeOfTest<T>() where T : List<ValueListTypeOfTest>;
 
         ApiResult<T> GetAllTypeOfSupplierAndVersion<T>() where T : List<ValueListTypeOfSupplierAndVersion>;
+
+        ApiResult<T> GetAllTypeOfStatus<T>() where T : List<ValueListTypeOfStatus>;
     }
 }

@@ -3,7 +3,9 @@ using Difi.Sjalvdeklaration.Shared.Classes.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Enum;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
@@ -17,6 +19,11 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         [Display(Name = "UserItemId")]
         public Guid UserItemId { get; set; }
+
+        [ForeignKey("ValueListTypeOfStatus")]
+        [Display(Name = "Status")]
+        [Required(ErrorMessage = "Status - required field")]
+        public Int32 StatusId { get; set; }
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name - required field")]
@@ -33,9 +40,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [Display(Name = "SentInDate")]
         public DateTime SentInDate { get; set; }
 
-        [Display(Name = "Status")]
-        [Required(ErrorMessage = "Status - required field")]
-        public DeclarationStatus Status { get; set; }
+        public ValueListTypeOfStatus Status { get; set; }
 
         public CompanyItem Company { get; set; }
 

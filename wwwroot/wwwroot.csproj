@@ -121,7 +121,10 @@
     <Content Update="Pages\Shared\EditorTemplates\DisplayValueList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\DropdownList.cshtml">
+    <Content Update="Pages\Shared\EditorTemplates\DropdownListInt.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\DropdownListGuid.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\DropdownListEnum.cshtml">

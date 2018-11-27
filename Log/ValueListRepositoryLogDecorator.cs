@@ -28,5 +28,10 @@ namespace Difi.Sjalvdeklaration.Log
         {
             return inner.GetAllTypeOfSupplierAndVersion<T>();
         }
+
+        public ApiResult<T> GetAllTypeOfStatus<T>() where T : List<ValueListTypeOfStatus>
+        {
+            return inner.GetAllTypeOfStatus<T>();
+        }
     }
 }

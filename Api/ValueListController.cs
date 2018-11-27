@@ -36,5 +36,12 @@ namespace Difi.Sjalvdeklaration.Api
         {
             return valueListRepository.GetAllTypeOfSupplierAndVersion<List<ValueListTypeOfSupplierAndVersion>>();
         }
+
+        [HttpGet]
+        [Route("GetAllTypeOfStatus")]
+        public ApiResult<List<ValueListTypeOfStatus>> GetAllTypeOfStatus()
+        {
+            return valueListRepository.GetAllTypeOfStatus<List<ValueListTypeOfStatus>>();
+        }
     }
 }

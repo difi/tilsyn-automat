@@ -22,7 +22,8 @@
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.ContactPersonList.SingleOrDefault().Email)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Status)</th>
+                <th scope="col">Status 1</th>
+                <th scope="col">Status 2</th>
                 <th scope="col">Eksporter</th>
             </tr>
         </thead>
@@ -51,7 +52,10 @@
                     }
                 </td>
                 <td>
-                    @item.Status
+                    @item.Status.TextAdmin
+                </td>
+                <td>
+                    @item.Status.TextCompany
                 </td>
                 <td>
                     <button class="button update" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id">Eksporter</button>

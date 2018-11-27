@@ -19,10 +19,10 @@
 
     @if (Model.DeclarationItemForm.Id != Guid.Empty)
     {
-        @Html.EditorFor(x => x.DeclarationItemForm.Status, "DropdownListEnum")
+        @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
     }
 
-    @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownList", new { list = Model.SelectUserList })
+    @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
 
     @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
     @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")

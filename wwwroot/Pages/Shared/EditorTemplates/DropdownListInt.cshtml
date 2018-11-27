@@ -1,0 +1,10 @@
+﻿@model int
+
+<div class="form-field">
+    <label for="@Html.IdForModel()">
+        @Html.DisplayNameFor(m => m)
+        @Html.ValidationMessageFor(m => m)
+    </label>
+
+    @Html.DropDownListFor(m => m, (List<SelectListItem>)ViewData["list"])
+</div>

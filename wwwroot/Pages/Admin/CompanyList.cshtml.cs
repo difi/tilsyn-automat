@@ -105,7 +105,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = declarationName,
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddMonths(6),
-                    Status = DeclarationStatus.Created,
+                    StatusId = (int) DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
                         Id = declarationItemId,

@@ -37,6 +37,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
                     .Include(x => x.Company).ThenInclude(x => x.UserList)
                     .Include(x => x.User)
+                    .Include(x => x.Status)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
@@ -71,12 +72,13 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
                     .Include(x => x.Company).ThenInclude(x => x.UserList)
                     .Include(x => x.User)
+                    .Include(x => x.Status)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
                     .AsNoTracking().OrderBy(x => x.Name).ToList();
 
-                result.Data = (T)list;
+                result.Data = (T) list;
                 result.Succeeded = true;
             }
             catch (Exception exception)
@@ -121,7 +123,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 declarationItem.Id = Guid.NewGuid();
                 declarationItem.CreatedDate = DateTime.Now;
-                declarationItem.Status = DeclarationStatus.Created;
+                declarationItem.StatusId = (int)DeclarationStatus.Created;
                 declarationItem.UserItemId = userRepository.Get<UserItem>(declarationItem.UserItemId).Data.Id;
                 declarationItem.IndicatorList = new List<DeclarationIndicatorGroup>();
 
@@ -163,18 +165,16 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = Get<DeclarationItem>(declarationItem.Id).Data;
+                var dbItem = dbContext.DeclarationList.Single(x => x.Id == declarationItem.Id);
 
                 dbItem.Name = declarationItem.Name;
                 dbItem.DeadlineDate = declarationItem.DeadlineDate;
-                dbItem.Status = declarationItem.Status;
-                dbItem.User = (UserItem)userRepository.Get<UserItem>(declarationItem.UserItemId).Data;
-
-                dbContext.DeclarationList.Update(dbItem);
+                dbItem.StatusId = declarationItem.StatusId;
+                dbItem.UserItemId = userRepository.Get<UserItem>(declarationItem.UserItemId).Data.Id;
 
                 //if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
                 //{
-                //    var companyItem =  companyRepository.Get<CompanyItem>(declarationItem.CompanyItemId).Data;
+                //    var companyItem = companyRepository.Get<CompanyItem>(declarationItem.CompanyItemId).Data;
 
                 //    foreach (var userCompany in companyItem.UserList)
                 //    {
@@ -239,7 +239,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 var dbItem = Get<DeclarationItem>(declarationItemId).Data;
 
-                dbItem.Status = DeclarationStatus.Complete;
+                dbItem.StatusId = (int) DeclarationStatus.Complete;
                 dbItem.SentInDate = DateTime.Now;
 
                 dbContext.DeclarationList.Update(dbItem);

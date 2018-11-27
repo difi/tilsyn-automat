@@ -28,6 +28,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Välj saksbehandler")]
         public List<SelectListItem> SelectUserList { get; set; }
 
+        [BindProperty]
+        [Display(Name = "Välj status")]
+        public List<SelectListItem> SelectStatusList { get; set; }
+
         public DeclarationFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -38,12 +42,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var list = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal")).Data;
+                var userItems = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal")).Data;
 
-                SelectUserList = list.Select(x => new SelectListItem
+                SelectUserList = userItems.Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.Name,
+                    Selected = false
+                }).ToList();
+
+                var typeOfStatuses = (await apiHttpClient.Get<List<ValueListTypeOfStatus>>("/api/ValueList/GetAllTypeOfStatus")).Data;
+
+                SelectStatusList = typeOfStatuses.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = $"{x.TextAdmin} - {x.TextCompany} ({x.Text})",
                     Selected = false
                 }).ToList();
 
