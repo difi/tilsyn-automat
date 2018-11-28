@@ -60,13 +60,27 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                 Container = Request.Form["container"]
             };
 
-            var item = apiHttpClient.Post<ApiResult>("/api/Image/Add", imageItem);
+            var apiResult = apiHttpClient.Post<ApiResult>("/api/Image/Add", imageItem).Result;
 
-            byte[] buffer = Encoding.UTF8.GetBytes("{succeeded:true,id:'" + imageItem.Uuid + "',exception:null}");
+            if (apiResult.Succeeded)
+            {
+                var buffer = Encoding.UTF8.GetBytes("{\"success\":true, \"id\":\"" + apiResult.Id + "\"}");
 
-            Response.StatusCode = 200;
-            Response.ContentLength = buffer.Length;
-            Response.Body.WriteAsync(buffer);
+                Response.ContentType = "application/json; charset=utf-8";
+                Response.StatusCode = 200;
+                Response.ContentLength = buffer.Length;
+                Response.Body.WriteAsync(buffer);
+            }
+            else
+            {
+                var buffer = Encoding.UTF8.GetBytes("{\"success\":false}");
+
+                Response.ContentType = "application/json; charset=utf-8";
+                Response.StatusCode = 500;
+                Response.ContentLength = buffer.Length;
+                Response.Body.WriteAsync(buffer);
+            }
+
 
             return null;
         }

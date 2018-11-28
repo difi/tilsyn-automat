@@ -58,40 +58,38 @@
                             var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                             var orderText = mainIndex + "." + subIndex;
 
-                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                            {
+                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
 
-                                <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                                <h3>@answerItem.Question</h3>
 
-                                    <h3>@answerItem.Question</h3>
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                {
+                                    @answerData.String
+                                }
 
-                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                {
+                                    @answerData.Bool
+                                }
+
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                {
+                                    @answerData.Int
+                                }
+
+                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                {
+                                    if (answerData.Image != null)
                                     {
-                                        @answerData.String
+                                        var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+                                        <img src="@image" alt="" width="200"/>
                                     }
+                                }
 
-                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                    {
-                                        @answerData.Bool
-                                    }
+                                <br />
+                                <br />
 
-                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                    {
-                                        @answerData.Int
-                                    }
-
-                                    @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                    {
-
-                                    }
-
-                                    <br />
-                                    <br />
-
-                                </div>
-
-                            }
-
+                            </div>
 
                             firstQuestion = false;
                         }
@@ -102,5 +100,5 @@
         </div>
     }
 
-        <button class="" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
+    <button class="" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
 </form>

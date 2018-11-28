@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Difi.Sjalvdeklaration.wwwroot.Migrations
+namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     public partial class V1 : Migration
     {
