@@ -11,6 +11,7 @@ using System.Text;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
@@ -61,8 +62,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
             var item = apiHttpClient.Post<ApiResult>("/api/Image/Add", imageItem);
 
+            byte[] buffer = Encoding.UTF8.GetBytes("{succeeded:true,id:'" + imageItem.Uuid + "',exception:null}");
+
             Response.StatusCode = 200;
-            Response.Body.Close();
+            Response.ContentLength = buffer.Length;
+            Response.Body.WriteAsync(buffer);
 
             return null;
         }
