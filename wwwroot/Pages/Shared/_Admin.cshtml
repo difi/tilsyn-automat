@@ -6,24 +6,77 @@
 }
 
 <header>
-    <div class="row column">
-        <br />
-        <nav>
-            <ul class="menu">
-                <li>
-                    <a class="button" asp-page="DeclarationList">Administrere selvdeklarasjoner</a>
-                </li>
-                <li>
-                    <a class="button" asp-page="CompanyList">Administrere virksomheter</a>
-                </li>
-                @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
-                {
+    <div class="row">
+        <div class="small-8 column">
+            <div class="logo">
+                <img alt="Difi alt-text" src="~/images/difi_logo.png" />
+            </div>
+        </div>
+        <div class="small-4 column">
+
+
+            <div class="jsProfileContainer profile-wrapper">
+
+                <div class="profile-area">
+                    <div class="row collapse">
+                        <div class="hide-for-small medium-4 text-center columns">
+                            <div class="profile-image">
+                                
+                            </div>
+                        </div>
+                        <div class="small-12  medium-8 columns">
+                            <button class="jsProfileTrigger toggle-profile-button button plus">
+                                <span class="profile-name">Thea Handal Sneve</span><br />
+                                <span class="profile-number">050474 XXXXX</span>
+                                <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
+                    <ul class="text-left">
+                        <li>
+                            <a class="back button" href="/">Link</a>
+                        </li>
+                        <li>
+                            <input type="submit" value="Input submit" class="button">
+                        </li>
+                        <li>
+                            <button class="button">Button</button>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 column">
+
+            <nav class="global-navigation">
+                <ul>
                     <li>
-                        <a class="button" asp-page="UserList">Administrere interne brukere</a>
+                        <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
                     </li>
-                }
-            </ul>
-        </nav>
+                    <li>
+                        <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
+                    </li>
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+                    {
+                        <li>
+                            <a asp-page="UserList">@Localizer["Admin-users"]</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+        </div>
     </div>
 </header>
 

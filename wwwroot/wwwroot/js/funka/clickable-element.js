@@ -22,3 +22,16 @@ $(document).ready(function () {
     })
 
 });
+
+$(document).ready(function () {
+    $('.clickable-td').click(function () {
+
+        if ($(this).parent().find("td.clickable-td a").attr("href").length > 1) {
+            window.location = $(this).parent().find("td.clickable-td a").attr("href");
+        }
+        return false;
+    });
+
+});
+
+

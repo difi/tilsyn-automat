@@ -59,27 +59,40 @@ button, .button, input[type="button"], input[type="submit"] {
         margin: 0;
     }
 
-    &.dark-blue {
-        background-color: $color-blue-darker;
-        color: $color-white;
+    &.show {
+        background-color: $very-light-purple;
+        color: $dark-grey;
+    }
 
-        &:hover {
-            background-color: darken($color-blue-darker, 5%);
+    &.export {
+        background: url("/css/cssimg/icons-sprite.svg") transparent -89px -696px no-repeat;
+        width: 28px;
+        margin-bottom: 0;
+        height: 28px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-white;
         }
     }
 
+    &.export-all {
+        font-size: 15px;
+        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -689px no-repeat;
+        margin-bottom: 0;
+        padding-right: 2rem;
+        text-decoration: underline;
+        color: $light-navy;
 
-    &.light-blue {
-        background-color: $color-blue-light;
-        color: $color-blue-darkest;
-
-        &:hover {
-            background-color: darken($color-blue-light, 5%);
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-white;
         }
     }
 
-
-    &.blue, &.add {
+    &.add {
         background-color: $color-blue;
         color: $color-white;
         margin-right: 1rem;
@@ -94,7 +107,7 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
-    &.green, &.update {
+    &.update {
         background-color: $color-green;
         color: $color-white;
         margin-right: 1rem;
@@ -110,7 +123,7 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
 
-    &.pink, &.delete {
+    &.delete {
         background-color: $color-pink;
         color: $color-white;
         margin-right: 1rem;
@@ -141,6 +154,10 @@ button, .button, input[type="button"], input[type="submit"] {
             background-color: darken($button-bgColor-std, 5%);
             border-color: darken($border-color, 5%);
         }
+    }
+
+    &.tabbed {
+        outline: 2px solid $tabbed-color;
     }
 
     &.link-button {
@@ -208,6 +225,58 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
+    &.toggle-profile-button {
+        text-align: left;
+        font-weight: bold;
+        background-color: transparent;
+        padding: 0.75rem 12px 1rem 10px;
+        margin-bottom: 20px;
+        color: $dark-blue-grey;
+        font-size: 1rem;
+        border-radius: 0;
+        width: 100%;
+        position: relative;
+
+        &[aria-expanded="false"] {
+            .toggle-profile-icon {
+                top: 16px;
+                transform: rotate(-45deg);
+                transition: transform 200ms ease;
+            }
+        }
+
+        &[aria-expanded="true"] {
+            .toggle-profile-icon {
+                transform: rotate(-225deg);
+                top: 22px;
+                transition: transform 200ms ease;
+            }
+        }
+
+        .toggle-header-number {
+            border: 1px solid $dark-blue-grey;
+            border-radius: 100px;
+            width: 28px;
+            height: 28px;
+            display: inline-block;
+            text-align: center;
+            line-height: 1.15;
+        }
+
+        .toggle-profile-icon {
+            border: 2px solid $dark-blue-grey;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            width: 11px;
+            height: 11px;
+            display: inline-block;
+            transform: rotate(-45deg);
+            position: absolute;
+            right: 5px;
+        }
+    }
+
+
     &.upload-photo {
         font-size: 17px;
 
@@ -232,13 +301,6 @@ button, .button, input[type="button"], input[type="submit"] {
         width: 40px;
         margin-bottom: 0;
         height: 40px;
-    }
-
-    &.tabbed {
-        outline: none;
-        border: 0;
-        background-color: $tabbed-color;
-        color: $color-white;
     }
 
     &.wide {

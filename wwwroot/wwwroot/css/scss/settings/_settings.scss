@@ -66,7 +66,7 @@
 // ---------
 
 $global-font-size: 16px;
-$global-width: rem-calc(1240);
+$global-width: rem-calc(984);
 $global-lineheight: 1.5;
 $foundation-palette: (
   primary: #458596,
@@ -772,8 +772,8 @@ $switch-paddle-transition: all 0.25s ease-out;
 // 50. Table
 // ---------
 
-$table-background: $white;
-$table-color-scale: 5%;
+$table-background: transparent;
+$table-color-scale: 0%;
 $table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
@@ -782,7 +782,7 @@ $table-row-stripe-hover: darken($table-background, $table-color-scale + $table-h
 $table-is-striped: true;
 $table-striped-background: smart-scale($table-background, $table-color-scale);
 $table-stripe: even;
-$table-head-background: smart-scale($table-background, $table-color-scale / 2);
+$table-head-background: #b5d2db;
 $table-head-row-hover: darken($table-head-background, $table-hover-scale);
 $table-foot-background: smart-scale($table-background, $table-color-scale);
 $table-foot-row-hover: darken($table-foot-background, $table-hover-scale);

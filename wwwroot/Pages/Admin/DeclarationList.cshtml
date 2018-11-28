@@ -4,64 +4,156 @@
     ViewData["Title"] = "DeclarationList";
 }
 
-<h1>Selvdeklarasjoner</h1>
+<h1>@Localizer["DeclarationList-header-h2"]</h1>
 
 <form method="post">
-    <h3>@Model.ViewCount Selvdeklarasjoner av totalt @Model.TotalCount</h3>
 
-    <button class="button update" type="submit" asp-page-handler="ExportDeclarationList">Eksporter alle i listen</button>
+    <div class="row">
+        <div class="small-12 column">
+            <h3>@Localizer["DeclarationList-filter-header"]</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 column">
+            <div class="filter-wrapper">
+                <fieldset>
+                    <legend>@Localizer["DeclarationList-filter-legend"]</legend>
+                </fieldset>
+
+
+
+                <div class="row">
+
+                    <div class="small-3 column">
+                        <div class="row">
+                            <div class="small-6 column">
+                                <label for="alt1">
+                                    @Localizer["DeclarationList-filter-label-from"]
+                                </label>
+                                <input id="alt1" type="text" />
+                            </div>
+                            <div class="small-6 column">
+                                <label for="alt2">
+                                    @Localizer["DeclarationList-filter-label-to"]
+                                </label>
+                                <input id="alt2" type="text" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="small-6 column">
+                        <div class="row">
+                            <div class="small-6 column">
+                                <label for="alt3">
+                                    @Localizer["DeclarationList-filter-label-status-1"]
+                                </label>
+                                <select id="alt3">
+                                    <option>Alle</option>
+                                    <option>?</option>
+                                </select>
+                            </div>
+                            <div class="small-6 column">
+                                <label for="alt3">
+                                    @Localizer["DeclarationList-filter-label-status-2"]
+                                </label>
+                                <select id="alt4">
+                                    <option>Alle</option>
+                                    <option>?</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="small-3 column">
+
+                        <div class="row collapse">
+                            <div class="small-6 column">
+                                <br />
+                                <button class="button">@Localizer["DeclarationList-filter-button"]</button>
+                            </div>
+                            <div class="small-6 column">
+                                <br />
+                                <button class="button show">@Localizer["DeclarationList-filter-button-view-all"]</button>
+                            </div>
+                        </div>  
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-6 column">
+            <h3>@Model.ViewCount @Localizer["DeclarationList-header-h3"]  @Localizer["DeclarationList-of-total"] @Model.TotalCount</h3>
+        </div>
+        <div class="small-6 text-right column">
+            <button class="button export-all" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["DeclarationList-eksport-all"]</button>
+        </div>
+    </div>
+
 
     <table class="table">
         <caption>
-            <h2>Selvdeklarasjoner</h2>
+            <h2>@Localizer["DeclarationList-header-h2"]</h2>
         </caption>
         <thead>
             <tr>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.ContactPersonList.SingleOrDefault().Email)</th>
+                <th scope="col">@Localizer["DeclarationList-contactperson"]</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)</th>
-                <th scope="col">Status 1</th>
-                <th scope="col">Status 2</th>
-                <th scope="col">Eksporter</th>
+                <th scope="col">Status for egenkontroll</th>
+                <th scope="col">Status for tillsyn</th>
+                <th class="no-sorting" scope="col"></th>
             </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model.DeclarationList)
-        {
-            var contactPerson = item.Company.ContactPersonList.FirstOrDefault();
+            @foreach (var item in Model.DeclarationList)
+            {
+                var contactPerson = item.Company.ContactPersonList.FirstOrDefault();
 
-            <tr>
-                <td>
-                    <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
-                </td>
-                <td>
-                    @item.Company.Name
-                </td>
-                <td>
-                    @contactPerson?.Email
-                </td>
-                <td>
-                    @item.DeadlineDate.ToString("yyyy-MM-dd")
-                </td>
-                <td>
-                    @if (item.SentInDate != DateTime.MinValue)
-                    {
-                        @item.SentInDate.ToString("yyyy-MM-dd")
-                    }
-                </td>
-                <td>
-                    @item.Status.TextAdmin
-                </td>
-                <td>
-                    @item.Status.TextCompany
-                </td>
-                <td>
-                    <button class="button update" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id">Eksporter</button>
-                </td>
-            </tr>
-        }
+                <tr>
+                    <td class="clickable-td">
+                        <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
+                    </td>
+                    <td class="clickable-td">
+                        @item.Company.Name
+                    </td>
+                    <td class="clickable-td">
+                        @contactPerson?.Email
+                    </td>
+                    <td class="clickable-td">
+                        @item.DeadlineDate.ToString("yyyy-MM-dd")
+                    </td>
+                    <td class="clickable-td">
+                        @if (item.SentInDate != DateTime.MinValue)
+                        {
+                            @item.SentInDate.ToString("yyyy-MM-dd")
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td class="clickable-td">
+                        @item.Status.TextCompany
+                    </td>
+                    <td class="clickable-td">
+                        @item.Status.TextAdmin
+                    </td>
+
+                    <td>
+                        <button class="button export" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id"><span class="show-for-sr">@Localizer["DeclarationList-eksport"]</span></button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
+
 </form>

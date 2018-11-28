@@ -10,15 +10,70 @@
 // CSS FOR ALL DEVICES
 
 header {
-    background-color: #daebf2;
+    background-color: $color-white;
     min-height: 100px;
 
-    ul li, ol li {
-        padding: 0 16px 0 0;
+    .logo {
+        margin-top: 6px;
     }
 
-    .menu .button {
-        margin: 5px 0;
+    .profile-wrapper {
+    }
+
+    .profile-area, .profile-info-area {
+    }
+
+    .profile-info-area {
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+
+            li {
+                border-bottom: 1px solid $ice-blue;
+            }
+
+            a, .button {
+                background-color: transparent;
+                padding: 1rem;
+                color: $dark-blue-grey;
+                border: 0;
+                display: block;
+                width: 100%;
+                text-align: right;
+                margin: 0 !important;
+
+                &:hover, &.tabbed {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .profile-number {
+        font-weight: normal;
+    }
+
+    .profile-name {
+        max-width: 100px;
+    }
+
+    .profile-image {
+        height: 60px;
+        background: url(cssimg/icons-sprite.svg) 50% -13482px no-repeat;
+        padding: 20% 0;
+
+        img {
+            margin: 0 auto;
+            width: 35px;
+            border-radius: 1000px;
+        }
+    }
+
+    .toggle-profile-button {
+        // Button is in button.scss
     }
 }
 

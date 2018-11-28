@@ -27,4 +27,19 @@
             $target.slideToggle("300", function () { });
         }
     });
+
+    var profileToggle = new funkanu.ariatoggle({
+        container: ".jsProfileContainer",
+        triggerSelector: ".jsProfileTrigger",
+        target: function () {
+            return $('.jsProfileToggleTarget');
+        },
+        toggleAction: function ($target) {
+            var trigger = $('.jsProfileTrigger');
+            trigger.toggleClass('minus');
+            trigger.toggleClass('plus');
+
+            $target.slideToggle("300", function () { });
+        }
+    });
 });

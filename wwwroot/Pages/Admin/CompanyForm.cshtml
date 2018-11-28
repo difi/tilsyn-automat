@@ -21,8 +21,8 @@
 
     <fieldset>
         <legend>
-            Postadresse
-        </legend>
+            @Localizer["Admin-clients-legend-postal-address"]
+            </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.MailingAddressStreet, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.MailingAddressZip, "TextBox")
@@ -31,8 +31,8 @@
 
     <fieldset>
         <legend>
-            Beliggenhetsadresse
-        </legend>
+            @Localizer["Admin-clients-legend-location-address"]
+            </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressStreet, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressZip, "TextBox")
@@ -41,8 +41,8 @@
 
     <fieldset>
         <legend>
-            Forretningsadresse
-        </legend>
+            @Localizer["Admin-clients-legend-business-addressd"]
+            </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.LocationAddressStreet, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.LocationAddressZip, "TextBox")
@@ -51,8 +51,8 @@
 
     <fieldset>
         <legend>
-            Kontaktperson Virksomhet
-        </legend>
+            @Localizer["Admin-clients-legend-contactPerson"]
+            </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Name, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Email, "TextBox")
@@ -62,8 +62,8 @@
 
     <fieldset>
         <legend>
-            Næringsgruppe
-        </legend>
+            @Localizer["Admin-clients-legend-industryGroup"]
+            </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupCode, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupDescription, "TextBox")
@@ -72,8 +72,8 @@
 
     <fieldset>
         <legend>
-            Institusjonell sektorkode
-        </legend>
+            @Localizer["Admin-clients-legend-institutionalSectorCode"]
+            </legend>
 
         @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorCode, "TextBox")
         @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorDescription, "TextBox")
@@ -81,34 +81,42 @@
 
     @if (Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
     {
-        <fieldset>
-            <legend>Brukere</legend>
+    <fieldset>
+        <legend>@Localizer["Admin-clients-legend-usercode"]</legend>
 
+        <ul class="listing-border">
             @foreach (var user in Model.CompanyItemForm.UserList)
             {
-                <div class="row">
-                    <div class="medium-6 column">
-                        @user.UserItem.SocialSecurityNumber
+
+
+
+                <li>
+                    <div class="row collapse">
+                        <div class="small-6 column">
+                            <span class="listing-social-security-number">@user.UserItem.SocialSecurityNumber</span>
+                        </div>
+                        <div class="small-6 text-right column">
+                            <button class="button small delete icon" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Admin-clients-usercode-delete"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
+                        </div>
                     </div>
-                    <div class="medium-6 column">
-                        <button class="button delete icon" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">Radera <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
-                    </div>
-                </div>
+                </li>
+
 
             }
-        </fieldset>
+        </ul>
+    </fieldset>
     }
 
     @if (Model.CompanyItemForm.Id != Guid.Empty)
     {
 
-        <input class="button update icon" type="submit" value="Update" />
-        <button class="button delete icon" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">Radera</button>
+        <input class="button update icon" type="submit" value="@Localizer["Admin-clients-update"]" />
+        <button class="button delete icon" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
     }
     else
     {
-        <input class="button add icon" type="submit" value="Opprett virksomhet" asp-route-type="add" />
-        <input class="button add icon" type="submit" value="Opprett selvdeklarasjon" asp-route-type="declaration" />
+        <input class="button add icon" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
+        <input class="button add icon" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
     }
 </form>
 

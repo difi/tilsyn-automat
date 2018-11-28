@@ -127,10 +127,10 @@
     <value>Frist for innsending - er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Automat</value>
+    <value>Egenkontroll</value>
   </data>
   <data name="Name - required field" xml:space="preserve">
-    <value>Automat - er påkrevd</value>
+    <value>Egenkontroll er påkrevd</value>
   </data>
   <data name="SentInDate" xml:space="preserve">
     <value>Dato sendt inn</value>

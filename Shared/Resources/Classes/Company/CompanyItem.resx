@@ -238,10 +238,10 @@
     <value>Postnummer er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Virksomhetens navn i Brreg</value>
+    <value>Virksomhet</value>
   </data>
   <data name="Name - required field" xml:space="preserve">
-    <value>Virksomhetens navn i Brreg er påkrevd</value>
+    <value>Virksomhet er påkrevd</value>
   </data>
   <data name="OwnerCorporateIdentityNumber" xml:space="preserve">
     <value>Organisationsnummer</value>

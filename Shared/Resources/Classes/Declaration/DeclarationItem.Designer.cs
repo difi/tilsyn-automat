@@ -88,7 +88,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automat.
+        ///   Looks up a localized string similar to Egenkontroll.
         /// </summary>
         internal static string Name {
             get {
@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automat - er påkrevd.
+        ///   Looks up a localized string similar to Egenkontroll er påkrevd.
         /// </summary>
         internal static string Name___required_field {
             get {

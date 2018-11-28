@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Back" xml:space="preserve">
-    <value>Gå tilbake og endre</value>
+  <data name="Admin-clients" xml:space="preserve">
+    <value>Virksomheter</value>
   </data>
-  <data name="Print" xml:space="preserve">
-    <value>Skriv ut oppsummering</value>
+  <data name="Admin-declaration" xml:space="preserve">
+    <value>Egenkontroller</value>
   </data>
-  <data name="Send" xml:space="preserve">
-    <value>Sent in</value>
-  </data>
-  <data name="ShowHide" xml:space="preserve">
-    <value>Vise/skjule</value>
+  <data name="Admin-users" xml:space="preserve">
+    <value>Intern brukere</value>
   </data>
 </root>

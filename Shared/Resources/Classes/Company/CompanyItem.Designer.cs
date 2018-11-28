@@ -421,7 +421,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhetens navn i Brreg.
+        ///   Looks up a localized string similar to Virksomhet.
         /// </summary>
         internal static string Name {
             get {
@@ -430,7 +430,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhetens navn i Brreg er påkrevd.
+        ///   Looks up a localized string similar to Virksomhet er påkrevd.
         /// </summary>
         internal static string Name___required_field {
             get {

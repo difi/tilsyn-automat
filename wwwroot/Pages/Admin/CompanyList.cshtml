@@ -5,21 +5,27 @@
     ViewData["Title"] = "Start";
 }
 
-<h1>Administrere virksamheter</h1>
+<h1>@Localizer["Admin-company-h1"]</h1>
+
+<form method="post">
+    <a class="button add icon" asp-page="CompanyForm">@Localizer["Admin-new-company"]</a>
+    <button type="submit update" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
+</form>
 
 <form method="post">
     <table class="table">
         <caption>
-            <h2>Virksamheter</h2>
+            <h2>@Localizer["Admin-company-h1"]</h2>
         </caption>
         <thead>
             <tr>
-                <th scope="col">@Html.DisplayNameFor(x=>x.LocalizationItem.CorporateIdentityNumber)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Name)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.OwenerCorporateIdentityNumber)</th>
+
+                <th scope="col">@Localizer["Admin-contact-name"]</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Email)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Phone)</th>
-                <th scope="col">Opprett selvdeklarasjon</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -29,11 +35,12 @@
 
                 <tr>
                     <td>
-                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
-                    </td>
-                    <td>
                         @item.Name
                     </td>
+                    <td>
+                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.OwenerCorporateIdentityNumber</a>
+                    </td>
+
                     <td>
                         @contactPerson?.Name
                     </td>
@@ -47,11 +54,11 @@
                     <td>
                         @if (item.DeclarationList.Count > 0)
                         {
-
+                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="">@Localizer["Admin-new-declaration"]</a>
                         }
                         else
                         {
-                            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">Opprett selvdeklarasjon</a>
+                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
                         }
                     </td>
                 </tr>
@@ -60,7 +67,3 @@
     </table>
 </form>
 
-<form method="post">
-    <a class="button add icon" asp-page="CompanyForm">Opprett ny virksomhet</a>
-    <button type="submit update" class="button" asp-page-handler="ExcelImport">Importer virksomheter fra excel</button>
-</form>
