@@ -37,7 +37,7 @@
 
                 <div class="row medium-uncollapse">
                     <div class="small-12 medium-12 columns">
-                        <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton_delete"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.IndicatorItem.Name</span></span> </button></h2>
+                        <h2 class="h2-toggle"><button disabled aria-expanded="true" class="toogle-header-button"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.IndicatorItem.Name</span></span> </button></h2>
                     </div>
                 </div>
 
@@ -111,7 +111,11 @@
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                         {
-
+                                                            if (answerData.Image != null)
+                                                            {
+                                                                var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+                                                                <img src="@image" alt="" width="200" />
+                                                            }
                                                         }
                                                     </div>
                                                 </div>
