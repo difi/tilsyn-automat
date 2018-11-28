@@ -102,6 +102,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.AnswerItem)
+                    .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Image)
                     .AsNoTracking().Where(x => x.DeclarationTestItemId == id).ToList();
 
                 result.Data = (T)list;

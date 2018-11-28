@@ -5960,6 +5960,14 @@
                     promise.failure(qq.extend(parsedResponse, failureIndicator));
                 } else {
                     options.log("Upload success was acknowledged by the server.");
+
+                    var dbId = parsedResponse.id;
+                    var uploadId = xhrOrXdr.responseURL.substr(xhrOrXdr.responseURL.lastIndexOf("?id=") + 4);
+
+                    options.log("DatabaseId: " + dbId + " - UploadId: " + uploadId);
+
+                    $("#answer_image_" + uploadId).val(dbId);
+
                     promise.success(qq.extend(parsedResponse, successIndicator));
                 }
             } catch (error) {
