@@ -39,7 +39,7 @@
                 <th scope="col">@Localizer["Admin-contact-name"]</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Email)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Phone)</th>
-                <th scope="col"></th>
+                <th scope="col" class="no-sorting"></th>
             </tr>
         </thead>
         <tbody>
@@ -48,30 +48,33 @@
                 var contactPerson = item.ContactPersonList.FirstOrDefault();
 
                 <tr>
-                    <td>
+                    <td class="clickable-td">
                         @item.Name
                     </td>
-                    <td>
-                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
+                    <td class="clickable-td">
+                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.OwenerCorporateIdentityNumber</a>
                     </td>
 
-                    <td>
+                    <td class="clickable-td">
                         @contactPerson?.Name
                     </td>
-                    <td>
+
+                    <td class="clickable-td">
                         @contactPerson?.Email
                     </td>
-                    <td>
+
+                    <td class="clickable-td">
                         @contactPerson?.PhoneCountryCode
                         @contactPerson?.Phone
                     </td>
                     <td>
                         @if (item.DeclarationList.Count > 0)
                         {
+                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="">@Localizer["Admin-new-declaration"]</a>
                         }
                         else
                         {
-                            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
+                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
                         }
                     </td>
                 </tr>
