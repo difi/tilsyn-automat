@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     Id = companyId,
                     Name = dataRow["Virksomhet - Navn"].ToString(),
-                    CorporateIdentityNumber = dataRow["Virksomhet - Organisationsnummer"].ToString(),
+                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"].ToString(),
                     Code = dataRow["Virksomhet - Pinkode"].ToString(),
 
                     MailingAddressStreet = dataRow["Postadresse - Adresse gate"].ToString(),

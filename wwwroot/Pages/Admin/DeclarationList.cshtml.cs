@@ -118,7 +118,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             dataTable.Columns.Add(new DataColumn("Virksomhet - Pinkode"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - ID (tilsynets datamodell)"));
-            dataTable.Columns.Add(new DataColumn("Virksomhet - Organisationsnummer"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Organisasjonsnummer"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Navn"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Endret navn"));
 
@@ -167,7 +167,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 dataRow["Virksomhet - Pinkode"] = declarationItem.Company.Code;
                 dataRow["Virksomhet - ID (tilsynets datamodell)"] = declarationItem.Company.CorporateIdentityNumber;
-                dataRow["Virksomhet - Organisationsnummer"] = declarationItem.Company.CorporateIdentityNumber;
+                dataRow["Virksomhet - Organisasjonsnummer"] = declarationItem.Company.CorporateIdentityNumber;
                 dataRow["Virksomhet - Navn"] = declarationItem.Company.Name;
                 dataRow["Virksomhet - Endret navn"] = declarationItem.Company.CustomName;
 
