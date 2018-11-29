@@ -3015,21 +3015,6 @@ button, .button, input[type="button"], input[type="submit"] {
     button.add.small, .button.add.small, input[type="button"].add.small, input[type="submit"].add.small {
       background-position: 7px -192px;
       padding-left: 27px; }
-  button.update, .button.update, input[type="button"].update, input[type="submit"].update {
-    background-color: #1d754f;
-    color: #fff;
-    margin-right: 1rem; }
-    button.update:hover, .button.update:hover, input[type="button"].update:hover, input[type="submit"].update:hover {
-      background-color: #186141; }
-  button.delete, .button.delete, input[type="button"].delete, input[type="submit"].delete {
-    background-color: #d41472;
-    color: #fff;
-    margin-right: 1rem; }
-    button.delete.icon, .button.delete.icon, input[type="button"].delete.icon, input[type="submit"].delete.icon {
-      padding-left: 2rem;
-      background: url("/css/cssimg/icons-sprite.svg") #d41472 10px -288px no-repeat; }
-    button.delete:hover, .button.delete:hover, input[type="button"].delete:hover, input[type="submit"].delete:hover {
-      background-color: #bd1265; }
   button.black, .button.black, input[type="button"].black, input[type="submit"].black {
     background-color: #000;
     color: #fff;

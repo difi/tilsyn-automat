@@ -129,6 +129,9 @@
   <data name="Admin-import-company" xml:space="preserve">
     <value>Importer virksomheter fra excel</value>
   </data>
+  <data name="Admin-import-company-middleText" xml:space="preserve">
+    <value>virksomheter importert av</value>
+  </data>
   <data name="Admin-new-company" xml:space="preserve">
     <value>Opprett ny virksomhet</value>
   </data>

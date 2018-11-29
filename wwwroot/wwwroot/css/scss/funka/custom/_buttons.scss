@@ -107,28 +107,28 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.update {
-        background-color: $color-green;
-        color: $color-white;
-        margin-right: 1rem;
+        //background-color: $color-green;
+        //color: $color-white;
+        //margin-right: 1rem;
 
         &:hover {
-            background-color: darken($color-green, 5%);
+            //background-color: darken($color-green, 5%);
         }
     }
 
 
     &.delete {
-        background-color: $color-pink;
-        color: $color-white;
-        margin-right: 1rem;
+        //background-color: $color-pink;
+        //color: $color-white;
+        //margin-right: 1rem;
 
         &.icon {
-            padding-left: 2rem;
-            background: url('/css/cssimg/icons-sprite.svg') $color-pink 10px -288px no-repeat;
+            //padding-left: 2rem;
+            //background: url('/css/cssimg/icons-sprite.svg') $color-pink 10px -288px no-repeat;
         }
 
         &:hover {
-            background-color: darken($color-pink, 5%);
+            //background-color: darken($color-pink, 5%);
         }
     }
 
