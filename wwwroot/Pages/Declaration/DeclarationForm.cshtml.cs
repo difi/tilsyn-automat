@@ -32,13 +32,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
                 var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
 
-                //var testGroupList = new List<TestGroupItem>();
+                var testGroupList = new List<TestGroupItem>();
 
-                //foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList)
-                //{
-                //    declarationIndicatorGroup.IndicatorItem.TestGroupList
+                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList)
+                {
+                    //declarationIndicatorGroup.IndicatorItem.TestGroupList.Single(x=>x.TestGroupItemId == declarationIndicatorGroup.)
 
-                //}
+                }
 
 
                 if (outcomeDataList.Any())
