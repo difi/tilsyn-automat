@@ -203,16 +203,23 @@ namespace Difi.Sjalvdeklaration.Database
 
                 result.Id = excelRow.CompanyItem.Id;
 
-                var addDeclarationResult = declarationRepository.Add(excelRow.DeclarationItem);
-
-                if (addDeclarationResult.Succeeded)
+                if (excelRow.DeclarationItem == null)
                 {
                     result.Succeeded = true;
                 }
                 else
                 {
-                    result.Exception = new Exception("Problem with adding declaration, se inner exception", addDeclarationResult.Exception);
-                    result.Succeeded = addDeclarationResult.Succeeded;
+                    var addDeclarationResult = declarationRepository.Add(excelRow.DeclarationItem);
+
+                    if (addDeclarationResult.Succeeded)
+                    {
+                        result.Succeeded = true;
+                    }
+                    else
+                    {
+                        result.Exception = new Exception("Problem with adding declaration, se inner exception", addDeclarationResult.Exception);
+                        result.Succeeded = addDeclarationResult.Succeeded;
+                    }
                 }
             }
             catch (Exception exception)

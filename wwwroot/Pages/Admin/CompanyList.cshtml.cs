@@ -91,7 +91,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             var companyId = Guid.NewGuid();
             var declarationItemId = Guid.NewGuid();
 
-            return new ExcelItemRow
+            var excelRow = new ExcelItemRow
             {
                 CompanyItem = new CompanyItem
                 {
@@ -129,8 +129,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     PhoneCountryCode = dataRow["Kontaktperson - Telefonnummer Landskode"].ToString(),
                     Phone = dataRow["Kontaktperson - Telefonnummer"].ToString(),
                     CompanyItemId = companyId,
-                },
-                DeclarationItem = new DeclarationItem
+                }
+            };
+
+            if (string.IsNullOrEmpty(excelRow.CompanyItem.Code))
+            {
+                var random = new Random(DateTime.Now.Millisecond);
+
+                excelRow.CompanyItem.Code = random.Next(1000, 9999).ToString();
+            }
+
+            if (!string.IsNullOrEmpty(dataRow["Automat - Navn"].ToString()))
+            {
+                excelRow.DeclarationItem = new DeclarationItem
                 {
                     Id = declarationItemId,
                     CompanyItemId = companyId,
@@ -138,15 +149,17 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = dataRow["Automat - Navn"].ToString(),
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddMonths(6),
-                    StatusId = (int) DeclarationStatus.Created,
+                    StatusId = (int)DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
                         Id = declarationItemId,
                         TypeOfMachine = valueListTypeOfMachine.Single(x => x.Id == 1),
                         TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1)
                     }
-                }
-            };
+                };
+            }
+
+            return excelRow;
         }
     }
 
