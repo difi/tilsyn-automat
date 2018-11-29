@@ -2,7 +2,7 @@
 @model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.UserFormModel
 
 @{
-    var title = Model.UserItemForm.Id != Guid.Empty ? "Uppdatera " + Model.UserItemForm.Name : "Ny interne brukere";
+    var title = Model.UserItemForm.Id != Guid.Empty ? "Oppdater brukere" : "Ny interne brukere";
     ViewData["Title"] = title;
 }
 

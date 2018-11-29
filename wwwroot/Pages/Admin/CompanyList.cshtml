@@ -53,10 +53,10 @@
 
                 <tr>
                     <td class="clickable-td">
-                        @item.Name
+                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.Name</a>
                     </td>
                     <td class="clickable-td">
-                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
+                        @item.CorporateIdentityNumber
                     </td>
 
                     <td class="clickable-td">

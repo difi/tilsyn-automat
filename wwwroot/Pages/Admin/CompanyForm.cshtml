@@ -2,7 +2,7 @@
 @model CompanyFormModel
 
 @{
-    var title = Model.CompanyItemForm.Id != Guid.Empty ? "Uppdatera " + Model.CompanyItemForm.Name : "Ny interne virksamhet";
+    var title = Model.CompanyItemForm.Id != Guid.Empty ? "Oppdater virksamhet" : "Ny interne virksamhet";
 
     ViewData["Title"] = title;
 }

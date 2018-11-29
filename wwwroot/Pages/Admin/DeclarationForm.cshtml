@@ -2,9 +2,9 @@
 @model DeclarationFormModel
 
 @{
-    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Uppdatera " + Model.DeclarationItemForm.Name : "Opprette egenkontroll";
+    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll";
 
-    ViewData["Title"] = title;
+    ViewData["Title"] = Model.DeclarationItemForm.Company.Name + " - " + title;
 }
 
 <h1>@Model.DeclarationItemForm.Company.Name</h1>
