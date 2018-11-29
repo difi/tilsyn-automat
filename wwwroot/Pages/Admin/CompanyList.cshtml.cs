@@ -148,7 +148,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                     Name = dataRow["Automat - Navn"].ToString(),
                     CreatedDate = DateTime.Now,
-                    DeadlineDate = DateTime.Now.Date.AddMonths(6),
+                    DeadlineDate = DateTime.Now.Date.AddDays(14),
                     StatusId = (int)DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
