@@ -61,24 +61,6 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4CaseNumber.
-        /// </summary>
-        internal static string CaseNumber {
-            get {
-                return ResourceManager.GetString("CaseNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4CaseNumber - er påkrevd.
-        /// </summary>
-        internal static string CaseNumber___required_field {
-            get {
-                return ResourceManager.GetString("CaseNumber - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 4DescriptionInText.
         /// </summary>
         internal static string DescriptionInText {

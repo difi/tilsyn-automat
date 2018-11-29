@@ -205,20 +205,11 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1CustomName.
+        ///   Looks up a localized string similar to Endret navn på virksomheten.
         /// </summary>
         internal static string CustomName {
             get {
                 return ResourceManager.GetString("CustomName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1CustomName - er påkrevd.
-        /// </summary>
-        internal static string CustomName___required_field {
-            get {
-                return ResourceManager.GetString("CustomName - required field", resourceCulture);
             }
         }
         
@@ -448,7 +439,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organisasjonsnummer på moderbolag.
+        ///   Looks up a localized string similar to Organisasjonsnummer på hovedorgansasjonen.
         /// </summary>
         internal static string OwnerCorporateIdentityNumber {
             get {
