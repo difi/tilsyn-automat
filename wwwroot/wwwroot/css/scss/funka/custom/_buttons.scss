@@ -39,7 +39,7 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &:active {
-        background-color: lighten($color-black, 50%);
+        background-color: $light-navy;
     }
 
     &.tiny {
@@ -48,7 +48,7 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.small {
-        padding: 0.5em 1em;
+        padding: 0.4em 1em 0.5em 1em;
         font-size: map-get($button-sizes, small);
     }
 
@@ -59,7 +59,7 @@ button, .button, input[type="button"], input[type="submit"] {
         margin: 0;
     }
 
-    &.show {
+    &.show, &.import {
         background-color: $very-light-purple;
         color: $dark-grey;
     }
@@ -93,17 +93,15 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.add {
-        background-color: $color-blue;
-        color: $color-white;
-        margin-right: 1rem;
+        background-image: url('/css/cssimg/icons-sprite.svg');
+        background-repeat: no-repeat;
+        background-position: 10px -185px;
+        padding-left: 2rem;
 
-        &.icon {
-            padding-left: 2rem;
-            background: url('/css/cssimg/icons-sprite.svg') $color-blue 10px -188px no-repeat;
-        }
-
-        &:hover {
-            background-color: darken($color-blue, 5%);
+        &.small {
+            margin-bottom: 0;
+            background-position: 7px -192px;
+            padding-left: 27px;
         }
     }
 
@@ -111,11 +109,6 @@ button, .button, input[type="button"], input[type="submit"] {
         background-color: $color-green;
         color: $color-white;
         margin-right: 1rem;
-
-        &.icon {
-            //padding-left: 2rem;
-            //background: url('/css/cssimg/icons-sprite.svg') $color-green 10px -188px no-repeat;
-        }
 
         &:hover {
             background-color: darken($color-green, 5%);
@@ -172,7 +165,6 @@ button, .button, input[type="button"], input[type="submit"] {
             text-decoration: none;
         }
     }
-
 
     &.toogle-header-button {
         text-align: left;

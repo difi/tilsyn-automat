@@ -280,7 +280,7 @@ $breadcrumbs-item-separator-color: $medium-gray;
 // ----------
 
 $button-font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-$button-padding: 0.7em 1em 0.7em 1em;
+$button-padding: 0.6em 1em 0.6em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
@@ -290,14 +290,14 @@ $button-color-alt: $black;
 $button-radius: $global-radius;
 $button-hollow-border-width: 0px;
 $button-sizes: (
-  tiny: 12px,
-  small: 16px,
+  tiny: 13px,
+  small: 15px,
   default: 18px,
   large: 22px,
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
-$button-background-hover-lightness: -20%;
+$button-background-hover-lightness: -10%;
 $button-hollow-hover-lightness: -50%;
 $button-transition: background-color 400ms ease-out 0s
 ;
