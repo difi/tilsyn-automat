@@ -7,8 +7,13 @@
 
 <h1>@Localizer["Admin-company-h1"]</h1>
 
-<form method="post">
-    <a class="button add icon" asp-page="CompanyForm">@Localizer["Admin-new-company"]</a>
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="ExcelFile" class="control-label"></label>
+        <input asp-for="ExcelFile" type="file" class="form-control" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+        <span asp-validation-for="ExcelFile" class="text-danger"></span>
+    </div>
+
     <button type="submit update" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
 </form>
 
