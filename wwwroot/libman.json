@@ -19,7 +19,7 @@
     },
     {
       "library": "jquery.tablesorter@2.31.0",
-      "files": [ "js/jquery.tablesorter.js", "js/jquery.tablesorter.min.js", "css/theme.default.min.css" ],
+      "files": [ "js/jquery.tablesorter.js", "js/jquery.tablesorter.min.js" ],
       "destination": "wwwroot/js/jquery.tablesorter"
     }
   ]
