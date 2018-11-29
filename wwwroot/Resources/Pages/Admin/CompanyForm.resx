@@ -145,7 +145,7 @@
     <value>Opprett virksomhet</value>
   </data>
   <data name="Admin-clients-new-declaration" xml:space="preserve">
-    <value>Opprett selvdeklarasjon</value>
+    <value>Opprett egenkontroll</value>
   </data>
   <data name="Admin-clients-update" xml:space="preserve">
     <value>Lagre</value>

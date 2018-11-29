@@ -2,12 +2,14 @@
 @model DeclarationFormModel
 
 @{
-    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Uppdatera " + Model.DeclarationItemForm.Name : "Ny selvdeklarasjon";
+    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Uppdatera " + Model.DeclarationItemForm.Name : "Opprette egenkontroll";
 
     ViewData["Title"] = title;
 }
 
-<h1>@title</h1>
+<h1>@Model.DeclarationItemForm.Company.Name</h1>
+
+<h2>@title</h2>
 
 <form method="post">
     <div asp-validation-summary="All"></div>
