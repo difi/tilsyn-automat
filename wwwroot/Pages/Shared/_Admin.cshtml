@@ -3,6 +3,8 @@
 
 @{
     Layout = "_Layout.cshtml";
+
+    var activePage = Context.Request.Path.ToString().Replace("/Admin/", "").Replace("Form", "").Replace("List", "");
 }
 
 <header>
@@ -13,10 +15,7 @@
             </div>
         </div>
         <div class="small-4 column">
-
-
             <div class="jsProfileContainer profile-wrapper">
-
                 <div class="profile-area">
                     <div class="row collapse">
                         <div class="hide-for-small medium-4 text-center columns">
@@ -47,35 +46,29 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
-
-
-
-
-
         </div>
     </div>
     <div class="row">
         <div class="small-12 column">
-
             <nav class="global-navigation">
                 <ul>
-                    <li>
+                    <li class="@(activePage == "Declaration" ? "active" : "")">
                         <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
                     </li>
-                    <li>
+
+                    <li class="@(activePage == "Company" ? "active" : "")">
                         <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
                     </li>
+
                     @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
                     {
-                        <li>
+                        <li class="@(activePage == "User" ? "active" : "")">
                             <a asp-page="UserList">@Localizer["Admin-users"]</a>
                         </li>
                     }
                 </ul>
             </nav>
-
         </div>
     </div>
 </header>
