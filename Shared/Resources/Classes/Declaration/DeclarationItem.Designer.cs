@@ -61,6 +61,24 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saksnummer.
+        /// </summary>
+        internal static string CaseNumber {
+            get {
+                return ResourceManager.GetString("CaseNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4CaseNumber - er påkrevd.
+        /// </summary>
+        internal static string CaseNumber___required_field {
+            get {
+                return ResourceManager.GetString("CaseNumber - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 3CreatedDate.
         /// </summary>
         internal static string CreatedDate {
@@ -115,7 +133,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3Status.
+        ///   Looks up a localized string similar to Status.
         /// </summary>
         internal static string Status {
             get {
@@ -124,7 +142,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3Status - er påkrevd.
+        ///   Looks up a localized string similar to Status - er påkrevd.
         /// </summary>
         internal static string Status___required_field {
             get {

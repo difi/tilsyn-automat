@@ -166,10 +166,7 @@
     <value>1CustomAddressZip - er påkrevd</value>
   </data>
   <data name="CustomName" xml:space="preserve">
-    <value>1CustomName</value>
-  </data>
-  <data name="CustomName - required field" xml:space="preserve">
-    <value>1CustomName - er påkrevd</value>
+    <value>Endret navn på virksomheten</value>
   </data>
   <data name="ExternalId" xml:space="preserve">
     <value>Virksomhet ID (tilsynets datamodell)</value>
@@ -247,6 +244,6 @@
     <value>Virksomhet er påkrevd</value>
   </data>
   <data name="OwnerCorporateIdentityNumber" xml:space="preserve">
-    <value>Organisasjonsnummer på moderbolag</value>
+    <value>Organisasjonsnummer på hovedorgansasjonen</value>
   </data>
 </root>

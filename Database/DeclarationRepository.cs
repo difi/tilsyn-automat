@@ -141,7 +141,8 @@ namespace Difi.Sjalvdeklaration.Database
                     {
                         IndicatorItem = indicatorTestGroup.IndicatorItem,
                         TestGroupOrder = indicatorTestGroup.TestGroupItem.Order,
-                        IndicatorInTestGroupOrder = indicatorTestGroup.Order
+                        IndicatorInTestGroupOrder = indicatorTestGroup.Order,
+                        TestGroupItemId = indicatorTestGroup.TestGroupItemId
                     });
                 }
 

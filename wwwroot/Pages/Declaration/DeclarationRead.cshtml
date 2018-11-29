@@ -67,9 +67,6 @@
                                         var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                                         var orderText = mainIndex + "." + subIndex;
 
-                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool || answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                        {
-
                                             <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
 
                                                 <div class="form-field">
@@ -83,7 +80,7 @@
                                                                     </span>
                                                                     <span class="small-10 medium-11 columns">
                                                                         <span class="legend-text">
-                                                                            <h3>@answerItem.Question</h3>
+                                                                            @answerItem.Question
                                                                         </span>
                                                                     </span>
                                                                 </span>
@@ -121,9 +118,6 @@
                                                 </div>
                                             </div>
 
-                                        }
-
-
                                         firstQuestion = false;
                                     }
 
@@ -132,33 +126,28 @@
                         }
                     </div>
                 </div>
-
             </div>
         }
     </div>
 
     <div>
         <div>
-
         </div>
     </div>
+
     <div class="row">
         <div class="small-12 medium-4 columns">
             <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
             <br /><br />
-            <button class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</button>
+            <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
             <br /><br />
         </div>
-
     </div>
 
     <div class="row">
-
         <div class="small-10 medium-4 columns">
             <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
             <br /><br />
         </div>
-
     </div>
-
 </form>

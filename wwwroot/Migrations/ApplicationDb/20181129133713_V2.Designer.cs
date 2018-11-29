@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181129133713_V2")]
+    partial class V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,15 +336,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
                     b.Property<int>("IndicatorInTestGroupOrder");
 
-                    b.Property<Guid>("TestGroupItemId");
-
                     b.Property<int>("TestGroupOrder");
 
                     b.HasKey("DeclarationItemId", "IndicatorItemId");
 
                     b.HasIndex("IndicatorItemId");
-
-                    b.HasIndex("TestGroupItemId");
 
                     b.ToTable("DeclarationIndicatorGroupList");
                 });
@@ -751,7 +749,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
                     b.HasData(
                         new { Id = 1, Text = "Opprettet", TextAdmin = "Opprettet", TextCompany = "Ikke påbegynt" },
-                        new { Id = 2, Text = "Varslet", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt" },
+                        new { Id = 2, Text = "Varslad", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt" },
                         new { Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt" },
                         new { Id = 4, Text = "Fullført", TextAdmin = "Pågår", TextCompany = "Fullført" },
                         new { Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Sendt tilbake for korreksjon" },
@@ -989,11 +987,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem", "IndicatorItem")
                         .WithMany("DeclarationList")
                         .HasForeignKey("IndicatorItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
-                        .WithMany()
-                        .HasForeignKey("TestGroupItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

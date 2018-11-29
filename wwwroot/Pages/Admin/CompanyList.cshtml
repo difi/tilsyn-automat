@@ -15,22 +15,8 @@
 
         @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
         {
-
             <div class="jsExcelImportContainer">
-
-
                 <button class="button import jsExcelImportButton">@Localizer["Admin-import-company"]</button>
-
-                <div class="jsExcelImportTarget">
-                    <form method="post" enctype="multipart/form-data">
-                        @Html.EditorFor(x => x.ExcelFile, "File")
-
-                        <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
-                    </form>
-                </div>
-
-
-
 
                 <div class="jsExcelImportTarget">
                     <form method="post" enctype="multipart/form-data">

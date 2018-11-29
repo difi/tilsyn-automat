@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CaseNumber" xml:space="preserve">
-    <value>4CaseNumber</value>
-  </data>
-  <data name="CaseNumber - required field" xml:space="preserve">
-    <value>4CaseNumber - er påkrevd</value>
-  </data>
   <data name="DescriptionInText" xml:space="preserve">
     <value>4DescriptionInText</value>
   </data>

@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181129134621_V3")]
+    partial class V3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -334,15 +336,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
                     b.Property<int>("IndicatorInTestGroupOrder");
 
-                    b.Property<Guid>("TestGroupItemId");
-
                     b.Property<int>("TestGroupOrder");
 
                     b.HasKey("DeclarationItemId", "IndicatorItemId");
 
                     b.HasIndex("IndicatorItemId");
-
-                    b.HasIndex("TestGroupItemId");
 
                     b.ToTable("DeclarationIndicatorGroupList");
                 });
@@ -989,11 +987,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem", "IndicatorItem")
                         .WithMany("DeclarationList")
                         .HasForeignKey("IndicatorItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
-                        .WithMany()
-                        .HasForeignKey("TestGroupItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -33,10 +33,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         //[Required(ErrorMessage = "DescriptionInText - required field")]
         public String DescriptionInText { get; set; }
 
-        [Display(Name = "CaseNumber")]
-        //[Required(ErrorMessage = "CaseNumber - required field")]
-        public String CaseNumber { get; set; }
-
         [Display(Name = "FinishedStatus")]
         //[Required(ErrorMessage = "FinishedStatus - required field")]
         public ValueListFinishedStatus FinishedStatus { get; set; }
