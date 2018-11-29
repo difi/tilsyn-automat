@@ -42,4 +42,15 @@
             $target.slideToggle("300", function () { });
         }
     });
+
+    var excelToggle = new funkanu.ariatoggle({
+        container: ".jsExcelImportContainer",
+        triggerSelector: ".jsExcelImportButton",
+        target: function ($elem) {
+            return $elem.parents(".jsExcelImportContainer").find('.jsExcelImportTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
 });

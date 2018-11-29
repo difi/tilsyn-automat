@@ -1,0 +1,10 @@
+﻿@model Microsoft.AspNetCore.Http.IFormFile
+
+<div class="form-field">
+    <label for="@Html.IdForModel()">
+        @Html.DisplayNameFor(m => m)
+        @Html.ValidationMessageFor(m=>m)
+    </label>
+    
+    <input asp-for="@Model" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />    
+</div>

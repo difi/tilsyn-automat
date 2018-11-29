@@ -33,8 +33,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         private List<ValueListTypeOfTest> valueListTypeOfTest;
 
         [BindProperty]
+        [Required(ErrorMessage = "You need to select a Excelfile")]
         [Display(Name = "Excel file")]
         public IFormFile ExcelFile { get; set; }
+
+        public int ImportTryCount { get; set; }
+
+        public int ImportIOkCount { get; set; }
 
         public CompanyListModel(IApiHttpClient apiHttpClient)
         {
@@ -50,6 +55,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
+                ImportIOkCount = 0;
+                ImportTryCount = 0;
+
                 var package = new ExcelPackage(ExcelFile.OpenReadStream());
 
                 var dataTable = package.ToDataTable();
@@ -59,10 +67,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
-                    await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
+                    ImportTryCount++;
+                    var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
+
+                    if (result.Succeeded)
+                    {
+                        ImportIOkCount++;
+                    }
                 }
 
-                return RedirectToPage("/Admin/CompanyList");
+                await OnGetAsync();
+
+                return Page();
             }
             catch
             {
