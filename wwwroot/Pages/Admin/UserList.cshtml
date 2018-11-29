@@ -25,23 +25,28 @@
         @foreach (var item in Model.UserList)
         {
             <tr>
-                <td>
+                <td class="clickable-td">
                     <a asp-page="UserForm" asp-route-id="@item.Id">@item.SocialSecurityNumber</a>
                 </td>
-                <td>
+
+                <td class="clickable-td">
                     @item.Name
                 </td>
-                <td>
+
+                <td class="clickable-td">
                     @item.Email
                 </td>
-                <td>
+
+                <td class="clickable-td">
                     @item.PhoneCountryCode
                     @item.Phone
                 </td>
-                <td>
+
+                <td class="clickable-td">
                     @item.Title
                 </td>
-                <td>
+
+                <td class="clickable-td">
                     @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
                 </td>
             </tr>

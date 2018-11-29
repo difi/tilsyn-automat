@@ -3201,32 +3201,32 @@ div .tablesorter-default .header div, div .tablesorter-default .tablesorter-head
   background-repeat: no-repeat;
   cursor: pointer;
   white-space: normal;
-  padding: 18px 15px 18px 4px; }
+  padding: 6px 18px 6px 6px;
+  display: inline-block; }
 
 div .tablesorter-default .header.no-sorting, div .tablesorter-default .tablesorter-header.no-sorting {
   background-image: none; }
   div .tablesorter-default .header.no-sorting div, div .tablesorter-default .tablesorter-header.no-sorting div {
     background-image: none; }
 
-div .tablesorter-default thead .tablesorter-header-inner {
-  padding: 6px 18px 6px 6px; }
-
-div .tablesorter-default thead .headerSortUp div, div .tablesorter-default thead .tablesorter-headerAsc div, div .tablesorter-default thead .tablesorter-headerSortUp div {
-  background-color: white; }
-
+div .tablesorter-default thead .headerSortUp div,
+div .tablesorter-default thead .tablesorter-headerAsc div,
+div .tablesorter-default thead .tablesorter-headerSortUp div,
 div .tablesorter-default thead .headerSortDown div,
 div .tablesorter-default thead .tablesorter-headerDesc div,
 div .tablesorter-default thead .tablesorter-headerSortDown div {
-  background-color: white; }
+  background-color: #fff; }
 
 div .tablesorter-default thead .headerSortUp div,
 div .tablesorter-default thead .tablesorter-headerAsc div,
 div .tablesorter-default thead .tablesorter-headerSortUp div {
+  display: inline-block;
   background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
   background-position: center right;
   background-repeat: no-repeat; }
 
 div .tablesorter-default thead .headerSortDown div, div .tablesorter-default thead .tablesorter-headerDesc div, div .tablesorter-default thead .tablesorter-headerSortDown div {
+  display: inline-block;
   background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
   background-position: center right;
   background-repeat: no-repeat; }
@@ -3238,99 +3238,10 @@ div .tablesorter-default thead .sorter-false {
 
 div .tablesorter-default td {
   border-bottom: #a2aab1 1px solid;
-  padding: 1rem 6px;
-  vertical-align: top; }
+  padding: 1rem 6px; }
 
 div .tablesorter-default tbody > tr.even:hover > td, div .tablesorter-default tbody > tr.hover > td, div .tablesorter-default tbody > tr.odd:hover > td, div .tablesorter-default tbody > tr:hover > td {
-  background-color: transparent;
   color: #000; }
-
-div .tablesorter-default .tablesorter-processing {
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-image: url(data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=) !important; }
-
-div .tablesorter-default tr.odd > td {
-  background-color: transparent; }
-
-div .tablesorter-default tr.even > td {
-  background-color: transparent; }
-
-div .tablesorter-default tr.odd td.primary {
-  background-color: transparent; }
-
-div .tablesorter-default td.primary, div .tablesorter-default tr.even td.primary {
-  background-color: transparent; }
-
-div .tablesorter-default tr.odd td.secondary {
-  background-color: transparent; }
-
-div .tablesorter-default td.secondary, div .tablesorter-default tr.even td.secondary {
-  background-color: #e6e6e6; }
-
-div .tablesorter-default tr.odd td.tertiary {
-  background-color: transparent; }
-
-div .tablesorter-default td.tertiary, div .tablesorter-default tr.even td.tertiary {
-  background-color: transparent; }
-
-div .tablesorter-default > caption {
-  background-color: transparent; }
-
-div .tablesorter-default .tablesorter-filter-row {
-  background-color: #eee; }
-
-div .tablesorter-default .tablesorter-filter-row td {
-  background-color: #eee;
-  border-bottom: #ccc 1px solid;
-  line-height: normal;
-  text-align: center;
-  -webkit-transition: line-height .1s ease;
-  -moz-transition: line-height .1s ease;
-  -o-transition: line-height .1s ease;
-  transition: line-height .1s ease; }
-
-div .tablesorter-default .tablesorter-filter-row .disabled {
-  opacity: .5;
-  cursor: not-allowed; }
-
-div .tablesorter-default .tablesorter-filter-row.hideme td {
-  padding: 2px;
-  margin: 0;
-  line-height: 0;
-  cursor: pointer; }
-
-div .tablesorter-default .tablesorter-filter-row.hideme * {
-  height: 1px;
-  min-height: 0;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  opacity: 0; }
-
-div .tablesorter-default input.tablesorter-filter, div .tablesorter-default select.tablesorter-filter {
-  width: 95%;
-  height: auto;
-  margin: 4px auto;
-  padding: 4px;
-  background-color: #fff;
-  border: 1px solid #bbb;
-  color: #333;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: height .1s ease;
-  -moz-transition: height .1s ease;
-  -o-transition: height .1s ease;
-  transition: height .1s ease; }
-
-div .tablesorter .filtered {
-  display: none; }
-
-div .tablesorter .tablesorter-errorRow td {
-  text-align: center;
-  cursor: pointer;
-  background-color: #e6bf99; }
 
 div tbody tr:nth-child(2n) {
   border-bottom: 0;

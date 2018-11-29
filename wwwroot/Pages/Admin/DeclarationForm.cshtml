@@ -24,8 +24,10 @@
 
     @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
 
-    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
-    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
+    <div style="display: none;">
+        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
+        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
+    </div>
 
     @if (Model.DeclarationItemForm.Id != Guid.Empty)
     {
