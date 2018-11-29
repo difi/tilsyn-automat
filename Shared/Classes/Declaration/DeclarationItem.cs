@@ -29,6 +29,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [Required(ErrorMessage = "Name - required field")]
         public String Name { get; set; }
 
+        [Display(Name = "CaseNumber")]
+        //[Required(ErrorMessage = "CaseNumber - required field")]
+        public String CaseNumber { get; set; }
+
         [Display(Name = "CreatedDate")]
         public DateTime CreatedDate { get; set; }
 
