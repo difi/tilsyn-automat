@@ -43,5 +43,13 @@ namespace Difi.Sjalvdeklaration.Api
         {
             return valueListRepository.GetAllTypeOfStatus<List<ValueListTypeOfStatus>>();
         }
+
+        [HttpGet]
+        [Route("GetAllPurposeOfTest")]
+        public ApiResult<List<ValueListPurposeOfTest>> GetAllPurposeOfTest()
+        {
+            return valueListRepository.GetAllPurposeOfTest<List<ValueListPurposeOfTest>>();
+        }
+
     }
 }

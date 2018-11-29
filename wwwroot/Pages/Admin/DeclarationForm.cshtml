@@ -25,6 +25,8 @@
         @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
     }
 
+    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new { list = Model.SelectPurposeOfTest })
+
     @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
 
     <div style="display: none;">

@@ -133,6 +133,15 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Formål med test.
+        /// </summary>
+        internal static string Purpose_Of_Test {
+            get {
+                return ResourceManager.GetString("Purpose Of Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4SupplierAndVersion.
         /// </summary>
         internal static string SupplierAndVersion {

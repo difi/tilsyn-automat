@@ -31,6 +31,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         private List<ValueListTypeOfMachine> valueListTypeOfMachine;
         private List<ValueListTypeOfTest> valueListTypeOfTest;
+        private List<ValueListPurposeOfTest> valueListPurposeOfTest;
 
         [BindProperty]
         [Required(ErrorMessage = "You need to select a Excelfile")]
@@ -64,6 +65,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 valueListTypeOfMachine = (await apiHttpClient.Get<List<ValueListTypeOfMachine>>("/api/ValueList/GetAllTypeOfMachine")).Data;
                 valueListTypeOfTest = (await apiHttpClient.Get<List<ValueListTypeOfTest>>("/api/ValueList/GetAllTypeOfTest")).Data;
+                valueListPurposeOfTest = (await apiHttpClient.Get<List<ValueListPurposeOfTest>>("/api/ValueList/GetAllPurposeOfTest")).Data;
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
@@ -149,12 +151,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = dataRow["Automat - Navn"].ToString(),
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddDays(14),
-                    StatusId = (int)DeclarationStatus.Created,
+                    StatusId = (int) DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
                         Id = declarationItemId,
                         TypeOfMachine = valueListTypeOfMachine.Single(x => x.Id == 1),
-                        TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1)
+                        TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1),
+                        PurposeOfTestId = valueListPurposeOfTest.Single(x => x.Id == 2).Id
                     }
                 };
             }

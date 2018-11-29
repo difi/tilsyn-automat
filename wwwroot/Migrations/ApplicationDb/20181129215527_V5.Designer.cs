@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181129215527_V5")]
+    partial class V5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,8 +250,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
                     b.Property<Guid?>("Image2Id");
 
-                    b.Property<int>("PurposeOfTestId");
-
                     b.Property<int?>("SupplierAndVersionId");
 
                     b.Property<string>("SupplierAndVersionOther");
@@ -268,8 +268,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.HasIndex("Image1Id");
 
                     b.HasIndex("Image2Id");
-
-                    b.HasIndex("PurposeOfTestId");
 
                     b.HasIndex("SupplierAndVersionId");
 
@@ -975,11 +973,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ImageItem", "Image2")
                         .WithMany()
                         .HasForeignKey("Image2Id");
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListPurposeOfTest", "PurposeOfTest")
-                        .WithMany()
-                        .HasForeignKey("PurposeOfTestId")
-                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfSupplierAndVersion", "SupplierAndVersion")
                         .WithMany()

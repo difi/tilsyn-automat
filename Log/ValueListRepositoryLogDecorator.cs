@@ -33,5 +33,10 @@ namespace Difi.Sjalvdeklaration.Log
         {
             return inner.GetAllTypeOfStatus<T>();
         }
+
+        public ApiResult<T> GetAllPurposeOfTest<T>() where T : List<ValueListPurposeOfTest>
+        {
+            return inner.GetAllPurposeOfTest<T>();
+        }
     }
 }

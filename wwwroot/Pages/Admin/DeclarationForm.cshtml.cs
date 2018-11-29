@@ -33,6 +33,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Välj status")]
         public List<SelectListItem> SelectStatusList { get; set; }
 
+        [BindProperty]
+        [Display(Name = "Välj status")]
+        public List<SelectListItem> SelectPurposeOfTest { get; set; }
+
+
         public DeclarationFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -61,6 +66,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Selected = false
                 }).ToList();
 
+                var purposeOfTest = (await apiHttpClient.Get<List<ValueListPurposeOfTest>>("/api/ValueList/GetAllPurposeOfTest")).Data;
+
+                SelectPurposeOfTest = purposeOfTest.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = $"{x.Text}",
+                    Selected = false
+                }).ToList();
+
                 if (id != Guid.Empty)
                 {
                     DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
@@ -82,6 +96,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                         {
                             TypeOfMachine = valueListTypeOfMachine.Single(x=>x.Id ==1),
                             TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1),
+                            PurposeOfTestId = 2
                         }
                     };
                 }

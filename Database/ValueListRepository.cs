@@ -92,5 +92,24 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
+
+        public ApiResult<T> GetAllPurposeOfTest<T>() where T : List<ValueListPurposeOfTest>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.VlPurposeOfTest.AsNoTracking().OrderBy(x => x.Id).ToList();
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
     }
 }

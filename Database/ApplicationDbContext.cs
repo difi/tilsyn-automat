@@ -46,6 +46,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<ValueListTypeOfStatus> VlTypeOfStatus { get; set; }
 
+        public DbSet<ValueListPurposeOfTest> VlPurposeOfTest { get; set; }
+
         public DbSet<RequirementUserPrerequisite> RequirementUserPrerequisiteList { get; set; }
 
         public DbSet<RuleItem> RuleList { get; set; }
@@ -295,6 +297,13 @@ namespace Difi.Sjalvdeklaration.Database
                 new ValueListTypeOfStatus {Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Sendt tilbake for korreksjon"},
                 new ValueListTypeOfStatus {Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført"},
                 new ValueListTypeOfStatus {Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst"}
+            }.ToArray());
+
+            modelBuilder.Entity<ValueListPurposeOfTest>().HasData(new List<ValueListPurposeOfTest>
+            {
+                new ValueListPurposeOfTest {Id = 1, Text = "Pilotmåling"},
+                new ValueListPurposeOfTest {Id = 2, Text = "Tilsyn"},
+                new ValueListPurposeOfTest {Id = 3, Text = "Statysmåling"},
             }.ToArray());
 
             var standardItem1 = new StandardItem

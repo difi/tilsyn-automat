@@ -133,6 +133,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = declarationItem.Id,
                     TypeOfMachine = dbContext.VlTypeOfMachineList.Single(x => x.Id == 1),
                     TypeOfTest = dbContext.VlTypeOfTestList.Single(x => x.Id == 1),
+                    PurposeOfTestId = declarationItem.DeclarationTestItem.PurposeOfTestId
                 };
 
                 foreach (var indicatorTestGroup in dbContext.IndicatorTestGroupList.Include(x => x.IndicatorItem).Include(x => x.TestGroupItem))
@@ -167,12 +168,14 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = dbContext.DeclarationList.Single(x => x.Id == declarationItem.Id);
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItem.Id);
 
                 dbItem.Name = declarationItem.Name;
+                dbItem.CaseNumber = declarationItem.CaseNumber;
                 dbItem.DeadlineDate = declarationItem.DeadlineDate;
                 dbItem.StatusId = declarationItem.StatusId;
                 dbItem.UserItemId = userRepository.Get<UserItem>(declarationItem.UserItemId).Data.Id;
+                dbItem.DeclarationTestItem.PurposeOfTestId = declarationItem.DeclarationTestItem.PurposeOfTestId;
 
                 //if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
                 //{

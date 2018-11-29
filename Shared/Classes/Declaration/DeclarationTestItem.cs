@@ -3,6 +3,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 {
@@ -13,6 +14,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public Guid DeclarationItemId { get; set; }
 
+        [Display(Name = "Purpose Of Test")]
+        [Required(ErrorMessage = "Purpose Of Test - required field")]
+        public Int32 PurposeOfTestId { get; set; }
+
         [Display(Name = "TypeOfMachine")]
         //[Required(ErrorMessage = "TypeOfMachine - required field")]
         public ValueListTypeOfMachine TypeOfMachine { get; set; }
@@ -20,6 +25,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [Display(Name = "TypeOfTest")]
         //[Required(ErrorMessage = "TypeOfTest - required field")]
         public ValueListTypeOfTest TypeOfTest { get; set; }
+
+        public ValueListPurposeOfTest PurposeOfTest { get; set; }
 
         [Display(Name = "SupplierAndVersion")]
         //[Required(ErrorMessage = "SupplierAndVersion - required field")]
