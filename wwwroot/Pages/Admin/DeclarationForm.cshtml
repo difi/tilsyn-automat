@@ -44,6 +44,12 @@
     }
 </form>
 
+@if (Model.DeclarationItemForm.Status.Id > 2)
+{
+    <img src="/images/Oppsummering.png" alt="Oppsummering"/>
+}
+
+
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }
