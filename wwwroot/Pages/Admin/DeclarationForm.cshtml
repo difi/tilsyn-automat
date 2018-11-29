@@ -44,7 +44,7 @@
     }
 </form>
 
-@if (Model.DeclarationItemForm.Status.Id > 2)
+@if (Model.DeclarationItemForm?.Status?.Id > 2)
 {
     <img src="/images/Oppsummering.png" alt="Oppsummering"/>
 }
