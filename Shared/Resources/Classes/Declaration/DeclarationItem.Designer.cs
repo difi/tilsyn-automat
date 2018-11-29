@@ -133,7 +133,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saksbehandlare.
+        ///   Looks up a localized string similar to Saksbehandler.
         /// </summary>
         internal static string UserItemId {
             get {

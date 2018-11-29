@@ -142,14 +142,14 @@ namespace Difi.Sjalvdeklaration.Database
             var role1 = new RoleItem
             {
                 Id = Guid.Parse("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"),
-                Name = "Admin",
+                Name = "Administrator",
                 IsAdminRole = true
             };
 
             var role2 = new RoleItem
             {
                 Id = Guid.Parse("9e184394-81bb-45cf-a157-dba79a3286d7"),
-                Name = "Saksbehandlare",
+                Name = "Saksbehandler",
                 IsAdminRole = true
             };
 

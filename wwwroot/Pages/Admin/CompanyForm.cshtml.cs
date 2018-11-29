@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin,Saksbehandlare")]
+    [Authorize(Roles = "Administrator,Saksbehandler")]
     public class CompanyFormModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;

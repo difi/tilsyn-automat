@@ -69,7 +69,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                if (userItem.RoleList.Any(x => x.RoleItem.Name == "Admin") || userItem.RoleList.Any(x => x.RoleItem.Name == "Saksbehandlare"))
+                if (userItem.RoleList.Any(x => x.RoleItem.Name == "Administrator") || userItem.RoleList.Any(x => x.RoleItem.Name == "Saksbehandler"))
                 {
                     Response.Redirect("/Admin/DeclarationList");
                 }

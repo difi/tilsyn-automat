@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     public class UserFormModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;

@@ -20,7 +20,7 @@ using OfficeOpenXml;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin,Saksbehandlare")]
+    [Authorize(Roles = "Administrator,Saksbehandler")]
     public class CompanyListModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;

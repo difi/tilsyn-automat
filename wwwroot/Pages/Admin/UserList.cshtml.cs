@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     public class UserListModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;

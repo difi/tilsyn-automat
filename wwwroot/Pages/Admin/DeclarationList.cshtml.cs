@@ -1,6 +1,4 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OfficeOpenXml;
@@ -16,7 +14,7 @@ using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin,Saksbehandlare")]
+    [Authorize(Roles = "Administrator,Saksbehandler")]
     public class DeclarationListModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;

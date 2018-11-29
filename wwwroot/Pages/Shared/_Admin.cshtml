@@ -61,7 +61,7 @@
                         <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
                     </li>
 
-                    @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
                     {
                         <li class="@(activePage == "User" ? "active" : "")">
                             <a asp-page="UserList">@Localizer["Admin-users"]</a>

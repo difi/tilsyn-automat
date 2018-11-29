@@ -16,7 +16,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin,Saksbehandlare")]
+    [Authorize(Roles = "Administrator,Saksbehandler")]
     public class DeclarationFormModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;
