@@ -11,6 +11,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -55,7 +56,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 var data = GenerateExcel(new List<DeclarationItem> { result });
 
-                return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"export_{DateTime.Now.ToShortDateString()}_{DateTime.Now.ToShortTimeString()}.xlsx");
+                return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{result.Name} ({DateTime.Now.GetAsFileName()}).xlsx");
             }
             catch
             {
@@ -69,7 +70,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 var data = GenerateExcel((await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll")).Data);
 
-                return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"export_{DateTime.Now.ToShortDateString()}_{DateTime.Now.ToShortTimeString()}.xlsx");
+                return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Alla ({DateTime.Now.GetAsFileName()}).xlsx");
             }
             catch
             {

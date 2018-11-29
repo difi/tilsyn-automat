@@ -7,15 +7,24 @@
 
 <h1>@Localizer["Admin-company-h1"]</h1>
 
-<form method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="ExcelFile" class="control-label"></label>
-        <input asp-for="ExcelFile" type="file" class="form-control" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
-        <span asp-validation-for="ExcelFile" class="text-danger"></span>
-    </div>
+<a class="button add icon" asp-page="CompanyForm">@Localizer["Admin-new-company"]</a>
 
-    <button type="submit update" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
-</form>
+<div class="jsExcelImportContainer">
+    <button class="button jsExcelImportButton">@Localizer["Admin-import-company"]</button>
+
+    <div class="jsExcelImportTarget">
+        <form method="post" enctype="multipart/form-data">
+            @Html.EditorFor(x => x.ExcelFile, "File")
+
+            <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
+        </form>
+    </div>
+</div>
+
+@if (Model.ImportTryCount > 0)
+{
+    @Model.ImportIOkCount <span>virksomheter importert av</span> @Model.ImportTryCount
+}
 
 <form method="post">
     <table class="table">
@@ -61,11 +70,10 @@
                     <td>
                         @if (item.DeclarationList.Count > 0)
                         {
-                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="">@Localizer["Admin-new-declaration"]</a>
                         }
                         else
                         {
-                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
+                            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
                         }
                     </td>
                 </tr>
@@ -74,3 +82,6 @@
     </table>
 </form>
 
+@section Scripts {
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}

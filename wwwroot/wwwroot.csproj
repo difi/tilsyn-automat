@@ -137,6 +137,9 @@
     <Content Update="Pages\Shared\EditorTemplates\CustomTextBoxInt.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\File.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\_Public.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

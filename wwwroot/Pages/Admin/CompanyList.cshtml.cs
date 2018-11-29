@@ -33,8 +33,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         private List<ValueListTypeOfTest> valueListTypeOfTest;
 
         [BindProperty]
+        [Required(ErrorMessage = "You need to select a Excelfile")]
         [Display(Name = "Excel file")]
         public IFormFile ExcelFile { get; set; }
+
+        public int ImportTryCount { get; set; }
+
+        public int ImportIOkCount { get; set; }
 
         public CompanyListModel(IApiHttpClient apiHttpClient)
         {
@@ -50,6 +55,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
+                ImportIOkCount = 0;
+                ImportTryCount = 0;
+
                 var package = new ExcelPackage(ExcelFile.OpenReadStream());
 
                 var dataTable = package.ToDataTable();
@@ -59,10 +67,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
-                    await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
+                    ImportTryCount++;
+                    var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
+
+                    if (result.Succeeded)
+                    {
+                        ImportIOkCount++;
+                    }
                 }
 
-                return RedirectToPage("/Admin/CompanyList");
+                await OnGetAsync();
+
+                return Page();
             }
             catch
             {
@@ -75,7 +91,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             var companyId = Guid.NewGuid();
             var declarationItemId = Guid.NewGuid();
 
-            return new ExcelItemRow
+            var excelRow = new ExcelItemRow
             {
                 CompanyItem = new CompanyItem
                 {
@@ -113,8 +129,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     PhoneCountryCode = dataRow["Kontaktperson - Telefonnummer Landskode"].ToString(),
                     Phone = dataRow["Kontaktperson - Telefonnummer"].ToString(),
                     CompanyItemId = companyId,
-                },
-                DeclarationItem = new DeclarationItem
+                }
+            };
+
+            if (string.IsNullOrEmpty(excelRow.CompanyItem.Code))
+            {
+                var random = new Random(DateTime.Now.Millisecond);
+
+                excelRow.CompanyItem.Code = random.Next(1000, 9999).ToString();
+            }
+
+            if (!string.IsNullOrEmpty(dataRow["Automat - Navn"].ToString()))
+            {
+                excelRow.DeclarationItem = new DeclarationItem
                 {
                     Id = declarationItemId,
                     CompanyItemId = companyId,
@@ -122,15 +149,17 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = dataRow["Automat - Navn"].ToString(),
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddMonths(6),
-                    StatusId = (int) DeclarationStatus.Created,
+                    StatusId = (int)DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
                         Id = declarationItemId,
                         TypeOfMachine = valueListTypeOfMachine.Single(x => x.Id == 1),
                         TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1)
                     }
-                }
-            };
+                };
+            }
+
+            return excelRow;
         }
     }
 
