@@ -31,7 +31,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         [Display(Name = "Country Code")]
         [Required(ErrorMessage = "Country Code - required field")]
         [AutoComplete("tel-country-code")]
-        public String CountryCode { get; set; }
+        public String PhoneCountryCode { get; set; }
 
         [Display(Name = "Phone")]
         [Required(ErrorMessage = "Phone - required field")]
