@@ -10,7 +10,7 @@
 // CSS FOR ALL DEVICES
 
 .global-navigation {
-    margin-top:1rem;
+    margin-top: 1rem;
 
     ul, li {
         margin: 0;
@@ -20,33 +20,31 @@
 
     li {
         display: inline-block;
-        margin: 3px 1rem;
+        margin: 3px 1rem 0 1rem;
 
-        a, span {
+        a {
             font-family: $sofiapro;
             padding: 4px;
             display: block;
-            color: $light-navy;
+            color: $dark-grey;
             position: relative;
-            border-bottom: 2px solid $light-navy;
+            border-bottom: 2px solid $color-white;
             font-size: 17px;
-            font-weight: bold;
-        }
 
-        a:hover, &.active a {
-            border-bottom-color: $color-white;
-            color: $dark-grey;
-        }
-
-        span {
-            color: $dark-grey;
-            font-weight: normal;
+            &:hover {
+                border-bottom-color: $light-navy;
+            }
         }
 
         &.active {
-            a, span {
-                color: $dark-grey;
-                font-weight: normal;
+            a {
+                border-bottom-color: $dark-grey;
+                //color: $light-navy;
+                font-weight: bold;
+
+                &:hover {
+                    border-bottom-color: $light-navy;
+                }
             }
         }
     }

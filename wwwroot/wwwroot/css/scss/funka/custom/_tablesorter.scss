@@ -3,13 +3,11 @@ div {
 
 
     .tablesorter-default {
-        width: 100%;
         font-size: 14px;
         font-family: "Open Sans", Helvetica, Arial, sans-serif;
         color: #354052;
         background-color: transparent;
         border-spacing: 0;
-        margin: 10px 0 15px;
         text-align: left;
 
         .clickable-td {
@@ -27,8 +25,6 @@ div {
             }
         }
 
-
-
         tbody tr {
             &:hover {
                 background-color: #F3F7F8;
@@ -38,7 +34,7 @@ div {
 
     .tablesorter-default th, .tablesorter-default thead td {
         font-weight: 700;
-        color: #000;
+        color: $dark-blue-grey;
         background-color: transparent;
         border-collapse: collapse;
         border-bottom: $cool-grey 1px solid;
@@ -51,23 +47,13 @@ div {
 
     .tablesorter-default .header, .tablesorter-default .tablesorter-header {
         div {
-            background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
-            background-position: center right;
+            background-image: url("/css/cssimg/icons-sprite.svg");
+            background-position: 100% -792px;
             background-repeat: no-repeat;
             cursor: pointer;
             white-space: normal;
-            padding: 6px 18px 6px 6px;
+            padding: 6px 22px 6px 6px;
             display: inline-block;
-        }
-
-
-
-        &.no-sorting {
-            background-image: none;
-
-            div {
-                background-image: none;
-            }
         }
     }
 
@@ -91,39 +77,27 @@ div {
     .tablesorter-default thead .tablesorter-headerAsc,
     .tablesorter-default thead .tablesorter-headerSortUp {
         div {
-            display: inline-block;
-            background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-            background-position: center right;
-            background-repeat: no-repeat;
+            background-position: 100% -890px;
         }
     }
 
     .tablesorter-default thead .headerSortDown, .tablesorter-default thead .tablesorter-headerDesc, .tablesorter-default thead .tablesorter-headerSortDown {
         div {
-            display: inline-block;
-            background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-            background-position: center right;
-            background-repeat: no-repeat;
+            background-position: 100% -990px;
         }
     }
 
     .tablesorter-default thead .sorter-false {
-        background-image: none;
-        cursor: default;
-        padding: 4px;
-    }
-
-    .tablesorter-default tfoot .tablesorter-headerAsc, .tablesorter-default tfoot .tablesorter-headerDesc, .tablesorter-default tfoot .tablesorter-headerSortDown, .tablesorter-default tfoot .tablesorter-headerSortUp {
-        //border-top: $cool-grey 1px solid;
+        div {
+            background-image: none;
+            cursor: default;
+            padding: 4px;
+        }
     }
 
     .tablesorter-default td {
         border-bottom: $cool-grey 1px solid;
         padding: 1rem 6px;
-    }
-
-    .tablesorter-default tbody > tr.even:hover > td, .tablesorter-default tbody > tr.hover > td, .tablesorter-default tbody > tr.odd:hover > td, .tablesorter-default tbody > tr:hover > td {
-        color: #000;
     }
 
     tbody tr:nth-child(2n) {

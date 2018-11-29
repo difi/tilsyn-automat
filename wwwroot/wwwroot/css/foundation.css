@@ -2384,7 +2384,7 @@ a.button:hover, a.button:focus {
 table {
   border-collapse: collapse;
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   border-radius: 4px; }
   thead, tbody, tfoot {
     border: 1px solid transparent;
@@ -2800,25 +2800,22 @@ footer {
     list-style: none; }
   .global-navigation li {
     display: inline-block;
-    margin: 3px 1rem; }
-    .global-navigation li a, .global-navigation li span {
+    margin: 3px 1rem 0 1rem; }
+    .global-navigation li a {
       font-family: "sofia-pro", Helvetica, Arial, sans-serif;
       padding: 4px;
       display: block;
-      color: #17667c;
+      color: #303132;
       position: relative;
-      border-bottom: 2px solid #17667c;
-      font-size: 17px;
+      border-bottom: 2px solid #fff;
+      font-size: 17px; }
+      .global-navigation li a:hover {
+        border-bottom-color: #17667c; }
+    .global-navigation li.active a {
+      border-bottom-color: #303132;
       font-weight: bold; }
-    .global-navigation li a:hover, .global-navigation li.active a {
-      border-bottom-color: #fff;
-      color: #303132; }
-    .global-navigation li span {
-      color: #303132;
-      font-weight: normal; }
-    .global-navigation li.active a, .global-navigation li.active span {
-      color: #303132;
-      font-weight: normal; }
+      .global-navigation li.active a:hover {
+        border-bottom-color: #17667c; }
 
 .local-navigation {
   margin-top: 10px; }
@@ -3164,13 +3161,11 @@ button, .button, input[type="button"], input[type="submit"] {
       padding-right: 3rem; } }
 
 div .tablesorter-default {
-  width: 100%;
   font-size: 14px;
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   color: #354052;
   background-color: transparent;
   border-spacing: 0;
-  margin: 10px 0 15px;
   text-align: left; }
   div .tablesorter-default .clickable-td {
     vertical-align: middle; }
@@ -3186,7 +3181,7 @@ div .tablesorter-default {
 
 div .tablesorter-default th, div .tablesorter-default thead td {
   font-weight: 700;
-  color: #000;
+  color: #1f3f43;
   background-color: transparent;
   border-collapse: collapse;
   border-bottom: #a2aab1 1px solid;
@@ -3196,18 +3191,13 @@ div .tablesorter-default tfoot td, div .tablesorter-default tfoot th {
   border: 0; }
 
 div .tablesorter-default .header div, div .tablesorter-default .tablesorter-header div {
-  background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
-  background-position: center right;
+  background-image: url("/css/cssimg/icons-sprite.svg");
+  background-position: 100% -792px;
   background-repeat: no-repeat;
   cursor: pointer;
   white-space: normal;
-  padding: 6px 18px 6px 6px;
+  padding: 6px 22px 6px 6px;
   display: inline-block; }
-
-div .tablesorter-default .header.no-sorting, div .tablesorter-default .tablesorter-header.no-sorting {
-  background-image: none; }
-  div .tablesorter-default .header.no-sorting div, div .tablesorter-default .tablesorter-header.no-sorting div {
-    background-image: none; }
 
 div .tablesorter-default thead .headerSortUp div,
 div .tablesorter-default thead .tablesorter-headerAsc div,
@@ -3220,18 +3210,12 @@ div .tablesorter-default thead .tablesorter-headerSortDown div {
 div .tablesorter-default thead .headerSortUp div,
 div .tablesorter-default thead .tablesorter-headerAsc div,
 div .tablesorter-default thead .tablesorter-headerSortUp div {
-  display: inline-block;
-  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-  background-position: center right;
-  background-repeat: no-repeat; }
+  background-position: 100% -890px; }
 
 div .tablesorter-default thead .headerSortDown div, div .tablesorter-default thead .tablesorter-headerDesc div, div .tablesorter-default thead .tablesorter-headerSortDown div {
-  display: inline-block;
-  background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-  background-position: center right;
-  background-repeat: no-repeat; }
+  background-position: 100% -990px; }
 
-div .tablesorter-default thead .sorter-false {
+div .tablesorter-default thead .sorter-false div {
   background-image: none;
   cursor: default;
   padding: 4px; }
@@ -3239,9 +3223,6 @@ div .tablesorter-default thead .sorter-false {
 div .tablesorter-default td {
   border-bottom: #a2aab1 1px solid;
   padding: 1rem 6px; }
-
-div .tablesorter-default tbody > tr.even:hover > td, div .tablesorter-default tbody > tr.hover > td, div .tablesorter-default tbody > tr.odd:hover > td, div .tablesorter-default tbody > tr:hover > td {
-  color: #000; }
 
 div tbody tr:nth-child(2n) {
   border-bottom: 0;
