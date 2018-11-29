@@ -5966,6 +5966,8 @@
 
                     options.log("DatabaseId: " + dbId + " - UploadId: " + uploadId);
 
+                    $("#old_" + uploadId).hide();
+
                     $("#answer_image_" + uploadId).val(dbId);
 
                     promise.success(qq.extend(parsedResponse, successIndicator));

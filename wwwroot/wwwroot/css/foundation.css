@@ -3319,6 +3319,11 @@ div tbody tr:nth-child(2n) {
   padding: 6px;
   border-radius: 3px; }
 
+.card .uploaded img {
+  border: 1px dashed #618285;
+  padding: 6px;
+  border-radius: 3px; }
+
 .card .card-help-text {
   padding: 1.1rem;
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.09); }

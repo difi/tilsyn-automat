@@ -36,4 +36,12 @@
             });
         }
     });
+
+    $(".jsButtonRemoveImage").click(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+
+        $("#answer_image_" + id).val("");
+        $("#old_" + id).hide();
+    });
 });

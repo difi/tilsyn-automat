@@ -107,8 +107,6 @@
 
                                             @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                             {
-
-
                                                 if (answerData != null)
                                                 {
                                                     @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool })
@@ -128,10 +126,29 @@
                                             {
                                                 var hiddenId = "answer_image_" + answerItem.Id;
                                                 var hiddenName = "answer_image_" + formId;
+                                                var oldId = "old_" + answerItem.Id;
+                                                var answerDataId = "";
 
                                                 <div class="card-divider text-center medium-text-left">
+                                                    @if (answerData.Image != null)
+                                                    {
+                                                        answerDataId = answerData.Image.Id.ToString();
+                                                        var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+
+                                                        <div class="uploaded jsUploaded" id="@oldId">
+                                                            <div>
+                                                                <ul class="listing qq-upload-list-selector qq-upload-list">
+                                                                    <li>
+                                                                        <img src="@image" alt="" width="114" />
+                                                                        <button class="link-button jsButtonRemoveImage" data-id="@answerItem.Id">Fjern bilde</button>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    }
+
                                                     <div class="uploader" id="@answerItem.Id"></div>
-                                                    <input type="hidden" name="@hiddenName" id="@hiddenId" />
+                                                    <input type="hidden" name="@hiddenName" id="@hiddenId" value="@answerDataId" />
                                                 </div>
                                             }
                                         </div>
