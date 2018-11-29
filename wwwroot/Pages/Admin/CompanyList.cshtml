@@ -70,11 +70,10 @@
                     <td>
                         @if (item.DeclarationList.Count > 0)
                         {
-                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="">@Localizer["Admin-new-declaration"]</a>
                         }
                         else
                         {
-                        <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
+                            <a class="button add icon" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
                         }
                     </td>
                 </tr>
