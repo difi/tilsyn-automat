@@ -1,6 +1,4 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OfficeOpenXml;
@@ -16,7 +14,7 @@ using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin,Saksbehandlare")]
+    [Authorize(Roles = "Administrator,Saksbehandler")]
     public class DeclarationListModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;
@@ -120,7 +118,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             dataTable.Columns.Add(new DataColumn("Virksomhet - Pinkode"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - ID (tilsynets datamodell)"));
-            dataTable.Columns.Add(new DataColumn("Virksomhet - Organisationsnummer"));
+            dataTable.Columns.Add(new DataColumn("Virksomhet - Organisasjonsnummer"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Navn"));
             dataTable.Columns.Add(new DataColumn("Virksomhet - Endret navn"));
 
@@ -169,7 +167,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 dataRow["Virksomhet - Pinkode"] = declarationItem.Company.Code;
                 dataRow["Virksomhet - ID (tilsynets datamodell)"] = declarationItem.Company.CorporateIdentityNumber;
-                dataRow["Virksomhet - Organisationsnummer"] = declarationItem.Company.CorporateIdentityNumber;
+                dataRow["Virksomhet - Organisasjonsnummer"] = declarationItem.Company.CorporateIdentityNumber;
                 dataRow["Virksomhet - Navn"] = declarationItem.Company.Name;
                 dataRow["Virksomhet - Endret navn"] = declarationItem.Company.CustomName;
 

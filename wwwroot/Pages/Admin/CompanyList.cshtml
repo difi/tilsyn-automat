@@ -9,17 +9,21 @@
 
 <a class="button add icon" asp-page="CompanyForm">@Localizer["Admin-new-company"]</a>
 
-<div class="jsExcelImportContainer">
-    <button class="button jsExcelImportButton">@Localizer["Admin-import-company"]</button>
+@if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
+{
 
-    <div class="jsExcelImportTarget">
-        <form method="post" enctype="multipart/form-data">
-            @Html.EditorFor(x => x.ExcelFile, "File")
+    <div class="jsExcelImportContainer">
+        <button class="button jsExcelImportButton">@Localizer["Admin-import-company"]</button>
 
-            <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
-        </form>
+        <div class="jsExcelImportTarget">
+            <form method="post" enctype="multipart/form-data">
+                @Html.EditorFor(x => x.ExcelFile, "File")
+
+                <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
+            </form>
+        </div>
     </div>
-</div>
+}
 
 @if (Model.ImportTryCount > 0)
 {
@@ -34,7 +38,7 @@
         <thead>
             <tr>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.OwenerCorporateIdentityNumber)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.CorporateIdentityNumber)</th>
 
                 <th scope="col">@Localizer["Admin-contact-name"]</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Email)</th>
@@ -52,7 +56,7 @@
                         @item.Name
                     </td>
                     <td class="clickable-td">
-                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.OwenerCorporateIdentityNumber</a>
+                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.CorporateIdentityNumber</a>
                     </td>
 
                     <td class="clickable-td">

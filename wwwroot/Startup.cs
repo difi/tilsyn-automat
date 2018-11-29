@@ -88,7 +88,7 @@ namespace Difi.Sjalvdeklaration.wwwroot
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+                options.AddPolicy("Administrator", policy => policy.RequireRole("Administrator"));
             });
         }
 

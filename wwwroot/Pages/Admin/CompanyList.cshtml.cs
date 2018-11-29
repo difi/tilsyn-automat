@@ -20,7 +20,7 @@ using OfficeOpenXml;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
-    [Authorize(Roles = "Admin,Saksbehandlare")]
+    [Authorize(Roles = "Administrator,Saksbehandler")]
     public class CompanyListModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;
@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     Id = companyId,
                     Name = dataRow["Virksomhet - Navn"].ToString(),
-                    CorporateIdentityNumber = dataRow["Virksomhet - Organisationsnummer"].ToString(),
+                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"].ToString(),
                     Code = dataRow["Virksomhet - Pinkode"].ToString(),
 
                     MailingAddressStreet = dataRow["Postadresse - Adresse gate"].ToString(),

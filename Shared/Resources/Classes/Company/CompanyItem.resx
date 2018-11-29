@@ -142,10 +142,10 @@
     <value>Pinkode er påkrevd</value>
   </data>
   <data name="CorporateIdentityNumber" xml:space="preserve">
-    <value>Virksomhet ID (tilsynets datamodell)</value>
+    <value>Organisasjonsnummer</value>
   </data>
   <data name="CorporateIdentityNumber - required field" xml:space="preserve">
-    <value>Virksomhet ID er påkrevd</value>
+    <value>Organisasjonsnummer er påkrevd</value>
   </data>
   <data name="CustomAddressCity" xml:space="preserve">
     <value>1CustomAddressCity</value>
@@ -170,6 +170,9 @@
   </data>
   <data name="CustomName - required field" xml:space="preserve">
     <value>1CustomName - er påkrevd</value>
+  </data>
+  <data name="ExternalId" xml:space="preserve">
+    <value>Virksomhet ID (tilsynets datamodell)</value>
   </data>
   <data name="IndustryGroupAggregated" xml:space="preserve">
     <value>Næringsgruppe aggregert</value>
@@ -244,9 +247,6 @@
     <value>Virksomhet er påkrevd</value>
   </data>
   <data name="OwnerCorporateIdentityNumber" xml:space="preserve">
-    <value>Organisationsnummer</value>
-  </data>
-  <data name="OwnerCorporateIdentityNumber - required field" xml:space="preserve">
-    <value>Organisationsnummer er påkrevd</value>
+    <value>Organisasjonsnummer på moderbolag</value>
   </data>
 </root>

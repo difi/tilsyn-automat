@@ -131,7 +131,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     Name = table.Column<string>(nullable: false),
                     SocialSecurityNumber = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    CountryCode = table.Column<string>(nullable: false),
+                    PhoneCountryCode = table.Column<string>(nullable: false),
                     Phone = table.Column<string>(nullable: false),
                     Title = table.Column<string>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false),
@@ -685,10 +685,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     TypeOfAnswerId = table.Column<int>(nullable: false),
                     AnswerItemId = table.Column<Guid>(nullable: false),
                     ResultId = table.Column<int>(nullable: false),
+                    ImageId = table.Column<Guid>(nullable: true),
                     Bool = table.Column<bool>(nullable: true),
                     String = table.Column<string>(nullable: true),
-                    Int = table.Column<int>(nullable: true),
-                    ImageId = table.Column<Guid>(nullable: true)
+                    Int = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -753,8 +753,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 values: new object[,]
                 {
                     { new Guid("5ae2ea91-e0a2-48e7-a77b-c1ede6b973e1"), false, "Virksomhet" },
-                    { new Guid("9e184394-81bb-45cf-a157-dba79a3286d7"), true, "Saksbehandlare" },
-                    { new Guid("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"), true, "Admin" }
+                    { new Guid("9e184394-81bb-45cf-a157-dba79a3286d7"), true, "Saksbehandler" },
+                    { new Guid("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"), true, "Administrator" }
                 });
 
             migrationBuilder.InsertData(
@@ -774,11 +774,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 
             migrationBuilder.InsertData(
                 table: "UserList",
-                columns: new[] { "Id", "CountryCode", "Created", "Email", "LastOnline", "Name", "Phone", "SocialSecurityNumber", "Title", "Token" },
+                columns: new[] { "Id", "Created", "Email", "LastOnline", "Name", "Phone", "PhoneCountryCode", "SocialSecurityNumber", "Title", "Token" },
                 values: new object[,]
                 {
-                    { new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" },
-                    { new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), "0047", new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" }
+                    { new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "thea@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thea Sneve", "712345678", "0047", "12089400269", "Handläggare", "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" },
+                    { new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), "martin@difi.no", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Martin Swartling", "912345678", "0047", "12089400420", "Avdelingssjef", "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" }
                 });
 
             migrationBuilder.InsertData(

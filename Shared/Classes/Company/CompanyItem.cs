@@ -11,6 +11,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
     {
         public Guid Id { get; set; }
 
+        [Display(Name = "ExternalId")]
         public String ExternalId { get; set; }
 
         [Display(Name = "Code")]

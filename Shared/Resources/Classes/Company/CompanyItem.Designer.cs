@@ -133,7 +133,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhet ID (tilsynets datamodell).
+        ///   Looks up a localized string similar to Organisasjonsnummer.
         /// </summary>
         internal static string CorporateIdentityNumber {
             get {
@@ -142,7 +142,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhet ID er påkrevd.
+        ///   Looks up a localized string similar to Organisasjonsnummer er påkrevd.
         /// </summary>
         internal static string CorporateIdentityNumber___required_field {
             get {
@@ -219,6 +219,15 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         internal static string CustomName___required_field {
             get {
                 return ResourceManager.GetString("CustomName - required field", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virksomhet ID (tilsynets datamodell).
+        /// </summary>
+        internal static string ExternalId {
+            get {
+                return ResourceManager.GetString("ExternalId", resourceCulture);
             }
         }
         
@@ -439,20 +448,11 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Organisationsnummer.
+        ///   Looks up a localized string similar to Organisasjonsnummer på moderbolag.
         /// </summary>
         internal static string OwnerCorporateIdentityNumber {
             get {
                 return ResourceManager.GetString("OwnerCorporateIdentityNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Organisationsnummer er påkrevd.
-        /// </summary>
-        internal static string OwnerCorporateIdentityNumber___required_field {
-            get {
-                return ResourceManager.GetString("OwnerCorporateIdentityNumber - required field", resourceCulture);
             }
         }
     }

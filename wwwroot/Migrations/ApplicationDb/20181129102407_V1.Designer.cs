@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181127135210_V1")]
+    [Migration("20181129102407_V1")]
     partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -573,8 +573,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.ToTable("RoleList");
 
                     b.HasData(
-                        new { Id = new Guid("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"), IsAdminRole = true, Name = "Admin" },
-                        new { Id = new Guid("9e184394-81bb-45cf-a157-dba79a3286d7"), IsAdminRole = true, Name = "Saksbehandlare" },
+                        new { Id = new Guid("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"), IsAdminRole = true, Name = "Administrator" },
+                        new { Id = new Guid("9e184394-81bb-45cf-a157-dba79a3286d7"), IsAdminRole = true, Name = "Saksbehandler" },
                         new { Id = new Guid("5ae2ea91-e0a2-48e7-a77b-c1ede6b973e1"), IsAdminRole = false, Name = "Virksomhet" }
                     );
                 });
@@ -597,9 +597,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CountryCode")
-                        .IsRequired();
-
                     b.Property<DateTime>("Created");
 
                     b.Property<string>("Email")
@@ -611,6 +608,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                         .IsRequired();
 
                     b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<string>("PhoneCountryCode")
                         .IsRequired();
 
                     b.Property<string>("SocialSecurityNumber")
@@ -626,8 +626,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.ToTable("UserList");
 
                     b.HasData(
-                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), CountryCode = "0047", Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), CountryCode = "0047", Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), Created = new DateTime(2011, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                     );
                 });
 
