@@ -3010,9 +3010,9 @@ button, .button, input[type="button"], input[type="submit"] {
     background-image: url("/css/cssimg/icons-sprite.svg");
     background-repeat: no-repeat;
     background-position: 10px -185px;
-    padding-left: 2rem; }
+    padding-left: 2rem;
+    margin-bottom: 0; }
     button.add.small, .button.add.small, input[type="button"].add.small, input[type="submit"].add.small {
-      margin-bottom: 0;
       background-position: 7px -192px;
       padding-left: 27px; }
   button.update, .button.update, input[type="button"].update, input[type="submit"].update {

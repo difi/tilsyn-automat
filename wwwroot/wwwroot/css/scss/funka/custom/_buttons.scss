@@ -97,9 +97,10 @@ button, .button, input[type="button"], input[type="submit"] {
         background-repeat: no-repeat;
         background-position: 10px -185px;
         padding-left: 2rem;
+        margin-bottom: 0;
 
         &.small {
-            margin-bottom: 0;
+
             background-position: 7px -192px;
             padding-left: 27px;
         }

@@ -5,11 +5,13 @@
     ViewData["Title"] = "Administrere interne brukere";
 }
 
-<h1>Administrere interne brukere</h1>
+<h1>@Localizer["UserList-h1"]</h1>
+
+<br />
 
 <table class="table">
     <caption>
-        <h2>Brukere</h2>
+        <h2>@Localizer["UserList-caption"]</h2>
     </caption>
     <thead>
         <tr>
@@ -55,5 +57,5 @@
 </table>
 
 <form method="post">
-    <a class="button add icon" asp-page="UserForm">Opprett ny interne brukere</a>
+    <a class="button add icon" asp-page="UserForm">@Localizer["UserList-add"]</a>
 </form>
