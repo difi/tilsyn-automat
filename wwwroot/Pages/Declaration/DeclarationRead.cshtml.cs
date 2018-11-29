@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -16,6 +17,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         private readonly IApiHttpClient apiHttpClient;
 
         public DeclarationItem DeclarationItemForm { get; set; }
+
+        public List<TestGroupItem> TestGroupItemList { get; set; }
 
         public DeclarationReadModel(IApiHttpClient apiHttpClient)
         {
@@ -29,6 +32,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
                 var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
+
+                TestGroupItemList = new List<TestGroupItem>();
+
+                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+                {
+                    if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                    {
+                        TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                    }
+                }
 
                 if (outcomeDataList.Any())
                 {

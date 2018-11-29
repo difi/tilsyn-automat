@@ -19,6 +19,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         [BindProperty]
         public DeclarationItem DeclarationItemForm { get; set; }
 
+        public List<TestGroupItem> TestGroupItemList { get; set; }
+
         public DeclarationFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -32,14 +34,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
                 var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
 
-                var testGroupList = new List<TestGroupItem>();
+                TestGroupItemList = new List<TestGroupItem>();
 
-                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList)
+                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x=>x.TestGroupOrder))
                 {
-                    //declarationIndicatorGroup.IndicatorItem.TestGroupList.Single(x=>x.TestGroupItemId == declarationIndicatorGroup.)
-
+                    if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                    {
+                        TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                    }
                 }
-
 
                 if (outcomeDataList.Any())
                 {
