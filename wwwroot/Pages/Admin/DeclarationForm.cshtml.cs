@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -66,11 +67,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
                 else
                 {
+                    var companyItem = (await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + companyId)).Data;
+
                     var valueListTypeOfMachine = (await apiHttpClient.Get<List<ValueListTypeOfMachine>>("/api/ValueList/GetAllTypeOfMachine")).Data;
                     var valueListTypeOfTest = (await apiHttpClient.Get<List<ValueListTypeOfTest>>("/api/ValueList/GetAllTypeOfTest")).Data;
 
                     DeclarationItemForm = new DeclarationItem
                     {
+                        Company = companyItem,
                         CompanyItemId = companyId,
                         UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                         DeadlineDate = DateTime.Now.Date.AddMonths(6),

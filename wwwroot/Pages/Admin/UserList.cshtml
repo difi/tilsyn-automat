@@ -13,8 +13,8 @@
     </caption>
     <thead>
         <tr>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Email)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Phone)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Title)</th>
@@ -26,11 +26,11 @@
         {
             <tr>
                 <td class="clickable-td">
-                    <a asp-page="UserForm" asp-route-id="@item.Id">@item.SocialSecurityNumber</a>
+                    <a asp-page="UserForm" asp-route-id="@item.Id">@item.Name</a>
                 </td>
 
                 <td class="clickable-td">
-                    @item.Name
+                    @item.SocialSecurityNumber
                 </td>
 
                 <td class="clickable-td">

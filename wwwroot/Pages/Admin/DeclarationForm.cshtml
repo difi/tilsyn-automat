@@ -2,12 +2,14 @@
 @model DeclarationFormModel
 
 @{
-    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Uppdatera " + Model.DeclarationItemForm.Name : "Ny selvdeklarasjon";
+    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll";
 
-    ViewData["Title"] = title;
+    ViewData["Title"] = Model.DeclarationItemForm.Company.Name + " - " + title;
 }
 
-<h1>@title</h1>
+<h1>@Model.DeclarationItemForm.Company.Name</h1>
+
+<h2>@title</h2>
 
 <form method="post">
     <div asp-validation-summary="All"></div>
@@ -32,12 +34,21 @@
     @if (Model.DeclarationItemForm.Id != Guid.Empty)
     {
         <input class="button update" type="submit" value="@Localizer["Update"]" />
+        <a class="button" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
     }
     else
     {
-        <input class="button add" type="submit"  value="@Localizer["Add"]" />
+        <input class="button add" type="submit" value="@Localizer["Add"]" />
+
+        <a class="button" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
     }
 </form>
+
+@if (Model.DeclarationItemForm?.Status?.Id > 2)
+{
+    <img src="/images/Oppsummering.png" alt="Oppsummering"/>
+}
+
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
