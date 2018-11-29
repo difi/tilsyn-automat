@@ -153,4 +153,7 @@
   <data name="Admin-clients-usercode-delete" xml:space="preserve">
     <value>Fjern kobling</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
+  </data>
 </root>

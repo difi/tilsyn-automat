@@ -113,6 +113,8 @@
         <input class="button add icon" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
         <input class="button add icon" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
     }
+
+    <a class="button" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
 </form>
 
 @section Scripts {
