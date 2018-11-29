@@ -7,65 +7,54 @@
 
     ViewData["Title"] = title;
 
-    var lastTestGroupOrder = 0;
     var mainIndex = 1;
-    var subIndex = 0;
 }
 
 <div class="row column">
     <h1>@title</h1>
 </div>
 
-<a asp-page="/Declaration/DeclarationList">DeclarationList</a>
-
 <form method="post">
 
-    <div class="jsToggleCardContainer">
+    @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+    {
+        var subIndex = 0;
+        mainIndex++;
 
+        var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
 
-        @foreach (var declarationIndicatorGroup in Model.DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
-        {
-            var indicatorItem = declarationIndicatorGroup.IndicatorItem;
-            var outcomeData = declarationIndicatorGroup.IndicatorItem.OutcomeData;
-
-            if (lastTestGroupOrder != declarationIndicatorGroup.TestGroupOrder)
-            {
-                subIndex = 0;
-                mainIndex++;
-
-                lastTestGroupOrder = declarationIndicatorGroup.TestGroupOrder;
-
-                <div class="row medium-uncollapse">
-                    <div class="small-12 medium-12 columns">
-                        <h2 class="h2-toggle"><button disabled aria-expanded="true" class="toogle-header-button"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.IndicatorItem.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.IndicatorItem.Name</span></span> </button></h2>
-                    </div>
+        <div class="jsToggleCardContainer">
+            <div class="row medium-uncollapse">
+                <div class="small-12 medium-12 columns">
+                    <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Name</span></span> </button></h2>
                 </div>
-
-
-
-            }
+            </div>
 
             <div class="row">
                 <div class="small-12 medium-12 columns">
-                    <div class="jsToggleCardTarget" data-id="@indicatorItem.Id">
-                        @foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                    <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
+
+                        @foreach (var item in indicatorList)
                         {
-                            var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+                            var indicatorItem = item.IndicatorItem;
+                            var outcomeData = indicatorItem.OutcomeData;
 
-                            var firstQuestion = true;
+                            foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                            {
+                                var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
 
-                            subIndex++;
+                                subIndex++;
 
-                            <div class="card transparent">
-                                <div class="jsRuleItem" id="@ruleItem.Id">
-                                    @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                                    {
-                                        var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+                                <div class="card transparent">
+                                    <div class="jsRuleItem" id="@ruleItem.Id">
+                                        @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                        {
+                                            var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
 
-                                        var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
+                                            var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
 
-                                        var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                                        var orderText = mainIndex + "." + subIndex;
+                                            var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                                            var orderText = mainIndex + "." + subIndex;
 
                                             <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
 
@@ -117,29 +106,25 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        }
 
-                                        firstQuestion = false;
-                                    }
-
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         }
                     </div>
                 </div>
             </div>
-        }
-    </div>
-
-    <div>
-        <div>
         </div>
-    </div>
+    }
 
     <div class="row">
         <div class="small-12 medium-4 columns">
             <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
             <br /><br />
             <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+            <br /><br />
+            <a asp-page="/Declaration/DeclarationList" class="button large">DeclarationList</a>
             <br /><br />
         </div>
     </div>
