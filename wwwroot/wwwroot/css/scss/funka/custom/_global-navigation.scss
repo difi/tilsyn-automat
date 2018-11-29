@@ -46,6 +46,7 @@
         &.active {
             a, span {
                 color: $dark-grey;
+                font-weight: normal;
             }
         }
     }

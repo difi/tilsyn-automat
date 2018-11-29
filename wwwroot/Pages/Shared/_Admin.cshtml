@@ -56,25 +56,25 @@
 
         </div>
     </div>
-    <div class="row">
+    <div class="row collapse">
         <div class="small-12 column">
 
             <nav class="global-navigation">
-                <ul>
+            <ul>
+                <li>
+                    <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
+                </li>
+                <li>
+                    <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
+                </li>
+                @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
+                {
                     <li>
-                        <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
+                        <a asp-page="UserList">@Localizer["Admin-users"]</a>
                     </li>
-                    <li>
-                        <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
-                    </li>
-                    @if ((await AuthorizationService.AuthorizeAsync(User, "Admin")).Succeeded)
-                    {
-                        <li>
-                            <a asp-page="UserList">@Localizer["Admin-users"]</a>
-                        </li>
-                    }
-                </ul>
-            </nav>
+                }
+            </ul>
+        </nav>
 
         </div>
     </div>
