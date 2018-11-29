@@ -7,11 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Enum;
+using Difi.Sjalvdeklaration.Shared.Extensions;
+using Microsoft.AspNetCore.Http;
+using OfficeOpenXml;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -27,6 +32,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         private List<ValueListTypeOfMachine> valueListTypeOfMachine;
         private List<ValueListTypeOfTest> valueListTypeOfTest;
 
+        [BindProperty]
+        [Display(Name = "Excel file")]
+        public IFormFile ExcelFile { get; set; }
+
         public CompanyListModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -41,15 +50,17 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
+                var package = new ExcelPackage(ExcelFile.OpenReadStream());
+
+                var dataTable = package.ToDataTable();
+
                 valueListTypeOfMachine = (await apiHttpClient.Get<List<ValueListTypeOfMachine>>("/api/ValueList/GetAllTypeOfMachine")).Data;
                 valueListTypeOfTest = (await apiHttpClient.Get<List<ValueListTypeOfTest>>("/api/ValueList/GetAllTypeOfTest")).Data;
 
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Narvesen", "123456789", "1111", "Automat for betaling på Oslo S"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norwegian", "987654321", "2222", "Billettautomat Gardemoen"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("NSB", "1122334451", "3333", "Billettautomat på Oslo S"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Esso", "1122334452", "4444", "Betalingsautomat Trondheim"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("7 - eleven", "1122334453", "5555", "Automat Grensen"));
-                await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow("Norske bank", "1122334454", "6666", "Billettautomat Kristiansand"));
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
+                }
 
                 return RedirectToPage("/Admin/CompanyList");
             }
@@ -59,7 +70,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
         }
 
-        private ExcelItemRow CreateExcelItemRow(string companyName, string corporateIdentityNumber, string code, string declarationName)
+        private ExcelItemRow CreateExcelItemRow(DataRow dataRow)
         {
             var companyId = Guid.NewGuid();
             var declarationItemId = Guid.NewGuid();
@@ -69,32 +80,38 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 CompanyItem = new CompanyItem
                 {
                     Id = companyId,
-                    Name = companyName,
-                    CorporateIdentityNumber = corporateIdentityNumber,
-                    Code = code,
-                    MailingAddressStreet = "Triangelbygget 12",
-                    MailingAddressZip = "4200",
-                    MailingAddressCity = "SAUDA",
-                    BusinessAddressStreet = "Triangelbygget 12",
-                    BusinessAddressZip = "4200",
-                    BusinessAddressCity = "SAUDA",
-                    LocationAddressStreet = "Triangelbygget 12",
-                    LocationAddressZip = "4200",
-                    LocationAddressCity = "SAUDA",
-                    IndustryGroupAggregated = "Test",
-                    IndustryGroupCode = "1234",
-                    IndustryGroupDescription = "Test",
-                    InstitutionalSectorCode = "1234",
-                    InstitutionalSectorDescription = "Test",
-                    OwenerCorporateIdentityNumber = "123456789"
+                    Name = dataRow["Virksomhet - Navn"].ToString(),
+                    CorporateIdentityNumber = dataRow["Virksomhet - Organisationsnummer"].ToString(),
+                    Code = dataRow["Virksomhet - Pinkode"].ToString(),
+
+                    MailingAddressStreet = dataRow["Postadresse - Adresse gate"].ToString(),
+                    MailingAddressZip = dataRow["Postadresse - Adresse postnr"].ToString(),
+                    MailingAddressCity = dataRow["Postadresse - Adresse poststed"].ToString(),
+
+                    BusinessAddressStreet = dataRow["Beliggenhetsadresse - Adresse gate"].ToString(),
+                    BusinessAddressZip = dataRow["Beliggenhetsadresse - Adresse postnr"].ToString(),
+                    BusinessAddressCity = dataRow["Beliggenhetsadresse - Adresse poststed"].ToString(),
+
+                    LocationAddressStreet = dataRow["Forretningsadresse - Adresse gate"].ToString(),
+                    LocationAddressZip = dataRow["Forretningsadresse - Adresse postnr"].ToString(),
+                    LocationAddressCity = dataRow["Forretningsadresse - Adresse poststed"].ToString(),
+
+                    IndustryGroupCode = dataRow["Næringsgruppe - Kode"].ToString(),
+                    IndustryGroupDescription = dataRow["Næringsgruppe - Beskrivelse"].ToString(),
+                    IndustryGroupAggregated = dataRow["Næringsgruppe - Aggregert"].ToString(),
+
+                    InstitutionalSectorCode = dataRow["Institusjonell sektorkode - Kode"].ToString(),
+                    InstitutionalSectorDescription = dataRow["Institusjonell sektorkode - Beskrivelse"].ToString(),
+
+                    OwenerCorporateIdentityNumber = string.Empty
                 },
                 ContactPersonItem = new ContactPersonItem
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Henrik Juhlin",
-                    Email = "henrik.juhlin@funka.com",
-                    PhoneCountryCode = "0046",
-                    Phone = "0706017546",
+                    Name = dataRow["Kontaktperson - Navn"].ToString(),
+                    Email = dataRow["Kontaktperson - Epostadresse"].ToString(),
+                    PhoneCountryCode = dataRow["Kontaktperson - Telefonnummer Landskode"].ToString(),
+                    Phone = dataRow["Kontaktperson - Telefonnummer"].ToString(),
                     CompanyItemId = companyId,
                 },
                 DeclarationItem = new DeclarationItem
@@ -102,7 +119,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Id = declarationItemId,
                     CompanyItemId = companyId,
                     UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
-                    Name = declarationName,
+                    Name = dataRow["Automat - Navn"].ToString(),
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddMonths(6),
                     StatusId = (int) DeclarationStatus.Created,
@@ -115,5 +132,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
             };
         }
+    }
+
+    public class ExcelUploadForm
+    {
+
     }
 }

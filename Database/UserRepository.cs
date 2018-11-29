@@ -128,7 +128,7 @@ namespace Difi.Sjalvdeklaration.Database
                     Created = DateTime.Now,
                     LastOnline = DateTime.Now,
                     Email = String.Empty,
-                    CountryCode = String.Empty,
+                    PhoneCountryCode = String.Empty,
                     Phone = String.Empty,
                     Title = String.Empty,
 
@@ -214,7 +214,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.Name = userItem.Name;
                 dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
                 dbItem.Email = userItem.Email;
-                dbItem.CountryCode = userItem.CountryCode;
+                dbItem.PhoneCountryCode = userItem.PhoneCountryCode;
                 dbItem.Phone = userItem.Phone;
                 dbItem.Title = userItem.Title;
 
