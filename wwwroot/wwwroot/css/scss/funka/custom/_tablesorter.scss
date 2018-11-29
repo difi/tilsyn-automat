@@ -6,7 +6,7 @@ div {
         width: 100%;
         font-size: 14px;
         font-family: "Open Sans", Helvetica, Arial, sans-serif;
-        color: #333;
+        color: #354052;
         background-color: transparent;
         border-spacing: 0;
         margin: 10px 0 15px;
@@ -26,6 +26,12 @@ div {
             color: $light-navy;
             text-decoration: underline;
         }
+
+        tbody tr {
+            &:hover {
+                background-color: #F3F7F8;
+            }
+        }
     }
 
     .tablesorter-default th, .tablesorter-default thead td {
@@ -34,7 +40,7 @@ div {
         background-color: transparent;
         border-collapse: collapse;
         border-bottom: $cool-grey 1px solid;
-        padding: 0;
+        padding: 10px 4px;
     }
 
     .tablesorter-default tfoot td, .tablesorter-default tfoot th {
@@ -89,7 +95,6 @@ div {
     .tablesorter-default thead .tablesorter-headerSortUp {
         div {
             background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
-            border-bottom: $cool-grey 1px solid;
             background-position: center right;
             background-repeat: no-repeat;
         }
@@ -98,7 +103,6 @@ div {
     .tablesorter-default thead .headerSortDown, .tablesorter-default thead .tablesorter-headerDesc, .tablesorter-default thead .tablesorter-headerSortDown {
         div {
             background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
-            border-bottom: $cool-grey 1px solid;
             background-position: center right;
             background-repeat: no-repeat;
         }
@@ -111,13 +115,12 @@ div {
     }
 
     .tablesorter-default tfoot .tablesorter-headerAsc, .tablesorter-default tfoot .tablesorter-headerDesc, .tablesorter-default tfoot .tablesorter-headerSortDown, .tablesorter-default tfoot .tablesorter-headerSortUp {
-        border-top: $cool-grey 1px solid;
+        //border-top: $cool-grey 1px solid;
     }
 
     .tablesorter-default td {
-        background-color: #fff;
         border-bottom: $cool-grey 1px solid;
-        padding: 1rem 2px;
+        padding: 1rem 6px;
         vertical-align: top;
     }
 
