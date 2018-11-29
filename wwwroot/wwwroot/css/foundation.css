@@ -1813,7 +1813,7 @@ select {
   display: inline-block;
   margin: 0 0 1rem 0;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-  padding: 0.7em 1em 0.7em 1em;
+  padding: 0.6em 1em 0.6em 1em;
   -webkit-appearance: none;
   border: 0;
   border-radius: 4px;
@@ -1830,9 +1830,9 @@ select {
     background-color: #3b7180;
     color: #fff; }
   .button.tiny {
-    font-size: 12px; }
+    font-size: 13px; }
   .button.small {
-    font-size: 16px; }
+    font-size: 15px; }
   .button.large {
     font-size: 22px; }
   .button.expanded {
@@ -1844,31 +1844,31 @@ select {
     background-color: #458596;
     color: #000; }
     .button.primary:hover, .button.primary:focus {
-      background-color: #376a78;
+      background-color: #3e7887;
       color: #000; }
   .button.secondary {
     background-color: #cce5ef;
     color: #000; }
     .button.secondary:hover, .button.secondary:focus {
-      background-color: #89c3da;
+      background-color: #aad4e4;
       color: #000; }
   .button.success {
     background-color: #3adb76;
     color: #000; }
     .button.success:hover, .button.success:focus {
-      background-color: #22bb5b;
+      background-color: #27d367;
       color: #000; }
   .button.warning {
     background-color: #ffae00;
     color: #000; }
     .button.warning:hover, .button.warning:focus {
-      background-color: #cc8b00;
+      background-color: #e69d00;
       color: #000; }
   .button.alert {
     background-color: #ffded9;
     color: #000; }
     .button.alert:hover, .button.alert:focus {
-      background-color: #ff8c7b;
+      background-color: #ffb5aa;
       color: #000; }
   .button.disabled, .button[disabled] {
     opacity: 0.25;
@@ -2757,7 +2757,7 @@ header {
   background-color: #fff;
   min-height: 100px; }
   header .logo {
-    margin-top: 6px; }
+    margin-top: 13px; }
   header .profile-info-area ul {
     margin: 0;
     padding: 0;
@@ -2954,7 +2954,7 @@ button, .button, input[type="button"], input[type="submit"] {
   display: inline-block;
   margin: 0 0 1rem 0;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-  padding: 0.7em 1em 0.7em 1em;
+  padding: 0.6em 1em 0.6em 1em;
   -webkit-appearance: none;
   border: 0;
   border-radius: 4px;
@@ -2978,19 +2978,19 @@ button, .button, input[type="button"], input[type="submit"] {
       border: 1px solid #000;
       color: #fff; }
   button:active, .button:active, input[type="button"]:active, input[type="submit"]:active {
-    background-color: gray; }
+    background-color: #17667c; }
   button.tiny, .button.tiny, input[type="button"].tiny, input[type="submit"].tiny {
     padding: 0.3em 1em;
-    font-size: 12px; }
+    font-size: 13px; }
   button.small, .button.small, input[type="button"].small, input[type="submit"].small {
-    padding: 0.5em 1em;
-    font-size: 16px; }
+    padding: 0.4em 1em 0.5em 1em;
+    font-size: 15px; }
   button.large, .button.large, input[type="button"].large, input[type="submit"].large {
     padding: 0.8em 1em;
     font-size: 22px;
     width: 100%;
     margin: 0; }
-  button.show, .button.show, input[type="button"].show, input[type="submit"].show {
+  button.show, button.import, .button.show, .button.import, input[type="button"].show, input[type="button"].import, input[type="submit"].show, input[type="submit"].import {
     background-color: #e7dde7;
     color: #303132; }
   button.export, .button.export, input[type="button"].export, input[type="submit"].export {
@@ -3010,14 +3010,14 @@ button, .button, input[type="button"], input[type="submit"] {
     button.export-all:hover, button.export-all:focus, button.export-all:active, .button.export-all:hover, .button.export-all:focus, .button.export-all:active, input[type="button"].export-all:hover, input[type="button"].export-all:focus, input[type="button"].export-all:active, input[type="submit"].export-all:hover, input[type="submit"].export-all:focus, input[type="submit"].export-all:active {
       background-color: #fff; }
   button.add, .button.add, input[type="button"].add, input[type="submit"].add {
-    background-color: #127dac;
-    color: #fff;
-    margin-right: 1rem; }
-    button.add.icon, .button.add.icon, input[type="button"].add.icon, input[type="submit"].add.icon {
-      padding-left: 2rem;
-      background: url("/css/cssimg/icons-sprite.svg") #127dac 10px -188px no-repeat; }
-    button.add:hover, .button.add:hover, input[type="button"].add:hover, input[type="submit"].add:hover {
-      background-color: #106c95; }
+    background-image: url("/css/cssimg/icons-sprite.svg");
+    background-repeat: no-repeat;
+    background-position: 10px -185px;
+    padding-left: 2rem; }
+    button.add.small, .button.add.small, input[type="button"].add.small, input[type="submit"].add.small {
+      margin-bottom: 0;
+      background-position: 7px -192px;
+      padding-left: 27px; }
   button.update, .button.update, input[type="button"].update, input[type="submit"].update {
     background-color: #1d754f;
     color: #fff;
@@ -3176,11 +3176,11 @@ div .tablesorter-default {
     vertical-align: middle; }
     div .tablesorter-default .clickable-td:hover {
       cursor: pointer; }
-  div .tablesorter-default a {
-    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    color: #17667c;
-    text-decoration: underline; }
+    div .tablesorter-default .clickable-td a {
+      font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+      font-weight: bold;
+      color: #17667c;
+      text-decoration: underline; }
   div .tablesorter-default tbody tr:hover {
     background-color: #F3F7F8; }
 

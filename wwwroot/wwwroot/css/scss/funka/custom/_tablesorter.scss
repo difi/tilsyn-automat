@@ -18,14 +18,16 @@ div {
             &:hover {
                 cursor: pointer;
             }
+
+            a {
+                font-family: $sofiapro;
+                font-weight: bold;
+                color: $light-navy;
+                text-decoration: underline;
+            }
         }
 
-        a {
-            font-family: $sofiapro;
-            font-weight: bold;
-            color: $light-navy;
-            text-decoration: underline;
-        }
+
 
         tbody tr {
             &:hover {
