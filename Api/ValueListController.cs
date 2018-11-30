@@ -50,6 +50,5 @@ namespace Difi.Sjalvdeklaration.Api
         {
             return valueListRepository.GetAllPurposeOfTest<List<ValueListPurposeOfTest>>();
         }
-
     }
 }

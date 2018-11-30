@@ -8,6 +8,9 @@
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
     var value = (bool?) ViewData["value"];
+
+    var trueText = ViewData["trueText"] ?? "Ja";
+    var falseText = ViewData["falseText"]?? "Nej";
 }
 
 <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
@@ -45,12 +48,10 @@
         <h3>Hensikt</h3>
         <p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.</p>
     </div>
-
 </div>
 
 
 <fieldset>
-
     <legend class="legend">
         @if (firstQuestion)
         {
@@ -100,7 +101,7 @@
                 }
 
                 <label for="@idTrue">
-                    Ja
+                    @trueText
                 </label>
             </li>
             <li class="radio">
@@ -114,8 +115,10 @@
                 }
 
                 <label for="@idFalse">
-                    Nej
+                    @falseText
                 </label>
+                
+                <div class="jsNextAnswerItemPlaceHolder"></div>
             </li>
         </ul>
     </div>

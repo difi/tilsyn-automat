@@ -138,9 +138,6 @@ namespace Difi.Sjalvdeklaration.Database
             modelBuilder.Entity<OutcomeData>().HasOne(x => x.Result).WithMany(x => x.OutcomeDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<AnswerData>().HasOne(x => x.Result).WithMany(x => x.AnswerDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
 
-            //modelBuilder.Entity<IndicatorTestGroup>().HasOne(x => x.IndicatorItem).WithMany(x => x.TestGroupList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
-
-
             var role1 = new RoleItem
             {
                 Id = Guid.Parse("e7a78cdc-49f9-4e6c-8abd-afcfc08ca5eb"),
@@ -543,7 +540,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("d7b40e3c-e7fa-44e5-b44f-750759c971cc"),
                 TypeOfAnswerId = typeOfAnswer1.Id,
                 RuleItemId = ruleItem11.Id,
-                ViewIfParentFailedId = answerItem111.Id,
+                LinkedParentFailedId = answerItem111.Id,
             };
 
             var answerItem121 = new AnswerItem
@@ -558,23 +555,37 @@ namespace Difi.Sjalvdeklaration.Database
 
             var answerItem122 = new AnswerItem
             {
-                Question = "Ta bilde",
-                Order = 3,
-                Id = Guid.Parse("8a12d92b-8a6a-44e7-9517-74331a4c2483"),
-                TypeOfAnswerId = typeOfAnswer4.Id,
+                Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
+                Order = 2,
+                Id = Guid.Parse("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"),
+                TypeOfAnswerId = typeOfAnswer2.Id,
+                Bool = true,
+                BoolTrueText = "220 cm eller mer",
+                BoolFalseText = "0-219 cm, ",
                 RuleItemId = ruleItem12.Id,
+                LinkedParentFailedId = answerItem121.Id,
             };
 
             var answerItem123 = new AnswerItem
             {
-                Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
-                Order = 2,
-                Id = Guid.Parse("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"),
+                Question = "Mål i cm",
+                Order = 3,
+                Id = Guid.Parse("5544b740-0b5f-400c-b7b2-7e6472d4160b"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
-                MinInt = 220,
-                MaxInt = -1,
+                MinInt = 75,
+                MaxInt = 130,
                 RuleItemId = ruleItem12.Id,
-                ViewIfParentFailedId = answerItem121.Id,
+                LinkedParentFailedId = answerItem122.Id,
+                AlwaysVisible = true
+            };
+
+            var answerItem124 = new AnswerItem
+            {
+                Question = "Ta bilde",
+                Order = 4,
+                Id = Guid.Parse("8a12d92b-8a6a-44e7-9517-74331a4c2483"),
+                TypeOfAnswerId = typeOfAnswer4.Id,
+                RuleItemId = ruleItem12.Id,
             };
 
             var answerItem211 = new AnswerItem
@@ -589,24 +600,39 @@ namespace Difi.Sjalvdeklaration.Database
 
             var answerItem212 = new AnswerItem
             {
-                Question = "Ta bilde",
+                Question = "Hvor mange cm er det mellom betalingsterminalene?",
+                Order = 2,
+                Id = Guid.Parse("89fd2205-1047-403d-a5bd-f70a1de2f247"),
+                TypeOfAnswerId = typeOfAnswer2.Id,
+                RuleItemId = ruleItem21.Id,
+                Bool = true,
+                BoolTrueText = "150 cm eller mer",
+                BoolFalseText = "0-149 cm, ",
+                LinkedParentFailedId = answerItem211.Id
+            };
+
+            var answerItem213 = new AnswerItem
+            {
+                Question = "Mål i cm",
                 Order = 3,
+                Id = Guid.Parse("78b8d910-c0bb-4467-acbe-1320f51fe658"),
+                TypeOfAnswerId = typeOfAnswer3.Id,
+                MinInt = 150,
+                MaxInt = -1,
+                RuleItemId = ruleItem21.Id,
+                LinkedParentFailedId = answerItem212.Id,
+                AlwaysVisible = true
+            };
+
+            var answerItem214 = new AnswerItem
+            {
+                Question = "Ta bilde",
+                Order = 4,
                 Id = Guid.Parse("13d6d530-e533-4510-9a66-8b862899dbdf"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem21.Id
             };
 
-            var answerItem213 = new AnswerItem
-            {
-                Question = "Hvor mange cm er det mellom betalingsterminalene?",
-                Order = 2,
-                Id = Guid.Parse("89fd2205-1047-403d-a5bd-f70a1de2f247"),
-                TypeOfAnswerId = typeOfAnswer3.Id,
-                MinInt = 150,
-                MaxInt = -1,
-                RuleItemId = ruleItem21.Id,
-                ViewIfParentFailedId = answerItem211.Id
-            };
 
             var answerItem311 = new AnswerItem
             {
@@ -635,7 +661,7 @@ namespace Difi.Sjalvdeklaration.Database
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
-                ViewIfParentCorrectId = answerItem311.Id
+                LinkedParentCorrectId = answerItem311.Id
             };
 
             var answerItem314 = new AnswerItem
@@ -646,21 +672,35 @@ namespace Difi.Sjalvdeklaration.Database
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
-                ViewIfParentCorrectId = answerItem311.Id
+                LinkedParentCorrectId = answerItem311.Id
             };
 
-            var answerItem141 = new AnswerItem
+            var answerItem411 = new AnswerItem
             {
                 Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
                 Order = 1,
                 Id = Guid.Parse("f98f67e5-cf6a-4afe-8998-3132640f9d70"),
-                TypeOfAnswerId = typeOfAnswer3.Id,
-                MaxInt = 130,
-                MinInt = 75,
+                TypeOfAnswerId = typeOfAnswer2.Id,
+                Bool = true,
+                BoolTrueText = "Mellom 75cm og 130cm over gulvet",
+                BoolFalseText = "Annat, ",
                 RuleItemId = ruleItem41.Id
             };
 
             var answerItem412 = new AnswerItem
+            {
+                Question = "Mål i cm",
+                Order = 1,
+                Id = Guid.Parse("9aea071e-7263-4b2e-8cd7-5193fbbe5b77"),
+                TypeOfAnswerId = typeOfAnswer3.Id,
+                MinInt = 75,
+                MaxInt = 130,
+                RuleItemId = ruleItem41.Id,
+                LinkedParentFailedId = answerItem411.Id,
+                AlwaysVisible = true
+            };
+
+            var answerItem413 = new AnswerItem
             {
                 Question = "Ta bilde",
                 Order = 2,
@@ -676,7 +716,7 @@ namespace Difi.Sjalvdeklaration.Database
             modelBuilder.Entity<IndicatorTestGroup>().HasData(indicatorTestGroup1, indicatorTestGroup2, indicatorTestGroup3, indicatorTestGroup4);
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem11, ruleItem12, ruleItem21, ruleItem31, ruleItem41);
-            modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem311, answerItem312, answerItem313, answerItem314, answerItem141, answerItem412);
+            modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem124, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem214, answerItem311, answerItem312, answerItem313, answerItem314, answerItem411, answerItem412, answerItem413);
 
             base.OnModelCreating(modelBuilder);
         }

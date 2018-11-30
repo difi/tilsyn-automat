@@ -51,12 +51,17 @@
                                         {
                                             var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
 
-                                            var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
+                                            var hide = (answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty);
+
+                                            if (answerItem.AlwaysVisible)
+                                            {
+                                                hide = false;
+                                            }
 
                                             var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                                             var orderText = mainIndex + "." + subIndex;
 
-                                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
 
                                                 <div class="form-field">
 
@@ -123,8 +128,6 @@
             <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
             <br /><br />
             <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-            <br /><br />
-            <a asp-page="/Declaration/DeclarationList" class="button large">DeclarationList</a>
             <br /><br />
         </div>
     </div>

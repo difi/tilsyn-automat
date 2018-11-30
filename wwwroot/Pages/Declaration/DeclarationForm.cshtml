@@ -34,8 +34,6 @@
 <form method="post">
     <div class="row column">
         Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
-        TypeOfMachine: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfMachine.Text<br />
-        TypeOfTest: @Model.DeclarationItemForm.DeclarationTestItem.TypeOfTest.Text<br />
         <br /><br />
     </div>
 
@@ -94,12 +92,12 @@
                                                 answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
                                             }
 
-                                            var hide = answerItem.ViewIfParentFailedId != Guid.Empty || answerItem.ViewIfParentCorrectId != Guid.Empty;
+                                            var hide = (answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty) && !answerItem.AlwaysVisible;
 
                                             var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                                             var orderText = mainIndex + "." + subIndex;
 
-                                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-ViewIfParentFailedId="@answerItem.ViewIfParentFailedId" data-ViewIfParentCorrectId="@answerItem.ViewIfParentCorrectId">
+                                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
                                                 @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                 {
                                                     @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
@@ -109,11 +107,11 @@
                                                 {
                                                     if (answerData != null)
                                                     {
-                                                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool })
+                                                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
                                                     }
                                                     else
                                                     {
-                                                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
                                                     }
                                                 }
 

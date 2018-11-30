@@ -20,11 +20,17 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public String Question { get; set; }
 
-        public Guid ViewIfParentFailedId { get; set; }
+        public Guid LinkedParentFailedId { get; set; }
 
-        public Guid ViewIfParentCorrectId { get; set; }
+        public Guid LinkedParentCorrectId { get; set; }
+
+        public bool AlwaysVisible { get; set; }
 
         public bool Bool { get; set; }
+
+        public String BoolTrueText { get; set; }
+
+        public String BoolFalseText { get; set; }
 
         public int MinInt { get; set; }
 
