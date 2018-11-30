@@ -9,73 +9,85 @@
 
 <header>
     <div class="row">
-        <div class="small-8 column">
-            <div class="logo">
-                <img alt="Difi alt-text" src="~/images/difi-logo.svg" />
-            </div>
-        </div>
-        <div class="small-4 column">
-            <div class="jsProfileContainer profile-wrapper">
-                <div class="profile-area">
-                    <div class="row collapse">
-                        <div class="hide-for-small medium-4 text-center columns">
-                            <div class="profile-image">
-                                
+
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <div class="row">
+
+
+
+                <div class="small-8 column">
+                    <div class="logo">
+                        <img alt="Difi alt-text" src="~/images/difi-logo.svg" />
+                    </div>
+                </div>
+                <div class="small-4 column">
+                    <div class="jsProfileContainer profile-wrapper">
+                        <div class="profile-area">
+                            <div class="row collapse">
+                                <div class="hide-for-small medium-4 text-center columns">
+                                    <div class="profile-image">
+
+                                    </div>
+                                </div>
+                                <div class="small-12  medium-8 columns">
+                                    <button class="jsProfileTrigger toggle-profile-button button plus">
+                                        <span class="profile-name">Thea Handal Sneve</span><br />
+                                        <span class="profile-number">050474 XXXXX</span>
+                                        <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="small-12  medium-8 columns">
-                            <button class="jsProfileTrigger toggle-profile-button button plus">
-                                <span class="profile-name">Thea Handal Sneve</span><br />
-                                <span class="profile-number">050474 XXXXX</span>
-                                <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
-                            </button>
+
+                        <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
+                            <ul class="text-left">
+                                <li>
+                                    <a class="back button" href="/">Link</a>
+                                </li>
+                                <li>
+                                    <input type="submit" value="Input submit" class="button">
+                                </li>
+                                <li>
+                                    <button class="button">Button</button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
-                    <ul class="text-left">
-                        <li>
-                            <a class="back button" href="/">Link</a>
-                        </li>
-                        <li>
-                            <input type="submit" value="Input submit" class="button">
-                        </li>
-                        <li>
-                            <button class="button">Button</button>
-                        </li>
-                    </ul>
+
+            </div>
+            <div class="row collapse">
+                <div class="small-12 column">
+                    <nav class="global-navigation">
+                        <ul>
+                            <li class="@(activePage == "Declaration" ? "active" : "")">
+                                <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
+                            </li>
+
+                            <li class="@(activePage == "Company" ? "active" : "")">
+                                <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
+                            </li>
+
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
+                            {
+                                <li class="@(activePage == "User" ? "active" : "")">
+                                    <a asp-page="UserList">@Localizer["Admin-users"]</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row collapse">
-        <div class="small-12 column">
-            <nav class="global-navigation">
-                <ul>
-                    <li class="@(activePage == "Declaration" ? "active" : "")">
-                        <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
-                    </li>
-
-                    <li class="@(activePage == "Company" ? "active" : "")">
-                        <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
-                    </li>
-
-                    @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
-                    {
-                        <li class="@(activePage == "User" ? "active" : "")">
-                            <a asp-page="UserList">@Localizer["Admin-users"]</a>
-                        </li>
-                    }
-                </ul>
-            </nav>
-        </div>
-    </div>
 </header>
 
-<div class="row column">
-    <br />
-    @RenderBody()
+<div class="row">
+    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+        <br />
+        @RenderBody()
+    </div>
 </div>
 
 @section Scripts {

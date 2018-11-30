@@ -4,19 +4,21 @@
 
 <header>
     <div class="row">
-        <div class="small-12 column">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="logo">
                 <img alt="Difi alt-text" src="~/images/difi-logo.svg" />
             </div>
         </div>
     </div>
-
 </header>
 
-<div class="row column">
-    <br />
-    @RenderBody()
+<div class="row">
+    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+        <br />
+        @RenderBody()
+    </div>
 </div>
+
 
 @section Scripts {
     @RenderSection("Scripts", required: false)

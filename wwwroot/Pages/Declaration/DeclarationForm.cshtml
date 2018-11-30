@@ -10,235 +10,249 @@
     var mainIndex = 1;
 }
 
-<div class="row column">
-    <h1>@title</h1>
-</div>
-
-<hr />
-
-
-<div class="row column">
-
-    <div class="info-wrapper">
-        <h2>Du trenger følgende verktøy</h2>
-
-        <div>
-            <img src="~/images/kamera.png" />
-            <img src="~/images/mata.png" />
-            Målebånd eller tommestokk, kamera.
+<header class="no-bg">
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            tset
         </div>
     </div>
+    <hr />
+</header>
 
-</div>
+<div class="row">
+    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
-<form method="post">
-    <div class="row column">
-        Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
-        <br /><br />
-    </div>
-
-    <div class="row medium-uncollapse">
-        <div class="small-12 medium-12 columns">
-            <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help-button" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+        <div class="row column">
+            <h1>@title</h1>
         </div>
-    </div>
+
+       
 
 
-    @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
-    {
-        var subIndex = 0;
-        mainIndex++;
+        <div class="row column">
 
-        var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
+            <div class="info-wrapper">
+                <h2>Du trenger følgende verktøy</h2>
 
-        <div class="jsToggleCardContainer">
+                <div>
+                    <img src="~/images/kamera.png" />
+                    <img src="~/images/mata.png" />
+                    Målebånd eller tommestokk, kamera.
+                </div>
+            </div>
+
+        </div>
+
+        <form method="post">
+            <div class="row column">
+                Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
+                <br /><br />
+            </div>
+
             <div class="row medium-uncollapse">
                 <div class="small-12 medium-12 columns">
-                    <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Name</span></span> </button></h2>
+                    <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help-button" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="small-12 medium-12 columns">
-                    <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
 
-                        @foreach (var item in indicatorList)
-                        {
-                            var indicatorItem = item.IndicatorItem;
-                            var outcomeData = indicatorItem.OutcomeData;
+            @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+            {
+                var subIndex = 0;
+                mainIndex++;
 
+                var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
 
-                            foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
-                            {
-                                RuleData ruleData = null;
+                <div class="jsToggleCardContainer">
+                    <div class="row medium-uncollapse">
+                        <div class="small-12 medium-12 columns">
+                            <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Name</span></span> </button></h2>
+                        </div>
+                    </div>
 
-                                if (outcomeData != null)
+                    <div class="row">
+                        <div class="small-12 medium-12 columns">
+                            <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
+
+                                @foreach (var item in indicatorList)
                                 {
-                                    ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
-                                }
+                                    var indicatorItem = item.IndicatorItem;
+                                    var outcomeData = indicatorItem.OutcomeData;
 
-                                var firstQuestion = true;
-                                subIndex++;
 
-                                <div class="card">
+                                    foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                                    {
+                                        RuleData ruleData = null;
 
-                                    <div class="jsRuleItem" id="@ruleItem.Id">
-                                        @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                        if (outcomeData != null)
                                         {
-                                            AnswerData answerData = null;
+                                            ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+                                        }
 
-                                            if (ruleData != null)
-                                            {
-                                                answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
-                                            }
+                                        var firstQuestion = true;
+                                        subIndex++;
 
-                                            var hide = (answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty) && !answerItem.AlwaysVisible;
+                                        <div class="card">
 
-                                            var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                                            var orderText = mainIndex + "." + subIndex;
-
-                                            <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
-                                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                            <div class="jsRuleItem" id="@ruleItem.Id">
+                                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                                                 {
-                                                    @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
-                                                }
+                                                    AnswerData answerData = null;
 
-                                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                                {
-                                                    if (answerData != null)
+                                                    if (ruleData != null)
                                                     {
-                                                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                        answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
                                                     }
-                                                    else
-                                                    {
-                                                        @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
-                                                    }
-                                                }
 
-                                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                                {
-                                                    @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
-                                                }
+                                                    var hide = (answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty) && !answerItem.AlwaysVisible;
 
-                                                @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                                {
-                                                    var hiddenId = "answer_image_" + answerItem.Id;
-                                                    var hiddenName = "answer_image_" + formId;
-                                                    var oldId = "old_" + answerItem.Id;
-                                                    var answerDataId = "";
+                                                    var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
+                                                    var orderText = mainIndex + "." + subIndex;
 
-                                                    <div class="card-divider text-center medium-text-left">
-                                                        @if (answerData?.Image != null)
+                                                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
+                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                         {
-                                                            answerDataId = answerData.Image.Id.ToString();
-                                                            var image = answerData.Image.Container + "/" + answerData.Image.Blob;
-
-                                                            <div class="uploaded jsUploaded" id="@oldId">
-                                                                <div>
-                                                                    <ul class="listing qq-upload-list-selector qq-upload-list">
-                                                                        <li>
-                                                                            <img src="@image" alt="" width="114" />
-                                                                            <button class="link-button jsButtonRemoveImage" data-id="@answerItem.Id">Fjern bilde</button>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
+                                                            @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
                                                         }
 
-                                                        <div class="uploader" id="@answerItem.Id"></div>
-                                                        <input type="hidden" name="@hiddenName" id="@hiddenId" value="@answerDataId" />
+                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                                        {
+                                                            if (answerData != null)
+                                                            {
+                                                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                            }
+                                                            else
+                                                            {
+                                                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                            }
+                                                        }
+
+                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                                        {
+                                                            @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
+                                                        }
+
+                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                                        {
+                                                            var hiddenId = "answer_image_" + answerItem.Id;
+                                                            var hiddenName = "answer_image_" + formId;
+                                                            var oldId = "old_" + answerItem.Id;
+                                                            var answerDataId = "";
+
+                                                            <div class="card-divider text-center medium-text-left">
+                                                                @if (answerData?.Image != null)
+                                                                {
+                                                                    answerDataId = answerData.Image.Id.ToString();
+                                                                    var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+
+                                                                    <div class="uploaded jsUploaded" id="@oldId">
+                                                                        <div>
+                                                                            <ul class="listing qq-upload-list-selector qq-upload-list">
+                                                                                <li>
+                                                                                    <img src="@image" alt="" width="114" />
+                                                                                    <button class="link-button jsButtonRemoveImage" data-id="@answerItem.Id">Fjern bilde</button>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+
+                                                                <div class="uploader" id="@answerItem.Id"></div>
+                                                                <input type="hidden" name="@hiddenName" id="@hiddenId" value="@answerDataId" />
+                                                            </div>
+                                                        }
                                                     </div>
+
+                                                    firstQuestion = false;
                                                 }
                                             </div>
+                                        </div>
+                                    }
 
-                                            firstQuestion = false;
-                                        }
-                                    </div>
-                                </div>
-                            }
+                                }
 
-                        }
-
+                            </div>
+                        </div>
                     </div>
                 </div>
+            }
+            <div class="row column">
+                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
+                <br /><br />
             </div>
-        </div>
-    }
-    <div class="row column">
-        <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
-        <br /><br />
+
+        </form>
+
+        @section Scripts {
+            <script src="~/js/declarationForm.js"></script>
+
+            <link href="/js/azure.fine-uploader/fine-uploader-gallery.css" rel="stylesheet">
+            <link href="/js/azure.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet">
+            <script src="/js/azure.fine-uploader/azure.fine-uploader.js"></script>
+
+
+            <script type="text/template" id="qq-template">
+                <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
+                    <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+                    </div>
+                    <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+                        <span class="qq-upload-drop-area-text-selector"></span>
+                    </div>
+                    <ul class="listing qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+                        <li>
+                            <div class="qq-progress-bar-container-selector">
+                                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                            </div>
+                            <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                            <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
+
+                            <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["DeleteImage"]</button>
+                        </li>
+                    </ul>
+                    <div class="qq-upload-button-selector qq-upload-button">
+
+                        <div class="row ">
+                            <div class="small-10 small-centered medium-12 columns">
+                                <button class="button upload-photo"><span></span>@Localizer["AddImage"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </script>
+
+            <script>
+                $(".uploader").each(function () {
+
+                    var uploader = new qq.azure.FineUploader({
+                        element: document.getElementById($(this).attr("id")),
+                        request: {
+                            endpoint: 'https://difiimagetest.blob.core.windows.net/difi20181128'
+                        },
+                        signature: {
+                            endpoint: '/AzureHandler'
+                        },
+                        uploadSuccess: {
+                            endpoint: '/AzureHandler?id=' + $(this).attr("id")
+                        },
+                        retry: {
+                            enableAuto: true
+                        },
+                        deleteFile: {
+                            enabled: true
+                        },
+                        multiple: false,
+                        validation: {
+                            allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
+                        },
+                        debug: true
+                    });
+                });
+            </script>
+
+            @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+        }
+
     </div>
-
-</form>
-
-@section Scripts {
-    <script src="~/js/declarationForm.js"></script>
-
-    <link href="/js/azure.fine-uploader/fine-uploader-gallery.css" rel="stylesheet">
-    <link href="/js/azure.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet">
-    <script src="/js/azure.fine-uploader/azure.fine-uploader.js"></script>
-
-
-    <script type="text/template" id="qq-template">
-        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
-            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
-                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
-            </div>
-            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-                <span class="qq-upload-drop-area-text-selector"></span>
-            </div>
-            <ul class="listing qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
-                <li>
-                    <div class="qq-progress-bar-container-selector">
-                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
-                    </div>
-                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                    <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
-
-                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["DeleteImage"]</button>
-                </li>
-            </ul>
-            <div class="qq-upload-button-selector qq-upload-button">
-
-                <div class="row ">
-                    <div class="small-10 small-centered medium-12 columns">
-                        <button class="button upload-photo"><span></span>@Localizer["AddImage"]</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </script>
-
-    <script>
-        $(".uploader").each(function () {
-
-            var uploader = new qq.azure.FineUploader({
-                element: document.getElementById($(this).attr("id")),
-                request: {
-                    endpoint: 'https://difiimagetest.blob.core.windows.net/difi20181128'
-                },
-                signature: {
-                    endpoint: '/AzureHandler'
-                },
-                uploadSuccess: {
-                    endpoint: '/AzureHandler?id=' + $(this).attr("id")
-                },
-                retry: {
-                    enableAuto: true
-                },
-                deleteFile: {
-                    enabled: true
-                },
-                multiple: false,
-                validation: {
-                    allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
-                },
-                debug: true
-            });
-        });
-    </script>
-
-    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
-}
-
+</div>
