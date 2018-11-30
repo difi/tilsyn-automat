@@ -43,6 +43,7 @@
                             {
                                 var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
 
+
                                 subIndex++;
 
                                 <div class="card transparent">
@@ -80,32 +81,47 @@
                                                                 </span>
                                                             </span>
 
-                                                            <span class="small-2 columns"></span>
+                                                            <span class="small-2 columns">@answerData.Result.Text</span>
                                                         </span>
                                                     </label>
 
                                                     <div class="card-divider">
-                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                                        @if (answerData != null)
                                                         {
-                                                            @answerData.String
-                                                        }
-
-                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                                        {
-                                                            @answerData.Bool
-                                                        }
-
-                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                                        {
-                                                            @answerData.Int
-                                                        }
-
-                                                        @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                                        {
-                                                            if (answerData.Image != null)
+                                                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                             {
-                                                                var image = answerData.Image.Container + "/" + answerData.Image.Blob;
-                                                                <img src="@image" alt="" width="200" />
+                                                                @answerData.String
+                                                            }
+
+                                                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                                            {
+                                                                if (answerData?.Bool != null)
+                                                                {
+                                                                    if (answerData.Bool.Value)
+                                                                    {
+                                                                        @answerItem.BoolTrueText
+                                                                        ;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @answerItem.BoolFalseText
+                                                                    }
+                                                                }
+
+                                                            }
+
+                                                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                                            {
+                                                                @answerData.Int
+                                                            }
+
+                                                            if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                                            {
+                                                                if (answerData.Image != null)
+                                                                {
+                                                                    var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+                                                                    <img src="@image" alt="" width="200" />
+                                                                }
                                                             }
                                                         }
                                                     </div>
