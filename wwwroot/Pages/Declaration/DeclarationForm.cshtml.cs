@@ -71,7 +71,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 var outcomeDataList = new List<OutcomeData>();
 
-                foreach (var declarationTestGroup in DeclarationItemForm.IndicatorList)
+                foreach (var declarationTestGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
                 {
                     var indicator = declarationTestGroup.IndicatorItem;
 
@@ -83,13 +83,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                         DeclarationTestItemId = DeclarationItemForm.DeclarationTestItem.Id
                     };
 
-                    foreach (var ruleItem in indicator.RuleList)
+                    foreach (var ruleItem in indicator.RuleList.OrderBy(x => x.Order))
                     {
                         outcomeData.RuleDataList.Add(new RuleData
                         {
                             Id = Guid.NewGuid(),
                             RuleItemId = ruleItem.Id,
-                            AnswerDataList = ruleItem.AnswerList.Select(x => new AnswerData
+                            AnswerDataList = ruleItem.AnswerList.OrderBy(x=>x.Order).Select(x => new AnswerData
                             {
                                 Id = Guid.NewGuid(),
                                 AnswerItemId = x.Id,

@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181130101754_V12")]
+    partial class V12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,13 +320,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.ToTable("AnswerList");
 
                     b.HasData(
-                        new { Id = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), AlwaysVisible = false, Bool = false, BoolFalseText = "Nej", BoolTrueText = "Ja", LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("00000000-0000-0000-0000-000000000000"), MaxInt = 0, MinInt = 0, Order = 1, Question = "Finnes det hindringer i kundens betjeningsområde?", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 2 },
+                        new { Id = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), AlwaysVisible = false, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("00000000-0000-0000-0000-000000000000"), MaxInt = 0, MinInt = 0, Order = 1, Question = "Finnes det hindringer i kundens betjeningsområde?", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"), AlwaysVisible = false, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("00000000-0000-0000-0000-000000000000"), MaxInt = 0, MinInt = 0, Order = 3, Question = "Ta bilde", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 4 },
                         new { Id = new Guid("d7b40e3c-e7fa-44e5-b44f-750759c971cc"), AlwaysVisible = false, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), MaxInt = 0, MinInt = 0, Order = 2, Question = "Beskriv hindringene i kundens betjeningsområde.", RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09"), TypeOfAnswerId = 1 },
                         new { Id = new Guid("8a12d92b-8a6a-44e7-9517-74331a4c2483"), AlwaysVisible = false, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("00000000-0000-0000-0000-000000000000"), MaxInt = 0, MinInt = 0, Order = 4, Question = "Ta bilde", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 4 },
                         new { Id = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), AlwaysVisible = false, Bool = false, BoolFalseText = "Nej", BoolTrueText = "Ja", LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("00000000-0000-0000-0000-000000000000"), MaxInt = 0, MinInt = 0, Order = 1, Question = "Henger det gjenstander over kundens betjeningsområde?", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), AlwaysVisible = false, Bool = true, BoolFalseText = "0-219 cm, ", BoolTrueText = "220 cm eller mer", LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), MaxInt = 0, MinInt = 0, Order = 2, Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 2 },
-                        new { Id = new Guid("5544b740-0b5f-400c-b7b2-7e6472d4160b"), AlwaysVisible = true, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), MaxInt = -1, MinInt = 220, Order = 3, Question = "Mål i cm", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 3 },
+                        new { Id = new Guid("5544b740-0b5f-400c-b7b2-7e6472d4160b"), AlwaysVisible = true, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), MaxInt = 130, MinInt = 75, Order = 3, Question = "Mål i cm", RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8"), TypeOfAnswerId = 3 },
                         new { Id = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), AlwaysVisible = false, Bool = false, BoolFalseText = "Nej", BoolTrueText = "Ja", LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("00000000-0000-0000-0000-000000000000"), MaxInt = 0, MinInt = 0, Order = 1, Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?", RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("89fd2205-1047-403d-a5bd-f70a1de2f247"), AlwaysVisible = false, Bool = true, BoolFalseText = "0-149 cm, ", BoolTrueText = "150 cm eller mer", LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), MaxInt = 0, MinInt = 0, Order = 2, Question = "Hvor mange cm er det mellom betalingsterminalene?", RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 2 },
                         new { Id = new Guid("78b8d910-c0bb-4467-acbe-1320f51fe658"), AlwaysVisible = true, Bool = false, LinkedParentCorrectId = new Guid("00000000-0000-0000-0000-000000000000"), LinkedParentFailedId = new Guid("89fd2205-1047-403d-a5bd-f70a1de2f247"), MaxInt = -1, MinInt = 150, Order = 3, Question = "Mål i cm", RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), TypeOfAnswerId = 3 },

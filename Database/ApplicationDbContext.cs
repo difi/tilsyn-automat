@@ -521,6 +521,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("02d2db89-3717-48e1-883e-8e526bf6c727"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = false,
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
                 RuleItemId = ruleItem11.Id
             };
 
@@ -549,6 +551,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 1,
                 Id = Guid.Parse("a1964762-5c8f-40bb-a22d-c907149079d4"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
                 Bool = false,
                 RuleItemId = ruleItem12.Id,
             };
@@ -572,8 +576,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 3,
                 Id = Guid.Parse("5544b740-0b5f-400c-b7b2-7e6472d4160b"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
-                MinInt = 75,
-                MaxInt = 130,
+                MinInt = 220,
+                MaxInt = -1,
                 RuleItemId = ruleItem12.Id,
                 LinkedParentFailedId = answerItem122.Id,
                 AlwaysVisible = true
@@ -594,6 +598,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 1,
                 Id = Guid.Parse("202d20e0-61df-4a7c-8287-104e3b439f64"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
                 Bool = false,
                 RuleItemId = ruleItem21.Id
             };
@@ -640,6 +646,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 1,
                 Id = Guid.Parse("d8611e84-0f00-4d75-bcab-cbf127fb68b5"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
                 Bool = true,
                 RuleItemId = ruleItem31.Id
             };
@@ -659,6 +667,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 2,
                 Id = Guid.Parse("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
                 LinkedParentCorrectId = answerItem311.Id
@@ -670,6 +680,8 @@ namespace Difi.Sjalvdeklaration.Database
                 Order = 3,
                 Id = Guid.Parse("f69c1e45-99d8-4293-a242-c5ed9e126e99"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
                 LinkedParentCorrectId = answerItem311.Id

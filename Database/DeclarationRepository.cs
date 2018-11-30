@@ -219,27 +219,32 @@ namespace Difi.Sjalvdeklaration.Database
 
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            answerData.ResultId = (int) GetResultId(answerData);
+                            answerData.ResultId = (int) GetResultId(answerData, out var parentId);
+
+                            if (parentId != null)
+                            {
+                                ruleData.AnswerDataList.Single(x => x.AnswerItemId == parentId).ResultId = answerData.ResultId;
+                            }
                         }
 
-                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
-                        {
-                            ruleData.ResultId = (int) TypeOfResult.Fail;
-                        }
-                        else
-                        {
-                            ruleData.ResultId = (int) TypeOfResult.Ok;
-                        }
+                        //if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                        //{
+                        //    ruleData.ResultId = (int) TypeOfResult.Fail;
+                        //}
+                        //else
+                        //{
+                        //    ruleData.ResultId = (int) TypeOfResult.Ok;
+                        //}
                     }
 
-                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
-                    {
-                        outcomeData.ResultId = (int) TypeOfResult.Fail;
-                    }
-                    else
-                    {
-                        outcomeData.ResultId = (int) TypeOfResult.Ok;
-                    }
+                    //if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                    //{
+                    //    outcomeData.ResultId = (int) TypeOfResult.Fail;
+                    //}
+                    //else
+                    //{
+                    //    outcomeData.ResultId = (int) TypeOfResult.Ok;
+                    //}
 
                     dbContext.OutcomeData.Add(outcomeData);
                 }
@@ -285,13 +290,24 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        private TypeOfResult GetResultId(AnswerData answerData)
+        private TypeOfResult GetResultId(AnswerData answerData, out Guid? parentId)
         {
             var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
 
+            parentId = null;
+
+            if (answerItem.LinkedParentFailedId != Guid.Empty)
+            {
+                parentId = answerItem.LinkedParentFailedId;
+            }
+
             switch (answerItem.TypeOfAnswer.Id)
             {
+                case (int)TypeOfAnswer.Bool when answerData.Bool == null:
+                    return TypeOfResult.NotTested;
+
                 case (int)TypeOfAnswer.Bool when answerData.Bool == answerItem.Bool:
+
                     return TypeOfResult.Ok;
 
                 case (int)TypeOfAnswer.Bool when answerData.Bool != answerItem.Bool:
@@ -299,8 +315,19 @@ namespace Difi.Sjalvdeklaration.Database
 
                 case (int)TypeOfAnswer.Int when answerData.Int > 0:
                     {
-                        return answerData.Int >= answerItem.MinInt && answerData.Int <= answerItem.MaxInt ? TypeOfResult.Ok : TypeOfResult.Fail;
+                        if (answerItem.MaxInt > 0)
+                        {
+                            return answerData.Int >= answerItem.MinInt && answerData.Int <= answerItem.MaxInt ? TypeOfResult.Ok : TypeOfResult.Fail;
+                        }
+
+                        return answerData.Int >= answerItem.MinInt ? TypeOfResult.Ok : TypeOfResult.Fail;
                     }
+
+                case (int)TypeOfAnswer.String:
+                    return TypeOfResult.NotTestable;
+
+                case (int)TypeOfAnswer.Image:
+                    return TypeOfResult.NotTestable;
 
                 default:
                     return TypeOfResult.NotTested;
