@@ -14,7 +14,7 @@ header {
     min-height: 100px;
 
     .logo {
-        margin-top: 13px;
+        margin: 13px 0 0 -130px;
     }
 
     .profile-wrapper {
@@ -92,6 +92,9 @@ header {
 @include breakpoint(medium) {
 
     header {
+        .logo {
+            margin: 13px 0 0 0;
+        }
     }
 }
 

@@ -2757,7 +2757,7 @@ header {
   background-color: #fff;
   min-height: 100px; }
   header .logo {
-    margin-top: 13px; }
+    margin: 13px 0 0 -130px; }
   header .profile-info-area ul {
     margin: 0;
     padding: 0;
@@ -2787,6 +2787,10 @@ header {
       margin: 0 auto;
       width: 35px;
       border-radius: 1000px; }
+
+@media print, screen and (min-width: 48em) {
+  header .logo {
+    margin: 13px 0 0 0; } }
 
 footer {
   background-color: #177299;
