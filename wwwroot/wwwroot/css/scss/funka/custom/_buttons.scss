@@ -100,7 +100,6 @@ button, .button, input[type="button"], input[type="submit"] {
         margin-bottom: 0;
 
         &.small {
-
             background-position: 7px -192px;
             padding-left: 27px;
         }
@@ -110,7 +109,6 @@ button, .button, input[type="button"], input[type="submit"] {
         //background-color: $color-green;
         //color: $color-white;
         //margin-right: 1rem;
-
         &:hover {
             //background-color: darken($color-green, 5%);
         }
@@ -121,7 +119,6 @@ button, .button, input[type="button"], input[type="submit"] {
         //background-color: $color-pink;
         //color: $color-white;
         //margin-right: 1rem;
-
         &.icon {
             //padding-left: 2rem;
             //background: url('/css/cssimg/icons-sprite.svg') $color-pink 10px -288px no-repeat;
@@ -132,6 +129,22 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
+    &.white {
+        background-color: $color-white;
+        color: $light-navy;
+        font-size: 17px;
+
+
+        &:hover {
+        }
+    }
+
+    &.back {
+        background-image: url("/css/cssimg/icons-sprite.svg");
+        background-repeat: no-repeat;
+        background-position: 8px -1086px;
+        padding: 0.4em 1em 0.4em 2.5em;
+    }
 
     &.black {
         background-color: $color-black;

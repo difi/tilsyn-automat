@@ -13,7 +13,41 @@
 <header class="no-bg">
     <div class="row">
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            tset
+            <div class="row column">
+
+                <div class="small-5 medium-2 columns">
+                    <button class="button white back">Tillbake</button>
+                </div>
+
+                <div class="small-7 medium-push-6 medium-4 columns text-right">
+
+                    <div class="row  align-middle">
+                        <div class="small-8 medium-9 columns">
+                            <span class="status-text"><strong>Status</strong> under arbeid</span>
+                        </div>
+                        <div class="small-4 medium-3 columns">
+                            @{
+                                var statusDone = 75;
+                            }
+                            <div class="status status-@statusDone">
+                                <div class="status-done">@statusDone%</div>
+                            </div>
+
+                        </div>
+                    </div>
+                   
+                    <div>
+
+                    </div>
+
+                </div>
+                <div class="small-12 medium-pull-4 medium-6 text-center medium-text-left columns">
+
+                    <h1>@title</h1>
+                </div>
+
+
+            </div>
         </div>
     </div>
     <hr />
@@ -21,13 +55,6 @@
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-
-        <div class="row column">
-            <h1>@title</h1>
-        </div>
-
-       
-
 
         <div class="row column">
 

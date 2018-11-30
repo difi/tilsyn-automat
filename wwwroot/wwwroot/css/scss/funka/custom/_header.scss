@@ -15,6 +15,7 @@ header {
 
     &.no-bg {
         background-color: transparent;
+        margin-top: 1.5rem;
     }
 
     .logo {
@@ -78,6 +79,53 @@ header {
 
     .toggle-profile-button {
         // Button is in button.scss
+    }
+
+    .status-text {
+        font-size: 17px;
+        line-height: 19px;
+        display: inline-block;
+    }
+
+
+    .status {
+        width: 54px;
+        height: 54px;
+        display: inline-block;
+        background-color: $color-white;
+        border: 2px solid $very-light-purple;
+        box-shadow: inset 0px 0px 0px 3px $ice-blue;
+        border-radius: 1000px;
+        padding-top: 15px;
+        text-align: center;
+        transform: rotate(-45deg);
+        transition: border 800ms ease-out;
+
+        .status-done {
+            font-size: 14px;
+            transform: rotate(45deg);
+        }
+
+        &.status-25 {
+            border-right-color: $dirty-blue;
+        }
+
+
+        &.status-50 {
+            border-right-color: $dirty-blue;
+            border-bottom-color: $dirty-blue;
+        }
+
+
+        &.status-75 {
+            border-right-color: $dirty-blue;
+            border-bottom-color: $dirty-blue;
+            border-left-color: $dirty-blue;
+        }
+
+        &.status-100 {
+            border-color: $dirty-blue;
+        }
     }
 }
 
