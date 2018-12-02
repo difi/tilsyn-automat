@@ -219,12 +219,9 @@ namespace Difi.Sjalvdeklaration.Database
 
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            answerData.ResultId = (int) GetResultId(answerData, out var parentId);
+                            answerData.ResultId = (int) GetResultId(answerData);
 
-                            if (parentId != null)
-                            {
-                                ruleData.AnswerDataList.Single(x => x.AnswerItemId == parentId).ResultId = answerData.ResultId;
-                            }
+                            UpdateParent(ruleData, answerData);
                         }
 
                         //if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
@@ -266,6 +263,23 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
+        private void UpdateParent(RuleData ruleData, AnswerData answerData)
+        {
+            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
+
+            if (answerData.ResultId == (int) TypeOfResult.Ok || answerData.ResultId == (int) TypeOfResult.Fail)
+            {
+                if (answerItem.LinkedParentFailedId != Guid.Empty)
+                {
+                    var item = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
+
+                    item.ResultId = answerData.ResultId;
+
+                    UpdateParent(ruleData, item);
+                }
+            }
+        }
+
         public ApiResult SendIn(Guid id)
         {
             var result = new ApiResult();
@@ -290,16 +304,9 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        private TypeOfResult GetResultId(AnswerData answerData, out Guid? parentId)
+        private TypeOfResult GetResultId(AnswerData answerData)
         {
             var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
-
-            parentId = null;
-
-            if (answerItem.LinkedParentFailedId != Guid.Empty)
-            {
-                parentId = answerItem.LinkedParentFailedId;
-            }
 
             switch (answerItem.TypeOfAnswer.Id)
             {
@@ -323,10 +330,16 @@ namespace Difi.Sjalvdeklaration.Database
                         return answerData.Int >= answerItem.MinInt ? TypeOfResult.Ok : TypeOfResult.Fail;
                     }
 
-                case (int)TypeOfAnswer.String:
+                case (int)TypeOfAnswer.String when String.IsNullOrWhiteSpace(answerData.String):
+                    return TypeOfResult.NotTested;
+
+                case (int)TypeOfAnswer.String when !String.IsNullOrWhiteSpace(answerData.String):
                     return TypeOfResult.NotTestable;
 
-                case (int)TypeOfAnswer.Image:
+                case (int)TypeOfAnswer.Image when answerData.ImageId == null:
+                    return TypeOfResult.NotTested;
+
+                case (int)TypeOfAnswer.Image when answerData.ImageId != null:
                     return TypeOfResult.NotTestable;
 
                 default:

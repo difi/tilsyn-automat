@@ -1,4 +1,7 @@
 ﻿@page
+@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
+@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
+@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
 @using Difi.Sjalvdeklaration.Shared.Enum
 @model wwwroot.Pages.Declaration.DeclarationReadModel
 
@@ -85,7 +88,11 @@
                                     foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                                     {
                                         var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
-
+                                        AnswerData lastAnswerData = new AnswerData
+                                        {
+                                            Id = Guid.Empty,
+                                            ResultId = -1,
+                                        };
 
                                         subIndex++;
 
@@ -105,71 +112,99 @@
                                                     var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                                                     var orderText = mainIndex + "." + subIndex;
 
-                                                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
-
-                                                        <div class="form-field">
-
-                                                            <label class="legend">
-                                                                <span class="collapse row">
-                                                                    <span class="small-10 columns">
-                                                                        <span class="collapse row">
-                                                                            <span class="small-2 medium-1 columns">
-                                                                                <span class="legend-number">@orderText</span>
-                                                                            </span>
-                                                                            <span class="small-10 medium-11 columns">
-                                                                                <span class="legend-text">
-                                                                                    @answerItem.Question
+                                                    if ((lastAnswerData.ResultId != (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId == Guid.Empty) || (lastAnswerData.Result.Id != (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId == Guid.Empty))
+                                                    {
+                                                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
+                                                            <div class="form-field"> 
+                                                                <label class="legend">
+                                                                    <span class="collapse row">
+                                                                        <span class="small-10 columns">
+                                                                            <span class="collapse row">
+                                                                                <span class="small-2 medium-1 columns">
+                                                                                    <span class="legend-number">@orderText</span>
+                                                                                </span>
+                                                                                <span class="small-10 medium-11 columns">
+                                                                                    <span class="legend-text">
+                                                                                        @answerItem.Question
+                                                                                    </span>
                                                                                 </span>
                                                                             </span>
                                                                         </span>
+
+                                                                        <span class="small-2 columns">@answerData.Result.Text</span>
                                                                     </span>
+                                                                </label>
 
-                                                                    <span class="small-2 columns">@answerData.Result.Text</span>
-                                                                </span>
-                                                            </label>
-
-                                                            <div class="card-divider">
-                                                                @if (answerData != null)
-                                                                {
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                                                <div class="card-divider">
+                                                                    @if (answerData != null)
                                                                     {
-                                                                        @answerData.String
-                                                                    }
-
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                                                    {
-                                                                        if (answerData?.Bool != null)
+                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                                         {
-                                                                            if (answerData.Bool.Value)
-                                                                            {
-                                                                                @answerItem.BoolTrueText
-                                                                                ;
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                @answerItem.BoolFalseText
-                                                                            }
+                                                                            @answerData.String
                                                                         }
 
-                                                                    }
-
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                                                    {
-                                                                        @answerData.Int
-                                                                    }
-
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                                                    {
-                                                                        if (answerData.Image != null)
+                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                                                         {
-                                                                            var image = answerData.Image.Container + "/" + answerData.Image.Blob;
-                                                                            <img src="@image" alt="" width="200" />
+                                                                            if (answerData?.Bool != null)
+                                                                            {
+                                                                                if (answerData.Bool.Value)
+                                                                                {
+                                                                                    @answerItem.BoolTrueText
+                                                                                    ;
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    @answerItem.BoolFalseText
+                                                                                }
+                                                                            }
+
+                                                                        }
+
+                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                                                        {
+                                                                            @answerData.Int
+                                                                        }
+
+                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                                                        {
+                                                                            if (answerData.Image != null)
+                                                                            {
+                                                                                var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+                                                                                <img src="@image" alt="" width="200" />
+                                                                            }
                                                                         }
                                                                     }
-                                                                }
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
+                                                            <div class="form-field"  style="background-color: red;">
+                                                                <label class="legend">
+                                                                    <span class="collapse row">
+                                                                        <span class="small-10 columns">
+                                                                            <span class="collapse row">
+                                                                                <span class="small-2 medium-1 columns">
+                                                                                    <span class="legend-number">@orderText</span>
+                                                                                </span>
+                                                                                <span class="small-10 medium-11 columns">
+                                                                                    <span class="legend-text">
+                                                                                        @answerItem.Question
+                                                                                    </span>
+                                                                                </span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                        <span class="small-2 columns">@answerData.Result.Text</span>
+                                                                    </span>
+                                                                </label>
+                                                           </div>
+                                                        </div>
+                                                    }
+
+                                                    lastAnswerData = answerData;
                                                 }
 
                                             </div>
