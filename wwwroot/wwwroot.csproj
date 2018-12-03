@@ -113,6 +113,9 @@
     <Content Update="Pages\Shared\EditorTemplates\CheckBoxList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\CustomImage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\EditorTemplates\CustomTextBoxString.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

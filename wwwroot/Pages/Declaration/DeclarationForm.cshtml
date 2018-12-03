@@ -35,7 +35,7 @@
 
                         </div>
                     </div>
-                   
+
                     <div>
 
                     </div>
@@ -55,9 +55,7 @@
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-
         <div class="row column">
-
             <div class="info-wrapper">
                 <h2>Du trenger følgende verktøy</h2>
 
@@ -67,7 +65,6 @@
                     Målebånd eller tommestokk, kamera.
                 </div>
             </div>
-
         </div>
 
         <form method="post">
@@ -76,12 +73,31 @@
                 <br /><br />
             </div>
 
-            <div class="row medium-uncollapse">
-                <div class="small-12 medium-12 columns">
-                    <h2 class="h2-toggle"><button disabled id="ett" aria-controls="card-help-button" aria-expanded="false" class="toogle-header-button"><span class="toggle-header-number">1</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">Show/hide</span></span> </button></h2>
+            <div class="jsToggleCardContainer">
+                <div class="row medium-uncollapse">
+                    <div class="small-12 medium-12 columns">
+                        <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] Automaten</span></span> </button></h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-12 medium-12 columns">
+                        <div class="jsToggleCardTarget">
+                            <div class="card">
+                                @Html.EditorFor(x => x.DeclarationItemForm.Name, "CustomTextBoxString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_string_b", firstQuestion = true, orderText = "1.1", value = "" })
+                            </div>
+
+                            <div class="card">
+                                @Html.EditorFor(x => x.DeclarationItemForm.Name, "CustomTextBoxString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_a", firstQuestion = true, orderText = "1.2", value = "" })
+                            </div>
+
+                            <div class="card">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
 
             @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
             {
@@ -120,7 +136,6 @@
                                         subIndex++;
 
                                         <div class="card">
-
                                             <div class="jsRuleItem" id="@ruleItem.Id">
                                                 @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                                                 {
@@ -161,32 +176,7 @@
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                         {
-                                                            var hiddenId = "answer_image_" + answerItem.Id;
-                                                            var hiddenName = "answer_image_" + formId;
-                                                            var oldId = "old_" + answerItem.Id;
-                                                            var answerDataId = "";
-
-                                                            <div class="card-divider text-center medium-text-left">
-                                                                @if (answerData?.Image != null)
-                                                                {
-                                                                    answerDataId = answerData.Image.Id.ToString();
-                                                                    var image = answerData.Image.Container + "/" + answerData.Image.Blob;
-
-                                                                    <div class="uploaded jsUploaded" id="@oldId">
-                                                                        <div>
-                                                                            <ul class="listing qq-upload-list-selector qq-upload-list">
-                                                                                <li>
-                                                                                    <img src="@image" alt="" width="114" />
-                                                                                    <button class="link-button jsButtonRemoveImage" data-id="@answerItem.Id">Fjern bilde</button>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                }
-
-                                                                <div class="uploader" id="@answerItem.Id"></div>
-                                                                <input type="hidden" name="@hiddenName" id="@hiddenId" value="@answerDataId" />
-                                                            </div>
+                                                            @Html.EditorFor(x => answerItem, "CustomImage", new { text = answerItem.Question, id = "answer_image_" + formId, answerData = answerData, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
                                                         }
                                                     </div>
 
