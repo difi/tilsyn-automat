@@ -57,7 +57,7 @@
                             @if (item.Status.Id != (int) DeclarationStatus.SentIn && item.Status.Id != (int) DeclarationStatus.Finished && item.Status.Id != (int) DeclarationStatus.Canceled)
                             {
                                 <form method="post">
-                                    <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">Öppna</a>
+                                    <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">Öppna</a>
                                 </form>
                             }
                         </td>

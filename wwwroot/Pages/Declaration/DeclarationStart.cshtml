@@ -1,0 +1,15 @@
+﻿@page
+@using Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
+
+@model DeclarationStartModel
+@{
+    ViewData["Title"] = "DeclarationStart";
+}
+
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationList" })
+
+<div class="row">
+    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+        <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@Model.DeclarationItemForm.Id">Ok, nå vil jeg starte!</a>
+    </div>
+</div>
