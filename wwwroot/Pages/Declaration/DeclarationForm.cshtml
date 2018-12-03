@@ -88,9 +88,9 @@
                             </div>
 
                             <div class="card">
-                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "CustomTextBoxString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_testitem_descriptionintext", firstQuestion = true, orderText = "1.2", value = "" })
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "CustomTextBoxString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_testitem_descriptionintext", firstQuestion = true, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText })
                             </div>
-
+                            
                             <div class="card">
                                 @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "CustomImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", id = "answer_image_testitem_image1", firstQuestion = true, orderText = "1.3", value = "" })
                             </div>
