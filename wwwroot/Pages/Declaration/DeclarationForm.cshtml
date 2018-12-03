@@ -10,7 +10,7 @@
     var mainIndex = 1;
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50 })
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id })
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
@@ -44,7 +44,7 @@
                         <div class="jsToggleCardTarget">
                             <div class="card">
                                 @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, "AnswerDropdownListInt", new { list = Model.SelectSupplierAndVersionList, text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_int_supplierandversion", firstQuestion = true, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId })
-                                
+
                                 <div id="jsSupplierAndVersionOther">
                                     @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", id = "answer_string_testitem_supplierandversionother", firstQuestion = false, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther })
                                 </div>
