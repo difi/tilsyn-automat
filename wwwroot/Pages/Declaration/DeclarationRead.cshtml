@@ -17,13 +17,11 @@
     <div class="row">
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row column">
-
                 <div class="small-5 medium-2 columns">
                     <button class="button white back">Tillbake</button>
                 </div>
 
                 <div class="small-7 medium-push-6 medium-4 columns text-right">
-
                     <div class="row  align-middle">
                         <div class="small-8 medium-9 columns">
                             <span class="status-text"><strong>Status</strong> under arbeid</span>
@@ -35,194 +33,286 @@
                             <div class="status status-@statusDone">
                                 <div class="status-done">@statusDone%</div>
                             </div>
-
                         </div>
                     </div>
-
-                    <div>
-
-                    </div>
-
                 </div>
                 <div class="small-12 medium-pull-4 medium-6 text-center medium-text-left columns">
-
                     <h1>@title</h1>
                 </div>
-
-
             </div>
         </div>
     </div>
     <hr />
 </header>
 
-
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
-        <form method="post">
+        <div class="jsToggleCardContainer">
+            <div class="row medium-uncollapse">
+                <div class="small-12 medium-12 columns">
+                    <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] Automaten</span></span> </button></h2>
+                </div>
+            </div>
 
-            @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
-            {
-                var subIndex = 0;
-                mainIndex++;
+            <div class="row">
+                <div class="small-12 medium-12 columns">
+                    <div class="jsToggleCardTarget">
+                        <div class="card transparent">
+                            <div class="form-field">
+                                <label class="legend">
+                                    <span class="collapse row">
+                                        <span class="small-10 columns">
+                                            <span class="collapse row">
+                                                <span class="small-2 medium-1 columns">
+                                                    <span class="legend-number">1.2</span>
+                                                </span>
+                                                <span class="small-10 medium-11 columns">
+                                                    <span class="legend-text">
+                                                        Beskriv hvilken betalingsterminal du velger å kontrollere.
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
 
-                var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
+                                        <span class="small-2 columns"></span>
+                                    </span>
+                                </label>
 
-                <div class="jsToggleCardContainer">
-                    <div class="row medium-uncollapse">
-                        <div class="small-12 medium-12 columns">
-                            <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Name</span></span> </button></h2>
+                                <div class="card-divider">
+                                    @Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="small-12 medium-12 columns">
-                            <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
+                        <div class="card transparent">
+                            <div class="form-field">
+                                <label class="legend">
+                                    <span class="collapse row">
+                                        <span class="small-10 columns">
+                                            <span class="collapse row">
+                                                <span class="small-2 medium-1 columns">
+                                                    <span class="legend-number">1.2</span>
+                                                </span>
+                                                <span class="small-10 medium-11 columns">
+                                                    <span class="legend-text">
+                                                        Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
 
-                                @foreach (var item in indicatorList)
-                                {
-                                    var indicatorItem = item.IndicatorItem;
-                                    var outcomeData = indicatorItem.OutcomeData;
+                                        <span class="small-2 columns"></span>
+                                    </span>
+                                </label>
 
-                                    foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
-                                    {
-                                        var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+                                <div class="card-divider">
+                                    @{
+                                        var image1 = Model.DeclarationItemForm.DeclarationTestItem.Image1.Container + "/" + Model.DeclarationItemForm.DeclarationTestItem.Image1.Blob;
+                                    };
+                                    <img src="@image1" alt="" width="200" />
+                                </div>
+                            </div>
+                        </div>
 
-                                        AnswerData lastAnswerData = new AnswerData
-                                        {
-                                            Id = Guid.Empty,
-                                            ResultId = -1,
-                                        };
+                        <div class="card transparent">
+                            <div class="form-field">
+                                <label class="legend">
+                                    <span class="collapse row">
+                                        <span class="small-10 columns">
+                                            <span class="collapse row">
+                                                <span class="small-2 medium-1 columns">
+                                                    <span class="legend-number">1.3</span>
+                                                </span>
+                                                <span class="small-10 medium-11 columns">
+                                                    <span class="legend-text">
+                                                        Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </span>
 
-                                        subIndex++;
+                                        <span class="small-2 columns"></span>
+                                    </span>
+                                </label>
 
-                                        <div class="card transparent">
-                                            <div class="jsRuleItem" id="@ruleItem.Id">
-                                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                                                {
-                                                    var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
-
-                                                    var hide = answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty;
-
-                                                    if (answerItem.AlwaysVisible)
-                                                    {
-                                                        hide = false;
-                                                    }
-
-                                                    var viewAnswerItem = true;
-
-                                                    if (lastAnswerData != null && answerItem != null)
-                                                    {
-                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
-                                                        {
-                                                            if (answerData.ResultId == (int) TypeOfResult.NotTestable)
-                                                            {
-                                                                viewAnswerItem = false;
-                                                            }
-                                                        }
-
-                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
-                                                        {
-                                                            if (answerData.ResultId == (int)TypeOfResult.NotTested)
-                                                            {
-                                                                viewAnswerItem = false;
-                                                            }
-                                                        }
-
-                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
-                                                        {
-                                                            viewAnswerItem = false;
-                                                        }
-
-                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
-                                                        {
-                                                            viewAnswerItem = false;
-                                                        }
-                                                    }
-
-                                                    var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
-                                                    var orderText = mainIndex + "." + subIndex;
-
-                                                    if (viewAnswerItem)
-                                                    {
-                                                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
-                                                            <div class="form-field">
-                                                                <label class="legend">
-                                                                    <span class="collapse row">
-                                                                        <span class="small-10 columns">
-                                                                            <span class="collapse row">
-                                                                                <span class="small-2 medium-1 columns">
-                                                                                    <span class="legend-number">@orderText</span>
-                                                                                </span>
-                                                                                <span class="small-10 medium-11 columns">
-                                                                                    <span class="legend-text">
-                                                                                        @answerItem.Question
-                                                                                    </span>
-                                                                                </span>
-                                                                            </span>
-                                                                        </span>
-
-                                                                        <span class="small-2 columns">@answerData.Result.Text</span>
-                                                                    </span>
-                                                                </label>
-
-                                                                <div class="card-divider">
-                                                                    @if (answerData != null)
-                                                                    {
-                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                                                                        {
-                                                                            @answerData.String
-                                                                        }
-
-                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                                                        {
-                                                                            if (answerData?.Bool != null)
-                                                                            {
-                                                                                if (answerData.Bool.Value)
-                                                                                {
-                                                                                    @answerItem.BoolTrueText
-                                                                                    ;
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    @answerItem.BoolFalseText
-                                                                                }
-                                                                            }
-
-                                                                        }
-
-                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                                                        {
-                                                                            @answerData.Int
-                                                                        }
-
-                                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                                                        {
-                                                                            if (answerData.Image != null)
-                                                                            {
-                                                                                var image = answerData.Image.Container + "/" + answerData.Image.Blob;
-                                                                                <img src="@image" alt="" width="200" />
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    }
-
-                                                    lastAnswerData = answerData;
-                                                }
-
-                                            </div>
-                                        </div>
-                                    }
-                                }
+                                <div class="card-divider">
+                                    @{
+                                        var image2 = Model.DeclarationItemForm.DeclarationTestItem.Image2.Container + "/" + Model.DeclarationItemForm.DeclarationTestItem.Image2.Blob;
+                                    };
+                                    <img src="@image2" alt="" width="200" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            }
+            </div>
+        </div>
+
+        @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+        {
+            var subIndex = 0;
+            mainIndex++;
+
+            var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
+
+            <div class="jsToggleCardContainer">
+                <div class="row medium-uncollapse">
+                    <div class="small-12 medium-12 columns">
+                        <h2 class="h2-toggle">
+                            <button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Name</span></span> </button>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="small-12 medium-12 columns">
+                        <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
+
+                            @foreach (var item in indicatorList)
+                            {
+                                var indicatorItem = item.IndicatorItem;
+                                var outcomeData = indicatorItem.OutcomeData;
+
+                                foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                                {
+                                    var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+
+                                    AnswerData lastAnswerData = new AnswerData
+                                    {
+                                        Id = Guid.Empty,
+                                        ResultId = -1,
+                                    };
+
+                                    subIndex++;
+
+                                    <div class="card transparent">
+                                        <div class="jsRuleItem" id="@ruleItem.Id">
+                                            @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                            {
+                                                var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+
+                                                var hide = answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty;
+
+                                                if (answerItem.AlwaysVisible)
+                                                {
+                                                    hide = false;
+                                                }
+
+                                                var viewAnswerItem = true;
+
+                                                if (lastAnswerData != null && answerItem != null)
+                                                {
+                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                    {
+                                                        if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+                                                    }
+
+                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                    {
+                                                        if (answerData.ResultId == (int)TypeOfResult.NotTested)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+                                                    }
+
+                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                    {
+                                                        viewAnswerItem = false;
+                                                    }
+
+                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                                    {
+                                                        viewAnswerItem = false;
+                                                    }
+                                                }
+
+                                                var orderText = mainIndex + "." + subIndex;
+
+                                                if (viewAnswerItem)
+                                                {
+                                                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
+                                                        <div class="form-field">
+                                                            <label class="legend">
+                                                                <span class="collapse row">
+                                                                    <span class="small-10 columns">
+                                                                        <span class="collapse row">
+                                                                            <span class="small-2 medium-1 columns">
+                                                                                <span class="legend-number">@orderText</span>
+                                                                            </span>
+                                                                            <span class="small-10 medium-11 columns">
+                                                                                <span class="legend-text">
+                                                                                    @answerItem.Question
+                                                                                </span>
+                                                                            </span>
+                                                                        </span>
+                                                                    </span>
+
+                                                                    <span class="small-2 columns">@answerData.Result.Text</span>
+                                                                </span>
+                                                            </label>
+
+                                                            <div class="card-divider">
+                                                                @if (answerData != null)
+                                                                {
+                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                                                    {
+                                                                        @answerData.String
+                                                                    }
+
+                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                                                    {
+                                                                        if (answerData?.Bool != null)
+                                                                        {
+                                                                            if (answerData.Bool.Value)
+                                                                            {
+                                                                                @answerItem.BoolTrueText
+                                                                                ;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @answerItem.BoolFalseText
+                                                                            }
+                                                                        }
+
+                                                                    }
+
+                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                                                    {
+                                                                        @answerData.Int
+                                                                    }
+
+                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                                                    {
+                                                                        if (answerData.Image != null)
+                                                                        {
+                                                                            var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+                                                                            <img src="@image" alt="" width="200" />
+                                                                        }
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                lastAnswerData = answerData;
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <form method="post">
 
             <div class="row">
                 <div class="small-12 medium-4 columns">
