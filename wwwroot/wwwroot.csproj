@@ -107,19 +107,37 @@
     <Content Update="Pages\AzureHandler.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\CustomRadioButtonBool.cshtml">
+    <Content Update="Pages\Shared\EditorTemplates\AnswerBool.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\AnswerDropdownListInt.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\CheckBoxList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\CustomTextBoxString.cshtml">
+    <Content Update="Pages\Shared\EditorTemplates\AnswerImage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\AnswerString.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\DateTime.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\DisplayValueList.cshtml">
+    <Content Update="Pages\Shared\DisplayTemplates\AnswerBool.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\DisplayTemplates\AnswerImage.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\DisplayTemplates\AnswerInt.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\DisplayTemplates\AnswerString.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\DisplayTemplates\ValueList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\DropdownListInt.cshtml">
@@ -131,10 +149,10 @@
     <Content Update="Pages\Shared\EditorTemplates\DropdownListEnum.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\Display.cshtml">
+    <Content Update="Pages\Shared\DisplayTemplates\String.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\CustomTextBoxInt.cshtml">
+    <Content Update="Pages\Shared\EditorTemplates\AnswerInt.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\File.cshtml">

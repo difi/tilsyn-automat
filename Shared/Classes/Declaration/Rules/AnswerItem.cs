@@ -42,5 +42,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         [NotMapped]
         public string String { get; set; }
+
+        [NotMapped]
+        public ImageItem Image { get; set; }
     }
 }

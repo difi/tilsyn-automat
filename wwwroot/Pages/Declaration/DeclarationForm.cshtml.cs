@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -21,6 +24,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public List<TestGroupItem> TestGroupItemList { get; set; }
 
+        [BindProperty]
+        [Display(Name = "Välj")]
+        public List<SelectListItem> SelectSupplierAndVersionList { get; set; }
+
         public DeclarationFormModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -31,6 +38,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
+                var typeOfStatuses = (await apiHttpClient.Get<List<ValueListTypeOfSupplierAndVersion>>("/api/ValueList/GetAllTypeOfSupplierAndVersion")).Data;
+
+                SelectSupplierAndVersionList = typeOfStatuses.Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = $"{x.Text}",
+                    Selected = false
+                }).ToList();
+
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
                 var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
 
@@ -69,6 +85,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
 
+                var declarationTestItem = new DeclarationTestItem
+                {
+                    Id = DeclarationItemForm.Id,
+                    SupplierAndVersionId = GetAnswerFromFormInt("answer_int_supplierandversion"),
+                    SupplierAndVersionOther = GetAnswerFromFormString("answer_string_testitem_supplierandversionother"),
+                    DescriptionInText = GetAnswerFromFormString("answer_string_testitem_descriptionintext"),
+                    Image1Id = GetAnswerFromFormImage("answer_image_testitem_image1"),
+                    Image2Id = GetAnswerFromFormImage("answer_image_testitem_image2")
+                };
+
                 var outcomeDataList = new List<OutcomeData>();
 
                 foreach (var declarationTestGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
@@ -105,7 +131,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     outcomeDataList.Add(outcomeData);
                 }
 
-                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, OutcomeDataList = outcomeDataList});
+                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, OutcomeDataList = outcomeDataList, DeclarationTestItem = declarationTestItem });
 
                 if (result.Succeeded)
                 {

@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model int
 
 @{
     var name = ViewData["id"];
@@ -11,7 +11,6 @@
 <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
     <div class="legend">
         <span class="collapse row">
-
             <span class="small-10 columns">
                 <span class="collapse row">
                     <span class="small-2 medium-1 columns">
@@ -31,7 +30,6 @@
             <span class="small-2 columns text-right">
                 <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Lukk hjelp</span></button>
             </span>
-
         </span>
     </div>
 
@@ -42,7 +40,6 @@
         <h3>Hensikt</h3>
         <p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.</p>
     </div>
-
 </div>
 
 <div class="form-field">
@@ -79,6 +76,18 @@
     </label>
 
     <div class="card-divider">
-        <textarea id="@name" name="@name">@value</textarea>
+        <select name="@name">
+            @foreach (var item in (List<SelectListItem>)ViewData["list"])
+            {
+                if (value?.ToString() == item.Value)
+                {
+                    <option value="@item.Value" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        </select>
     </div>
 </div>

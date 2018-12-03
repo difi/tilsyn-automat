@@ -5966,7 +5966,7 @@
 
                     options.log("DatabaseId: " + dbId + " - UploadId: " + uploadId);
 
-                    $("#old_" + uploadId).hide();
+                    $("#old_answer_image_" + uploadId).hide();
 
                     $("#answer_image_" + uploadId).val(dbId);
 

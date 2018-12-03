@@ -42,6 +42,8 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image1)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image2)
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
@@ -201,7 +203,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList)
+        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList, DeclarationTestItem declarationTestItem)
         {
             var result = new ApiResult();
 
@@ -246,8 +248,14 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.OutcomeData.Add(outcomeData);
                 }
 
-                var dbItem = dbContext.DeclarationList.Single(x => x.Id == declarationItemId);
+                var dbItem = dbContext.DeclarationList.Include(x=>x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
                 dbItem.StatusId = (int) DeclarationStatus.Started;
+
+                dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;
+                dbItem.DeclarationTestItem.SupplierAndVersionOther = declarationTestItem.SupplierAndVersionOther;
+                dbItem.DeclarationTestItem.DescriptionInText = declarationTestItem.DescriptionInText;
+                dbItem.DeclarationTestItem.Image1Id = declarationTestItem.Image1Id;
+                dbItem.DeclarationTestItem.Image2Id = declarationTestItem.Image2Id;
 
                 dbContext.SaveChanges();
 
