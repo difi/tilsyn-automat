@@ -8,7 +8,7 @@
 	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#458596;}
 	.st3{fill:#458596;}
 	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#17667C;}
-	.st5{fill:#17667C;}
+	.st5{display:none;}
 	.st6{fill:#1F3F43;}
 </style>
 <g id="plus-white">
@@ -78,10 +78,20 @@
 			c-0.5,0-0.8,0.4-0.8,0.8L115.4,717L115.4,717z"/>
 	</g>
 </g>
-<g id="Sorter">
-	<g transform="translate(-2.000000, 0.000000)">
-		<g id="Combined-Shape_1_">
-			<path class="st5" d="M108,810h7l-3.2,6L108,810z M115,807h-7l3.2-6L115,807z"/>
+<g id="Sorter_1_">
+	<g id="Saksbehandlare-egenkontroller" transform="translate(-952.000000, -529.000000)">
+		<g id="Table-954" transform="translate(373.000000, 499.000000)">
+			<g id="Table-head-text" transform="translate(18.000000, 18.000000)">
+				<g id="row">
+					<g transform="translate(559.000000, 12.000000)">
+						<g id="Combined-Shape" class="st5">
+						</g>
+						<g>
+							<rect id="Base_1_" x="107" y="801" class="st2" width="16" height="16"/>
+						</g>
+					</g>
+				</g>
+			</g>
 		</g>
 	</g>
 </g>
@@ -101,15 +111,6 @@
 			C-153.9,996-153.7,995.9-153.5,995.9z"/>
 		<path class="st6" d="M-157.4,990.5c0.3,0,0.5,0.2,0.5,0.5v11.3c0,0.3-0.2,0.5-0.5,0.5s-0.5-0.2-0.5-0.5V991
 			C-157.9,990.7-157.7,990.5-157.4,990.5z"/>
-	</g>
-</g>
-<g id="back-arrow">
-	<g transform="translate(267.000000, 10.000000)">
-		<path class="st5" d="M-259.8,1100.8c0,0.1,0,0.3-0.1,0.3c-0.1,0.3-0.3,0.4-0.5,0.3l-5.1-5.1c-0.2-0.1-0.2-0.3-0.2-0.6
-			c0-0.3,0.1-0.4,0.2-0.6l5.1-6.5c0.2-0.3,0.4-0.1,0.5,0.1s0.1,0.7-0.1,1l-4.5,5.7l4.6,4.6C-259.8,1100.2-259.8,1100.5-259.8,1100.8
-			z"/>
-		<path class="st5" d="M-242.7,1094.9c0,0.4-0.3,0.6-0.9,0.6l-20.2,0.2c-0.6,0-0.9-0.2-0.9-0.6s0.3-0.6,0.9-0.6l20.2-0.2
-			C-243.1,1094.3-242.7,1094.5-242.7,1094.9z"/>
 	</g>
 </g>
 </svg>

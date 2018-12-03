@@ -120,6 +120,9 @@
   <data name="Admin-clients-delete" xml:space="preserve">
     <value>Slett virksomhet</value>
   </data>
+  <data name="Admin-clients-legend-basic-info" xml:space="preserve">
+    <value>Grunduppgifter</value>
+  </data>
   <data name="Admin-clients-legend-business-addressd" xml:space="preserve">
     <value>Forretningsadresse</value>
   </data>

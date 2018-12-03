@@ -22,6 +22,8 @@ div {
                 font-weight: bold;
                 color: $light-navy;
                 text-decoration: underline;
+                display: inline-block;
+                line-height: 17px;
             }
         }
 
@@ -39,6 +41,7 @@ div {
         border-collapse: collapse;
         border-bottom: $cool-grey 1px solid;
         padding: 10px 4px;
+        line-height: 16px;
     }
 
     .tablesorter-default tfoot td, .tablesorter-default tfoot th {
@@ -54,6 +57,7 @@ div {
             white-space: normal;
             padding: 6px 22px 6px 6px;
             display: inline-block;
+            line-height: 16px;
         }
     }
 

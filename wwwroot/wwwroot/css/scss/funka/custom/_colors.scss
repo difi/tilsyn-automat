@@ -33,21 +33,9 @@ $ice-blue:                          #e7eff1;
 $light-navy:                        #17667c;
 $cool-grey:                         #a2aab1;
 $very-light-purple:                 #e7dde7;
-
-
-// GREEN
-$color-green: #1d754f;
-$color-green-light:                 #d3f5df;
-$color-green-dark:                  #7fffc7;
-
-
-// PINK/RED
-$color-pink:                        #d41472;
-$color-pink-light:                  #ffeef6;
-$color-pink-dark:                   #e570a9;
-
-
-$local-navigation-border:            #478dac;
+$bg-forms:                          #f2eff2;
+$alt-button-bg-color:               #B5D2DB;
+$alt-button-color:                  #303132;
 
 
 // Tabbed - border -etc
@@ -55,6 +43,5 @@ $tabbed-color:                      $color-blue-darkest;
 $border-color:                      $light-blue-grey;
 
 
-
 // Error colors
-$color-error: $color-pink-light;
+$color-error:                       #ffeef6;

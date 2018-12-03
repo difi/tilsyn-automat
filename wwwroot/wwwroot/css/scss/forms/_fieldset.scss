@@ -37,6 +37,8 @@ $legend-padding: rem-calc(0 3) !default;
     }
 }
 
+
+
 @mixin foundation-form-fieldset {
     fieldset {
         margin: 0;
@@ -48,12 +50,19 @@ $legend-padding: rem-calc(0 3) !default;
         max-width: 100%;
         margin-bottom: $form-spacing * 0.5;
         font-weight: bold;
-        font-size: 17px;
+        font-size: rem-calc(map-deep-get($header-styles, small, h2, font-size));
         font-family: $header-font-family;
         font-weight: $header-font-weight;
     }
 
     .fieldset {
         @include fieldset;
+    }
+}
+
+// MEDIUM + LARGE SCREEN
+@include breakpoint(medium) {
+    legend, .legend {
+        font-size: rem-calc(map-deep-get($header-styles, medium, h2, font-size));
     }
 }

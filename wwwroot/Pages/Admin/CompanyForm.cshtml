@@ -2,120 +2,270 @@
 @model CompanyFormModel
 
 @{
-    var title = Model.CompanyItemForm.Id != Guid.Empty ? "Oppdater virksamhet" : "Ny interne virksamhet";
+    var title = Model.CompanyItemForm.Id != Guid.Empty ? "Oppdater virksamhet" : "Ny virksamhet";
 
     ViewData["Title"] = title;
 }
 
 <h1>@title</h1>
 
-<form method="post">
-    <div asp-validation-summary="All"></div>
+<div class="form-wrapper">
+    <form method="post">
 
-    @Html.HiddenFor(x => x.CompanyItemForm.Id)
-    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBox")
-    @Html.EditorFor(x => x.CompanyItemForm.ExternalId, "TextBox")
-    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBox")
-    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBox")
-    @Html.EditorFor(x => x.CompanyItemForm.Name, "TextBox")
-    @Html.EditorFor(x => x.CompanyItemForm.CustomName, "TextBox")
 
-    <fieldset>
-        <legend>
-            @Localizer["Admin-clients-legend-postal-address"]
-        </legend>
 
-        @Html.EditorFor(x => x.CompanyItemForm.MailingAddressStreet, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.MailingAddressZip, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.MailingAddressCity, "TextBox")
-    </fieldset>
+        <div asp-validation-summary="All"></div>
 
-    <fieldset>
-        <legend>
-            @Localizer["Admin-clients-legend-location-address"]
-        </legend>
-
-        @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressStreet, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressZip, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressCity, "TextBox")
-    </fieldset>
-
-    <fieldset>
-        <legend>
-            @Localizer["Admin-clients-legend-business-addressd"]
-        </legend>
-
-        @Html.EditorFor(x => x.CompanyItemForm.LocationAddressStreet, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.LocationAddressZip, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.LocationAddressCity, "TextBox")
-    </fieldset>
-
-    <fieldset>
-        <legend>
-            @Localizer["Admin-clients-legend-contactPerson"]
-        </legend>
-
-        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Name, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Email, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
-    </fieldset>
-
-    <fieldset>
-        <legend>
-            @Localizer["Admin-clients-legend-industryGroup"]
-        </legend>
-
-        @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupCode, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupDescription, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupAggregated, "TextBox")
-    </fieldset>
-
-    <fieldset>
-        <legend>
-            @Localizer["Admin-clients-legend-institutionalSectorCode"]
-        </legend>
-
-        @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorCode, "TextBox")
-        @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorDescription, "TextBox")
-    </fieldset>
-
-    @if (Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
-    {
         <fieldset>
-            <legend>@Localizer["Admin-clients-legend-usercode"]</legend>
 
-            <ul class="listing-border">
-                @foreach (var user in Model.CompanyItemForm.UserList)
-                {
-                    <li>
-                        <div class="row collapse">
-                            <div class="small-6 column">
-                                <span class="listing-social-security-number">@user.UserItem.SocialSecurityNumber</span>
-                            </div>
-                            <div class="small-6 text-right column">
-                                <button class="button small delete icon" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Admin-clients-usercode-delete"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
-                            </div>
-                        </div>
-                    </li>
-                }
-            </ul>
+            <legend>
+                @Localizer["Admin-clients-legend-basic-info"]
+            </legend>
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.HiddenFor(x => x.CompanyItemForm.Id)
+                    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.ExternalId, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.Name, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.CustomName, "TextBox")
+                </div>
+            </div>
+
         </fieldset>
-    }
 
-    @if (Model.CompanyItemForm.Id != Guid.Empty)
-    {
-        <input class="button update icon" type="submit" value="@Localizer["Admin-clients-update"]" />
-        <button class="button delete icon" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
-    }
-    else
-    {
-        <input class="button add icon" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
-        <input class="button add icon" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
-    }
+        <br />
 
-    <a class="button" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-</form>
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-postal-address"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.MailingAddressStreet, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.MailingAddressZip, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.MailingAddressCity, "TextBox")
+                </div>
+            </div>
+
+        </fieldset>
+
+        <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-location-address"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressStreet, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressZip, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressCity, "TextBox")
+                </div>
+            </div>
+
+        </fieldset>
+
+        <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-business-addressd"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.LocationAddressStreet, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.LocationAddressZip, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.LocationAddressCity, "TextBox")
+                </div>
+            </div>
+
+        </fieldset>
+
+        <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-contactPerson"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Name, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Email, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
+                </div>
+            </div>
+
+        </fieldset>
+
+        <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-industryGroup"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupCode, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupDescription, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.IndustryGroupAggregated, "TextBox")
+                </div>
+            </div>
+
+        </fieldset>
+
+        <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-institutionalSectorCode"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorCode, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.InstitutionalSectorDescription, "TextBox")
+                </div>
+            </div>
+
+        </fieldset>
+        <br />
+
+        @if (Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
+        {
+            <fieldset>
+                <legend>@Localizer["Admin-clients-legend-usercode"]</legend>
+
+                <ul class="listing-border">
+                    @foreach (var user in Model.CompanyItemForm.UserList)
+                    {
+                        <li>
+                            <div class="row collapse">
+                                <div class="small-6 column">
+                                    <span class="listing-social-security-number">@user.UserItem.SocialSecurityNumber</span>
+                                </div>
+                                <div class="small-6 text-right column">
+                                    <button class="button small delete" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Admin-clients-usercode-delete"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </fieldset>
+        }
+
+        <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+
+        @if (Model.CompanyItemForm.Id != Guid.Empty)
+        {
+            <button class="button large" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
+            <input class="button large" type="submit" value="@Localizer["Admin-clients-update"]" />
+        }
+        else
+        {
+            <input class="button large" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
+            <input class="button large" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
+        }
+
+
+
+    </form>
+
+</div>
+
+
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
