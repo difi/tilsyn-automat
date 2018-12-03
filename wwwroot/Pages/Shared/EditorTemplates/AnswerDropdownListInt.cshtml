@@ -76,7 +76,7 @@
     </label>
 
     <div class="card-divider">
-        <select name="@name">
+        <select id="@name" name="@name">
             @foreach (var item in (List<SelectListItem>)ViewData["list"])
             {
                 if (value?.ToString() == item.Value)
