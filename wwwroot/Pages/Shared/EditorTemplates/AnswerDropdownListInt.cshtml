@@ -1,4 +1,4 @@
-﻿@model string
+﻿@model int
 
 @{
     var name = ViewData["id"];
@@ -76,6 +76,18 @@
     </label>
 
     <div class="card-divider">
-        <textarea id="@name" name="@name">@value</textarea>
+        <select name="@name">
+            @foreach (var item in (List<SelectListItem>)ViewData["list"])
+            {
+                if (value?.ToString() == item.Value)
+                {
+                    <option value="@item.Value" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            }
+        </select>
     </div>
 </div>

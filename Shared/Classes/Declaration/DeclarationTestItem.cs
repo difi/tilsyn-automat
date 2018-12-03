@@ -32,6 +32,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         //[Required(ErrorMessage = "SupplierAndVersion - required field")]
         public ValueListTypeOfSupplierAndVersion SupplierAndVersion { get; set; }
 
+        [ForeignKey("ValueListTypeOfSupplierAndVersion")]
+        public int? SupplierAndVersionId { get; set; }
+
         [Display(Name = "SupplierAndVersionOther")]
         //[Required(ErrorMessage = "SupplierAndVersionOther - required field")]
         public String SupplierAndVersionOther { get; set; }

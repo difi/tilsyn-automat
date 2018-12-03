@@ -251,6 +251,8 @@ namespace Difi.Sjalvdeklaration.Database
                 var dbItem = dbContext.DeclarationList.Include(x=>x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
                 dbItem.StatusId = (int) DeclarationStatus.Started;
 
+                dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;
+                dbItem.DeclarationTestItem.SupplierAndVersionOther = declarationTestItem.SupplierAndVersionOther;
                 dbItem.DeclarationTestItem.DescriptionInText = declarationTestItem.DescriptionInText;
                 dbItem.DeclarationTestItem.Image1Id = declarationTestItem.Image1Id;
                 dbItem.DeclarationTestItem.Image2Id = declarationTestItem.Image2Id;
