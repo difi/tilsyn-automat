@@ -26,16 +26,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostEndDeclarationAsync(string id)
+        public async Task<IActionResult> OnPostUpdateHaveMachineAsync(string id, bool haveMachine)
         {
             try
             {
-                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/EndDeclaration/" + id);
+                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/HaveMachine/" + id + "/" + haveMachine);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationList");
-                }
+                    return haveMachine ? RedirectToPage("/Declaration/DeclarationForm", new {id = id}) : RedirectToPage("/Declaration/DeclarationList");
+                } 
 
                 return Page();
             }

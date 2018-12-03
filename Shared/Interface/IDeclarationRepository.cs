@@ -24,6 +24,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult SendIn(Guid id);
 
-        ApiResult EndDeclaration(Guid id);
+        ApiResult HaveMachine(Guid id, bool haveMachine);
     }
 }

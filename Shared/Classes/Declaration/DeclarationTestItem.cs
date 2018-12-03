@@ -14,9 +14,14 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public Guid DeclarationItemId { get; set; }
 
+        public Int32 StatusCount { get; set; }
+
         [Display(Name = "Purpose Of Test")]
         [Required(ErrorMessage = "Purpose Of Test - required field")]
         public Int32 PurposeOfTestId { get; set; }
+
+        [Display(Name = "Have Machine")]
+        public bool HaveMachine { get; set; }
 
         [Display(Name = "TypeOfMachine")]
         //[Required(ErrorMessage = "TypeOfMachine - required field")]

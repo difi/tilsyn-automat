@@ -84,12 +84,12 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("EndDeclaration/{id}")]
-        public ApiResult EndDeclaration(Guid id)
+        [Route("HaveMachine/{id}/{haveMachine}")]
+        public ApiResult HaveMachine(Guid id, bool haveMachine)
         {
             HandleRequest();
 
-            return declarationRepository.EndDeclaration(id);
+            return declarationRepository.HaveMachine(id, haveMachine);
         }
 
         private void HandleRequest()

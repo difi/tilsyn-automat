@@ -129,6 +129,9 @@
   <data name="FinishedStatus - required field" xml:space="preserve">
     <value>4FinishedStatus - er påkrevd</value>
   </data>
+  <data name="Have Machine" xml:space="preserve">
+    <value>Har en automat</value>
+  </data>
   <data name="Image1" xml:space="preserve">
     <value>4Image1</value>
   </data>

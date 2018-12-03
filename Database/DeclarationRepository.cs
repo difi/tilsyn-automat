@@ -226,24 +226,30 @@ namespace Difi.Sjalvdeklaration.Database
                             UpdateParent(ruleData, answerData);
                         }
 
-                        //if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
-                        //{
-                        //    ruleData.ResultId = (int) TypeOfResult.Fail;
-                        //}
-                        //else
-                        //{
-                        //    ruleData.ResultId = (int) TypeOfResult.Ok;
-                        //}
+                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                        {
+                            ruleData.ResultId = (int)TypeOfResult.Fail;
+                        }
+                        else
+                        {
+                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Ok))
+                            {
+                                ruleData.ResultId = (int) TypeOfResult.Ok;
+                            }
+                        }
                     }
 
-                    //if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
-                    //{
-                    //    outcomeData.ResultId = (int) TypeOfResult.Fail;
-                    //}
-                    //else
-                    //{
-                    //    outcomeData.ResultId = (int) TypeOfResult.Ok;
-                    //}
+                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                    {
+                        outcomeData.ResultId = (int)TypeOfResult.Fail;
+                    }
+                    else
+                    {
+                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Ok))
+                        {
+                            outcomeData.ResultId = (int)TypeOfResult.Ok;
+                        }
+                    }
 
                     dbContext.OutcomeData.Add(outcomeData);
                 }
@@ -312,15 +318,20 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult EndDeclaration(Guid id)
+        public ApiResult HaveMachine(Guid id, bool haveMachine)
         {
             var result = new ApiResult();
 
             try
             {
-                var dbItem = dbContext.DeclarationList.Single(x => x.Id == id);
-                dbItem.StatusId = (int)DeclarationStatus.Canceled;
-                dbItem.SentInDate = DateTime.Now;
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == id);
+                dbItem.DeclarationTestItem.HaveMachine = haveMachine;
+
+                if (haveMachine == false)
+                {
+                    dbItem.StatusId = (int) DeclarationStatus.SentIn;
+                    dbItem.SentInDate = DateTime.Now;
+                }
 
                 dbContext.SaveChanges();
 

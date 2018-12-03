@@ -80,11 +80,11 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
-        public ApiResult EndDeclaration(Guid id)
+        public ApiResult HaveMachine(Guid id, bool haveMachine)
         {
-            var result = inner.EndDeclaration(id);
+            var result = inner.HaveMachine(id, haveMachine);
 
-            logRepository.Add(new LogItem(userId, result, id));
+            logRepository.Add(new LogItem(userId, result, id, haveMachine));
 
             return result;
         }

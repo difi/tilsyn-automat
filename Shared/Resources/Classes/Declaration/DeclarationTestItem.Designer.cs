@@ -97,6 +97,15 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Har en automat.
+        /// </summary>
+        internal static string Have_Machine {
+            get {
+                return ResourceManager.GetString("Have Machine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4Image1.
         /// </summary>
         internal static string Image1 {
