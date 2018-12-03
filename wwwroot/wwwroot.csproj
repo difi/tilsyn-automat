@@ -134,7 +134,7 @@
     <Content Update="Pages\Shared\DisplayTemplates\AnswerString.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\DisplayValueList.cshtml">
+    <Content Update="Pages\Shared\DisplayTemplates\ValueList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\DropdownListInt.cshtml">
@@ -146,7 +146,7 @@
     <Content Update="Pages\Shared\EditorTemplates\DropdownListEnum.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Pages\Shared\EditorTemplates\Display.cshtml">
+    <Content Update="Pages\Shared\DisplayTemplates\String.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\AnswerInt.cshtml">

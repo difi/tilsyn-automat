@@ -16,16 +16,16 @@
         <fieldset>
             <legend>Virksomhetsinformasjon</legend>
 
-            @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "Display")
-            @Html.EditorFor(x => x.CompanyItem.Name, "Display")
-            @Html.EditorFor(x => x.CompanyItem.CustomName, "TextBox")
+            @Html.DisplayFor(x => x.CompanyItem.CorporateIdentityNumber, "String")
+            @Html.DisplayFor(x => x.CompanyItem.Name, "String")
+            @Html.DisplayFor(x => x.CompanyItem.CustomName, "String")
         </fieldset>
 
         <fieldset>
             <legend>Virksomhetens adresse</legend>
-            @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "Display")
-            @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "Display")
-            @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "Display")
+            @Html.DisplayFor(x => x.CompanyItem.MailingAddressStreet, "String")
+            @Html.DisplayFor(x => x.CompanyItem.MailingAddressCity, "String")
+            @Html.DisplayFor(x => x.CompanyItem.MailingAddressZip, "String")
         </fieldset>
 
         <table class="table">
