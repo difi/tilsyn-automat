@@ -58,9 +58,15 @@
             <div class="row">
                 <div class="small-12 medium-12 columns">
                     <div class="jsToggleCardTarget">
-                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "DisplayStringAnswer", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere." })
-                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "DisplayImageAnswer", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om." })
-                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "DisplayImageAnswer", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om." })
+                        <div class="card transparent">
+                            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "DisplayStringAnswer", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2" })
+                        </div>
+                        <div class="card transparent">
+                            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "DisplayImageAnswer", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3" })
+                        </div>
+                        <div class="card transparent">
+                            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "DisplayImageAnswer", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4" })
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,14 +114,6 @@
                                             @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                                             {
                                                 var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
-
-                                                var hide = answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty;
-
-                                                if (answerItem.AlwaysVisible)
-                                                {
-                                                    hide = false;
-                                                }
-
                                                 var viewAnswerItem = true;
 
                                                 if (lastAnswerData != null && answerItem != null)
@@ -151,69 +149,26 @@
 
                                                 if (viewAnswerItem)
                                                 {
-                                                    <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
-                                                        <div class="form-field">
-                                                            <label class="legend">
-                                                                <span class="collapse row">
-                                                                    <span class="small-10 columns">
-                                                                        <span class="collapse row">
-                                                                            <span class="small-2 medium-1 columns">
-                                                                                <span class="legend-number">@orderText</span>
-                                                                            </span>
-                                                                            <span class="small-10 medium-11 columns">
-                                                                                <span class="legend-text">
-                                                                                    @answerItem.Question
-                                                                                </span>
-                                                                            </span>
-                                                                        </span>
-                                                                    </span>
 
-                                                                    <span class="small-2 columns">@answerData.Result.Text</span>
-                                                                </span>
-                                                            </label>
+                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                                    {
+                                                        @Html.EditorFor(x => answerData.String, "DisplayStringAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
+                                                    }
 
-                                                            <div class="card-divider">
-                                                                @if (answerData != null)
-                                                                {
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                                                                    {
-                                                                        @answerData.String
-                                                                    }
+                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                                    {
+                                                        @Html.EditorFor(x => answerData.Bool, "DisplayBoolAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                    }
 
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                                                    {
-                                                                        if (answerData?.Bool != null)
-                                                                        {
-                                                                            if (answerData.Bool.Value)
-                                                                            {
-                                                                                @answerItem.BoolTrueText
-                                                                                ;
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                @answerItem.BoolFalseText
-                                                                            }
-                                                                        }
+                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                                    {
+                                                        @Html.EditorFor(x => answerData.Int, "DisplayIntAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
+                                                    }
 
-                                                                    }
-
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                                                    {
-                                                                        @answerData.Int
-                                                                    }
-
-                                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                                                    {
-                                                                        if (answerData.Image != null)
-                                                                        {
-                                                                            var image = answerData.Image.Container + "/" + answerData.Image.Blob;
-                                                                            <img src="@image" alt="" width="200" />
-                                                                        }
-                                                                    }
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                                    {
+                                                        @Html.EditorFor(x => answerData.Image, "DisplayImageAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
+                                                    }
                                                 }
 
                                                 lastAnswerData = answerData;
@@ -230,7 +185,6 @@
         }
 
         <form method="post">
-
             <div class="row">
                 <div class="small-12 medium-4 columns">
                     <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>

@@ -1,10 +1,12 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
-@model string
+@model bool?
 
 @{
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
     var result = (ValueListTypeOfResult)ViewData["result"];
+    var trueText = ViewData["trueText"];
+    var falseText = ViewData["falseText"];
 }
 
 <div class="form-field">
@@ -26,13 +28,16 @@
             <span class="small-2 columns">
                 @if (result != null)
                 {
-                    @result.Text    
+                @result.Text
                 }
             </span>
         </span>
     </label>
 
     <div class="card-divider">
-        @Model
+        @if (Model != null)
+        {
+            @(Model.Value ? trueText : falseText)
+        }
     </div>
 </div>

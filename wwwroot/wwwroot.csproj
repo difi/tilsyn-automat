@@ -122,7 +122,13 @@
     <Content Update="Pages\Shared\EditorTemplates\DateTime.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\DisplayBoolAnswer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\EditorTemplates\DisplayImageAnswer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\DisplayIntAnswer.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Pages\Shared\EditorTemplates\DisplayStringAnswer.cshtml">

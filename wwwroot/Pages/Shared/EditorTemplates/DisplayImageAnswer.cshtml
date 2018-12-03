@@ -1,37 +1,44 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Classes
+@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
 @model Difi.Sjalvdeklaration.Shared.Classes.ImageItem
 
 @{
     var text = ViewData["text"];
+    var orderText = ViewData["orderText"];
+    var result = (ValueListTypeOfResult)ViewData["result"];
 }
 
-<div class="card transparent">
-    <div class="form-field">
-        <label class="legend">
-            <span class="collapse row">
-                <span class="small-10 columns">
-                    <span class="collapse row">
-                        <span class="small-2 medium-1 columns">
-                            <span class="legend-number">1.2</span>
-                        </span>
-                        <span class="small-10 medium-11 columns">
-                            <span class="legend-text">
-                                @text
-                            </span>
+<div class="form-field">
+    <label class="legend">
+        <span class="collapse row">
+            <span class="small-10 columns">
+                <span class="collapse row">
+                    <span class="small-2 medium-1 columns">
+                        <span class="legend-number">@orderText</span>
+                    </span>
+                    <span class="small-10 medium-11 columns">
+                        <span class="legend-text">
+                            @text
                         </span>
                     </span>
                 </span>
-
-                <span class="small-2 columns"></span>
             </span>
-        </label>
 
-        <div class="card-divider">
-            @{
-                var image1 = Model.Container + "/" + Model.Blob;
-            }
+            <span class="small-2 columns">
+                @if (result != null)
+                {
+                    @result.Text
+                }
+            </span>
+        </span>
+    </label>
+
+    <div class="card-divider">
+        @if (Model != null)
+        {
+            var image1 = Model.Container + "/" + Model.Blob;
+
             <img src="@image1" alt="" width="200" />
-        </div>
-
+        }
     </div>
 </div>
