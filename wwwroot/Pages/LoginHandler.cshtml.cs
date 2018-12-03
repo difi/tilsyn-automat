@@ -1,20 +1,16 @@
-﻿using Difi.Sjalvdeklaration.Shared;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.IdPorten;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.IdPorten;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Extensions;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
-using Difi.Sjalvdeklaration.Shared.Extensions;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
@@ -23,9 +19,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         private readonly IConfiguration configuration;
         private readonly IApiHttpClient apiHttpClient;
 
-        public string Pid { get; set; }
+        public string socialSecurityNumber { get; set; }
 
-        public string Sub { get; set; }
+        public string token { get; set; }
 
         public List<RoleItem> RoleList { get; set; }
 
@@ -47,15 +43,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
             if (jwtSecurityToken.Payload["nonce"].ToString() == configuration["IdPorten:Nonce"])
             {
-                Pid = jwtSecurityToken.Payload["pid"].ToString();
-                Sub = jwtSecurityToken.Payload["sub"].ToString();
+                socialSecurityNumber = jwtSecurityToken.Payload["pid"].ToString();
+                token = jwtSecurityToken.Payload["sub"].ToString();
 
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + Sub + "/" + Pid).Result.Data;
+                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + token + "/" + socialSecurityNumber).Result.Data;
 
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.PrimarySid, userItem.Id.ToString()),
                     new Claim(ClaimTypes.NameIdentifier, userItem.Token),
+                    new Claim(ClaimTypes.Hash, result.id_token),
                     new Claim(ClaimTypes.Name, userItem.Name + ""),
                     new Claim(ClaimTypes.Email, userItem.Email + ""),
                     new Claim(ClaimTypes.OtherPhone, userItem.Phone + ""),
