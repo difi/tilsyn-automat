@@ -55,6 +55,7 @@
             $("#jsSupplierAndVersionOther").slideDown("fast");
         } else {
             $("#jsSupplierAndVersionOther").slideUp("fast");
+            $("#jsSupplierAndVersionOther").find("textarea").val("");
         }
     });
 
