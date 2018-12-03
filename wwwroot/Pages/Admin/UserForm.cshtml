@@ -10,31 +10,76 @@
     @title
 </h1>
 
-<form method="post">
-    <div asp-validation-summary="All"></div>
+<div class="form-wrapper">
+    <form method="post">
+        <div asp-validation-summary="All"></div>
 
-    @Html.HiddenFor(x => x.UserItemForm.Id)
-    @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
-    @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
-    @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
-    @Html.EditorFor(x => x.UserItemForm.PhoneCountryCode, "TextBox")
-    @Html.EditorFor(x => x.UserItemForm.Phone, "TextBox")
-    @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
-    @Html.EditorFor(x => x.SelectRoleList, "CheckBoxList")
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.HiddenFor(x => x.UserItemForm.Id)
+                @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
+            </div>
+        </div>
 
-    @if (Model.UserItemForm.Id != Guid.Empty)
-    {
-        <input class="button update icon" type="submit" value="@Localizer["Update"]" />
-        <button class="button delete icon" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
-    }
-    else
-    {
-        <input class="button add icon" type="submit" value="@Localizer["Add"]" />
-    }
+        <div class="row">
+            <div class="small-12 medium-4 end columns">
+                @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
+            </div>
+        </div>
 
-    <a class="button" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
-</form>
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="small-12 medium-4 end columns">
+                @Html.EditorFor(x => x.UserItemForm.PhoneCountryCode, "TextBox")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.EditorFor(x => x.UserItemForm.Phone, "TextBox")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="small-12 medium-12 end columns">
+                @Html.EditorFor(x => x.SelectRoleList, "CheckBoxList")
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
+
+        @if (Model.UserItemForm.Id != Guid.Empty)
+        {
+            <input class="button large" type="submit" value="@Localizer["Update"]" />
+            <button class="button large" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
+        }
+        else
+        {
+            <input class="button large" type="submit" value="@Localizer["Add"]" />
+        }
+
+
+    </form>
+</div>
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }

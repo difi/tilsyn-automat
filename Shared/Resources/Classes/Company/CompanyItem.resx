@@ -172,31 +172,31 @@
     <value>Virksomhet ID (tilsynets datamodell)</value>
   </data>
   <data name="IndustryGroupAggregated" xml:space="preserve">
-    <value>Næringsgruppe aggregert</value>
+    <value>Aggregert</value>
   </data>
   <data name="IndustryGroupAggregated - required field" xml:space="preserve">
     <value>Næringsgruppe aggregert er påkrevd</value>
   </data>
   <data name="IndustryGroupCode" xml:space="preserve">
-    <value>Næringsgruppe kode</value>
+    <value>Kode</value>
   </data>
   <data name="IndustryGroupCode - required field" xml:space="preserve">
     <value>Næringsgruppe kode er påkrevd</value>
   </data>
   <data name="IndustryGroupDescription" xml:space="preserve">
-    <value>Næringsgruppe beskrivelse</value>
+    <value>Beskrivelse</value>
   </data>
   <data name="IndustryGroupDescription - required field" xml:space="preserve">
     <value>Næringsgruppe beskrivelse er påkrevd</value>
   </data>
   <data name="InstitutionalSectorCode" xml:space="preserve">
-    <value>Institusjonell sektorkode kode</value>
+    <value>Kode</value>
   </data>
   <data name="InstitutionalSectorCode - required field" xml:space="preserve">
     <value>Institusjonell sektorkode kode er påkrevd</value>
   </data>
   <data name="InstitutionalSectorDescription" xml:space="preserve">
-    <value>Institusjonell sektorkode beskrivelse</value>
+    <value>Beskrivelse</value>
   </data>
   <data name="InstitutionalSectorDescription - required field" xml:space="preserve">
     <value>Institusjonell sektorkode beskrivelse er påkrevd</value>

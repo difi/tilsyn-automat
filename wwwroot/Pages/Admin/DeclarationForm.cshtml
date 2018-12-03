@@ -9,43 +9,75 @@
 
 <h1>@Model.DeclarationItemForm.Company.Name</h1>
 
-<h2>@title</h2>
+<div class="form-wrapper">
 
-<form method="post">
-    <div asp-validation-summary="All"></div>
+    <h2>@title</h2>
 
-    @Html.HiddenFor(x => x.DeclarationItemForm.Id)
-    @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
-    @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
-    @Html.EditorFor(x => x.DeclarationItemForm.CaseNumber, "TextBox")
-    @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
+    <form method="post">
+        <div asp-validation-summary="All"></div>
 
-    @if (Model.DeclarationItemForm.Id != Guid.Empty)
-    {
-        @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
-    }
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.HiddenFor(x => x.DeclarationItemForm.Id)
+                @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
+                @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
+            </div>
+        </div>
 
-    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new { list = Model.SelectPurposeOfTest })
+        <div class="row">
+            <div class="small-12 medium-4 end columns">
+                @Html.EditorFor(x => x.DeclarationItemForm.CaseNumber, "TextBox")
+            </div>
+        </div>
 
-    @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
+        <div class="row">
+            <div class="small-12 medium-4 end columns">
+                @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
+            </div>
+        </div>
 
-    <div style="display: none;">
-        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
-        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
-    </div>
+        @if (Model.DeclarationItemForm.Id != Guid.Empty)
+        {
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
+            </div>
+        </div>
+        }
 
-    @if (Model.DeclarationItemForm.Id != Guid.Empty)
-    {
-        <input class="button update" type="submit" value="@Localizer["Update"]" />
-        <a class="button" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
-    }
-    else
-    {
-        <input class="button add" type="submit" value="@Localizer["Add"]" />
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new { list = Model.SelectPurposeOfTest })
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="small-12 medium-6 end columns">
+                @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
+            </div>
+        </div>
 
-        <a class="button" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-    }
-</form>
+        <div style="display: none;">
+            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
+            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
+        </div>
+
+        @if (Model.DeclarationItemForm.Id != Guid.Empty)
+        {
+            <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
+
+            <input class="button large" type="submit" value="@Localizer["Update"]" />
+
+        }
+        else
+        {
+            <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+
+            <input class="button large" type="submit" value="@Localizer["Add"]" />
+
+        }
+    </form>
+</div>
 
 @if (Model.DeclarationItemForm?.Status?.Id > 2)
 {

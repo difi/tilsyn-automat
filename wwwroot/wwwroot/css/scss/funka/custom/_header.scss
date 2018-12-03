@@ -85,6 +85,7 @@ header {
         font-size: 17px;
         line-height: 19px;
         display: inline-block;
+        font-family: $sofiapro;
     }
 
 
@@ -93,16 +94,17 @@ header {
         height: 54px;
         display: inline-block;
         background-color: $color-white;
-        border: 2px solid $very-light-purple;
+        border: 2px solid #C9E2E4;
         box-shadow: inset 0px 0px 0px 3px $ice-blue;
         border-radius: 1000px;
         padding-top: 15px;
         text-align: center;
         transform: rotate(-45deg);
         transition: border 800ms ease-out;
+        font-family: $sofiapro;
 
         .status-done {
-            font-size: 14px;
+            font-size: 15px;
             transform: rotate(45deg);
         }
 

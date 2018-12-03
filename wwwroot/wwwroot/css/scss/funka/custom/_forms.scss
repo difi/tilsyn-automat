@@ -9,6 +9,11 @@
 
 // CSS FOR ALL DEVICES
 
+.form-wrapper {
+    background-color: $bg-forms;
+    padding: 1rem;
+}
+
 .form-field {
     //padding: 0 0 0.75rem 0;
     padding: 0;
@@ -37,6 +42,11 @@ label {
     }
 }
 
+.validation-summary-errors {
+    background-color: $color-error;
+    padding: 0.5rem 1rem;
+    margin: 0 0 1rem 0;
+}
 .errorOnThis {
     background-color: $color-error;
     padding: 0.5rem 1rem;
@@ -50,6 +60,7 @@ label {
         span {
             display: block;
             font-weight: bold;
+            font-size: 15px;
 
             &:before {
                 background: url("/css/cssimg/icons-sprite.svg") 0 -2797px no-repeat;

@@ -50,7 +50,7 @@ $ingress-font-size: 20px;
 }
 
 h1 {
-    margin: 0 0 8px 0;
+    margin: 2rem 0 1rem 0;
     line-height: 1.1;
 
     &.h2 {
@@ -163,39 +163,6 @@ ul, ol {
     }
 }
 
-a {
-
-
-    &.standard {
-        &:before {
-            background: url('/css/cssimg/icons-sprite.svg') 0 -2102px no-repeat;
-            display: inline-block;
-            content: "";
-            width: 15px;
-            height: 18px;
-        }
-
-        padding: 3px;
-        display: inline-block;
-
-        &:hover, &:focus {
-            text-decoration: underline;
-        }
-
-        &:hover {
-            color: $color-blue-darker;
-        }
-
-        &.tabbed {
-            &:before {
-                background-position: 0 -2002px;
-            }
-        }
-    }
-}
-
-
-
 
 
 a, input[type=button], input[type=submit], button, textarea, select {
@@ -236,6 +203,9 @@ tbody {
         font-size: $ingress-font-size;
     }
 
+    h1 {
+        margin: 2rem 0 1rem 0;
+    }
 }
 
 // LARGE SCREEN

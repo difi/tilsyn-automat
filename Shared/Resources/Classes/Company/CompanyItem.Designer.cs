@@ -223,7 +223,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Næringsgruppe aggregert.
+        ///   Looks up a localized string similar to Aggregert.
         /// </summary>
         internal static string IndustryGroupAggregated {
             get {
@@ -241,7 +241,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Næringsgruppe kode.
+        ///   Looks up a localized string similar to Kode.
         /// </summary>
         internal static string IndustryGroupCode {
             get {
@@ -259,7 +259,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Næringsgruppe beskrivelse.
+        ///   Looks up a localized string similar to Beskrivelse.
         /// </summary>
         internal static string IndustryGroupDescription {
             get {
@@ -277,7 +277,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Institusjonell sektorkode kode.
+        ///   Looks up a localized string similar to Kode.
         /// </summary>
         internal static string InstitutionalSectorCode {
             get {
@@ -295,7 +295,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Institusjonell sektorkode beskrivelse.
+        ///   Looks up a localized string similar to Beskrivelse.
         /// </summary>
         internal static string InstitutionalSectorDescription {
             get {

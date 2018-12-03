@@ -24,7 +24,7 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 100%;
 
     @include button;
-    //border-radius: 5px;
+
     .active & {
         &.nocursor {
             cursor: default;
@@ -56,12 +56,16 @@ button, .button, input[type="button"], input[type="submit"] {
         padding: 0.8em 1em;
         font-size: map-get($button-sizes, large);
         width: 100%;
-        margin: 0;
+        margin: 0 0 1rem 0;
     }
 
-    &.show, &.import {
-        background-color: $very-light-purple;
-        color: $dark-grey;
+    &.alt, &.cancel {
+        background-color: $alt-button-bg-color;
+        color: $alt-button-color;
+    }
+
+    &.cancel {
+        margin: 0 0 1rem 0;
     }
 
     &.export {
@@ -106,27 +110,10 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.update {
-        //background-color: $color-green;
-        //color: $color-white;
-        //margin-right: 1rem;
-        &:hover {
-            //background-color: darken($color-green, 5%);
-        }
     }
 
 
     &.delete {
-        //background-color: $color-pink;
-        //color: $color-white;
-        //margin-right: 1rem;
-        &.icon {
-            //padding-left: 2rem;
-            //background: url('/css/cssimg/icons-sprite.svg') $color-pink 10px -288px no-repeat;
-        }
-
-        &:hover {
-            //background-color: darken($color-pink, 5%);
-        }
     }
 
     &.white {
@@ -320,7 +307,6 @@ button, .button, input[type="button"], input[type="submit"] {
 
 
 
-$button-palette: ( black: #000000, red: #ff0000, purple: #bb00ff ) !default;
 
 
 // Create a variable for my custom color.
@@ -347,6 +333,11 @@ $button-palette: ( black: #000000, red: #ff0000, purple: #bb00ff ) !default;
         &.wide {
             padding-left: 3rem;
             padding-right: 3rem;
+        }
+
+        &.large, &.cancel {
+            width: auto;
+            margin: 0 0.75rem 0 0;
         }
     }
 }
