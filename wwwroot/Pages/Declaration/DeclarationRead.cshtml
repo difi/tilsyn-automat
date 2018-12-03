@@ -1,7 +1,5 @@
 ﻿@page
 @using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
-@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
-@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
 @using Difi.Sjalvdeklaration.Shared.Enum
 @model wwwroot.Pages.Declaration.DeclarationReadModel
 
@@ -47,7 +45,6 @@
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-
         <div class="jsToggleCardContainer">
             <div class="row medium-uncollapse">
                 <div class="small-12 medium-12 columns">
@@ -59,13 +56,13 @@
                 <div class="small-12 medium-12 columns">
                     <div class="jsToggleCardTarget">
                         <div class="card transparent">
-                            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "DisplayStringAnswer", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2" })
+                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2" })
                         </div>
                         <div class="card transparent">
-                            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "DisplayImageAnswer", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3" })
+                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "AnswerImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3" })
                         </div>
                         <div class="card transparent">
-                            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "DisplayImageAnswer", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4" })
+                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "AnswerImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4" })
                         </div>
                     </div>
                 </div>
@@ -152,22 +149,22 @@
 
                                                     if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                     {
-                                                        @Html.EditorFor(x => answerData.String, "DisplayStringAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
+                                                        @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
                                                     }
 
                                                     if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                                     {
-                                                        @Html.EditorFor(x => answerData.Bool, "DisplayBoolAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                        @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
                                                     }
 
                                                     if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
                                                     {
-                                                        @Html.EditorFor(x => answerData.Int, "DisplayIntAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
+                                                        @Html.DisplayFor(x => answerData.Int, "AnswerInt", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
                                                     }
 
                                                     if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                     {
-                                                        @Html.EditorFor(x => answerData.Image, "DisplayImageAnswer", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
+                                                        @Html.DisplayFor(x => answerData.Image, "AnswerImage", new { text = @answerItem.Question, orderText = orderText, result = @answerData.Result })
                                                     }
                                                 }
 

@@ -73,19 +73,20 @@
                     <div class="small-12 medium-12 columns">
                         <div class="jsToggleCardTarget">
                             <div class="card">
-                                @*@Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion, "CustomTextBoxString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_string_supplierandversion", firstQuestion = true, orderText = "1.1", value = "" })*@
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_string_supplierandversion", firstQuestion = true, orderText = "1.1", value = "" })
+
                             </div>
 
                             <div class="card">
-                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "CustomTextBoxString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_testitem_descriptionintext", firstQuestion = true, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText })
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_testitem_descriptionintext", firstQuestion = true, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText })
                             </div>
 
                             <div class="card">
-                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "CustomImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", id = "answer_image_testitem_image1", firstQuestion = true, orderText = "1.3", value = "" })
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "AnswerImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", id = "answer_image_testitem_image1", firstQuestion = true, orderText = "1.3", value = "" })
                             </div>
 
                             <div class="card">
-                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "CustomImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", id = "answer_image_testitem_image2", firstQuestion = true, orderText = "1.4", value = "" })
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "AnswerImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", id = "answer_image_testitem_image2", firstQuestion = true, orderText = "1.4", value = "" })
                             </div>
                         </div>
                     </div>
@@ -147,35 +148,35 @@
                                                     <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                         {
-                                                            @Html.EditorFor(x => answerItem.String, "CustomTextBoxString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
+                                                            @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                                         {
                                                             if (answerData != null)
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
                                                             }
                                                             else
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Bool, "CustomRadioButtonBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
+                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.BoolTrueText, falseText = answerItem.BoolFalseText })
                                                             }
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
                                                         {
-                                                            @Html.EditorFor(x => answerItem.MinInt, "CustomTextBoxInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
+                                                            @Html.EditorFor(x => answerItem.MinInt, "AnswerInt", new { text = answerItem.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                         {
                                                             if (answerData != null)
                                                             {
-                                                                @Html.EditorFor(x => answerData.Image, "CustomImage", new { text = answerItem.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                                @Html.EditorFor(x => answerData.Image, "AnswerImage", new { text = answerItem.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
                                                             }
                                                             else
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Image, "CustomImage", new { text = answerItem.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                                @Html.EditorFor(x => answerItem.Image, "AnswerImage", new { text = answerItem.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
                                                             }
 
                                                         }
