@@ -1,0 +1,32 @@
+﻿@model string
+
+@{
+    var text = ViewData["text"];
+}
+
+<div class="card transparent">
+    <div class="form-field">
+        <label class="legend">
+            <span class="collapse row">
+                <span class="small-10 columns">
+                    <span class="collapse row">
+                        <span class="small-2 medium-1 columns">
+                            <span class="legend-number">1.2</span>
+                        </span>
+                        <span class="small-10 medium-11 columns">
+                            <span class="legend-text">
+                                @text
+                            </span>
+                        </span>
+                    </span>
+                </span>
+
+                <span class="small-2 columns"></span>
+            </span>
+        </label>
+
+        <div class="card-divider">
+            @Model
+        </div>
+    </div>
+</div>

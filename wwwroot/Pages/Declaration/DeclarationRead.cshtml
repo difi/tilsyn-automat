@@ -58,92 +58,9 @@
             <div class="row">
                 <div class="small-12 medium-12 columns">
                     <div class="jsToggleCardTarget">
-                        <div class="card transparent">
-                            <div class="form-field">
-                                <label class="legend">
-                                    <span class="collapse row">
-                                        <span class="small-10 columns">
-                                            <span class="collapse row">
-                                                <span class="small-2 medium-1 columns">
-                                                    <span class="legend-number">1.2</span>
-                                                </span>
-                                                <span class="small-10 medium-11 columns">
-                                                    <span class="legend-text">
-                                                        Beskriv hvilken betalingsterminal du velger å kontrollere.
-                                                    </span>
-                                                </span>
-                                            </span>
-                                        </span>
-
-                                        <span class="small-2 columns"></span>
-                                    </span>
-                                </label>
-
-                                <div class="card-divider">
-                                    @Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card transparent">
-                            <div class="form-field">
-                                <label class="legend">
-                                    <span class="collapse row">
-                                        <span class="small-10 columns">
-                                            <span class="collapse row">
-                                                <span class="small-2 medium-1 columns">
-                                                    <span class="legend-number">1.2</span>
-                                                </span>
-                                                <span class="small-10 medium-11 columns">
-                                                    <span class="legend-text">
-                                                        Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.
-                                                    </span>
-                                                </span>
-                                            </span>
-                                        </span>
-
-                                        <span class="small-2 columns"></span>
-                                    </span>
-                                </label>
-
-                                <div class="card-divider">
-                                    @{
-                                        var image1 = Model.DeclarationItemForm.DeclarationTestItem.Image1.Container + "/" + Model.DeclarationItemForm.DeclarationTestItem.Image1.Blob;
-                                    };
-                                    <img src="@image1" alt="" width="200" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card transparent">
-                            <div class="form-field">
-                                <label class="legend">
-                                    <span class="collapse row">
-                                        <span class="small-10 columns">
-                                            <span class="collapse row">
-                                                <span class="small-2 medium-1 columns">
-                                                    <span class="legend-number">1.3</span>
-                                                </span>
-                                                <span class="small-10 medium-11 columns">
-                                                    <span class="legend-text">
-                                                        Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.
-                                                    </span>
-                                                </span>
-                                            </span>
-                                        </span>
-
-                                        <span class="small-2 columns"></span>
-                                    </span>
-                                </label>
-
-                                <div class="card-divider">
-                                    @{
-                                        var image2 = Model.DeclarationItemForm.DeclarationTestItem.Image2.Container + "/" + Model.DeclarationItemForm.DeclarationTestItem.Image2.Blob;
-                                    };
-                                    <img src="@image2" alt="" width="200" />
-                                </div>
-                            </div>
-                        </div>
+                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "DisplayStringAnswer", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere." })
+                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "DisplayImageAnswer", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om." })
+                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "DisplayImageAnswer", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om." })
                     </div>
                 </div>
             </div>

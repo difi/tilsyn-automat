@@ -122,6 +122,12 @@
     <Content Update="Pages\Shared\EditorTemplates\DateTime.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\DisplayImageAnswer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Shared\EditorTemplates\DisplayStringAnswer.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\EditorTemplates\DisplayValueList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
