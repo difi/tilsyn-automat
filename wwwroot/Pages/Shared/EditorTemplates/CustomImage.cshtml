@@ -8,11 +8,9 @@
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
-    var answerData = (AnswerData)ViewData["answerData"];
-    var answerItem = (AnswerItem)ViewData["answerItem"];
+    var uploadId = name.ToString().Replace("answer_image_", "");
 
-    var hiddenId = "answer_image_" + answerData.AnswerItem.Id;
-    var oldId = "old_" + answerData.AnswerItem.Id;
+    var oldId = "old_" + name;
     var answerDataId = "";
 }
 
@@ -84,24 +82,24 @@
     </label>
 
     <div class="card-divider text-center medium-text-left">
-        @if (answerData.Image != null)
+        @if (Model != null)
         {
-            answerDataId = answerData.Image.Id.ToString();
-            var image = answerData.Image.Container + "/" + answerData.Image.Blob;
+            answerDataId = Model.Id.ToString();
+            var image = Model.Container + "/" + Model.Blob;
 
-            <div class="uploaded jsUploaded" id="@oldId">
-                <div>
-                    <ul class="listing qq-upload-list-selector qq-upload-list">
-                        <li>
-                            <img src="@image" alt="" width="114"/>
-                            <button class="link-button jsButtonRemoveImage" data-id="@answerItem.Id">Fjern bilde</button>
-                        </li>
-                    </ul>
-                </div>
+        <div class="uploaded jsUploaded" id="@oldId">
+            <div>
+                <ul class="listing qq-upload-list-selector qq-upload-list">
+                    <li>
+                        <img src="@image" alt="" width="114" />
+                        <button class="link-button jsButtonRemoveImage" data-id="@name">Fjern bilde</button>
+                    </li>
+                </ul>
             </div>
+        </div>
         }
 
-        <div class="uploader" id="@answerItem.Id"></div>
-        <input type="hidden" name="@name" id="@hiddenId" value="@answerDataId" />
+        <div class="uploader" id="@uploadId"></div>
+        <input type="hidden" name="@name" id="@name" value="@answerDataId" />
     </div>
 </div>
