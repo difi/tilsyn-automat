@@ -88,6 +88,7 @@
                                     foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                                     {
                                         var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+
                                         AnswerData lastAnswerData = new AnswerData
                                         {
                                             Id = Guid.Empty,
@@ -102,20 +103,51 @@
                                                 {
                                                     var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
 
-                                                    var hide = (answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty);
+                                                    var hide = answerItem.LinkedParentFailedId != Guid.Empty || answerItem.LinkedParentCorrectId != Guid.Empty;
 
                                                     if (answerItem.AlwaysVisible)
                                                     {
                                                         hide = false;
                                                     }
 
+                                                    var viewAnswerItem = true;
+
+                                                    if (lastAnswerData != null && answerItem != null)
+                                                    {
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            if (answerData.ResultId == (int) TypeOfResult.NotTestable)
+                                                            {
+                                                                viewAnswerItem = false;
+                                                            }
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            if (answerData.ResultId == (int)TypeOfResult.NotTested)
+                                                            {
+                                                                viewAnswerItem = false;
+                                                            }
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+                                                    }
+
                                                     var formId = indicatorItem.Id + "_" + ruleItem.Id + "_" + answerItem.Id;
                                                     var orderText = mainIndex + "." + subIndex;
 
-                                                    if ((lastAnswerData.ResultId != (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId == Guid.Empty) || (lastAnswerData.Result.Id != (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId == Guid.Empty))
+                                                    if (viewAnswerItem)
                                                     {
                                                         <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
-                                                            <div class="form-field"> 
+                                                            <div class="form-field">
                                                                 <label class="legend">
                                                                     <span class="collapse row">
                                                                         <span class="small-10 columns">
@@ -176,31 +208,6 @@
                                                                     }
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
-                                                            <div class="form-field"  style="background-color: red;">
-                                                                <label class="legend">
-                                                                    <span class="collapse row">
-                                                                        <span class="small-10 columns">
-                                                                            <span class="collapse row">
-                                                                                <span class="small-2 medium-1 columns">
-                                                                                    <span class="legend-number">@orderText</span>
-                                                                                </span>
-                                                                                <span class="small-10 medium-11 columns">
-                                                                                    <span class="legend-text">
-                                                                                        @answerItem.Question
-                                                                                    </span>
-                                                                                </span>
-                                                                            </span>
-                                                                        </span>
-
-                                                                        <span class="small-2 columns">@answerData.Result.Text</span>
-                                                                    </span>
-                                                                </label>
-                                                           </div>
                                                         </div>
                                                     }
 
