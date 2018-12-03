@@ -1,7 +1,7 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 @using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
-@model AnswerItem
+@model Difi.Sjalvdeklaration.Shared.Classes.ImageItem
 
 @{
     var name = ViewData["id"];
@@ -9,6 +9,7 @@
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
     var answerData = (AnswerData)ViewData["answerData"];
+    var answerItem = (AnswerItem)ViewData["answerItem"];
 
     var hiddenId = "answer_image_" + answerData.AnswerItem.Id;
     var oldId = "old_" + answerData.AnswerItem.Id;
@@ -88,19 +89,19 @@
             answerDataId = answerData.Image.Id.ToString();
             var image = answerData.Image.Container + "/" + answerData.Image.Blob;
 
-        <div class="uploaded jsUploaded" id="@oldId">
-            <div>
-                <ul class="listing qq-upload-list-selector qq-upload-list">
-                    <li>
-                        <img src="@image" alt="" width="114" />
-                        <button class="link-button jsButtonRemoveImage" data-id="@Model.Id">Fjern bilde</button>
-                    </li>
-                </ul>
+            <div class="uploaded jsUploaded" id="@oldId">
+                <div>
+                    <ul class="listing qq-upload-list-selector qq-upload-list">
+                        <li>
+                            <img src="@image" alt="" width="114"/>
+                            <button class="link-button jsButtonRemoveImage" data-id="@answerItem.Id">Fjern bilde</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         }
 
-        <div class="uploader" id="@Model.Id"></div>
+        <div class="uploader" id="@answerItem.Id"></div>
         <input type="hidden" name="@name" id="@hiddenId" value="@answerDataId" />
     </div>
 </div>

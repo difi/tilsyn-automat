@@ -176,7 +176,7 @@
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                         {
-                                                            @Html.EditorFor(x => answerItem, "CustomImage", new { text = answerItem.Question, id = "answer_image_" + formId, answerData = answerData, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
+                                                            @Html.EditorFor(x => answerItem.Image, "CustomImage", new { text = answerItem.Question, id = "answer_image_" + formId, answerData = answerData, answerItem= answerItem, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
                                                         }
                                                     </div>
 
