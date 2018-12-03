@@ -1,7 +1,7 @@
 ﻿$(function () {
     $('[data-hide="True"]').hide();
 
-    $('.jsAnswerItem').change(function () {
+    $(".jsAnswerItem").change(function () {
         var type = $(this).data("type");
         var id = $(this).data("id");
         var bool = $(this).data("bool").toLowerCase();
@@ -27,7 +27,7 @@
         }
     });
 
-    $('.jsAnswerItem').each(function () {
+    $(".jsAnswerItem").each(function () {
         var type = $(this).data("type");
         var id = $(this).data("id");
         var bool = $(this).data("bool").toLowerCase();
@@ -49,6 +49,20 @@
             });
         }
     });
+
+    $("#answer_int_supplierandversion").change(function () {
+        if ($("#answer_int_supplierandversion").val() === "99999") {
+            $("#jsSupplierAndVersionOther").slideDown("fast");
+        } else {
+            $("#jsSupplierAndVersionOther").slideUp("fast");
+        }
+    });
+
+    if ($("#answer_int_supplierandversion").val() === "99999") {
+        $("#jsSupplierAndVersionOther").show();
+    } else {
+        $("#jsSupplierAndVersionOther").hide();
+    }
 
     $(".jsButtonRemoveImage").click(function (e) {
         e.preventDefault();
