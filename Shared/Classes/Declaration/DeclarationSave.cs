@@ -10,5 +10,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public Guid Id { get; set; }
 
         public List<OutcomeData> OutcomeDataList { get; set; }
+
+        public DeclarationTestItem DeclarationTestItem { get; set; }
     }
 }

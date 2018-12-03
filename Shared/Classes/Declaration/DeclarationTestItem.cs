@@ -48,9 +48,13 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         //[Required(ErrorMessage = "Image1 - required field")]
         public ImageItem Image1 { get; set; }
 
+        public Guid? Image1Id { get; set; }
+
         [Display(Name = "Image2")]
         //[Required(ErrorMessage = "Image2 - required field")]
         public ImageItem Image2 { get; set; }
+
+        public Guid? Image2Id { get; set; }
 
         public DeclarationItem DeclarationItem { get; set; }
 

@@ -71,7 +71,7 @@ namespace Difi.Sjalvdeklaration.Api
         {
             HandleRequest();
 
-            return declarationRepository.Save(declarationSave.Id, declarationSave.OutcomeDataList);
+            return declarationRepository.Save(declarationSave.Id, declarationSave.OutcomeDataList, declarationSave.DeclarationTestItem);
         }
 
         [HttpGet]

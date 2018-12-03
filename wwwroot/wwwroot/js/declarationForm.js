@@ -54,7 +54,9 @@
         e.preventDefault();
         var id = $(this).data("id");
 
-        $("#answer_image_" + id).val("");
+        console.log(id);
+
+        $("#" + id).val("");
         $("#old_" + id).hide();
     });
 

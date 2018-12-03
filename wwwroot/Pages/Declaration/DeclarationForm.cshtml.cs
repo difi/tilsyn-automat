@@ -69,6 +69,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
 
+                var declarationTestItem = new DeclarationTestItem
+                {
+                    Id = DeclarationItemForm.Id,
+                    DescriptionInText = GetAnswerFromFormString("answer_string_testitem_descriptionintext"),
+                    Image1Id = GetAnswerFromFormImage("answer_image_testitem_image1"),
+                    Image2Id = GetAnswerFromFormImage("answer_image_testitem_image2")
+                };
+
                 var outcomeDataList = new List<OutcomeData>();
 
                 foreach (var declarationTestGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
@@ -105,7 +113,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     outcomeDataList.Add(outcomeData);
                 }
 
-                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, OutcomeDataList = outcomeDataList});
+                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, OutcomeDataList = outcomeDataList, DeclarationTestItem = declarationTestItem });
 
                 if (result.Succeeded)
                 {

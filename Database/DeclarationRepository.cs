@@ -201,7 +201,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList)
+        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList, DeclarationTestItem declarationTestItem)
         {
             var result = new ApiResult();
 
@@ -246,8 +246,12 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.OutcomeData.Add(outcomeData);
                 }
 
-                var dbItem = dbContext.DeclarationList.Single(x => x.Id == declarationItemId);
+                var dbItem = dbContext.DeclarationList.Include(x=>x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
                 dbItem.StatusId = (int) DeclarationStatus.Started;
+
+                dbItem.DeclarationTestItem.DescriptionInText = declarationTestItem.DescriptionInText;
+                dbItem.DeclarationTestItem.Image1Id = declarationTestItem.Image1Id;
+                dbItem.DeclarationTestItem.Image2Id = declarationTestItem.Image2Id;
 
                 dbContext.SaveChanges();
 
