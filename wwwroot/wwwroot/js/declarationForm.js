@@ -11,9 +11,17 @@
                 if ($(this).val() === bool) {
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').slideDown("fast");
                     $('[data-hide="True"][data-LinkedParentFailedId="' + id + '"]').slideUp("fast");
+
+                    $('[data-hide="True"][data-LinkedParentFailedId="' + id + '"]').find("textarea").val("");
+                    $('[data-hide="True"][data-LinkedParentFailedId="' + id + '"]').find("input").val("");
+                    $('[data-hide="True"][data-LinkedParentFailedId="' + id + '"]').find("input").prop("checked", false);
                 } else {
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').slideUp("fast");
                     $('[data-hide="True"][data-LinkedParentFailedId="' + id + '"]').slideDown("fast");
+
+                    $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').find("textarea").val("");
+                    $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').find("input").val("");
+                    $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').find("input").prop("checked", false);
                 }
             });
         }
