@@ -79,5 +79,14 @@ namespace Difi.Sjalvdeklaration.Log
 
             return result;
         }
+
+        public ApiResult EndDeclaration(Guid id)
+        {
+            var result = inner.EndDeclaration(id);
+
+            logRepository.Add(new LogItem(userId, result, id));
+
+            return result;
+        }
     }
 }

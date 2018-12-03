@@ -23,5 +23,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
         ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList, DeclarationTestItem declarationTestItem);
 
         ApiResult SendIn(Guid id);
+
+        ApiResult EndDeclaration(Guid id);
     }
 }

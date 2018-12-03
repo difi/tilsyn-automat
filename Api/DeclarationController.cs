@@ -83,6 +83,15 @@ namespace Difi.Sjalvdeklaration.Api
             return declarationRepository.SendIn(id);
         }
 
+        [HttpGet]
+        [Route("EndDeclaration/{id}")]
+        public ApiResult EndDeclaration(Guid id)
+        {
+            HandleRequest();
+
+            return declarationRepository.EndDeclaration(id);
+        }
+
         private void HandleRequest()
         {
             declarationRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
