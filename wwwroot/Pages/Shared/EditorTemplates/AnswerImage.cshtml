@@ -40,7 +40,10 @@
                 </span>
 
                 <span class="small-2 columns text-right">
-                    <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
+                    @if (viewHelp)
+                    {
+                        <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
+                    }
                 </span>
             </span>
         }

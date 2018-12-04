@@ -1,4 +1,5 @@
-﻿@model int
+﻿@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
+@model int
 
 @{
     var name = ViewData["id"];
@@ -6,64 +7,41 @@
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
     var value = ViewData["value"];
+
+    var ruleItem = (RuleItem)ViewData["ruleItem"];
+    var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
 }
 
-<div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
-    <div class="legend">
+@if (viewHelp && firstQuestion)
+{
+    @Html.DisplayFor(x => ruleItem, "RuleHelp", new { orderText = orderText })
+}
+
+<div class="form-field">
+    <label class="legend" for="@name">
+        @if (firstQuestion)
+        {
         <span class="collapse row">
             <span class="small-10 columns">
                 <span class="collapse row">
                     <span class="small-2 medium-1 columns">
-                        @if (firstQuestion)
-                        {
-                            <span class="legend-number">@orderText</span>
-                        }
+                        <span class="legend-number">@orderText</span>
                     </span>
                     <span class="small-10 medium-11 columns">
                         <span class="legend-text">
-                            Hjelp
+                            @text
                         </span>
                     </span>
                 </span>
             </span>
 
             <span class="small-2 columns text-right">
-                <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Lukk hjelp</span></button>
+                @if (viewHelp)
+                {
+                    <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
+                }
             </span>
         </span>
-    </div>
-
-    <div class="card-help-text">
-        <img alt="desciption" src="~/images/help.png" /><br />
-        <h3>Krav</h3>
-        <p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p>
-        <h3>Hensikt</h3>
-        <p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.</p>
-    </div>
-</div>
-
-<div class="form-field">
-    <label class="legend" for="@name">
-        @if (firstQuestion)
-        {
-            <span class="collapse row">
-                <span class="small-10 columns">
-                    <span class="collapse row">
-                        <span class="small-2 medium-1 columns">
-                            <span class="legend-number">@orderText</span>
-                        </span>
-                        <span class="small-10 medium-11 columns">
-                            <span class="legend-text">
-                                @text
-                            </span>
-                        </span>
-                    </span>
-                </span>
-
-                <span class="small-2 columns text-right">
-                    <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
-                </span>
-            </span>
         }
         else
         {
