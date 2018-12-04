@@ -66,6 +66,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<TestGroupItem> TestGroupList { get; set; }
 
+        public DbSet<TestGroupItemLanguage> TestGroupLanguageList { get; set; }
+
         public DbSet<LanguageItem> LanguageList { get; set; }
 
         public DbSet<DeclarationIndicatorGroup> DeclarationIndicatorGroupList { get; set; }
@@ -370,23 +372,46 @@ namespace Difi.Sjalvdeklaration.Database
             var testGroup1 = new TestGroupItem
             {
                 Id = Guid.Parse("aec1869a-30f8-403c-b909-df115173f009"),
-                Name = "Betjeningsområde",
                 Order =  1,
+            };
+
+            var testGroupItemLanguage1 = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("d7f6c8de-9435-4c39-bd19-9642eca25e65"),
+                Name = "Betjeningsområde",
+                LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup1.Id
             };
 
             var testGroup2 = new TestGroupItem
             {
                 Id = Guid.Parse("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"),
-                Name = "Skilt",
                 Order = 2,
             };
+
+            var testGroupItemLanguage2 = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("2b1d1f9a-1c00-43f5-b8f1-f598d146bc77"),
+                Name = "Skilt",
+                LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup2.Id
+            };
+
 
             var testGroup3 = new TestGroupItem
             {
                 Id = Guid.Parse("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"),
-                Name = "Betjeningshøyde",
                 Order = 3,
             };
+
+            var testGroupItemLanguage3 = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("3b00207c-83a8-49a8-a65e-503b63cc73b1"),
+                Name = "Betjeningshøyde",
+                LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup3.Id
+            };
+
 
             var indicatorItem1 = new IndicatorItem
             {
@@ -867,6 +892,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             modelBuilder.Entity<LanguageItem>().HasData(language1, language2);
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
+            modelBuilder.Entity<TestGroupItemLanguage>().HasData(testGroupItemLanguage1, testGroupItemLanguage2, testGroupItemLanguage3);
             modelBuilder.Entity<StandardItem>().HasData(standardItem1);
             modelBuilder.Entity<ChapterItem>().HasData(chapterItem11, chapterItem12, chapterItem21, chapterItem31, chapterItem41);
             modelBuilder.Entity<IndicatorItem>().HasData(indicatorItem1, indicatorItem2, indicatorItem3, indicatorItem4);

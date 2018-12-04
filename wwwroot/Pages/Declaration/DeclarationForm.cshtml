@@ -76,7 +76,7 @@
                 <div class="jsToggleCardContainer">
                     <div class="row medium-uncollapse">
                         <div class="small-12 medium-12 columns">
-                            <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Name</span></span> </button></h2>
+                            <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Language.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Language.Name</span></span> </button></h2>
                         </div>
                     </div>
 
@@ -121,35 +121,35 @@
                                                     <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                         {
-                                                            @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.AnswerItemLanguage.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
+                                                            @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.Language.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                                         {
                                                             if (answerData != null)
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.AnswerItemLanguage.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.AnswerItemLanguage.BoolTrueText, falseText = answerItem.AnswerItemLanguage.BoolFalseText })
+                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Language.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
                                                             }
                                                             else
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.AnswerItemLanguage.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.AnswerItemLanguage.BoolTrueText, falseText = answerItem.AnswerItemLanguage.BoolFalseText })
+                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Language.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
                                                             }
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
                                                         {
-                                                            @Html.EditorFor(x => answerItem.MinInt, "AnswerInt", new { text = answerItem.AnswerItemLanguage.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
+                                                            @Html.EditorFor(x => answerItem.MinInt, "AnswerInt", new { text = answerItem.Language.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                         {
                                                             if (answerData != null)
                                                             {
-                                                                @Html.EditorFor(x => answerData.Image, "AnswerImage", new { text = answerItem.AnswerItemLanguage.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                                @Html.EditorFor(x => answerData.Image, "AnswerImage", new { text = answerItem.Language.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
                                                             }
                                                             else
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Image, "AnswerImage", new { text = answerItem.AnswerItemLanguage.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                                @Html.EditorFor(x => answerItem.Image, "AnswerImage", new { text = answerItem.Language.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
                                                             }
 
                                                         }
@@ -175,76 +175,76 @@
 
         </form>
 
-        @section Scripts {
-            <script src="~/js/declarationForm.js"></script>
-
-            <link href="/js/azure.fine-uploader/fine-uploader-gallery.css" rel="stylesheet">
-            <link href="/js/azure.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet">
-            <script src="/js/azure.fine-uploader/azure.fine-uploader.js"></script>
-
-
-            <script type="text/template" id="qq-template">
-                <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
-                    <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
-                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
-                    </div>
-                    <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
-                        <span class="qq-upload-drop-area-text-selector"></span>
-                    </div>
-                    <ul class="listing qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
-                        <li>
-                            <div class="qq-progress-bar-container-selector">
-                                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
-                            </div>
-                            <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
-                            <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
-
-                            <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["DeleteImage"]</button>
-                        </li>
-                    </ul>
-                    <div class="qq-upload-button-selector qq-upload-button">
-
-                        <div class="row ">
-                            <div class="small-10 small-centered medium-12 columns">
-                                <button class="button upload-photo"><span></span>@Localizer["AddImage"]</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </script>
-
-            <script>
-                $(".uploader").each(function () {
-
-                    var uploader = new qq.azure.FineUploader({
-                        element: document.getElementById($(this).attr("id")),
-                        request: {
-                            endpoint: 'https://difiimagetest.blob.core.windows.net/difi20181128'
-                        },
-                        signature: {
-                            endpoint: '/AzureHandler'
-                        },
-                        uploadSuccess: {
-                            endpoint: '/AzureHandler?id=' + $(this).attr("id")
-                        },
-                        retry: {
-                            enableAuto: true
-                        },
-                        deleteFile: {
-                            enabled: true
-                        },
-                        multiple: false,
-                        validation: {
-                            allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
-                        },
-                        debug: true
-                    });
-                });
-            </script>
-
-            @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
-        }
-
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/declarationForm.js"></script>
+
+    <link href="/js/azure.fine-uploader/fine-uploader-gallery.css" rel="stylesheet">
+    <link href="/js/azure.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet">
+    <script src="/js/azure.fine-uploader/azure.fine-uploader.js"></script>
+
+
+    <script type="text/template" id="qq-template">
+        <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
+            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+            </div>
+            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+                <span class="qq-upload-drop-area-text-selector"></span>
+            </div>
+            <ul class="listing qq-upload-list-selector qq-upload-list" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                    <div class="qq-progress-bar-container-selector">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                    </div>
+                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                    <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
+
+                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["DeleteImage"]</button>
+                </li>
+            </ul>
+            <div class="qq-upload-button-selector qq-upload-button">
+
+                <div class="row ">
+                    <div class="small-10 small-centered medium-12 columns">
+                        <button class="button upload-photo"><span></span>@Localizer["AddImage"]</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </script>
+
+    <script>
+        $(".uploader").each(function () {
+
+            var uploader = new qq.azure.FineUploader({
+                element: document.getElementById($(this).attr("id")),
+                request: {
+                    endpoint: 'https://difiimagetest.blob.core.windows.net/difi20181128'
+                },
+                signature: {
+                    endpoint: '/AzureHandler'
+                },
+                uploadSuccess: {
+                    endpoint: '/AzureHandler?id=' + $(this).attr("id")
+                },
+                retry: {
+                    enableAuto: true
+                },
+                deleteFile: {
+                    enabled: true
+                },
+                multiple: false,
+                validation: {
+                    allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
+                },
+                debug: true
+            });
+        });
+    </script>
+
+    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+}

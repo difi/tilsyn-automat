@@ -52,15 +52,18 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (item != null)
                 {
-                    var langList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+                    var testGroupLanguageList = dbContext.TestGroupLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+                    var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
 
                     foreach (var declarationIndicatorGroup in item.IndicatorList)
                     {
+                        declarationIndicatorGroup.TestGroupItem.Language = testGroupLanguageList.SingleOrDefault(x => x.TestGroupItemId == declarationIndicatorGroup.TestGroupItemId);
+
                         foreach (var ruleItem in declarationIndicatorGroup.IndicatorItem.RuleList)
                         {
                             foreach (var answerItem in ruleItem.AnswerList)
                             {
-                                answerItem.AnswerItemLanguage = langList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+                                answerItem.Language = answerLanguageList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
                             }
                         }
                     }
