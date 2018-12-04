@@ -2331,7 +2331,7 @@ h6, .h6 {
   h5 small, .h5 small,
   h6 small, .h6 small {
     line-height: 0;
-    color: #cacaca; }
+    color: inherit; }
 
 h1, .h1 {
   font-size: 1.25rem;
@@ -3695,6 +3695,9 @@ h1 {
   h1.h2 {
     margin: 0 0 8px 0;
     line-height: 1.1; }
+  h1.smaller {
+    margin: 5px 0 0px 0;
+    font-size: 26px; }
 
 h2 {
   margin: 16px 0 10px 0;
