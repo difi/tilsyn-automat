@@ -3761,23 +3761,9 @@ header {
     margin-top: 1.5rem; }
   header .logo {
     margin: 13px 0 0 -130px; }
-  header .profile-info-area ul {
-    margin: 0;
-    padding: 0;
-    list-style: none; }
-    header .profile-info-area ul li {
-      border-bottom: 1px solid #e7eff1; }
-    header .profile-info-area ul a, header .profile-info-area ul .button {
-      background-color: transparent;
-      padding: 1rem;
-      color: #1f3f43;
-      border: 0;
-      display: block;
-      width: 100%;
-      text-align: right;
-      margin: 0 !important; }
-      header .profile-info-area ul a:hover, header .profile-info-area ul a.tabbed, header .profile-info-area ul .button:hover, header .profile-info-area ul .button.tabbed {
-        text-decoration: underline; }
+  header .profile-info-area {
+    text-align: right;
+    padding: 2rem 0 1rem 0; }
   header .profile-number {
     font-weight: normal; }
   header .profile-name {
@@ -4066,11 +4052,11 @@ button, .button, input[type="button"], input[type="submit"] {
       position: relative;
       float: right; }
   button.toggle-profile-button, .button.toggle-profile-button, input[type="button"].toggle-profile-button, input[type="submit"].toggle-profile-button {
-    text-align: left;
+    text-align: right;
     font-weight: bold;
     background-color: transparent;
-    padding: 0.75rem 12px 1rem 10px;
-    margin-bottom: 20px;
+    padding: 0.75rem 2rem 1rem 10px;
+    margin-bottom: 25px;
     color: #1f3f43;
     font-size: 1rem;
     border-radius: 0;
