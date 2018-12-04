@@ -79,5 +79,14 @@ namespace Difi.Sjalvdeklaration.Log
 
             return result;
         }
+
+        public ApiResult HaveMachine(Guid id, bool haveMachine)
+        {
+            var result = inner.HaveMachine(id, haveMachine);
+
+            logRepository.Add(new LogItem(userId, result, id, haveMachine));
+
+            return result;
+        }
     }
 }

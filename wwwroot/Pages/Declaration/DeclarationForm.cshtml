@@ -10,37 +10,7 @@
     var mainIndex = 1;
 }
 
-<header class="no-bg">
-    <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <div class="row column">
-                <div class="small-5 medium-2 columns">
-                    <button class="button white back">Tillbake</button>
-                </div>
-
-                <div class="small-7 medium-push-6 medium-4 columns text-right">
-                    <div class="row  align-middle">
-                        <div class="small-8 medium-9 columns">
-                            <span class="status-text"><strong>Status</strong> under arbeid</span>
-                        </div>
-                        <div class="small-4 medium-3 columns">
-                            @{
-                                var statusDone = 75;
-                            }
-                            <div class="status status-@statusDone">
-                                <div class="status-done">@statusDone%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="small-12 medium-pull-4 medium-6 text-center medium-text-left columns">
-                    <h1>@title</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr />
-</header>
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id })
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
@@ -74,7 +44,7 @@
                         <div class="jsToggleCardTarget">
                             <div class="card">
                                 @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, "AnswerDropdownListInt", new { list = Model.SelectSupplierAndVersionList, text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_int_supplierandversion", firstQuestion = true, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId })
-                                
+
                                 <div id="jsSupplierAndVersionOther">
                                     @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", id = "answer_string_testitem_supplierandversionother", firstQuestion = false, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther })
                                 </div>

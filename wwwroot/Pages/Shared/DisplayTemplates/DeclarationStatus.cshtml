@@ -1,0 +1,36 @@
+﻿@model Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem
+
+@{
+    var statusDone = ViewData["statusDone"];
+    var backUrl = ViewData["backUrl"];
+}
+
+<header class="no-bg">
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <div class="row column">
+                <div class="small-5 medium-2 columns">
+                    <a class="button white back" href="@backUrl">Tillbake</a>
+                </div>
+
+                <div class="small-7 medium-push-6 medium-4 columns text-right">
+                    <div class="row  align-middle">
+                        <div class="small-8 medium-9 columns">
+                            <span class="status-text"><strong>Status</strong> under arbeid</span>
+                        </div>
+                        <div class="small-4 medium-3 columns">
+
+                            <div class="status status-@statusDone">
+                                <div class="status-done">@statusDone%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-12 medium-pull-4 medium-6 text-center medium-text-left columns">
+                    <h1>@Model.Name</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+</header>

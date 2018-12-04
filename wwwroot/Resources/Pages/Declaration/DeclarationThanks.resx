@@ -117,58 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DescriptionInText" xml:space="preserve">
-    <value>4DescriptionInText</value>
+  <data name="Back" xml:space="preserve">
+    <value>Tilbake til oversikten</value>
   </data>
-  <data name="DescriptionInText - required field" xml:space="preserve">
-    <value>4DescriptionInText - er påkrevd</value>
-  </data>
-  <data name="FinishedStatus" xml:space="preserve">
-    <value>4FinishedStatus</value>
-  </data>
-  <data name="FinishedStatus - required field" xml:space="preserve">
-    <value>4FinishedStatus - er påkrevd</value>
-  </data>
-  <data name="Have Machine" xml:space="preserve">
-    <value>Har en automat</value>
-  </data>
-  <data name="Image1" xml:space="preserve">
-    <value>4Image1</value>
-  </data>
-  <data name="Image1 - required field" xml:space="preserve">
-    <value>4Image1 - er påkrevd</value>
-  </data>
-  <data name="Image2" xml:space="preserve">
-    <value>4Image2</value>
-  </data>
-  <data name="Image2 - required field" xml:space="preserve">
-    <value>4Image2 - er påkrevd</value>
-  </data>
-  <data name="Purpose Of Test" xml:space="preserve">
-    <value>Formål med test</value>
-  </data>
-  <data name="SupplierAndVersion" xml:space="preserve">
-    <value>4SupplierAndVersion</value>
-  </data>
-  <data name="SupplierAndVersion - required field" xml:space="preserve">
-    <value>4SupplierAndVersion - er påkrevd</value>
-  </data>
-  <data name="SupplierAndVersionOther" xml:space="preserve">
-    <value>4SupplierAndVersionOther</value>
-  </data>
-  <data name="SupplierAndVersionOther - required field" xml:space="preserve">
-    <value>4SupplierAndVersionOther - er påkrevd</value>
-  </data>
-  <data name="TypeOfMachine" xml:space="preserve">
-    <value>4TypeOfMachine</value>
-  </data>
-  <data name="TypeOfMachine - required field" xml:space="preserve">
-    <value>4TypeOfMachine - er påkrevd</value>
-  </data>
-  <data name="TypeOfTest" xml:space="preserve">
-    <value>4TypeOfTest</value>
-  </data>
-  <data name="TypeOfTest - required field" xml:space="preserve">
-    <value>4TypeOfTest - er påkrevd</value>
+  <data name="Print" xml:space="preserve">
+    <value>Skriv ut bekreftelse</value>
   </data>
 </root>

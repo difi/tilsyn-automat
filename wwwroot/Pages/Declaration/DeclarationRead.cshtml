@@ -11,37 +11,7 @@
     var mainIndex = 1;
 }
 
-<header class="no-bg">
-    <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <div class="row column">
-                <div class="small-5 medium-2 columns">
-                    <button class="button white back">Tillbake</button>
-                </div>
-
-                <div class="small-7 medium-push-6 medium-4 columns text-right">
-                    <div class="row  align-middle">
-                        <div class="small-8 medium-9 columns">
-                            <span class="status-text"><strong>Status</strong> under arbeid</span>
-                        </div>
-                        <div class="small-4 medium-3 columns">
-                            @{
-                                var statusDone = 100;
-                            }
-                            <div class="status status-@statusDone">
-                                <div class="status-done">@statusDone%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="small-12 medium-pull-4 medium-6 text-center medium-text-left columns">
-                    <h1>@title</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr />
-</header>
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationForm?id="+Model.DeclarationItemForm.Id })
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
@@ -57,7 +27,11 @@
                     <div class="jsToggleCardTarget">
                         <div class="card transparent">
                             @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", orderText = "1.1" })
-                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1" })
+
+                            @if (Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion.Id == 99999)
+                            {
+                                @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1" })
+                            }
                         </div>
 
                         <div class="card transparent">

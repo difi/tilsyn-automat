@@ -83,6 +83,15 @@ namespace Difi.Sjalvdeklaration.Api
             return declarationRepository.SendIn(id);
         }
 
+        [HttpGet]
+        [Route("HaveMachine/{id}/{haveMachine}")]
+        public ApiResult HaveMachine(Guid id, bool haveMachine)
+        {
+            HandleRequest();
+
+            return declarationRepository.HaveMachine(id, haveMachine);
+        }
+
         private void HandleRequest()
         {
             declarationRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));

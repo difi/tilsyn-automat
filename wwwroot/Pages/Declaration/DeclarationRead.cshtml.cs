@@ -71,7 +71,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationList");
+                    return RedirectToPage("/Declaration/DeclarationThanks", new {id = id});
                 }
 
                 return Page();

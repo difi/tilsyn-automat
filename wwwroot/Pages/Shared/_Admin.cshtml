@@ -1,20 +1,21 @@
-﻿@using Microsoft.AspNetCore.Authorization
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Http
+
 @inject IAuthorizationService AuthorizationService
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     Layout = "_Layout.cshtml";
 
     var activePage = Context.Request.Path.ToString().Replace("/Admin/", "").Replace("Form", "").Replace("List", "");
+    var nameClaim = HttpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
 }
 
 <header>
     <div class="row">
-
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row">
-
-
-
                 <div class="small-8 column">
                     <div class="logo">
                         <img alt="Difi alt-text" src="~/images/difi-logo.svg" />
@@ -31,7 +32,7 @@
                                 </div>
                                 <div class="small-12  medium-8 columns">
                                     <button class="jsProfileTrigger toggle-profile-button button plus">
-                                        <span class="profile-name">Thea Handal Sneve</span><br />
+                                        <span class="profile-name">@nameClaim?.Value</span><br />
                                         <span class="profile-number">050474 XXXXX</span>
                                         <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
                                     </button>
@@ -40,11 +41,11 @@
                         </div>
 
                         <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
-
-                            <div class="text-right">
-                                <button class="button">Button</button>
-                            </div>
-                 
+                            <ul class="text-left">
+                                <li>
+                                    <a asp-page="/LogoutHandler" asp-route-what="logout">Logga ut</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
