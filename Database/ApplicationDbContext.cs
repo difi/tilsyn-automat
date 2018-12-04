@@ -54,6 +54,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<AnswerItem> AnswerList { get; set; }
 
+        public DbSet<AnswerItemLanguage> AnswerLanguageList { get; set; }
+
         public DbSet<RequirementItem> RequirementList { get; set; }
 
         public DbSet<IndicatorItem> IndicatorList { get; set; }
@@ -63,6 +65,8 @@ namespace Difi.Sjalvdeklaration.Database
         public DbSet<StandardItem> StandardList { get; set; }
 
         public DbSet<TestGroupItem> TestGroupList { get; set; }
+
+        public DbSet<LanguageItem> LanguageList { get; set; }
 
         public DbSet<DeclarationIndicatorGroup> DeclarationIndicatorGroupList { get; set; }
 
@@ -137,6 +141,18 @@ namespace Difi.Sjalvdeklaration.Database
             modelBuilder.Entity<RuleData>().HasOne(x => x.Result).WithMany(x=>x.RuleDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<OutcomeData>().HasOne(x => x.Result).WithMany(x => x.OutcomeDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<AnswerData>().HasOne(x => x.Result).WithMany(x => x.AnswerDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+
+            var language1 = new LanguageItem
+            {
+                Id = Guid.Parse("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"),
+                Name = "nb-NO"
+            };
+
+            var language2 = new LanguageItem
+            {
+                Id = Guid.Parse("96d43981-d564-48e0-b416-975fe2b46dbe"),
+                Name = "nn-NO"
+            };
 
             var role1 = new RoleItem
             {
@@ -517,28 +533,42 @@ namespace Difi.Sjalvdeklaration.Database
 
             var answerItem111 = new AnswerItem
             {
-                Question = "Finnes det hindringer i kundens betjeningsområde?",
                 Order = 1,
                 Id = Guid.Parse("02d2db89-3717-48e1-883e-8e526bf6c727"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = false,
+                RuleItemId = ruleItem11.Id
+            };
+
+            var answerItemLanguage111 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("2583fbbf-12a3-475d-b610-41b5ad0327c1"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem111.Id,
+                Question = "Finnes det hindringer i kundens betjeningsområde?",
                 BoolTrueText = "Ja",
                 BoolFalseText = "Nej",
-                RuleItemId = ruleItem11.Id
             };
 
             var answerItem112 = new AnswerItem
             {
-                Question = "Ta bilde",
+
                 Order = 3,
                 Id = Guid.Parse("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem11.Id,
             };
 
+            var answerItemLanguage112 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("db55a19e-7f42-4176-921d-4a09698f727a"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem112.Id,
+                Question = "Ta bilde",
+            };
+
             var answerItem113 = new AnswerItem
             {
-                Question = "Beskriv hindringene i kundens betjeningsområde.",
                 Order = 2,
                 Id = Guid.Parse("d7b40e3c-e7fa-44e5-b44f-750759c971cc"),
                 TypeOfAnswerId = typeOfAnswer1.Id,
@@ -546,34 +576,55 @@ namespace Difi.Sjalvdeklaration.Database
                 LinkedParentFailedId = answerItem111.Id,
             };
 
+            var answerItemLanguage113 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("6876174d-2e2c-484b-a9a7-14cb63359a30"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem113.Id,
+                Question = "Beskriv hindringene i kundens betjeningsområde.",
+            };
+
             var answerItem121 = new AnswerItem
             {
-                Question = "Henger det gjenstander over kundens betjeningsområde?",
                 Order = 1,
                 Id = Guid.Parse("a1964762-5c8f-40bb-a22d-c907149079d4"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
-                BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
                 Bool = false,
                 RuleItemId = ruleItem12.Id,
             };
 
+            var answerItemLanguage121 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("3ec18f01-3e59-4cb1-b4b3-75e0af67ac2f"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem121.Id,
+                Question = "Henger det gjenstander over kundens betjeningsområde?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
+            };
+
             var answerItem122 = new AnswerItem
             {
-                Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
                 Order = 2,
                 Id = Guid.Parse("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
-                BoolTrueText = "220 cm eller mer",
-                BoolFalseText = "0-219 cm, ",
                 RuleItemId = ruleItem12.Id,
                 LinkedParentFailedId = answerItem121.Id,
             };
 
+            var answerItemLanguage122 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("1670250d-7f81-4fd0-90a2-d9a8df97df8a"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem122.Id,
+                Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
+                BoolTrueText = "220 cm eller mer",
+                BoolFalseText = "0-219 cm, ",
+            };
+
             var answerItem123 = new AnswerItem
             {
-                Question = "Mål i cm",
                 Order = 3,
                 Id = Guid.Parse("5544b740-0b5f-400c-b7b2-7e6472d4160b"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
@@ -584,43 +635,71 @@ namespace Difi.Sjalvdeklaration.Database
                 AlwaysVisible = true
             };
 
+            var answerItemLanguage123 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("4b1e6cba-160c-4adb-a6cf-0736f1d585c2"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem123.Id,
+                Question = "Mål i cm",
+            };
+
             var answerItem124 = new AnswerItem
             {
-                Question = "Ta bilde",
                 Order = 4,
                 Id = Guid.Parse("8a12d92b-8a6a-44e7-9517-74331a4c2483"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem12.Id,
             };
 
+            var answerItemLanguage124 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("6c73f84c-a2d5-43ac-a5fe-793d0c5672cc"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem124.Id,
+                Question = "Ta bilde",
+            };
+
             var answerItem211 = new AnswerItem
             {
-                Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?",
                 Order = 1,
                 Id = Guid.Parse("202d20e0-61df-4a7c-8287-104e3b439f64"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
-                BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
                 Bool = false,
                 RuleItemId = ruleItem21.Id
             };
 
+            var answerItemLanguage211 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("7c632541-119a-4dd5-b501-e0ba7e2caff2"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem211.Id,
+                Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
+            };
+
             var answerItem212 = new AnswerItem
             {
-                Question = "Hvor mange cm er det mellom betalingsterminalene?",
                 Order = 2,
                 Id = Guid.Parse("89fd2205-1047-403d-a5bd-f70a1de2f247"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 RuleItemId = ruleItem21.Id,
                 Bool = true,
+                LinkedParentFailedId = answerItem211.Id
+            };
+
+            var answerItemLanguage212 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("b760e91c-81f5-4de9-82c2-3747c23dbf9d"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem212.Id,
+                Question = "Hvor mange cm er det mellom betalingsterminalene?",
                 BoolTrueText = "150 cm eller mer",
                 BoolFalseText = "0-149 cm, ",
-                LinkedParentFailedId = answerItem211.Id
             };
 
             var answerItem213 = new AnswerItem
             {
-                Question = "Mål i cm",
                 Order = 3,
                 Id = Guid.Parse("78b8d910-c0bb-4467-acbe-1320f51fe658"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
@@ -631,78 +710,127 @@ namespace Difi.Sjalvdeklaration.Database
                 AlwaysVisible = true
             };
 
+            var answerItemLanguage213 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("cb3bfb9a-b373-4264-9add-3f4ec562c402"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem213.Id,
+                Question = "Mål i cm",
+            };
+
             var answerItem214 = new AnswerItem
             {
-                Question = "Ta bilde",
                 Order = 4,
                 Id = Guid.Parse("13d6d530-e533-4510-9a66-8b862899dbdf"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem21.Id
             };
 
+            var answerItemLanguage214 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("6e68729a-50e9-4844-a791-43e2eb21fad0"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem214.Id,
+                Question = "Ta bilde",
+            };
+
 
             var answerItem311 = new AnswerItem
             {
-                Question = "Finnes det et skilt som viser hvor kunden skal betale varene sine?",
                 Order = 1,
                 Id = Guid.Parse("d8611e84-0f00-4d75-bcab-cbf127fb68b5"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
-                BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
                 Bool = true,
                 RuleItemId = ruleItem31.Id
             };
 
+            var answerItemLanguage311 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("463efa96-5c19-4945-8bac-100a2b4c6916"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem311.Id,
+                Question = "Finnes det et skilt som viser hvor kunden skal betale varene sine?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
+            };
+
             var answerItem312 = new AnswerItem
             {
-                Question = "Ta bilde",
                 Order = 4,
                 Id = Guid.Parse("c4870935-ee11-4557-a9c3-aca678c17565"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem31.Id
             };
 
+            var answerItemLanguage312 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("ec0e3dd2-bd43-4e44-a118-51b86b80d77f"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem312.Id,
+                Question = "Ta bilde",
+            };
+
             var answerItem313 = new AnswerItem
             {
-                Question = "Er skiltet plassert over området der kunden skal betale varene sine?",
                 Order = 2,
                 Id = Guid.Parse("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
-                BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
                 LinkedParentCorrectId = answerItem311.Id
+            };
+
+            var answerItemLanguage313 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("14b18d90-1b1f-4628-b15e-edc9afe5a0a1"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem313.Id,
+                Question = "Er skiltet plassert over området der kunden skal betale varene sine?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
             };
 
             var answerItem314 = new AnswerItem
             {
-                Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?",
                 Order = 3,
                 Id = Guid.Parse("f69c1e45-99d8-4293-a242-c5ed9e126e99"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
-                BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
                 Bool = true,
                 RuleItemId = ruleItem31.Id,
                 LinkedParentCorrectId = answerItem311.Id
             };
 
+            var answerItemLanguage314 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("0ed22f35-94ec-46d1-9aad-615f91bbb1b0"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem314.Id,
+                Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nej",
+            };
+
             var answerItem411 = new AnswerItem
             {
-                Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
                 Order = 1,
                 Id = Guid.Parse("f98f67e5-cf6a-4afe-8998-3132640f9d70"),
                 TypeOfAnswerId = typeOfAnswer2.Id,
                 Bool = true,
+                RuleItemId = ruleItem41.Id
+            };
+
+            var answerItemLanguage411 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("8da3f1e2-4ed3-4957-b94d-797ed932ec73"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem411.Id,
+                Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
                 BoolTrueText = "Mellom 75cm og 130cm over gulvet",
                 BoolFalseText = "Annat, ",
-                RuleItemId = ruleItem41.Id
             };
 
             var answerItem412 = new AnswerItem
             {
-                Question = "Mål i cm",
                 Order = 1,
                 Id = Guid.Parse("9aea071e-7263-4b2e-8cd7-5193fbbe5b77"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
@@ -713,15 +841,31 @@ namespace Difi.Sjalvdeklaration.Database
                 AlwaysVisible = true
             };
 
+            var answerItemLanguage412 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("f94c4896-806c-4ce1-b6a3-ebf090ee9789"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem412.Id,
+                Question = "Mål i cm",
+            };
+
             var answerItem413 = new AnswerItem
             {
-                Question = "Ta bilde",
                 Order = 2,
                 Id = Guid.Parse("438787f3-b33b-489c-b5a8-2f046a634dea"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem41.Id
             };
 
+            var answerItemLanguage413 = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("2e2e8b32-c7c4-4ffa-b6b7-275a82e5b6af"),
+                LanguageItemId = language1.Id,
+                AnswerItemId = answerItem413.Id,
+                Question = "Ta bilde",
+            };
+
+            modelBuilder.Entity<LanguageItem>().HasData(language1, language2);
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
             modelBuilder.Entity<StandardItem>().HasData(standardItem1);
             modelBuilder.Entity<ChapterItem>().HasData(chapterItem11, chapterItem12, chapterItem21, chapterItem31, chapterItem41);
@@ -730,6 +874,7 @@ namespace Difi.Sjalvdeklaration.Database
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem11, ruleItem12, ruleItem21, ruleItem31, ruleItem41);
             modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem124, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem214, answerItem311, answerItem312, answerItem313, answerItem314, answerItem411, answerItem412, answerItem413);
+            modelBuilder.Entity<AnswerItemLanguage>().HasData(answerItemLanguage111, answerItemLanguage112, answerItemLanguage113, answerItemLanguage124, answerItemLanguage121, answerItemLanguage122, answerItemLanguage123, answerItemLanguage211, answerItemLanguage212, answerItemLanguage213, answerItemLanguage214, answerItemLanguage311, answerItemLanguage312, answerItemLanguage313, answerItemLanguage314, answerItemLanguage411, answerItemLanguage412, answerItemLanguage413);
 
             base.OnModelCreating(modelBuilder);
         }

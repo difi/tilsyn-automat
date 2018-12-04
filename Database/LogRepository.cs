@@ -22,7 +22,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 return true;
             }
-            catch (Exception exception)
+            catch
             {
                 return false;
             }

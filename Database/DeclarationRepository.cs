@@ -49,8 +49,22 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
                     .AsNoTracking().SingleOrDefault(x => x.Id == id);
 
+
                 if (item != null)
                 {
+                    var langList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+
+                    foreach (var declarationIndicatorGroup in item.IndicatorList)
+                    {
+                        foreach (var ruleItem in declarationIndicatorGroup.IndicatorItem.RuleList)
+                        {
+                            foreach (var answerItem in ruleItem.AnswerList)
+                            {
+                                answerItem.AnswerItemLanguage = langList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+                            }
+                        }
+                    }
+
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;

@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181204074241_V18")]
+    partial class V18
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -363,7 +365,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     b.HasData(
                         new { Id = new Guid("2583fbbf-12a3-475d-b610-41b5ad0327c1"), AnswerItemId = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Finnes det hindringer i kundens betjeningsområde?" },
                         new { Id = new Guid("db55a19e-7f42-4176-921d-4a09698f727a"), AnswerItemId = new Guid("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" },
-                        new { Id = new Guid("6876174d-2e2c-484b-a9a7-14cb63359a30"), AnswerItemId = new Guid("d7b40e3c-e7fa-44e5-b44f-750759c971cc"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Beskriv hindringene i kundens betjeningsområde." },
+                        new { Id = new Guid("6876174d-2e2c-484b-a9a7-14cb63359a30"), AnswerItemId = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Beskriv hindringene i kundens betjeningsområde." },
                         new { Id = new Guid("6c73f84c-a2d5-43ac-a5fe-793d0c5672cc"), AnswerItemId = new Guid("8a12d92b-8a6a-44e7-9517-74331a4c2483"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" },
                         new { Id = new Guid("3ec18f01-3e59-4cb1-b4b3-75e0af67ac2f"), AnswerItemId = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Henger det gjenstander over kundens betjeningsområde?" },
                         new { Id = new Guid("1670250d-7f81-4fd0-90a2-d9a8df97df8a"), AnswerItemId = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), BoolFalseText = "0-219 cm, ", BoolTrueText = "220 cm eller mer", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?" },
@@ -1080,7 +1082,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItemLanguage", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItem", "AnswerItem")
-                        .WithMany()
+                        .WithMany("AnswerItemList")
                         .HasForeignKey("AnswerItemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
