@@ -15,6 +15,8 @@
 
     var ruleItem = (RuleItem)ViewData["ruleItem"];
     var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
+
+    var paddingCardDivider = "collapse1";
 }
 
 @if (viewHelp && firstQuestion)
@@ -26,6 +28,8 @@
     <legend class="legend">
         @if (firstQuestion)
         {
+            paddingCardDivider = "";
+
             <span class="collapse row">
                 <span class="small-10 columns">
                     <span class="collapse row">
@@ -50,7 +54,9 @@
         }
         else
         {
-            <span class="card-divider">
+            paddingCardDivider = "tightup-card-divider-top";
+
+            <span class="card-divider tightup-card-divider-bottom">
                 <span class="legend-text">
                     @text
                 </span>
@@ -58,7 +64,7 @@
         }
     </legend>
 
-    <div class="card-divider">
+    <div class="card-divider @paddingCardDivider">
         <ul class="listing">
             <li class="radio">
                 @if (value != null && value == true)
