@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 
@@ -20,12 +20,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         public int Order { get; set; }
 
-        public String Illustration { get; set; }
-
-        public String HelpText { get; set; }
-
-        public String ToolsNeed { get; set; }
-
         public ICollection<AnswerItem> AnswerList { get; set; }
 
         public ChapterItem Chapter { get; set; }
@@ -37,5 +31,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
         public IndicatorItem Indicator { get; set; }
 
         public ICollection<RuleData> RuleDataList { get; set; }
+
+        [NotMapped]
+        public RuleItemLanguage Language { get; set; }
     }
 }

@@ -52,6 +52,8 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<RuleItem> RuleList { get; set; }
 
+        public DbSet<RuleItemLanguage> RuleLanguageList { get; set; }
+
         public DbSet<AnswerItem> AnswerList { get; set; }
 
         public DbSet<AnswerItemLanguage> AnswerLanguageList { get; set; }
@@ -65,6 +67,8 @@ namespace Difi.Sjalvdeklaration.Database
         public DbSet<StandardItem> StandardList { get; set; }
 
         public DbSet<TestGroupItem> TestGroupList { get; set; }
+
+        public DbSet<TestGroupItemLanguage> TestGroupLanguageList { get; set; }
 
         public DbSet<LanguageItem> LanguageList { get; set; }
 
@@ -370,22 +374,43 @@ namespace Difi.Sjalvdeklaration.Database
             var testGroup1 = new TestGroupItem
             {
                 Id = Guid.Parse("aec1869a-30f8-403c-b909-df115173f009"),
-                Name = "Betjeningsområde",
                 Order =  1,
+            };
+
+            var testGroupItemLanguage1 = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("d7f6c8de-9435-4c39-bd19-9642eca25e65"),
+                Name = "Betjeningsområde",
+                LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup1.Id
             };
 
             var testGroup2 = new TestGroupItem
             {
                 Id = Guid.Parse("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"),
-                Name = "Skilt",
                 Order = 2,
+            };
+
+            var testGroupItemLanguage2 = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("2b1d1f9a-1c00-43f5-b8f1-f598d146bc77"),
+                Name = "Skilt",
+                LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup2.Id
             };
 
             var testGroup3 = new TestGroupItem
             {
                 Id = Guid.Parse("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"),
-                Name = "Betjeningshøyde",
                 Order = 3,
+            };
+
+            var testGroupItemLanguage3 = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("3b00207c-83a8-49a8-a65e-503b63cc73b1"),
+                Name = "Betjeningshøyde",
+                LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup3.Id
             };
 
             var indicatorItem1 = new IndicatorItem
@@ -478,10 +503,16 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem1.Id,
                 IndicatorItemId = indicatorItem1.Id,
                 Id = Guid.Parse("eb160c6c-3a9e-4dff-93df-577d9eab4e09"),
-                HelpText = "",
-                ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem11.Id,
                 StandardItemId = standardItem1.Id,
+            };
+
+            var ruleItemLanguage11 = new RuleItemLanguage
+            {
+                Id = Guid.Parse("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"),
+                HelpText = "",
+                LanguageItemId = language1.Id,
+                RuleItemId = ruleItem11.Id
             };
 
             var ruleItem12 = new RuleItem
@@ -490,10 +521,16 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem1.Id,
                 IndicatorItemId = indicatorItem1.Id,
                 Id = Guid.Parse("b64cac7e-6525-49e8-9112-0238e1588ed8"),
-                HelpText = "",
-                ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem12.Id,
                 StandardItemId = standardItem1.Id
+            };
+
+            var ruleItemLanguage12 = new RuleItemLanguage
+            {
+                Id = Guid.Parse("804438bd-ac67-40ff-9168-6814ea843242"),
+                HelpText = "",
+                LanguageItemId = language1.Id,
+                RuleItemId = ruleItem12.Id
             };
 
             var ruleItem21 = new RuleItem
@@ -502,10 +539,16 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem2.Id,
                 IndicatorItemId = indicatorItem2.Id,
                 Id = Guid.Parse("0d6c763e-e0f6-4049-adeb-ae9429262b57"),
-                HelpText = "",
-                ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem21.Id,
                 StandardItemId = standardItem1.Id
+            };
+
+            var ruleItemLanguage21 = new RuleItemLanguage
+            {
+                Id = Guid.Parse("e369820b-ebcd-488e-9216-477d363f18ed"),
+                HelpText = "",
+                LanguageItemId = language1.Id,
+                RuleItemId = ruleItem21.Id
             };
 
             var ruleItem31 = new RuleItem
@@ -514,10 +557,16 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem3.Id,
                 IndicatorItemId = indicatorItem3.Id,
                 Id = Guid.Parse("832e0843-cab3-4dbc-9799-974e283fcc0b"),
-                HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />",
-                ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem31.Id,
                 StandardItemId = standardItem1.Id
+            };
+
+            var ruleItemLanguage31 = new RuleItemLanguage
+            {
+                Id = Guid.Parse("55294d7b-6af0-4399-8a5c-776aa13e3a29"),
+                HelpText = "Krav: Skilt skal plasseres over betalingsterminalen.<br /><br />Det skal være et skilt som er synlig på avstand utenfor kundens betjeningsområde. Formålet er at brukeren kan finne fram til betalingsterminalen.<br /><br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen er plassert.<br /><br />Eksempler på tekst på skilt er<br />- Kasse<br />- Betal her<br />- Kort og kontant<br />- Nummer på kasse<br />",
+                LanguageItemId = language1.Id,
+                RuleItemId = ruleItem31.Id
             };
 
             var ruleItem41 = new RuleItem
@@ -526,9 +575,16 @@ namespace Difi.Sjalvdeklaration.Database
                 RequirementItemId = requirementItem4.Id,
                 IndicatorItemId = indicatorItem4.Id,
                 Id = Guid.Parse("5b3af04b-f6c6-4425-a22f-c2e7479839a5"),
-                ToolsNeed = "Ingen",
                 ChapterItemId = chapterItem41.Id,
                 StandardItemId = standardItem1.Id
+            };
+
+            var ruleItemLanguage41 = new RuleItemLanguage
+            {
+                Id = Guid.Parse("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"),
+                HelpText = "",
+                LanguageItemId = language1.Id,
+                RuleItemId = ruleItem41.Id
             };
 
             var answerItem111 = new AnswerItem
@@ -552,7 +608,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             var answerItem112 = new AnswerItem
             {
-
                 Order = 3,
                 Id = Guid.Parse("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
@@ -867,12 +922,14 @@ namespace Difi.Sjalvdeklaration.Database
 
             modelBuilder.Entity<LanguageItem>().HasData(language1, language2);
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
+            modelBuilder.Entity<TestGroupItemLanguage>().HasData(testGroupItemLanguage1, testGroupItemLanguage2, testGroupItemLanguage3);
             modelBuilder.Entity<StandardItem>().HasData(standardItem1);
             modelBuilder.Entity<ChapterItem>().HasData(chapterItem11, chapterItem12, chapterItem21, chapterItem31, chapterItem41);
             modelBuilder.Entity<IndicatorItem>().HasData(indicatorItem1, indicatorItem2, indicatorItem3, indicatorItem4);
             modelBuilder.Entity<IndicatorTestGroup>().HasData(indicatorTestGroup1, indicatorTestGroup2, indicatorTestGroup3, indicatorTestGroup4);
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem11, ruleItem12, ruleItem21, ruleItem31, ruleItem41);
+            modelBuilder.Entity<RuleItemLanguage>().HasData(ruleItemLanguage11, ruleItemLanguage12, ruleItemLanguage21, ruleItemLanguage31, ruleItemLanguage41);
             modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem124, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem214, answerItem311, answerItem312, answerItem313, answerItem314, answerItem411, answerItem412, answerItem413);
             modelBuilder.Entity<AnswerItemLanguage>().HasData(answerItemLanguage111, answerItemLanguage112, answerItemLanguage113, answerItemLanguage124, answerItemLanguage121, answerItemLanguage122, answerItemLanguage123, answerItemLanguage211, answerItemLanguage212, answerItemLanguage213, answerItemLanguage214, answerItemLanguage311, answerItemLanguage312, answerItemLanguage313, answerItemLanguage314, answerItemLanguage411, answerItemLanguage412, answerItemLanguage413);
 

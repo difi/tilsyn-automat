@@ -1,11 +1,21 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Classes
+@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 @using Difi.Sjalvdeklaration.Shared.Classes.ValueList
 @model Difi.Sjalvdeklaration.Shared.Classes.ImageItem
 
 @{
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
+    var firstQuestion = (bool)ViewData["firstQuestion"];
     var result = (ValueListTypeOfResult)ViewData["result"];
+
+    var ruleItem = (RuleItem)ViewData["ruleItem"];
+    var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
+}
+
+@if (viewHelp && firstQuestion)
+{
+    @Html.DisplayFor(x => ruleItem, "RuleHelp", new { orderText = orderText })
 }
 
 <div class="form-field">
