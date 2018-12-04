@@ -66,14 +66,21 @@ header {
     }
 
     .profile-image {
-        height: 60px;
-        background: url(cssimg/icons-sprite.svg) 50% -13482px no-repeat;
-        padding: 20% 0;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        background-color: $dark-blue-grey;
+        border-radius: 1000px;
+        padding-top: 3px;
+        text-align: center;
+        font-family: $sofiapro;
+        color: transparent;
+        font-size: 0;
+        margin-top: 8px;
 
-        img {
-            margin: 0 auto;
-            width: 35px;
-            border-radius: 1000px;
+        &:first-letter {
+            font-size: 21px;
+            color: $color-white;
         }
     }
 
