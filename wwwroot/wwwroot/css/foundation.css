@@ -4334,6 +4334,26 @@ img.full-width-image {
 
 /* Page specific code
 --------------------------------------------------------------*/
+.jsNextAnswerItemPlaceHolder {
+  border: 1px solid red;
+  display: inline-block;
+  float: right;
+  width: 500px; }
+  .jsNextAnswerItemPlaceHolder div, .jsNextAnswerItemPlaceHolder label, .jsNextAnswerItemPlaceHolder span {
+    display: inline-block;
+    padding: 0; }
+  .jsNextAnswerItemPlaceHolder label {
+    padding: 0;
+    width: 100px; }
+  .jsNextAnswerItemPlaceHolder .card .card-divider {
+    display: inline;
+    float: left;
+    padding: 0; }
+  .jsNextAnswerItemPlaceHolder .card .listing label {
+    width: 75px; }
+  .jsNextAnswerItemPlaceHolder input[type=number] {
+    width: 50px; }
+
 .lt-ie9 .row {
   width: 984px;
   max-width: 100%;
