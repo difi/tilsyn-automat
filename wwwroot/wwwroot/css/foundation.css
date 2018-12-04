@@ -3697,7 +3697,7 @@ h1 {
     line-height: 1.1; }
   h1.smaller {
     margin: 5px 0 0px 0;
-    font-size: 26px; }
+    font-size: 20px; }
 
 h2 {
   margin: 16px 0 10px 0;
@@ -3751,7 +3751,10 @@ tbody tr button, tbody tr .button {
   .ingress {
     font-size: 20px; }
   h1 {
-    margin: 2rem 0 1rem 0; } }
+    margin: 2rem 0 1rem 0; }
+    h1.smaller {
+      margin: 5px 0 0px 0;
+      font-size: 26px; } }
 
 header {
   background-color: #fff;
@@ -4014,7 +4017,7 @@ button, .button, input[type="button"], input[type="submit"] {
     font-size: 17px; }
     button.link-button:hover, button.link-button:focus, .button.link-button:hover, .button.link-button:focus, input[type="button"].link-button:hover, input[type="button"].link-button:focus, input[type="submit"].link-button:hover, input[type="submit"].link-button:focus {
       text-decoration: none; }
-  button.toogle-header-button, .button.toogle-header-button, input[type="button"].toogle-header-button, input[type="submit"].toogle-header-button {
+  button.toogle-header-button, button.toogle-header-button-alt, .button.toogle-header-button, .button.toogle-header-button-alt, input[type="button"].toogle-header-button, input[type="button"].toogle-header-button-alt, input[type="submit"].toogle-header-button, input[type="submit"].toogle-header-button-alt {
     text-align: left;
     font-weight: bold;
     background-color: #b5d2db;
@@ -4024,15 +4027,15 @@ button, .button, input[type="button"], input[type="submit"] {
     font-size: 20px;
     border-radius: 0;
     width: 100%; }
-    button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon {
+    button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon {
       top: 6px;
       transform: rotate(-45deg);
       transition: transform 200ms ease; }
-    button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="true"] .toggle-header-icon {
+    button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon {
       transform: rotate(-225deg);
       top: 12px;
       transition: transform 200ms ease; }
-    button.toogle-header-button .toggle-header-number, .button.toogle-header-button .toggle-header-number, input[type="button"].toogle-header-button .toggle-header-number, input[type="submit"].toogle-header-button .toggle-header-number {
+    button.toogle-header-button .toggle-header-number, button.toogle-header-button-alt .toggle-header-number, .button.toogle-header-button .toggle-header-number, .button.toogle-header-button-alt .toggle-header-number, input[type="button"].toogle-header-button .toggle-header-number, input[type="button"].toogle-header-button-alt .toggle-header-number, input[type="submit"].toogle-header-button .toggle-header-number, input[type="submit"].toogle-header-button-alt .toggle-header-number {
       border: 1px solid #1f3f43;
       border-radius: 100px;
       width: 28px;
@@ -4040,7 +4043,7 @@ button, .button, input[type="button"], input[type="submit"] {
       display: inline-block;
       text-align: center;
       line-height: 1.15; }
-    button.toogle-header-button .toggle-header-icon, .button.toogle-header-button .toggle-header-icon, input[type="button"].toogle-header-button .toggle-header-icon, input[type="submit"].toogle-header-button .toggle-header-icon {
+    button.toogle-header-button .toggle-header-icon, button.toogle-header-button-alt .toggle-header-icon, .button.toogle-header-button .toggle-header-icon, .button.toogle-header-button-alt .toggle-header-icon, input[type="button"].toogle-header-button .toggle-header-icon, input[type="button"].toogle-header-button-alt .toggle-header-icon, input[type="submit"].toogle-header-button .toggle-header-icon, input[type="submit"].toogle-header-button-alt .toggle-header-icon {
       border: 2px solid #1f3f43;
       border-top-color: transparent;
       border-right-color: transparent;
@@ -4050,7 +4053,14 @@ button, .button, input[type="button"], input[type="submit"] {
       transform: rotate(-45deg);
       margin-left: 6px;
       position: relative;
-      float: right; }
+      float: right;
+      top: 6px; }
+  button.toogle-header-button-alt, .button.toogle-header-button-alt, input[type="button"].toogle-header-button-alt, input[type="submit"].toogle-header-button-alt {
+    background-color: #E7DDE7;
+    padding-left: 28px; }
+    button.toogle-header-button-alt .toggle-header-icon, .button.toogle-header-button-alt .toggle-header-icon, input[type="button"].toogle-header-button-alt .toggle-header-icon, input[type="submit"].toogle-header-button-alt .toggle-header-icon {
+      float: left;
+      left: -12px; }
   button.toggle-profile-button, .button.toggle-profile-button, input[type="button"].toggle-profile-button, input[type="submit"].toggle-profile-button {
     text-align: right;
     font-weight: bold;
@@ -4254,6 +4264,37 @@ div tbody tr:nth-child(2n) {
   box-shadow: none;
   border: 1px solid #b5d2db; }
 
+.card.pink-top .day-counter, .card.green-top .day-counter {
+  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
+  padding-left: 30px; }
+
+.card.green-top.card .status {
+  background-color: #b4f0e7; }
+
+.card.green-top .card-divider {
+  background-color: #b4f0e7; }
+
+.card.pink-top.card .status {
+  background-color: #fee9e9; }
+
+.card.pink-top .card-divider {
+  background-color: #fee9e9; }
+
+.card.green-top .card-divider {
+  background-color: #b4f0e7; }
+  .card.green-top .card-divider .day-counter {
+    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+    background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
+    padding-left: 30px; }
+
+.card .declaration-name-type {
+  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 17px; }
+  .card .declaration-name-type span {
+    display: block; }
+
 .card legend, .card .legend {
   color: #303132;
   display: block;
@@ -4325,6 +4366,39 @@ div tbody tr:nth-child(2n) {
     .card .listing .radio input[type="radio"]:focus + label:before {
       outline: none;
       border-color: #618285; }
+
+.card .status-text {
+  font-size: 17px;
+  line-height: 19px;
+  display: inline-block;
+  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+
+.card .status {
+  width: 90px;
+  height: 90px;
+  display: inline-block;
+  border: 2px solid #C9E2E4;
+  box-shadow: inset 0px 0px 0px 5px #fff;
+  border-radius: 1000px;
+  padding-top: 25px;
+  text-align: center;
+  transform: rotate(-45deg);
+  transition: border 800ms ease-out;
+  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+  .card .status .status-done {
+    font-size: 22px;
+    transform: rotate(45deg); }
+  .card .status.status-25 {
+    border-right-color: #458596; }
+  .card .status.status-50 {
+    border-right-color: #458596;
+    border-bottom-color: #458596; }
+  .card .status.status-75 {
+    border-right-color: #458596;
+    border-bottom-color: #458596;
+    border-left-color: #458596; }
+  .card .status.status-100 {
+    border-color: #458596; }
 
 img.full-width-image {
   max-width: none !important; }

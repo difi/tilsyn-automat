@@ -166,7 +166,8 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
-    &.toogle-header-button {
+    &.toogle-header-button,
+    &.toogle-header-button-alt {
         text-align: left;
         font-weight: bold;
         background-color: $light-blue-grey;
@@ -214,6 +215,17 @@ button, .button, input[type="button"], input[type="submit"] {
             margin-left: 6px;
             position: relative;
             float: right;
+            top: 6px;
+        }
+    }
+
+    &.toogle-header-button-alt {
+        background-color: $alt-toogle-button-bg-color;
+        padding-left: 28px;
+
+        .toggle-header-icon {
+            float: left;
+            left: -12px;
         }
     }
 

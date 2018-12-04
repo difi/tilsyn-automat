@@ -117,19 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddImage" xml:space="preserve">
-    <value>Legg till bilde</value>
-  </data>
-  <data name="DeleteImage" xml:space="preserve">
-    <value>Fjern bilde</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Spare sjelvdeklarasjon</value>
-  </data>
   <data name="ShowHide" xml:space="preserve">
     <value>Vise/skjule</value>
   </data>
-  <data name="View-summary" xml:space="preserve">
-    <value>Vis oppsummering</value>
+  <data name="Toggle-header-text" xml:space="preserve">
+    <value>Kontroller virksomhetsinformasjon</value>
+  </data>
+  <data name="Toggle-header-text-hidden-text" xml:space="preserve">
+    <value>Virksomhetsinformasjon</value>
+  </data>
+  <data name="view-declaratiopn-button" xml:space="preserve">
+    <value>Vis selvdeklarasjon</value>
   </data>
 </root>

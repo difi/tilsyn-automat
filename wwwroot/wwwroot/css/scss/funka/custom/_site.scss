@@ -77,6 +77,61 @@ main {
         border: 1px solid $light-blue-grey;
     }
 
+    &.pink-top, &.green-top {
+        .day-counter {
+            font-family: $sofiapro;
+            background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
+            padding-left: 30px;
+        }
+    }
+
+    &.green-top {
+        &.card {
+            .status {
+                background-color: $light-cyan;
+            }
+        }
+
+        .card-divider {
+            background-color: $light-cyan;
+        }
+    }
+
+
+    &.pink-top {
+        &.card {
+            .status {
+                background-color: $very-light-pink;
+            }
+        }
+
+        .card-divider {
+            background-color: $very-light-pink;
+        }
+    }
+
+    &.green-top {
+        .card-divider {
+            background-color: $light-cyan;
+
+            .day-counter {
+                font-family: $sofiapro;
+                background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
+                padding-left: 30px;
+            }
+        }
+    }
+
+    .declaration-name-type {
+        font-family: $sofiapro;
+        font-weight: bold;
+        font-size: 17px;
+
+        span {
+            display: block;
+        }
+    }
+
     legend, .legend {
         color: $dark-grey;
         display: block;
@@ -197,6 +252,55 @@ main {
 
 
         input [type="radio"] {
+        }
+    }
+
+
+    .status-text {
+        font-size: 17px;
+        line-height: 19px;
+        display: inline-block;
+        font-family: $sofiapro;
+    }
+
+
+    .status {
+        width: 90px;
+        height: 90px;
+        display: inline-block;
+        border: 2px solid #C9E2E4;
+        box-shadow: inset 0px 0px 0px 5px $color-white;
+        border-radius: 1000px;
+        padding-top: 25px;
+        text-align: center;
+        transform: rotate(-45deg);
+        transition: border 800ms ease-out;
+        font-family: $sofiapro;
+
+        .status-done {
+            font-size: 22px;
+            transform: rotate(45deg);
+        }
+
+        &.status-25 {
+            border-right-color: $dirty-blue;
+        }
+
+
+        &.status-50 {
+            border-right-color: $dirty-blue;
+            border-bottom-color: $dirty-blue;
+        }
+
+
+        &.status-75 {
+            border-right-color: $dirty-blue;
+            border-bottom-color: $dirty-blue;
+            border-left-color: $dirty-blue;
+        }
+
+        &.status-100 {
+            border-color: $dirty-blue;
         }
     }
 }

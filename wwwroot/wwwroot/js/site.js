@@ -31,4 +31,16 @@
             $target.slideToggle("300", function () { });
         }
     });
+
+    var declarationListToggle = new funkanu.ariatoggle({
+        container: ".jsDeclarationListToggleCardContainer",
+        triggerSelector: ".jsDeclarationListToggleCardButton",
+        target: function ($elem) {
+            return $elem.parents(".jsDeclarationListToggleCardContainer").find('.jsDeclarationListToggleCardTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
+
 });

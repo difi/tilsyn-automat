@@ -23,14 +23,13 @@
                     <img src="~/images/mata.png" />
                     Målebånd eller tommestokk, kamera.
                 </div>
+                <br />
             </div>
         </div>
 
         <form method="post">
-            <div class="row column">
-                Frist for innlevering: @Model.DeclarationItemForm.DeadlineDate<br />
-                <br /><br />
-            </div>
+<br />
+
 
             <div class="jsToggleCardContainer">
                 <div class="row medium-uncollapse">
@@ -168,10 +167,11 @@
                     </div>
                 </div>
             }
-            <div class="row column">
-                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
-                <br /><br />
-            </div>
+                <div class="row column">
+                    <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
+                    <button class="button">@Localizer["View-summary"]</button>
+                    <br /><br />
+                </div>
 
         </form>
 
