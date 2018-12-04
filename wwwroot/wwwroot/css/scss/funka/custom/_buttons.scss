@@ -151,7 +151,6 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.tabbed {
-        outline: 2px solid $tabbed-color;
     }
 
     &.link-button {
@@ -296,6 +295,16 @@ button, .button, input[type="button"], input[type="submit"] {
         height: 40px;
     }
 
+    &.card-help-button,
+    &.card-help-close-button {
+        &.tabbed {
+            outline: 2px solid $tabbed-color;
+            background-color: inherit !important;
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+    }
+
     &.wide {
         padding-left: 0rem;
         padding-right: 0rem;
@@ -305,7 +314,20 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 }
 
+a, input[type=button], input[type=submit], button, textarea, select {
+    &.tabbed {
+        background-color: $tabbed-color !important;
+        color: $color-white !important;
+        text-decoration: underline !important;
+        outline: none;
+    }
+}
 
+input[type=text], input[type=number] {
+    &.tabbed {
+        outline: 2px solid $tabbed-color;
+    }
+}
 
 
 

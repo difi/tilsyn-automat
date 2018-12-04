@@ -69,38 +69,6 @@ h2 {
     margin: 0;
 }
 
-h2, h3 {
-    a {
-        padding: 3px;
-        display: inline-block;
-        line-height: 1.2;
-        font-size: rem-calc(map-deep-get($header-styles, medium, h4, font-size));
-
-        &:before {
-            //background: url('/css/cssimg/icons-sprite.svg') 0 -2102px no-repeat;
-            display: inline-block;
-            content: "";
-            width: 10px;
-            height: 18px;
-        }
-
-        &:hover, &:focus {
-            text-decoration: underline;
-        }
-
-        &:hover {
-            color: $color-blue-darker;
-        }
-
-        &.tabbed {
-            &:before {
-                background-position: 0 -2002px;
-            }
-        }
-    }
-}
-
-
 // ul + ol + li
 
 ul, ol {
@@ -160,23 +128,6 @@ ul, ol {
             margin-left: 0;
             list-style: none;
         }
-    }
-}
-
-
-
-a, input[type=button], input[type=submit], button, textarea, select {
-    &.tabbed {
-        background-color: $tabbed-color !important;
-        color: $color-white !important;
-        text-decoration: underline !important;
-        outline: none;
-    }
-}
-
-input[type=text] {
-    &.tabbed {
-        outline: 2px solid $tabbed-color;
     }
 }
 

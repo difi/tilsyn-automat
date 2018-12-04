@@ -240,36 +240,3 @@ img {
 @include breakpoint(large) {
 
 }
-
-
-.jsNextAnswerItemPlaceHolder {
-    border: 1px solid red;
-    display: inline-block;
-    float: right;
-    width: 500px;
-
-    div, label, span {
-        display: inline-block;
-        padding: 0;
-    }
-
-    label {
-        padding: 0;
-        width: 100px;
-    }
-
-    .card .card-divider {
-        display: inline;
-        float: left;
-        padding: 0;
-    }
-
-    .card .listing label {
-        width: 75px;
-    }
-
-    input[type=number] {
-        width: 50px;
-    }
-
-}

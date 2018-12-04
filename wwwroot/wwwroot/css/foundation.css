@@ -3700,23 +3700,6 @@ h2 {
 h3, h4 {
   margin: 0; }
 
-h2 a, h3 a {
-  padding: 3px;
-  display: inline-block;
-  line-height: 1.2;
-  font-size: 1.25rem; }
-  h2 a:before, h3 a:before {
-    display: inline-block;
-    content: "";
-    width: 10px;
-    height: 18px; }
-  h2 a:hover, h2 a:focus, h3 a:hover, h3 a:focus {
-    text-decoration: underline; }
-  h2 a:hover, h3 a:hover {
-    color: #0e6489; }
-  h2 a.tabbed:before, h3 a.tabbed:before {
-    background-position: 0 -2002px; }
-
 ul, ol {
   padding-left: 0.5em; }
   ul li, ol li {
@@ -3753,15 +3736,6 @@ ul, ol {
       padding-left: 0;
       margin-left: 0;
       list-style: none; }
-
-a.tabbed, input[type=button].tabbed, input[type=submit].tabbed, button.tabbed, textarea.tabbed, select.tabbed {
-  background-color: #04364b !important;
-  color: #fff !important;
-  text-decoration: underline !important;
-  outline: none; }
-
-input[type=text].tabbed {
-  outline: 2px solid #04364b; }
 
 tbody tr button, tbody tr .button {
   margin: 3px 0; }
@@ -3885,7 +3859,29 @@ footer {
 input[type=radio].tabbed, input[type=checkbox].tabbed {
   outline: 0; }
   input[type=radio].tabbed + label, input[type=checkbox].tabbed + label {
-    outline: 2px solid #04364b; }
+    outline: 2px solid #458596; }
+
+.jsNextAnswerItemPlaceHolder {
+  display: inline-block;
+  min-width: 55%; }
+  .jsNextAnswerItemPlaceHolder .jsAnswerItem {
+    display: block; }
+  .jsNextAnswerItemPlaceHolder .form-field {
+    min-width: 100%;
+    vertical-align: middle; }
+    .jsNextAnswerItemPlaceHolder .form-field label {
+      float: left;
+      width: auto;
+      margin-right: 8px;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif;
+      font-weight: normal;
+      font-size: 1rem; }
+  .jsNextAnswerItemPlaceHolder div, .jsNextAnswerItemPlaceHolder span {
+    display: inline-block;
+    padding: 0; }
+  .jsNextAnswerItemPlaceHolder input[type=number] {
+    width: 10em;
+    float: left; }
 
 textarea {
   padding: 0.6em 0.3em;
@@ -4009,8 +4005,6 @@ button, .button, input[type="button"], input[type="submit"] {
     button.black:active, .button.black:active, input[type="button"].black:active, input[type="submit"].black:active {
       background-color: #3d7685;
       border-color: #a4c8d3; }
-  button.tabbed, .button.tabbed, input[type="button"].tabbed, input[type="submit"].tabbed {
-    outline: 2px solid #04364b; }
   button.link-button, .button.link-button, input[type="button"].link-button, input[type="submit"].link-button {
     background-color: transparent;
     color: #458596;
@@ -4112,12 +4106,26 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 40px;
     margin-bottom: 0;
     height: 40px; }
+  button.card-help-button.tabbed, button.card-help-close-button.tabbed, .button.card-help-button.tabbed, .button.card-help-close-button.tabbed, input[type="button"].card-help-button.tabbed, input[type="button"].card-help-close-button.tabbed, input[type="submit"].card-help-button.tabbed, input[type="submit"].card-help-close-button.tabbed {
+    outline: 2px solid #458596;
+    background-color: inherit !important;
+    color: inherit !important;
+    text-decoration: none !important; }
   button.wide, .button.wide, input[type="button"].wide, input[type="submit"].wide {
     padding-left: 0rem;
     padding-right: 0rem;
     min-width: 60%;
     margin-top: 2rem;
     margin-bottom: 0; }
+
+a.tabbed, input[type=button].tabbed, input[type=submit].tabbed, button.tabbed, textarea.tabbed, select.tabbed {
+  background-color: #458596 !important;
+  color: #fff !important;
+  text-decoration: underline !important;
+  outline: none; }
+
+input[type=text].tabbed, input[type=number].tabbed {
+  outline: 2px solid #458596; }
 
 @media print, screen and (min-width: 48em) {
   button, .button, input[type="button"], input[type="submit"] {
@@ -4334,26 +4342,6 @@ img.full-width-image {
 
 /* Page specific code
 --------------------------------------------------------------*/
-.jsNextAnswerItemPlaceHolder {
-  border: 1px solid red;
-  display: inline-block;
-  float: right;
-  width: 500px; }
-  .jsNextAnswerItemPlaceHolder div, .jsNextAnswerItemPlaceHolder label, .jsNextAnswerItemPlaceHolder span {
-    display: inline-block;
-    padding: 0; }
-  .jsNextAnswerItemPlaceHolder label {
-    padding: 0;
-    width: 100px; }
-  .jsNextAnswerItemPlaceHolder .card .card-divider {
-    display: inline;
-    float: left;
-    padding: 0; }
-  .jsNextAnswerItemPlaceHolder .card .listing label {
-    width: 75px; }
-  .jsNextAnswerItemPlaceHolder input[type=number] {
-    width: 50px; }
-
 .lt-ie9 .row {
   width: 984px;
   max-width: 100%;

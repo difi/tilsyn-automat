@@ -31,6 +31,39 @@ input[type=radio], input[type=checkbox] {
     }
 }
 
+.jsNextAnswerItemPlaceHolder {
+    display: inline-block;
+    min-width: 55%;
+
+    .jsAnswerItem {
+        display: block;
+    }
+
+    .form-field {
+        min-width: 100%;
+        vertical-align: middle;
+
+        label {
+            float: left;
+            width: auto;
+            margin-right: 8px;
+            font-family: $body-font-family;
+            font-weight: normal;
+            font-size: 1rem;
+        }
+    }
+
+    div, span {
+        display: inline-block;
+        padding: 0;
+    }
+
+    input[type=number] {
+        width: 10em;
+        float: left;
+    }
+}
+
 textarea {
     padding: 0.6em 0.3em;
     min-height: 7em;
