@@ -8,6 +8,56 @@
 
 @if (Model.CompanyItem != null)
 {
+
+
+    <header>
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <div class="row">
+                    <div class="small-8 column">
+                        <div class="logo">
+                            <img alt="Difi alt-text" src="~/images/difi-logo.svg" />
+                        </div>
+                    </div>
+                    <div class="small-4 column">
+                        <div class="jsProfileContainer profile-wrapper">
+                            <div class="profile-area">
+                                <div class="row collapse">
+                                    <div class="small-4 medium-4 text-center columns">
+                                        <div class="profile-image">
+                                            @Model.CompanyItem.Name
+                                        </div>
+                                    </div>
+                                    <div class="small-8 medium-8 columns">
+                                        <button class="jsProfileTrigger toggle-profile-button button plus">
+                                            <span class="profile-name hide-for-small-only">@Model.CompanyItem.Name</span><br />
+                                            <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
+                                <ul class="text-left">
+                                    <li>
+                                        <a asp-page="/LogoutHandler" asp-route-what="logout">Logga ut</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
     <div class="row column">
         <h1>Egenkontroll for @Model.CompanyItem.Name</h1>
     </div>
@@ -54,7 +104,7 @@
                             @item.Status.TextCompany
                         </td>
                         <td>
-                            @if (item.Status.Id != (int) DeclarationStatus.SentIn && item.Status.Id != (int) DeclarationStatus.Finished && item.Status.Id != (int) DeclarationStatus.Canceled)
+                            @if (item.Status.Id != (int)DeclarationStatus.SentIn && item.Status.Id != (int)DeclarationStatus.Finished && item.Status.Id != (int)DeclarationStatus.Canceled)
                             {
                                 <form method="post">
                                     <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">Öppna</a>

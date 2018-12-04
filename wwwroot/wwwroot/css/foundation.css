@@ -3783,13 +3783,20 @@ header {
   header .profile-name {
     max-width: 100px; }
   header .profile-image {
-    height: 60px;
-    background: url(scss/cssimg/icons-sprite.svg) 50% -13482px no-repeat;
-    padding: 20% 0; }
-    header .profile-image img {
-      margin: 0 auto;
-      width: 35px;
-      border-radius: 1000px; }
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-color: #1f3f43;
+    border-radius: 1000px;
+    padding-top: 3px;
+    text-align: center;
+    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+    color: transparent;
+    font-size: 0;
+    margin-top: 8px; }
+    header .profile-image:first-letter {
+      font-size: 21px;
+      color: #fff; }
   header .status-text {
     font-size: 17px;
     line-height: 19px;
