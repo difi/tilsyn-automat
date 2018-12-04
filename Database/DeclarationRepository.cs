@@ -53,6 +53,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (item != null)
                 {
                     var testGroupLanguageList = dbContext.TestGroupLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+                    var ruleLanguageList = dbContext.RuleLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
                     var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
 
                     foreach (var declarationIndicatorGroup in item.IndicatorList)
@@ -61,6 +62,8 @@ namespace Difi.Sjalvdeklaration.Database
 
                         foreach (var ruleItem in declarationIndicatorGroup.IndicatorItem.RuleList)
                         {
+                            ruleItem.Language = ruleLanguageList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+
                             foreach (var answerItem in ruleItem.AnswerList)
                             {
                                 answerItem.Language = answerLanguageList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
