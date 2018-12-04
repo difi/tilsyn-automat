@@ -29,32 +29,8 @@ header {
     }
 
     .profile-info-area {
-
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-
-
-            li {
-                border-bottom: 1px solid $ice-blue;
-            }
-
-            a, .button {
-                background-color: transparent;
-                padding: 1rem;
-                color: $dark-blue-grey;
-                border: 0;
-                display: block;
-                width: 100%;
-                text-align: right;
-                margin: 0 !important;
-
-                &:hover, &.tabbed {
-                    text-decoration: underline;
-                }
-            }
-        }
+        text-align: right;
+        padding: 2rem 0 1rem 0;
     }
 
     .profile-number {

@@ -218,11 +218,11 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.toggle-profile-button {
-        text-align: left;
+        text-align: right;
         font-weight: bold;
         background-color: transparent;
-        padding: 0.75rem 12px 1rem 10px;
-        margin-bottom: 20px;
+        padding: 0.75rem 2rem 1rem 10px;
+        margin-bottom: 25px;
         color: $dark-blue-grey;
         font-size: 1rem;
         border-radius: 0;
