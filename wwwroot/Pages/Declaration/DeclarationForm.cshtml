@@ -121,35 +121,35 @@
                                                     <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                         {
-                                                            @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.Language.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String })
+                                                            @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.Language.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String, ruleItem = ruleItem })
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                                         {
                                                             if (answerData != null)
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Language.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
+                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Language.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData.Bool, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText, ruleItem = ruleItem })
                                                             }
                                                             else
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Language.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
+                                                                @Html.EditorFor(x => answerItem.Bool, "AnswerBool", new { text = answerItem.Language.Question, id = "answer_bool_" + formId, firstQuestion = firstQuestion, orderText = orderText, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText, ruleItem = ruleItem })
                                                             }
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
                                                         {
-                                                            @Html.EditorFor(x => answerItem.MinInt, "AnswerInt", new { text = answerItem.Language.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int })
+                                                            @Html.EditorFor(x => answerItem.MinInt, "AnswerInt", new { text = answerItem.Language.Question, id = "answer_int_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.Int, ruleItem = ruleItem })
                                                         }
 
                                                         @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                         {
                                                             if (answerData != null)
                                                             {
-                                                                @Html.EditorFor(x => answerData.Image, "AnswerImage", new { text = answerItem.Language.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                                @Html.EditorFor(x => answerData.Image, "AnswerImage", new { text = answerItem.Language.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText, ruleItem = ruleItem })
                                                             }
                                                             else
                                                             {
-                                                                @Html.EditorFor(x => answerItem.Image, "AnswerImage", new { text = answerItem.Language.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText })
+                                                                @Html.EditorFor(x => answerItem.Image, "AnswerImage", new { text = answerItem.Language.Question, id = "answer_image_" + formId, firstQuestion = firstQuestion, orderText = orderText, ruleItem = ruleItem })
                                                             }
 
                                                         }

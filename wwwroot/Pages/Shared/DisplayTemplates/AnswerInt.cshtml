@@ -1,10 +1,19 @@
-﻿@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
+﻿@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
+@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
 @model int
 
 @{
     var text = ViewData["text"];
     var orderText = ViewData["orderText"];
+    var firstQuestion = (bool)ViewData["firstQuestion"];
     var result = (ValueListTypeOfResult)ViewData["result"];
+    var ruleItem = (RuleItem)ViewData["ruleItem"];
+    var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
+}
+
+@if (viewHelp && firstQuestion)
+{
+    @Html.DisplayFor(x => ruleItem, "RuleHelp", new { orderText = orderText })
 }
 
 <div class="form-field">
@@ -26,7 +35,7 @@
             <span class="small-2 columns">
                 @if (result != null)
                 {
-                    @result.Text    
+                    @result.Text
                 }
             </span>
         </span>
