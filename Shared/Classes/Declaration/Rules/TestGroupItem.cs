@@ -14,5 +14,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 
         [NotMapped]
         public TestGroupItemLanguage Language { get; set; }
+
+        [NotMapped] public bool AllDone { get; set; }
     }
 }

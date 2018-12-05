@@ -886,7 +886,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             var answerItem412 = new AnswerItem
             {
-                Order = 1,
+                Order = 2,
                 Id = Guid.Parse("9aea071e-7263-4b2e-8cd7-5193fbbe5b77"),
                 TypeOfAnswerId = typeOfAnswer3.Id,
                 MinInt = 75,
@@ -906,7 +906,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             var answerItem413 = new AnswerItem
             {
-                Order = 2,
+                Order = 3,
                 Id = Guid.Parse("438787f3-b33b-489c-b5a8-2f046a634dea"),
                 TypeOfAnswerId = typeOfAnswer4.Id,
                 RuleItemId = ruleItem41.Id

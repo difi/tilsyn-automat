@@ -104,6 +104,14 @@
                                                         }
                                                     }
 
+                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                    {
+                                                        if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+                                                    }
+
                                                     if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
                                                     {
                                                         if (answerData.ResultId == (int)TypeOfResult.NotTested)

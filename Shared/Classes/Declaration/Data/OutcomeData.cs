@@ -16,11 +16,13 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
         public Guid DeclarationTestItemId { get; set; }
 
         [ForeignKey("ValueListTypeOfResult")]
-        public Int32 ResultId { get; set; }
+        public int ResultId { get; set; }
 
         public ValueListTypeOfResult Result { get; set; }
 
-        public String ResultText { get; set; }
+        public bool AllDone { get; set; }
+
+        public string ResultText { get; set; }
 
         public IndicatorItem Indicator { get; set; }
 

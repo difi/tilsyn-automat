@@ -226,6 +226,18 @@ namespace Difi.Sjalvdeklaration.Database
         public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList, DeclarationTestItem declarationTestItem)
         {
             var result = new ApiResult();
+            var testGroupItemList = new List<TestGroupItem>();
+
+            foreach (var declarationIndicatorGroup in dbContext.DeclarationList.Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem).ThenInclude(x=>x.IndicatorList).Single(x => x.Id == declarationItemId).IndicatorList.OrderBy(x => x.TestGroupOrder))
+            {
+                if (testGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                {
+                    var item = declarationIndicatorGroup.TestGroupItem;
+                    item.AllDone = true;
+
+                    testGroupItemList.Add(item);
+                }
+            }
 
             try
             {
@@ -233,6 +245,8 @@ namespace Difi.Sjalvdeklaration.Database
 
                 foreach (var outcomeData in outcomeDataList)
                 {
+                    var allDone = true;
+
                     outcomeData.ResultId = (int) TypeOfResult.NotTested;
 
                     foreach (var ruleData in outcomeData.RuleDataList)
@@ -241,14 +255,14 @@ namespace Difi.Sjalvdeklaration.Database
 
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            answerData.ResultId = (int) GetResultId(answerData);
+                            answerData.ResultId = (int) GetResultId(answerData, ruleData);
 
                             UpdateParent(ruleData, answerData);
                         }
 
-                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
                         {
-                            ruleData.ResultId = (int)TypeOfResult.Fail;
+                            ruleData.ResultId = (int) TypeOfResult.Fail;
                         }
                         else
                         {
@@ -257,31 +271,52 @@ namespace Difi.Sjalvdeklaration.Database
                                 ruleData.ResultId = (int) TypeOfResult.Ok;
                             }
                         }
+
+                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.NotTested))
+                        {
+                            allDone = false;
+                        }
                     }
 
-                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
+                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
                     {
-                        outcomeData.ResultId = (int)TypeOfResult.Fail;
+                        outcomeData.ResultId = (int) TypeOfResult.Fail;
                     }
                     else
                     {
-                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Ok))
+                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Ok))
                         {
-                            outcomeData.ResultId = (int)TypeOfResult.Ok;
+                            outcomeData.ResultId = (int) TypeOfResult.Ok;
                         }
                     }
+
+                    var indicatorItem = dbContext.IndicatorList.Include(x => x.TestGroupList).Single(x => x.Id == outcomeData.IndicatorItemId);
+                    var listItem = testGroupItemList.Single(x => x.IndicatorList.Any(y => y.IndicatorItemId == indicatorItem.Id));
+
+                    if (listItem.AllDone)
+                    {
+                        listItem.AllDone = allDone;
+                    }
+
+                    outcomeData.AllDone = allDone;
 
                     dbContext.OutcomeData.Add(outcomeData);
                 }
 
                 var dbItem = dbContext.DeclarationList.Include(x=>x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
                 dbItem.StatusId = (int) DeclarationStatus.Started;
+                dbItem.DeclarationTestItem.StatusCount = testGroupItemList.Count(x => x.AllDone);
 
                 dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;
                 dbItem.DeclarationTestItem.SupplierAndVersionOther = declarationTestItem.SupplierAndVersionOther;
                 dbItem.DeclarationTestItem.DescriptionInText = declarationTestItem.DescriptionInText;
                 dbItem.DeclarationTestItem.Image1Id = declarationTestItem.Image1Id;
                 dbItem.DeclarationTestItem.Image2Id = declarationTestItem.Image2Id;
+
+                if (dbItem.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(dbItem.DeclarationTestItem.DescriptionInText) && dbItem.DeclarationTestItem.Image1Id != null && dbItem.DeclarationTestItem.Image2Id != null)
+                {
+                    dbItem.DeclarationTestItem.StatusCount++;
+                }
 
                 dbContext.SaveChanges();
 
@@ -295,23 +330,6 @@ namespace Difi.Sjalvdeklaration.Database
             }
 
             return result;
-        }
-
-        private void UpdateParent(RuleData ruleData, AnswerData answerData)
-        {
-            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
-
-            if (answerData.ResultId == (int) TypeOfResult.Ok || answerData.ResultId == (int) TypeOfResult.Fail)
-            {
-                if (answerItem.LinkedParentFailedId != Guid.Empty)
-                {
-                    var item = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
-
-                    item.ResultId = answerData.ResultId;
-
-                    UpdateParent(ruleData, item);
-                }
-            }
         }
 
         public ApiResult SendIn(Guid id)
@@ -367,9 +385,51 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        private TypeOfResult GetResultId(AnswerData answerData)
+        private void UpdateParent(RuleData ruleData, AnswerData answerData)
         {
             var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
+
+            if (answerData.ResultId == (int)TypeOfResult.Ok || answerData.ResultId == (int)TypeOfResult.Fail)
+            {
+                if (answerItem.LinkedParentFailedId != Guid.Empty)
+                {
+                    var item = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
+
+                    item.ResultId = answerData.ResultId;
+
+                    UpdateParent(ruleData, item);
+                }
+            }
+        }
+
+        private TypeOfResult GetResultId(AnswerData answerData, RuleData ruleData)
+        {
+            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
+
+            if (answerItem.LinkedParentFailedId != Guid.Empty)
+            {
+                var parent = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
+
+                if (parent.ResultId == (int) TypeOfResult.Ok)
+                {
+                    answerData.String = string.Empty;
+                    answerData.Int = null;
+                    answerData.Bool = null;
+                    answerData.ImageId = null;
+
+                    return TypeOfResult.NotTestable;
+                }
+
+                if (parent.ResultId == (int)TypeOfResult.NotTestable)
+                {
+                    answerData.String = string.Empty;
+                    answerData.Int = null;
+                    answerData.Bool = null;
+                    answerData.ImageId = null;
+
+                    return TypeOfResult.NotTestable;
+                }
+            }
 
             switch (answerItem.TypeOfAnswer.Id)
             {
@@ -393,10 +453,10 @@ namespace Difi.Sjalvdeklaration.Database
                         return answerData.Int >= answerItem.MinInt ? TypeOfResult.Ok : TypeOfResult.Fail;
                     }
 
-                case (int)TypeOfAnswer.String when String.IsNullOrWhiteSpace(answerData.String):
+                case (int)TypeOfAnswer.String when string.IsNullOrWhiteSpace(answerData.String):
                     return TypeOfResult.NotTested;
 
-                case (int)TypeOfAnswer.String when !String.IsNullOrWhiteSpace(answerData.String):
+                case (int)TypeOfAnswer.String when !string.IsNullOrWhiteSpace(answerData.String):
                     return TypeOfResult.NotTestable;
 
                 case (int)TypeOfAnswer.Image when answerData.ImageId == null:
