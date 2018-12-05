@@ -124,12 +124,12 @@
     <value>Fjern bilde</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Lagre</value>
+    <value>Gå videre</value>
+  </data>
+  <data name="save-automatic-info-text" xml:space="preserve">
+    <value>Dine svar lagres automatisk. Du kan når som helst se et oppsummering ved å gå videre.</value>
   </data>
   <data name="ShowHide" xml:space="preserve">
     <value>Vise/skjule</value>
-  </data>
-  <data name="View-summary" xml:space="preserve">
-    <value>Vis oppsummering</value>
   </data>
 </root>
