@@ -22,9 +22,10 @@
 }
 
 <div class="form-field">
-    <label class="legend" for="@name">
-        @if (firstQuestion)
-        {
+    <fieldset>
+    @if (firstQuestion)
+    {
+        <legend class="legend" for="@name">
             <span class="collapse row">
                 <span class="small-10 columns">
                     <span class="collapse row">
@@ -46,16 +47,8 @@
                     }
                 </span>
             </span>
-        }
-        else
-        {
-            <span class="card-divider">
-                <span class="legend-text">
-                    @text
-                </span>
-            </span>
-        }
-    </label>
+        </legend>
+    }
 
     <div class="card-divider text-center medium-text-left">
         @if (Model != null)
@@ -67,7 +60,7 @@
                 <div>
                     <ul class="listing qq-upload-list-selector qq-upload-list">
                         <li>
-                            <img src="@image" alt="" width="114" />
+                            <img src="@image" alt="" width="114"/>
                             <button class="link-button jsButtonRemoveImage" data-id="@name">Fjern bilde</button>
                         </li>
                     </ul>
@@ -76,6 +69,7 @@
         }
 
         <div class="uploader" id="@uploadId"></div>
-        <input type="hidden" name="@name" id="@name" value="@answerDataId" />
+        <input type="hidden" name="@name" id="@name" value="@answerDataId"/>
     </div>
+    </fieldset>
 </div>
