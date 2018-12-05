@@ -23,9 +23,7 @@
 
 
         <br />
-        <form method="post">
-            <button class="button alt" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-haveMachine="false">Jeg har ingen betalingsterminal</button>
-        </form>
+        <a class="button alt" asp-page="/Declaration/DeclarationNoMachine" asp-route-id="@Model.DeclarationItemForm.Id">Jeg har ingen betalingsterminal</a>
 
         <p>
             Du skal nå ta stilling til hvilken betalingsterminal du skal kontrollere i denne egenkontrollen. Velg den som er nærmest til å oppfylle disse punktene:
@@ -41,7 +39,7 @@
         <hr />
 
         <form method="post">
-            <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-haveMachine="true">Ok, nå vil jeg starte!</button>
+            <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok, nå vil jeg starte!</button>
         </form>
     </div>
 </div>

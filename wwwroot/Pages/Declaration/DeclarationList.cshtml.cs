@@ -39,10 +39,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                     foreach (var declarationItem in declarationListDb)
                     {
-                        if (CompanyItem.Id == declarationItem.CompanyItemId)
-                        {
+                        //if (CompanyItem.Id == declarationItem.CompanyItemId)
+                        //{
                             DeclarationList.Add(declarationItem);
-                        }
+                        //}
                     }
                 }
                 else

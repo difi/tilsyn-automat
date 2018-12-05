@@ -59,9 +59,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
     public class AddLinkToCompanyModel
     {
         [Required]
+        [Display(Name = "Corporate Identity Number")]
         public string CorporateIdentityNumber { get; set; }
 
         [Required]
+        [Display(Name = "Code")]
         public string Code { get; set; }
     }
 }

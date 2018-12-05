@@ -1,5 +1,5 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
-@model int
+@model int?
 
 @{
     var name = ViewData["id"];
@@ -21,27 +21,27 @@
     <label class="legend" for="@name">
         @if (firstQuestion)
         {
-        <span class="collapse row">
-            <span class="small-10 columns">
-                <span class="collapse row">
-                    <span class="small-2 medium-1 columns">
-                        <span class="legend-number">@orderText</span>
-                    </span>
-                    <span class="small-10 medium-11 columns">
-                        <span class="legend-text">
-                            @text
+            <span class="collapse row">
+                <span class="small-10 columns">
+                    <span class="collapse row">
+                        <span class="small-2 medium-1 columns">
+                            <span class="legend-number">@orderText</span>
+                        </span>
+                        <span class="small-10 medium-11 columns">
+                            <span class="legend-text">
+                                @text
+                            </span>
                         </span>
                     </span>
                 </span>
-            </span>
 
-            <span class="small-2 columns text-right">
-                @if (viewHelp)
-                {
-                    <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
-                }
+                <span class="small-2 columns text-right">
+                    @if (viewHelp)
+                    {
+                        <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
+                    }
+                </span>
             </span>
-        </span>
         }
         else
         {

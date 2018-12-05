@@ -87,10 +87,10 @@
     });
 
     var helpToggle = new funkanu.ariatoggle({
-        container: ".jsAnswerItem",
+        container: ".jsCard",
         triggerSelector: ".jsToggleHelpButton",
         target: function ($elem) {
-            return $elem.parents(".jsAnswerItem").find('.jsToggleHelpTarget');
+            return $elem.parents(".jsCard").find('.jsToggleHelpTarget');
         },
         toggleAction: function ($target) {
             $target.slideToggle("300", function () { });
