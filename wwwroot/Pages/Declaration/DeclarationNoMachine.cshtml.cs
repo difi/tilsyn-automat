@@ -8,13 +8,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
-    public class DeclarationStartModel : PageModel
+    public class DeclarationNoMachineModel : PageModel
     {
         public DeclarationItem DeclarationItemForm { get; set; }
 
         private readonly IApiHttpClient apiHttpClient;
 
-        public DeclarationStartModel(IApiHttpClient apiHttpClient)
+        public DeclarationNoMachineModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
         }
@@ -30,12 +30,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/HaveMachine/" + id + "/" + true);
+                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/HaveMachine/" + id + "/" + false);
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationForm", new {id = id});
-                } 
+                    return RedirectToPage("/Declaration/DeclarationList");
+                }
 
                 return Page();
             }

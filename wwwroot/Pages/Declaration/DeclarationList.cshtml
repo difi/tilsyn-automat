@@ -8,8 +8,6 @@
 
 @if (Model.CompanyItem != null)
 {
-
-
     <header>
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
@@ -43,20 +41,14 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </header>
 
-
     <div class="row">
-
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="jsDeclarationListToggleCardContainer">
-
-
                 <div class="row medium-uncollapse">
                     <div class="small-12 medium-12 columns">
                         <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"]</span></span> @Localizer["Toggle-header-text"]</button></h2>
@@ -87,80 +79,43 @@
                                         @Html.DisplayFor(x => x.CompanyItem.MailingAddressCity, "String")
                                         @Html.DisplayFor(x => x.CompanyItem.MailingAddressZip, "String")
                                     </fieldset>
-
-                                    <table class="table">
-                                        <caption>
-                                            <h2>Egenkontroll</h2>
-                                        </caption>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
-                                                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
-                                                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Status)</th>
-                                                <th scope="col">Öppna</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.DeclarationList)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @item.Name
-                                                    </td>
-                                                    <td>
-                                                        @item.DeadlineDate.ToString("yyyy-MM-dd")
-                                                    </td>
-                                                    <td>
-                                                        @item.Status.TextCompany
-                                                    </td>
-                                                    <td>
-                                                        @if (item.Status.Id != (int)DeclarationStatus.SentIn && item.Status.Id != (int)DeclarationStatus.Finished && item.Status.Id != (int)DeclarationStatus.Canceled)
-                                                        {
-                                                            <form method="post">
-                                                                <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">Öppna</a>
-                                                            </form>
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
 
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row">
 
                 @foreach (var item in Model.DeclarationList)
                 {
-                    var timeSpan = item.DeadlineDate - DateTime.Now;
+                    var done = item.Status.Id == (int) DeclarationStatus.SentIn || item.Status.Id == (int) DeclarationStatus.Finished || item.Status.Id == (int) DeclarationStatus.Canceled;
+                    var color = done ? "green" : "pink";
 
                     <div class="small-12 medium-4 columns">
-                        <div class="card pink-top">
+                        <div class="card @color-top">
 
                             <div class="card-divider">
                                 <div class="day-counter">
-                                    Forfalt om @timeSpan.Days dagar
+                                    @if (!done)
+                                    {
+                                        <span>Frist:</span> @item.DeadlineDate.ToString("dd.MM.yyyy hh:mm")
+                                    }
+                                    else
+                                    {
+                                        <span>Innsendt:</span> @item.SentInDate.ToString("dd.MM.yyyy")
+                                    }
                                 </div>
                             </div>
 
                             <div class="card-section">
                                 <div class="row align-middle">
                                     <div class="small-12 medium-12 columns text-center ">
-                                        <div class="status status-25">
-                                            <div class="status-done">50%</div>
+                                        <div class="status status-0">
+                                            <div class="status-done">0%</div>
                                         </div>
                                     </div>
                                     <div class="small-12 medium-12 columns text-center">
@@ -183,127 +138,11 @@
                                 @if (item.Status.Id != (int)DeclarationStatus.SentIn && item.Status.Id != (int)DeclarationStatus.Finished && item.Status.Id != (int)DeclarationStatus.Canceled)
                                 {
                                     <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["view-declaratiopn-button"]</a>
-                                }                                
+                                }
                             </div>
                         </div>
                     </div>
-                }                
-
-                <div class="small-12 medium-4 columns">
-                    <div class="card pink-top">
-
-                        <div class="card-divider">
-                            <div class="day-counter">
-                                Forfalt om 15 dagar
-                            </div>
-                        </div>
-
-                        <div class="card-section">
-                            <div class="row align-middle">
-                                <div class="small-12 medium-12 columns text-center ">
-                                    <div class="status status-25">
-                                        <div class="status-done">50%</div>
-                                    </div>
-                                </div>
-                                <div class="small-12 medium-12 columns text-center">
-                                    <span class="status-text">Ikke påbegynt</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-section text-center medium-uncentered">
-                            <div class="declaration-name-type">
-                                <span class="declaration-name">
-                                    Narvesen
-                                </span>
-                                <span class="declaration-type">
-                                    Betalingsautomat Triangelbygget
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-section">
-                            <a href="/Declaration/DeclarationStart" class="button update">@Localizer["view-declaratiopn-button"] - OBS - fungerar inte</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="small-12 medium-4 columns">
-                    <div class="card pink-top">
-
-                        <div class="card-divider">
-                            <div class="day-counter">
-                                Forfalt om 13 dagar
-                            </div>
-
-                        </div>
-
-                        <div class="card-section">
-                            <div class="row align-middle">
-                                <div class="small-12 medium-12 columns text-center ">
-                                    <div class="status status-75">
-                                        <div class="status-done">75%</div>
-                                    </div>
-                                </div>
-                                <div class="small-12 medium-12 columns text-center">
-                                    <span class="status-text">Under arbeid</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-section text-center medium-uncentered">
-                            <div class="declaration-name-type">
-                                <span class="declaration-name">
-                                    Narvesen
-                                </span>
-                                <span class="declaration-type">
-                                    Betalingsautomat Triangelbygget
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-section">
-                            <a href="/Declaration/DeclarationStart" class="button update">@Localizer["view-declaratiopn-button"] - OBS - fungerar inte</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="small-12 medium-4 columns">
-                    <div class="card green-top">
-
-                        <div class="card-divider">
-                            <div class="day-counter">
-                                Innsendt 26.03.2019
-                            </div>
-
-                        </div>
-
-                        <div class="card-section">
-                            <div class="row align-middle">
-                                <div class="small-12 medium-12 columns text-center ">
-                                    <div class="status status-100">
-                                        <div class="status-done">100%</div>
-                                    </div>
-                                </div>
-                                <div class="small-12 medium-12 columns text-center">
-                                    <span class="status-text">Fullført</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card-section text-center medium-uncentered">
-                            <div class="declaration-name-type">
-                                <span class="declaration-name">
-                                    Narvesen
-                                </span>
-                                <span class="declaration-type">
-                                    Betalingsautomat Cirkelbygget
-                                </span>
-                            </div>
-                        </div>
-                        <div class="card-section">
-                            <a href="/Declaration/DeclarationStart" class="button update">@Localizer["view-declaratiopn-button"] - OBS - fungerar inte</a>
-                        </div>
-                    </div>
-                </div>
+                }
 
             </div>
         </div>
