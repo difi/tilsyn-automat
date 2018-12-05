@@ -3,30 +3,33 @@
     var orderText = ViewData["orderText"];
 }
 
-<div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
-    <div class="legend">
-        <span class="collapse row">
+@if (Model != null)
+{
+    <div class="jsToggleHelpTarget" style="display: none;" aria-hidden="true">
+        <div class="legend">
+            <span class="collapse row">
 
-            <span class="small-10 columns">
-                <span class="collapse row">
-                    <span class="small-2 medium-1 columns">
-                        <span class="legend-number">@orderText</span>
-                    </span>
-                    <span class="small-10 medium-11 columns">
-                        <span class="legend-text">
-                            Hjelp
+                <span class="small-10 columns">
+                    <span class="collapse row">
+                        <span class="small-2 medium-1 columns">
+                            <span class="legend-number">@orderText</span>
+                        </span>
+                        <span class="small-10 medium-11 columns">
+                            <span class="legend-text">
+                                Hjelp
+                            </span>
                         </span>
                     </span>
                 </span>
-            </span>
 
-            <span class="small-2 columns text-right">
-                <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Lukk hjelp</span></button>
+                <span class="small-2 columns text-right">
+                    <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Lukk hjelp</span></button>
+                </span>
             </span>
-        </span>
-    </div>
+        </div>
 
-    <div class="card-help-text">
-        @Html.Raw(Model.Language.HelpText)
+        <div class="card-help-text">
+            @Html.Raw(Model.Language.HelpText)
+        </div>
     </div>
-</div>
+}

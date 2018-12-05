@@ -10,7 +10,7 @@
     ViewData["Title"] = title;
     var mainIndex = 1;
 
-    var ruleItem11 = new RuleItem()
+    var ruleItem11 = new RuleItem
     {
         Language = new RuleItemLanguage
         {
@@ -18,7 +18,7 @@
         }
     };
 
-    var ruleItem12 = new RuleItem()
+    var ruleItem12 = new RuleItem
     {
         Language = new RuleItemLanguage
         {
@@ -27,7 +27,7 @@
     };
 
 
-    var ruleItem13 = new RuleItem()
+    var ruleItem13 = new RuleItem
     {
         Language = new RuleItemLanguage
         {
@@ -67,7 +67,7 @@
                     <div class="small-12 medium-12 columns">
                         <div class="jsToggleCardTarget">
                             <div class="card jsCard">
-                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, "AnswerDropdownListInt", new { list = Model.SelectSupplierAndVersionList, text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_int_supplierandversion", firstQuestion = true, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, ruleItem= ruleItem11 })
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, "AnswerDropdownListInt", new { list = Model.SelectSupplierAndVersionList, text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_int_supplierandversion", firstQuestion = true, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, ruleItem = ruleItem11 })
 
                                 <div id="jsSupplierAndVersionOther">
                                     @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", id = "answer_string_testitem_supplierandversionother", firstQuestion = false, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther })
