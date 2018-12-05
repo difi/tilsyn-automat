@@ -143,6 +143,52 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row">
 
+                @foreach (var item in Model.DeclarationList)
+                {
+                    var timeSpan = item.DeadlineDate - DateTime.Now;
+
+                    <div class="small-12 medium-4 columns">
+                        <div class="card pink-top">
+
+                            <div class="card-divider">
+                                <div class="day-counter">
+                                    Forfalt om @timeSpan.Days dagar
+                                </div>
+                            </div>
+
+                            <div class="card-section">
+                                <div class="row align-middle">
+                                    <div class="small-12 medium-12 columns text-center ">
+                                        <div class="status status-25">
+                                            <div class="status-done">50%</div>
+                                        </div>
+                                    </div>
+                                    <div class="small-12 medium-12 columns text-center">
+                                        <span class="status-text">@item.Status.TextCompany</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-section text-center medium-uncentered">
+                                <div class="declaration-name-type">
+                                    <span class="declaration-name">
+                                        @item.Company.Name
+                                    </span>
+                                    <span class="declaration-type">
+                                        @item.Name
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-section">
+                                @if (item.Status.Id != (int)DeclarationStatus.SentIn && item.Status.Id != (int)DeclarationStatus.Finished && item.Status.Id != (int)DeclarationStatus.Canceled)
+                                {
+                                    <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["view-declaratiopn-button"]</a>
+                                }                                
+                            </div>
+                        </div>
+                    </div>
+                }                
+
                 <div class="small-12 medium-4 columns">
                     <div class="card pink-top">
 
@@ -150,7 +196,6 @@
                             <div class="day-counter">
                                 Forfalt om 15 dagar
                             </div>
-
                         </div>
 
                         <div class="card-section">
