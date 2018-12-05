@@ -20,6 +20,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public List<TestGroupItem> TestGroupItemList { get; set; }
 
+        public bool AllDoneStep1 { get; set; }
+
         public DeclarationReadModel(IApiHttpClient apiHttpClient)
         {
             this.apiHttpClient = apiHttpClient;
@@ -33,13 +35,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
                 var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
 
+                AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
+
                 TestGroupItemList = new List<TestGroupItem>();
 
                 foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
                 {
                     if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
                     {
-                        TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                        var item = declarationIndicatorGroup.TestGroupItem;
+                        item.AllDone = true;
+
+                        TestGroupItemList.Add(item);
                     }
                 }
 
@@ -52,10 +59,20 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                             if (data.IndicatorItemId == item.IndicatorItem.Id)
                             {
                                 item.IndicatorItem.OutcomeData = data;
+
+                                if (!data.AllDone)
+                                {
+                                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
+                                    {
+                                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
+                                        testGroup.AllDone = false;
+                                    }
+                                }
                             }
                         }
                     }
                 }
+
             }
             catch
             {
