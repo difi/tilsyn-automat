@@ -39,22 +39,23 @@
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id })
 
 <main>
-    <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <div class="row column">
-                <div class="info-wrapper">
-                    <h2>Du trenger følgende verktøy</h2>
+    <form method="post">
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <div class="row column">
+                    <div class="info-wrapper">
+                        <h2>Du trenger følgende verktøy</h2>
 
-                    <div>
-                        <img src="~/images/kamera.png" />
-                        <img src="~/images/mata.png" />
-                        Målebånd eller tommestokk, kamera.
+                        <div>
+                            <img src="~/images/kamera.png" />
+                            <img src="~/images/mata.png" />
+                            Målebånd eller tommestokk, kamera.
+                        </div>
+                        <br />
                     </div>
-                    <br />
                 </div>
-            </div>
 
-            <form method="post">
+
                 <br />
 
                 <div class="jsToggleCardContainer">
@@ -193,14 +194,28 @@
                         </div>
                     </div>
                 }
-                <div class="row column">
-                    <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
-                    <br /><br />
-                </div>
-            </form>
+
+            </div>
         </div>
-    </div>
+
+        <hr><br />
+
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
+                <br />
+                <p>
+                    @Localizer["save-automatic-info-text"]
+                </p>
+            </div>
+        </div>
+    </form>
 </main>
+
+
+
+
+
 
 @section Scripts {
     <script src="~/js/declarationForm.js"></script>

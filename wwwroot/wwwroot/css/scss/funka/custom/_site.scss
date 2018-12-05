@@ -78,6 +78,15 @@ main {
     }
 
     &.pink-top, &.green-top {
+
+        .card-divider {
+            padding: 0.9rem 0.75rem;
+        }
+
+        .card-section {
+            padding: 1rem 1.1rem;
+        }
+
         .day-counter {
             font-family: $sofiapro;
             background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
@@ -271,7 +280,7 @@ main {
         border: 2px solid #C9E2E4;
         box-shadow: inset 0px 0px 0px 5px $color-white;
         border-radius: 1000px;
-        padding-top: 25px;
+        padding-top: 26px;
         text-align: center;
         transform: rotate(-45deg);
         transition: border 800ms ease-out;

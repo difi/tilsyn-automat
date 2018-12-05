@@ -4264,6 +4264,12 @@ div tbody tr:nth-child(2n) {
   box-shadow: none;
   border: 1px solid #b5d2db; }
 
+.card.pink-top .card-divider, .card.green-top .card-divider {
+  padding: 0.9rem 0.75rem; }
+
+.card.pink-top .card-section, .card.green-top .card-section {
+  padding: 1rem 1.1rem; }
+
 .card.pink-top .day-counter, .card.green-top .day-counter {
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
   background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
@@ -4380,7 +4386,7 @@ div tbody tr:nth-child(2n) {
   border: 2px solid #C9E2E4;
   box-shadow: inset 0px 0px 0px 5px #fff;
   border-radius: 1000px;
-  padding-top: 25px;
+  padding-top: 26px;
   text-align: center;
   transform: rotate(-45deg);
   transition: border 800ms ease-out;
