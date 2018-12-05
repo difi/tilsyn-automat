@@ -11,168 +11,190 @@
     var mainIndex = 1;
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationForm?id="+Model.DeclarationItemForm.Id })
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id })
 
-<div class="row">
-    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-        <div class="jsToggleCardContainer">
-            <div class="row medium-uncollapse">
-                <div class="small-12 medium-12 columns">
-                    <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] Automaten</span></span> </button></h2>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="small-12 medium-12 columns">
-                    <div class="jsToggleCardTarget">
-                        <div class="card transparent">
-                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", orderText = "1.1" })
-
-                            @if (Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion.Id == 99999)
-                            {
-                                @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1" })
-                            }
-                        </div>
-
-                        <div class="card transparent">
-                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2" })
-                        </div>
-
-                        <div class="card transparent">
-                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "AnswerImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3" })
-                        </div>
-
-                        <div class="card transparent">
-                            @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "AnswerImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4" })
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
-        {
-            var subIndex = 0;
-            mainIndex++;
-
-            var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
-
+<main>
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="jsToggleCardContainer">
                 <div class="row medium-uncollapse">
                     <div class="small-12 medium-12 columns">
                         <h2 class="h2-toggle">
-                            <button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Language.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Language.Name</span></span> </button>
+                            <button class="toogle-header-button jsToggleCardButton">
+                                <span class="toggle-header-number">
+                                    @mainIndex
+                                </span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] Automaten</span></span>
+
+                                <span class="isDone-@Model.AllDoneStep1"></span>
+                            </button>
                         </h2>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="small-12 medium-12 columns">
-                        <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
+                        <div class="jsToggleCardTarget">
+                            <div class="card transparent">
+                                @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", orderText = "1.1" })
 
-                            @foreach (var item in indicatorList)
-                            {
-                                var indicatorItem = item.IndicatorItem;
-                                var outcomeData = indicatorItem.OutcomeData;
-
-                                foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                                @if (Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersion.Id == 99999)
                                 {
-                                    var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
-
-                                    AnswerData lastAnswerData = new AnswerData
-                                    {
-                                        Id = Guid.Empty,
-                                        ResultId = -1,
-                                    };
-
-                                    subIndex++;
-
-                                    <div class="card transparent">
-                                        <div class="jsRuleItem" id="@ruleItem.Id">
-                                            @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
-                                            {
-                                                var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
-                                                var viewAnswerItem = true;
-
-                                                if (lastAnswerData != null && answerItem != null)
-                                                {
-                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
-                                                    {
-                                                        if (answerData.ResultId == (int)TypeOfResult.NotTestable)
-                                                        {
-                                                            viewAnswerItem = false;
-                                                        }
-                                                    }
-
-                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
-                                                    {
-                                                        if (answerData.ResultId == (int)TypeOfResult.NotTested)
-                                                        {
-                                                            viewAnswerItem = false;
-                                                        }
-                                                    }
-
-                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
-                                                    {
-                                                        viewAnswerItem = false;
-                                                    }
-
-                                                    if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
-                                                    {
-                                                        viewAnswerItem = false;
-                                                    }
-                                                }
-
-                                                var orderText = mainIndex + "." + subIndex;
-
-                                                if (viewAnswerItem)
-                                                {
-
-                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                                                    {
-                                                        @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
-                                                    }
-
-                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                                    {
-                                                        @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
-                                                    }
-
-                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                                    {
-                                                        @Html.DisplayFor(x => answerData.Int, "AnswerInt", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
-                                                    }
-
-                                                    if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                                    {
-                                                        @Html.DisplayFor(x => answerData.Image, "AnswerImage", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
-                                                    }
-                                                }
-
-                                                lastAnswerData = answerData;
-                                            }
-
-                                        </div>
-                                    </div>
+                                    @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1" })
                                 }
-                            }
+                            </div>
+
+                            <div class="card transparent">
+                                @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2" })
+                            </div>
+
+                            <div class="card transparent">
+                                @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.Image1, "AnswerImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3" })
+                            </div>
+
+                            <div class="card transparent">
+                                @Html.DisplayFor(x => x.DeclarationItemForm.DeclarationTestItem.Image2, "AnswerImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4" })
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        }
 
-        <form method="post">
-            <div class="row">
-                <div class="small-12 medium-7 columns">
-                    <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
-                    <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+            @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+            {
+                var subIndex = 0;
+                mainIndex++;
+
+                var indicatorList = Model.DeclarationItemForm.IndicatorList.Where(x => x.TestGroupItemId == declarationIndicatorGroup.Id);
+
+                <div class="jsToggleCardContainer">
+                    <div class="row medium-uncollapse">
+                        <div class="small-12 medium-12 columns">
+                            <h2 class="h2-toggle">
+                                <button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton">
+                                    <span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Language.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Language.Name</span></span>
+
+                                    <span class="isDone-@declarationIndicatorGroup.AllDone"></span>
+                                </button>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-12 medium-12 columns">
+                            <div class="jsToggleCardTarget" data-id="@declarationIndicatorGroup.Id">
+
+                                @foreach (var item in indicatorList)
+                                {
+                                    var indicatorItem = item.IndicatorItem;
+                                    var outcomeData = indicatorItem.OutcomeData;
+
+                                    foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                                    {
+                                        var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+
+                                        AnswerData lastAnswerData = new AnswerData
+                                        {
+                                            Id = Guid.Empty,
+                                            ResultId = -1,
+                                        };
+
+                                        subIndex++;
+
+                                        <div class="card transparent">
+                                            <div class="jsRuleItem" id="@ruleItem.Id">
+                                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                                {
+                                                    var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+                                                    var viewAnswerItem = true;
+
+                                                    if (lastAnswerData != null && answerItem != null)
+                                                    {
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                                            {
+                                                                viewAnswerItem = false;
+                                                            }
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                                            {
+                                                                viewAnswerItem = false;
+                                                            }
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            if (answerData.ResultId == (int)TypeOfResult.NotTested)
+                                                            {
+                                                                viewAnswerItem = false;
+                                                            }
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+
+                                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+                                                    }
+
+                                                    var orderText = mainIndex + "." + subIndex;
+
+                                                    if (viewAnswerItem)
+                                                    {
+
+                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                                        {
+                                                            @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
+                                                        }
+
+                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                                        {
+                                                            @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
+                                                        }
+
+                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                                        {
+                                                            @Html.DisplayFor(x => answerData.Int, "AnswerInt", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
+                                                        }
+
+                                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                                        {
+                                                            @Html.DisplayFor(x => answerData.Image, "AnswerImage", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
+                                                        }
+                                                    }
+
+                                                    lastAnswerData = answerData;
+                                                }
+
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="small-10 medium-5 columns">
-                    <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                    <br /><br />
+            }
+
+            <form method="post">
+                <div class="row">
+                    <div class="small-12 medium-7 columns">
+                        <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
+                        <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                    </div>
+                    <div class="small-10 medium-5 columns">
+                        <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                        <br /><br />
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</main>

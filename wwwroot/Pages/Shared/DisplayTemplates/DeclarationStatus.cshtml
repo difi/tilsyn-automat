@@ -20,8 +20,8 @@
                         </div>
                         <div class="small-4 medium-3 columns">
 
-                            <div class="status status-@statusDone">
-                                <div class="status-done">@statusDone%</div>
+                            <div class="status status-@(Model.DeclarationTestItem.StatusCount * 25)">
+                                <div class="status-done">@(Model.DeclarationTestItem.StatusCount * 25)%</div>
                             </div>
                         </div>
                     </div>

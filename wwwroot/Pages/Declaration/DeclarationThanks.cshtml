@@ -6,39 +6,41 @@
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationRead?id="+Model.DeclarationItemForm.Id })
 
-<div class="row">
-    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-        <h2>Takk for din besvarelse</h2>
+<main>
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <h2>Takk for din besvarelse</h2>
 
-        <p>
-            Du har nå gjennomført egenkontrollen. Vi bekrefter at Difi har mottatt svaret ditt.
-        </p>
+            <p>
+                Du har nå gjennomført egenkontrollen. Vi bekrefter at Difi har mottatt svaret ditt.
+            </p>
 
-        <p>
-            Virksomheten får vite resultatet i en tilsynsrapport. Vi sender tilsynsrapporten innen 14 dager.
-        </p>
+            <p>
+                Virksomheten får vite resultatet i en tilsynsrapport. Vi sender tilsynsrapporten innen 14 dager.
+            </p>
 
-        <p>
-            Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
-        </p>
+            <p>
+                Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
+            </p>
 
-        <strong>Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy")</strong><br />
-        <strong>Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy")</strong><br />
+            <strong>Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy")</strong><br />
+            <strong>Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy")</strong><br />
 
-        <form method="post">
-            <div class="row">
-                <div class="small-12 medium-4 columns">
-                    <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-                    <br /><br />
+            <form method="post">
+                <div class="row">
+                    <div class="small-12 medium-4 columns">
+                        <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                        <br /><br />
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="small-10 medium-4 columns">
-                    <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                    <br /><br />
+                <div class="row">
+                    <div class="small-10 medium-4 columns">
+                        <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                        <br /><br />
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</main>

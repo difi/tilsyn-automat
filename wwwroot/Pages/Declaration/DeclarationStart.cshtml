@@ -8,38 +8,40 @@
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationList" })
 
-<div class="row">
-    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-        <div class="row column">
-            <div class="info-wrapper">
-                <h2> Velg betalingsterminalen du skal utføre egenkontroll på</h2>
+<main>
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <div class="row column">
+                <div class="info-wrapper">
+                    <h2> Velg betalingsterminalen du skal utføre egenkontroll på</h2>
 
-                <p>
-                    Virksomheten skal ha minst én betalingsterminal som tilfredsstiller kravene til universell utforming av ikt.
-                    Det er en fordel om betalingsterminalen som blir mest brukt, også er universelt utformet.
-                </p>
+                    <p>
+                        Virksomheten skal ha minst én betalingsterminal som tilfredsstiller kravene til universell utforming av ikt.
+                        Det er en fordel om betalingsterminalen som blir mest brukt, også er universelt utformet.
+                    </p>
+                </div>
             </div>
+
+
+            <br />
+            <a class="button alt" asp-page="/Declaration/DeclarationNoMachine" asp-route-id="@Model.DeclarationItemForm.Id">Jeg har ingen betalingsterminal</a>
+
+            <p>
+                Du skal nå ta stilling til hvilken betalingsterminal du skal kontrollere i denne egenkontrollen. Velg den som er nærmest til å oppfylle disse punktene:
+                <ul>
+                    <li>Kassen er skiltet, og skiltet er synlig på avstand, slik at kundene vet hvor de skal betale varene sine.</li>
+
+                    <li>Området rett foran betalingsterminalen, der kunden betaler, er uten hindringer (minst 150 x 150 cm).</li>
+                    <li>Det er god nok avstand til neste betalingsterminal dersom det står flere betalingsterminaler på rett linje (minst 150 cm).</li>
+                    <li>Betalingsterminalen har en høyde over gulvet som gjør at den kan brukes både av kunder som står og sitter når de betaler (mellom 75 – 130 cm).</li>
+                </ul>
+            </p>
+
+            <hr />
+
+            <form method="post">
+                <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok, nå vil jeg starte!</button>
+            </form>
         </div>
-
-
-        <br />
-        <a class="button alt" asp-page="/Declaration/DeclarationNoMachine" asp-route-id="@Model.DeclarationItemForm.Id">Jeg har ingen betalingsterminal</a>
-
-        <p>
-            Du skal nå ta stilling til hvilken betalingsterminal du skal kontrollere i denne egenkontrollen. Velg den som er nærmest til å oppfylle disse punktene:
-            <ul>
-                <li>Kassen er skiltet, og skiltet er synlig på avstand, slik at kundene vet hvor de skal betale varene sine.</li>
-
-                <li>Området rett foran betalingsterminalen, der kunden betaler, er uten hindringer (minst 150 x 150 cm).</li>
-                <li>Det er god nok avstand til neste betalingsterminal dersom det står flere betalingsterminaler på rett linje (minst 150 cm).</li>
-                <li>Betalingsterminalen har en høyde over gulvet som gjør at den kan brukes både av kunder som står og sitter når de betaler (mellom 75 – 130 cm).</li>
-            </ul>
-        </p>
-
-        <hr />
-
-        <form method="post">
-            <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok, nå vil jeg starte!</button>
-        </form>
     </div>
-</div>
+</main>

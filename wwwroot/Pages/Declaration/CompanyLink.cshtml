@@ -4,26 +4,28 @@
     ViewData["Title"] = "CompanyLink";
 }
 
-<div class="row">
-    <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-        <h1>Komplettera organisasjonsuppgifter </h1>
-        
-        <p>
-            Når du logger inn for første gang må du skrive inn organisasjonsnummeret til virksomheten og den firesifrede koden oppgitt i Tilsynsvarslet virksomheten mottok på e-post fra Difi.
-        </p>
+<main>
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <h1>Komplettera organisasjonsuppgifter </h1>
 
-        <form method="post">
-            <div asp-validation-summary="All"></div>
+            <p>
+                Når du logger inn for første gang må du skrive inn organisasjonsnummeret til virksomheten og den firesifrede koden oppgitt i Tilsynsvarslet virksomheten mottok på e-post fra Difi.
+            </p>
 
-            @Html.EditorFor(x => x.AddLinkToCompany.CorporateIdentityNumber, "TextBox")
-            @Html.EditorFor(x => x.AddLinkToCompany.Code, "TextBox")
-            
-            <hr />
+            <form method="post">
+                <div asp-validation-summary="All"></div>
 
-            <input type="submit" value="Gå vidare" />
-        </form>
+                @Html.EditorFor(x => x.AddLinkToCompany.CorporateIdentityNumber, "TextBox")
+                @Html.EditorFor(x => x.AddLinkToCompany.Code, "TextBox")
+
+                <hr />
+
+                <input type="submit" value="Gå vidare" />
+            </form>
+        </div>
     </div>
-</div>
+</main>
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}

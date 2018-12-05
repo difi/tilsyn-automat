@@ -46,114 +46,107 @@
         </div>
     </header>
 
-    <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <div class="jsDeclarationListToggleCardContainer">
-                <div class="row medium-uncollapse">
-                    <div class="small-12 medium-12 columns">
-                        <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"]</span></span> @Localizer["Toggle-header-text"]</button></h2>
+    <main>
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <div class="jsDeclarationListToggleCardContainer">
+                    <div class="row medium-uncollapse">
+                        <div class="small-12 medium-12 columns">
+                            <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"]</span></span> @Localizer["Toggle-header-text"]</button></h2>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="small-12 medium-12 columns">
-                        <div class="jsDeclarationListToggleCardTarget">
-                            <div class="card">
+                    <div class="row">
+                        <div class="small-12 medium-12 columns">
+                            <div class="jsDeclarationListToggleCardTarget">
+                                <div class="card">
 
 
-                                <div class="row column">
-                                    <h1>Egenkontroll for @Model.CompanyItem.Name</h1>
-                                </div>
+                                    <div class="row column">
+                                        <h1>Egenkontroll for @Model.CompanyItem.Name</h1>
+                                    </div>
 
-                                <div class="row column">
-                                    <fieldset>
-                                        <legend>Virksomhetsinformasjon</legend>
-                                        @Html.DisplayFor(x => x.CompanyItem.CorporateIdentityNumber, "String")
-                                        @Html.DisplayFor(x => x.CompanyItem.Name, "String")
-                                        @Html.DisplayFor(x => x.CompanyItem.CustomName, "String")
-                                    </fieldset>
+                                    <div class="row column">
+                                        <fieldset>
+                                            <legend>Virksomhetsinformasjon</legend>
+                                            @Html.DisplayFor(x => x.CompanyItem.CorporateIdentityNumber, "String")
+                                            @Html.DisplayFor(x => x.CompanyItem.Name, "String")
+                                            @Html.DisplayFor(x => x.CompanyItem.CustomName, "String")
+                                        </fieldset>
 
-                                    <fieldset>
-                                        <legend>Virksomhetens adresse</legend>
-                                        @Html.DisplayFor(x => x.CompanyItem.MailingAddressStreet, "String")
-                                        @Html.DisplayFor(x => x.CompanyItem.MailingAddressCity, "String")
-                                        @Html.DisplayFor(x => x.CompanyItem.MailingAddressZip, "String")
-                                    </fieldset>
+                                        <fieldset>
+                                            <legend>Virksomhetens adresse</legend>
+                                            @Html.DisplayFor(x => x.CompanyItem.MailingAddressStreet, "String")
+                                            @Html.DisplayFor(x => x.CompanyItem.MailingAddressCity, "String")
+                                            @Html.DisplayFor(x => x.CompanyItem.MailingAddressZip, "String")
+                                        </fieldset>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <div class="row">
 
-                @foreach (var item in Model.DeclarationList)
-                {
-                    var done = item.Status.Id == (int) DeclarationStatus.SentIn || item.Status.Id == (int) DeclarationStatus.Finished || item.Status.Id == (int) DeclarationStatus.Canceled;
-                    var color = done ? "green" : "pink";
+                    @foreach (var item in Model.DeclarationList)
+                    {
+                        var done = item.Status.Id == (int)DeclarationStatus.SentIn || item.Status.Id == (int)DeclarationStatus.Finished || item.Status.Id == (int)DeclarationStatus.Canceled;
+                        var color = done ? "green" : "pink";
 
-                    <div class="small-12 medium-4 columns">
-                        <div class="card @color-top">
+                        <div class="small-12 medium-4 columns">
+                            <div class="card @color-top">
 
-                            <div class="card-divider">
-                                <div class="day-counter">
-                                    @if (!done)
-                                    {
-                                        <span>Frist:</span> @item.DeadlineDate.ToString("dd.MM.yyyy hh:mm")
-                                    }
-                                    else
-                                    {
-                                        <span>Innsendt:</span> @item.SentInDate.ToString("dd.MM.yyyy")
-                                    }
+                                <div class="card-divider">
+                                    <div class="day-counter">
+                                        @if (!done)
+                                        {
+                                            <span>Frist:</span> @item.DeadlineDate.ToString("dd.MM.yyyy hh:mm")
+                                        }
+                                        else
+                                        {
+                                            <span>Innsendt:</span> @item.SentInDate.ToString("dd.MM.yyyy")
+                                        }
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="card-section">
-                                <div class="row align-middle">
-                                    <div class="small-12 medium-12 columns text-center ">
-                                        <div class="status status-0">
-                                            <div class="status-done">0%</div>
+                                <div class="card-section">
+                                    <div class="row align-middle">
+                                        <div class="small-12 medium-12 columns text-center ">
+                                            <div class="status status-0">
+                                                <div class="status-done">0%</div>
+                                            </div>
+                                        </div>
+                                        <div class="small-12 medium-12 columns text-center">
+                                            <span class="status-text">@item.Status.TextCompany</span>
                                         </div>
                                     </div>
-                                    <div class="small-12 medium-12 columns text-center">
-                                        <span class="status-text">@item.Status.TextCompany</span>
+                                </div>
+
+                                <div class="card-section text-center medium-uncentered">
+                                    <div class="declaration-name-type">
+                                        <span class="declaration-name">
+                                            @item.Company.Name
+                                        </span>
+                                        <span class="declaration-type">
+                                            @item.Name
+                                        </span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="card-section text-center medium-uncentered">
-                                <div class="declaration-name-type">
-                                    <span class="declaration-name">
-                                        @item.Company.Name
-                                    </span>
-                                    <span class="declaration-type">
-                                        @item.Name
-                                    </span>
+                                <div class="card-section text-center medium-uncentered">
+                                    @if (item.Status.Id != (int)DeclarationStatus.SentIn && item.Status.Id != (int)DeclarationStatus.Finished && item.Status.Id != (int)DeclarationStatus.Canceled)
+                                    {
+                                        <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["view-declaratiopn-button"]</a>
+                                    }
                                 </div>
                             </div>
-                            <div class="card-section text-center medium-uncentered">
-                                @if (item.Status.Id != (int)DeclarationStatus.SentIn && item.Status.Id != (int)DeclarationStatus.Finished && item.Status.Id != (int)DeclarationStatus.Canceled)
-                                {
-                                    <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["view-declaratiopn-button"]</a>
-                                }
-                            </div>
                         </div>
-                    </div>
-                }
+                    }
 
+                </div>
             </div>
         </div>
-
-
-
-
-
-    </div>
-
-    <br />
-
-
+    </main>
 }
