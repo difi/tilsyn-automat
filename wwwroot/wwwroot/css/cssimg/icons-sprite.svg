@@ -12,13 +12,11 @@
 	.st6{fill:#1F3F43;}
 	.st7{fill:#515151;}
 	.st8{fill-rule:evenodd;clip-rule:evenodd;fill:#303132;}
-	.st9{filter:url(#Adobe_OpacityMaskFilter);}
-	.st10{mask:url(#mask-2_1_);fill-rule:evenodd;clip-rule:evenodd;fill:#303132;}
 </style>
 <g id="icon-select">
 	<g id="Dropdown-Arrow_1_" transform="translate(7.985281, 5.500000) rotate(-45.000000) translate(-7.985281, -5.500000) ">
-		<path class="st0" d="M102.3,6.2l5.5-5.5c0.2-0.2,0.5-0.2,0.7,0l1.2,1.2c0.2,0.2,0.2,0.5,0,0.7l-5.8,5.8l-1.2,1.2
-			c-0.2,0.2-0.5,0.2-0.7,0l-7.1-7.1c-0.2-0.2-0.2-0.5,0-0.7l1.2-1.2c0.2-0.2,0.5-0.2,0.7,0L102.3,6.2z"/>
+		<path class="st0" d="M71.9,75h7.8c0.3,0,0.5,0.2,0.5,0.5l0,1.7c0,0.3-0.2,0.5-0.5,0.5h-8.2h-1.7c-0.3,0-0.5-0.2-0.5-0.5v-10
+			c0-0.3,0.2-0.5,0.5-0.5h1.7c0.3,0,0.5,0.2,0.5,0.5L71.9,75z"/>
 	</g>
 </g>
 <g id="plus-white">
@@ -138,17 +136,7 @@
 		<g id="Group-5" transform="translate(0.000000, 0.615400)">
 			<g id="Clip-4">
 			</g>
-			<defs>
-				<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="1" y="1299.4" width="16" height="16.6">
-					<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
-				</filter>
-			</defs>
-			<mask maskUnits="userSpaceOnUse" x="1" y="1299.4" width="16" height="16.6" id="mask-2_1_">
-				<g class="st9">
-					<polygon id="path-1_1_" class="st1" points="1,1299.4 17,1299.4 17,1316 1,1316 					"/>
-				</g>
-			</mask>
-			<path id="Fill-3" class="st10" d="M14,1314.8H4l-0.6-11.7h2.5h6.2h2.5L14,1314.8z M7.6,1300.6h2.8l0.2,1.2H7.4L7.6,1300.6z
+			<path id="Fill-3" class="st8" d="M14,1314.8H4l-0.6-11.7h2.5h6.2h2.5L14,1314.8z M7.6,1300.6h2.8l0.2,1.2H7.4L7.6,1300.6z
 				 M16.4,1301.8h-1.8h-2.7l-0.2-1.4c-0.1-0.6-0.6-1-1.2-1H7.6c-0.6,0-1.1,0.4-1.2,1l-0.2,1.4H3.5H1.6c-0.3,0-0.6,0.3-0.6,0.6
 				c0,0.3,0.3,0.6,0.6,0.6h0.6c0,0,0,0,0,0.1l0.6,11.7c0,0.7,0.6,1.2,1.2,1.2h10c0.7,0,1.2-0.5,1.2-1.2l0.6-11.7c0,0,0,0,0-0.1h0.6
 				c0.3,0,0.6-0.3,0.6-0.6C17,1302.1,16.7,1301.8,16.4,1301.8z"/>
