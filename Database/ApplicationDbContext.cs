@@ -188,7 +188,7 @@ namespace Difi.Sjalvdeklaration.Database
                 PhoneCountryCode = "0047",
                 Phone = "912345678",
                 Title = "Avdelingssjef",
-                Created = new DateTime(2011, 1, 1, 12, 00, 00)
+                Created = new DateTime(2018, 12, 01, 12, 00, 00)
             };
 
             var user2 = new UserItem
@@ -201,7 +201,7 @@ namespace Difi.Sjalvdeklaration.Database
                 PhoneCountryCode = "0047",
                 Phone = "712345678",
                 Title = "Handläggare",
-                Created = new DateTime(2011, 1, 1, 12, 00, 00)
+                Created = new DateTime(2018, 12, 01, 12, 00, 00)
             };
 
             modelBuilder.Entity<UserItem>().HasData(user1, user2);
