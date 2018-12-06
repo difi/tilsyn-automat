@@ -4,27 +4,71 @@
     ViewData["Title"] = "CompanyLink";
 }
 
-<main>
+<header>
     <div class="row">
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <h1>Komplettera organisasjonsuppgifter </h1>
+            <div class="row">
+                <div class="small-8 column">
+                    <div class="logo">
+                        <img alt="Difi alt-text" src="~/images/difi-logo.svg" />
+                    </div>
+                </div>
+                <div class="small-4 column">
+                    <div class="jsProfileContainer profile-wrapper">
+                        <div class="profile-area">
+                            <div class="row collapse">
+                                <div class="small-7 medium-6 text-right columns">
+                                    <div class="profile-first-letter">
+                                        D
+                                    </div>
+                                </div>
+                                <div class="small-5 medium-6 columns">
+                                    <button class="jsProfileTrigger toggle-profile-button button plus">
+                                        <span class="profile-name hide-for-small-only">test</span><br />
+                                        <span class="profile-number hide-for-small-only"></span>
+                                        <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-            <p>
-                Når du logger inn for første gang må du skrive inn organisasjonsnummeret til virksomheten og den firesifrede koden oppgitt i Tilsynsvarslet virksomheten mottok på e-post fra Difi.
-            </p>
+                        <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
+                            <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt">Logga ut</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <form method="post">
+        <div class="row">
+            <div class="large-7 large-centered small-12 columns">
+                <h1>@Localizer["CompanyLink-Header-h1"]</h1>
 
-            <form method="post">
+                <p>
+                    @Localizer["CompanyLink-Text"]
+                </p>
+
+
                 <div asp-validation-summary="All"></div>
 
                 @Html.EditorFor(x => x.AddLinkToCompany.CorporateIdentityNumber, "TextBox")
                 @Html.EditorFor(x => x.AddLinkToCompany.Code, "TextBox")
-
-                <hr />
-
-                <input type="submit" value="Gå vidare" />
-            </form>
+            </div>
         </div>
-    </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="large-7 large-centered small-12 columns">
+
+                <input class="button large" type="submit" value="@Localizer["CompanyLink-Next"]" />
+
+            </div>
+        </div>
+    </form>
 </main>
 
 @section Scripts {

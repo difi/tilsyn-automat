@@ -59,11 +59,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
     public class AddLinkToCompanyModel
     {
         [Required]
-        [Display(Name = "Corporate Identity Number")]
+        [Display(Name = "Organisasjonsnummer til din virksomhet")]
         public string CorporateIdentityNumber { get; set; }
 
         [Required]
-        [Display(Name = "Code")]
+        [Display(Name = "Firesifret kode (NNNN)")]
         public string Code { get; set; }
     }
 }
