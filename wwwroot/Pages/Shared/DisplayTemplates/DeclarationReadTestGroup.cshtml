@@ -32,93 +32,99 @@
                     var indicatorItem = item.IndicatorItem;
                     var outcomeData = indicatorItem.OutcomeData;
 
-                    foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                    if (outcomeData != null)
                     {
-                        var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
-
-                        AnswerData lastAnswerData = new AnswerData
+                        foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                         {
-                            Id = Guid.Empty,
-                            ResultId = -1,
-                        };
+                            var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
 
-                        subIndex++;
-
-                        <div class="card transparent">
-                            <div class="jsRuleItem" id="@ruleItem.Id">
-                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                            if (ruleData != null)
+                            {
+                                var lastAnswerData = new AnswerData
                                 {
-                                    var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
-                                    var viewAnswerItem = true;
+                                    Id = Guid.Empty,
+                                    ResultId = -1,
+                                };
 
-                                    if (lastAnswerData != null && answerItem != null)
-                                    {
-                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                subIndex++;
+
+                                <div class="card transparent">
+                                    <div class="jsRuleItem" id="@ruleItem.Id">
+                                        @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                                         {
-                                            if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                            var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+                                            var viewAnswerItem = true;
+
+                                            if (lastAnswerData != null && answerItem != null)
                                             {
-                                                viewAnswerItem = false;
-                                            }
-                                        }
+                                                if (lastAnswerData.ResultId == (int) TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                {
+                                                    if (answerData.ResultId == (int) TypeOfResult.NotTestable)
+                                                    {
+                                                        viewAnswerItem = false;
+                                                    }
+                                                }
 
-                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
-                                        {
-                                            if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                                if (lastAnswerData.ResultId == (int) TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                {
+                                                    if (answerData.ResultId == (int) TypeOfResult.NotTestable)
+                                                    {
+                                                        viewAnswerItem = false;
+                                                    }
+                                                }
+
+                                                if (lastAnswerData.ResultId == (int) TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                {
+                                                    if (answerData.ResultId == (int) TypeOfResult.NotTested)
+                                                    {
+                                                        viewAnswerItem = false;
+                                                    }
+                                                }
+
+                                                if (lastAnswerData.ResultId == (int) TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                {
+                                                    viewAnswerItem = false;
+                                                }
+
+                                                if (lastAnswerData.ResultId == (int) TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                                {
+                                                    viewAnswerItem = false;
+                                                }
+                                            }
+
+                                            var orderText = mainIndex + "." + subIndex;
+
+                                            if (viewAnswerItem)
                                             {
-                                                viewAnswerItem = false;
+
+                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.String)
+                                                {
+                                                    @Html.DisplayFor(x => answerData.String, "AnswerString", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result})
+                                                }
+
+                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Bool)
+                                                {
+                                                    @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText})
+                                                }
+
+                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Int)
+                                                {
+                                                    @Html.DisplayFor(x => answerData.Int, "AnswerInt", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result})
+                                                }
+
+                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Image)
+                                                {
+                                                    @Html.DisplayFor(x => answerData.Image, "AnswerImage", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result})
+                                                }
                                             }
+
+                                            lastAnswerData = answerData;
                                         }
 
-                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
-                                        {
-                                            if (answerData.ResultId == (int)TypeOfResult.NotTested)
-                                            {
-                                                viewAnswerItem = false;
-                                            }
-                                        }
-
-                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
-                                        {
-                                            viewAnswerItem = false;
-                                        }
-
-                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
-                                        {
-                                            viewAnswerItem = false;
-                                        }
-                                    }
-
-                                    var orderText = mainIndex + "." + subIndex;
-
-                                    if (viewAnswerItem)
-                                    {
-
-                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
-                                        {
-                                            @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
-                                        }
-
-                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
-                                        {
-                                            @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
-                                        }
-
-                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
-                                        {
-                                            @Html.DisplayFor(x => answerData.Int, "AnswerInt", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
-                                        }
-
-                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
-                                        {
-                                            @Html.DisplayFor(x => answerData.Image, "AnswerImage", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
-                                        }
-                                    }
-
-                                    lastAnswerData = answerData;
-                                }
-
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
                     }
                 }
             </div>

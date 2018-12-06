@@ -96,25 +96,32 @@
         </div>
 
         @*<div class="small-7 medium-10 columns text-right">
-            <div class="row align-middle">
-                <div class="small-8 medium-9 columns">
-                    <span class="status-text"><strong>Status</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
-                </div>
-                <div class="small-4 medium-3 columns">
-                    <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
-                        <div class="status-done">@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)%</div>
+                <div class="row align-middle">
+                    <div class="small-8 medium-9 columns">
+                        <span class="status-text"><strong>Status</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
+                    </div>
+                    <div class="small-4 medium-3 columns">
+                        <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
+                            <div class="status-done">@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)%</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
     </div>
 
-    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = @Model.AllDoneStep1 })
-
-    foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+    if (Model.DeclarationItemForm.DeclarationTestItem.HaveMachine)
     {
-        mainIndex++;
-        @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm })
+        @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = Model.AllDoneStep1})
+
+        foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+        {
+            mainIndex++;
+            @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm})
+        }
+    }
+    else
+    {
+        <span>Saknar automat</span>
     }
 }
 
