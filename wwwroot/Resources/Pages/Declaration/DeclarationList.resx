@@ -132,6 +132,9 @@
   <data name="MailingAddress" xml:space="preserve">
     <value>Postadresse</value>
   </data>
+  <data name="MainHeader" xml:space="preserve">
+    <value>Egenkontroll for</value>
+  </data>
   <data name="ShowHide" xml:space="preserve">
     <value>Vise/skjule</value>
   </data>
@@ -145,6 +148,6 @@
     <value>Oppdater</value>
   </data>
   <data name="view-declaratiopn-button" xml:space="preserve">
-    <value>Vis selvdeklarasjon</value>
+    <value>Vis egenkontroll</value>
   </data>
 </root>
