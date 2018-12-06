@@ -4,7 +4,15 @@
 @model DeclarationListModel
 @{
     ViewData["Title"] = "DeclarationList";
+
+    var companyName = Model.CompanyItem.Name;
+
+    if (!string.IsNullOrEmpty(Model.CompanyItem.CustomName))
+    {
+        companyName = Model.CompanyItem.CustomName;
+    }
 }
+
 
 @if (Model.CompanyItem != null)
 {
@@ -23,12 +31,12 @@
                                 <div class="row collapse">
                                     <div class="small-7 medium-6 text-right columns">
                                         <div class="profile-first-letter">
-                                            @Model.CompanyItem.Name
+                                            @companyName
                                         </div>
                                     </div>
                                     <div class="small-5 medium-6 columns">
                                         <button class="jsProfileTrigger toggle-profile-button button plus">
-                                            <span class="profile-name hide-for-small-only">@Model.CompanyItem.Name</span><br />
+                                            <span class="profile-name hide-for-small-only">@companyName</span><br />
                                             <span class="profile-number hide-for-small-only"></span>
                                             <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
                                         </button>
@@ -50,7 +58,7 @@
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
                 
-                <h1>@Localizer["MainHeader"] @Model.CompanyItem.Name</h1>
+                <h1>@Localizer["MainHeader"] @companyName</h1>
                 
                 <div class="jsDeclarationListToggleCardContainer">
                     <div class="row medium-uncollapse">
@@ -215,7 +223,7 @@
                                 <div class="card-section text-center medium-uncentered">
                                     <div class="declaration-name-type">
                                         <span class="declaration-name">
-                                            @item.Company.Name
+                                            @companyName
                                         </span>
                                         <span class="declaration-type">
                                             @item.Name
