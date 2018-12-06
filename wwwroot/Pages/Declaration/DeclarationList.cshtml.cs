@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.wwwroot.Business;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -68,10 +67,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                     foreach (var declarationItem in declarationListDb)
                     {
-                        //if (CompanyItem.Id == declarationItem.CompanyItemId)
-                        //{
+                        if (CompanyItem.Id == declarationItem.CompanyItemId)
+                        {
                             DeclarationList.Add(declarationItem);
-//                        }
+                        }
                     }
                 }
                 else
