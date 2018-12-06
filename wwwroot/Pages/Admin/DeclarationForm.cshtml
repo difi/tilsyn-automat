@@ -88,7 +88,34 @@
 
 @if (Model.DeclarationItemForm?.Status?.Id > 2)
 {
-    <h1>Oppsummering</h1>
+    var mainIndex = 1;
+
+    <div class="row column">
+        <div class="small-5 medium-2 columns">
+            <h1>Oppsummering</h1>
+        </div>
+
+        <div class="small-7 medium-push-6 medium-4 columns text-right">
+            <div class="row align-middle">
+                <div class="small-8 medium-9 columns">
+                    <span class="status-text"><strong>Status</strong> @Model.DeclarationItemForm.Status.TextCompany</span>
+                </div>
+                <div class="small-4 medium-3 columns">
+                    <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
+                        <div class="status-done">@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = @Model.AllDoneStep1 })
+
+    foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+    {
+        mainIndex++;
+        @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm })
+    }
 }
 
 
