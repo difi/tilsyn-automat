@@ -65,6 +65,15 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpPost]
+        [Route("UpdateCustom")]
+        public ApiResult UpdateCustom(CompanyCustomItem companyCustomItem)
+        {
+            HandleRequest();
+
+            return companyRepository.UpdateCustom(companyCustomItem);
+        }
+
+        [HttpPost]
         [Route("ExcelImport")]
         public ApiResult ExcelImport(ExcelItemRow excelItemRow)
         {

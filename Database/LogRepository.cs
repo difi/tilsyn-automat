@@ -13,19 +13,25 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
-        public bool Add(LogItem logItem)
+        public ApiResult Add(LogItem logItem)
         {
+            var result = new ApiResult();
+
             try
             {
                 dbContext.LogList.Add(logItem);
                 dbContext.SaveChanges();
 
-                return true;
+
+                result.Succeeded = true;
+                result.Id = logItem.Id;
             }
-            catch
+            catch (Exception exception)
             {
-                return false;
+                result.Exception = exception;
             }
+
+            return result;
         }
     }
 }

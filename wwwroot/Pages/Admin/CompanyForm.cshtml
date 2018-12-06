@@ -11,9 +11,6 @@
 
 <div class="form-wrapper">
     <form method="post">
-
-
-
         <div asp-validation-summary="All"></div>
 
         <fieldset>
@@ -96,33 +93,6 @@
 
             <div class="row">
                 <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressStreet, "TextBox")
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressZip, "TextBox")
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressCity, "TextBox")
-                </div>
-            </div>
-
-        </fieldset>
-
-        <br />
-
-        <fieldset>
-            <legend>
-                @Localizer["Admin-clients-legend-business-addressd"]
-            </legend>
-
-            <div class="row">
-                <div class="small-12 medium-6 end columns">
                     @Html.EditorFor(x => x.CompanyItemForm.LocationAddressStreet, "TextBox")
                 </div>
             </div>
@@ -138,7 +108,32 @@
                     @Html.EditorFor(x => x.CompanyItemForm.LocationAddressCity, "TextBox")
                 </div>
             </div>
+        </fieldset>
 
+        <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Admin-clients-legend-business-addressd"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressStreet, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressZip, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.BusinessAddressCity, "TextBox")
+                </div>
+            </div>
         </fieldset>
 
         <br />

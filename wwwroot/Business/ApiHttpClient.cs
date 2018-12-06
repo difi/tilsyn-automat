@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared;
@@ -18,7 +19,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
     {
         private readonly IConfiguration configuration;
         private readonly IHttpContextAccessor httpContextAccessor;
-
         private readonly HttpClient httpClient;
 
         public ApiHttpClient(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
@@ -84,6 +84,34 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
             return JsonConvert.DeserializeObject<T>(responseData);
+        }
+
+        public async void LogError(Exception exception, object callParameter1 = null, object callParameter2 = null, [CallerMemberName] string callerFunctionName = null)
+        {
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
+
+            var userId = Guid.Empty;
+            var claims = httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.PrimarySid);
+
+            if (claims != null)
+            {
+                userId = Guid.Parse(claims.Value);
+            }
+
+            var apiResult = new ApiResult
+            {
+                Exception = exception,
+                Succeeded = false
+            };
+
+            var logItem = new LogItem(userId, apiResult, callParameter1, callParameter2, null, callerFunctionName);
+
+            var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + "/api/Log/Add", logItem.AsJsonStringContent());
+
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(responseMessage.Content.ToString());
+            }
         }
 
         private void AddAuthorization(string authorizationType, string authorizationKey)
