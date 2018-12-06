@@ -18,6 +18,11 @@
     //padding: 0 0 0.75rem 0;
     padding: 0;
     //width: 100%;
+    .jsExcelImportTarget & {
+        background-color: $bg-forms;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
 }
 
 input[type=radio], input[type=checkbox] {
@@ -30,6 +35,7 @@ input[type=radio], input[type=checkbox] {
         }
     }
 }
+
 
 .jsNextAnswerItemPlaceHolder {
     display: inline-block;
