@@ -4090,12 +4090,12 @@ button, .button, input[type="button"], input[type="submit"] {
     button.toogle-header-button.isDone-True, button.toogle-header-button.isDone-False, button.toogle-header-button-alt.isDone-True, button.toogle-header-button-alt.isDone-False, .button.toogle-header-button.isDone-True, .button.toogle-header-button.isDone-False, .button.toogle-header-button-alt.isDone-True, .button.toogle-header-button-alt.isDone-False, input[type="button"].toogle-header-button.isDone-True, input[type="button"].toogle-header-button.isDone-False, input[type="button"].toogle-header-button-alt.isDone-True, input[type="button"].toogle-header-button-alt.isDone-False, input[type="submit"].toogle-header-button.isDone-True, input[type="submit"].toogle-header-button.isDone-False, input[type="submit"].toogle-header-button-alt.isDone-True, input[type="submit"].toogle-header-button-alt.isDone-False {
       padding: 1.5rem 12px 0.5rem 10px; }
     button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon {
-      top: 6px;
+      top: 7px;
       transform: rotate(-45deg);
       transition: transform 200ms ease; }
     button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon {
       transform: rotate(-225deg);
-      top: 12px;
+      top: 13px;
       transition: transform 200ms ease; }
     button.toogle-header-button .toggle-header-number, button.toogle-header-button-alt .toggle-header-number, .button.toogle-header-button .toggle-header-number, .button.toogle-header-button-alt .toggle-header-number, input[type="button"].toogle-header-button .toggle-header-number, input[type="button"].toogle-header-button-alt .toggle-header-number, input[type="submit"].toogle-header-button .toggle-header-number, input[type="submit"].toogle-header-button-alt .toggle-header-number {
       border: 1px solid #1f3f43;
@@ -4106,17 +4106,17 @@ button, .button, input[type="button"], input[type="submit"] {
       text-align: center;
       line-height: 1.15; }
     button.toogle-header-button .toggle-header-icon, button.toogle-header-button-alt .toggle-header-icon, .button.toogle-header-button .toggle-header-icon, .button.toogle-header-button-alt .toggle-header-icon, input[type="button"].toogle-header-button .toggle-header-icon, input[type="button"].toogle-header-button-alt .toggle-header-icon, input[type="submit"].toogle-header-button .toggle-header-icon, input[type="submit"].toogle-header-button-alt .toggle-header-icon {
-      border: 2px solid #1f3f43;
+      border: 3px solid #1f3f43;
       border-top-color: transparent;
       border-right-color: transparent;
-      width: 11px;
-      height: 11px;
+      width: 14px;
+      height: 14px;
       display: inline-block;
       transform: rotate(-45deg);
       margin-left: 6px;
       position: relative;
       float: right;
-      top: 6px; }
+      top: 7px; }
     button.toogle-header-button .header-status-icon, button.toogle-header-button-alt .header-status-icon, .button.toogle-header-button .header-status-icon, .button.toogle-header-button-alt .header-status-icon, input[type="button"].toogle-header-button .header-status-icon, input[type="button"].toogle-header-button-alt .header-status-icon, input[type="submit"].toogle-header-button .header-status-icon, input[type="submit"].toogle-header-button-alt .header-status-icon {
       width: 48px;
       height: 48px;
@@ -4170,8 +4170,8 @@ button, .button, input[type="button"], input[type="submit"] {
       border: 2px solid #1f3f43;
       border-top-color: transparent;
       border-right-color: transparent;
-      width: 11px;
-      height: 11px;
+      width: 14px;
+      height: 14px;
       display: inline-block;
       transform: rotate(-45deg);
       position: absolute;

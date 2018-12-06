@@ -207,7 +207,7 @@ button, .button, input[type="button"], input[type="submit"] {
 
         &[aria-expanded="false"] {
             .toggle-header-icon {
-                top: 6px;
+                top: 7px;
                 transform: rotate(-45deg);
                 transition: transform 200ms ease;
             }
@@ -216,7 +216,7 @@ button, .button, input[type="button"], input[type="submit"] {
         &[aria-expanded="true"] {
             .toggle-header-icon {
                 transform: rotate(-225deg);
-                top: 12px;
+                top: 13px;
                 transition: transform 200ms ease;
             }
         }
@@ -232,17 +232,17 @@ button, .button, input[type="button"], input[type="submit"] {
         }
 
         .toggle-header-icon {
-            border: 2px solid $dark-blue-grey;
+            border: 3px solid $dark-blue-grey;
             border-top-color: transparent;
             border-right-color: transparent;
-            width: 11px;
-            height: 11px;
+            width: 14px;
+            height: 14px;
             display: inline-block;
             transform: rotate(-45deg);
             margin-left: 6px;
             position: relative;
             float: right;
-            top: 6px;
+            top: 7px;
         }
 
         .header-status-icon {
@@ -322,8 +322,8 @@ button, .button, input[type="button"], input[type="submit"] {
             border: 2px solid $dark-blue-grey;
             border-top-color: transparent;
             border-right-color: transparent;
-            width: 11px;
-            height: 11px;
+            width: 14px;
+            height: 14px;
             display: inline-block;
             transform: rotate(-45deg);
             position: absolute;
