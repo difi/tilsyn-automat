@@ -186,8 +186,16 @@
             <form method="post">
                 <div class="row">
                     <div class="small-12 medium-7 columns">
-                        <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
                         <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+
+                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                        {
+                            <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
+                        }
+                        else
+                        {
+                            <div>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</div>
+                        }
                     </div>
                     <div class="small-10 medium-5 columns">
                         <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
