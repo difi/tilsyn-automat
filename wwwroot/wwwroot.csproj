@@ -46,6 +46,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Resources\Business\" />
     <Folder Include="Resources\Pages\Shared\EditorTemplates\" />
   </ItemGroup>
 

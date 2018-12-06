@@ -103,5 +103,16 @@ namespace Difi.Sjalvdeklaration.Log
 
             return result;
         }
+
+        public ApiResult UpdateCustom(CompanyCustomItem companyCustomItem)
+        {
+            var companyCustomItemBefore = companyCustomItem.DeepClone();
+
+            var result = inner.UpdateCustom(companyCustomItem);
+
+            logRepository.Add(new LogItem(userId, result, companyCustomItemBefore));
+
+            return result;
+        }
     }
 }

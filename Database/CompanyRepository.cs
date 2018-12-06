@@ -126,11 +126,34 @@ namespace Difi.Sjalvdeklaration.Database
                 var dbItem = dbContext.CompanyList.Single(x => x.Id == companyItem.Id);
 
                 dbItem.Code = companyItem.Code;
+                dbItem.ExternalId = companyItem.ExternalId;
+                dbItem.CorporateIdentityNumber = companyItem.CorporateIdentityNumber;
+                dbItem.OwenerCorporateIdentityNumber = companyItem.OwenerCorporateIdentityNumber;
                 dbItem.Name = companyItem.Name;
                 dbItem.CustomName = companyItem.CustomName;
+
                 dbItem.MailingAddressStreet = companyItem.MailingAddressStreet;
                 dbItem.MailingAddressZip = companyItem.MailingAddressZip;
                 dbItem.MailingAddressCity = companyItem.MailingAddressCity;
+
+                dbItem.LocationAddressStreet = companyItem.LocationAddressStreet;
+                dbItem.LocationAddressZip = companyItem.LocationAddressZip;
+                dbItem.LocationAddressCity = companyItem.LocationAddressCity;
+
+                dbItem.BusinessAddressStreet = companyItem.BusinessAddressStreet;
+                dbItem.BusinessAddressZip = companyItem.BusinessAddressZip;
+                dbItem.BusinessAddressCity = companyItem.BusinessAddressCity;
+
+                dbItem.CustomAddressStreet = companyItem.CustomAddressStreet;
+                dbItem.CustomAddressZip = companyItem.CustomAddressZip;
+                dbItem.CustomAddressCity = companyItem.CustomAddressCity;
+
+                dbItem.IndustryGroupCode = companyItem.IndustryGroupCode;
+                dbItem.IndustryGroupDescription = companyItem.IndustryGroupDescription;
+                dbItem.IndustryGroupAggregated = companyItem.IndustryGroupAggregated;
+
+                dbItem.InstitutionalSectorCode = companyItem.InstitutionalSectorCode;
+                dbItem.InstitutionalSectorDescription = companyItem.InstitutionalSectorDescription;
 
                 dbContext.ContactPersonList.RemoveRange(dbContext.ContactPersonList.Where(x => x.CompanyItemId == dbItem.Id));
 
@@ -268,6 +291,34 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Id = userCompanyItem.CompanyItemId;
                     result.Succeeded = true;
                 }
+            }
+            catch (Exception exception)
+            {
+                result.Succeeded = false;
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
+        public ApiResult UpdateCustom(CompanyCustomItem companyCustomItem)
+        {
+            var result = new ApiResult();
+
+            try
+            {
+                var dbItem = dbContext.CompanyList.Single(x => x.Id == companyCustomItem.CompanyItemId);
+
+                dbItem.CustomName = companyCustomItem.CustomName;
+
+                dbItem.CustomAddressStreet = companyCustomItem.CustomAddressStreet;
+                dbItem.CustomAddressZip = companyCustomItem.CustomAddressZip;
+                dbItem.CustomAddressCity = companyCustomItem.CustomAddressCity;
+
+                dbContext.SaveChanges();
+
+                result.Succeeded = true;
+                result.Id = dbItem.Id;
             }
             catch (Exception exception)
             {

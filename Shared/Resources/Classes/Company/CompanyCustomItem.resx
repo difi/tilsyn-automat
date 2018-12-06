@@ -117,34 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BusinessAddress" xml:space="preserve">
-    <value>Beliggenhetsadresse</value>
+  <data name="CustomAddressCity" xml:space="preserve">
+    <value>Sted</value>
   </data>
-  <data name="CompanyEditHeader" xml:space="preserve">
-    <value>Virksomhetsinformasjon</value>
+  <data name="CustomAddressStreet" xml:space="preserve">
+    <value>Gatenavn og nummer</value>
   </data>
-  <data name="ContactPerson" xml:space="preserve">
-    <value>Kontaktperson virksomhet</value>
+  <data name="CustomAddressZip" xml:space="preserve">
+    <value>Postnummer</value>
   </data>
-  <data name="LocationAddress" xml:space="preserve">
-    <value>Forretningsadresse</value>
-  </data>
-  <data name="MailingAddress" xml:space="preserve">
-    <value>Postadresse</value>
-  </data>
-  <data name="ShowHide" xml:space="preserve">
-    <value>Vise/skjule</value>
-  </data>
-  <data name="Toggle-header-text" xml:space="preserve">
-    <value>Kontroller virksomhetsinformasjon</value>
-  </data>
-  <data name="Toggle-header-text-hidden-text" xml:space="preserve">
-    <value>Virksomhetsinformasjon</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Oppdater</value>
-  </data>
-  <data name="view-declaratiopn-button" xml:space="preserve">
-    <value>Vis selvdeklarasjon</value>
+  <data name="CustomName" xml:space="preserve">
+    <value>Navn på virksamhet</value>
   </data>
 </root>

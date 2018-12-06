@@ -42,5 +42,4 @@
             $target.slideToggle("300", function () { });
         }
     });
-
 });

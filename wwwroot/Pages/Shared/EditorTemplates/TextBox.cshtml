@@ -11,13 +11,27 @@
     {
         autoComplete = autoCompleteAttribute.Value;
     }
+
+    var readyOnly = false;
+
+    if (ViewData["readOnly"]!=null)
+    {
+        readyOnly = (bool) ViewData["readOnly"];
+    }
 }
 
 <div class="form-field">
     <label for="@Html.IdForModel()">
         @Html.DisplayNameFor(m => m)
-        @Html.ValidationMessageFor(m=>m)
+        @Html.ValidationMessageFor(m => m)
     </label>
-    
-    @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), autocomplete  = autoComplete })
+
+    @if (readyOnly)
+    {
+        @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), autocomplete = autoComplete, @readonly = readyOnly })
+    }
+    else
+    {
+        @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), autocomplete = autoComplete })
+    }
 </div>

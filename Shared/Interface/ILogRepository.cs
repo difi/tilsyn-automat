@@ -4,6 +4,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface ILogRepository
     {
-        bool Add(LogItem logItem);
+        ApiResult Add(LogItem logItem);
     }
 }

@@ -27,5 +27,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
         ApiResult AddLink(UserCompany userCompanyItem);
 
         ApiResult RemoveLink(UserCompany userCompanyItem);
+
+        ApiResult UpdateCustom(CompanyCustomItem companyCustomItem);
     }
 }
