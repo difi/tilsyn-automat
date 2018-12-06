@@ -159,4 +159,7 @@
   <data name="DeclarationList-of-total" xml:space="preserve">
     <value>av totalt</value>
   </data>
+  <data name="DeclarationList-user" xml:space="preserve">
+    <value>Saksbehandler</value>
+  </data>
 </root>

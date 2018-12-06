@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\Business\**" />
     <Compile Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+    <Content Remove="Resources\Business\**" />
     <Content Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+    <EmbeddedResource Remove="Resources\Business\**" />
     <EmbeddedResource Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
+    <None Remove="Resources\Business\**" />
     <None Remove="wwwroot\js\jquery\jquery.validate.unobtrusive\**" />
   </ItemGroup>
 
@@ -51,7 +55,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Resources\Business\" />
     <Folder Include="Resources\Pages\Shared\EditorTemplates\" />
   </ItemGroup>
 

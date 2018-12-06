@@ -105,7 +105,7 @@
             <tr>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)</th>
-                <th scope="col">@Localizer["DeclarationList-contactperson"]</th>
+                <th scope="col">@Localizer["DeclarationList-user"]</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)</th>
                 <th scope="col">Status for egenkontroll</th>
@@ -126,7 +126,7 @@
                         @item.Company.Name
                     </td>
                     <td class="clickable-td">
-                        @contactPerson?.Email
+                        @item.User.Name
                     </td>
                     <td class="clickable-td">
                         @item.DeadlineDate.ToString("yyyy-MM-dd")
