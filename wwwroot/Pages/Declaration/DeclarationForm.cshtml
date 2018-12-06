@@ -34,9 +34,21 @@
             HelpText = "<p>Bildet skal vise hvor betalingsterminalen er plassert. Bildet skal vise hele betalingsterminalen og området foran terminalen.</p>"
         }
     };
+
+    var backUrl = "";
+
+    if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Sent || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Created)
+    {
+        backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id;
+    }
+
+    if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Return)
+    {
+        backUrl = "/Declaration/DeclarationList";
+    }
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id })
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl })
 
 <main>
     <form method="post">
