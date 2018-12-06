@@ -106,7 +106,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Egenkontroll.
+        ///   Looks up a localized string similar to Navn på egenkontroll.
         /// </summary>
         internal static string Name {
             get {
@@ -115,7 +115,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Egenkontroll er påkrevd.
+        ///   Looks up a localized string similar to Navn på egenkontroll er påkrevd.
         /// </summary>
         internal static string Name___required_field {
             get {
@@ -133,7 +133,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status.
+        ///   Looks up a localized string similar to Virksomhetens fremdrift.
         /// </summary>
         internal static string Status {
             get {
@@ -142,7 +142,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status - er påkrevd.
+        ///   Looks up a localized string similar to Virksomhetens fremdrift er påkrevd.
         /// </summary>
         internal static string Status___required_field {
             get {
