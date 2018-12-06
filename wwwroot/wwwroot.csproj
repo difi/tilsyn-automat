@@ -113,6 +113,9 @@
     <Content Update="Pages\AzureHandler.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\DisplayTemplates\DeclarationReadTestGroup.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\EditorTemplates\AnswerBool.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

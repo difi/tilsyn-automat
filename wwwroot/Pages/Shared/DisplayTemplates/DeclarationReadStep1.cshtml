@@ -1,0 +1,49 @@
+﻿@model Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem
+
+@{
+    var mainIndex = ViewData["mainIndex"];
+    var allDone = ViewData["allDone"];
+}
+
+<div class="jsToggleCardContainer">
+    <div class="row medium-uncollapse">
+        <div class="small-12 medium-12 columns">
+            <h2 class="h2-toggle">
+                <button class="toogle-header-button jsToggleCardButton">
+                    <span class="toggle-header-number">
+                        @mainIndex
+                    </span> Automaten <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] Automaten</span></span>
+
+                    <span class="isDone-@allDone"></span>
+                </button>
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 medium-12 columns">
+            <div class="jsToggleCardTarget">
+                <div class="card transparent">
+                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", orderText = "1.1" })
+
+                    @if (Model.DeclarationTestItem.SupplierAndVersion.Id == 99999)
+                    {
+                        @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1" })
+                    }
+                </div>
+
+                <div class="card transparent">
+                    @Html.DisplayFor(x => x.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2" })
+                </div>
+
+                <div class="card transparent">
+                    @Html.DisplayFor(x => x.DeclarationTestItem.Image1, "AnswerImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3" })
+                </div>
+
+                <div class="card transparent">
+                    @Html.DisplayFor(x => x.DeclarationTestItem.Image2, "AnswerImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
