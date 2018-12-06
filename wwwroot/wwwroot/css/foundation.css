@@ -3764,6 +3764,8 @@ header {
     margin-top: 1.5rem; }
   header .logo {
     margin: 13px 0 0 -130px; }
+  header .profile-wrapper .profile-first-letter {
+    background-color: #8f6693; }
   header .profile-info-area {
     text-align: right;
     padding: 2rem 0 1rem 0; }
@@ -3771,7 +3773,7 @@ header {
     font-weight: normal; }
   header .profile-name {
     max-width: 100px; }
-  header .profile-image {
+  header .profile-first-letter {
     width: 40px;
     height: 40px;
     display: inline-block;
@@ -3783,7 +3785,7 @@ header {
     color: transparent;
     font-size: 0;
     margin-top: 8px; }
-    header .profile-image:first-letter {
+    header .profile-first-letter:first-letter {
       font-size: 21px;
       color: #fff; }
   header .status-text {
