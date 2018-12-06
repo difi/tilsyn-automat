@@ -120,59 +120,55 @@ $form-button-radius: $global-radius !default;
 }
 
 @mixin foundation-form-text {
-  // Text inputs
-  #{text-inputs()},
-  textarea {
-    @include form-element;
-    appearance: none;
-  }
-
-  // Text areas
-  textarea {
-    max-width: 100%;
-
-    &[rows] {
-      height: auto;
+    // Text inputs
+    #{text-inputs()},
+    textarea {
+        @include form-element;
+        appearance: none;
     }
-  }
+    // Text areas
+    textarea {
+        max-width: 100%;
 
-  input,
-  textarea {
-    // Placeholder text
-    &::placeholder {
-      color: $input-placeholder-color;
+        &[rows] {
+            height: auto;
+        }
     }
 
-    // Disabled/readonly state
-    &:disabled,
-    &[readonly] {
-      background-color: $input-background-disabled;
-      cursor: $input-cursor-disabled;
+    input,
+    textarea {
+        // Placeholder text
+        &::placeholder {
+            color: $input-placeholder-color;
+        }
+        // Disabled/readonly state
+        &:disabled,
+        &[readonly] {
+            background-color: $input-background-disabled;
+            cursor: $input-cursor-disabled;
+            border-color: #E1E4E6;
+            box-shadow: none;
+        }
     }
-  }
-
-  // Reset styles on button-like inputs
-  [type='submit'],
-  [type='button'] {
-    appearance: none;
-    border-radius: $form-button-radius;
-  }
-
-  // Reset Normalize setting content-box to search elements
-  input[type='search'] { // sass-lint:disable-line no-qualifying-elements
-    box-sizing: border-box;
-  }
-
-  // Number input styles
-  [type='number'] {
-    @if not $input-number-spinners {
-      -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefix
-
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefix
-        margin: 0;
-      }
+    // Reset styles on button-like inputs
+    [type='submit'],
+    [type='button'] {
+        appearance: none;
+        border-radius: $form-button-radius;
     }
-  }
+    // Reset Normalize setting content-box to search elements
+    input[type='search'] { // sass-lint:disable-line no-qualifying-elements
+        box-sizing: border-box;
+    }
+    // Number input styles
+    [type='number'] {
+        @if not $input-number-spinners {
+            -moz-appearance: textfield; // sass-lint:disable-line no-vendor-prefix
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none; // sass-lint:disable-line no-vendor-prefix
+                margin: 0;
+            }
+        }
+    }
 }

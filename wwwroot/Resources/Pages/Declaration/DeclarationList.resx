@@ -145,7 +145,7 @@
     <value>Virksomhetsinformasjon</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Oppdater</value>
+    <value>Lagre</value>
   </data>
   <data name="view-declaratiopn-button" xml:space="preserve">
     <value>Vis egenkontroll</value>

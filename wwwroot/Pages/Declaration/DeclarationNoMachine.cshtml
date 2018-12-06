@@ -6,9 +6,10 @@
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
 
+
 <main>
     <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+        <div class="large-7 large-centered small-12 columns">
             <h1>Jeg har ingen betalingsterminal</h1>
 
             <p>
@@ -21,10 +22,16 @@
             </p>
 
             <form method="post">
-                <button class="button alt" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok</button>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <button class="button" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok</button>
+                        <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">Avbryt</a>
+                    </div>
+                </div>
+               
             </form>
 
-            <a asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">Avbryt</a>
+            
         </div>
     </div>
 </main>

@@ -73,6 +73,14 @@ main {
 
     &.declaration-list-info {
         background-color: $bg-forms;
+        box-shadow: none;
+        border: 0;
+        padding: 1rem;
+
+        legend, .legend {
+            margin-bottom: 0.5rem;
+            font-size: rem-calc(map-deep-get($header-styles, small, h2, font-size));
+        }
     }
 
     &.transparent {

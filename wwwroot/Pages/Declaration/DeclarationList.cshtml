@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
-                                <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt">Logga ut</a>
+                                <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt logout">Logga ut</a>
                             </div>
                         </div>
                     </div>
@@ -63,8 +63,6 @@
                         <div class="small-12 medium-12 columns">
                             <div class="jsDeclarationListToggleCardTarget">
                                 <div class="card declaration-list-info">
-                                    <div class="card-divider">
-
 
                                         <div class="row column">
                                             <h2>@Localizer["CompanyEditHeader"]</h2>
@@ -74,22 +72,68 @@
                                             @Html.HiddenFor(x => x.CompanyCustomItem.CompanyItemId)
 
                                             <div asp-validation-summary="All"></div>
-                                            @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "TextBox", new { readOnly = true })
-                                            @Html.EditorFor(x => x.CompanyCustomItem.CustomName, "TextBox")
+
+                                            <div class="row">
+                                                <div class="small-12 medium-4 end columns">
+                                                    @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "TextBox", new { readOnly = true })
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomName, "TextBox")
+                                                </div>
+                                            </div>
 
                                             <fieldset>
                                                 <legend>@Localizer["MailingAddress"]</legend>
-                                                @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "TextBox", new { readOnly = true })
-                                                @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "TextBox", new { readOnly = true })
-                                                @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "TextBox", new { readOnly = true })
+
+                                                <div class="row">
+                                                    <div class="small-12 medium-6 end columns">
+                                                        @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "TextBox", new { readOnly = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="small-12 medium-4 end columns">
+                                                        @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "TextBox", new { readOnly = true })
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="small-12 medium-6 end columns">
+                                                        @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "TextBox", new { readOnly = true })
+                                                    </div>
+                                                </div>
+
                                             </fieldset>
+
+                                            <br />
 
                                             <fieldset>
                                                 <legend>@(string.IsNullOrEmpty(Model.CompanyItem.OwenerCorporateIdentityNumber) ? Localizer["LocationAddress"] : Localizer["BusinessAddress"])</legend>
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomAddressStreet, "TextBox")
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomAddressZip, "TextBox")
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomAddressCity, "TextBox")
+
+                                                <div class="row">
+                                                    <div class="small-12 medium-6 end columns">
+                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomAddressStreet, "TextBox")
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="small-12 medium-6 end columns">
+                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomAddressZip, "TextBox")
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="small-12 medium-6 end columns">
+                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomAddressCity, "TextBox")
+                                                    </div>
+                                                </div>
+
                                             </fieldset>
+
+                                            <br />
 
                                             <fieldset>
                                                 <legend>
@@ -123,7 +167,7 @@
                                             <br />
                                             <input class="button large" type="submit" value="@Localizer["Update"]" />
                                         </form>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
