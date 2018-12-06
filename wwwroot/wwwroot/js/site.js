@@ -1,9 +1,18 @@
 ﻿$(function () {
-    $('table').tablesorter({
+    $('.jsNormalTableSort').tablesorter({
         widgets: ['zebra', 'columns'],
         usNumberFormat: false,
         sortReset: true,
-        sortRestart: true
+        sortRestart: true,
+        sortList: [[0, 0]]
+    });
+
+    $('.jsCompanyTableSort').tablesorter({
+        widgets: ['zebra', 'columns'],
+        usNumberFormat: false,
+        sortReset: true,
+        sortRestart: true,
+        sortList: [[5, 0], [0, 0]]   
     });
 
     var profileToggle = new funkanu.ariatoggle({
