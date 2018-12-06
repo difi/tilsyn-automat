@@ -79,12 +79,12 @@
                                     @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, "AnswerDropdownListInt", new { list = Model.SelectSupplierAndVersionList, text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", id = "answer_int_supplierandversion", firstQuestion = true, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId, ruleItem = ruleItem11 })
 
                                     <div id="jsSupplierAndVersionOther">
-                                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", id = "answer_string_testitem_supplierandversionother", firstQuestion = false, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther })
+                                        @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", id = "answer_string_testitem_supplierandversionother", firstQuestion = false, orderText = "1.1", value = Model.DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther, what = "input" })
                                     </div>
                                 </div>
 
                                 <div class="card jsCard">
-                                    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_testitem_descriptionintext", firstQuestion = true, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText, ruleItem = ruleItem12 })
+                                    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", id = "answer_string_testitem_descriptionintext", firstQuestion = true, orderText = "1.2", value = Model.DeclarationItemForm.DeclarationTestItem.DescriptionInText, ruleItem = ruleItem12, what = "textarea" })
                                 </div>
 
                                 <div class="card jsCard">
@@ -154,7 +154,7 @@
                                                         <div class="jsAnswerItem" data-hide="@hide" data-type="@answerItem.TypeOfAnswer.Text" data-id="@answerItem.Id" data-bool="@answerItem.Bool" data-AlwaysVisible="@answerItem.AlwaysVisible" data-min="@answerItem.MinInt" data-max="@answerItem.MaxInt" data-LinkedParentFailedId="@answerItem.LinkedParentFailedId" data-LinkedParentCorrectId="@answerItem.LinkedParentCorrectId">
                                                             @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                             {
-                                                                @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.Language.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String, ruleItem = ruleItem })
+                                                                @Html.EditorFor(x => answerItem.String, "AnswerString", new { text = answerItem.Language.Question, id = "answer_string_" + formId, firstQuestion = firstQuestion, orderText = orderText, value = answerData?.String, ruleItem = ruleItem, what = "textarea" })
                                                             }
 
                                                             @if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)

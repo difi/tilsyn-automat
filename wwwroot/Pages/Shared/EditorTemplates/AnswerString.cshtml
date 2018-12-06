@@ -7,6 +7,7 @@
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
     var value = ViewData["value"];
+    var what = (string)ViewData["what"];
 
     var ruleItem = (RuleItem)ViewData["ruleItem"];
     var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
@@ -54,6 +55,13 @@
     </label>
 
     <div class="card-divider">
-        <textarea id="@name" name="@name">@value</textarea>
+        @if (what == "textarea")
+        {
+            <textarea id="@name" name="@name">@value</textarea>
+        }
+        else
+        {
+            <input type="text" id="@name" name="@name" value="@value" />
+        }
     </div>
 </div>
