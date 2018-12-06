@@ -3740,7 +3740,8 @@ h3, h4 {
 ul, ol {
   padding-left: 0.5em; }
   ul li, ol li {
-    padding-left: 0.5em; }
+    padding-left: 0.5em;
+    padding-bottom: 5px; }
   ul.listing, ul.no-bullet, ul.listing-border, ol.listing, ol.no-bullet, ol.listing-border {
     list-style: none;
     margin-left: 0;
