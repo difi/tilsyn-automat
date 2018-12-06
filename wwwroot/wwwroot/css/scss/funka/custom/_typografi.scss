@@ -20,7 +20,7 @@ $h2-font-size-start: 36px;
 
 // We use these to style ingress
 $ingress-font-family: $sofiapro;
-$ingress-font-size: 20px;
+$ingress-font-size: 18px;
 
 //--------------------------------------------------------------*/
 // FUNKAs CSS
@@ -34,7 +34,7 @@ $ingress-font-size: 20px;
 
 // Ingress
 .ingress {
-    font-size: $ingress-font-size - 2px;
+    font-size: 16px;
     line-height: 1.35;
     color: $color-gray-1;
     padding-top: 0.2rem;
@@ -77,7 +77,7 @@ h2 {
 .start {
     max-width: 600px;
     margin: 0 auto;
-    background-color: lightyellow;
+
     h1 {
         font-size: 26px;
     }
@@ -92,9 +92,13 @@ h2 {
         font-weight: bold;
     }
 
-    img {
-        max-width: 400px;
-        margin: 2rem 3rem;
+    .img-wrapper {
+        margin: 1rem 3rem 2rem 3rem;
+
+        img {
+            max-width: 210px;
+           // max-width: 100%;
+        }
     }
 }
 
@@ -177,6 +181,14 @@ tbody {
 
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
+
+    .start {
+        .img-wrapper {
+           img {
+                max-width: 325px;
+            }
+        }
+    }
     // Ingress
     .ingress {
         font-size: $ingress-font-size;

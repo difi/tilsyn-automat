@@ -3690,7 +3690,7 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   clear: both; }
 
 .ingress {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.35;
   color: #44303C;
   padding-top: 0.2rem;
@@ -3721,8 +3721,7 @@ h3, h4 {
 
 .start {
   max-width: 600px;
-  margin: 0 auto;
-  background-color: lightyellow; }
+  margin: 0 auto; }
   .start h1 {
     font-size: 26px; }
   .start h2 {
@@ -3731,9 +3730,10 @@ h3, h4 {
     font-size: 16px;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: bold; }
-  .start img {
-    max-width: 400px;
-    margin: 2rem 3rem; }
+  .start .img-wrapper {
+    margin: 1rem 3rem 2rem 3rem; }
+    .start .img-wrapper img {
+      max-width: 210px; }
 
 ul, ol {
   padding-left: 0.5em; }
@@ -3776,8 +3776,10 @@ tbody tr button, tbody tr .button {
   margin: 3px 0; }
 
 @media print, screen and (min-width: 48em) {
+  .start .img-wrapper img {
+    max-width: 325px; }
   .ingress {
-    font-size: 20px; }
+    font-size: 18px; }
   h1 {
     margin: 2rem 0 1rem 0; }
     h1.smaller {
