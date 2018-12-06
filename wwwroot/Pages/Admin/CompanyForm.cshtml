@@ -275,7 +275,7 @@
             <div class="small-12 medium-4 text-right column">
                 @if (Model.CompanyItemForm.Id != Guid.Empty)
                 {
-                    <button class="button delete alt" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
+                    <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
                 }
 
             </div>

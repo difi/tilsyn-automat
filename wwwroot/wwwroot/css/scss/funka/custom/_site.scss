@@ -71,6 +71,10 @@ main {
         }
     }
 
+    &.declaration-list-info {
+        background-color: $bg-forms;
+    }
+
     &.transparent {
         background-color: transparent;
         box-shadow: none;

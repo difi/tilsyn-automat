@@ -70,6 +70,7 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.delete {
+        color: $dark-grey;
         background: url("/css/cssimg/icons-sprite.svg") $very-light-purple 16px -1285px no-repeat;
         padding-left: 3em;
         margin-bottom: 0;
