@@ -1,0 +1,129 @@
+﻿@using Difi.Sjalvdeklaration.Shared.Classes.Declaration
+@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
+@using Difi.Sjalvdeklaration.Shared.Enum
+@model Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem
+
+@{
+    var mainIndex = ViewData["mainIndex"];
+    var declarationItem = (DeclarationItem)ViewData["DeclarationItem"];
+    var subIndex = 0;
+}
+
+<div class="jsToggleCardContainer">
+    <div class="row medium-uncollapse">
+        <div class="small-12 medium-12 columns">
+            <h2 class="h2-toggle">
+                <button data-id="@Model.Id" class="toogle-header-button jsToggleCardButton">
+                    <span class="toggle-header-number">@mainIndex</span> @Model.Language.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @Model.Language.Name</span></span>
+
+                    <span class="isDone-@Model.AllDone"></span>
+                </button>
+            </h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 medium-12 columns">
+            <div class="jsToggleCardTarget" data-id="@Model.Id">
+                @{
+                    var indicatorList = declarationItem.IndicatorList.Where(x => x.TestGroupItemId == Model.Id);
+                }
+
+                @foreach (var item in indicatorList)
+                {
+                    var indicatorItem = item.IndicatorItem;
+                    var outcomeData = indicatorItem.OutcomeData;
+
+                    foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
+                    {
+                        var ruleData = outcomeData.RuleDataList.SingleOrDefault(x => x.RuleItemId == ruleItem.Id);
+
+                        AnswerData lastAnswerData = new AnswerData
+                        {
+                            Id = Guid.Empty,
+                            ResultId = -1,
+                        };
+
+                        subIndex++;
+
+                        <div class="card transparent">
+                            <div class="jsRuleItem" id="@ruleItem.Id">
+                                @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
+                                {
+                                    var answerData = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItemId == answerItem.Id);
+                                    var viewAnswerItem = true;
+
+                                    if (lastAnswerData != null && answerItem != null)
+                                    {
+                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                        {
+                                            if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                            {
+                                                viewAnswerItem = false;
+                                            }
+                                        }
+
+                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
+                                        {
+                                            if (answerData.ResultId == (int)TypeOfResult.NotTestable)
+                                            {
+                                                viewAnswerItem = false;
+                                            }
+                                        }
+
+                                        if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                        {
+                                            if (answerData.ResultId == (int)TypeOfResult.NotTested)
+                                            {
+                                                viewAnswerItem = false;
+                                            }
+                                        }
+
+                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
+                                        {
+                                            viewAnswerItem = false;
+                                        }
+
+                                        if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                        {
+                                            viewAnswerItem = false;
+                                        }
+                                    }
+
+                                    var orderText = mainIndex + "." + subIndex;
+
+                                    if (viewAnswerItem)
+                                    {
+
+                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
+                                        {
+                                            @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
+                                        }
+
+                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
+                                        {
+                                            @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText })
+                                        }
+
+                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
+                                        {
+                                            @Html.DisplayFor(x => answerData.Int, "AnswerInt", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
+                                        }
+
+                                        if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
+                                        {
+                                            @Html.DisplayFor(x => answerData.Image, "AnswerImage", new { text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result })
+                                        }
+                                    }
+
+                                    lastAnswerData = answerData;
+                                }
+
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
