@@ -2767,11 +2767,9 @@ select {
   font-weight: normal;
   line-height: 1.5;
   color: #000;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAYAAACbU/80AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMBJREFUeNrEllsOhCAMRVszC9IlzU7KCmVHTJsoMWYMUtpyv9BgbuXQB5ZSdgBYYY4ycgBivk8KYFsQMfMiTTBP4o3nUzCKzOabLJbLy2/g31evGkAginR4/ZegKH5qX3bJCscA3t0x3kgO5tQFyhhFf50xRqFLbyMUNJQzgyjGS/wgCpvKqkRBpuWrE4V9d+1E4dPUXqIg107SQOE/2DRQxMwTDygIInVDET9T3lCoj/6j/VCmGjZOl2lKpZ8AAwDQP7zIimDGFQAAAABJRU5ErkJggg==");
-  background-origin: content-box;
-  background-position: right -1rem center;
-  background-repeat: no-repeat;
-  background-size: 9px 6px;
+  background: url("/css/cssimg/icons-sprite.svg") #fff no-repeat 100% 10px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   padding-right: 1.5rem;
   transition: box-shadow 0.5s, border-color 0.25s ease-in-out; }
   select:focus {
