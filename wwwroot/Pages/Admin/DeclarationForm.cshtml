@@ -38,11 +38,11 @@
 
         @if (Model.DeclarationItemForm.Id != Guid.Empty)
         {
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
+                </div>
             </div>
-        </div>
         }
 
         <div class="row">
@@ -50,7 +50,7 @@
                 @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new { list = Model.SelectPurposeOfTest })
             </div>
         </div>
-        
+
         <div class="row">
             <div class="small-12 medium-6 end columns">
                 @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
@@ -62,20 +62,27 @@
             @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
         </div>
 
-        @if (Model.DeclarationItemForm.Id != Guid.Empty)
-        {
-            <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
+        <br /><br />
 
-            <input class="button large" type="submit" value="@Localizer["Update"]" />
+        <div class="row collapse align-bottom">
+            <div class="small-12 column">
+                @if (Model.DeclarationItemForm.Id != Guid.Empty)
+                {
+                    <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
 
-        }
-        else
-        {
-            <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+                    <input class="button large" type="submit" value="@Localizer["Update"]" />
 
-            <input class="button large" type="submit" value="@Localizer["Add"]" />
+                }
+                else
+                {
+                    <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
 
-        }
+                    <input class="button large" type="submit" value="@Localizer["Add"]" />
+
+                }
+            </div>
+        </div>
+
     </form>
 </div>
 

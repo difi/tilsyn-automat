@@ -2810,7 +2810,7 @@ select {
   display: inline-block;
   margin: 0 0 1rem 0;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-  padding: 0.6em 1em 0.6em 1em;
+  padding: 0.6em 2.5em 0.6em 2.5em;
   -webkit-appearance: none;
   border: 0;
   border-radius: 4px;
@@ -3044,7 +3044,7 @@ select {
     top: 0.4em;
     display: inline-block;
     float: right;
-    margin-left: 1em; }
+    margin-left: 2.5em; }
   .button.dropdown.hollow::after {
     border-top-color: #458596; }
   .button.dropdown.hollow.primary::after {
@@ -3763,7 +3763,8 @@ header {
   header .logo {
     margin: 13px 0 0 -130px; }
   header .profile-wrapper .profile-first-letter {
-    background-color: #8f6693; }
+    background-color: #8f6693;
+    margin-top: 14px; }
   header .profile-info-area {
     text-align: right;
     padding: 2rem 0 1rem 0; }
@@ -3926,7 +3927,7 @@ button, .button, input[type="button"], input[type="submit"] {
   display: inline-block;
   margin: 0 0 1rem 0;
   font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-  padding: 0.6em 1em 0.6em 1em;
+  padding: 0.6em 2.5em 0.6em 2.5em;
   -webkit-appearance: none;
   border: 0;
   border-radius: 4px;
@@ -3958,15 +3959,21 @@ button, .button, input[type="button"], input[type="submit"] {
     padding: 0.4em 1em 0.5em 1em;
     font-size: 15px; }
   button.large, .button.large, input[type="button"].large, input[type="submit"].large {
-    padding: 0.8em 1em;
+    padding: 0.8em 2.5em;
     font-size: 22px;
     width: 100%;
     margin: 0 0 1rem 0; }
   button.alt, button.cancel, .button.alt, .button.cancel, input[type="button"].alt, input[type="button"].cancel, input[type="submit"].alt, input[type="submit"].cancel {
     background-color: #B5D2DB;
-    color: #303132; }
+    color: #303132;
+    vertical-align: bottom; }
   button.cancel, .button.cancel, input[type="button"].cancel, input[type="submit"].cancel {
     margin: 0 0 1rem 0; }
+  button.delete, .button.delete, input[type="button"].delete, input[type="submit"].delete {
+    background: url("/css/cssimg/icons-sprite.svg") #e7dde7 16px -1285px no-repeat;
+    padding-left: 3em;
+    margin-bottom: 0;
+    vertical-align: bottom; }
   button.export, .button.export, input[type="button"].export, input[type="submit"].export {
     background: url("/css/cssimg/icons-sprite.svg") transparent -89px -696px no-repeat;
     width: 28px;
@@ -3988,6 +3995,7 @@ button, .button, input[type="button"], input[type="submit"] {
     background-repeat: no-repeat;
     background-position: 10px -185px;
     padding-left: 2rem;
+    padding-right: 2rem;
     margin-bottom: 0; }
     button.add.small, .button.add.small, input[type="button"].add.small, input[type="submit"].add.small {
       background-position: 7px -192px;

@@ -240,19 +240,49 @@
                 </ul>
             </fieldset>
         }
+        <br />
+        <div class="row collapse align-bottom">
 
-        <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+            @{ 
+                var colCount = "";
+                }
 
-        @if (Model.CompanyItemForm.Id != Guid.Empty)
-        {
-            <button class="button large" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
-            <input class="button large" type="submit" value="@Localizer["Admin-clients-update"]" />
-        }
-        else
-        {
-            <input class="button large" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
-            <input class="button large" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
-        }
+
+            @if (Model.CompanyItemForm.Id != Guid.Empty)
+            {
+                colCount = "small-12 medium-8";
+            }
+            else
+            {
+                colCount = "small-12 medium-12";
+            }
+
+            
+
+            <div class="@colCount">
+                <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+                @if (Model.CompanyItemForm.Id != Guid.Empty)
+                {
+                    <input class="button large" type="submit" value="@Localizer["Admin-clients-update"]" />
+                }
+                else
+                {
+                    <input class="button large" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
+                    <input class="button large" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
+                }
+
+            </div>
+            <div class="small-12 medium-4 text-right column">
+                @if (Model.CompanyItemForm.Id != Guid.Empty)
+                {
+                    <button class="button delete alt" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
+                }
+
+            </div>
+        </div>
+            </div>
+        
+
 
 
 

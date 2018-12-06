@@ -53,7 +53,7 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.large {
-        padding: 0.8em 1em;
+        padding: 0.8em 2.5em;
         font-size: map-get($button-sizes, large);
         width: 100%;
         margin: 0 0 1rem 0;
@@ -62,11 +62,20 @@ button, .button, input[type="button"], input[type="submit"] {
     &.alt, &.cancel {
         background-color: $alt-button-bg-color;
         color: $alt-button-color;
+        vertical-align: bottom;
     }
 
     &.cancel {
         margin: 0 0 1rem 0;
     }
+
+    &.delete {
+        background: url("/css/cssimg/icons-sprite.svg") $very-light-purple 16px -1285px no-repeat;
+        padding-left: 3em;
+        margin-bottom: 0;
+        vertical-align: bottom;
+    }
+
 
     &.export {
         background: url("/css/cssimg/icons-sprite.svg") transparent -89px -696px no-repeat;
@@ -101,6 +110,7 @@ button, .button, input[type="button"], input[type="submit"] {
         background-repeat: no-repeat;
         background-position: 10px -185px;
         padding-left: 2rem;
+        padding-right: 2rem;
         margin-bottom: 0;
 
         &.small {
