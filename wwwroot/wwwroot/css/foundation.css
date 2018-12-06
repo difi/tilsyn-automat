@@ -3970,6 +3970,7 @@ button, .button, input[type="button"], input[type="submit"] {
   button.cancel, .button.cancel, input[type="button"].cancel, input[type="submit"].cancel {
     margin: 0 0 1rem 0; }
   button.delete, .button.delete, input[type="button"].delete, input[type="submit"].delete {
+    color: #303132;
     background: url("/css/cssimg/icons-sprite.svg") #e7dde7 16px -1285px no-repeat;
     padding-left: 3em;
     margin-bottom: 0;

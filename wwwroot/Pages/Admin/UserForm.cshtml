@@ -62,20 +62,41 @@
 
 
 
+         <br /><br />
+         <div class="row collapse align-bottom">
 
 
 
-        <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
+             @if (Model.UserItemForm.Id != Guid.Empty)
+             {
+                 <div class="small-12 medium-8">
+                     <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
 
-        @if (Model.UserItemForm.Id != Guid.Empty)
-        {
-            <input class="button large" type="submit" value="@Localizer["Update"]" />
-            <button class="button large" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
-        }
-        else
-        {
-            <input class="button large" type="submit" value="@Localizer["Add"]" />
-        }
+                     <input class="button large" type="submit" value="@Localizer["Update"]" />
+
+                 </div>
+                 <div class="small-12 medium-4 text-right column">
+                     <button class="button delete" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
+                 </div>
+             }
+             else
+             {
+                 <div class="small-12">
+                     <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
+
+                     <input class="button large" type="submit" value="@Localizer["Add"]" />
+
+                 </div>
+                
+             }
+
+
+
+
+         </div>
+
+
+
 
 
     </form>

@@ -124,9 +124,9 @@
     <value>Avbryt</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Radera</value>
+    <value>Slett brukere</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Oppdater</value>
+    <value>Lagre</value>
   </data>
 </root>
