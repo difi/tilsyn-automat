@@ -2346,7 +2346,7 @@ h2, .h2 {
   margin-bottom: 0.5rem; }
 
 h3, .h3 {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
@@ -2582,11 +2582,25 @@ ul.no-bullet, ol.no-bullet {
   h3 {
     orphans: 3;
     widows: 3; }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3; }
   h2,
   h3 {
     page-break-after: avoid; }
   .print-break-inside {
-    page-break-inside: auto; } }
+    page-break-inside: auto; }
+  h1,
+  h1.smaller,
+  h2,
+  h3,
+  h4 {
+    margin: 2rem 0 1rem 0; }
+  h1,
+  h1.smaller {
+    font-size: 2em; } }
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'],
 textarea {
@@ -3705,6 +3719,22 @@ h2 {
 h3, h4 {
   margin: 0; }
 
+.start {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: lightyellow; }
+  .start h1 {
+    font-size: 26px; }
+  .start h2 {
+    font-size: 20px; }
+  .start h3 {
+    font-size: 16px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: bold; }
+  .start img {
+    max-width: 400px;
+    margin: 2rem 3rem; }
+
 ul, ol {
   padding-left: 0.5em; }
   ul li, ol li {
@@ -3899,14 +3929,18 @@ label span {
   display: none; }
 
 .validation-summary-errors {
-  background-color: #ffeef6;
+  border: 1px solid #1f3f43;
+  border-radius: 4px;
+  background-color: #fee9e9;
   padding: 0.5rem 1rem;
   margin: 0 0 1rem 0; }
 
 .errorOnThis {
-  background-color: #ffeef6;
+  background-color: #fee9e9;
   padding: 0.5rem 1rem;
-  margin: 0 0 1rem 0; }
+  margin: 0 0 1rem 0;
+  border: 1px solid #1f3f43;
+  border-radius: 4px; }
   .errorOnThis input {
     border-color: #44303C; }
   .errorOnThis label span {
@@ -4042,6 +4076,10 @@ button, .button, input[type="button"], input[type="submit"] {
     font-size: 20px;
     border-radius: 0;
     width: 100%; }
+    button.toogle-header-button.isDone-True, button.toogle-header-button-alt.isDone-True, .button.toogle-header-button.isDone-True, .button.toogle-header-button-alt.isDone-True, input[type="button"].toogle-header-button.isDone-True, input[type="button"].toogle-header-button-alt.isDone-True, input[type="submit"].toogle-header-button.isDone-True, input[type="submit"].toogle-header-button-alt.isDone-True {
+      padding: 1.5rem 12px 0.5rem 10px; }
+    button.toogle-header-button.isDone-False, button.toogle-header-button-alt.isDone-False, .button.toogle-header-button.isDone-False, .button.toogle-header-button-alt.isDone-False, input[type="button"].toogle-header-button.isDone-False, input[type="button"].toogle-header-button-alt.isDone-False, input[type="submit"].toogle-header-button.isDone-False, input[type="submit"].toogle-header-button-alt.isDone-False {
+      padding: 1.5rem 12px 0.5rem 10px; }
     button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon {
       top: 6px;
       transform: rotate(-45deg);
@@ -4070,6 +4108,21 @@ button, .button, input[type="button"], input[type="submit"] {
       position: relative;
       float: right;
       top: 6px; }
+    button.toogle-header-button .header-status-icon, button.toogle-header-button-alt .header-status-icon, .button.toogle-header-button .header-status-icon, .button.toogle-header-button-alt .header-status-icon, input[type="button"].toogle-header-button .header-status-icon, input[type="button"].toogle-header-button-alt .header-status-icon, input[type="submit"].toogle-header-button .header-status-icon, input[type="submit"].toogle-header-button-alt .header-status-icon {
+      background-color: red;
+      width: 46px;
+      height: 46px;
+      display: inline-block;
+      margin-left: 6px;
+      position: relative;
+      float: right;
+      top: -7px; }
+      button.toogle-header-button .header-status-icon.isDone-True, button.toogle-header-button-alt .header-status-icon.isDone-True, .button.toogle-header-button .header-status-icon.isDone-True, .button.toogle-header-button-alt .header-status-icon.isDone-True, input[type="button"].toogle-header-button .header-status-icon.isDone-True, input[type="button"].toogle-header-button-alt .header-status-icon.isDone-True, input[type="submit"].toogle-header-button .header-status-icon.isDone-True, input[type="submit"].toogle-header-button-alt .header-status-icon.isDone-True {
+        background-position: 0 -1300px;
+        background-color: red; }
+      button.toogle-header-button .header-status-icon.isDone-False, button.toogle-header-button-alt .header-status-icon.isDone-False, .button.toogle-header-button .header-status-icon.isDone-False, .button.toogle-header-button-alt .header-status-icon.isDone-False, input[type="button"].toogle-header-button .header-status-icon.isDone-False, input[type="button"].toogle-header-button-alt .header-status-icon.isDone-False, input[type="submit"].toogle-header-button .header-status-icon.isDone-False, input[type="submit"].toogle-header-button-alt .header-status-icon.isDone-False {
+        background-position: 0 -1400px;
+        background-color: blue; }
   button.toogle-header-button-alt, .button.toogle-header-button-alt, input[type="button"].toogle-header-button-alt, input[type="submit"].toogle-header-button-alt {
     background-color: #E7DDE7;
     padding-left: 28px; }

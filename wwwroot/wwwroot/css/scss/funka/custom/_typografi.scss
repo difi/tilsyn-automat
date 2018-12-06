@@ -74,8 +74,31 @@ h2 {
     margin: 0;
 }
 
-// ul + ol + li
+.start {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: lightyellow;
+    h1 {
+        font-size: 26px;
+    }
 
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-family: $body-font-family;
+        font-weight: bold;
+    }
+
+    img {
+        max-width: 400px;
+        margin: 2rem 3rem;
+    }
+}
+
+// ul + ol + li
 ul, ol {
     padding-left: 0.5em;
 

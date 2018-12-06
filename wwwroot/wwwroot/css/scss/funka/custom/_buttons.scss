@@ -193,6 +193,15 @@ button, .button, input[type="button"], input[type="submit"] {
         border-radius: 0;
         width: 100%;
 
+        &.isDone-True {
+            padding: 1.5rem 12px 0.5rem 10px;
+        }
+
+        &.isDone-False {
+            padding: 1.5rem 12px 0.5rem 10px;
+        }
+
+
         &[aria-expanded="false"] {
             .toggle-header-icon {
                 top: 6px;
@@ -231,6 +240,27 @@ button, .button, input[type="button"], input[type="submit"] {
             position: relative;
             float: right;
             top: 6px;
+        }
+
+        .header-status-icon {
+            background-color: red;
+            width: 46px;
+            height: 46px;
+            display: inline-block;
+            margin-left: 6px;
+            position: relative;
+            float: right;
+            top: -7px;
+
+            &.isDone-True {
+                background-position: 0 -1300px;
+                background-color: red;
+            }
+
+            &.isDone-False {
+                background-position: 0 -1400px;
+                background-color: blue;
+            }
         }
     }
 

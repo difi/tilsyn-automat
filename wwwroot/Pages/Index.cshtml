@@ -8,26 +8,190 @@
 @{
     ViewData["Title"] = "Start";
 }
-<main>
+<main class="start">
+
+    <div class="row">
+        <div class="small-12 text-center columns">
+            <img alt="illustration" src="~/images/illustrations/start.png" />
+        </div>
+    </div>
+
+    <p class="text-center">
+        <a class="button large" href="@Model.LoginUrl">Logg inn</a>
+    </p>
+    <p class="text-center">
+        Hvordan får jeg påloggingsopplysninger?<br />
+        <a style="text-decoration: underline;" href="#">Kontakt oss</a>
+
+    </p>
+
     <h1>
-        Digital egenkontroll av kravene til universell utforming av betalingsterminal
+        Tillsyn gjennom egenkontroll
     </h1>
-
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <p class="ingress">
+        TEXT TRENGES For å sikre at nettløsninger og automater kan brukes av alle, fører Difi tilsyn med virksomheter. I 2019 skal vi kontrollere betalingsterminaler gjennom egenkontroll. Det betyr at det er virksomheten selv som tester, registrerer og sender inn opplysninger om sine betalingsterminaler til Difi.
+        <br /><br />
     </p>
 
-    <h2>Dette trenger du for å gjennomføre egenkontrollen:</h2>
+
+    <h2>
+        Digital egenkontroll av kravene til universell utforming av betalingsterminal
+    </h2>
     <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut quo voluptas nulla pariatur?
+        Tilsynet for universell utforming av ikt er en del av Direktoratet for forvaltning og ikt (Difi). Vi har ansvaret for å kontrollere om nettsider og automater er universelt utformet.
+    </p>
+    <p>
+        I 2019 skal vi kontrollere betalingsterminaler. Kontrollen vil bli utført som en egenkontroll. Egenkontroll betyr at det er virksomheten selv som tester, registrerer og sender inn opplysninger om sine betalingsterminaler til Difi.
+    </p>
+    <p>
+        Egenkontrollen omfatter én betalingsterminal, og virksomheten skal melde inn opplysninger om
     </p>
 
-    <h2>Opplysningene blir lagret underveis</h2>
+    <ul>
+        <li>
+            området der kunden står når han bruker betalingsterminalen
+        </li>
+        <li>
+            betalingsterminalens høyde over gulvet
+        </li>
+        <li>
+            skilting av automaten
+        </li>
+    </ul>
+
     <p>
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+        For mer informasjon om tilsynet og regelverket se lenke til info på <a style="text-decoration: underline;" href="#">uu.difi.no</a>.
     </p>
 
-    <a class="button large" href="@Model.LoginUrl">Logg inn</a>
+    <h2>
+        Dette trenger du for å gjennomføre egenkontrollen
+    </h2>
+
+    <ul>
+        <li>
+            virksomhetens organisasjonsnummer som står oppgitt i tilsynsvarslet virksomheten mottok fra Difi (kun ved første gangs innlogging)
+        </li>
+        <li>
+            en firesifret kode oppgitt i tilsynsvarslet virksomheten mottok på e-post fra Difi (kun ved første gangs innlogging)
+        </li>
+        <li>
+            en e-ID for å kunne logge deg inn via ID-porten, f.eks.  BankID
+        </li>
+        <li>
+            tommestokk eller målebånd
+        </li>
+        <li>
+            kamera eller mobiltelefon med kamera
+        </li>
+    </ul>
+
+    <p>
+        Det tar omtrent 15 minutter å gjennomføre egenkontrollen. Dersom det er nødvendig, kan flere personer i virksomheten registrere informasjon i egenkontrollen.
+    </p>
+
+    <h2>
+        Opplysningene blir lagret underveis
+    </h2>
+
+    <p>
+        Opplysningene du registrerer i skjemaet, blir lagret underveis. Deler av informasjonen du skriver i egenkontrollen, skal i tillegg dokumenteres med foto. Dette gjør det enklere for Difi å vurdere om kravene til universell utforming er oppfylt. Alle opplysninger du registrerer, kan endres frem til du sender inn egenkontrollen. Du kan rette opp feil, slik at opplysningene du sender inn er riktige.
+    </p>
+
+    <h2>
+        Personvernerklæring
+    </h2>
+    <p>
+        Behandling av personopplysninger i forbindelse med egenkontrollen av kravene til universell utforming av betalingsterminaler.
+    </p>
+
+    <h3>1. Kontaktinformasjon om Difi og personvernombudet</h3>
+    <p>
+        Direktoratet for forvaltning og ikt (Difi)<br />
+        postmottak@difi.no<br />
+        PB 8115 Dep., 0032 Oslo<br />
+        Personvernombud:<br />
+        personvernombud@difi.no<br />
+    </p>
+
+    <h3>2. Behandlingens formål og behandlingsgrunnlag</h3>
+    <p>
+        Tilsynet i Difi fører tilsyn etter forskrift om universell utforming av ikt-løsninger av 21. juni 2013. Tilsynet kan lagre den informasjonen som forskriften § 5 gir hjemmel til å innhente, for på denne måten å legge til rette for utførelsen av tilsynsoppgaver.
+
+    </p>
+
+    <h3>3. Hvilke personopplysninger behandles</h3>
+    <p>
+        Kontaktpersonen som allerede har mottatt tilsynsvarsel fra Difi er allerede registrert i egenkontrollen  med fornavn, etternavn, e-postadresse og telefonnummer. Disse opplysningene er hentet fra Brønnøysundregisteret og er registrert manuelt av Difi.  I tillegg til disse personopplysningene vil personnummeret til den som logger inn bli lagret i løsningen.
+
+    </p>
+
+    <h3>4. Hvordan slettes opplysningene</h3>
+    <p>
+        Personopplysningene som er oppgitt vil bli slettet fra løsningen når tilsynsrapport foreligger. Dersom tilsynet ikke vil bli gjennomført vil personopplysningene slettes når tilsynet avlyses manuelt av ansatte i Difi.
+
+    </p>
+
+    <h3> 5. Formålet for behandling av personopplysninger</h3>
+
+
+    <p>
+        Difi benytter personopplysningene for å administrere egenkontrollene.
+    </p>
+
+    <ul>
+        <li>
+            Identifikasjon av kontaktperson og den i virksomheten som utfører egenkontrollen
+        </li>
+        <li>
+            Distribusjon av tilsynsvarsel
+        </li>
+        <li>
+            Kommunikasjon
+        </li>
+    </ul>
+
+    <h3>6. Rettigheter</h3>
+    <p>
+        Du har rett til innsyn i personopplysninger om deg selv. Du kan også be om retting eller sletting av mangelfulle eller uriktige opplysninger. Kravet ditt vil bli behandlet kostnadsfritt og senest innen 30 dager. Forespørsler om innsyn kan rettes til xxxxx.
+        Dersom du mener Difi ikke har overholdt dine rettigheter i henhold til personopplysningsloven, har du rett til å klage til Datatilsynet.
+
+    </p>
+
+    <h3>7. Deling av informasjon til tredjeparter</h3>
+    <p>
+        Opplysninger utleveres ikke til tredjepart. Personopplysningene lagres innenfor EUs medlemsland.
+    </p>
+
+    <h3>8. Endringer i denne personvernerklæringen</h3>
+    <p>
+        Difi forbeholder seg retten til å justere og tilpasse denne personvernerklæringen. Dersom det gjøres endringer til denne personvernerklæringen vil du bli informert om dette før du logger inn i egenkontrollen. Ved å fortsette å benytte egenkontrollen etter endring i personvernerklæringen samtykker du til de endrede vilkårene.
+        Denne og eventuelt fremtidige personvernerklæringer overholder personopplysningsloven eller andre til enhver tid gjeldende regler for behandling av personopplysninger.
+
+    </p>
+
+
+
+
+
+    <h3> 9. Webanalyse og informasjonskapsler</h3>
+    <p>
+        Som en viktig del av arbeidet med å lage en brukervennlig løsning, ser vi på brukermønsteret til de som benytter egenkontrollen. For å analysere informasjonen, bruker vi analyseverktøyet Google Analytics. Du kan lese mer om Google Analytics bruk av informasjonskapsler/cookies her: https://www.difi.no/om-difi/personvernerklaering#Webanalyse
+
+
+
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
     <br /> <br />
 </main>
 @section Scripts {

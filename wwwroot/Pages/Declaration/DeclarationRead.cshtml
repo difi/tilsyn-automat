@@ -28,7 +28,18 @@
             <br />
 
             <form method="post">
+
                 <div class="row collapse align-bottom">
+                    <div class="small-12 columns">
+                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                        {
+
+                        }
+                        else
+                        {
+                            <p>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</p>
+                        }
+                    </div>
                     <div class="small-12 medium-7 columns">
                         <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
 
@@ -40,12 +51,11 @@
                     </div>
                     <div class="small-12 medium-5 text-right columns">
                         <button class="button print" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                        <br /><br />
+
                     </div>
-                </div>
-                <div class="row column">
-                    <p><br />For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</p>
-                </div>
+
+                </div> <br /><br />
+
             </form>
         </div>
     </div>

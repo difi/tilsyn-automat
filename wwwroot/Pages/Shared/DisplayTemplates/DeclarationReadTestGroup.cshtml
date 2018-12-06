@@ -13,10 +13,8 @@
     <div class="row medium-uncollapse">
         <div class="small-12 medium-12 columns">
             <h2 class="h2-toggle">
-                <button data-id="@Model.Id" class="toogle-header-button jsToggleCardButton">
-                    <span class="toggle-header-number">@mainIndex</span> @Model.Language.Name <span class="toggle-header-icon"><span class="show-for-sr">@Localizer["ShowHide"] @Model.Language.Name</span></span>
-
-                    <span class="isDone-@Model.AllDone"></span>
+                <button data-id="@Model.Id" class="toogle-header-button isDone-@Model.AllDone jsToggleCardButton">
+                    <span class="toggle-header-number">@mainIndex</span> @Model.Language.Name <span class="header-status-icon isDone-@Model.AllDone hide-for-print"></span>
                 </button>
             </h2>
         </div>

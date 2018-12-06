@@ -82,6 +82,8 @@ label {
 }
 
 .validation-summary-errors {
+    border: 1px solid $dark-blue-grey;
+    border-radius: 4px;
     background-color: $color-error;
     padding: 0.5rem 1rem;
     margin: 0 0 1rem 0;
@@ -90,6 +92,8 @@ label {
     background-color: $color-error;
     padding: 0.5rem 1rem;
     margin: 0 0 1rem 0;
+    border: 1px solid $dark-blue-grey;
+    border-radius: 4px;
 
     input {
         border-color: $color-gray-1;
