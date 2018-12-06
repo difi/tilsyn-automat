@@ -4074,7 +4074,9 @@ button, .button, input[type="button"], input[type="submit"] {
     border-color: #000;
     text-decoration: underline;
     margin-bottom: 0.2rem;
-    font-size: 17px; }
+    font-size: 17px;
+    padding-left: 1rem;
+    padding-right: 1rem; }
     button.link-button:hover, button.link-button:focus, .button.link-button:hover, .button.link-button:focus, input[type="button"].link-button:hover, input[type="button"].link-button:focus, input[type="submit"].link-button:hover, input[type="submit"].link-button:focus {
       text-decoration: none; }
   button.toogle-header-button, button.toogle-header-button-alt, .button.toogle-header-button, .button.toogle-header-button-alt, input[type="button"].toogle-header-button, input[type="button"].toogle-header-button-alt, input[type="submit"].toogle-header-button, input[type="submit"].toogle-header-button-alt {
@@ -4321,8 +4323,7 @@ div tbody tr:nth-child(2n) {
   border-image: linear-gradient(to bottom, #336699, #996699) 1 100%;
   padding: 0.75rem 1rem; }
   .info-wrapper img {
-    float: left;
-    margin-right: 8px; }
+    margin: 5px 0; }
   .info-wrapper h2 {
     margin-top: 0;
     margin-bottom: 18px; }

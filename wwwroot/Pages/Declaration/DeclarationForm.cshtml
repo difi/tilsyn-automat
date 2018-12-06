@@ -42,18 +42,25 @@
     <form method="post">
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-                <div class="row column">
-                    <div class="info-wrapper">
-                        <h2>Du trenger følgende verktøy</h2>
 
-                        <div>
-                            <img src="~/images/kamera.png" />
-                            <img src="~/images/mata.png" />
-                            Målebånd eller tommestokk, kamera.
+                <div class="info-wrapper">
+                    <div class="row">
+
+                        <div class="small-12 columns">
+                            <h2>Godt å vite</h2>
                         </div>
-                        <br />
+                        <div class="small-2 medium-1 text-center columns">
+                            <img src="/images/kamera.png"><br />
+                            <img src="/images/mata.png">
+                        </div>
+                        <div class="small-10 medium-8 end columns">
+                            Det tar omtrent 15 minutter og dine svar lagres automatisk. Du trenger målebånd eller tommestokk og kamera.
+                        </div>
+                        <br>
                     </div>
+
                 </div>
+
 
 
                 <br />
@@ -204,9 +211,9 @@
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
                 <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
                 <br />
-                <p><br />
+                @*<p><br />
                     @Localizer["save-automatic-info-text"]
-                </p>
+                </p>*@
             </div>
         </div>
     </form>
