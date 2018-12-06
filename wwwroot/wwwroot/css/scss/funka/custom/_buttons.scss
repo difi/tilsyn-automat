@@ -147,11 +147,12 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
+
     &.back {
         background-image: url("/css/cssimg/icons-sprite.svg");
         background-repeat: no-repeat;
-        background-position: 8px -1086px;
-        padding: 0.4em 1em 0.4em 2.5em;
+        background-position: 4px -1086px;
+        padding: 0.4em 0.75em 0.4em 2em;
     }
 
     &.black {
