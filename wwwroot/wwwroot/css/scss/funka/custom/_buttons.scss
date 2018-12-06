@@ -200,14 +200,10 @@ button, .button, input[type="button"], input[type="submit"] {
         border-radius: 0;
         width: 100%;
 
-        &.isDone-True {
-            padding: 1.5rem 12px 0.5rem 10px;
-        }
-
+        &.isDone-True,
         &.isDone-False {
             padding: 1.5rem 12px 0.5rem 10px;
         }
-
 
         &[aria-expanded="false"] {
             .toggle-header-icon {
@@ -250,23 +246,25 @@ button, .button, input[type="button"], input[type="submit"] {
         }
 
         .header-status-icon {
-            background-color: red;
-            width: 46px;
-            height: 46px;
+            width: 48px;
+            height: 48px;
             display: inline-block;
             margin-left: 6px;
             position: relative;
             float: right;
             top: -7px;
 
+            &.isDone-True, &.isDone-False {
+                background-image: url("/css/cssimg/icons-sprite.svg");
+                background-repeat: no-repeat;
+            }
+
             &.isDone-True {
-                background-position: 0 -1300px;
-                background-color: red;
+                background-position: 1px -1498px;
             }
 
             &.isDone-False {
-                background-position: 0 -1400px;
-                background-color: blue;
+                background-position: 0px -1398px;
             }
         }
     }
