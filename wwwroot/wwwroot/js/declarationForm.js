@@ -22,6 +22,8 @@
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').find("textarea").val("");
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').find("input").val("");
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').find("input").prop("checked", false);
+
+                    $(this).parent().find(".jsNextAnswerItemPlaceHolder").find("input").focus();
                 }
             });
         }
