@@ -19,6 +19,7 @@
     <Content Remove="wwwroot\compilerconfig.json.defaults" />
     <Content Remove="wwwroot\css\scss\forms\_fieldset.css" />
     <Content Remove="wwwroot\css\scss\forms\_fieldset.min.css" />
+    <Content Remove="wwwroot\images\Oppsummering.png" />
   </ItemGroup>
 
   <ItemGroup>

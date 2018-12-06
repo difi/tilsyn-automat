@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="376px" height="61px" viewBox="0 0 376 61" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Logo vector@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="9.90990991e-05 0.294809524 54.5456269 0.294809524 54.5456269 40.9999512 9.90990991e-05 40.9999512"></polygon>
+        <polygon id="path-3" points="0 44 111 44 111 -3.55271368e-15 0 -3.55271368e-15"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Toppmeny-2" transform="translate(-372.000000, -15.000000)">
+            <g id="Logo-vector" transform="translate(369.000000, 13.000000)">
+                <text id="Tilsyn-for-universel" font-family="SofiaProRegular, Sofia Pro" font-size="15" font-weight="normal" fill="#000000">
+                    <tspan x="131" y="45">Tilsyn for universell</tspan>
+                    <tspan x="131" y="59">utforming av ikt</tspan>
+                </text>
+                <path d="M120.5,7 L120.5,62.5" id="Path-13" stroke="#424242" fill-rule="nonzero"></path>
+                <text id="Egenkontroll-automat" font-family="SofiaProMedium, Sofia Pro" font-size="23" font-weight="400" fill="#335D61">
+                    <tspan x="131" y="22">Egenkontroll automater</tspan>
+                </text>
+                <g id="Difilogo">
+                    <g id="Group-3" transform="translate(3.000000, 2.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-2"></g>
+                        <path d="M39.2686126,0.322094048 L20.8976216,0.294760714 L20.3813153,6.10943929 L3.09843243,6.10943929 L2.06581982,17.7402607 L19.372982,17.7402607 L19.8882973,11.9358321 L37.2638378,11.9358321 C40.5291532,11.9358321 42.9446937,14.543725 42.6592883,17.7602726 C42.3733874,20.9763321 39.4950541,23.584225 36.2292432,23.584225 L18.8309099,23.563725 L18.3155946,29.370106 L1.03271171,29.370106 L9.90990991e-05,40.9999512 L17.3067658,40.9999512 L17.8196036,35.2257845 L35.1956396,35.2257845 C44.9876216,35.2257845 53.6201441,27.4060107 54.4768559,17.7602726 C55.3048288,8.43570119 48.5636126,0.81995119 39.2686126,0.322094048" id="Fill-1" fill="#47BFEB" mask="url(#mask-2)"></path>
+                    </g>
+                    <path d="M76.9467577,22.6077697 L73.5763077,22.6077697 L73.5763077,10.3922303 L76.9467577,10.3922303 C79.9054927,10.3922303 81.4236923,13.2875353 81.4236923,16.5413687 C81.4236923,19.795202 79.9054927,22.6077697 76.9467577,22.6077697 M76.9467577,7 L70,7 L70,26 L76.9467577,26 C82.0412651,26 85,21.9187934 85,16.5413687 C85,11.1363648 82.0412651,7 76.9467577,7" id="Fill-4" fill="#000000"></path>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="Clip-7"></g>
+                    <polygon id="Fill-6" fill="#000000" mask="url(#mask-4)" points="88 26 91 26 91 14 88 14"></polygon>
+                    <path d="M89.5,7 C88.1446741,7 87,7.86647757 87,8.98718353 C87,10.1078895 88.1446741,11 89.5,11 C90.885632,11 92,10.1078895 92,8.98718353 C92,7.86647757 90.885632,7 89.5,7" id="Fill-8" fill="#000000" mask="url(#mask-4)"></path>
+                    <path d="M106.5,11 C107.915938,11 109,10.1083097 109,8.98760374 C109,7.86647757 107.915938,7 106.5,7 C105.144674,7 104,7.86647757 104,8.98760374 C104,10.1083097 105.144674,11 106.5,11" id="Fill-9" fill="#000000" mask="url(#mask-4)"></path>
+                    <path d="M98.578024,13.0358188 C98.6053004,11.5449054 99.2316474,10.4428824 101.151603,10.3697149 L101.448613,7.00100229 L101.448613,7 L100.633351,7 C96.9394195,7 94.9391501,9.20454725 94.9391501,13.063382 L94.9391501,14.0746973 L93,14.0746973 L93,16.8585709 L94.9391501,16.8585709 L94.9391501,26 L98.578024,26 L98.578024,16.8585709 L104.361126,16.8585709 L104.361126,26 L108,26 L108,14.0746973 L98.578024,14.0746973 L98.578024,13.0358188 Z" id="Fill-10" fill="#000000" mask="url(#mask-4)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

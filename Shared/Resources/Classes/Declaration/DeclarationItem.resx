@@ -133,19 +133,19 @@
     <value>Frist for innsending - er påkrevd</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Egenkontroll</value>
+    <value>Navn på egenkontroll</value>
   </data>
   <data name="Name - required field" xml:space="preserve">
-    <value>Egenkontroll er påkrevd</value>
+    <value>Navn på egenkontroll er påkrevd</value>
   </data>
   <data name="SentInDate" xml:space="preserve">
     <value>Dato sendt inn</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status</value>
+    <value>Virksomhetens fremdrift</value>
   </data>
   <data name="Status - required field" xml:space="preserve">
-    <value>Status - er påkrevd</value>
+    <value>Virksomhetens fremdrift er påkrevd</value>
   </data>
   <data name="UserItemId" xml:space="preserve">
     <value>Saksbehandler</value>
