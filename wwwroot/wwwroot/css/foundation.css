@@ -3963,6 +3963,8 @@ button, .button, input[type="button"], input[type="submit"] {
     font-size: 22px;
     width: 100%;
     margin: 0 0 1rem 0; }
+  button.print, .button.print, input[type="button"].print, input[type="submit"].print {
+    margin-bottom: 0; }
   button.alt, button.cancel, .button.alt, .button.cancel, input[type="button"].alt, input[type="button"].cancel, input[type="submit"].alt, input[type="submit"].cancel {
     background-color: #B5D2DB;
     color: #303132;

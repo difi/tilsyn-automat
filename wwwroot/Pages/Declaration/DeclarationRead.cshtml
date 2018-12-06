@@ -24,9 +24,11 @@
                 mainIndex++;
                 @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm })
             }
+            
+            <br />
 
             <form method="post">
-                <div class="row">
+                <div class="row collapse align-bottom">
                     <div class="small-12 medium-7 columns">
                         <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
 
@@ -34,15 +36,15 @@
                         {
                             <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
                         }
-                        else
-                        {
-                            <div>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</div>
-                        }
+
                     </div>
-                    <div class="small-10 medium-5 columns">
-                        <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                    <div class="small-12 medium-5 text-right columns">
+                        <button class="button print" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
                         <br /><br />
                     </div>
+                </div>
+                <div class="row column">
+                    <p><br />For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</p>
                 </div>
             </form>
         </div>

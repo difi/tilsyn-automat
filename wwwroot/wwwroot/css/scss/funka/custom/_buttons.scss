@@ -59,6 +59,10 @@ button, .button, input[type="button"], input[type="submit"] {
         margin: 0 0 1rem 0;
     }
 
+    &.print {
+        margin-bottom: 0;
+    }
+
     &.alt, &.cancel {
         background-color: $alt-button-bg-color;
         color: $alt-button-color;
