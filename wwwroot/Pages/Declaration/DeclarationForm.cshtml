@@ -36,7 +36,7 @@
     };
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id })
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id })
 
 <main>
     <form method="post">

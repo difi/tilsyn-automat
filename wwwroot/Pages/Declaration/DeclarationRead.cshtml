@@ -11,7 +11,7 @@
     var mainIndex = 1;
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { statusDone = 50, backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id })
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id })
 
 <main>
     <div class="row">

@@ -74,8 +74,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 }
 
             }
-            catch
+            catch (Exception exception)
             {
+                apiHttpClient.LogError(exception, id);
             }
         }
 

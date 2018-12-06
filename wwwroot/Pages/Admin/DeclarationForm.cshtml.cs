@@ -13,6 +13,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -24,6 +26,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         [BindProperty]
         public DeclarationItem DeclarationItemForm { get; set; }
+
+        public List<TestGroupItem> TestGroupItemList { get; set; }
+
+        public bool AllDoneStep1 { get; set; }
 
         [BindProperty]
         [Display(Name = "Välj saksbehandler")]
@@ -100,11 +106,54 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                         }
                     };
                 }
+
+                var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
+
+                AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
+
+                TestGroupItemList = new List<TestGroupItem>();
+
+                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+                {
+                    if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                    {
+                        var item = declarationIndicatorGroup.TestGroupItem;
+                        item.AllDone = true;
+
+                        TestGroupItemList.Add(item);
+                    }
+                }
+
+                if (outcomeDataList.Any())
+                {
+                    foreach (var item in DeclarationItemForm.IndicatorList)
+                    {
+                        foreach (var data in outcomeDataList)
+                        {
+                            if (data.IndicatorItemId == item.IndicatorItem.Id)
+                            {
+                                item.IndicatorItem.OutcomeData = data;
+
+                                if (!data.AllDone)
+                                {
+                                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
+                                    {
+                                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
+                                        testGroup.AllDone = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
-            catch
+            catch (Exception exception)
             {
+                apiHttpClient.LogError(exception, id);
             }
         }
+
 
         public async Task<IActionResult> OnPostAsync()
         {
