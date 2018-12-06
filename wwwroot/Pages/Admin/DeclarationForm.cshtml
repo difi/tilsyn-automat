@@ -62,20 +62,27 @@
             @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
         </div>
 
-        @if (Model.DeclarationItemForm.Id != Guid.Empty)
-        {
-            <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
+        <br /><br />
 
-            <input class="button large" type="submit" value="@Localizer["Update"]" />
+        <div class="row collapse align-bottom">
+            <div class="small-12 column">
+                @if (Model.DeclarationItemForm.Id != Guid.Empty)
+                {
+                    <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
 
-        }
-        else
-        {
-            <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+                    <input class="button large" type="submit" value="@Localizer["Update"]" />
 
-            <input class="button large" type="submit" value="@Localizer["Add"]" />
+                }
+                else
+                {
+                    <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
 
-        }
+                    <input class="button large" type="submit" value="@Localizer["Add"]" />
+
+                }
+            </div>
+        </div>
+
     </form>
 </div>
 
