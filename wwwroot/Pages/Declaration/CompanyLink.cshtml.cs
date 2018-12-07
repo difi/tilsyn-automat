@@ -2,11 +2,11 @@
 using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
@@ -54,16 +54,5 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
             return Page();
         }
-    }
-
-    public class AddLinkToCompanyModel
-    {
-        [Required]
-        [Display(Name = "Organisasjonsnummer til din virksomhet")]
-        public string CorporateIdentityNumber { get; set; }
-
-        [Required]
-        [Display(Name = "Firesifret kode (NNNN)")]
-        public string Code { get; set; }
     }
 }
