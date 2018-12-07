@@ -2612,12 +2612,13 @@ textarea {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 2.5rem;
+  height: 3rem;
   margin: 0 0 1rem 0;
   padding: 0.5rem 0.47059rem;
   border: 1px solid #618285;
   border-radius: 4px;
   background-color: #fff;
+  box-shadow: none;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   font-family: inherit;
   font-size: 1rem;
@@ -2630,7 +2631,7 @@ textarea {
   textarea:focus {
     border: 1px solid #618285;
     background-color: #fff;
-    box-shadow: 0 0 5px #618285;
+    box-shadow: none;
     transition: box-shadow 0.5s, border-color 0.25s ease-in-out; }
 
 textarea {
@@ -2777,7 +2778,7 @@ legend, .legend {
     font-weight: bold; }
 
 select {
-  height: 2.4375rem;
+  height: 3rem;
   margin: 0 0 0.75rem 0;
   padding: 0.5rem 0.47059rem;
   border: 1px solid #618285;
@@ -3730,21 +3731,24 @@ h3, h4 {
   max-width: 600px;
   margin: 0 auto; }
 
-.start h1, .the-end h1 {
+.start, .the-end {
+  max-width: 600px;
+  margin: 0 auto; }
+  .start h1, .the-end h1 {
+    font-size: 26px; }
+  .start h2, .the-end h2 {
+    font-size: 20px; }
+  .start h3, .the-end h3 {
+    font-size: 16px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-weight: bold; }
+  .start .img-wrapper, .the-end .img-wrapper {
+    margin: 1rem 3rem 2rem 3rem; }
+    .start .img-wrapper img, .the-end .img-wrapper img {
+      max-width: 210px; }
+
+.the-end h2 {
   font-size: 26px; }
-
-.start h2, .the-end h2 {
-  font-size: 20px; }
-
-.start h3, .the-end h3 {
-  font-size: 16px;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  font-weight: bold; }
-
-.start .img-wrapper, .the-end .img-wrapper {
-  margin: 1rem 3rem 2rem 3rem; }
-  .start .img-wrapper img, .the-end .img-wrapper img {
-    max-width: 210px; }
 
 ul, ol {
   padding-left: 0.5em; }
@@ -3788,8 +3792,10 @@ tbody tr button, tbody tr .button {
   margin: 3px 0; }
 
 @media print, screen and (min-width: 48em) {
-  .start .img-wrapper img {
-    max-width: 325px; }
+  .start .img-wrapper img, .the-end .img-wrapper img {
+    max-width: 275px; }
+  .the-end h2 {
+    font-size: 32px; }
   .ingress {
     font-size: 18px; }
   h1 {
@@ -4067,7 +4073,8 @@ button, .button, input[type="button"], input[type="submit"] {
     background-image: url("/css/cssimg/icons-sprite.svg");
     background-repeat: no-repeat;
     background-position: 4px -1086px;
-    padding: 0.4em 0.75em 0.4em 2em; }
+    padding: 0.4em 0.75em 0.4em 2em;
+    width: 105px; }
   button.black, .button.black, input[type="button"].black, input[type="submit"].black {
     background-color: #000;
     color: #fff;
@@ -4198,12 +4205,12 @@ button, .button, input[type="button"], input[type="submit"] {
       background: url("/css/cssimg/icons-sprite.svg") transparent 0 -404px no-repeat;
       vertical-align: text-bottom; }
   button.card-help-button, .button.card-help-button, input[type="button"].card-help-button, input[type="submit"].card-help-button {
-    background: url("/css/cssimg/icons-sprite.svg") transparent 0 -491px no-repeat;
+    background: url("/css/cssimg/icons-sprite.svg") transparent 50px -491px no-repeat;
     width: 40px;
     margin-bottom: 0;
     height: 40px; }
   button.card-help-close-button, .button.card-help-close-button, input[type="button"].card-help-close-button, input[type="submit"].card-help-close-button {
-    background: url("/css/cssimg/icons-sprite.svg") transparent 0 -591px no-repeat;
+    background: url("/css/cssimg/icons-sprite.svg") transparent 50px -591px no-repeat;
     width: 40px;
     margin-bottom: 0;
     height: 40px; }
@@ -4219,13 +4226,10 @@ button, .button, input[type="button"], input[type="submit"] {
     margin-top: 2rem;
     margin-bottom: 0; }
 
-a.tabbed, input[type=button].tabbed, input[type=submit].tabbed, button.tabbed, textarea.tabbed, select.tabbed {
-  background-color: #458596 !important;
-  color: #fff !important;
-  text-decoration: underline !important;
-  outline: none; }
+input[type=button].tabbed, input[type=submit].tabbed, button.tabbed {
+  outline: 2px solid #458596; }
 
-input[type=text].tabbed, input[type=number].tabbed {
+a.tabbed, input[type=text].tabbed, input[type=number].tabbed, textarea.tabbed, select.tabbed {
   outline: 2px solid #458596; }
 
 @media print, screen and (min-width: 48em) {
@@ -4420,12 +4424,12 @@ div tbody tr:nth-child(2n) {
   text-align: center;
   float: left;
   margin-right: 10px;
-  padding-top: 6px; }
+  padding-top: 8px; }
 
 .card .legend-text {
   display: inline-block;
   line-height: 20px;
-  padding-top: 8px; }
+  padding-top: 11px; }
 
 .card .uploader img {
   border: 1px dashed #618285;
@@ -4520,6 +4524,14 @@ img.full-width-image {
   .filter-wrapper .button {
     width: 90%;
     padding: 0.4em 0em 0.5em 0em; }
+
+.date-sent, .date-deadline {
+  padding: 13px 55px;
+  font-weight: bold;
+  background: url("/css/cssimg/icons-sprite.svg") 0 -1600px no-repeat; }
+
+.date-deadline {
+  background-position: 0 -1700px; }
 
 /* Page specific code
 --------------------------------------------------------------*/

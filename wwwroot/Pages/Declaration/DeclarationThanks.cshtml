@@ -6,53 +6,66 @@
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationRead?id=" + Model.DeclarationItemForm.Id })
 
-<main class="the-end">
-    <div class="row">
-        <div class="small-12 columns">
-            <div class="img-wrapper text-center">
-                <img alt="illustration" src="~/images/illustrations/start.png" />
-            </div>
+<main>
+    <div class="the-end">
 
+
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+
+
+                <div class="row">
+                    <div class="small-12 columns">
+                        <div class="img-wrapper text-center">
+                            <img alt="illustration" src="~/images/illustrations/start.png" />
+                            <br />
+                            <h2>Takk for din besvarelse</h2>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="">
+                    <div class="">
+
+                        <p>
+                            Du har nå gjennomført egenkontrollen. Vi bekrefter at Difi har mottatt svaret ditt.
+                        </p>
+
+                        <p>
+                            Virksomheten får vite resultatet i en tilsynsrapport. Vi sender tilsynsrapporten innen 14 dager.
+                        </p>
+
+                        <p>
+                            Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
+                        </p>
+                        <div class="date-sent">
+                            Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy HH:mm")
+                        </div>
+                        <div class="date-deadline">
+                            Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="xlarge-8 large-8 small-12 large-centered xlarge-uncentered columns">
-            <h2>Takk for din besvarelse</h2>
+    <hr /><br />
+    <div class="the-end">
 
-            <p>
-                Du har nå gjennomført egenkontrollen. Vi bekrefter at Difi har mottatt svaret ditt.
-            </p>
 
-            <p>
-                Virksomheten får vite resultatet i en tilsynsrapport. Vi sender tilsynsrapporten innen 14 dager.
-            </p>
-
-            <p>
-                Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
-            </p>
-
-            <strong>Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy HH:mm")</strong><br />
-            <strong>Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy HH:mm")</strong><br />
-            <br /><br />
-        </div>
-        
-        
-
-        <div class="xlarge-8 large-8 small-12 large-centered xlarge-uncentered columns">
-
-            <div class="row hide-for-print align-bottom">
-
-                <div class="small-12 medium-7 columns">
-                    <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-
-                </div>
-                <div class="small-12 medium-5 text-right columns align-bottom">
-
-                    <button class="button print jsPrintButton" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-
-                </div>
+        <div class="row hide-for-print">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                <br /><br />
+                <button class="button print jsPrintButton" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                <br /><br />
             </div>
-            <br /><br />
         </div>
     </div>
+
+
 </main>

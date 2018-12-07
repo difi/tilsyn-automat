@@ -178,13 +178,13 @@ main {
         text-align: center;
         float: left;
         margin-right: 10px;
-        padding-top: 6px;
+        padding-top: 8px;
     }
 
     .legend-text {
         display: inline-block;
         line-height: 20px;
-        padding-top: 8px;
+        padding-top: 11px;
     }
 
     .uploader {
@@ -347,6 +347,19 @@ img {
         padding: 0.4em 0em 0.5em 0em;
     }
 }
+
+.date-sent, .date-deadline {
+    padding: 13px 55px;
+    font-weight: bold;
+    background: url("/css/cssimg/icons-sprite.svg") 0 -1600px no-repeat;
+}
+
+.date-deadline {
+    background-position: 0 -1700px;
+}
+
+
+
 
 
 

@@ -40,7 +40,7 @@
                     </div>
                 }
 
-                    <div class="small-12 medium-7 columns">
+                    <div class="small-12 columns">
 
 
                         @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
@@ -56,9 +56,10 @@
                         }
 
                     </div>
-                <div class="small-12 medium-5 text-right columns">
-                    <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                </div>
+                    <div class="small-12 columns">
+                        <br />
+                        <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                    </div>
             </div>
             <br /><br />
         </div>

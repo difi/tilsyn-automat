@@ -80,6 +80,9 @@ h2 {
 }
 
 .start, .the-end {
+    max-width: 600px;
+    margin: 0 auto;
+
     h1 {
         font-size: 26px;
     }
@@ -101,6 +104,11 @@ h2 {
             max-width: 210px;
             // max-width: 100%;
         }
+    }
+}
+.the-end {
+    h2 {
+        font-size: 26px;
     }
 }
 
@@ -185,13 +193,21 @@ tbody {
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
 
-    .start {
+    .start, .the-end {
+
         .img-wrapper {
-           img {
-                max-width: 325px;
+            img {
+                max-width: 275px;
             }
         }
     }
+
+    .the-end {
+        h2 {
+            font-size: 32px;
+        }
+    }
+
     // Ingress
     .ingress {
         font-size: $ingress-font-size;

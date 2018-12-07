@@ -155,12 +155,14 @@ button, .button, input[type="button"], input[type="submit"] {
         background-repeat: no-repeat;
         background-position: 4px -1086px;
         padding: 0.4em 0.75em 0.4em 2em;
+        width: 105px;
     }
 
     &.black {
         background-color: $color-black;
         color: $color-white;
         border-color: $color-black;
+
 
         &:hover, &:focus {
             background-color: $button-bgColor-std;
@@ -349,14 +351,22 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.card-help-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 0 -491px no-repeat;
+        background: url("/css/cssimg/icons-sprite.svg") transparent 50px -491px no-repeat;
         width: 40px;
         margin-bottom: 0;
         height: 40px;
+
+        &[aria-expanded=true] {
+            //background-position: 50px -591px;
+        }
+
+        &[aria-expanded=false] {
+            //background-position: 50px -491px;
+        }
     }
 
     &.card-help-close-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 0 -591px no-repeat;
+        background: url("/css/cssimg/icons-sprite.svg") transparent 50px -591px no-repeat;
         width: 40px;
         margin-bottom: 0;
         height: 40px;
@@ -381,16 +391,16 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 }
 
-a, input[type=button], input[type=submit], button, textarea, select {
+input[type=button], input[type=submit], button {
     &.tabbed {
-        background-color: $tabbed-color !important;
-        color: $color-white !important;
-        text-decoration: underline !important;
-        outline: none;
+        //background-color: $tabbed-color !important;
+        //color: $color-white !important;
+        //text-decoration: underline !important;
+        outline: 2px solid $tabbed-color;
     }
 }
 
-input[type=text], input[type=number] {
+a, input[type=text], input[type=number], textarea, select {
     &.tabbed {
         outline: 2px solid $tabbed-color;
     }

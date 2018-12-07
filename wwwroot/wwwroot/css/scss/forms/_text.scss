@@ -89,13 +89,14 @@ $form-button-radius: $global-radius !default;
     box-sizing: border-box;
     width: 100%;
     //height: $height;
-    height: 2.5rem;
+    height: 3rem;
     //margin: 0 0 $form-spacing;
     margin: 0 0 1rem 0;
     padding: $input-padding;
     border: $input-border;
     border-radius: $input-radius;
     background-color: $input-background;
+    box-shadow: none;
     box-shadow: $input-shadow;
     font-family: $input-font-family;
     font-size: $input-font-size;
@@ -111,7 +112,8 @@ $form-button-radius: $global-radius !default;
         //outline: none;
         border: $input-border-focus;
         background-color: $input-background-focus;
-        box-shadow: $input-shadow-focus;
+        //box-shadow: $input-shadow-focus;
+        box-shadow: none;
 
         @if has-value($input-transition) {
             transition: $input-transition;
