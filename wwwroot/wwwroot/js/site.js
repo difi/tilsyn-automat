@@ -19,6 +19,10 @@
         }
     });
 
+    $(".jsPrintButton").click(function() {
+        window.print();
+    });
+
     var profileToggle = new funkanu.ariatoggle({
         container: ".jsProfileContainer",
         triggerSelector: ".jsProfileTrigger",

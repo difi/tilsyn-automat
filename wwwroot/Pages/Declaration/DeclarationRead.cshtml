@@ -17,46 +17,42 @@
     <div class="row">
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
-            @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = @Model.AllDoneStep1 })
+            @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = @Model.AllDoneStep1 })
 
             @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
             {
                 mainIndex++;
-                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm })
+                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm })
             }
-            
+
             <br />
 
-            <form method="post">
+            <div class="row collapse align-bottom">
+                <div class="small-12 columns">
+                    @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                    {
 
-                <div class="row collapse align-bottom">
-                    <div class="small-12 columns">
-                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
-                        {
+                    }
+                    else
+                    {
+                        <p>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</p>
+                    }
+                </div>
+                <div class="small-12 medium-7 columns">
+                    <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
 
-                        }
-                        else
-                        {
-                            <p>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</p>
-                        }
-                    </div>
-                    <div class="small-12 medium-7 columns">
-                        <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-
-                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
-                        {
+                    @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                    {
+                        <form method="post">
                             <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
-                        }
+                        </form>
+                    }
 
-                    </div>
-                    <div class="small-12 medium-5 text-right columns">
-                        <button class="button print" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-
-                    </div>
-
-                </div> <br /><br />
-
-            </form>
+                </div>
+                <div class="small-12 medium-5 text-right columns">
+                    <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                </div>
+            </div> <br /><br />
         </div>
     </div>
 </main>
