@@ -2600,6 +2600,7 @@ ul.no-bullet, ol.no-bullet {
     margin: 2rem 0 1rem 0; }
   h1,
   h1.smaller {
+    text-align: left;
     font-size: 2em; } }
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'],
@@ -4003,7 +4004,9 @@ button, .button, input[type="button"], input[type="submit"] {
     width: 100%;
     margin: 0 0 1rem 0; }
   button.print, .button.print, input[type="button"].print, input[type="submit"].print {
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem; }
   button.alt, button.cancel, .button.alt, .button.cancel, input[type="button"].alt, input[type="button"].cancel, input[type="submit"].alt, input[type="submit"].cancel {
     background-color: #B5D2DB;
     color: #303132;
@@ -4222,6 +4225,8 @@ input[type=text].tabbed, input[type=number].tabbed {
     width: auto; }
     button.text-button, .button.text-button, input[type="button"].text-button, input[type="submit"].text-button {
       margin: 0 1rem; }
+    button.alt, .button.alt, input[type="button"].alt, input[type="submit"].alt {
+      margin: 0 0.75rem 0 0; }
     button.wide, .button.wide, input[type="button"].wide, input[type="submit"].wide {
       padding-left: 3rem;
       padding-right: 3rem; }

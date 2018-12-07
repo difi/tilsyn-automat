@@ -27,28 +27,35 @@
 
             <br />
 
-            <div class="row collapse align-bottom">
-                <div class="small-12 columns">
-                    @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
-                    {
+            <div class="row collapse align-bottom hide-for-print">
 
-                    }
-                    else
-                    {
+                @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                {
+
+                }
+                else
+                {
+                    <div class="small-12 columns">
                         <p>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</p>
-                    }
-                </div>
-                <div class="small-12 medium-7 columns">
-                    <a asp-page="/Declaration/DeclarationForm" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                    </div>
+                }
 
-                    @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
-                    {
-                        <form method="post">
-                            <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
-                        </form>
-                    }
+                    <div class="small-12 medium-7 columns">
 
-                </div>
+
+                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                        {
+                            <form method="post">
+                                <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                        }
+
+                    </div>
                 <div class="small-12 medium-5 text-right columns">
                     <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
                 </div>

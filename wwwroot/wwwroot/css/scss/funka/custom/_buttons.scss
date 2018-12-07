@@ -61,6 +61,8 @@ button, .button, input[type="button"], input[type="submit"] {
 
     &.print {
         margin-bottom: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     &.alt, &.cancel {
@@ -415,6 +417,10 @@ input[type=text], input[type=number] {
 
         &.text-button {
             margin: 0 1rem;
+        }
+
+        &.alt {
+            margin: 0 0.75rem 0 0;
         }
 
         &.wide {

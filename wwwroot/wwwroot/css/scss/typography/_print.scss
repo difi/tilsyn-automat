@@ -121,6 +121,7 @@ $print-hrefs: false !default;
             page-break-inside: auto;
         }
 
+
         h1,
         h1.smaller,
         h2,
@@ -131,6 +132,7 @@ $print-hrefs: false !default;
 
         h1,
         h1.smaller {
+            text-align: left;
             font-size: 2em;
         }
 
