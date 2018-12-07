@@ -6,9 +6,17 @@
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationRead?id=" + Model.DeclarationItemForm.Id })
 
-<main>
+<main class="the-end">
     <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+        <div class="small-12 columns">
+            <div class="img-wrapper text-center">
+                <img alt="illustration" src="~/images/illustrations/start.png" />
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="xlarge-8 large-8 small-12 large-centered xlarge-uncentered columns">
             <h2>Takk for din besvarelse</h2>
 
             <p>
@@ -25,20 +33,26 @@
 
             <strong>Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy HH:mm")</strong><br />
             <strong>Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy HH:mm")</strong><br />
+            <br /><br />
+        </div>
+        
+        
 
-            <div class="row">
-                <div class="small-12 medium-4 columns">
+        <div class="xlarge-8 large-8 small-12 large-centered xlarge-uncentered columns">
+
+            <div class="row hide-for-print align-bottom">
+
+                <div class="small-12 medium-7 columns">
                     <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-                    <br /><br />
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="small-10 medium-4 columns">
-                    <button class="button jsPrintButton" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                    <br /><br />
+                </div>
+                <div class="small-12 medium-5 text-right columns align-bottom">
+
+                    <button class="button print jsPrintButton" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+
                 </div>
             </div>
+            <br /><br />
         </div>
     </div>
 </main>
