@@ -4,7 +4,7 @@
     ViewData["Title"] = "Thanks";
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationRead?id="+Model.DeclarationItemForm.Id })
+@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationRead?id=" + Model.DeclarationItemForm.Id })
 
 <main>
     <div class="row">
@@ -26,21 +26,19 @@
             <strong>Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy HH:mm")</strong><br />
             <strong>Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy HH:mm")</strong><br />
 
-            <form method="post">
-                <div class="row">
-                    <div class="small-12 medium-4 columns">
-                        <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-                        <br /><br />
-                    </div>
+            <div class="row">
+                <div class="small-12 medium-4 columns">
+                    <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                    <br /><br />
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="small-10 medium-4 columns">
-                        <button class="button" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                        <br /><br />
-                    </div>
+            <div class="row">
+                <div class="small-10 medium-4 columns">
+                    <button class="button jsPrintButton" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                    <br /><br />
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </main>
