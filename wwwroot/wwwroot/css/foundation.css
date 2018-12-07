@@ -2592,16 +2592,20 @@ ul.no-bullet, ol.no-bullet {
     page-break-after: avoid; }
   .print-break-inside {
     page-break-inside: auto; }
-  h1,
-  h1.smaller,
-  h2,
-  h3,
-  h4 {
+  .site-wrapper {
+    height: 99%; }
+  h1, h1.smaller, h2, h3, h4 {
     margin: 2rem 0 1rem 0; }
   h1,
   h1.smaller {
     text-align: left;
-    font-size: 2em; } }
+    font-size: 2em !important; }
+  .small-12.medium-pull-4.medium-6.text-center.medium-text-left.columns {
+    width: 100% !important;
+    left: 0 !important;
+    max-width: 100% !important; }
+  .jsToggleCardContainer {
+    page-break-after: always; } }
 
 [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'],
 textarea {
@@ -3725,18 +3729,22 @@ h3, h4 {
 .start {
   max-width: 600px;
   margin: 0 auto; }
-  .start h1 {
-    font-size: 26px; }
-  .start h2 {
-    font-size: 20px; }
-  .start h3 {
-    font-size: 16px;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-    font-weight: bold; }
-  .start .img-wrapper {
-    margin: 1rem 3rem 2rem 3rem; }
-    .start .img-wrapper img {
-      max-width: 210px; }
+
+.start h1, .the-end h1 {
+  font-size: 26px; }
+
+.start h2, .the-end h2 {
+  font-size: 20px; }
+
+.start h3, .the-end h3 {
+  font-size: 16px;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold; }
+
+.start .img-wrapper, .the-end .img-wrapper {
+  margin: 1rem 3rem 2rem 3rem; }
+  .start .img-wrapper img, .the-end .img-wrapper img {
+    max-width: 210px; }
 
 ul, ol {
   padding-left: 0.5em; }

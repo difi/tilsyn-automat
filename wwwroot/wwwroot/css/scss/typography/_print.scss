@@ -97,7 +97,7 @@ $print-hrefs: false !default;
         img {
             max-width: 100% !important;
         }
-        //@page { margin: 0.5cm; }
+
         p,
         h2,
         h3 {
@@ -121,23 +121,28 @@ $print-hrefs: false !default;
             page-break-inside: auto;
         }
 
+        .site-wrapper {
+            height:99%;
+        }
 
-        h1,
-        h1.smaller,
-        h2,
-        h3,
-        h4 {
+        h1, h1.smaller, h2, h3, h4 {
             margin: 2rem 0 1rem 0;
         }
 
         h1,
         h1.smaller {
             text-align: left;
-            font-size: 2em;
+            font-size: 2em !important;
         }
 
-        .site-wrapper {
+        .small-12.medium-pull-4.medium-6.text-center.medium-text-left.columns {
+            width: 100% !important;
+            left: 0 !important;
+            max-width: 100% !important;
+        }
 
+        .jsToggleCardContainer {
+            page-break-after: always;
         }
     }
 }
