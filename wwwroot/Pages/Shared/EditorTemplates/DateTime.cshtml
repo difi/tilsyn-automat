@@ -3,8 +3,8 @@
 <div class="form-field">
     <label for="@Html.IdForModel()">
         @Html.DisplayNameFor(m => m)
-        @Html.ValidationMessageFor(m=>m)
+        @Html.ValidationMessageFor(m => m)
     </label>
 
-    @Html.TextBoxFor(m => m, "{0:yyyy-MM-dd}", new { data_label = Html.DisplayNameFor(m => m), type = "date"})
+    @Html.TextBoxFor(m => m, "{0:yyyy-MM-ddTHH:mm}", new { data_label = Html.DisplayNameFor(m => m), type = "datetime-local" })
 </div>

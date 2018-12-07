@@ -12,7 +12,7 @@
         usNumberFormat: false,
         sortReset: true,
         sortRestart: true,
-        sortList: [[5, 0], [0, 0]],
+        sortList: [[5, 1], [0, 0]],
         headers: {
             3: { sorter: false },
             4: { sorter: false }

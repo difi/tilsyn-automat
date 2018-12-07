@@ -97,7 +97,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                         Company = companyItem,
                         CompanyItemId = companyId,
                         UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
-                        DeadlineDate = DateTime.Now.Date.AddDays(14),
+                        DeadlineDate = DateTime.Now.Date.AddDays(14).AddHours(23).AddMinutes(59),
                         DeclarationTestItem = new DeclarationTestItem
                         {
                             TypeOfMachine = valueListTypeOfMachine.Single(x=>x.Id ==1),

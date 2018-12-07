@@ -129,12 +129,12 @@
                         @item.User.Name
                     </td>
                     <td class="clickable-td">
-                        @item.DeadlineDate.ToString("yyyy-MM-dd")
+                        @item.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
                     </td>
                     <td class="clickable-td">
                         @if (item.SentInDate != DateTime.MinValue)
                         {
-                            @item.SentInDate.ToString("yyyy-MM-dd")
+                            @item.SentInDate.ToString("dd.MM.yyyy HH:mm")
                         }
                         else
                         {
