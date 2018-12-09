@@ -19,6 +19,11 @@ namespace Difi.Sjalvdeklaration.Log
             this.logRepository = logRepository;
         }
 
+        public ApiResult<T> GetAll<T>() where T : List<UserItem>
+        {
+            return inner.GetAll<T>();
+        }
+
         public ApiResult<T> GetAllInternal<T>() where T : List<UserItem>
         {
             return inner.GetAllInternal<T>();

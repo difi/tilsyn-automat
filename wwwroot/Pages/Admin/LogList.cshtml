@@ -1,0 +1,52 @@
+﻿@page
+@using Difi.Sjalvdeklaration.wwwroot.Pages.Admin
+@model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.LogListModel
+@{
+    ViewData["Title"] = "LogList";
+}
+
+
+<h1>@Localizer["Header"]</h1>
+
+<br />
+
+<table class="table jsNormalTableSort">
+    <caption>
+        <h2>@Localizer["TableList-Caption"]</h2>
+    </caption>
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Created)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Class)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Function)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.UserId)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.LogList)
+        {
+            <tr>
+                <td class="clickable-td">
+                    <a asp-page="LogView" asp-route-id="@item.Id">@item.Created.ToString("dd.MM.yyyy HH:mm")</a>
+                </td>
+
+                <td class="clickable-td">
+                    @item.Class
+                </td>
+
+                <td class="clickable-td">
+                    @item.Function
+                </td>
+
+                <td class="clickable-td">
+                    @item.UserItem.Name
+                </td>
+
+                <td class="clickable-td">
+                    @(item.ResultSucceeded ? "Ja" : "Nej")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

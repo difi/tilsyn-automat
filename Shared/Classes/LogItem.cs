@@ -1,6 +1,8 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Extensions;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes
 {
@@ -62,5 +64,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
         public String ResultString { get; set; }
 
         public String ResultException { get; set; }
+
+        [NotMapped]
+        public UserItem UserItem { get; set; }
     }
 }

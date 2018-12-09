@@ -1,11 +1,10 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -59,6 +58,25 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Id = item.Id;
                     result.Succeeded = true;
                 }
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
+        public ApiResult<T> GetAll<T>() where T : List<UserItem>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.UserList.AsNoTracking().OrderBy(x => x.Name).ToList();
+
+                result.Data = (T)list;
+                result.Succeeded = true;
             }
             catch (Exception exception)
             {
@@ -137,7 +155,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 var role = dbContext.RoleList.Single(x => x.Name == "Virksomhet");
 
-                var addResult = Add(newUserItem, new List<RoleItem> {role});
+                var addResult = Add(newUserItem, new List<RoleItem> { role });
 
                 if (addResult.Succeeded)
                 {
@@ -235,7 +253,6 @@ namespace Difi.Sjalvdeklaration.Database
                             dbContext.UserRoleList.Remove(userRole);
                         }
                     }
-
                 }
                 else
                 {

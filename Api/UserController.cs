@@ -46,6 +46,15 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
+        [Route("GetAll")]
+        public ApiResult<List<UserItem>> GetAll()
+        {
+            HandleRequest();
+
+            return userRepository.GetAll<List<UserItem>>();
+        }
+
+        [HttpGet]
         [Route("Login/{token}/{socialSecurityNumber}")]
         public ApiResult<UserItem> Login(string token, string socialSecurityNumber)
         {
