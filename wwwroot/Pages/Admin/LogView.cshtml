@@ -12,7 +12,7 @@
     <dd>@Model.LogItem.Created.ToString("dd.MM.yyyy HH:mm")</dd>
     
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Class)</dt>
-    <dd>@Model.LogItem.Class.Replace("LogDecorator", "")</dd>
+    <dd>@Model.LogItem.Class.Replace("LogDecorator", String.Empty)</dd>
     
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Function)</dt>
     <dd>@Model.LogItem.Function</dd>
@@ -22,7 +22,7 @@
     
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter1)</dt>
     <dd>
-        <pre>
+<pre style="font-size: x-small">
 @Model.LogItem.CallParameter1
 </pre>
     </dd>
@@ -39,14 +39,14 @@
     
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultString)</dt>
     <dd>
-<pre>
+<pre style="font-size: x-small">
 @Model.LogItem.ResultString
 </pre>
     </dd>
     
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultException)</dt>
     <dd>
-<pre>
+<pre style="font-size: x-small">
 @Model.LogItem.ResultException
 </pre>
     </dd>
