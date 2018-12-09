@@ -132,6 +132,17 @@
   <data name="Admin-import-company-middleText" xml:space="preserve">
     <value>virksomheter importert av</value>
   </data>
+  
+  <data name="Admin-import-company-ok" xml:space="preserve">
+    <value>ok</value>
+  </data>
+  <data name="Admin-import-company-exist" xml:space="preserve">
+    <value>dubelletter</value>
+  </data>
+  <data name="Admin-import-company-total" xml:space="preserve">
+    <value>totalt</value>
+  </data>
+  
   <data name="Admin-new-company" xml:space="preserve">
     <value>Opprett ny virksomhet</value>
   </data>

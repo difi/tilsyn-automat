@@ -39,7 +39,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Excel file")]
         public IFormFile ExcelFile { get; set; }
 
-        public int ImportTryCount { get; set; }
+        public int ImportTotalCount { get; set; }
+
+        public int ImportExistCount { get; set; }
 
         public int ImportIOkCount { get; set; }
 
@@ -64,7 +66,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
 
                 ImportIOkCount = 0;
-                ImportTryCount = 0;
+                ImportTotalCount = 0;
 
                 var package = new ExcelPackage(ExcelFile.OpenReadStream());
 
@@ -76,12 +78,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
-                    ImportTryCount++;
+                    ImportTotalCount++;
                     var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
 
                     if (result.Succeeded)
                     {
                         ImportIOkCount++;
+                    }
+                    else
+                    {
+                        if (result.Exception.Message.Contains("already exist"))
+                        {
+                            ImportExistCount++;
+                        }
                     }
                 }
 

@@ -31,9 +31,12 @@
         }
     </div>
 </div>
-@if (Model.ImportTryCount > 0)
+
+@if (Model.ImportTotalCount > 0)
 {
-    @Model.ImportIOkCount <span>@Localizer["Admin-import-company-middleText"]</span> @Model.ImportTryCount
+    @Model.ImportIOkCount <span>@Localizer["Admin-import-company-ok"]</span><br/>
+    @Model.ImportExistCount <span>@Localizer["Admin-import-company-exist"]</span><br />
+    @Model.ImportTotalCount <span>@Localizer["Admin-import-company-total"]</span><br />
 }
 
 <form method="post">
