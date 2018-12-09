@@ -19,6 +19,14 @@
         }
     });
 
+    $('.jsLogTableSort').tablesorter({
+        widgets: ['zebra', 'columns'],
+        usNumberFormat: false,
+        sortReset: true,
+        sortRestart: true,
+        sortList: [[0, 1]]
+    });
+
     $(".jsPrintButton").click(function() {
         window.print();
     });

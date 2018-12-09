@@ -41,9 +41,7 @@
                         </div>
 
                         <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
-
                             <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt logout">Logga ut</a>
-
                         </div>
                     </div>
                 </div>
@@ -79,6 +77,8 @@
         </div>
     </div>
 </header>
+
+@{ await Html.RenderPartialAsync("Shared/Error", new {});}
 
 <div class="row">
     <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">

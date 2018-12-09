@@ -1,10 +1,15 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using Difi.Sjalvdeklaration.Shared.Enum;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,11 +17,6 @@ using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
-using Difi.Sjalvdeklaration.Shared.Enum;
-using Difi.Sjalvdeklaration.Shared.Extensions;
-using Microsoft.AspNetCore.Http;
-using OfficeOpenXml;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -24,6 +24,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     public class CompanyListModel : PageModel
     {
         private readonly IApiHttpClient apiHttpClient;
+        private readonly IErrorHandler errorHandler;
 
         public IList<CompanyItem> CompanyList { get; private set; }
 
@@ -42,9 +43,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public int ImportIOkCount { get; set; }
 
-        public CompanyListModel(IApiHttpClient apiHttpClient)
+        public CompanyListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public async Task OnGetAsync()
@@ -56,6 +58,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
+                if (!ExcelFile.FileName.EndsWith("xlsx"))
+                {
+                    return await errorHandler.View(this, OnGetAsync(), new Exception("Du måste ladda upp en excelfil!"));
+                }
+
                 ImportIOkCount = 0;
                 ImportTryCount = 0;
 
@@ -82,9 +89,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 return Page();
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(), exception);
             }
         }
 
@@ -151,7 +158,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = dataRow["Automat - Navn"].ToString(),
                     CreatedDate = DateTime.Now,
                     DeadlineDate = DateTime.Now.Date.AddDays(14).AddMinutes(-1),
-                    StatusId = (int) DeclarationStatus.Created,
+                    StatusId = (int)DeclarationStatus.Created,
                     DeclarationTestItem = new DeclarationTestItem
                     {
                         Id = declarationItemId,
@@ -164,10 +171,5 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             return excelRow;
         }
-    }
-
-    public class ExcelUploadForm
-    {
-
     }
 }

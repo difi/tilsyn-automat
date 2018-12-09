@@ -21,7 +21,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
                 if (callerFileName.Contains("\\"))
                 {
-                    Class = callerFileName.Remove(0, callerFileName.LastIndexOf('\\') + 1).Replace(".cs", "");
+                    Class = callerFileName.Remove(0, callerFileName.LastIndexOf('\\') + 1)
+                        .Replace(".cshtml", string.Empty)
+                        .Replace(".cs", string.Empty)
+                        .Replace("LogDecorator", string.Empty);
                 }
             }
 

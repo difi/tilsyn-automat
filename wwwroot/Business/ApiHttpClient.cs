@@ -86,7 +86,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             return JsonConvert.DeserializeObject<T>(responseData);
         }
 
-        public async void LogError(Exception exception, object callParameter1 = null, object callParameter2 = null, [CallerMemberName] string callerFunctionName = null)
+        public async void LogError(Exception exception, object callParameter1 = null, object callParameter2 = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
         {
             httpClient.DefaultRequestHeaders.Remove("Authorization");
 
@@ -104,7 +104,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                 Succeeded = false
             };
 
-            var logItem = new LogItem(userId, apiResult, callParameter1, callParameter2, null, callerFunctionName);
+            var logItem = new LogItem(userId, apiResult, callParameter1, callParameter2, null, callerFunctionName, callerFileName);
 
             var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + "/api/Log/Add", logItem.AsJsonStringContent());
 

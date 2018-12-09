@@ -14,6 +14,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business.Interface
 
         Task<T> PostWithAuthorization<T>(string url, string authorizationType, string authorizationKey, StringContent stringContent);
 
-        void LogError(Exception exception, object callParameter1 = null, object callParameter2 = null, [CallerMemberName] string callerFunctionName = null);
+        void LogError(Exception exception, object callParameter1 = null, object callParameter2 = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null);
     }
 }

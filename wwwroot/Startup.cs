@@ -66,8 +66,8 @@ namespace Difi.Sjalvdeklaration.wwwroot
             services.Decorate<IImageRepository, ImageRepositoryLogDecorator>();
 
             services.AddScoped<ILogRepository, LogRepository>();
-
             services.AddScoped<IApiHttpClient, ApiHttpClient>();
+            services.AddScoped<IErrorHandler, ErrorHandler>();
 
             services.AddDistributedMemoryCache();
 

@@ -1,0 +1,13 @@
+﻿@{
+    var errorString = ViewData["error"];
+}
+
+@if (errorString != null)
+{
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <br/>
+            <div class="errorOnThis">@errorString</div>
+        </div>
+    </div>
+}
