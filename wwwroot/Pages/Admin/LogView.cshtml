@@ -1,0 +1,53 @@
+﻿@page
+@using Difi.Sjalvdeklaration.wwwroot.Pages.Admin
+@model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.LogViewModel
+@{
+    ViewData["Title"] = "LogView";
+}
+
+<h1>LogView</h1>
+
+<dl>
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Created)</dt>
+    <dd>@Model.LogItem.Created.ToString("dd.MM.yyyy HH:mm")</dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Class)</dt>
+    <dd>@Model.LogItem.Class.Replace("LogDecorator", "")</dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Function)</dt>
+    <dd>@Model.LogItem.Function</dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</dt>
+    <dd>@(Model.LogItem.ResultSucceeded ? "Ja" : "Nej")</dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter1)</dt>
+    <dd>
+        <pre>
+@Model.LogItem.CallParameter1
+</pre>
+    </dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter2)</dt>
+    <dd>
+        <pre>
+@Model.LogItem.CallParameter2
+</pre>
+    </dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultId)</dt>
+    <dd>@Model.LogItem.ResultId</dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultString)</dt>
+    <dd>
+<pre>
+@Model.LogItem.ResultString
+</pre>
+    </dd>
+    
+    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultException)</dt>
+    <dd>
+<pre>
+@Model.LogItem.ResultException
+</pre>
+    </dd>
+</dl>
