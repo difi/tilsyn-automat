@@ -14,14 +14,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class CompanyLinkModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
         public AddLinkToCompanyModel AddLinkToCompany { get; set; }
 
-        public CompanyLinkModel(IApiHttpClient apiHttpClient)
+        public CompanyLinkModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public async Task<IActionResult> OnPostAsync()

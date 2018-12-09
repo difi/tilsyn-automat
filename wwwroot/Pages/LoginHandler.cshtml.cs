@@ -16,19 +16,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
     public class LoginHandlerModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IConfiguration configuration;
         private readonly IApiHttpClient apiHttpClient;
 
-        public string socialSecurityNumber { get; set; }
+        public string SocialSecurityNumber { get; set; }
 
-        public string token { get; set; }
+        public string Token { get; set; }
 
         public List<RoleItem> RoleList { get; set; }
 
-        public LoginHandlerModel(IConfiguration configuration, IApiHttpClient apiHttpClient)
+        public LoginHandlerModel(IConfiguration configuration, IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.configuration = configuration;
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public void OnGet()
@@ -43,10 +45,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
             if (jwtSecurityToken.Payload["nonce"].ToString() == configuration["IdPorten:Nonce"])
             {
-                socialSecurityNumber = jwtSecurityToken.Payload["pid"].ToString();
-                token = jwtSecurityToken.Payload["sub"].ToString();
+                SocialSecurityNumber = jwtSecurityToken.Payload["pid"].ToString();
+                Token = jwtSecurityToken.Payload["sub"].ToString();
 
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + token + "/" + socialSecurityNumber).Result.Data;
+                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + Token + "/" + SocialSecurityNumber).Result.Data;
 
                 var claims = new List<Claim>
                 {

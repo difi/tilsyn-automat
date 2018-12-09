@@ -22,6 +22,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Administrator,Saksbehandler")]
     public class DeclarationFormModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -43,10 +44,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Välj status")]
         public List<SelectListItem> SelectPurposeOfTest { get; set; }
 
-
-        public DeclarationFormModel(IApiHttpClient apiHttpClient)
+        public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

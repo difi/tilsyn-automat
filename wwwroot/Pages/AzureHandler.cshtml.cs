@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
@@ -8,16 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
-using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
-using Microsoft.AspNetCore.Http;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
     [IgnoreAntiforgeryToken(Order = 1001)]
     public class AzureHandlerModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
         private const string StorageAccountName = "difiimagetest";
         private const string StorageAccountKey = "U60XxOSSbywQSAqlSZfRuj6C/4KOVaMnjRWvltkGr6W1GjYmdUR9Z/8UtnQoObs65QPDi5VG4Z8lJXPJs9Ar7A==";
@@ -26,9 +25,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         private const CorsHttpMethods AllowedCorsMethods = CorsHttpMethods.Delete | CorsHttpMethods.Put;
         private const int AllowedCorsAgeDays = 5;
 
-        public AzureHandlerModel(IApiHttpClient apiHttpClient)
+        public AzureHandlerModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public void OnGet()
@@ -80,7 +80,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
                 Response.ContentLength = buffer.Length;
                 Response.Body.WriteAsync(buffer);
             }
-
 
             return null;
         }

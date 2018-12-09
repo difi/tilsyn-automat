@@ -10,13 +10,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationNoMachineModel : PageModel
     {
-        public DeclarationItem DeclarationItemForm { get; set; }
-
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
-        public DeclarationNoMachineModel(IApiHttpClient apiHttpClient)
+        public DeclarationItem DeclarationItemForm { get; set; }
+
+        public DeclarationNoMachineModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

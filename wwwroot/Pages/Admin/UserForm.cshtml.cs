@@ -17,6 +17,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Administrator")]
     public class UserFormModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -26,9 +27,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Select roles")]
         public List<SelectListItem> SelectRoleList { get; set; }
 
-        public UserFormModel(IApiHttpClient apiHttpClient)
+        public UserFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

@@ -1,17 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
     public class IndexModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IConfiguration configuration;
 
         public string LoginUrl { get; set; }
 
-        public IndexModel(IConfiguration configuration)
+        public IndexModel(IConfiguration configuration, IErrorHandler errorHandler)
         {
             this.configuration = configuration;
+            this.errorHandler = errorHandler;
         }
 
         public void OnGet()

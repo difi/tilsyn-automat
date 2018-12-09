@@ -15,6 +15,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationListModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -24,9 +25,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
-        public DeclarationListModel(IApiHttpClient apiHttpClient)
+        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public void OnGet()

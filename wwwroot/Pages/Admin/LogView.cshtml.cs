@@ -11,13 +11,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
     public class LogViewModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         public LogItem LocalizationItem { get; set; }
 
-        public LogViewModel(IApiHttpClient apiHttpClient)
+        public LogViewModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public LogItem LogItem { get; private set; }

@@ -9,13 +9,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationThanksModel : PageModel
     {
-        public DeclarationItem DeclarationItemForm { get; set; }
-
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
-        public DeclarationThanksModel(IApiHttpClient apiHttpClient)
+        public DeclarationItem DeclarationItemForm { get; set; }
+
+        public DeclarationThanksModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

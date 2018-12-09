@@ -17,6 +17,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationFormModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -28,9 +29,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         [Display(Name = "Välj")]
         public List<SelectListItem> SelectSupplierAndVersionList { get; set; }
 
-        public DeclarationFormModel(IApiHttpClient apiHttpClient)
+        public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

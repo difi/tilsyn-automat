@@ -14,14 +14,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Administrator,Saksbehandler")]
     public class CompanyFormModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
         public CompanyItem CompanyItemForm { get; set; }
 
-        public CompanyFormModel(IApiHttpClient apiHttpClient)
+        public CompanyFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

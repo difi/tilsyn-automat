@@ -14,6 +14,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationReadModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         public DeclarationItem DeclarationItemForm { get; set; }
@@ -22,9 +23,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public bool AllDoneStep1 { get; set; }
 
-        public DeclarationReadModel(IApiHttpClient apiHttpClient)
+        public DeclarationReadModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         [HttpGet]

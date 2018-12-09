@@ -13,6 +13,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     [Authorize(Roles = "Administrator")]
     public class LogListModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IApiHttpClient apiHttpClient;
 
         public List<LogItem> LogList { get; set; }
@@ -21,9 +22,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public LogItem LocalizationItem { get; set; }
 
-        public LogListModel(IApiHttpClient apiHttpClient)
+        public LogListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
+            this.errorHandler = errorHandler;
         }
 
         public async Task OnGetAsync()

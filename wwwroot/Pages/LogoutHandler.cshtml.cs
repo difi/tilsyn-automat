@@ -10,15 +10,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
     public class LogoutHandlerModel : PageModel
     {
+        private readonly IErrorHandler errorHandler;
         private readonly IConfiguration configuration;
-        private readonly IApiHttpClient apiHttpClient;
         private readonly IHttpContextAccessor httpContextAccessor;
 
-        public LogoutHandlerModel(IConfiguration configuration, IApiHttpClient apiHttpClient, IHttpContextAccessor httpContextAccessor)
+        public LogoutHandlerModel(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IErrorHandler errorHandler)
         {
             this.configuration = configuration;
-            this.apiHttpClient = apiHttpClient;
             this.httpContextAccessor = httpContextAccessor;
+            this.errorHandler = errorHandler;
         }
 
         public void OnGet(string what)
