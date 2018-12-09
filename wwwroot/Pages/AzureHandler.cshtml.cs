@@ -21,7 +21,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         private readonly IApiHttpClient apiHttpClient;
         private const string StorageAccountName = "difiimagetest";
         private const string StorageAccountKey = "U60XxOSSbywQSAqlSZfRuj6C/4KOVaMnjRWvltkGr6W1GjYmdUR9Z/8UtnQoObs65QPDi5VG4Z8lJXPJs9Ar7A==";
-        private static readonly List<String> AllowedCorsOrigins = new List<String> { "https://localhost:44343", "https://sjalvdeklaration-test.azurewebsites.net" };
+        private static readonly List<String> AllowedCorsOrigins = new List<String> { "https://localhost:44343", "https://sjalvdeklaration-test.azurewebsites.net", "https://egenkontroll-test.azurewebsites.net" };
         private static readonly List<String> AllowedCorsHeaders = new List<String> { "x-ms-meta-qqfilename", "Content-Type", "x-ms-blob-type", "x-ms-blob-content-type" };
         private const CorsHttpMethods AllowedCorsMethods = CorsHttpMethods.Delete | CorsHttpMethods.Put;
         private const int AllowedCorsAgeDays = 5;
