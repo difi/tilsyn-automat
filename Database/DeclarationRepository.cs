@@ -210,7 +210,7 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.UserItemId = userRepository.Get<UserItem>(declarationItem.UserItemId).Data.Id;
                 dbItem.DeclarationTestItem.PurposeOfTestId = declarationItem.DeclarationTestItem.PurposeOfTestId;
 
-                if (declarationItem.Status.Id == (int)DeclarationStatus.Finished || declarationItem.Status.Id == (int)DeclarationStatus.Canceled)
+                if (declarationItem.StatusId == (int)DeclarationStatus.Finished || declarationItem.StatusId == (int)DeclarationStatus.Canceled)
                 {
                     var companyItem = dbContext.CompanyList.Include(x => x.UserList).ThenInclude(x => x.UserItem).AsNoTracking().SingleOrDefault(x => x.Id == declarationItem.CompanyItemId);
 
