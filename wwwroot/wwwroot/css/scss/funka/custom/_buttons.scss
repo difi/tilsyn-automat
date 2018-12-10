@@ -279,6 +279,7 @@ button, .button, input[type="button"], input[type="submit"] {
         background-color: $alt-toogle-button-bg-color;
         padding-left: 28px;
         margin-bottom: 0;
+        font-size: 16px;
 
         .toggle-header-icon {
             float: left;
@@ -443,6 +444,10 @@ a, input[type=text], input[type=number], textarea, select {
         &.large, &.cancel {
             width: auto;
             margin: 0 0.75rem 0 0;
+        }
+
+        &.toogle-header-button-alt {
+            font-size: 20px;
         }
     }
 }
