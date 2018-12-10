@@ -7,6 +7,7 @@
     var result = (ValueListTypeOfResult)ViewData["result"];
     var trueText = ViewData["trueText"];
     var falseText = ViewData["falseText"];
+    var viewResult = (bool)ViewData["viewResult"];
 }
 
 <div class="form-field">
@@ -26,12 +27,15 @@
             </span>
 
             <span class="small-2 columns">
-                <span class="">
-                    @if (result != null)
-                    {
-                        @result.Text
-                    }
-                </span>
+                @if (viewResult)
+                {
+                    <span>
+                        @if (result != null)
+                        {
+                            @result.Text
+                        }
+                    </span>
+                }
             </span>
         </span>
     </label>

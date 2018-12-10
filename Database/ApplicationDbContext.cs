@@ -603,7 +603,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem111.Id,
                 Question = "Finnes det hindringer i kundens betjeningsområde?",
                 BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
+                BoolFalseText = "Nei",
             };
 
             var answerItem112 = new AnswerItem
@@ -655,7 +655,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem121.Id,
                 Question = "Henger det gjenstander over kundens betjeningsområde?",
                 BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
+                BoolFalseText = "Nei",
             };
 
             var answerItem122 = new AnswerItem
@@ -730,7 +730,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem211.Id,
                 Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?",
                 BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
+                BoolFalseText = "Nei",
             };
 
             var answerItem212 = new AnswerItem
@@ -806,7 +806,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem311.Id,
                 Question = "Finnes det et skilt som viser hvor kunden skal betale varene sine?",
                 BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
+                BoolFalseText = "Nei",
             };
 
             var answerItem312 = new AnswerItem
@@ -842,7 +842,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem313.Id,
                 Question = "Er skiltet plassert over området der kunden skal betale varene sine?",
                 BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
+                BoolFalseText = "Nei",
             };
 
             var answerItem314 = new AnswerItem
@@ -862,7 +862,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem314.Id,
                 Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?",
                 BoolTrueText = "Ja",
-                BoolFalseText = "Nej",
+                BoolFalseText = "Nei",
             };
 
             var answerItem411 = new AnswerItem
