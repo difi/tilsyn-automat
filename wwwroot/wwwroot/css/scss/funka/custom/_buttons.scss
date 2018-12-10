@@ -351,25 +351,27 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.card-help-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 50px -491px no-repeat;
+        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -491px no-repeat;
         width: 40px;
         margin-bottom: 0;
         height: 40px;
+        padding-right: 0.5rem;
 
         &[aria-expanded=true] {
-            //background-position: 50px -591px;
+            //background-position: 100% -591px;
         }
 
         &[aria-expanded=false] {
-            //background-position: 50px -491px;
+            //background-position: 100% -491px;
         }
     }
 
     &.card-help-close-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 50px -591px no-repeat;
+        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -591px no-repeat;
         width: 40px;
         margin-bottom: 0;
         height: 40px;
+        padding-right: 1rem;
     }
 
     &.card-help-button,
