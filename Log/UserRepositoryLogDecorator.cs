@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using System;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Log
 {
@@ -21,12 +21,26 @@ namespace Difi.Sjalvdeklaration.Log
 
         public ApiResult<T> GetAll<T>() where T : List<UserItem>
         {
-            return inner.GetAll<T>();
+            var result = inner.GetAll<T>();
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> GetAllInternal<T>() where T : List<UserItem>
         {
-            return inner.GetAllInternal<T>();
+            var result = inner.GetAllInternal<T>();
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+            }
+
+            return result;
         }
 
         public void SetCurrentUser(Guid id)
@@ -37,12 +51,26 @@ namespace Difi.Sjalvdeklaration.Log
 
         public ApiResult<T> Get<T>(Guid id) where T : UserItem
         {
-            return inner.Get<T>(id);
+            var result = inner.Get<T>(id);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), id, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> GetByToken<T>(string token) where T : UserItem
         {
-            return inner.GetByToken<T>(token);
+            var result = inner.GetByToken<T>(token);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), token, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> Login<T>(string token, string socialSecurityNumber) where T : UserItem

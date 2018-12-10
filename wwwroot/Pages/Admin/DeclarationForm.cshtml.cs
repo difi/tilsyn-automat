@@ -155,12 +155,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
         }
 
-
+        [HttpPost]
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId));
             }
 
             try
@@ -181,11 +181,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return RedirectToPage("/Admin/DeclarationList");
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), exception);
             }
         }
     }

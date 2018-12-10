@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using System;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Log
 {
@@ -27,7 +27,14 @@ namespace Difi.Sjalvdeklaration.Log
 
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
         {
-            return inner.Get<T>(id);
+            var result = inner.Get<T>(id);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), id, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
@@ -37,7 +44,14 @@ namespace Difi.Sjalvdeklaration.Log
 
         public ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>
         {
-            return inner.GetOutcomeDataList<T>(id);
+            var result = inner.GetOutcomeDataList<T>(id);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), id, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult Add(DeclarationItem declarationItem)

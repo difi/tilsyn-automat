@@ -1,9 +1,11 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes.User;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -23,14 +25,25 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             this.errorHandler = errorHandler;
         }
 
+        [HttpGet]
         public async Task OnGetAsync()
         {
             try
             {
-                UserList = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal")).Data;
+                var result = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal");
+
+                if (result.Succeeded)
+                {
+                    UserList = result.Data;
+                }
+                else
+                {
+                    await errorHandler.View(this, null, result.Exception);
+                }
             }
-            catch
+            catch (Exception exception)
             {
+                await errorHandler.Log(this, null, exception);
             }
         }
     }

@@ -38,28 +38,44 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var list = (await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll")).Data;
+                var resultRole = await apiHttpClient.Get<List<RoleItem>>("/api/Role/GetAll");
 
-                SelectRoleList = list.Where(x => x.IsAdminRole).Select(x => new SelectListItem
+                if (resultRole.Succeeded)
                 {
-                    Value = x.Id.ToString(),
-                    Text = x.Name,
-                    Selected = false
-                }).ToList();
+                    SelectRoleList = resultRole.Data.Where(x => x.IsAdminRole).Select(x => new SelectListItem
+                    {
+                        Value = x.Id.ToString(),
+                        Text = x.Name,
+                        Selected = false
+                    }).ToList();
+                }
+                else
+                {
+                    await errorHandler.View(this, null, resultRole.Exception);
+                }
 
                 if (id != Guid.Empty)
                 {
-                    UserItemForm = (await apiHttpClient.Get<UserItem>("/api/User/Get/" + id)).Data;
+                    var resultUser = await apiHttpClient.Get<UserItem>("/api/User/Get/" + id);
 
-                    foreach (var userRole in UserItemForm.RoleList)
+                    if (resultUser.Succeeded)
                     {
-                        foreach (var selectItem in SelectRoleList)
+                        UserItemForm = resultUser.Data;
+
+                        foreach (var userRole in UserItemForm.RoleList)
                         {
-                            if (userRole.RoleItemId == Guid.Parse(selectItem.Value))
+                            foreach (var selectItem in SelectRoleList)
                             {
-                                selectItem.Selected = true;
+                                if (userRole.RoleItemId == Guid.Parse(selectItem.Value))
+                                {
+                                    selectItem.Selected = true;
+                                }
                             }
                         }
+                    }
+                    else
+                    {
+                        await errorHandler.View(this, null, resultUser.Exception);
                     }
                 }
                 else
@@ -67,8 +83,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     UserItemForm = new UserItem();
                 }
             }
-            catch
+            catch (Exception exception)
             {
+                await errorHandler.Log(this, null, exception);
             }
         }
 
@@ -76,21 +93,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(UserItemForm.Id));
             }
 
             try
             {
-                var roleList = SelectRoleList.Where(x => x.Selected).Select(x => new RoleItem {Id = Guid.Parse(x.Value), Name = x.Text}).ToList();
                 ApiResult result;
+                var roleList = SelectRoleList.Where(x => x.Selected).Select(x => new RoleItem {Id = Guid.Parse(x.Value), Name = x.Text}).ToList();
 
                 if (UserItemForm.Id != Guid.Empty)
                 {
-                    result = await apiHttpClient.Post<ApiResult>("/api/User/Update", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
+                    result = await apiHttpClient.Post<ApiResult>("/api/User/Update", new UserAddItem {UserItem = UserItemForm, RoleList = roleList});
                 }
                 else
                 {
-                    result = await apiHttpClient.Post<ApiResult>("/api/User/Add", new UserAddItem { UserItem = UserItemForm, RoleList = roleList });
+                    result = await apiHttpClient.Post<ApiResult>("/api/User/Add", new UserAddItem {UserItem = UserItemForm, RoleList = roleList});
                 }
 
                 if (result.Succeeded)
@@ -98,11 +115,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return RedirectToPage("/Admin/UserList");
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(UserItemForm.Id), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(UserItemForm.Id), exception);
             }
         }
 
@@ -117,11 +134,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return RedirectToPage("/Admin/UserList");
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
             }
         }
     }

@@ -302,7 +302,6 @@ namespace Difi.Sjalvdeklaration.Database
                 }
 
                 dbContext.UserList.Remove(dbItem);
-
                 dbContext.SaveChanges();
 
                 result.Succeeded = true;

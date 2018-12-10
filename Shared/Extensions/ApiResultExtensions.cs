@@ -1,11 +1,13 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.Shared.Extensions
 {
     public static class ApiResultExtensions
     {
-        public static ApiResult GetApiResutlt<T>(this ApiResult<T> result) where T : UserItem
+        public static ApiResult GetApiResutlt<T>(this ApiResult<T> result)
         {
             return new ApiResult
             {

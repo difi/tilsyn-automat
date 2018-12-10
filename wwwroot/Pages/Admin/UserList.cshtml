@@ -9,52 +9,55 @@
 
 <br />
 
+@if (Model.UserList!=null) { 
+
 <table class="table jsNormalTableSort">
     <caption>
         <h2>@Localizer["UserList-caption"]</h2>
     </caption>
     <thead>
-        <tr>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Email)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Phone)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Title)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.RoleList)</th>
-        </tr>
+    <tr>
+        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)</th>
+        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Email)</th>
+        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Phone)</th>
+        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Title)</th>
+        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.RoleList)</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.UserList)
-        {
-            <tr>
-                <td class="clickable-td">
-                    <a asp-page="UserForm" asp-route-id="@item.Id">@item.Name</a>
-                </td>
+    @foreach (var item in Model.UserList)
+    {
+        <tr>
+            <td class="clickable-td">
+                <a asp-page="UserForm" asp-route-id="@item.Id">@item.Name</a>
+            </td>
 
-                <td class="clickable-td">
-                    @item.SocialSecurityNumber
-                </td>
+            <td class="clickable-td">
+                @item.SocialSecurityNumber
+            </td>
 
-                <td class="clickable-td">
-                    @item.Email
-                </td>
+            <td class="clickable-td">
+                @item.Email
+            </td>
 
-                <td class="clickable-td">
-                    @item.PhoneCountryCode
-                    @item.Phone
-                </td>
+            <td class="clickable-td">
+                @item.PhoneCountryCode
+                @item.Phone
+            </td>
 
-                <td class="clickable-td">
-                    @item.Title
-                </td>
+            <td class="clickable-td">
+                @item.Title
+            </td>
 
-                <td class="clickable-td">
-                    @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
-                </td>
-            </tr>
-        }
+            <td class="clickable-td">
+                @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
+}
 
 <form method="post">
     <a class="button add icon" asp-page="UserForm">@Localizer["UserList-add"]</a>

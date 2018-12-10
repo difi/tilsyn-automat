@@ -27,17 +27,38 @@ namespace Difi.Sjalvdeklaration.Log
 
         public ApiResult<T> Get<T>(Guid id) where T : CompanyItem
         {
-            return inner.Get<T>(id);
+            var result =  inner.Get<T>(id);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), id, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem
         {
-            return inner.GetByCorporateIdentityNumber<T>(corporateIdentityNumber);
+            var result = inner.GetByCorporateIdentityNumber<T>(corporateIdentityNumber);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), corporateIdentityNumber, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> GetAll<T>() where T : List<CompanyItem>
         {
-            return inner.GetAll<T>();
+            var result = inner.GetAll<T>();
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult Add(CompanyItem companyItem)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
@@ -11,6 +12,7 @@ using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Business
@@ -19,12 +21,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
     {
         private readonly IConfiguration configuration;
         private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IStringLocalizer<ApiHttpClient> localizer;
         private readonly HttpClient httpClient;
 
-        public ApiHttpClient(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public ApiHttpClient(IConfiguration configuration, IHttpContextAccessor httpContextAccessor, IStringLocalizer<ApiHttpClient> localizer)
         {
             this.configuration = configuration;
             this.httpContextAccessor = httpContextAccessor;
+            this.localizer = localizer;
             httpClient = new HttpClient();
 
             httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -41,6 +45,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             if (!responseMessage.IsSuccessStatusCode)
             {
+                if (responseMessage.StatusCode == HttpStatusCode.NotFound)
+                {
+                    throw new Exception(localizer["Api URL ({0}) not found!", url]);
+                }
+
                 throw new Exception(responseMessage.Content.ToString());
             }
 

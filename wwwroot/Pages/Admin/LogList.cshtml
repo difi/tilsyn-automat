@@ -10,11 +10,13 @@
 
 <br />
 
-<table class="table jsLogTableSort">
-    <caption>
-        <h2>@Localizer["TableList-Caption"]</h2>
-    </caption>
-    <thead>
+@if (Model.LogList != null)
+{
+    <table class="table jsLogTableSort">
+        <caption>
+            <h2>@Localizer["TableList-Caption"]</h2>
+        </caption>
+        <thead>
         <tr>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Created)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Class)</th>
@@ -22,8 +24,8 @@
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.UserId)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var item in Model.LogList)
         {
             <tr>
@@ -49,5 +51,6 @@
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+}

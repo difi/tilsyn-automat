@@ -95,7 +95,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
             try
             {
-                var result = await apiHttpClient.Post<ApiResult<bool>>("/api/Company/UpdateCustom", CompanyCustomItem);
+                var result = await apiHttpClient.Post<ApiResult>("/api/Company/UpdateCustom", CompanyCustomItem);
 
                 if (result.Succeeded)
                 {

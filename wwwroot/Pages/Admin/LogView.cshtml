@@ -12,10 +12,13 @@
     <dd>@Model.LogItem.Created.ToString("dd.MM.yyyy HH:mm")</dd>
 
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Class)</dt>
-    <dd>@Model.LogItem.Class.Replace("LogDecorator", String.Empty)</dd>
+    <dd>@Model.LogItem.Class.Replace("LogDecorator", string.Empty)</dd>
 
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Function)</dt>
     <dd>@Model.LogItem.Function</dd>
+
+    <dt>@Html.DisplayNameFor(x => x.LocalizationUserItem.Name)</dt>
+    <dd>@Model.UserItem.Name</dd>
 
     <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</dt>
     <dd>@(Model.LogItem.ResultSucceeded ? "Ja" : "Nej")</dd>

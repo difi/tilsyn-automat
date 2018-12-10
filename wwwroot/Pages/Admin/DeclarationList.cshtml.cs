@@ -24,9 +24,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public DeclarationItem LocalizationItem { get; set; }
 
-        public Int32 ViewCount { get; set; }
+        public int ViewCount { get; set; }
 
-        public Int32 TotalCount { get; set; }
+        public int TotalCount { get; set; }
 
         public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
@@ -34,51 +34,76 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             this.errorHandler = errorHandler;
         }
 
+        [HttpGet]
         public async Task OnGetAsync()
         {
             try
             {
-                DeclarationList = (await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll")).Data;
+                var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
 
-                ViewCount = DeclarationList.Count;
-                TotalCount = DeclarationList.Count;
+                if (result.Succeeded)
+                {
+                    DeclarationList = result.Data;
+
+                    ViewCount = DeclarationList.Count;
+                    TotalCount = DeclarationList.Count;
+                }
+                else
+                {
+                    await errorHandler.View(this, null, result.Exception);
+                }
             }
-            catch
+            catch (Exception exception)
             {
+                await errorHandler.Log(this, null, exception);
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> OnPostExportDeclarationAsync(string id)
         {
             try
             {
-                var result = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + Guid.Parse(id))).Data;
+                var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + Guid.Parse(id));
 
-                var data = GenerateExcel(new List<DeclarationItem> { result });
+                if (result.Succeeded)
+                {
+                    var data = GenerateExcel(new List<DeclarationItem> { result.Data });
 
-                return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{result.Name} ({DateTime.Now.GetAsFileName()}).xlsx");
+                    return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{result.Data.Name} ({DateTime.Now.GetAsFileName()}).xlsx");
+                }
+
+                return await errorHandler.View(this, OnGetAsync(), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(), exception);
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> OnPostExportDeclarationListAsync()
         {
             try
             {
-                var data = GenerateExcel((await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll")).Data);
+                var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
 
-                return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Alla ({DateTime.Now.GetAsFileName()}).xlsx");
+                if (result.Succeeded)
+                {
+                    var data = GenerateExcel(result.Data);
+
+                    return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Alla ({DateTime.Now.GetAsFileName()}).xlsx");
+                }
+
+                return await errorHandler.View(this, OnGetAsync(), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(), exception);
             }
         }
 
-        private byte[] GenerateExcel(IEnumerable<DeclarationItem> list)
+        private static byte[] GenerateExcel(IEnumerable<DeclarationItem> list)
         {
             var dataTable = GetDataTable(list);
 

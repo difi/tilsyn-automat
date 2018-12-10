@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Threading.Tasks;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -15,6 +14,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         private readonly IApiHttpClient apiHttpClient;
 
         public LogItem LocalizationItem { get; set; }
+
+        public UserItem LocalizationUserItem { get; set; }
 
         public LogViewModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
@@ -29,14 +30,37 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [HttpGet]
         public async Task OnGetAsync(Guid id)
         {
-            LogItem = (await apiHttpClient.Get<LogItem>("/api/Log/Get/"+id)).Data;
-
-            if (LogItem.UserId != Guid.Empty)
+            try
             {
-                UserItem = (await apiHttpClient.Get<UserItem>("/api/User/Get/" + LogItem.Id)).Data;
+                var resultLog = await apiHttpClient.Get<LogItem>("/api/Log/Get/" + id);
+
+                if (resultLog.Succeeded)
+                {
+                    LogItem = resultLog.Data;
+
+                    if (LogItem.UserId != Guid.Empty)
+                    {
+                        var resultUser = await apiHttpClient.Get<UserItem>("/api/User/Get/" + LogItem.UserId);
+
+                        if (resultUser.Succeeded)
+                        {
+                            UserItem = resultUser.Data;
+                        }
+                        else
+                        {
+                            await errorHandler.View(this, null, resultUser.Exception);
+                        }
+                    }
+                }
+                else
+                {
+                    await errorHandler.View(this, null, resultLog.Exception);
+                }
             }
-
-
+            catch (Exception exception)
+            {
+                await errorHandler.Log(this, null, exception);
+            }
         }
     }
 }

@@ -61,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User with id: {0} doesn&apos;t exist..
+        ///   Looks up a localized string similar to Bruker med id: {0} finnes ikke..
         /// </summary>
         internal static string User_with_id___0__doesn_t_exist_ {
             get {
@@ -70,7 +70,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User with token: {0} doesn&apos;t exist..
+        ///   Looks up a localized string similar to Bruker med token: {0} finnes ikke..
         /// </summary>
         internal static string User_with_token___0__doesn_t_exist_ {
             get {

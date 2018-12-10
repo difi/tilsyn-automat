@@ -17,6 +17,11 @@ namespace Difi.Sjalvdeklaration.Database
             this.dbContext = dbContext;
         }
 
+        public void SetCurrentUser(Guid id)
+        {
+
+        }
+
         public ApiResult<T> GetAllTypeOfMachine<T>() where T : List<ValueListTypeOfMachine>
         {
             var result = new ApiResult<T>();

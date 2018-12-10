@@ -2,7 +2,7 @@
 @model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.UserFormModel
 
 @{
-    var title = Model.UserItemForm.Id != Guid.Empty ? "Oppdater brukere" : "Ny interne brukere";
+    var title = Model.UserItemForm?.Id != Guid.Empty ? "Oppdater brukere" : "Ny interne brukere";
     ViewData["Title"] = title;
 }
 
@@ -10,97 +10,81 @@
     @title
 </h1>
 
-<div class="form-wrapper">
-    <form method="post">
-        <div asp-validation-summary="All"></div>
+@if (Model.UserItemForm != null)
+{
+    <div class="form-wrapper">
+        <form method="post">
+            <div asp-validation-summary="All"></div>
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.HiddenFor(x => x.UserItemForm.Id)
-                @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.HiddenFor(x => x.UserItemForm.Id)
+                    @Html.EditorFor(x => x.UserItemForm.Name, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-4 end columns">
-                @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.UserItemForm.SocialSecurityNumber, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.UserItemForm.Email, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-4 end columns">
-                @Html.EditorFor(x => x.UserItemForm.PhoneCountryCode, "TextBox")
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.UserItemForm.PhoneCountryCode, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.EditorFor(x => x.UserItemForm.Phone, "TextBox")
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.UserItemForm.Phone, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.UserItemForm.Title, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <br />
+            <br />
 
-        <div class="row">
-            <div class="small-12 medium-12 end columns">
-                @Html.EditorFor(x => x.SelectRoleList, "CheckBoxList")
+            <div class="row">
+                <div class="small-12 medium-12 end columns">
+                    @Html.EditorFor(x => x.SelectRoleList, "CheckBoxList")
+                </div>
             </div>
-        </div>
 
+            <br /><br />
+            <div class="row collapse align-bottom">
+                @if (Model.UserItemForm.Id != Guid.Empty)
+                {
+                    <div class="small-12 medium-8">
+                        <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
+                        <input class="button large" type="submit" value="@Localizer["Update"]" />
+                    </div>
+                    <div class="small-12 medium-4 text-right column">
+                        <button class="button delete" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="small-12">
+                        <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
+                        <input class="button large" type="submit" value="@Localizer["Add"]" />
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+}
 
-
-
-         <br /><br />
-         <div class="row collapse align-bottom">
-
-
-
-             @if (Model.UserItemForm.Id != Guid.Empty)
-             {
-                 <div class="small-12 medium-8">
-                     <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
-
-                     <input class="button large" type="submit" value="@Localizer["Update"]" />
-
-                 </div>
-                 <div class="small-12 medium-4 text-right column">
-                     <button class="button delete" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Remove"]</button>
-                 </div>
-             }
-             else
-             {
-                 <div class="small-12">
-                     <a class="button cancel" asp-page="/Admin/UserList">@Localizer["Cancel"]</a>
-
-                     <input class="button large" type="submit" value="@Localizer["Add"]" />
-
-                 </div>
-                
-             }
-
-
-
-
-         </div>
-
-
-
-
-
-    </form>
-</div>
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
 }

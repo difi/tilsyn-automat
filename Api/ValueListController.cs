@@ -1,4 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAllTypeOfMachine")]
         public ApiResult<List<ValueListTypeOfMachine>> GetAllTypeOfMachine()
         {
+            HandleRequest();
+
             return valueListRepository.GetAllTypeOfMachine<List<ValueListTypeOfMachine>>();
         }
 
@@ -27,6 +30,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAllTypeOfTest")]
         public ApiResult<List<ValueListTypeOfTest>> GetAllTypeOfTest()
         {
+            HandleRequest();
+
             return valueListRepository.GetAllTypeOfTest<List<ValueListTypeOfTest>>();
         }
 
@@ -34,6 +39,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAllTypeOfSupplierAndVersion")]
         public ApiResult<List<ValueListTypeOfSupplierAndVersion>> GetAllTypeOfSupplierAndVersion()
         {
+            HandleRequest();
+
             return valueListRepository.GetAllTypeOfSupplierAndVersion<List<ValueListTypeOfSupplierAndVersion>>();
         }
 
@@ -41,6 +48,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAllTypeOfStatus")]
         public ApiResult<List<ValueListTypeOfStatus>> GetAllTypeOfStatus()
         {
+            HandleRequest();
+
             return valueListRepository.GetAllTypeOfStatus<List<ValueListTypeOfStatus>>();
         }
 
@@ -48,7 +57,15 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAllPurposeOfTest")]
         public ApiResult<List<ValueListPurposeOfTest>> GetAllPurposeOfTest()
         {
+            HandleRequest();
+
             return valueListRepository.GetAllPurposeOfTest<List<ValueListPurposeOfTest>>();
         }
+
+        private void HandleRequest()
+        {
+            valueListRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
+        }
+
     }
 }

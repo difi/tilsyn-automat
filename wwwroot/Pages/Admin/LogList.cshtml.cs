@@ -6,6 +6,7 @@ using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -28,30 +29,48 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             this.errorHandler = errorHandler;
         }
 
+        [HttpGet]
         public async Task OnGetAsync()
         {
-            LogList = (await apiHttpClient.Get<List<LogItem>>("/api/Log/GetAll")).Data;
-            UserList = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAll")).Data;
-
-            var noUser = new UserItem
+            try
             {
-                Id = Guid.Empty,
-                Name = "Ej inloggad"
-            };
+                var result1 = await apiHttpClient.Get<List<LogItem>>("/api/Log/GetAll");
+                var result2 = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAll");
 
-            var unkonwnUser = new UserItem
+                if (result1.Succeeded && result2.Succeeded)
+                {
+                    LogList = result1.Data;
+                    UserList = result2.Data;
+
+                    var noUser = new UserItem
+                    {
+                        Id = Guid.Empty,
+                        Name = "Ej inloggad"
+                    };
+
+                    var unkonwnUser = new UserItem
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Okänd"
+                    };
+
+                    UserList.Add(noUser);
+
+                    foreach (var logItem in LogList)
+                    {
+                        var user = UserList.SingleOrDefault(x => x.Id == logItem.UserId);
+
+                        logItem.UserItem = user ?? unkonwnUser;
+                    }
+                }
+                else
+                {
+                    await errorHandler.View(this, null, !result1.Succeeded ? result1.Exception : result2.Exception);
+                }
+            }
+            catch (Exception exception)
             {
-                Id = Guid.NewGuid(),
-                Name = "Okänd"
-            };
-
-            UserList.Add(noUser);
-
-            foreach (var logItem in LogList)
-            {
-                var user = UserList.SingleOrDefault(x => x.Id == logItem.UserId);
-
-                logItem.UserItem = user ?? unkonwnUser;
+                await errorHandler.Log(this, null, exception);
             }
         }
     }

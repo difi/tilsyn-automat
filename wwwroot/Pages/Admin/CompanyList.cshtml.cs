@@ -51,11 +51,29 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             this.errorHandler = errorHandler;
         }
 
+        [HttpGet]
         public async Task OnGetAsync()
         {
-            CompanyList = (await apiHttpClient.Get<List<CompanyItem>>("/api/Company/GetAll")).Data;
+            try
+            {
+                var result = await apiHttpClient.Get<List<CompanyItem>>("/api/Company/GetAll");
+
+                if (result.Succeeded)
+                {
+                    CompanyList = result.Data;
+                }
+                else
+                {
+                    await errorHandler.View(this, null, result.Exception);
+                }
+            }
+            catch (Exception exception)
+            {
+                await errorHandler.Log(this, null, exception);
+            }
         }
 
+        [HttpPost]
         public async Task<IActionResult> OnPostExcelImportAsync()
         {
             try
