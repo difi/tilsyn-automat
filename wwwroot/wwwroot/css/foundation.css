@@ -2798,8 +2798,7 @@ select {
     outline: none;
     border: 1px solid #618285;
     background-color: #fff;
-    box-shadow: 0 0 5px #618285;
-    transition: box-shadow 0.5s, border-color 0.25s ease-in-out; }
+    box-shadow: none; }
   select:disabled {
     background-color: transparent;
     cursor: not-allowed; }

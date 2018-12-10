@@ -51,11 +51,7 @@ $select-radius: $global-radius !default;
         outline: none;
         border: $input-border-focus;
         background-color: $input-background-focus;
-        box-shadow: $input-shadow-focus;
-
-        @if has-value($input-transition) {
-            transition: $input-transition;
-        }
+        box-shadow: none;
     }
     // Disabled state
     &:disabled {
