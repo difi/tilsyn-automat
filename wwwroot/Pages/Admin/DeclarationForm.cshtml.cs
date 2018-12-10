@@ -44,6 +44,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Välj status")]
         public List<SelectListItem> SelectPurposeOfTest { get; set; }
 
+        public List<ValueListTypeOfMachine> ValueListTypeOfMachine { get; set; }
+
+        public List<ValueListTypeOfTest> ValueListTypeOfTest { get; set; }
+
         public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
@@ -55,104 +59,185 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var userItems = (await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal")).Data;
-
-                SelectUserList = userItems.Select(x => new SelectListItem
+                if (await CreateLists())
                 {
-                    Value = x.Id.ToString(),
-                    Text = x.Name,
-                    Selected = false
-                }).ToList();
-
-                var typeOfStatuses = (await apiHttpClient.Get<List<ValueListTypeOfStatus>>("/api/ValueList/GetAllTypeOfStatus")).Data;
-
-                SelectStatusList = typeOfStatuses.Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = $"{x.TextAdmin} - {x.TextCompany} ({x.Text})",
-                    Selected = false
-                }).ToList();
-
-                var purposeOfTest = (await apiHttpClient.Get<List<ValueListPurposeOfTest>>("/api/ValueList/GetAllPurposeOfTest")).Data;
-
-                SelectPurposeOfTest = purposeOfTest.Select(x => new SelectListItem
-                {
-                    Value = x.Id.ToString(),
-                    Text = $"{x.Text}",
-                    Selected = false
-                }).ToList();
-
-                if (id != Guid.Empty)
-                {
-                    DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
-                }
-                else
-                {
-                    var companyItem = (await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + companyId)).Data;
-
-                    var valueListTypeOfMachine = (await apiHttpClient.Get<List<ValueListTypeOfMachine>>("/api/ValueList/GetAllTypeOfMachine")).Data;
-                    var valueListTypeOfTest = (await apiHttpClient.Get<List<ValueListTypeOfTest>>("/api/ValueList/GetAllTypeOfTest")).Data;
-
-                    DeclarationItemForm = new DeclarationItem
+                    if (id != Guid.Empty)
                     {
-                        Company = companyItem,
-                        CompanyItemId = companyId,
-                        UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
-                        DeadlineDate = DateTime.Now.Date.AddDays(14).AddHours(23).AddMinutes(59),
-                        DeclarationTestItem = new DeclarationTestItem
+                        var result = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id));
+
+                        if (result.Succeeded)
                         {
-                            TypeOfMachine = valueListTypeOfMachine.Single(x=>x.Id ==1),
-                            TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1),
-                            PurposeOfTestId = 2
+                            DeclarationItemForm = result.Data;
+
+                            await GetOutcomeDataList(id);
                         }
-                    };
-                }
-
-                var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
-
-                AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
-
-                TestGroupItemList = new List<TestGroupItem>();
-
-                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
-                {
-                    if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
-                    {
-                        var item = declarationIndicatorGroup.TestGroupItem;
-                        item.AllDone = true;
-
-                        TestGroupItemList.Add(item);
-                    }
-                }
-
-                if (outcomeDataList.Any())
-                {
-                    foreach (var item in DeclarationItemForm.IndicatorList)
-                    {
-                        foreach (var data in outcomeDataList)
+                        else
                         {
-                            if (data.IndicatorItemId == item.IndicatorItem.Id)
+                            await errorHandler.View(this, null, result.Exception);
+                        }
+                    }
+                    else
+                    {
+                        var result = (await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + companyId));
+
+                        if (result.Succeeded)
+                        {
+                            DeclarationItemForm = new DeclarationItem
                             {
-                                item.IndicatorItem.OutcomeData = data;
-
-                                if (!data.AllDone)
+                                Company = result.Data,
+                                CompanyItemId = companyId,
+                                UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
+                                DeadlineDate = DateTime.Now.Date.AddDays(14).AddHours(23).AddMinutes(59),
+                                DeclarationTestItem = new DeclarationTestItem
                                 {
-                                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
-                                    {
-                                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
-                                        testGroup.AllDone = false;
-                                    }
+                                    TypeOfMachine = ValueListTypeOfMachine.Single(x => x.Id == 1),
+                                    TypeOfTest = ValueListTypeOfTest.Single(x => x.Id == 1),
+                                    PurposeOfTestId = 2
                                 }
-                            }
+                            };
+                        }
+                        else
+                        {
+                            await errorHandler.View(this, null, result.Exception);
                         }
                     }
                 }
-
             }
             catch (Exception exception)
             {
-                apiHttpClient.LogError(exception, id);
+                await errorHandler.Log(this, null, exception);
             }
+        }
+
+        private async Task<bool> GetOutcomeDataList(Guid id)
+        {
+            var result = await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id);
+
+            if (!result.Succeeded)
+            {
+                await errorHandler.View(this, null, result.Exception);
+                return false;
+            }
+
+            TestGroupItemList = new List<TestGroupItem>();
+
+            AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
+
+            foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+            {
+                if (TestGroupItemList.Any(x => x.Id == declarationIndicatorGroup.TestGroupItemId))
+                {
+                    continue;
+                }
+
+                var item = declarationIndicatorGroup.TestGroupItem;
+                item.AllDone = true;
+
+                TestGroupItemList.Add(item);
+            }
+
+            if (!result.Data.Any())
+            {
+                return true;
+            }
+
+            foreach (var item in DeclarationItemForm.IndicatorList)
+            {
+                foreach (var data in result.Data)
+                {
+                    if (data.IndicatorItemId != item.IndicatorItem.Id)
+                    {
+                        continue;
+                    }
+
+                    item.IndicatorItem.OutcomeData = data;
+
+                    if (data.AllDone)
+                    {
+                        continue;
+                    }
+
+                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
+                    {
+                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
+                        testGroup.AllDone = false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private async Task<bool> CreateLists()
+        {
+            var userItems = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAllInternal");
+            var typeOfStatuses = await apiHttpClient.Get<List<ValueListTypeOfStatus>>("/api/ValueList/GetAllTypeOfStatus");
+            var purposeOfTest = await apiHttpClient.Get<List<ValueListPurposeOfTest>>("/api/ValueList/GetAllPurposeOfTest");
+            var valueListTypeOfMachine = await apiHttpClient.Get<List<ValueListTypeOfMachine>>("/api/ValueList/GetAllTypeOfMachine");
+            var valueListTypeOfTest = await apiHttpClient.Get<List<ValueListTypeOfTest>>("/api/ValueList/GetAllTypeOfTest");
+
+            if (!userItems.Succeeded)
+            {
+                await errorHandler.View(this, null, userItems.Exception);
+
+                return false;
+            }
+
+            if (!typeOfStatuses.Succeeded)
+            {
+                await errorHandler.View(this, null, typeOfStatuses.Exception);
+
+                return false;
+            }
+
+            if (!purposeOfTest.Succeeded)
+            {
+                await errorHandler.View(this, null, purposeOfTest.Exception);
+
+                return false;
+            }
+
+            if (!valueListTypeOfMachine.Succeeded)
+            {
+                await errorHandler.View(this, null, valueListTypeOfMachine.Exception);
+
+                return false;
+            }
+
+            if (!valueListTypeOfTest.Succeeded)
+            {
+                await errorHandler.View(this, null, valueListTypeOfTest.Exception);
+
+                return false;
+            }
+
+            SelectUserList = userItems.Data.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+                Selected = false
+            }).ToList();
+
+
+            SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.TextAdmin} - {x.TextCompany} ({x.Text})",
+                Selected = false
+            }).ToList();
+
+
+            SelectPurposeOfTest = purposeOfTest.Data.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.Text}",
+                Selected = false
+            }).ToList();
+
+            ValueListTypeOfTest = valueListTypeOfTest.Data;
+            ValueListTypeOfMachine = valueListTypeOfMachine.Data;
+
+            return true;
         }
 
         [HttpPost]

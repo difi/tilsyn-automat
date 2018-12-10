@@ -2,100 +2,102 @@
 @model DeclarationFormModel
 
 @{
-    var title = Model.DeclarationItemForm.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll";
+    var title = Model.DeclarationItemForm?.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll";
 
-    ViewData["Title"] = Model.DeclarationItemForm.Company.Name + " - " + title;
+    ViewData["Title"] = Model.DeclarationItemForm?.Company.Name + " - " + title;
 }
 
-<h1>@Model.DeclarationItemForm.Company.Name</h1>
+@if (Model.DeclarationItemForm != null)
+{
+    <h1>@Model.DeclarationItemForm.Company.Name</h1>
 
-<div class="form-wrapper">
+    <div class="form-wrapper">
 
-    <h2>@title</h2>
+        <h2>@title</h2>
 
-    <form method="post">
-        <div asp-validation-summary="All"></div>
+        <form method="post">
+            <div asp-validation-summary="All"></div>
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.HiddenFor(x => x.DeclarationItemForm.Id)
-                @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
-                @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-12 medium-4 end columns">
-                @Html.EditorFor(x => x.DeclarationItemForm.CaseNumber, "TextBox")
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-12 medium-4 end columns">
-                @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
-            </div>
-        </div>
-
-        @if (Model.DeclarationItemForm.Id != Guid.Empty)
-        {
             <div class="row">
                 <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
+                    @Html.HiddenFor(x => x.DeclarationItemForm.Id)
+                    @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
+                    @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
                 </div>
             </div>
-        }
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new { list = Model.SelectPurposeOfTest })
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.DeclarationItemForm.CaseNumber, "TextBox")
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="small-12 medium-6 end columns">
-                @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
+                </div>
             </div>
-        </div>
 
-        <div style="display: none;">
-            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
-            @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
-        </div>
+            @if (Model.DeclarationItemForm.Id != Guid.Empty)
+            {
+                <div class="row">
+                    <div class="small-12 medium-6 end columns">
+                        @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new {list = Model.SelectStatusList})
+                    </div>
+                </div>
+            }
 
-        <br /><br />
-
-        <div class="row collapse align-bottom">
-            <div class="small-12 column">
-                @if (Model.DeclarationItemForm.Id != Guid.Empty)
-                {
-                    <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
-
-                    <input class="button large" type="submit" value="@Localizer["Update"]" />
-
-                }
-                else
-                {
-                    <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-
-                    <input class="button large" type="submit" value="@Localizer["Add"]" />
-
-                }
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new {list = Model.SelectPurposeOfTest})
+                </div>
             </div>
-        </div>
 
-    </form>
-</div>
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new {list = Model.SelectUserList})
+                </div>
+            </div>
 
-@if (Model.DeclarationItemForm?.Status?.Id > 2)
-{
-    var mainIndex = 1;
+            <div style="display: none;">
+                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
+                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
+            </div>
 
-    <div class="row column">
-        <div class="small-12 medium-12 columns">
-            <h1>Oppsummering</h1>
-        </div>
+            <br/><br/>
 
-        @*<div class="small-7 medium-10 columns text-right">
+            <div class="row collapse align-bottom">
+                <div class="small-12 column">
+                    @if (Model.DeclarationItemForm.Id != Guid.Empty)
+                    {
+                        <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
+
+                        <input class="button large" type="submit" value="@Localizer["Update"]"/>
+
+                    }
+                    else
+                    {
+                        <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+
+                        <input class="button large" type="submit" value="@Localizer["Add"]"/>
+
+                    }
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    if (Model.DeclarationItemForm?.Status?.Id > 2)
+    {
+        var mainIndex = 1;
+
+        <div class="row column">
+            <div class="small-12 medium-12 columns">
+                <h1>Oppsummering</h1>
+            </div>
+
+            @*<div class="small-7 medium-10 columns text-right">
                 <div class="row align-middle">
                     <div class="small-8 medium-9 columns">
                         <span class="status-text"><strong>Status</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
@@ -107,21 +109,22 @@
                     </div>
                 </div>
             </div>*@
-    </div>
+        </div>
 
-    if (Model.DeclarationItemForm.DeclarationTestItem.HaveMachine)
-    {
-        @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = Model.AllDoneStep1})
-
-        foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+        if (Model.DeclarationItemForm.DeclarationTestItem.HaveMachine)
         {
-            mainIndex++;
-            @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm})
+            @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = Model.AllDoneStep1})
+
+            foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
+            {
+                mainIndex++;
+                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm})
+            }
         }
-    }
-    else
-    {
-        <span>Saknar automat</span>
+        else
+        {
+            <span>Saknar automat</span>
+        }
     }
 }
 

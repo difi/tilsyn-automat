@@ -6,51 +6,53 @@
 }
 
 <h1>LogView</h1>
+@if (Model.LogItem != null)
+{
+    <dl>
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Created)</dt>
+        <dd>@Model.LogItem.Created.ToString("dd.MM.yyyy HH:mm")</dd>
 
-<dl>
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Created)</dt>
-    <dd>@Model.LogItem.Created.ToString("dd.MM.yyyy HH:mm")</dd>
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Class)</dt>
+        <dd>@Model.LogItem.Class.Replace("LogDecorator", string.Empty)</dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Class)</dt>
-    <dd>@Model.LogItem.Class.Replace("LogDecorator", string.Empty)</dd>
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Function)</dt>
+        <dd>@Model.LogItem.Function</dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.Function)</dt>
-    <dd>@Model.LogItem.Function</dd>
+        <dt>@Html.DisplayNameFor(x => x.LocalizationUserItem.Name)</dt>
+        <dd>@Model.UserItem?.Name</dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationUserItem.Name)</dt>
-    <dd>@Model.UserItem.Name</dd>
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</dt>
+        <dd>@(Model.LogItem.ResultSucceeded ? "Ja" : "Nej")</dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</dt>
-    <dd>@(Model.LogItem.ResultSucceeded ? "Ja" : "Nej")</dd>
-
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter1)</dt>
-    <dd>
-        <pre style="font-size: x-small">
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter1)</dt>
+        <dd>
+            <pre style="font-size: x-small">
 @Model.LogItem.CallParameter1?.Replace("\\r\\n", Environment.NewLine)
         </pre>
-    </dd>
+        </dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter2)</dt>
-    <dd>
-        <pre style="font-size: x-small">
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CallParameter2)</dt>
+        <dd>
+            <pre style="font-size: x-small">
 @Model.LogItem.CallParameter2?.Replace("\\r\\n", Environment.NewLine)
         </pre>
-    </dd>
+        </dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultId)</dt>
-    <dd>@Model.LogItem.ResultId</dd>
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultId)</dt>
+        <dd>@Model.LogItem.ResultId</dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultString)</dt>
-    <dd>
-        <pre style="font-size: x-small">
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultString)</dt>
+        <dd>
+            <pre style="font-size: x-small">
 @Model.LogItem.ResultString?.Replace("\\r\\n", Environment.NewLine)
         </pre>
-    </dd>
+        </dd>
 
-    <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultException)</dt>
-    <dd>
-        <pre style="font-size: x-small">
+        <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultException)</dt>
+        <dd>
+            <pre style="font-size: x-small">
 @Model.LogItem.ResultException?.Replace("\\r\\n", Environment.NewLine)
         </pre>
-    </dd>
-</dl>
+        </dd>
+    </dl>
+}
