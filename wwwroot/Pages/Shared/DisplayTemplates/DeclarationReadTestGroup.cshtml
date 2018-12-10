@@ -5,6 +5,7 @@
 
 @{
     var mainIndex = ViewData["mainIndex"];
+    var viewResult = (bool)ViewData["viewResult"];
     var declarationItem = (DeclarationItem)ViewData["DeclarationItem"];
     var subIndex = 0;
 }
@@ -99,28 +100,27 @@
 
                                                 if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.String)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.String, "AnswerString", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result})
+                                                    @Html.DisplayFor(x => answerData.String, "AnswerString", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, viewResult = viewResult})
                                                 }
 
                                                 if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Bool)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText})
+                                                    @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText, viewResult = viewResult })
                                                 }
 
                                                 if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Int)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.Int, "AnswerInt", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result})
+                                                    @Html.DisplayFor(x => answerData.Int, "AnswerInt", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, viewResult = viewResult })
                                                 }
 
                                                 if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Image)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.Image, "AnswerImage", new {text = @answerItem.Language.Question, orderText = orderText, result = @answerData.Result})
+                                                    @Html.DisplayFor(x => answerData.Image, "AnswerImage", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, viewResult = viewResult })
                                                 }
                                             }
 
                                             lastAnswerData = answerData;
                                         }
-
                                     </div>
                                 </div>
                             }

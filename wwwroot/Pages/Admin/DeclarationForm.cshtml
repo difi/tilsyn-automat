@@ -118,7 +118,7 @@
             foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
             {
                 mainIndex++;
-                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm})
+                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = true})
             }
         }
         else
