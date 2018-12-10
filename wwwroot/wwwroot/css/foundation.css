@@ -4446,6 +4446,8 @@ div tbody tr:nth-child(2n) {
 .card .card-help-text {
   padding: 1.1rem;
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.09); }
+  .card .card-help-text img {
+    max-width: 400px; }
 
 .card .card-divider {
   display: block; }
