@@ -67,6 +67,32 @@
         $("#jsSupplierAndVersionOther").hide();
     }
 
+    $(".uploader").each(function () {
+        var uploader = new qq.azure.FineUploader({
+            element: document.getElementById($(this).attr("id")),
+            request: {
+                endpoint: 'https://' + storageAccountName + '.blob.core.windows.net/' + storageContainer
+            },
+            signature: {
+                endpoint: '/AzureHandler'
+            },
+            uploadSuccess: {
+                endpoint: '/AzureHandler?id=' + $(this).attr("id")
+            },
+            retry: {
+                enableAuto: true
+            },
+            deleteFile: {
+                enabled: true
+            },
+            multiple: false,
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
+            },
+            debug: true
+        });
+    });
+
     $(".jsButtonRemoveImage").click(function (e) {
         e.preventDefault();
         var id = $(this).data("id");

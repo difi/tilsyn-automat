@@ -12,6 +12,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -25,14 +26,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public List<TestGroupItem> TestGroupItemList { get; set; }
 
+        public string StorageAccountName { get; set; }
+
+        public string StorageContainer { get; set; }
+
         [BindProperty]
         [Display(Name = "Välj")]
         public List<SelectListItem> SelectSupplierAndVersionList { get; set; }
 
-        public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IConfiguration configuration)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+
+            StorageAccountName = configuration["Azure:StorageAccountName"];
+            StorageContainer = configuration["Azure:StorageContainer"];
         }
 
         [HttpGet]

@@ -224,8 +224,8 @@
                 <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
                 <br />
                 @*<p><br />
-                    @Localizer["save-automatic-info-text"]
-                </p>*@
+                        @Localizer["save-automatic-info-text"]
+                    </p>*@
             </div>
         </div>
         <br /><br />
@@ -238,12 +238,15 @@
 
 
 @section Scripts {
-    <script src="~/js/declarationForm.js"></script>
+    <script>
+        var storageAccountName = '@(Model.StorageAccountName)';
+        var storageContainer = '@(Model.StorageContainer)';
+    </script>
 
+    <script src="~/js/declarationForm.js"></script>
     <link href="/js/azure.fine-uploader/fine-uploader-gallery.css" rel="stylesheet">
     <link href="/js/azure.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet">
     <script src="/js/azure.fine-uploader/azure.fine-uploader.js"></script>
-
 
     <script type="text/template" id="qq-template">
         <div class="qq-uploader-selector qq-uploader" qq-drop-area-text="Drop files here">
@@ -273,36 +276,6 @@
                 </div>
             </div>
         </div>
-
-    </script>
-
-    <script>
-        $(".uploader").each(function () {
-
-            var uploader = new qq.azure.FineUploader({
-                element: document.getElementById($(this).attr("id")),
-                request: {
-                    endpoint: 'https://difiimagetest.blob.core.windows.net/difi20181128'
-                },
-                signature: {
-                    endpoint: '/AzureHandler'
-                },
-                uploadSuccess: {
-                    endpoint: '/AzureHandler?id=' + $(this).attr("id")
-                },
-                retry: {
-                    enableAuto: true
-                },
-                deleteFile: {
-                    enabled: true
-                },
-                multiple: false,
-                validation: {
-                    allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
-                },
-                debug: true
-            });
-        });
     </script>
 
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages
 {
@@ -17,32 +18,30 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
     public class AzureHandlerModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
+        private readonly IConfiguration configuration;
         private readonly IApiHttpClient apiHttpClient;
-        private const string StorageAccountName = "difiimagetest";
-        private const string StorageAccountKey = "U60XxOSSbywQSAqlSZfRuj6C/4KOVaMnjRWvltkGr6W1GjYmdUR9Z/8UtnQoObs65QPDi5VG4Z8lJXPJs9Ar7A==";
-        private static readonly List<String> AllowedCorsOrigins = new List<String> { "https://localhost:44343", "https://sjalvdeklaration-test.azurewebsites.net", "https://egenkontroll-test.azurewebsites.net" };
-        private static readonly List<String> AllowedCorsHeaders = new List<String> { "x-ms-meta-qqfilename", "Content-Type", "x-ms-blob-type", "x-ms-blob-content-type" };
+        private static readonly List<string> AllowedCorsOrigins = new List<string> { "https://localhost:44343", "https://sjalvdeklaration-test.azurewebsites.net", "https://egenkontroll-test.azurewebsites.net" };
+        private static readonly List<string> AllowedCorsHeaders = new List<string> { "x-ms-meta-qqfilename", "Content-Type", "x-ms-blob-type", "x-ms-blob-content-type" };
         private const CorsHttpMethods AllowedCorsMethods = CorsHttpMethods.Delete | CorsHttpMethods.Put;
         private const int AllowedCorsAgeDays = 5;
 
-        public AzureHandlerModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public AzureHandlerModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IConfiguration configuration)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.configuration = configuration;
         }
 
         public void OnGet()
         {
-            var accountAndKey = new StorageCredentials(StorageAccountName, StorageAccountKey);
+            var accountAndKey = new StorageCredentials(configuration["Azure:StorageAccountName"], configuration["Azure:StorageAccountKey"]);
             var blobUri = Request.Query["bloburi"];
             var method = Request.Query["_method"];
-            var qqtimestamp = Request.Query["qqtimestamp"];
 
             ConfigureCors(new CloudStorageAccount(accountAndKey, true));
 
             var sas = GetSasForBlob(accountAndKey, blobUri, method);
-
-            byte[] buffer = Encoding.UTF8.GetBytes(sas);
+            var buffer = Encoding.UTF8.GetBytes(sas);
 
             Response.ContentLength = buffer.Length;
             Response.Body.WriteAsync(buffer);
@@ -84,9 +83,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
             return null;
         }
 
-        private static String GetSasForBlob(StorageCredentials credentials, String blobUri, String verb)
+        private static string GetSasForBlob(StorageCredentials credentials, String blobUri, String verb)
         {
-            CloudBlockBlob blob = new CloudBlockBlob(new Uri(blobUri), credentials);
+            var blob = new CloudBlockBlob(new Uri(blobUri), credentials);
             var permission = SharedAccessBlobPermissions.Write;
 
             if (verb == "DELETE")
@@ -107,11 +106,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         {
             var blobClient = storageAccount.CreateCloudBlobClient();
 
-            Console.WriteLine("Storage Account: " + storageAccount.BlobEndpoint);
             var newProperties = CurrentProperties(blobClient);
             newProperties.DefaultServiceVersion = "2013-08-15";
             blobClient.SetServicePropertiesAsync(newProperties);
-            var addRule = true;
+            const bool addRule = true;
 
             if (addRule)
             {
@@ -135,15 +133,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         {
             var currentProperties = blobClient.GetServicePropertiesAsync().Result;
 
-            if (currentProperties != null)
+            if (currentProperties?.Cors == null)
             {
-                if (currentProperties.Cors != null)
-                {
-                    for (int index = 0; index < currentProperties.Cors.CorsRules.Count; index++)
-                    {
-                        var corsRule = currentProperties.Cors.CorsRules[index];
-                    }
-                }
+                return currentProperties;
+            }
+
+            for (var index = 0; index < currentProperties.Cors.CorsRules.Count; index++)
+            {
+                var corsRule = currentProperties.Cors.CorsRules[index];
             }
 
             return currentProperties;
