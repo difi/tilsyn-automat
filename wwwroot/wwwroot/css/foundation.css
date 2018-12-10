@@ -4205,15 +4205,17 @@ button, .button, input[type="button"], input[type="submit"] {
       background: url("/css/cssimg/icons-sprite.svg") transparent 0 -404px no-repeat;
       vertical-align: text-bottom; }
   button.card-help-button, .button.card-help-button, input[type="button"].card-help-button, input[type="submit"].card-help-button {
-    background: url("/css/cssimg/icons-sprite.svg") transparent 50px -491px no-repeat;
+    background: url("/css/cssimg/icons-sprite.svg") transparent 100% -491px no-repeat;
     width: 40px;
     margin-bottom: 0;
-    height: 40px; }
+    height: 40px;
+    padding-right: 0.5rem; }
   button.card-help-close-button, .button.card-help-close-button, input[type="button"].card-help-close-button, input[type="submit"].card-help-close-button {
-    background: url("/css/cssimg/icons-sprite.svg") transparent 50px -591px no-repeat;
+    background: url("/css/cssimg/icons-sprite.svg") transparent 100% -591px no-repeat;
     width: 40px;
     margin-bottom: 0;
-    height: 40px; }
+    height: 40px;
+    padding-right: 1rem; }
   button.card-help-button.tabbed, button.card-help-close-button.tabbed, .button.card-help-button.tabbed, .button.card-help-close-button.tabbed, input[type="button"].card-help-button.tabbed, input[type="button"].card-help-close-button.tabbed, input[type="submit"].card-help-button.tabbed, input[type="submit"].card-help-close-button.tabbed {
     outline: 2px solid #458596;
     background-color: inherit !important;
