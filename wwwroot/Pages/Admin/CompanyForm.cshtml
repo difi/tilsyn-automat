@@ -2,7 +2,7 @@
 @model CompanyFormModel
 
 @{
-    var title = Model.CompanyItemForm.Id != Guid.Empty ? "Oppdater virksamhet" : "Ny virksamhet";
+    var title = Model.CompanyItemForm?.Id != Guid.Empty ? "Oppdater virksamhet" : "Ny virksamhet";
 
     ViewData["Title"] = title;
 }
@@ -218,7 +218,7 @@
         </fieldset>
         <br />
 
-        @if (Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
+        @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
         {
             <fieldset>
                 <legend>@Localizer["Admin-clients-legend-usercode"]</legend>
@@ -242,26 +242,13 @@
         }
         <br />
         <div class="row collapse align-bottom">
-
-            @{ 
-                var colCount = "";
-                }
-
-
-            @if (Model.CompanyItemForm.Id != Guid.Empty)
-            {
-                colCount = "small-12 medium-8";
+            @{
+                var colCount = Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty ? "small-12 medium-8" : "small-12 medium-12";
             }
-            else
-            {
-                colCount = "small-12 medium-12";
-            }
-
-            
 
             <div class="@colCount">
                 <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-                @if (Model.CompanyItemForm.Id != Guid.Empty)
+                @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
                     <input class="button large" type="submit" value="@Localizer["Admin-clients-update"]" />
                 }
@@ -273,24 +260,15 @@
 
             </div>
             <div class="small-12 medium-4 text-right column">
-                @if (Model.CompanyItemForm.Id != Guid.Empty)
+                @if (Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
                     <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
                 }
 
             </div>
         </div>
-            </div>
-        
-
-
-
-
     </form>
-
 </div>
-
-
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}

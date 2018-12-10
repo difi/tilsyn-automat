@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -16,11 +17,13 @@ namespace Difi.Sjalvdeklaration.Database
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IUserRepository userRepository;
+        private readonly IStringLocalizer<DeclarationRepository> localizer;
 
-        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository)
+        public DeclarationRepository(ApplicationDbContext dbContext, IUserRepository userRepository, IStringLocalizer<DeclarationRepository> localizer)
         {
             this.dbContext = dbContext;
             this.userRepository = userRepository;
+            this.localizer = localizer;
         }
 
         public void SetCurrentUser(Guid parse)
@@ -74,6 +77,10 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["Declaration with id: {0} doesn't exist.", id]);
                 }
             }
             catch (Exception exception)
@@ -137,7 +144,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
-
         public ApiResult Add(DeclarationItem declarationItem)
         {
             var result = new ApiResult();
@@ -192,6 +198,11 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItem.Id);
 
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", declarationItem.Id]);
+                }
+
                 dbItem.Name = declarationItem.Name;
                 dbItem.CaseNumber = declarationItem.CaseNumber;
                 dbItem.DeadlineDate = declarationItem.DeadlineDate;
@@ -199,15 +210,18 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.UserItemId = userRepository.Get<UserItem>(declarationItem.UserItemId).Data.Id;
                 dbItem.DeclarationTestItem.PurposeOfTestId = declarationItem.DeclarationTestItem.PurposeOfTestId;
 
-                //if (declarationItem.Status == DeclarationStatus.Finished || declarationItem.Status == DeclarationStatus.Canceled)
-                //{
-                //    var companyItem = companyRepository.Get<CompanyItem>(declarationItem.CompanyItemId).Data;
+                if (declarationItem.Status.Id == (int)DeclarationStatus.Finished || declarationItem.Status.Id == (int)DeclarationStatus.Canceled)
+                {
+                    var companyItem = dbContext.CompanyList.Include(x => x.UserList).ThenInclude(x => x.UserItem).AsNoTracking().SingleOrDefault(x => x.Id == declarationItem.CompanyItemId);
 
-                //    foreach (var userCompany in companyItem.UserList)
-                //    {
-                //        dbContext.Remove(userCompany);
-                //    }
-                //}
+                    if (companyItem != null)
+                    {
+                        foreach (var userCompany in companyItem.UserList)
+                        {
+                            dbContext.Remove(userCompany);
+                        }
+                    }
+                }
 
                 dbContext.SaveChanges();
 
@@ -338,7 +352,13 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = dbContext.DeclarationList.Single(x => x.Id == id);
+                var dbItem = dbContext.DeclarationList.SingleOrDefault(x => x.Id == id);
+
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", id]);
+                }
+
                 dbItem.StatusId = (int)DeclarationStatus.SentIn;
                 dbItem.SentInDate = DateTime.Now;
 
@@ -362,7 +382,13 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == id);
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).SingleOrDefault(x => x.Id == id);
+
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", id]);
+                }
+
                 dbItem.DeclarationTestItem.HaveMachine = haveMachine;
 
                 if (haveMachine == false)

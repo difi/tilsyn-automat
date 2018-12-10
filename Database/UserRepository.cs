@@ -5,16 +5,19 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
 {
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IStringLocalizer<UserRepository> localizer;
 
-        public UserRepository(ApplicationDbContext dbContext)
+        public UserRepository(ApplicationDbContext dbContext, IStringLocalizer<UserRepository> localizer)
         {
             this.dbContext = dbContext;
+            this.localizer = localizer;
         }
 
         public void SetCurrentUser(Guid id)
@@ -34,6 +37,10 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["User with id: {0} doesn't exist.", id]);
                 }
             }
             catch (Exception exception)
@@ -57,6 +64,10 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["User with token: {0} doesn't exist.", token]);
                 }
             }
             catch (Exception exception)
@@ -145,10 +156,10 @@ namespace Difi.Sjalvdeklaration.Database
                     Id = Guid.NewGuid(),
                     Created = DateTime.Now,
                     LastOnline = DateTime.Now,
-                    Email = String.Empty,
-                    PhoneCountryCode = String.Empty,
-                    Phone = String.Empty,
-                    Title = String.Empty,
+                    Email = string.Empty,
+                    PhoneCountryCode = string.Empty,
+                    Phone = string.Empty,
+                    Title = string.Empty,
 
                     Name = "Virksomhet"
                 };
@@ -182,7 +193,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (userItemInDb != null)
                 {
-                    if (String.IsNullOrEmpty(userItem.Token))
+                    if (string.IsNullOrEmpty(userItem.Token))
                     {
                         result.Succeeded = false;
                         result.Id = userItemInDb.Id;
@@ -228,6 +239,11 @@ namespace Difi.Sjalvdeklaration.Database
             try
             {
                 var dbItem = dbContext.UserList.Single(x => x.Id == userItem.Id);
+
+                if (dbItem == null)
+                {
+                    throw new InvalidOperationException(localizer["User with id: {0} doesn't exist.", userItem.Id]);
+                }
 
                 dbItem.Name = userItem.Name;
                 dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
@@ -282,7 +298,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (dbItem == null)
                 {
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException(localizer["User with id: {0} doesn't exist.", id]);
                 }
 
                 dbContext.UserList.Remove(dbItem);

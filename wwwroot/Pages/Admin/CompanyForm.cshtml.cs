@@ -33,7 +33,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 if (id != Guid.Empty)
                 {
-                    CompanyItemForm = (await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + id)).Data;
+                    var result = await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + id);
+
+                    if (result.Succeeded)
+                    {
+                        CompanyItemForm = result.Data;
+                    }
+                    else
+                    {
+                        await errorHandler.View(this, null, result.Exception);
+                    }
                 }
                 else
                 {
@@ -46,8 +55,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     };
                 }
             }
-            catch
+            catch (Exception exception)
             {
+                await errorHandler.Log(this, null, exception);
             }
         }
 
@@ -55,7 +65,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(CompanyItemForm.Id));
             }
 
             try
@@ -73,19 +83,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (result.Succeeded)
                 {
-                    if (type == "declaration")
-                    {
-                        return RedirectToPage("/Admin/DeclarationForm", new { companyId = result.Id });
-                    }
-
-                    return RedirectToPage("/Admin/CompanyList");
+                    return type == "declaration" ? RedirectToPage("/Admin/DeclarationForm", new { companyId = result.Id }) : RedirectToPage("/Admin/CompanyList");
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(CompanyItemForm.Id), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(CompanyItemForm.Id), exception);
             }
         }
 
@@ -100,11 +105,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return RedirectToPage("/Admin/CompanyList");
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
             }
         }
 
@@ -125,11 +130,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return RedirectToPage("/Admin/CompanyForm", new { id = CompanyItemForm.Id });
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
             }
         }
     }

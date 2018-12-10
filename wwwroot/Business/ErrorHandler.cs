@@ -19,9 +19,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
         public async Task<IActionResult> View(PageModel pageModel, Task task, Exception exception)
         {
-            pageModel.ViewData.Add("Error", exception.Message);
+            if (exception != null)
+            {
+                pageModel.ViewData.Add("Error", exception.Message);
+            }
 
-            await task;
+            if (task != null)
+            {
+                await task;
+            }
+
             return pageModel.Page();
         }
 

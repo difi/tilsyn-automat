@@ -4,16 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
 {
     public class LogRepository : ILogRepository
     {
         private readonly LogDbContext dbContext;
+        private readonly IStringLocalizer<LogRepository> localizer;
 
-        public LogRepository(LogDbContext dbContext)
+        public LogRepository(LogDbContext dbContext, IStringLocalizer<LogRepository> localizer)
         {
             this.dbContext = dbContext;
+            this.localizer = localizer;
         }
 
         public ApiResult Add(LogItem logItem)
@@ -50,6 +53,10 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["Log item with id: {0} doesn't exist.", id]);
                 }
             }
             catch (Exception exception)

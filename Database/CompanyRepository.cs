@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -13,11 +14,13 @@ namespace Difi.Sjalvdeklaration.Database
     {
         private readonly ApplicationDbContext dbContext;
         private readonly IDeclarationRepository declarationRepository;
+        private readonly IStringLocalizer<CompanyRepository> localizer;
 
-        public CompanyRepository(ApplicationDbContext dbContext, IDeclarationRepository declarationRepository)
+        public CompanyRepository(ApplicationDbContext dbContext, IDeclarationRepository declarationRepository, IStringLocalizer<CompanyRepository> localizer)
         {
             this.dbContext = dbContext;
             this.declarationRepository = declarationRepository;
+            this.localizer = localizer;
         }
 
         public void SetCurrentUser(Guid parse)
@@ -37,6 +40,10 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["Company with id: {0} doesn't exist.", id]);
                 }
             }
             catch (Exception exception)
@@ -60,6 +67,10 @@ namespace Difi.Sjalvdeklaration.Database
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["Company with corporate identity number: {0} doesn't exist.", corporateIdentityNumber]);
                 }
             }
             catch (Exception exception)
@@ -216,7 +227,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 if (GetByCorporateIdentityNumber<CompanyItem>(excelRow.CompanyItem.CorporateIdentityNumber).Data != null)
                 {
-                    result.Exception = new Exception($"A company with corporate identity number = {excelRow.CompanyItem.CorporateIdentityNumber} already exist");
+                    result.Exception = new Exception(localizer["Company with corporate identity number: {0} doesn't exist.", excelRow.CompanyItem.CorporateIdentityNumber]);
 
                     return result;
                 }

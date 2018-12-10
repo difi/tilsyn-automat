@@ -19,7 +19,7 @@ namespace Difi.Sjalvdeklaration.Database
 
         public void SetCurrentUser(Guid parse)
         {
-            throw new NotImplementedException();
+
         }
 
         public ApiResult<T> GetAll<T>() where T : List<RoleItem>
