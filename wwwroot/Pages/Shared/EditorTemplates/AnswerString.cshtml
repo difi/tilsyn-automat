@@ -11,6 +11,9 @@
 
     var ruleItem = (RuleItem)ViewData["ruleItem"];
     var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
+
+    var paddingCardDivider = "";
+
 }
 
 @if (viewHelp && firstQuestion)
@@ -22,6 +25,8 @@
     <label class="legend" for="@name">
         @if (firstQuestion)
         {
+            paddingCardDivider = "tightup-card-divider-top";
+
             <span class="collapse row">
                 <span class="small-10 columns">
                     <span class="collapse row">
@@ -46,7 +51,9 @@
         }
         else
         {
-            <span class="card-divider">
+            paddingCardDivider = "tightup-card-divider-tight-top";
+
+            <span class="card-divider tightup-card-divider-bottom">
                 <span class="legend-text">
                     @text
                 </span>
@@ -54,7 +61,8 @@
         }
     </label>
 
-    <div class="card-divider">
+    <div class="card-divider @paddingCardDivider">
+
         @if (what == "textarea")
         {
             <textarea id="@name" name="@name">@value</textarea>
