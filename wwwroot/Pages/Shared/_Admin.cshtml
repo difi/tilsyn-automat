@@ -34,14 +34,14 @@
                                     <button class="jsProfileTrigger toggle-profile-button button plus">
                                         <span class="profile-name hide-for-small-only">@nameClaim?.Value</span><br />
                                         <span class="profile-number hide-for-small-only">050474 XXXXX</span>
-                                        <span class="toggle-profile-icon"><span class="show-for-sr">- Edit profile or logout</span></span>
+                                        <span class="toggle-profile-icon"><span class="show-for-sr">  - @Localizer["View log out"]</span></span>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
                         <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
-                            <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt logout">Logga ut</a>
+                            <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt logout">@Localizer["Log out"]</a>
                         </div>
                     </div>
                 </div>

@@ -117,10 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&lt;p&gt;You have now completed your own control. We confirm that Difi has received your reply.&lt;/p&gt;&lt;p&gt;The business gets to know the results in an inspection report. We will send the audit report within 14 days.&lt;/p&gt;&lt;p&gt;The Audit Report is a public document and final report will be published on our website uu.difi.no.&lt;/p&gt;" xml:space="preserve">
+    <value>&lt;p&gt;
+    Du har nå gjennomført egenkontrollen. Vi bekrefter at Difi har mottatt svaret ditt.
+&lt;/p&gt;
+
+&lt;p&gt;
+    Virksomheten får vite resultatet i en tilsynsrapport. Vi sender tilsynsrapporten innen 14 dager.
+&lt;/p&gt;
+
+&lt;p&gt;
+    Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
+&lt;/p&gt;</value>
+  </data>
   <data name="Back" xml:space="preserve">
     <value>Tilbake til oversikten</value>
   </data>
+  <data name="Deadline" xml:space="preserve">
+    <value>Frist</value>
+  </data>
   <data name="Print" xml:space="preserve">
     <value>Skriv ut bekreftelse</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Innsendt</value>
+  </data>
+  <data name="Thank you for your answers" xml:space="preserve">
+    <value>Takk for din besvarelse</value>
   </data>
 </root>
