@@ -21,19 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\CompanyRepository - Copy.nb-NO.Designer.cs">
-      <DependentUpon>CompanyRepository.nb-NO.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resources\CompanyRepository.nb-NO.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CompanyRepository.nb-NO.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Resources\CompanyRepository.nn-NO.resx">
       <LastGenOutput>CompanyRepository.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
