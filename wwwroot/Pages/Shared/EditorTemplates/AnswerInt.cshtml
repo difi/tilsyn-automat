@@ -1,20 +1,20 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
+@using Difi.Sjalvdeklaration.wwwroot.Business
 @model int
 
 @{
     var name = ViewData["id"];
-    var text = ViewData["text"];
+    var text = ViewData["text"] ?? Html.DisplayNameFor(m => m);
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
     var value = (int?)ViewData["value"];
-
-    var ruleItem = (RuleItem)ViewData["ruleItem"];
+    var ruleItem = (RuleItem)ViewData["ruleItem"] ?? new RuleItem { Language = new RuleItemLanguage { HelpText = Html.DescriptionFor(model => model).ToString() } };
     var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
 }
 
 @if (viewHelp && firstQuestion)
 {
-    @Html.DisplayFor(x => ruleItem, "RuleHelp", new { orderText = orderText })
+    @Html.DisplayFor(x => ruleItem, "RuleHelp", new { orderText })
 }
 
 <div class="form-field">

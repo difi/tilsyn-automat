@@ -117,49 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BusinessAddress" xml:space="preserve">
-    <value>Beliggenhetsadresse</value>
-  </data>
-  <data name="CompanyEditHeader" xml:space="preserve">
-    <value>Virksomhetsinformasjon</value>
-  </data>
-  <data name="ContactPerson" xml:space="preserve">
-    <value>Kontaktperson virksomhet</value>
-  </data>
-  <data name="Deadline" xml:space="preserve">
-    <value>Frist</value>
-  </data>
-  <data name="LocationAddress" xml:space="preserve">
-    <value>Forretningsadresse</value>
-  </data>
-  <data name="Log out" xml:space="preserve">
-    <value>Logg ut</value>
-  </data>
-  <data name="MailingAddress" xml:space="preserve">
-    <value>Postadresse</value>
-  </data>
-  <data name="MainHeader" xml:space="preserve">
-    <value>Egenkontroll for</value>
-  </data>
-  <data name="ShowHide" xml:space="preserve">
-    <value>Vise/skjule</value>
-  </data>
-  <data name="Submitted" xml:space="preserve">
-    <value>Innsendt</value>
-  </data>
-  <data name="Toggle-header-text" xml:space="preserve">
-    <value>Kontroller virksomhetsinformasjon</value>
-  </data>
-  <data name="Toggle-header-text-hidden-text" xml:space="preserve">
-    <value>Virksomhetsinformasjon</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Lagre</value>
-  </data>
-  <data name="View log out" xml:space="preserve">
-    <value>Vis logg ut</value>
-  </data>
-  <data name="view-declaratiopn-button" xml:space="preserve">
-    <value>Åpne egenkontroll</value>
+  <data name="Log view" xml:space="preserve">
+    <value>Loggvisning</value>
   </data>
 </root>

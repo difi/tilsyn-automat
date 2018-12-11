@@ -117,49 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BusinessAddress" xml:space="preserve">
-    <value>Beliggenhetsadresse</value>
+  <data name="I have no payment terminal" xml:space="preserve">
+    <value>Jeg har ingen betalingsterminal</value>
   </data>
-  <data name="CompanyEditHeader" xml:space="preserve">
-    <value>Virksomhetsinformasjon</value>
+  <data name="Ok, now I would like will start!" xml:space="preserve">
+    <value>Ok, nå vil jeg starte!</value>
   </data>
-  <data name="ContactPerson" xml:space="preserve">
-    <value>Kontaktperson virksomhet</value>
+  <data name="Select the payment terminal you want to perform self-checking on" xml:space="preserve">
+    <value>Velg betalingsterminalen du skal utføre egenkontroll på</value>
   </data>
-  <data name="Deadline" xml:space="preserve">
-    <value>Frist</value>
+  <data name="The business must have at least one payment terminal that meets the requirements for universal design of ICT. It is an advantage if the most widely used payment terminal is also universally designed." xml:space="preserve">
+    <value>Virksomheten skal ha minst én betalingsterminal som tilfredsstiller kravene til universell utforming av ikt. Det er en fordel om betalingsterminalen som blir mest brukt, også er universelt utformet.</value>
   </data>
-  <data name="LocationAddress" xml:space="preserve">
-    <value>Forretningsadresse</value>
-  </data>
-  <data name="Log out" xml:space="preserve">
-    <value>Logg ut</value>
-  </data>
-  <data name="MailingAddress" xml:space="preserve">
-    <value>Postadresse</value>
-  </data>
-  <data name="MainHeader" xml:space="preserve">
-    <value>Egenkontroll for</value>
-  </data>
-  <data name="ShowHide" xml:space="preserve">
-    <value>Vise/skjule</value>
-  </data>
-  <data name="Submitted" xml:space="preserve">
-    <value>Innsendt</value>
-  </data>
-  <data name="Toggle-header-text" xml:space="preserve">
-    <value>Kontroller virksomhetsinformasjon</value>
-  </data>
-  <data name="Toggle-header-text-hidden-text" xml:space="preserve">
-    <value>Virksomhetsinformasjon</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Lagre</value>
-  </data>
-  <data name="View log out" xml:space="preserve">
-    <value>Vis logg ut</value>
-  </data>
-  <data name="view-declaratiopn-button" xml:space="preserve">
-    <value>Åpne egenkontroll</value>
+  <data name="You must now decide which payment terminal you are going to check in this self-check. Choose the one closest to meeting these points:&lt;ul&gt;&lt;li&gt; The box is signed and the sign is visible at a distance so that customers know where to pay their goods. &lt;/ li&gt;&lt;li&gt; The area just in front of the payment terminal, which the customer pays, is without obstacles (at least 150 x 150 cm). &lt;/ li&gt;&lt;li&gt; There is plenty of distance to the next payment terminal if there are more payment terminals on the straight line (at least 150 cm). &lt;/ li&gt;&lt;li&gt; The payment terminal has a height above the floor that allows it to be used by customers who are standing and sitting when they pay (between 75 - 130 cm). &lt;/ li&gt;&lt;/ul&gt;" xml:space="preserve">
+    <value>Du skal nå ta stilling til hvilken betalingsterminal du skal kontrollere i denne egenkontrollen. Velg den som er nærmest til å oppfylle disse punktene:
+                &lt;ul&gt;
+                    &lt;li&gt;Kassen er skiltet, og skiltet er synlig på avstand, slik at kundene vet hvor de skal betale varene sine.&lt;/li&gt;
+                    &lt;li&gt;Området rett foran betalingsterminalen, der kunden betaler, er uten hindringer (minst 150 x 150 cm).&lt;/li&gt;
+                    &lt;li&gt;Det er god nok avstand til neste betalingsterminal dersom det står flere betalingsterminaler på rett linje (minst 150 cm).&lt;/li&gt;
+                    &lt;li&gt;Betalingsterminalen har en høyde over gulvet som gjør at den kan brukes både av kunder som står og sitter når de betaler (mellom 75 – 130 cm).&lt;/li&gt;
+                &lt;/ul&gt;</value>
   </data>
 </root>

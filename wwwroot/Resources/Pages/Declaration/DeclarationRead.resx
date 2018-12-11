@@ -120,6 +120,9 @@
   <data name="Back" xml:space="preserve">
     <value>Gå tilbake og endre</value>
   </data>
+  <data name="In order to submit, you must first complete the self-control by answering all the questions." xml:space="preserve">
+    <value>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</value>
+  </data>
   <data name="Print" xml:space="preserve">
     <value>Skriv ut oppsummering</value>
   </data>

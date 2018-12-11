@@ -1,10 +1,11 @@
-﻿using Difi.Sjalvdeklaration.Shared.Extensions;
-using System;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes
+namespace Difi.Sjalvdeklaration.Shared.Classes.Log
 {
     public class LogItem
     {
@@ -48,24 +49,34 @@ namespace Difi.Sjalvdeklaration.Shared.Classes
 
         public Guid Id { get; set; }
 
+        [Display(Name = "User")]
         public Guid UserId { get; set; }
 
+        [Display(Name = "Created date")]
         public DateTime Created { get; set; }
 
+        [Display(Name = "Section")]
         public String Class { get; set; }
 
+        [Display(Name = "Function")]
         public String Function { get; set; }
 
+        [Display(Name = "Call parameter 1")]
         public String CallParameter1 { get; set; }
 
+        [Display(Name = "Call parameter 2")]
         public String CallParameter2 { get; set; }
 
+        [Display(Name = "Result succeeded")]
         public bool ResultSucceeded { get; set; }
 
+        [Display(Name = "Result id")]
         public Guid ResultId { get; set; }
 
+        [Display(Name = "Result text")]
         public String ResultString { get; set; }
 
+        [Display(Name = "Result error")]
         public String ResultException { get; set; }
 
         [NotMapped]

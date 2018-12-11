@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CustomAddressCity" xml:space="preserve">
+  <data name="City" xml:space="preserve">
     <value>Sted</value>
   </data>
-  <data name="CustomAddressStreet" xml:space="preserve">
+  <data name="Name of business" xml:space="preserve">
+    <value>Navn på virksamhet</value>
+  </data>
+  <data name="Street name and number" xml:space="preserve">
     <value>Gatenavn og nummer</value>
   </data>
-  <data name="CustomAddressZip" xml:space="preserve">
+  <data name="ZIP code" xml:space="preserve">
     <value>Postnummer</value>
-  </data>
-  <data name="CustomName" xml:space="preserve">
-    <value>Navn på virksamhet</value>
   </data>
 </root>

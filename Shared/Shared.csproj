@@ -34,6 +34,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DeclarationTestItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Log\LogItem.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogItem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\UserItem.'en-US.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -59,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DeclarationTestItem.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Classes\Log\LogItem.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LogItem.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 

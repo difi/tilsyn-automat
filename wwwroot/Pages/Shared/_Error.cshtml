@@ -8,15 +8,15 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <br />
             <div class="errorOnThis">
-                <b class="h3">Systemfel:</b><br/>
-                
-                <p>Ett fel har inträffat och loggats. Kontakta systemansvarig för mer information.</p>
+                <b class="h3">@Localizer["System error"]</b><br/>
                 
                 <p>
-                    <b>Felmeddelande: </b>@errorString
-
+                    @Localizer["An error has occurred and logged. Contact your system administrator for more information."]
                 </p>
                 
+                <p>
+                    <b>@Localizer["Error message:"]</b> @errorString
+                </p>
             </div>
         </div>
     </div>

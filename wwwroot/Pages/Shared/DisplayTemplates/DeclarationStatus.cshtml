@@ -9,13 +9,13 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row column">
                 <div class="small-5 medium-2 columns hide-for-print">
-                    <a class="button white back" href="@backUrl">Tillbake</a>
+                    <a class="button white back" href="@backUrl">@Localizer["Go back"]</a>
                 </div>
 
                 <div class="small-7 medium-push-6 medium-4 columns text-right hide-for-print">
                     <div class="row align-middle">
                         <div class="small-8 medium-9 columns">
-                            <span class="status-text"><strong>Status</strong><span class="show-for-small-only"><br /></span> @Model.Status.TextCompany</span>
+                            <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span> @Model.Status.TextCompany</span>
                         </div>
                         <div class="small-4 medium-3 columns">
                             <div class="status status-@(Model.DeclarationTestItem.StatusCount * 25)">

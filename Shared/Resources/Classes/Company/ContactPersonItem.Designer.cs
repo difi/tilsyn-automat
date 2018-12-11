@@ -61,20 +61,20 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Landskode.
+        /// </summary>
+        internal static string Country_code {
+            get {
+                return ResourceManager.GetString("Country code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Epostadresse .
         /// </summary>
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Epostadresse til kontaktperson er påkrevd.
-        /// </summary>
-        internal static string Email___required_field {
-            get {
-                return ResourceManager.GetString("Email - required field", resourceCulture);
             }
         }
         
@@ -88,47 +88,11 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Company {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navn på kontaktperson er påkrevd.
-        /// </summary>
-        internal static string Name___required_field {
-            get {
-                return ResourceManager.GetString("Name - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Telefonnummer.
         /// </summary>
         internal static string Phone {
             get {
                 return ResourceManager.GetString("Phone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer til kontaktperson er påkrevd.
-        /// </summary>
-        internal static string Phone___required_field {
-            get {
-                return ResourceManager.GetString("Phone - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer Landskode.
-        /// </summary>
-        internal static string PhoneCountryCode {
-            get {
-                return ResourceManager.GetString("PhoneCountryCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Telefonnummer Landskode til kontaktperson er påkrevd.
-        /// </summary>
-        internal static string PhoneCountryCode___required_field {
-            get {
-                return ResourceManager.GetString("PhoneCountryCode - required field", resourceCulture);
             }
         }
     }

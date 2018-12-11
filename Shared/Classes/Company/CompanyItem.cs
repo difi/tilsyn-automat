@@ -11,94 +11,74 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
     {
         public Guid Id { get; set; }
 
-        [Display(Name = "ExternalId")]
+        [Display(Name = "Business ID (Supervisory Data Model)")]
         public String ExternalId { get; set; }
 
-        [Display(Name = "Code")]
-        //[Required(ErrorMessage = "Code - required field")]
+        [Display(Name = "Pin code")]
         public String Code { get; set; }
 
-        [Display(Name = "CorporateIdentityNumber")]
-        //[Required(ErrorMessage = "CorporateIdentityNumber - required field")]
+        [Display(Name = "Organization number")]
         public String CorporateIdentityNumber { get; set; }
 
-        [Display(Name = "OwnerCorporateIdentityNumber")]
+        [Display(Name = "Organization number of the owner organization")]
         public String OwenerCorporateIdentityNumber { get; set; }
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name - required field")]
         public String Name { get; set; }
 
-        [Display(Name = "MailingAddressStreet")]
-        //[Required(ErrorMessage = "MailingAddressStreet - required field")]
+        [Display(Name = "Street name and number")]
         public String MailingAddressStreet { get; set; }
 
-        [Display(Name = "MailingAddressZip")]
-        //[Required(ErrorMessage = "MailingAddressZip - required field")]
+        [Display(Name = "ZIP code")]
         public String MailingAddressZip { get; set; }
 
-        [Display(Name = "MailingAddressCity")]
-        //[Required(ErrorMessage = "MailingAddressCity - required field")]
+        [Display(Name = "City")]
         public String MailingAddressCity { get; set; }
 
-        [Display(Name = "LocationAddressStreet")]
-        //[Required(ErrorMessage = "LocationAddressStreet - required field")]
+        [Display(Name = "Street name and number")]
         public String LocationAddressStreet { get; set; }
 
-        [Display(Name = "LocationAddressZip")]
-        //[Required(ErrorMessage = "LocationAddressZip - required field")]
+        [Display(Name = "ZIP code")]
         public String LocationAddressZip { get; set; }
 
-        [Display(Name = "LocationAddressCity")]
-        //[Required(ErrorMessage = "LocationAddressCity - required field")]
+        [Display(Name = "City")]
         public String LocationAddressCity { get; set; }
 
-        [Display(Name = "BusinessAddressStreet")]
-        //[Required(ErrorMessage = "BusinessAddressStreet - required field")]
+        [Display(Name = "Street name and number")]
         public String BusinessAddressStreet { get; set; }
 
-        [Display(Name = "BusinessAddressZip")]
-        //[Required(ErrorMessage = "BusinessAddressZip - required field")]
+        [Display(Name = "ZIP code")]
         public String BusinessAddressZip { get; set; }
 
-        [Display(Name = "BusinessAddressCity")]
-        //[Required(ErrorMessage = "BusinessAddressCity - required field")]
+        [Display(Name = "City")]
         public String BusinessAddressCity { get; set; }
 
-        [Display(Name = "IndustryGroupCode")]
-        //[Required(ErrorMessage = "IndustryGroupCode - required field")]
+        [Display(Name = "Code")]
         public String IndustryGroupCode { get; set; }
 
-        [Display(Name = "IndustryGroupDescription")]
-        //[Required(ErrorMessage = "IndustryGroupDescription - required field")]
+        [Display(Name = "Description")]
         public String IndustryGroupDescription { get; set; }
 
-        [Display(Name = "IndustryGroupAggregated")]
-        //[Required(ErrorMessage = "IndustryGroupAggregated - required field")]
+        [Display(Name = "Aggregated")]
         public String IndustryGroupAggregated { get; set; }
 
-        [Display(Name = "InstitutionalSectorCode")]
-        //[Required(ErrorMessage = "InstitutionalSectorCode - required field")]
+        [Display(Name = "Code")]
         public String InstitutionalSectorCode { get; set; }
 
-        [Display(Name = "InstitutionalSectorDescription")]
-        //[Required(ErrorMessage = "InstitutionalSectorDescription - required field")]
+        [Display(Name = "Description")]
         public String InstitutionalSectorDescription { get; set; }
 
-        [Display(Name = "CustomName")]
-        //[Required(ErrorMessage = "CustomName - required field")]
+        [Display(Name = "Changed business name")]
         public String CustomName { get; set; }
 
-        [Display(Name = "CustomAddressStreet")]
-        //[Required(ErrorMessage = "CustomAddressStreet - required field")]
+        [Display(Name = "Street name and number")]
         public String CustomAddressStreet { get; set; }
 
-        [Display(Name = "CustomAddressZip")]
-        //[Required(ErrorMessage = "CustomAddressZip - required field")]
+        [Display(Name = "ZIP code")]
         public String CustomAddressZip { get; set; }
 
-        [Display(Name = "CustomAddressCity")]
-        //[Required(ErrorMessage = "CustomAddressCity - required field")]
+        [Display(Name = "City")]
         public String CustomAddressCity { get; set; }
 
         public ICollection<UserCompany> UserList { get; set; }

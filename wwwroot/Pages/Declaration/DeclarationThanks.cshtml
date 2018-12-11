@@ -8,55 +8,37 @@
 
 <main>
     <div class="the-end">
-
-
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-
-
                 <div class="row">
                     <div class="small-12 columns">
                         <div class="img-wrapper text-center">
                             <img alt="illustration" src="~/images/illustrations/start.png" />
                             <br />
-                            <h2>Takk for din besvarelse</h2>
+                            <h2>@Localizer["Thank you for your answers"]</h2>
                         </div>
                     </div>
                 </div>
 
-
                 <div class="">
                     <div class="">
+                        @Localizer["<p>You have now completed your own control. We confirm that Difi has received your reply.</p><p>The business gets to know the results in an inspection report. We will send the audit report within 14 days.</p><p>The Audit Report is a public document and final report will be published on our website uu.difi.no.</p>"]
 
-                        <p>
-                            Du har nå gjennomført egenkontrollen. Vi bekrefter at Difi har mottatt svaret ditt.
-                        </p>
-
-                        <p>
-                            Virksomheten får vite resultatet i en tilsynsrapport. Vi sender tilsynsrapporten innen 14 dager.
-                        </p>
-
-                        <p>
-                            Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
-                        </p>
                         <div class="date-sent">
-                            Innsendt: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy HH:mm")
+                            @Localizer["Submitted"]: @Model.DeclarationItemForm.SentInDate.ToString("dd.MM.yyyy HH:mm")
                         </div>
                         <div class="date-deadline">
-                            Frist @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
-
+                            @Localizer["Deadline"]: @Model.DeclarationItemForm.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
                         </div>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <hr /><br />
+
     <div class="the-end">
-
-
         <div class="row hide-for-print">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
                 <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
@@ -66,6 +48,4 @@
             </div>
         </div>
     </div>
-
-
 </main>

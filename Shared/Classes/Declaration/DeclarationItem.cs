@@ -16,31 +16,29 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public Guid CompanyItemId { get; set; }
 
-        [Display(Name = "UserItemId")]
+        [Display(Name = "Case processor")]
         public Guid UserItemId { get; set; }
 
         [ForeignKey("ValueListTypeOfStatus")]
         [Display(Name = "Status")]
-        [Required(ErrorMessage = "Status - required field")]
         public Int32 StatusId { get; set; }
 
         [Display(Name = "Name")]
-        [Required(ErrorMessage = "Name - required field")]
+        [Required(ErrorMessage = "Name is required")]
         public String Name { get; set; }
 
-        [Display(Name = "CaseNumber")]
-        //[Required(ErrorMessage = "CaseNumber - required field")]
+        [Display(Name = "Case number")]
         public String CaseNumber { get; set; }
 
-        [Display(Name = "CreatedDate")]
+        [Display(Name = "Created date")]
         public DateTime CreatedDate { get; set; }
 
-        [Display(Name = "DeadlineDate")]
-        [Required(ErrorMessage = "DeadlineDate - required field")]
+        [Display(Name = "Deadline date")]
+        [Required(ErrorMessage = "Deadline for submission is required")]
         [DataType(DataType.Date)]
         public DateTime DeadlineDate { get; set; }
 
-        [Display(Name = "SentInDate")]
+        [Display(Name = "Sent in date")]
         public DateTime SentInDate { get; set; }
 
         public ValueListTypeOfStatus Status { get; set; }

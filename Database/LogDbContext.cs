@@ -1,4 +1,5 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Microsoft.EntityFrameworkCore;
 
 namespace Difi.Sjalvdeklaration.Database

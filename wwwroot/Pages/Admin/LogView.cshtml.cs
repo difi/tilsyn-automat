@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes.Log;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
