@@ -17,26 +17,23 @@
 
         @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
         {
-        <div class="jsExcelImportContainer fileUpload">
-            <button class="button alt jsExcelImportButton">@Localizer["Import businesses from excel"]</button>
+            <div class="jsExcelImportContainer">
+                <button class="button alt jsExcelImportButton">@Localizer["Admin-import-company"]</button>
 
-            <div class="jsExcelImportTarget">
-                <div class="row collapse">
-                    <div class="large-3 medium-4 columns end">
-                        <form method="post" enctype="multipart/form-data">
-                            @Html.EditorFor(x => x.ExcelFile, "File")
-                            <button type="submit" class="button upload" asp-page-handler="ExcelImport">@Localizer["Import businesses from excel"]</button>
-                        </form>
-                    </div>
+                <div class="jsExcelImportTarget">
+                    <form method="post" enctype="multipart/form-data">
+                        @Html.EditorFor(x => x.ExcelFile, "File")
+
+                        <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
+                    </form>
                 </div>
             </div>
-        </div>
-                }
+        }
 
 
-                <hr />
+        <hr />
 
-        </div>
+    </div>
 
         @if (Model.ImportTotalCount > 0)
         {
