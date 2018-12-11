@@ -2,7 +2,7 @@
 @model CompanyFormModel
 
 @{
-    var title = Model.CompanyItemForm?.Id != Guid.Empty ? "Oppdater virksamhet" : "Ny virksamhet";
+    var title = Model.CompanyItemForm?.Id != Guid.Empty ? Localizer["Update business"] : Localizer["New business"];
 
     ViewData["Title"] = title;
 }
