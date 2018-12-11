@@ -3,7 +3,7 @@
 
 @model DeclarationStartModel
 @{
-    ViewData["Title"] = "DeclarationStart";
+    ViewData["Title"] = Model.DeclarationItemForm.Name;
 }
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })

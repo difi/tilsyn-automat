@@ -4,9 +4,7 @@
 @model wwwroot.Pages.Declaration.DeclarationReadModel
 
 @{
-    var title = "Egenkontroll - Läsa";
-
-    ViewData["Title"] = title;
+    ViewData["Title"] = Model.DeclarationItemForm.Name;
 
     var mainIndex = 1;
 }

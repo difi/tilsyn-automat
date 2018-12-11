@@ -6,8 +6,7 @@
 @model Difi.Sjalvdeklaration.wwwroot.Pages.Declaration.DeclarationFormModel
 
 @{
-    var title = "Egenkontroll";
-    ViewData["Title"] = title;
+    ViewData["Title"] = Model.DeclarationItemForm.Name;
     var mainIndex = 1;
 
     var backUrl = "";

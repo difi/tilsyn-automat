@@ -3,14 +3,16 @@
 @using Difi.Sjalvdeklaration.Shared.Enum
 @model DeclarationListModel
 @{
-    ViewData["Title"] = "DeclarationList";
-
     var companyName = Model.CompanyItem?.Name;
 
     if (!string.IsNullOrEmpty(Model.CompanyItem?.CustomName))
     {
         companyName = Model.CompanyItem.CustomName;
     }
+
+    var title =  Localizer["MainHeader"]+ " " + companyName;
+
+    ViewData["Title"] = title;
 }
 
 @if (Model.CompanyItem != null)

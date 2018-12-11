@@ -1,7 +1,7 @@
 ﻿@page
 @model wwwroot.Pages.Declaration.DeclarationThanksModel
 @{
-    ViewData["Title"] = "Thanks";
+    ViewData["Title"] = Model.DeclarationItemForm.Name;
 }
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationRead?id=" + Model.DeclarationItemForm.Id })

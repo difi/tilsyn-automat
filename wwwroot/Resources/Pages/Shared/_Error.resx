@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="An error has occurred and logged. Contact your system administrator for more information." xml:space="preserve">
-    <value>En feil har oppstått og logget. Kontakt systemadministratoren for mer informasj</value>
+    <value>En feil har oppstått og logget. Kontakt systemadministratoren for mer informasj.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Feil</value>
   </data>
   <data name="Error message:" xml:space="preserve">
     <value>Feilmelding: </value>
-  </data>
-  <data name="System error" xml:space="preserve">
-    <value>Systemfeil</value>
   </data>
 </root>

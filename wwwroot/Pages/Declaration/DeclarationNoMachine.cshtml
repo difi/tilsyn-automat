@@ -1,7 +1,7 @@
 ﻿@page
 @model wwwroot.Pages.Declaration.DeclarationNoMachineModel
 @{
-    ViewData["Title"] = "DeclarationNoMachine";
+    ViewData["Title"] = Model.DeclarationItemForm.Name;
 }
 
 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
@@ -9,7 +9,7 @@
 <main>
     <div class="row">
         <div class="large-7 large-centered small-12 columns">
-            <h1>@Localizer["I have no payment terminal"]</h1>
+            <h2>@Localizer["I have no payment terminal"]</h2>
 
             <p>
                 @Localizer["No machine text"]
@@ -22,7 +22,6 @@
                         <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Cancel"]</a>
                     </div>
                 </div>
-               
             </form>
         </div>
     </div>
