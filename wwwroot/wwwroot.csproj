@@ -55,6 +55,7 @@
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Resources\Pages\Shared\88\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4239,41 +4239,40 @@ input[type=button].tabbed, input[type=submit].tabbed, button.tabbed {
 a.tabbed, input[type=text].tabbed, input[type=number].tabbed, textarea.tabbed, select.tabbed {
   outline: 2px solid #458596; }
 
-.fileUploadArea label {
-  display: block;
-  position: relative; }
-
-.fileUploadArea .fileUploadButtonsArea {
-  position: relative;
-  height: 42px; }
-
-.fileUploadArea input[type=file] {
-  width: 100%;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  height: 43px;
-  margin: 0;
-  padding: 0; }
-  .fileUploadArea input[type=file].tabbed + button {
-    outline: 2px solid #458596; }
-
-.fileUploadArea button.button.choose-file, .fileUploadArea #ExcelFile {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  margin: 0; }
-
-.fileUploadArea .form-field {
-  height: 95px; }
-  .fileUploadArea .form-field.errorOnThis {
-    margin-bottom: 0;
-    height: 155px; }
-
-.fileUploadArea #img-name p {
-  margin-bottom: 0; }
+.fileUploadArea {
+  /*background-color: #f8f8f8;
+    padding: 0.5rem 1rem 0 1rem;
+    display: inline-block;*/ }
+  .fileUploadArea label {
+    display: block;
+    position: relative; }
+  .fileUploadArea .fileUploadButtonsArea {
+    position: relative;
+    height: 42px;
+    margin: 13px 0 16px 0; }
+  .fileUploadArea input[type=file] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    height: 43px;
+    margin: 0;
+    padding: 0;
+    width: 150px; }
+    .fileUploadArea input[type=file].tabbed + button {
+      outline: 2px solid #458596; }
+  .fileUploadArea button.button.choose-file {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    margin: 0; }
+  .fileUploadArea .form-field {
+    height: 95px; }
+    .fileUploadArea .form-field.errorOnThis {
+      margin-bottom: 0;
+      height: 155px; }
+  .fileUploadArea #img-name p {
+    margin-bottom: 0; }
 
 @media print, screen and (min-width: 48em) {
   button, .button, input[type="button"], input[type="submit"] {

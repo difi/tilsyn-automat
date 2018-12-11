@@ -413,7 +413,10 @@ a, input[type=text], input[type=number], textarea, select {
 // Make span in upload form to block element
 // Hide input
 .fileUploadArea {
-    //margin-top: 10px;
+    /*background-color: #f8f8f8;
+    padding: 0.5rem 1rem 0 1rem;
+    display: inline-block;*/
+
     label {
         display: block;
         position: relative;
@@ -422,10 +425,11 @@ a, input[type=text], input[type=number], textarea, select {
     .fileUploadButtonsArea {
         position: relative;
         height: 42px;
+        margin: 13px 0 16px 0;
     }
 
     input[type=file] {
-        width: 100%;
+        //width: 100%;
         opacity: 0;
         position: absolute;
         top: 0;
@@ -433,14 +437,15 @@ a, input[type=text], input[type=number], textarea, select {
         height: 43px;
         margin: 0;
         padding: 0;
+        width: 150px;
 
         &.tabbed + button {
             outline: 2px solid $tabbed-color;
         }
     }
 
-    button.button.choose-file, #ExcelFile {
-        width: 100%;
+    button.button.choose-file {
+        //width: 100%;
         position: absolute;
         top: 0;
         z-index: 1;
