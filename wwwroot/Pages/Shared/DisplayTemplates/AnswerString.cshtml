@@ -2,7 +2,7 @@
 @model string
 
 @{
-    var text = ViewData["text"];
+    var text = ViewData["text"] ?? Html.DisplayNameFor(m => m);
     var orderText = ViewData["orderText"];
     var result = (ValueListTypeOfResult)ViewData["result"];
     var viewResult = (bool)ViewData["viewResult"];

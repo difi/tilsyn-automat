@@ -117,31 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Case number" xml:space="preserve">
-    <value>Saksnummer</value>
+  <data name="Call parameter 1" xml:space="preserve">
+    <value>Funksjonsanropsparameter 1</value>
   </data>
-  <data name="Case processor" xml:space="preserve">
-    <value>Saksbehandler</value>
+  <data name="Call parameter 2" xml:space="preserve">
+    <value>Funksjonsanropsparameter 2</value>
   </data>
   <data name="Created date" xml:space="preserve">
     <value>Opprettet dato</value>
   </data>
-  <data name="Deadline date" xml:space="preserve">
-    <value>Frist for innsending</value>
+  <data name="Function" xml:space="preserve">
+    <value>Funksjon</value>
   </data>
-  <data name="Deadline for submission is required" xml:space="preserve">
-    <value>Frist for innsending er påkrevd</value>
+  <data name="Result error" xml:space="preserve">
+    <value>Resultatfeil</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Navn på egenkontroll</value>
+  <data name="Result id" xml:space="preserve">
+    <value>Resultat id</value>
   </data>
-  <data name="Name is required" xml:space="preserve">
-    <value>Navn på egenkontroll er påkrevd</value>
+  <data name="Result succeeded" xml:space="preserve">
+    <value>Resultat lyktes</value>
   </data>
-  <data name="Sent in date" xml:space="preserve">
-    <value>Dato sendt inn</value>
+  <data name="Result text" xml:space="preserve">
+    <value>Resultattekst</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Virksomhetens fremdrift</value>
+  <data name="Section" xml:space="preserve">
+    <value>Seksjon</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Bruker</value>
   </data>
 </root>

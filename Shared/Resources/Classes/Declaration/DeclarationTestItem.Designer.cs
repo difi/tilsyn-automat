@@ -61,164 +61,126 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4DescriptionInText.
+        ///   Looks up a localized string similar to Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.
         /// </summary>
-        internal static string DescriptionInText {
+        internal static string Choose_from_the_list_which_manufacturer_and_model_payment_terminal_you_should_check {
             get {
-                return ResourceManager.GetString("DescriptionInText", resourceCulture);
+                return ResourceManager.GetString("Choose from the list which manufacturer and model payment terminal you should che" +
+                        "ck", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4DescriptionInText - er påkrevd.
+        ///   Looks up a localized string similar to Beskriv hvilken betalingsterminal du velger å kontrollere.
         /// </summary>
-        internal static string DescriptionInText___required_field {
+        internal static string Describe_which_payment_terminal_you_choose_to_control {
             get {
-                return ResourceManager.GetString("DescriptionInText - required field", resourceCulture);
+                return ResourceManager.GetString("Describe which payment terminal you choose to control", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4FinishedStatus.
+        ///   Looks up a localized string similar to Avvik eller merknad.
         /// </summary>
-        internal static string FinishedStatus {
+        internal static string Deviation_or_Notice {
             get {
-                return ResourceManager.GetString("FinishedStatus", resourceCulture);
+                return ResourceManager.GetString("Deviation or Notice", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4FinishedStatus - er påkrevd.
+        ///   Looks up a localized string similar to Difi trenger å vite hvilken betalingsterminal du kontrollerer og sender inn opplysninger om..
         /// </summary>
-        internal static string FinishedStatus___required_field {
+        internal static string Difi_needs_to_know_which_payment_terminal_you_check_and_submit_information_about_ {
             get {
-                return ResourceManager.GetString("FinishedStatus - required field", resourceCulture);
+                return ResourceManager.GetString("Difi needs to know which payment terminal you check and submit information about." +
+                        "", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Har en automat.
         /// </summary>
-        internal static string Have_Machine {
+        internal static string Has_a_machine {
             get {
-                return ResourceManager.GetString("Have Machine", resourceCulture);
+                return ResourceManager.GetString("Has a machine", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4Image1.
+        ///   Looks up a localized string similar to Her kan du for eksempel skrive hvor betalingsterminalen er plassert. &lt;br /&gt;Eksempler er kasse 1, nærmest inngangen/utgangen, den til venstre for Inngangen/utgangen..
         /// </summary>
-        internal static string Image1 {
+        internal static string Here_you_can__for_example__type_where_the_payment_terminal_is_located___br____Examples_are_cash_register_1__closest_to_the_the_entrance___exit__to_the_left_of_the_the_entrance___exit_ {
             get {
-                return ResourceManager.GetString("Image1", resourceCulture);
+                return ResourceManager.GetString("Here you can, for example, type where the payment terminal is located. <br /> Exa" +
+                        "mples are cash register 1, closest to the the entrance / exit, to the left of th" +
+                        "e the entrance / exit.", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4Image1 - er påkrevd.
+        ///   Looks up a localized string similar to Produsent og navn på automat.
         /// </summary>
-        internal static string Image1___required_field {
+        internal static string Manufacturer_and_name_of_automat {
             get {
-                return ResourceManager.GetString("Image1 - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4Image2.
-        /// </summary>
-        internal static string Image2 {
-            get {
-                return ResourceManager.GetString("Image2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4Image2 - er påkrevd.
-        /// </summary>
-        internal static string Image2___required_field {
-            get {
-                return ResourceManager.GetString("Image2 - required field", resourceCulture);
+                return ResourceManager.GetString("Manufacturer and name of automat", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Formål med test.
         /// </summary>
-        internal static string Purpose_Of_Test {
+        internal static string Purpose_of_test {
             get {
-                return ResourceManager.GetString("Purpose Of Test", resourceCulture);
+                return ResourceManager.GetString("Purpose of test", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4SupplierAndVersion.
+        ///   Looks up a localized string similar to Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.
         /// </summary>
-        internal static string SupplierAndVersion {
+        internal static string Take_a_close_up_of_the_payment_terminal_you_are_going_to_register_information_about {
             get {
-                return ResourceManager.GetString("SupplierAndVersion", resourceCulture);
+                return ResourceManager.GetString("Take a close-up of the payment terminal you are going to register information abo" +
+                        "ut", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4SupplierAndVersion - er påkrevd.
+        ///   Looks up a localized string similar to Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om. Bildet skal vise hvor betalingsterminalen er plassert.
         /// </summary>
-        internal static string SupplierAndVersion___required_field {
+        internal static string Take_a_survey_of_the_payment_terminal_to_register_information_about__The_image_will_show_where_the_payment_terminal_is_located {
             get {
-                return ResourceManager.GetString("SupplierAndVersion - required field", resourceCulture);
+                return ResourceManager.GetString("Take a survey of the payment terminal to register information about. The image wi" +
+                        "ll show where the payment terminal is located", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4SupplierAndVersionOther.
+        ///   Looks up a localized string similar to Bildet skal vise hvor betalingsterminalen er plassert. Bildet skal vise hele betalingsterminalen og området foran terminalen..
         /// </summary>
-        internal static string SupplierAndVersionOther {
+        internal static string The_image_should_show_where_the_payment_terminal_is_located__The_image_should_show_the_entire_payment_terminal_and_the_area_in_front_of_the_terminal_ {
             get {
-                return ResourceManager.GetString("SupplierAndVersionOther", resourceCulture);
+                return ResourceManager.GetString("The image should show where the payment terminal is located. The image should sho" +
+                        "w the entire payment terminal and the area in front of the terminal.", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4SupplierAndVersionOther - er påkrevd.
+        ///   Looks up a localized string similar to Type automat.
         /// </summary>
-        internal static string SupplierAndVersionOther___required_field {
+        internal static string Type_of_machine {
             get {
-                return ResourceManager.GetString("SupplierAndVersionOther - required field", resourceCulture);
+                return ResourceManager.GetString("Type of machine", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4TypeOfMachine.
+        ///   Looks up a localized string similar to Type ikt-løsning.
         /// </summary>
-        internal static string TypeOfMachine {
+        internal static string Type_of_test {
             get {
-                return ResourceManager.GetString("TypeOfMachine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4TypeOfMachine - er påkrevd.
-        /// </summary>
-        internal static string TypeOfMachine___required_field {
-            get {
-                return ResourceManager.GetString("TypeOfMachine - required field", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4TypeOfTest.
-        /// </summary>
-        internal static string TypeOfTest {
-            get {
-                return ResourceManager.GetString("TypeOfTest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4TypeOfTest - er påkrevd.
-        /// </summary>
-        internal static string TypeOfTest___required_field {
-            get {
-                return ResourceManager.GetString("TypeOfTest - required field", resourceCulture);
+                return ResourceManager.GetString("Type of test", resourceCulture);
             }
         }
     }

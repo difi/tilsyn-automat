@@ -3,6 +3,8 @@
 }
 
 <div class="site-wrapper">
+    @{ await Html.RenderPartialAsync("Shared/_Error", new { });}
+
     @RenderBody()
 </div>
 

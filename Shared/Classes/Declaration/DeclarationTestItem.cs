@@ -14,52 +14,43 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public Guid DeclarationItemId { get; set; }
 
-        public Int32 StatusCount { get; set; }
+        public int StatusCount { get; set; }
 
-        [Display(Name = "Purpose Of Test")]
-        [Required(ErrorMessage = "Purpose Of Test - required field")]
-        public Int32 PurposeOfTestId { get; set; }
+        [Display(Name = "Purpose of test")]
+        public int PurposeOfTestId { get; set; }
 
-        [Display(Name = "Have Machine")]
+        [Display(Name = "Has a machine")]
         public bool HaveMachine { get; set; }
 
-        [Display(Name = "TypeOfMachine")]
-        //[Required(ErrorMessage = "TypeOfMachine - required field")]
+        [Display(Name = "Type of machine")]
         public ValueListTypeOfMachine TypeOfMachine { get; set; }
 
-        [Display(Name = "TypeOfTest")]
-        //[Required(ErrorMessage = "TypeOfTest - required field")]
+        [Display(Name = "Type of test")]
         public ValueListTypeOfTest TypeOfTest { get; set; }
 
         public ValueListPurposeOfTest PurposeOfTest { get; set; }
 
-        [Display(Name = "SupplierAndVersion")]
-        //[Required(ErrorMessage = "SupplierAndVersion - required field")]
         public ValueListTypeOfSupplierAndVersion SupplierAndVersion { get; set; }
 
         [ForeignKey("ValueListTypeOfSupplierAndVersion")]
+        [Display(Name = "Choose from the list which manufacturer and model payment terminal you should check", Description = "Difi needs to know which payment terminal you check and submit information about.")]
         public int? SupplierAndVersionId { get; set; }
 
-        [Display(Name = "SupplierAndVersionOther")]
-        //[Required(ErrorMessage = "SupplierAndVersionOther - required field")]
-        public String SupplierAndVersionOther { get; set; }
+        [Display(Name = "Manufacturer and name of automat")]
+        public string SupplierAndVersionOther { get; set; }
 
-        [Display(Name = "DescriptionInText")]
-        //[Required(ErrorMessage = "DescriptionInText - required field")]
-        public String DescriptionInText { get; set; }
+        [Display(Name = "Describe which payment terminal you choose to control", Description = "Here you can, for example, type where the payment terminal is located. <br /> Examples are cash register 1, closest to the the entrance / exit, to the left of the the entrance / exit.")]
+        public string DescriptionInText { get; set; }
 
-        [Display(Name = "FinishedStatus")]
-        //[Required(ErrorMessage = "FinishedStatus - required field")]
+        [Display(Name = "Deviation or Notice")]
         public ValueListFinishedStatus FinishedStatus { get; set; }
 
-        [Display(Name = "Image1")]
-        //[Required(ErrorMessage = "Image1 - required field")]
+        [Display(Name = "Take a survey of the payment terminal to register information about. The image will show where the payment terminal is located", Description = "The image should show where the payment terminal is located. The image should show the entire payment terminal and the area in front of the terminal.")]
         public ImageItem Image1 { get; set; }
 
         public Guid? Image1Id { get; set; }
 
-        [Display(Name = "Image2")]
-        //[Required(ErrorMessage = "Image2 - required field")]
+        [Display(Name = "Take a close-up of the payment terminal you are going to register information about")]
         public ImageItem Image2 { get; set; }
 
         public Guid? Image2Id { get; set; }

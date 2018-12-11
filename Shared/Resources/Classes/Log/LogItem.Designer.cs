@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
+namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Log {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class DeclarationItem {
+    internal class LogItem {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DeclarationItem() {
+        internal LogItem() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration.DeclarationItem", typeof(DeclarationItem).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Difi.Sjalvdeklaration.Shared.Resources.Classes.Log.LogItem", typeof(LogItem).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,20 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saksnummer.
+        ///   Looks up a localized string similar to Funksjonsanropsparameter 1.
         /// </summary>
-        internal static string Case_number {
+        internal static string Call_parameter_1 {
             get {
-                return ResourceManager.GetString("Case number", resourceCulture);
+                return ResourceManager.GetString("Call parameter 1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saksbehandler.
+        ///   Looks up a localized string similar to Funksjonsanropsparameter 2.
         /// </summary>
-        internal static string Case_processor {
+        internal static string Call_parameter_2 {
             get {
-                return ResourceManager.GetString("Case processor", resourceCulture);
+                return ResourceManager.GetString("Call parameter 2", resourceCulture);
             }
         }
         
@@ -88,56 +88,65 @@ namespace Difi.Sjalvdeklaration.Shared.Resources.Classes.Declaration {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Frist for innsending.
+        ///   Looks up a localized string similar to Funksjon.
         /// </summary>
-        internal static string Deadline_date {
+        internal static string Function {
             get {
-                return ResourceManager.GetString("Deadline date", resourceCulture);
+                return ResourceManager.GetString("Function", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Frist for innsending er påkrevd.
+        ///   Looks up a localized string similar to Resultatfeil.
         /// </summary>
-        internal static string Deadline_for_submission_is_required {
+        internal static string Result_error {
             get {
-                return ResourceManager.GetString("Deadline for submission is required", resourceCulture);
+                return ResourceManager.GetString("Result error", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navn på egenkontroll.
+        ///   Looks up a localized string similar to Resultat id.
         /// </summary>
-        internal static string Name {
+        internal static string Result_id {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Result id", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Navn på egenkontroll er påkrevd.
+        ///   Looks up a localized string similar to Resultat lyktes.
         /// </summary>
-        internal static string Name_is_required {
+        internal static string Result_succeeded {
             get {
-                return ResourceManager.GetString("Name is required", resourceCulture);
+                return ResourceManager.GetString("Result succeeded", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dato sendt inn.
+        ///   Looks up a localized string similar to Resultattekst.
         /// </summary>
-        internal static string Sent_in_date {
+        internal static string Result_text {
             get {
-                return ResourceManager.GetString("Sent in date", resourceCulture);
+                return ResourceManager.GetString("Result text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Virksomhetens fremdrift.
+        ///   Looks up a localized string similar to Seksjon.
         /// </summary>
-        internal static string Status {
+        internal static string Section {
             get {
-                return ResourceManager.GetString("Status", resourceCulture);
+                return ResourceManager.GetString("Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bruker.
+        /// </summary>
+        internal static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
             }
         }
     }

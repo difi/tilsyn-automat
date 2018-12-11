@@ -8,20 +8,16 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
     {
         public Guid CompanyItemId { get; set; }
 
-        [Display(Name = "CustomName")]
-        //[Required(ErrorMessage = "CustomName - required field")]
+        [Display(Name = "Name of business")]
         public string CustomName { get; set; }
 
-        [Display(Name = "CustomAddressStreet")]
-        //[Required(ErrorMessage = "CustomAddressStreet - required field")]
+        [Display(Name = "Street name and number")]
         public string CustomAddressStreet { get; set; }
 
-        [Display(Name = "CustomAddressZip")]
-        //[Required(ErrorMessage = "CustomAddressZip - required field")]
+        [Display(Name = "ZIP code")]
         public string CustomAddressZip { get; set; }
 
-        [Display(Name = "CustomAddressCity")]
-        //[Required(ErrorMessage = "CustomAddressCity - required field")]
+        [Display(Name = "City")]
         public string CustomAddressCity { get; set; }
     }
 }

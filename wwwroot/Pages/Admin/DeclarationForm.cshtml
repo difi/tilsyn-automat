@@ -71,16 +71,12 @@
                     @if (Model.DeclarationItemForm.Id != Guid.Empty)
                     {
                         <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
-
                         <input class="button large" type="submit" value="@Localizer["Update"]"/>
-
                     }
                     else
                     {
                         <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-
                         <input class="button large" type="submit" value="@Localizer["Add"]"/>
-
                     }
                 </div>
             </div>

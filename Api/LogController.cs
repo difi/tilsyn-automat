@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
 

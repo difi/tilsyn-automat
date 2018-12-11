@@ -3,6 +3,7 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 

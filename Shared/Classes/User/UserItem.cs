@@ -14,32 +14,32 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         public String Token { get; set; }
 
         [Display(Name = "Name")]
-        [Required(ErrorMessage = "Name - required field")]
+        [Required(ErrorMessage = "Name is required")]
         [AutoComplete("name")]
         public String Name { get; set; }
 
-        [Display(Name = "Social Security Number")]
-        [Required(ErrorMessage = "Social Security Number - required field")]
+        [Display(Name = "Social security number")]
+        [Required(ErrorMessage = "Social security number is required")]
         [AutoComplete("off")]
         public String SocialSecurityNumber { get; set; }
 
         [Display(Name = "Email")]
-        [Required(ErrorMessage = "Email - required field")]
+        [Required(ErrorMessage = "Email is required")]
         [AutoComplete("email ")]
         public String Email { get; set; }
 
-        [Display(Name = "Country Code")]
-        [Required(ErrorMessage = "Country Code - required field")]
+        [Display(Name = "Country code")]
+        [Required(ErrorMessage = "Country code is required")]
         [AutoComplete("tel-country-code")]
         public String PhoneCountryCode { get; set; }
 
         [Display(Name = "Phone")]
-        [Required(ErrorMessage = "Phone - required field")]
+        [Required(ErrorMessage = "Phone is required")]
         [AutoComplete("tel")]
         public String Phone { get; set; }
 
-        [Display(Name = "Title")]
-        [Required(ErrorMessage = "Title - required field")]
+        [Display(Name = "Position in Difi")]
+        [Required(ErrorMessage = "Position in Difi is required")]
         [AutoComplete("organization-title")]
         public String Title { get; set; }
 
@@ -47,7 +47,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
 
         public DateTime LastOnline { get; set; }
 
-        [Display(Name = "RoleList")]
+        [Display(Name = "Role list")]
         public ICollection<UserRole> RoleList { get; set; }
 
         public ICollection<UserCompany> CompanyList { get; set; }
