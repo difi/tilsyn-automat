@@ -1,28 +1,31 @@
 ﻿@page
 @model wwwroot.Pages.Declaration.DeclarationNoMachineModel
 @{
-    ViewData["Title"] = Model.DeclarationItemForm.Name;
+    ViewData["Title"] = Model.DeclarationItemForm?.Name;
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
+@if (Model.DeclarationItemForm != null)
+{
+    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new {backUrl = "/Declaration/DeclarationList"})
 
-<main>
-    <div class="row">
-        <div class="large-7 large-centered small-12 columns">
-            <h2>@Localizer["I have no payment terminal"]</h2>
+    <main>
+        <div class="row">
+            <div class="large-7 large-centered small-12 columns">
+                <h2>@Localizer["I have no payment terminal"]</h2>
 
-            <p>
-                @Localizer["No machine text"]
-            </p>
+                <p>
+                    @Localizer["No machine text"]
+                </p>
 
-            <form method="post">
-                <div class="row">
-                    <div class="small-12 columns">
-                        <button class="button" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Ok"]</button>
-                        <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Cancel"]</a>
+                <form method="post">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <button class="button" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Ok"]</button>
+                            <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Cancel"]</a>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
+}

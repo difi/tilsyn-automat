@@ -24,7 +24,23 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         [HttpGet]
         public async Task OnGetAsync(Guid id)
         {
-            DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
+            try
+            {
+                var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
+
+                if (result.Succeeded)
+                {
+                    DeclarationItemForm = result.Data;
+                }
+                else
+                {
+                    await errorHandler.View(this, null, result.Exception);
+                }
+            }
+            catch (Exception exception)
+            {
+                await errorHandler.Log(this, null, exception);
+            }
         }
 
         [HttpPost]
@@ -39,11 +55,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     return RedirectToPage("/Declaration/DeclarationForm", new {id = id});
                 } 
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), exception);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.wwwroot.Business;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,6 +21,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         [BindProperty]
         public AddLinkToCompanyModel AddLinkToCompany { get; set; }
 
+        public bool Error { get; set; }
+
         public CompanyLinkModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
@@ -28,33 +31,41 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
-            }
-
-            var companyDbItem = (await apiHttpClient.Get<CompanyItem>("/api/Company/GetByCorporateIdentityNumber/" + AddLinkToCompany.CorporateIdentityNumber)).Data;
-            var userDbItem = (await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value)).Data;
-
-            if (companyDbItem != null && companyDbItem.Code == AddLinkToCompany.Code)
-            {
-                var userCompanyItem = new UserCompany
+                if (!ModelState.IsValid)
                 {
-                    CompanyItemId = companyDbItem.Id,
-                    UserItemId = userDbItem.Id
-                };
-
-                var result = await apiHttpClient.Post<ApiResult>("/api/Company/AddLink", userCompanyItem);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToPage("/Declaration/DeclarationList");
+                    return await errorHandler.Log(this, null, null);
                 }
 
-                return Page();
-            }
+                var companyDbItem = (await apiHttpClient.Get<CompanyItem>("/api/Company/GetByCorporateIdentityNumber/" + AddLinkToCompany.CorporateIdentityNumber)).Data;
+                var userDbItem = (await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value)).Data;
 
-            return Page();
+                if (companyDbItem != null && companyDbItem.Code == AddLinkToCompany.Code)
+                {
+                    var userCompanyItem = new UserCompany
+                    {
+                        CompanyItemId = companyDbItem.Id,
+                        UserItemId = userDbItem.Id
+                    };
+
+                    var result = await apiHttpClient.Post<ApiResult>("/api/Company/AddLink", userCompanyItem);
+
+                    if (result.Succeeded)
+                    {
+                        return RedirectToPage("/Declaration/DeclarationList");
+                    }
+
+                    return await errorHandler.View(this, null, result.Exception);
+                }
+
+                Error = true;
+                return await errorHandler.Log(this, null, null);
+            }
+            catch (Exception exception)
+            {
+                return await errorHandler.Log(this, null, exception);
+            }
         }
     }
 }

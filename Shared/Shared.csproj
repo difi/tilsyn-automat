@@ -26,6 +26,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ContactPersonItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\AddLinkToCompanyModel.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AddLinkToCompanyModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationItem.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DeclarationItem.Designer.cs</LastGenOutput>
@@ -53,6 +57,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ContactPersonItem.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Classes\Declaration\AddLinkToCompanyModel.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AddLinkToCompanyModel.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\Classes\Declaration\DeclarationItem.Designer.cs">
       <DesignTime>True</DesignTime>

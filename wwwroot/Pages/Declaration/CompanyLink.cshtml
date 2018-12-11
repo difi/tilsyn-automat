@@ -31,6 +31,12 @@
                     @Localizer["When you log in for the first time, you must enter the organization number of the business and the four-digit code specified in the Authority notification received by Difi email."]
                 </p>
 
+                @if (Model.Error)
+                {
+                    <div class="errorOnThis">
+                        @Localizer["The organization number and pin code do not match."]
+                    </div>
+                }
 
                 <div asp-validation-summary="All"></div>
 
@@ -43,9 +49,7 @@
 
         <div class="row">
             <div class="large-7 large-centered small-12 columns">
-
                 <input class="button large" type="submit" value="@Localizer["Next step"]" />
-
             </div>
         </div>
     </form>
