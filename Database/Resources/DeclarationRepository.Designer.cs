@@ -61,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Declaration with id: {0} doesn&apos;t exist..
+        ///   Looks up a localized string similar to Egenkontroll med id: {0} eksisterer ikke..
         /// </summary>
         internal static string Declaration_with_id___0__doesn_t_exist_ {
             get {
