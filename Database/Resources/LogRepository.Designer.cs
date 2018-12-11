@@ -61,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log item with id: {0} doesn&apos;t exist..
+        ///   Looks up a localized string similar to Loggelement med id: {0} eksisterer ikke..
         /// </summary>
         internal static string Log_item_with_id___0__doesn_t_exist_ {
             get {

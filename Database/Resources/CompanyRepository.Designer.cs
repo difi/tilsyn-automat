@@ -61,7 +61,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A company with corporate identity number: {0} already exist..
+        ///   Looks up a localized string similar to Et virksamhet med organisasjonsnummer: {0} finnes allerede..
         /// </summary>
         internal static string A_company_with_corporate_identity_number___0__already_exist_ {
             get {
@@ -70,7 +70,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Company with corporate identity number: {0} doesn&apos;t exist..
+        ///   Looks up a localized string similar to Virksamhet med organisasjonsnummer: {0} eksisterer ikke..
         /// </summary>
         internal static string Company_with_corporate_identity_number___0__doesn_t_exist_ {
             get {
