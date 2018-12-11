@@ -59,12 +59,12 @@
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
-                <h1>@Localizer["MainHeader"] @companyName</h1>
+                <h1>@Localizer["Self control for"] @companyName</h1>
 
                 <div class="jsDeclarationListToggleCardContainer">
                     <div class="row medium-uncollapse">
                         <div class="small-12 medium-12 columns">
-                            <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["ShowHide"]</span></span> @Localizer["Toggle-header-text"]</button></h2>
+                            <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> @Localizer["Check business information"]</button></h2>
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@
                                 <div class="card declaration-list-info">
 
                                     <div class="row column">
-                                        <h2>@Localizer["CompanyEditHeader"]</h2>
+                                        <h2>@Localizer["Business information"]</h2>
                                     </div>
 
                                     <form method="post">
@@ -95,7 +95,7 @@
                                         </div>
 
                                         <fieldset>
-                                            <legend>@Localizer["MailingAddress"]</legend>
+                                            <legend>@Localizer["Mailing address"]</legend>
 
                                             <div class="row">
                                                 <div class="small-12 medium-6 end columns">
@@ -120,7 +120,7 @@
                                         <br />
 
                                         <fieldset>
-                                            <legend>@(string.IsNullOrEmpty(Model.CompanyItem.OwenerCorporateIdentityNumber) ? Localizer["LocationAddress"] : Localizer["BusinessAddress"])</legend>
+                                            <legend>@(string.IsNullOrEmpty(Model.CompanyItem.OwenerCorporateIdentityNumber) ? Localizer["Business Address"] : Localizer["Location Address"])</legend>
 
                                             <div class="row">
                                                 <div class="small-12 medium-6 end columns">
@@ -146,7 +146,7 @@
 
                                         <fieldset>
                                             <legend>
-                                                @Localizer["ContactPerson"]
+                                                @Localizer["Contact person business"]
                                             </legend>
 
                                             <div class="row">
@@ -174,7 +174,7 @@
                                             </div>
                                         </fieldset>
                                         <br />
-                                        <input class="button large" type="submit" value="@Localizer["Update"]" />
+                                        <input class="button large" type="submit" value="@Localizer["Save"]" />
                                     </form>
 
                                 </div>
@@ -235,12 +235,12 @@
                                 <div class="card-section text-center medium-uncentered">
                                     @if (item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
                                     {
-                                        <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["view-declaratiopn-button"]</a>
+                                        <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
                                     }
 
                                     @if (item.Status.Id == (int)DeclarationStatus.Started || item.Status.Id == (int)DeclarationStatus.Return)
                                     {
-                                        <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["view-declaratiopn-button"]</a>
+                                        <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
                                     }
                                 </div>
                             </div>

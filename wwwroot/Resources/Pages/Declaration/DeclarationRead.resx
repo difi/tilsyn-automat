@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Back" xml:space="preserve">
+  <data name="Go back and change" xml:space="preserve">
     <value>Gå tilbake og endre</value>
   </data>
   <data name="In order to submit, you must first complete the self-control by answering all the questions." xml:space="preserve">
@@ -126,10 +126,7 @@
   <data name="Print" xml:space="preserve">
     <value>Skriv ut oppsummering</value>
   </data>
-  <data name="Send" xml:space="preserve">
+  <data name="Submit" xml:space="preserve">
     <value>Send inn</value>
-  </data>
-  <data name="ShowHide" xml:space="preserve">
-    <value>Vise/skjule</value>
   </data>
 </root>

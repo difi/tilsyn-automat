@@ -117,19 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddImage" xml:space="preserve">
+  <data name="Add image" xml:space="preserve">
     <value>Legg till bilde</value>
   </data>
-  <data name="DeleteImage" xml:space="preserve">
+  <data name="Remove image" xml:space="preserve">
     <value>Fjern bilde</value>
   </data>
-  <data name="Save" xml:space="preserve">
+  <data name="Next step" xml:space="preserve">
     <value>Gå videre</value>
   </data>
-  <data name="save-automatic-info-text" xml:space="preserve">
+  <data name="Your answers will be saved automatically. You can at any time see a summary by moving on." xml:space="preserve">
     <value>Dine svar lagres automatisk. Du kan når som helst se et oppsummering ved å gå videre.</value>
   </data>
-  <data name="ShowHide" xml:space="preserve">
+  <data name="Show/Hide" xml:space="preserve">
     <value>Vise/skjule</value>
   </data>
   <data name="Good to know" xml:space="preserve">

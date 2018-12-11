@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompanyLink-Header-h1" xml:space="preserve">
+  <data name="Complement organizational information" xml:space="preserve">
     <value>Komplettera organisasjonsuppgifter</value>
   </data>
-  <data name="CompanyLink-Next" xml:space="preserve">
+  <data name="Next step" xml:space="preserve">
     <value>Gå videre</value>
   </data>
-  <data name="CompanyLink-Text" xml:space="preserve">
+  <data name="When you log in for the first time, you must enter the organization number of the business and the four-digit code specified in the Authority notification received by Difi email." xml:space="preserve">
     <value>Når du logger inn for første gang må du skrive inn organisasjonsnummeret til virksomheten og den firesifrede koden oppgitt i Tilsynsvarslet virksomheten mottok på e-post fra Difi.</value>
-  </data>
-  <data name="Corporate Identity Number" xml:space="preserve">
-    <value>test</value>
   </data>
 </root>
