@@ -101,8 +101,9 @@ main {
 pre {
   font-family: monospace, monospace;
   /* 1 */
-  font-size: 1em;
-  /* 2 */ }
+  font-size: 13px;
+  /* 2 */
+  line-height: 1.4; }
 
 /* Links
        ========================================================================== */
@@ -2427,7 +2428,7 @@ ul ul, ol ul, ul ol, ol ol {
 dl {
   margin-bottom: 1rem; }
   dl dt {
-    margin-bottom: 0.3rem;
+    margin-top: 0.75rem;
     font-weight: bold; }
 
 blockquote {
