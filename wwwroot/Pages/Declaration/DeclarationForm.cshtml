@@ -50,7 +50,7 @@
                 <div class="jsToggleCardContainer">
                     <div class="row medium-uncollapse">
                         <div class="small-12 medium-12 columns">
-                            <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @Localizer["Machine"] <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["ShowHide"] @Localizer["Machine"]</span></span> </button></h2>
+                            <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @Localizer["Machine"] <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Machine"]</span></span> </button></h2>
                         </div>
                     </div>
 
@@ -91,7 +91,7 @@
                     <div class="jsToggleCardContainer">
                         <div class="row medium-uncollapse">
                             <div class="small-12 medium-12 columns">
-                                <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Language.Name <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["ShowHide"] @declarationIndicatorGroup.Language.Name</span></span> </button></h2>
+                                <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton"><span class="toggle-header-number">@mainIndex</span> @declarationIndicatorGroup.Language.Name <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @declarationIndicatorGroup.Language.Name</span></span> </button></h2>
                             </div>
                         </div>
 
@@ -188,11 +188,11 @@
 
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Save"]</button>
+                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Next step"]</button>
                 <br />
                 @*<p><br />
-                        @Localizer["save-automatic-info-text"]
-                    </p>*@
+                    @Localizer["Your answers will be saved automatically. You can at any time see a summary by moving on."]
+                </p>*@
             </div>
         </div>
         <br /><br />
@@ -231,14 +231,14 @@
                     <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
                     <img class="qq-thumbnail-selector" qq-max-size="100" qq-server-scale>
 
-                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["DeleteImage"]</button>
+                    <button class="link-button qq-btn qq-upload-delete-selector qq-upload-delete">@Localizer["Remove image"]</button>
                 </li>
             </ul>
             <div class="qq-upload-button-selector qq-upload-button">
 
                 <div class="row ">
                     <div class="small-10 small-centered medium-12 columns">
-                        <button class="button upload-photo"><span></span>@Localizer["AddImage"]</button>
+                        <button class="button upload-photo"><span></span>@Localizer["Add image"]</button>
                     </div>
                 </div>
             </div>

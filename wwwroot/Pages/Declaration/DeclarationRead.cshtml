@@ -39,13 +39,13 @@
                     @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
                     {
                         <form method="post">
-                            <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
-                            <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Send"]</button>
+                            <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
+                            <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Submit"]</button>
                         </form>
                     }
                     else
                     {
-                        <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
+                        <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
                     }
                 </div>
 
