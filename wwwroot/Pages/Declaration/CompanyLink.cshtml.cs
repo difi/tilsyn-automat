@@ -39,15 +39,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     return await errorHandler.View(this, null);
                 }
 
-                var companyDbItem = (await apiHttpClient.Get<CompanyItem>("/api/Company/GetByCorporateIdentityNumber/" + AddLinkToCompany.CorporateIdentityNumber)).Data;
-                var userDbItem = (await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value)).Data;
+                var resultCompany = await apiHttpClient.Get<CompanyItem>("/api/Company/GetByCorporateIdentityNumber/" + AddLinkToCompany.CorporateIdentityNumber);
+                var resultUser = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);
 
-                if (companyDbItem != null && companyDbItem.Code == AddLinkToCompany.Code)
+                if (resultCompany.Data != null && resultCompany.Data.Code == AddLinkToCompany.Code)
                 {
                     var userCompanyItem = new UserCompany
                     {
-                        CompanyItemId = companyDbItem.Id,
-                        UserItemId = userDbItem.Id
+                        CompanyItemId = resultCompany.Data.Id,
+                        UserItemId = resultUser.Data.Id
                     };
 
                     var result = await apiHttpClient.Post<ApiResult>("/api/Company/AddLink", userCompanyItem);

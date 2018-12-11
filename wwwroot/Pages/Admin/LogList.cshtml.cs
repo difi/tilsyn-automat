@@ -35,13 +35,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var result1 = await apiHttpClient.Get<List<LogItem>>("/api/Log/GetAll");
-                var result2 = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAll");
+                var resultLog = await apiHttpClient.Get<List<LogItem>>("/api/Log/GetAll");
+                var resultUser = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAll");
 
-                if (result1.Succeeded && result2.Succeeded)
+                if (resultLog.Succeeded && resultUser.Succeeded)
                 {
-                    LogList = result1.Data;
-                    UserList = result2.Data;
+                    LogList = resultLog.Data;
+                    UserList = resultUser.Data;
 
                     var noUser = new UserItem
                     {
@@ -66,7 +66,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
                 else
                 {
-                    await errorHandler.View(this, null, !result1.Succeeded ? result1.Exception : result2.Exception);
+                    await errorHandler.View(this, null, !resultLog.Succeeded ? resultLog.Exception : resultUser.Exception);
                 }
             }
             catch (Exception exception)
