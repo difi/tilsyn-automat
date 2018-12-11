@@ -2,11 +2,10 @@
 @using Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 @model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.LogListModel
 @{
-    ViewData["Title"] = "LogList";
+    ViewData["Title"] = Localizer["Log list"];
 }
 
-
-<h1>@Localizer["Loglista"]</h1>
+<h1>@Localizer["Log list"]</h1>
 
 <br />
 
@@ -14,7 +13,7 @@
 {
     <table class="table jsLogTableSort">
         <caption>
-            <h2>@Localizer["Loglista"]</h2>
+            <h2>@Localizer["Log list"]</h2>
         </caption>
         <thead>
         <tr>
@@ -47,7 +46,7 @@
                 </td>
 
                 <td class="clickable-td">
-                    @(item.ResultSucceeded ? "Ja" : "Nei")
+                    @(item.ResultSucceeded ? Localizer["Yes"] : Localizer["No"])
                 </td>
             </tr>
         }

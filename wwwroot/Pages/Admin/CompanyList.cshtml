@@ -2,7 +2,7 @@
 @model CompanyListModel
 
 @{
-    ViewData["Title"] = "Start";
+    ViewData["Title"] = Localizer["Manage businesses"];
 }
 
 <h1>@Localizer["Manage businesses"]</h1>
@@ -89,7 +89,7 @@
                             <td>
                                 @if (item.DeclarationList.Count > 0)
                                 {
-                                    <span class="hide">Ja</span>
+                                    <span class="hide">@Localizer["Yes"]</span>
                                 }
                                 else
                                 {

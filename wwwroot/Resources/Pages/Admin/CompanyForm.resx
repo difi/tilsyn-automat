@@ -141,6 +141,9 @@
   <data name="Location Address" xml:space="preserve">
     <value>Beliggenhetsadresse</value>
   </data>
+  <data name="New business" xml:space="preserve">
+    <value>Ny virksomhet</value>
+  </data>
   <data name="New Client" xml:space="preserve">
     <value>Opprett virksomhet</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Lagre</value>
+  </data>
+  <data name="Update business" xml:space="preserve">
+    <value>Oppdater virksomhet</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>Brukere</value>

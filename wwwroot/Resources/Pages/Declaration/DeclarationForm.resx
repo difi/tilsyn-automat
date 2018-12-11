@@ -141,4 +141,13 @@
   <data name="Machine" xml:space="preserve">
     <value>Automaten</value>
   </data>
+  <data name="Missing machine" xml:space="preserve">
+    <value>Manglende automat</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Oppsummering</value>
+  </data>
 </root>

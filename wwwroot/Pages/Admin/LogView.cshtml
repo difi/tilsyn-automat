@@ -2,10 +2,11 @@
 @using Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 @model Difi.Sjalvdeklaration.wwwroot.Pages.Admin.LogViewModel
 @{
-    ViewData["Title"] = "LogView";
+    ViewData["Title"] = @Localizer["Log view"];
 }
 
 <h1>@Localizer["Log view"]</h1>
+
 @if (Model.LogItem != null)
 {
     <dl>

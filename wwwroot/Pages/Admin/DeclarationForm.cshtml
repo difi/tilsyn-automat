@@ -2,9 +2,7 @@
 @model DeclarationFormModel
 
 @{
-    var title = Model.DeclarationItemForm?.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll";
-
-    ViewData["Title"] = Model.DeclarationItemForm?.Company.Name + " - " + title;
+    ViewData["Title"] = Model.DeclarationItemForm?.Company.Name;
 }
 
 @if (Model.DeclarationItemForm != null)
@@ -94,13 +92,13 @@
 
         <div class="row column">
             <div class="small-12 medium-12 columns">
-                <h1>Oppsummering</h1>
+                <h1>@Localizer["Summary"]</h1>
             </div>
 
             @*<div class="small-7 medium-10 columns text-right">
                 <div class="row align-middle">
                     <div class="small-8 medium-9 columns">
-                        <span class="status-text"><strong>Status</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
+                        <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
                     </div>
                     <div class="small-4 medium-3 columns">
                         <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
@@ -123,7 +121,7 @@
         }
         else
         {
-            <span>Saknar automat</span>
+            <span>@Localizer["Missing machine"]</span>
         }
     }
 }
