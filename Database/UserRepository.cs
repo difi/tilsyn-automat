@@ -238,7 +238,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = dbContext.UserList.Single(x => x.Id == userItem.Id);
+                var dbItem = dbContext.UserList.Include(x => x.RoleList).Single(x => x.Id == userItem.Id);
 
                 if (dbItem == null)
                 {

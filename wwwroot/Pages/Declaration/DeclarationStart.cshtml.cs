@@ -39,7 +39,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                await errorHandler.Log(this, null, exception, id);
             }
         }
 
@@ -52,14 +52,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationForm", new {id = id});
+                    return RedirectToPage("/Declaration/DeclarationForm", new {id});
                 } 
 
                 return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
             catch (Exception exception)
             {
-                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), exception);
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception, id);
             }
         }
     }

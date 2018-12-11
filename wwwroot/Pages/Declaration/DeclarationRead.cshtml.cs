@@ -34,52 +34,80 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
-                var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
+                var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
 
-                AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
-
-                TestGroupItemList = new List<TestGroupItem>();
-
-                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+                if (result.Succeeded)
                 {
-                    if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
-                    {
-                        var item = declarationIndicatorGroup.TestGroupItem;
-                        item.AllDone = true;
+                    DeclarationItemForm = result.Data;
 
-                        TestGroupItemList.Add(item);
-                    }
+                    await GetOutcomeDataList(id);
                 }
-
-                if (outcomeDataList.Any())
+                else
                 {
-                    foreach (var item in DeclarationItemForm.IndicatorList)
-                    {
-                        foreach (var data in outcomeDataList)
-                        {
-                            if (data.IndicatorItemId == item.IndicatorItem.Id)
-                            {
-                                item.IndicatorItem.OutcomeData = data;
-
-                                if (!data.AllDone)
-                                {
-                                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
-                                    {
-                                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
-                                        testGroup.AllDone = false;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    await errorHandler.View(this, null, result.Exception);
                 }
-
             }
             catch (Exception exception)
             {
-                apiHttpClient.LogError(exception, id);
+                await errorHandler.Log(this, null, exception, id);
             }
+        }
+
+        private async Task<bool> GetOutcomeDataList(Guid id)
+        {
+            var result = await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id);
+
+            if (!result.Succeeded)
+            {
+                await errorHandler.View(this, null, result.Exception);
+                return false;
+            }
+
+            AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
+
+            TestGroupItemList = new List<TestGroupItem>();
+
+            foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+            {
+                if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                {
+                    var item = declarationIndicatorGroup.TestGroupItem;
+                    item.AllDone = true;
+
+                    TestGroupItemList.Add(item);
+                }
+            }
+
+            if (!result.Data.Any())
+            {
+                return true;
+            }
+
+                foreach (var item in DeclarationItemForm.IndicatorList)
+                {
+                    foreach (var data in result.Data)
+                    {
+                        if (data.IndicatorItemId != item.IndicatorItem.Id)
+                        {
+                            continue;
+                        }
+
+                        item.IndicatorItem.OutcomeData = data;
+
+                        if (data.AllDone)
+                        {
+                            continue;
+                        }
+
+                        foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
+                        {
+                            var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
+                            testGroup.AllDone = false;
+                        }
+                    }
+            }
+
+            return true;
         }
 
         [HttpPost]
@@ -91,14 +119,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationThanks", new {id = id});
+                    return RedirectToPage("/Declaration/DeclarationThanks", new {id});
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
-            catch
+            catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception, id);
             }
         }
     }

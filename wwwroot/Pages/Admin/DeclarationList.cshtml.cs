@@ -77,7 +77,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(), exception);
+                return await errorHandler.Log(this, OnGetAsync(), exception, id);
             }
         }
 

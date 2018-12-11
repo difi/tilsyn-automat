@@ -118,6 +118,33 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
+        public ApiResult<T> GetForCompany<T>(Guid id) where T : List<DeclarationItem>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var list = dbContext.DeclarationList
+                    .Include(x => x.Company).ThenInclude(x => x.ContactPersonList)
+                    .Include(x => x.Company).ThenInclude(x => x.UserList)
+                    .Include(x => x.User)
+                    .Include(x => x.Status)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .AsNoTracking().Where(x => x.CompanyItemId == id).OrderBy(x => x.Name).ToList();
+
+                result.Data = (T)list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
         public ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>
         {
             var result = new ApiResult<T>();
@@ -144,6 +171,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
+
         public ApiResult Add(DeclarationItem declarationItem)
         {
             var result = new ApiResult();

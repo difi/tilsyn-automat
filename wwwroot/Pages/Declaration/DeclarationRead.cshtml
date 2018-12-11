@@ -4,55 +4,58 @@
 @model wwwroot.Pages.Declaration.DeclarationReadModel
 
 @{
-    ViewData["Title"] = Model.DeclarationItemForm.Name;
+    ViewData["Title"] = Model.DeclarationItemForm?.Name;
 
     var mainIndex = 1;
 }
 
-@Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id })
+@if (Model.DeclarationItemForm != null)
+{
+    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new {backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id})
 
-<main>
-    <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+    <main>
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
-            @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = @Model.AllDoneStep1 })
+                @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = @Model.AllDoneStep1})
 
-            @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
-            {
-                mainIndex++;
-                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = false })
-            }
-
-            <br />
-
-            <div class="row collapse align-bottom hide-for-print">
-                @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount != 4)
+                @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
                 {
-                    <div class="small-12 columns">
-                        <p>@Localizer["In order to submit, you must first complete the self-control by answering all the questions."]</p>
-                    </div>
+                    mainIndex++;
+                    @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = false})
                 }
 
-                <div class="small-12 columns">
-                    @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
-                    {
-                        <form method="post">
-                            <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
-                            <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Submit"]</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
-                    }
-                </div>
+                <br/>
 
-                <div class="small-12 columns">
-                    <br />
-                    <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                <div class="row collapse align-bottom hide-for-print">
+                    @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount != 4)
+                    {
+                        <div class="small-12 columns">
+                            <p>@Localizer["In order to submit, you must first complete the self-control by answering all the questions."]</p>
+                        </div>
+                    }
+
+                    <div class="small-12 columns">
+                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                        {
+                            <form method="post">
+                                <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
+                                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Submit"]</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
+                        }
+                    </div>
+
+                    <div class="small-12 columns">
+                        <br/>
+                        <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                    </div>
                 </div>
+                <br/><br/>
             </div>
-            <br /><br />
         </div>
-    </div>
-</main>
+    </main>
+}

@@ -57,12 +57,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                await errorHandler.Log(this, null, exception, id);
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostAsync(string type)
+        public async Task<IActionResult> OnPostSaveAsync(string type)
         {
             if (!ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(CompanyItemForm.Id), exception);
+                return await errorHandler.Log(this, OnGetAsync(CompanyItemForm.Id), exception, type);
             }
         }
 
@@ -111,7 +111,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception, id);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception, id);
             }
         }
     }

@@ -21,7 +21,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         [BindProperty]
         public AddLinkToCompanyModel AddLinkToCompany { get; set; }
 
-        public bool Error { get; set; }
+        public bool ViewError { get; set; }
 
         public CompanyLinkModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
@@ -29,13 +29,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             this.errorHandler = errorHandler;
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        [HttpPost]
+        public async Task<IActionResult> OnPostLinkAsync()
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    return await errorHandler.Log(this, null, null);
+                    return await errorHandler.View(this, null);
                 }
 
                 var companyDbItem = (await apiHttpClient.Get<CompanyItem>("/api/Company/GetByCorporateIdentityNumber/" + AddLinkToCompany.CorporateIdentityNumber)).Data;
@@ -59,12 +60,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     return await errorHandler.View(this, null, result.Exception);
                 }
 
-                Error = true;
-                return await errorHandler.Log(this, null, null);
+                ViewError = true;
+                return await errorHandler.View(this, null);
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, null, exception);
+                return await errorHandler.Log(this, null, exception, AddLinkToCompany);
             }
         }
     }

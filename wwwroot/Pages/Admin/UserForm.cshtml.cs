@@ -85,11 +85,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                await errorHandler.Log(this, null, exception, id);
             }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostSaveAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(UserItemForm.Id), exception);
+                return await errorHandler.Log(this, OnGetAsync(UserItemForm.Id), exception, UserItemForm, SelectRoleList);
             }
         }
 
@@ -138,7 +138,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception, id);
             }
         }
     }

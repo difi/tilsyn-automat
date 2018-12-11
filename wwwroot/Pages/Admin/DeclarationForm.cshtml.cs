@@ -105,7 +105,41 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                await errorHandler.Log(this, null, exception, id, companyId);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostSaveAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId));
+            }
+
+            try
+            {
+                ApiResult result;
+
+                if (DeclarationItemForm.Id != Guid.Empty)
+                {
+                    result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Update", DeclarationItemForm);
+                }
+                else
+                {
+                    result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Add", DeclarationItemForm);
+                }
+
+                if (result.Succeeded)
+                {
+                    return RedirectToPage("/Admin/DeclarationList");
+                }
+
+                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), result.Exception);
+            }
+            catch (Exception exception)
+            {
+                return await errorHandler.Log(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), exception, DeclarationItemForm);
             }
         }
 
@@ -238,40 +272,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             ValueListTypeOfMachine = valueListTypeOfMachine.Data;
 
             return true;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId));
-            }
-
-            try
-            {
-                ApiResult result;
-
-                if (DeclarationItemForm.Id != Guid.Empty)
-                {
-                    result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Update", DeclarationItemForm);
-                }
-                else
-                {
-                    result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Add", DeclarationItemForm);
-                }
-
-                if (result.Succeeded)
-                {
-                    return RedirectToPage("/Admin/DeclarationList");
-                }
-
-                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), result.Exception);
-            }
-            catch (Exception exception)
-            {
-                return await errorHandler.Log(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), exception);
-            }
         }
     }
 }

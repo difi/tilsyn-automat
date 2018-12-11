@@ -120,7 +120,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
-  <data name="Delete users" xml:space="preserve">
+  <data name="Delete user" xml:space="preserve">
     <value>Slett brukere</value>
   </data>
   <data name="New internal user" xml:space="preserve">

@@ -70,14 +70,14 @@
                     {
                         <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
 
-                        <input class="button large" type="submit" value="@Localizer["Save"]"/>
+                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save"/>
 
                     }
                     else
                     {
                         <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
 
-                        <input class="button large" type="submit" value="@Localizer["Save"]"/>
+                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save"/>
 
                     }
                 </div>

@@ -66,70 +66,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                await errorHandler.Log(this, null, exception, id);
             }
         }
 
-        private async Task<bool> GetOutcomeDataList(Guid id)
-        {
-            var result = await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id);
-
-            if (!result.Succeeded)
-            {
-                await errorHandler.View(this, null, result.Exception);
-                return false;
-            }
-
-            TestGroupItemList = new List<TestGroupItem>();
-
-            foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
-            {
-                if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
-                {
-                    TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
-                }
-            }
-
-            if (!result.Data.Any())
-            {
-                return true;
-            }
-
-            foreach (var item in DeclarationItemForm.IndicatorList)
-            {
-                foreach (var data in result.Data)
-                {
-                    if (data.IndicatorItemId == item.IndicatorItem.Id)
-                    {
-                        item.IndicatorItem.OutcomeData = data;
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        private async Task<bool> CreateLists()
-        {
-            var typeOfStatuses = await apiHttpClient.Get<List<ValueListTypeOfSupplierAndVersion>>("/api/ValueList/GetAllTypeOfSupplierAndVersion");
-
-            if (!typeOfStatuses.Succeeded)
-            {
-                await errorHandler.View(this, null, typeOfStatuses.Exception);
-
-                return false;
-            }
-
-            SelectSupplierAndVersionList = typeOfStatuses.Data.Select(x => new SelectListItem
-            {
-                Value = x.Id.ToString(),
-                Text = $"{x.Text}",
-                Selected = false
-            }).ToList();
-
-            return true;
-        }
-
+        [HttpPost]
         public async Task<IActionResult> OnPostSendInAsync(string id)
         {
             try
@@ -202,8 +143,68 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception, DeclarationItemForm);
             }
+        }
+
+        private async Task<bool> GetOutcomeDataList(Guid id)
+        {
+            var result = await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id);
+
+            if (!result.Succeeded)
+            {
+                await errorHandler.View(this, null, result.Exception);
+                return false;
+            }
+
+            TestGroupItemList = new List<TestGroupItem>();
+
+            foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+            {
+                if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                {
+                    TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                }
+            }
+
+            if (!result.Data.Any())
+            {
+                return true;
+            }
+
+            foreach (var item in DeclarationItemForm.IndicatorList)
+            {
+                foreach (var data in result.Data)
+                {
+                    if (data.IndicatorItemId == item.IndicatorItem.Id)
+                    {
+                        item.IndicatorItem.OutcomeData = data;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private async Task<bool> CreateLists()
+        {
+            var typeOfStatuses = await apiHttpClient.Get<List<ValueListTypeOfSupplierAndVersion>>("/api/ValueList/GetAllTypeOfSupplierAndVersion");
+
+            if (!typeOfStatuses.Succeeded)
+            {
+                await errorHandler.View(this, null, typeOfStatuses.Exception);
+
+                return false;
+            }
+
+            SelectSupplierAndVersionList = typeOfStatuses.Data.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.Text}",
+                Selected = false
+            }).ToList();
+
+            return true;
         }
 
         private Guid? GetAnswerFromFormImage(string idString)

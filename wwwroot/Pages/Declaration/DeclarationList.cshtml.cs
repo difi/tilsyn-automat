@@ -31,66 +31,78 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             this.errorHandler = errorHandler;
         }
 
-        public void OnGet()
+        [HttpGet]
+        public async Task OnGetAsync()
         {
             try
             {
-                var userItem = (apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value).Result).Data;
-                if (userItem.CompanyList != null && userItem.CompanyList.Any())
-                {
-                    CompanyItem = userItem.CompanyList.First().CompanyItem;
-                    CompanyCustomItem = new CompanyCustomItem
-                    {
-                        CompanyItemId = CompanyItem.Id,
-                        CustomName = string.IsNullOrEmpty(CompanyItem.CustomName) ? CompanyItem.Name : CompanyItem.CustomName,
-                        CustomAddressStreet = CompanyItem.CustomAddressStreet,
-                        CustomAddressZip = CompanyItem.CustomAddressZip,
-                        CustomAddressCity = CompanyItem.CustomAddressCity,
-                    };
+                var result = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);
 
-                    if (string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet))
+                if (result.Succeeded)
+                {
+                    var userItem = result.Data;
+
+                    if (userItem.CompanyList != null && userItem.CompanyList.Any())
                     {
-                        if (string.IsNullOrEmpty(CompanyItem.OwenerCorporateIdentityNumber))
+                        CompanyItem = userItem.CompanyList.First().CompanyItem;
+                        CompanyCustomItem = new CompanyCustomItem
                         {
-                            CompanyCustomItem.CustomAddressStreet = CompanyItem.LocationAddressStreet;
-                            CompanyCustomItem.CustomAddressZip = CompanyItem.LocationAddressZip;
-                            CompanyCustomItem.CustomAddressCity = CompanyItem.LocationAddressCity;
+                            CompanyItemId = CompanyItem.Id,
+                            CustomName = string.IsNullOrEmpty(CompanyItem.CustomName) ? CompanyItem.Name : CompanyItem.CustomName,
+                            CustomAddressStreet = CompanyItem.CustomAddressStreet,
+                            CustomAddressZip = CompanyItem.CustomAddressZip,
+                            CustomAddressCity = CompanyItem.CustomAddressCity,
+                        };
+
+                        if (string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet))
+                        {
+                            if (string.IsNullOrEmpty(CompanyItem.OwenerCorporateIdentityNumber))
+                            {
+                                CompanyCustomItem.CustomAddressStreet = CompanyItem.LocationAddressStreet;
+                                CompanyCustomItem.CustomAddressZip = CompanyItem.LocationAddressZip;
+                                CompanyCustomItem.CustomAddressCity = CompanyItem.LocationAddressCity;
+                            }
+                            else
+                            {
+                                CompanyCustomItem.CustomAddressStreet = CompanyItem.BusinessAddressStreet;
+                                CompanyCustomItem.CustomAddressZip = CompanyItem.BusinessAddressZip;
+                                CompanyCustomItem.CustomAddressCity = CompanyItem.BusinessAddressCity;
+                            }
+                        }
+
+                        var resultDeclaration = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetForCompany/" + CompanyItem.Id);
+
+                        if (resultDeclaration.Succeeded)
+                        {
+                            DeclarationList = resultDeclaration.Data;
                         }
                         else
                         {
-                            CompanyCustomItem.CustomAddressStreet = CompanyItem.BusinessAddressStreet;
-                            CompanyCustomItem.CustomAddressZip = CompanyItem.BusinessAddressZip;
-                            CompanyCustomItem.CustomAddressCity = CompanyItem.BusinessAddressCity;
+                            await errorHandler.View(this, null, resultDeclaration.Exception);
                         }
                     }
-
-                    DeclarationList = new List<DeclarationItem>();
-                    var declarationListDb = (apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll").Result).Data;
-
-                    foreach (var declarationItem in declarationListDb)
+                    else
                     {
-                        if (CompanyItem.Id == declarationItem.CompanyItemId)
-                        {
-                            DeclarationList.Add(declarationItem);
-                        }
+                        Response.Redirect("/Declaration/CompanyLink");
                     }
                 }
                 else
                 {
-                    Response.Redirect("/Declaration/CompanyLink");
+                    await errorHandler.View(this, null, result.Exception);
                 }
             }
             catch (Exception exception)
             {
-                apiHttpClient.LogError(exception, CompanyCustomItem);
+                await errorHandler.Log(this, null, exception, CompanyCustomItem);
             }
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        [HttpPost]
+        public async Task<IActionResult> OnPostUpdateCustomAsync()
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return await errorHandler.View(this, OnGetAsync());
             }
 
             try
@@ -102,13 +114,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     return RedirectToPage("/Declaration/DeclarationList");
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(), result.Exception);
             }
             catch (Exception exception)
             {
-                apiHttpClient.LogError(exception, CompanyCustomItem);
-
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(), exception, CompanyCustomItem);
             }
         }
     }

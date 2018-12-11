@@ -39,6 +39,15 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
+        [Route("GetForCompany/{id}")]
+        public ApiResult<List<DeclarationItem>> GetForCompany(Guid id)
+        {
+            HandleRequest();
+
+            return declarationRepository.GetForCompany<List<DeclarationItem>>(id);
+        }
+
+        [HttpGet]
         [Route("GetOutcomeDataList/{id}")]
         public ApiResult<List<OutcomeData>> GetOutcomeDataList(Guid id)
         {

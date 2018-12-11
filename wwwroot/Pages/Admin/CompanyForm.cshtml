@@ -250,12 +250,12 @@
                 <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
                 @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
-                    <input class="button large" type="submit" value="@Localizer["Save"]" />
+                    <input class="button large" type="submit" asp-route-handler="save" value="@Localizer["Save"]" />
                 }
                 else
                 {
-                    <input class="button large" type="submit" value="@Localizer["New Declaration"]" asp-route-type="declaration" />
-                    <input class="button large" type="submit" value="@Localizer["New Client"]" asp-route-type="add" />
+                    <input class="button large" type="submit" value="@Localizer["New Declaration"]" asp-route-handler="save" asp-route-type="declaration" />
+                    <input class="button large" type="submit" value="@Localizer["New Client"]" asp-route-handler="save" asp-route-type="add" />
                 }
 
             </div>

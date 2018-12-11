@@ -60,7 +60,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                await errorHandler.Log(this, null, exception, id);
             }
         }
     }

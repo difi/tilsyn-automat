@@ -40,7 +40,26 @@ namespace Difi.Sjalvdeklaration.Log
 
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
         {
-            return inner.GetAll<T>();
+            var result = inner.GetAll<T>();
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+            }
+
+            return result;
+        }
+
+        public ApiResult<T> GetForCompany<T>(Guid id) where T : List<DeclarationItem>
+        {
+            var result = inner.GetForCompany<T>(id);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), id, null, result.Data));
+            }
+
+            return result;
         }
 
         public ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>
