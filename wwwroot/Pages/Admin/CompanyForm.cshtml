@@ -254,15 +254,14 @@
                 }
                 else
                 {
-                    <input class="button large" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
-                    <input class="button large" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
+                    <input class="button large" type="submit" value="@Localizer["Create self-control"]" asp-route-type="declaration" />
+                    <input class="button large" type="submit" value="@Localizer["Create business"]" asp-route-type="add" />
                 }
-
             </div>
             <div class="small-12 medium-4 text-right column">
                 @if (Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
-                    <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
+                    <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Delete business"]</button>
                 }
 
             </div>

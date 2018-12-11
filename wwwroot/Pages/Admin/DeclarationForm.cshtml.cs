@@ -63,7 +63,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     if (id != Guid.Empty)
                     {
-                        var result = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id));
+                        var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
 
                         if (result.Succeeded)
                         {
@@ -78,7 +78,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     }
                     else
                     {
-                        var result = (await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + companyId));
+                        var result = await apiHttpClient.Get<CompanyItem>("/api/Company/Get/" + companyId);
 
                         if (result.Succeeded)
                         {

@@ -48,52 +48,102 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
-                var typeOfStatuses = (await apiHttpClient.Get<List<ValueListTypeOfSupplierAndVersion>>("/api/ValueList/GetAllTypeOfSupplierAndVersion")).Data;
-
-                SelectSupplierAndVersionList = typeOfStatuses.Select(x => new SelectListItem
+                if (await CreateLists())
                 {
-                    Value = x.Id.ToString(),
-                    Text = $"{x.Text}",
-                    Selected = false
-                }).ToList();
+                    var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
 
-                DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
-                var outcomeDataList = (await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id)).Data;
-
-                TestGroupItemList = new List<TestGroupItem>();
-
-                foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x=>x.TestGroupOrder))
-                {
-                    if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                    if (result.Succeeded)
                     {
-                        TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                        DeclarationItemForm = result.Data;
+
+                        await GetOutcomeDataList(id);
                     }
-                }
-
-                if (outcomeDataList.Any())
-                {
-                    foreach (var item in DeclarationItemForm.IndicatorList)
+                    else
                     {
-                        foreach (var data in outcomeDataList)
-                        {
-                            if (data.IndicatorItemId == item.IndicatorItem.Id)
-                            {
-                                item.IndicatorItem.OutcomeData = data;
-                            }
-                        }
+                        await errorHandler.View(this, null, result.Exception);
                     }
                 }
             }
-            catch
+            catch (Exception exception)
             {
+                await errorHandler.Log(this, null, exception);
             }
+        }
+
+        private async Task<bool> GetOutcomeDataList(Guid id)
+        {
+            var result = await apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + id);
+
+            if (!result.Succeeded)
+            {
+                await errorHandler.View(this, null, result.Exception);
+                return false;
+            }
+
+            TestGroupItemList = new List<TestGroupItem>();
+
+            foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
+            {
+                if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
+                {
+                    TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                }
+            }
+
+            if (!result.Data.Any())
+            {
+                return true;
+            }
+
+            foreach (var item in DeclarationItemForm.IndicatorList)
+            {
+                foreach (var data in result.Data)
+                {
+                    if (data.IndicatorItemId == item.IndicatorItem.Id)
+                    {
+                        item.IndicatorItem.OutcomeData = data;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private async Task<bool> CreateLists()
+        {
+            var typeOfStatuses = await apiHttpClient.Get<List<ValueListTypeOfSupplierAndVersion>>("/api/ValueList/GetAllTypeOfSupplierAndVersion");
+
+            if (!typeOfStatuses.Succeeded)
+            {
+                await errorHandler.View(this, null, typeOfStatuses.Exception);
+
+                return false;
+            }
+
+            SelectSupplierAndVersionList = typeOfStatuses.Data.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.Text}",
+                Selected = false
+            }).ToList();
+
+            return true;
         }
 
         public async Task<IActionResult> OnPostSendInAsync(string id)
         {
             try
             {
-                DeclarationItemForm = (await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id)).Data;
+                var resultDeclaration = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
+
+                if (resultDeclaration.Succeeded)
+                {
+                    DeclarationItemForm = resultDeclaration.Data;
+                }
+                else
+                {
+                    await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), resultDeclaration.Exception);
+                }
 
                 var declarationTestItem = new DeclarationTestItem
                 {
@@ -148,11 +198,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     return RedirectToPage("/Declaration/DeclarationRead", new { id = DeclarationItemForm.DeclarationTestItem.Id });
                 }
 
-                return Page();
+                return await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), result.Exception);
             }
             catch (Exception exception)
             {
-                return Page();
+                return await errorHandler.Log(this, OnGetAsync(Guid.Parse(id)), exception);
             }
         }
 
