@@ -9,22 +9,17 @@
 <main>
     <div class="row">
         <div class="large-7 large-centered small-12 columns">
-            <h1>Jeg har ingen betalingsterminal</h1>
+            <h1>@Localizer["I have no payment terminal"]</h1>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pulvinar nulla eu consectetur tincidunt. Aenean vel aliquam nisl, in lobortis quam. In eu blandit nulla. Vestibulum efficitur elit id justo vulputate blandit. Nullam tempor scelerisque ante ac porta. Curabitur bibendum pretium ligula ac pellentesque. Quisque blandit volutpat lacus ut interdum.
-                Duis venenatis tortor sed iaculis interdum. Duis placerat felis sit amet orci consectetur malesuada eu nec ligula. Integer non massa at est facilisis posuere vitae non tellus. Donec vitae nibh in odio egestas gravida.
-            </p>
-
-            <p>
-                Aenean aliquet fringilla purus non venenatis. Maecenas a justo laoreet, pharetra erat vel, consequat ante. Phasellus ut luctus erat, eget semper neque. Maecenas ultrices, velit in bibendum convallis, diam augue malesuada odio, lacinia molestie purus nunc nec eros. Aliquam erat volutpat. Proin maximus, elit ac scelerisque finibus
+                @Localizer["No machine text"]
             </p>
 
             <form method="post">
                 <div class="row">
                     <div class="small-12 columns">
-                        <button class="button" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok</button>
-                        <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">Avbryt</a>
+                        <button class="button" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Ok"]</button>
+                        <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Cancel"]</a>
                     </div>
                 </div>
                

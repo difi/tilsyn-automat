@@ -13,34 +13,27 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row column">
                 <div class="info-wrapper">
-                    <h2> Velg betalingsterminalen du skal utføre egenkontroll på</h2>
+                    <h2>@Localizer["Select the payment terminal you want to perform self-checking on"]</h2>
 
                     <p>
-                        Virksomheten skal ha minst én betalingsterminal som tilfredsstiller kravene til universell utforming av ikt.
-                        Det er en fordel om betalingsterminalen som blir mest brukt, også er universelt utformet.
+                        @Localizer["The business must have at least one payment terminal that meets the requirements for universal design of ICT. It is an advantage if the most widely used payment terminal is also universally designed."]
                     </p>
                 </div>
             </div>
 
-
             <br />
-            <a class="button alt" asp-page="/Declaration/DeclarationNoMachine" asp-route-id="@Model.DeclarationItemForm.Id">Jeg har ingen betalingsterminal</a>
+            <a class="button alt" asp-page="/Declaration/DeclarationNoMachine" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["I have no payment terminal"]</a>
+            <br />
+            <br />
 
             <p>
-                Du skal nå ta stilling til hvilken betalingsterminal du skal kontrollere i denne egenkontrollen. Velg den som er nærmest til å oppfylle disse punktene:
-                <ul>
-                    <li>Kassen er skiltet, og skiltet er synlig på avstand, slik at kundene vet hvor de skal betale varene sine.</li>
-
-                    <li>Området rett foran betalingsterminalen, der kunden betaler, er uten hindringer (minst 150 x 150 cm).</li>
-                    <li>Det er god nok avstand til neste betalingsterminal dersom det står flere betalingsterminaler på rett linje (minst 150 cm).</li>
-                    <li>Betalingsterminalen har en høyde over gulvet som gjør at den kan brukes både av kunder som står og sitter når de betaler (mellom 75 – 130 cm).</li>
-                </ul>
+                @Localizer["You must now decide which payment terminal you are going to check in this self-check. Choose the one closest to meeting these points:<ul><li> The box is signed and the sign is visible at a distance so that customers know where to pay their goods. </ li><li> The area just in front of the payment terminal, which the customer pays, is without obstacles (at least 150 x 150 cm). </ li><li> There is plenty of distance to the next payment terminal if there are more payment terminals on the straight line (at least 150 cm). </ li><li> The payment terminal has a height above the floor that allows it to be used by customers who are standing and sitting when they pay (between 75 - 130 cm). </ li></ul>"]
             </p>
 
             <hr />
 
             <form method="post">
-                <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">Ok, nå vil jeg starte!</button>
+                <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Ok, now I would like will start!"]</button>
             </form>
         </div>
     </div>
