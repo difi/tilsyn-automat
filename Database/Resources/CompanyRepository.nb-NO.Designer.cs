@@ -22,14 +22,14 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LogRepository {
+    internal class CompanyRepository {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LogRepository() {
+        internal CompanyRepository() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Difi.Sjalvdeklaration.Database.Resources.LogRepository", typeof(LogRepository).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Difi.Sjalvdeklaration.Database.Resources.CompanyRepository", typeof(CompanyRepository).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,29 @@ namespace Difi.Sjalvdeklaration.Database.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loggelement med id: {0} eksisterer ikke..
+        ///   Looks up a localized string similar to Et virksamhet med organisasjonsnummer: {0} finnes allerede..
         /// </summary>
-        internal static string Log_item_with_id___0__doesn_t_exist_ {
+        internal static string A_company_with_corporate_identity_number___0__already_exist_ {
             get {
-                return ResourceManager.GetString("Log item with id: {0} doesn\'t exist.", resourceCulture);
+                return ResourceManager.GetString("A company with corporate identity number: {0} already exist.", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virksamhet med organisasjonsnummer: {0} eksisterer ikke..
+        /// </summary>
+        internal static string Company_with_corporate_identity_number___0__doesn_t_exist_ {
+            get {
+                return ResourceManager.GetString("Company with corporate identity number: {0} doesn\'t exist.", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virksamhet med id: {0} eksisterer ikke..
+        /// </summary>
+        internal static string Company_with_id___0__doesn_t_exist_ {
+            get {
+                return ResourceManager.GetString("Company with id: {0} doesn\'t exist.", resourceCulture);
             }
         }
     }

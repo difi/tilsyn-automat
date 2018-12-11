@@ -53,21 +53,21 @@
                     <nav class="global-navigation">
                         <ul>
                             <li class="@(activePage == "Declaration" ? "active" : "" )">
-                                <a asp-page="DeclarationList">@Localizer["Admin-declaration"]</a>
+                                <a asp-page="DeclarationList">@Localizer["Self-controls list"]</a>
                             </li>
 
                             <li class="@(activePage == "Company" ? "active" : "" )">
-                                <a asp-page="CompanyList">@Localizer["Admin-clients"]</a>
+                                <a asp-page="CompanyList">@Localizer["Company list"]</a>
                             </li>
 
                             @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
                             {
                                 <li class="@(activePage == "User" ? "active" : "" )">
-                                    <a asp-page="UserList">@Localizer["Admin-users"]</a>
+                                    <a asp-page="UserList">@Localizer["Internal users"]</a>
                                 </li>
 
                                 <li class="@(activePage == "Log" ? "active" : "" )">
-                                    <a asp-page="LogList">@Localizer["Admin-log"]</a>
+                                    <a asp-page="LogList">@Localizer["Log"]</a>
                                 </li>
                             }
                         </ul>

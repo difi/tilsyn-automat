@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project>
+  <configuration createBackupFiles="False" hideEmptyRows="False" hideTranslatedRows="False" useSpellChecker="True" resXIndentChar="	" neutralLanguageCode="en-US" languagesToDisplay="nb-NO;nn-NO">
+    <globalSetting name="Filter-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
+  &lt;property name="#LayoutVersion" /&gt;
+  &lt;property name="#LayoutScaleFactor"&gt;@1,Width=1@1,Height=1&lt;/property&gt;
+  &lt;property name="ActiveFilterString" /&gt;
+&lt;/XtraSerializer&gt;</globalSetting>
+    <globalSetting name="Sort-ResourceEditorGrid">&lt;XtraSerializer version="1.0" application="View"&gt;
+  &lt;property name="#LayoutVersion" /&gt;
+  &lt;property name="#LayoutScaleFactor"&gt;@1,Width=1@1,Height=1&lt;/property&gt;
+&lt;/XtraSerializer&gt;</globalSetting>
+    <globalSetting name="autoTranslateForm.prefixTextBox.Text">####</globalSetting>
+    <globalSetting name="autoTranslateForm.prefixCheckBox.Checked">False</globalSetting>
+    <globalSetting name="autoTranslateForm.useExistingTranslationsCheckBox.Checked">False</globalSetting>
+    <globalSetting name="autoTranslateForm.useOnlyExistingTranslationsCheckEdit.Checked">False</globalSetting>
+    <globalSetting name="autoTranslateForm.referenceLanguageComboBoxEdit.SelectedIndex">-1</globalSetting>
+    <globalSetting name="autoTranslateForm.languagesToTranslateCheckListBox">
+    </globalSetting>
+    <globalSetting name="projectMruItems">&lt;?xml version='1.0' encoding='utf-8'?&gt;&lt;items&gt;&lt;item type="2" checksum="3473529712" /&gt;&lt;item type="2" checksum="522588630" /&gt;&lt;item type="2" checksum="1136830207" /&gt;&lt;item type="2" checksum="2061063682" /&gt;&lt;item type="2" checksum="2436103564" /&gt;&lt;item type="2" checksum="770813060" /&gt;&lt;item type="2" checksum="3096707072" /&gt;&lt;item type="2" checksum="1632620483" /&gt;&lt;item type="2" checksum="3149282402" /&gt;&lt;item type="2" checksum="2196869208" /&gt;&lt;item type="2" checksum="3165212706" /&gt;&lt;item type="2" checksum="2213074359" /&gt;&lt;item type="2" checksum="2306116453" /&gt;&lt;item type="2" checksum="913219544" /&gt;&lt;item type="2" checksum="1352069714" /&gt;&lt;item type="2" checksum="913406770" /&gt;&lt;item type="2" checksum="1723642844" /&gt;&lt;item type="2" checksum="3503007710" /&gt;&lt;item type="2" checksum="2008335646" /&gt;&lt;item type="2" checksum="1384146832" /&gt;&lt;item type="2" checksum="1460623748" /&gt;&lt;item type="2" checksum="2223844580" /&gt;&lt;item type="2" checksum="2987732778" /&gt;&lt;item type="2" checksum="2683895836" /&gt;&lt;item type="2" checksum="2811693516" /&gt;&lt;item type="2" checksum="1659744004" /&gt;&lt;/items&gt;</globalSetting>
+    <userSetting name="henri@DESKTOP-BIET2ON.filesInitialDir">C:\EpiServer\Sites\tilsyn-automat</userSetting>
+    <userSetting name="henri@DESKTOP-BIET2ON.FindText">
+    </userSetting>
+    <userSetting name="henri@DESKTOP-BIET2ON.RecentFiles">C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\_Admin.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\_Admin.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationList.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationList.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationForm.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationForm.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Database\Resources\LogRepository.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Database\Resources\LogRepository.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Database\Resources\DeclarationRepository.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Database\Resources\DeclarationRepository.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Database\Resources\CompanyRepository.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Database\Resources\CompanyRepository.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Database\Resources\UserRepository.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Database\Resources\UserRepository.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Database\Resources\LogRepository.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Database\Resources\LogRepository.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationList.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationList.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationForm.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationForm.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyList.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyList.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyForm.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyForm.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserList.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserList.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserForm.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserForm.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserFormModel.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserFormModel.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogView.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogView.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogList.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogList.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\CompanyLink.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\CompanyLink.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationList.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationList.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationStart.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationStart.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationNoMachine.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationNoMachine.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationForm.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationForm.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationStatus.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationStatus.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadStep1.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadStep1.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationRead.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationRead.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationThanks.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationThanks.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationItem.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationItem.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationTestItem.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationTestItem.nn-NO.resx###***###C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\CompanyItem.nb-NO.resx;C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\CompanyItem.nn-NO.resx</userSetting>
+    <description>
+    </description>
+  </configuration>
+  <fileGroups>
+    <fileGroup name="" projectFolderUniqueID="85e6c395-9139-477f-834f-04a0a10dcb1b" orderPosition="36" ignoreDuringExportAndImport="False" uniqueID="420df7b9-4e81-44ab-aa25-7dc406788506">
+      <file filePath="wwwroot\Resources\Business\ApiHttpClient.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Business\ApiHttpClient.resx" uniqueID="b834eca1-7392-433c-8ebd-3279be0b261e" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="40" ignoreDuringExportAndImport="False" uniqueID="9167196f-21cc-4599-8044-6a824b4fb255">
+      <file filePath="wwwroot\Resources\Pages\Declaration\CompanyLink.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\CompanyLink.nb-NO.resx" uniqueID="c9e34423-8954-42f8-b71c-b7530f4e9307" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\CompanyLink.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\CompanyLink.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="59" ignoreDuringExportAndImport="False" uniqueID="3f2563df-d042-4302-a1e2-e7e44803faf4">
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationList.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationList.nb-NO.resx" uniqueID="430bdd8d-aa2d-410f-aaf0-8c692d376b0d" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationList.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationList.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="60" ignoreDuringExportAndImport="False" uniqueID="52c77ca8-be1b-42e9-86a2-1525bf870d25">
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationStart.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationStart.nb-NO.resx" uniqueID="fa6fecfa-a858-4f45-bc34-061d91b5d75e" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationStart.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationStart.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" orderPosition="65" ignoreDuringExportAndImport="False" uniqueID="7ead85e4-27da-4047-8356-9f00c4a9e2fb">
+      <file filePath="wwwroot\Resources\Pages\Admin\UserList.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserList.nb-NO.resx" uniqueID="91a629d5-8214-4802-8b12-d263132de80d" />
+      <file filePath="wwwroot\Resources\Pages\Admin\UserList.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserList.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="66" ignoreDuringExportAndImport="False" uniqueID="7599d8b7-ebb1-42cc-b675-9e6c97196eec">
+      <file filePath="Shared\Resources\Classes\Declaration\DeclarationItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationItem.nb-NO.resx" uniqueID="c70c7e9b-f3f0-4494-8f1d-3d555cc4dec6" />
+      <file filePath="Shared\Resources\Classes\Declaration\DeclarationItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" orderPosition="66" ignoreDuringExportAndImport="False" uniqueID="26440ea7-05d4-4f31-8a28-2a161358d136">
+      <file filePath="wwwroot\Resources\Pages\Admin\UserForm.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserForm.nb-NO.resx" uniqueID="76cd287e-a4ad-4076-b8f7-9d6e877936ea" />
+      <file filePath="wwwroot\Resources\Pages\Admin\UserForm.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserForm.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="67" ignoreDuringExportAndImport="False" uniqueID="06947321-c751-4e77-a777-8555fa6bcc5f">
+      <file filePath="wwwroot\Resources\Pages\Shared\_Admin.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\_Admin.nb-NO.resx" uniqueID="5d46ed33-27d4-4779-8646-89c6940fd8fa" />
+      <file filePath="wwwroot\Resources\Pages\Shared\_Admin.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\_Admin.nn-NO.resx" uniqueID="4ebd7e15-446f-423d-93f4-960cc209f825" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="85e6c395-9139-477f-834f-04a0a10dcb1b" orderPosition="68" ignoreDuringExportAndImport="False" uniqueID="571ac4ae-f3d6-4b5f-9823-120cf8c41938">
+      <file filePath="wwwroot\Resources\Pages\Shared\_Error.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\_Error.nb-NO.resx" uniqueID="239825b1-3983-416c-970f-ce8933d5ed0b" />
+      <file filePath="wwwroot\Resources\Pages\Shared\_Error.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\_Error.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="69" ignoreDuringExportAndImport="False" uniqueID="a7fe44b7-dc3e-42ad-a8c5-d0e24fa84bbf">
+      <file filePath="wwwroot\Resources\Pages\Admin\DeclarationList.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationList.nb-NO.resx" uniqueID="529661e8-5715-47ed-8707-9e1f29aad131" />
+      <file filePath="wwwroot\Resources\Pages\Admin\DeclarationList.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationList.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="0142daea-ad52-4425-9de3-8156730fa17f" orderPosition="69" ignoreDuringExportAndImport="False" uniqueID="35add694-13ef-4938-a6a5-09012452f12e">
+      <file filePath="Database\Resources\DeclarationRepository.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\DeclarationRepository.nb-NO.resx" uniqueID="59668119-f4f7-4afd-a4f4-702a843f10c2" />
+      <file filePath="Database\Resources\DeclarationRepository.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\DeclarationRepository.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="70" ignoreDuringExportAndImport="False" uniqueID="31c50f42-5457-4dc2-9470-188330f3de23">
+      <file filePath="Shared\Resources\Classes\Declaration\DeclarationTestItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationTestItem.nb-NO.resx" uniqueID="9a286139-ff12-4fb1-853f-1dcd59ddb151" />
+      <file filePath="Shared\Resources\Classes\Declaration\DeclarationTestItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\DeclarationTestItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="0142daea-ad52-4425-9de3-8156730fa17f" orderPosition="71" ignoreDuringExportAndImport="False" uniqueID="c101cc91-1395-4901-ae6b-63d6e372161a">
+      <file filePath="Database\Resources\CompanyRepository.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\CompanyRepository.nb-NO.resx" uniqueID="6660f5e4-137c-4248-9efc-47b192c010f2" />
+      <file filePath="Database\Resources\CompanyRepository.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\CompanyRepository.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="0142daea-ad52-4425-9de3-8156730fa17f" orderPosition="72" ignoreDuringExportAndImport="False" uniqueID="fd9e7811-e21c-49fb-ac16-fe16d399ae9a">
+      <file filePath="Database\Resources\UserRepository.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\UserRepository.nb-NO.resx" uniqueID="aef2166b-7e50-4ebf-90af-1e38acd7aaaa" />
+      <file filePath="Database\Resources\UserRepository.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\UserRepository.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="73" ignoreDuringExportAndImport="False" uniqueID="c22e678b-dcff-4c6c-b7f9-e59f385d807b">
+      <file filePath="wwwroot\Resources\Pages\Admin\DeclarationForm.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationForm.nb-NO.resx" uniqueID="925fea11-bd59-4899-b11f-76376ba7aa24" />
+      <file filePath="wwwroot\Resources\Pages\Admin\DeclarationForm.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationForm.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="0142daea-ad52-4425-9de3-8156730fa17f" orderPosition="73" ignoreDuringExportAndImport="False" uniqueID="7fab7db2-dce7-43a9-83bc-78fe25c7f1fd">
+      <file filePath="Database\Resources\LogRepository.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\LogRepository.nb-NO.resx" uniqueID="99630cfe-f4c3-4953-b514-9f3db7c8c41f" />
+      <file filePath="Database\Resources\LogRepository.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Database\Resources\LogRepository.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="74" ignoreDuringExportAndImport="False" uniqueID="29e35b54-b7b7-4d64-b9f1-d97704b43dee">
+      <file filePath="wwwroot\Resources\Pages\Admin\CompanyList.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyList.nb-NO.resx" uniqueID="9edde08b-181a-4cc5-9ba0-fb8b28d10569" />
+      <file filePath="wwwroot\Resources\Pages\Admin\CompanyList.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyList.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="75" ignoreDuringExportAndImport="False" uniqueID="9e284c63-a6f8-446b-9f37-52459caeab2e">
+      <file filePath="wwwroot\Resources\Pages\Admin\CompanyForm.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyForm.nb-NO.resx" uniqueID="497a565e-9e43-4276-b3c5-062c482a2e5b" />
+      <file filePath="wwwroot\Resources\Pages\Admin\CompanyForm.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\CompanyForm.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="75" ignoreDuringExportAndImport="False" uniqueID="40f09291-541a-44e4-b939-cea1b5602d97">
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationNoMachine.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationNoMachine.nb-NO.resx" uniqueID="2c8480e9-6012-464c-8d6c-425ca4399459" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationNoMachine.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationNoMachine.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="76" ignoreDuringExportAndImport="False" uniqueID="1c811555-2cdf-4500-8b90-1ec1b0ddee3f">
+      <file filePath="Shared\Resources\Classes\Company\CompanyItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\CompanyItem.nb-NO.resx" uniqueID="5431e92e-66f3-42fb-b730-219b3ee11fc9" />
+      <file filePath="Shared\Resources\Classes\Company\CompanyItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\CompanyItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="76" ignoreDuringExportAndImport="False" uniqueID="32d9cffd-11d4-4e37-ac4c-bb66054ebc58">
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationForm.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationForm.nb-NO.resx" uniqueID="7b9cab87-fb92-42e0-afbb-320515366a0a" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationForm.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationForm.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" orderPosition="76" ignoreDuringExportAndImport="False" uniqueID="9dbcd0bf-0980-46be-8eba-ad7e26026e34">
+      <file filePath="wwwroot\Resources\Pages\Admin\UserFormModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserFormModel.nb-NO.resx" uniqueID="1ea645b3-445a-42cd-9416-1d181e443981" />
+      <file filePath="wwwroot\Resources\Pages\Admin\UserFormModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\UserFormModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="77" ignoreDuringExportAndImport="False" uniqueID="f98afa44-be4d-490d-934c-5ccc2facb685">
+      <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationStatus.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationStatus.nb-NO.resx" uniqueID="cdfdcbbd-7dbe-4519-9fbd-8f35fd21970b" />
+      <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationStatus.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationStatus.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" orderPosition="77" ignoreDuringExportAndImport="False" uniqueID="f858fe72-ccfd-4216-b5e2-fbf384f18a3b">
+      <file filePath="wwwroot\Resources\Pages\Admin\LogView.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogView.nb-NO.resx" uniqueID="a21a11b6-77fd-4272-85c0-4a870d228779" />
+      <file filePath="wwwroot\Resources\Pages\Admin\LogView.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogView.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="78" ignoreDuringExportAndImport="False" uniqueID="8445a373-ee05-4445-9eb6-24390fdd099a">
+      <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadStep1.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadStep1.nb-NO.resx" uniqueID="6e429ead-b5bc-4847-8b91-e21446d6fe35" />
+      <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadStep1.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadStep1.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" orderPosition="78" ignoreDuringExportAndImport="False" uniqueID="8cd6c181-05a6-4fec-be9c-c92b893f493c">
+      <file filePath="wwwroot\Resources\Pages\Admin\LogList.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogList.nb-NO.resx" uniqueID="32352173-0213-4566-a3bc-c35ff848f462" />
+      <file filePath="wwwroot\Resources\Pages\Admin\LogList.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogList.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="79" ignoreDuringExportAndImport="False" uniqueID="348aabbf-3cb2-4391-8816-aee6996d7a7a">
+      <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\RuleHelp.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\RuleHelp.nb-NO.resx" uniqueID="608d60cf-b717-4549-896e-9603447b9c08" />
+      <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\RuleHelp.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\RuleHelp.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="80" ignoreDuringExportAndImport="False" uniqueID="cdf97544-e24d-4a09-8a1f-cbc79fbcef8b">
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationRead.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationRead.nb-NO.resx" uniqueID="52899f29-6d25-4818-92f8-59119c32f71b" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationRead.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationRead.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="81" ignoreDuringExportAndImport="False" uniqueID="7bc18d90-84fa-4716-918d-cbb78aaa3fec">
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationThanks.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationThanks.nb-NO.resx" uniqueID="67f09203-5132-4c4c-b911-152ac09e8c47" />
+      <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationThanks.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationThanks.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="83" ignoreDuringExportAndImport="False" uniqueID="10fe8551-0bf3-41e1-a6f2-984c3d2eb694">
+      <file filePath="Shared\Resources\Classes\Company\ContactPersonItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\ContactPersonItem.nb-NO.resx" uniqueID="b8ece542-3433-4075-9dd4-a0a74dfe1ca6" />
+      <file filePath="Shared\Resources\Classes\Company\ContactPersonItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\ContactPersonItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="84" ignoreDuringExportAndImport="False" uniqueID="545c3cda-92e0-42c1-94d2-3ff837b6b344">
+      <file filePath="Shared\Resources\Classes\Company\CompanyCustomItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\CompanyCustomItem.nb-NO.resx" uniqueID="8d4b4b1a-b328-4a0d-a0dd-17aeb3042eef" />
+      <file filePath="Shared\Resources\Classes\Company\CompanyCustomItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Company\CompanyCustomItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="85" ignoreDuringExportAndImport="False" uniqueID="017d01a2-ed61-4b52-8cd1-8be7426fda66">
+      <file filePath="Shared\Resources\Classes\Declaration\AddLinkToCompanyModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\AddLinkToCompanyModel.nb-NO.resx" uniqueID="0df0b6a6-a827-476b-8b63-fccd73b841bd" />
+      <file filePath="Shared\Resources\Classes\Declaration\AddLinkToCompanyModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\AddLinkToCompanyModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="86" ignoreDuringExportAndImport="False" uniqueID="a07853ca-c9df-486c-99ec-297db21850c6">
+      <file filePath="Shared\Resources\Classes\User\UserItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\User\UserItem.nb-NO.resx" uniqueID="4afb0604-9a97-4e5a-80be-22ee0e99ed31" />
+      <file filePath="Shared\Resources\Classes\User\UserItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\User\UserItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+    <fileGroup name="" projectFolderUniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" orderPosition="87" ignoreDuringExportAndImport="False" uniqueID="b8add7c5-26dd-490c-afb1-ef8249508ba1">
+      <file filePath="Shared\Resources\Classes\Log\LogItem.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Log\LogItem.nb-NO.resx" uniqueID="a8c7e47c-816e-42bb-a3ff-34f67d852cce" />
+      <file filePath="Shared\Resources\Classes\Log\LogItem.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Log\LogItem.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
+      <remarks>
+      </remarks>
+    </fileGroup>
+  </fileGroups>
+  <projectFolders>
+    <projectFolder uniqueID="0142daea-ad52-4425-9de3-8156730fa17f" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Databasanrop" orderPosition="34">
+      <remarks>
+      </remarks>
+      <dynSettings>
+        <setting name="UseParentFilePatternSettings">
+          <value>True</value>
+        </setting>
+        <setting name="NeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[extension]</value>
+        </setting>
+        <setting name="NonNeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[languagecode].[extension]</value>
+        </setting>
+        <setting name="BaseNameDotCount">
+          <value>0</value>
+        </setting>
+        <setting name="DefaultFileTypesToIgnore">
+          <value>.aspx;.ascx;.asmx;.master;.sitemap</value>
+        </setting>
+        <setting name="IgnoreDuringExportAndImport">
+          <value>False</value>
+        </setting>
+      </dynSettings>
+    </projectFolder>
+    <projectFolder uniqueID="e15026c4-78dc-4885-9801-aea185748e2b" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Saksbehandler" orderPosition="35">
+      <remarks>
+      </remarks>
+      <dynSettings>
+        <setting name="UseParentFilePatternSettings">
+          <value>True</value>
+        </setting>
+        <setting name="NeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[extension]</value>
+        </setting>
+        <setting name="NonNeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[languagecode].[extension]</value>
+        </setting>
+        <setting name="BaseNameDotCount">
+          <value>0</value>
+        </setting>
+        <setting name="DefaultFileTypesToIgnore">
+          <value>.aspx;.ascx;.asmx;.master;.sitemap</value>
+        </setting>
+        <setting name="IgnoreDuringExportAndImport">
+          <value>False</value>
+        </setting>
+      </dynSettings>
+    </projectFolder>
+    <projectFolder uniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Administrator" orderPosition="39">
+      <remarks>
+      </remarks>
+      <dynSettings>
+        <setting name="UseParentFilePatternSettings">
+          <value>True</value>
+        </setting>
+        <setting name="NeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[extension]</value>
+        </setting>
+        <setting name="NonNeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[languagecode].[extension]</value>
+        </setting>
+        <setting name="BaseNameDotCount">
+          <value>0</value>
+        </setting>
+        <setting name="DefaultFileTypesToIgnore">
+          <value>.aspx;.ascx;.asmx;.master;.sitemap</value>
+        </setting>
+        <setting name="IgnoreDuringExportAndImport">
+          <value>False</value>
+        </setting>
+      </dynSettings>
+    </projectFolder>
+    <projectFolder uniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Virksomhet" orderPosition="40">
+      <remarks>
+      </remarks>
+      <dynSettings>
+        <setting name="UseParentFilePatternSettings">
+          <value>True</value>
+        </setting>
+        <setting name="NeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[extension]</value>
+        </setting>
+        <setting name="NonNeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[languagecode].[extension]</value>
+        </setting>
+        <setting name="BaseNameDotCount">
+          <value>0</value>
+        </setting>
+        <setting name="DefaultFileTypesToIgnore">
+          <value>.aspx;.ascx;.asmx;.master;.sitemap</value>
+        </setting>
+        <setting name="IgnoreDuringExportAndImport">
+          <value>False</value>
+        </setting>
+      </dynSettings>
+    </projectFolder>
+    <projectFolder uniqueID="cd4c0f87-a828-4fd2-b89a-192f0fb0e78e" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Formulärfält" orderPosition="41">
+      <remarks>
+      </remarks>
+      <dynSettings>
+        <setting name="UseParentFilePatternSettings">
+          <value>True</value>
+        </setting>
+        <setting name="NeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[extension]</value>
+        </setting>
+        <setting name="NonNeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[languagecode].[extension]</value>
+        </setting>
+        <setting name="BaseNameDotCount">
+          <value>0</value>
+        </setting>
+        <setting name="DefaultFileTypesToIgnore">
+          <value>.aspx;.ascx;.asmx;.master;.sitemap</value>
+        </setting>
+        <setting name="IgnoreDuringExportAndImport">
+          <value>False</value>
+        </setting>
+      </dynSettings>
+    </projectFolder>
+    <projectFolder uniqueID="85e6c395-9139-477f-834f-04a0a10dcb1b" parentUniqueID="00000000-0000-0000-0000-000000000000" name="Övrigt" orderPosition="42">
+      <remarks>
+      </remarks>
+      <dynSettings>
+        <setting name="UseParentFilePatternSettings">
+          <value>True</value>
+        </setting>
+        <setting name="NeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[extension]</value>
+        </setting>
+        <setting name="NonNeutralLanguageFileNamePattern">
+          <value>[basename][optionaldefaulttypes].[languagecode].[extension]</value>
+        </setting>
+        <setting name="BaseNameDotCount">
+          <value>0</value>
+        </setting>
+        <setting name="DefaultFileTypesToIgnore">
+          <value>.aspx;.ascx;.asmx;.master;.sitemap</value>
+        </setting>
+        <setting name="IgnoreDuringExportAndImport">
+          <value>False</value>
+        </setting>
+      </dynSettings>
+    </projectFolder>
+  </projectFolders>
+</project>

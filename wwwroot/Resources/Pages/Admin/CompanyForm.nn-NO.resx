@@ -117,34 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Manage businesses" xml:space="preserve">
-    <value>Administrere virksomheter</value>
+  <data name="Basic Info" xml:space="preserve">
+    <value />
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Kontaktperson</value>
+  <data name="Business Address" xml:space="preserve">
+    <value />
   </data>
-  <data name="Import businesses from excel" xml:space="preserve">
-    <value>Importer virksomheter fra excel</value>
+  <data name="Cancel" xml:space="preserve">
+    <value />
   </data>
-  <data name="ok" xml:space="preserve">
-    <value>ok</value>
+  <data name="Contact Person Business" xml:space="preserve">
+    <value />
   </data>
-  <data name="dubelletter" xml:space="preserve">
-    <value>dubelletter</value>
+  <data name="Delete Business" xml:space="preserve">
+    <value />
   </data>
-  <data name="total" xml:space="preserve">
-    <value>totalt</value>
+  <data name="Industry Group" xml:space="preserve">
+    <value />
   </data>
-  <data name="Create new business" xml:space="preserve">
-    <value>Opprett ny virksomhet</value>
+  <data name="Institutional Sector Code" xml:space="preserve">
+    <value />
   </data>
-  <data name="Create self-control" xml:space="preserve">
-    <value>Opprett egenkontroll</value>
+  <data name="Location Address" xml:space="preserve">
+    <value />
   </data>
-  <data name="Self-inspection" xml:space="preserve">
-    <value>Egenkontroll</value>
+  <data name="New business" xml:space="preserve">
+    <value />
   </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Ja</value>
+  <data name="New Client" xml:space="preserve">
+    <value />
+  </data>
+  <data name="New Declaration" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Remove Link" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Update business" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User Postal Address" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -108,12 +108,13 @@ namespace Difi.Sjalvdeklaration.wwwroot
             var supportedCultures = new[]
             {
                 new CultureInfo("en-US"),
-                new CultureInfo("no"),
+                new CultureInfo("nb-NO"),
+                new CultureInfo("nn-NO"),
             };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("no-NB"),
+                DefaultRequestCulture = new RequestCulture("nb-NO"),
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });

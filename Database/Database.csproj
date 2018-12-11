@@ -21,44 +21,50 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\CompanyRepository.Designer.cs">
+    <Compile Update="Resources\CompanyRepository - Copy.nb-NO.Designer.cs">
+      <DependentUpon>CompanyRepository.nb-NO.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>CompanyRepository.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\DeclarationRepository.Designer.cs">
+    <Compile Update="Resources\CompanyRepository.nb-NO.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>DeclarationRepository.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\LogRepository.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LogRepository.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\UserRepository.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UserRepository.resx</DependentUpon>
+      <DependentUpon>CompanyRepository.nb-NO.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\CompanyRepository.resx">
+    <EmbeddedResource Update="Resources\CompanyRepository.nn-NO.resx">
+      <LastGenOutput>CompanyRepository.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CompanyRepository.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\DeclarationRepository.resx">
+    <EmbeddedResource Update="Resources\CompanyRepository.nb-NO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeclarationRepository.Designer.cs</LastGenOutput>
+      <LastGenOutput>CompanyRepository.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\LogRepository.resx">
+    <EmbeddedResource Update="Resources\DeclarationRepository.nn-NO.resx">
+      <LastGenOutput>DeclarationRepository.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LogRepository.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\UserRepository.resx">
+    <EmbeddedResource Update="Resources\DeclarationRepository.nb-NO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>UserRepository.Designer.cs</LastGenOutput>
+      <LastGenOutput>DeclarationRepository.nb-NO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\LogRepository.nn-NO.resx">
+      <LastGenOutput>LogRepository.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\LogRepository.nb-NO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogRepository.nb-NO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UserRepository.nn-NO.resx">
+      <LastGenOutput>UserRepository.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UserRepository.nb-NO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserRepository.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

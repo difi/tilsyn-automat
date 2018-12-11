@@ -18,66 +18,57 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Classes\Company\CompanyItem.resx">
+    <EmbeddedResource Update="Resources\Classes\Company\CompanyItem.nn-NO.resx">
+      <LastGenOutput>CompanyItem.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CompanyItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Classes\Company\ContactPersonItem.resx">
+    <EmbeddedResource Update="Resources\Classes\Company\CompanyItem.nb-NO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ContactPersonItem.Designer.cs</LastGenOutput>
+      <LastGenOutput>CompanyItem.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Classes\Declaration\AddLinkToCompanyModel.resx">
+    <EmbeddedResource Update="Resources\Classes\Company\ContactPersonItem.nn-NO.resx">
+      <LastGenOutput>ContactPersonItem.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>AddLinkToCompanyModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationItem.resx">
+    <EmbeddedResource Update="Resources\Classes\Company\ContactPersonItem.nb-NO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeclarationItem.Designer.cs</LastGenOutput>
+      <LastGenOutput>ContactPersonItem.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationTestItem.resx">
+    <EmbeddedResource Update="Resources\Classes\Declaration\AddLinkToCompanyModel.nn-NO.resx">
+      <LastGenOutput>AddLinkToCompanyModel.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeclarationTestItem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Classes\Log\LogItem.resx">
+    <EmbeddedResource Update="Resources\Classes\Declaration\AddLinkToCompanyModel.nb-NO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LogItem.Designer.cs</LastGenOutput>
+      <LastGenOutput>AddLinkToCompanyModel.nb-NO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationItem.nn-NO.resx">
+      <LastGenOutput>DeclarationItem.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationItem.nb-NO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeclarationItem.nb-NO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationTestItem.nn-NO.resx">
+      <LastGenOutput>DeclarationTestItem.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\DeclarationTestItem.nb-NO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeclarationTestItem.nb-NO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Log\LogItem.nn-NO.resx">
+      <LastGenOutput>LogItem.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Log\LogItem.nb-NO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogItem.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\UserItem.'en-US.resx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Resources\Classes\Company\CompanyItem.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>CompanyItem.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Classes\Company\ContactPersonItem.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ContactPersonItem.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Classes\Declaration\AddLinkToCompanyModel.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AddLinkToCompanyModel.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Classes\Declaration\DeclarationItem.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DeclarationItem.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Classes\Declaration\DeclarationTestItem.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DeclarationTestItem.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Classes\Log\LogItem.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>LogItem.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
 </Project>
