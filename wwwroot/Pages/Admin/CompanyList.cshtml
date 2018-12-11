@@ -5,97 +5,103 @@
     ViewData["Title"] = "Start";
 }
 
-<h1>@Localizer["Admin-company-h1"]</h1>
+<h1>@Localizer["Manage businesses"]</h1>
 
 <br />
 
 <div class="row">
     <div class="small-12 medium-4 column">
-        <a class="button add" asp-page="CompanyForm">@Localizer["Admin-new-company"]</a>
+        <a class="button add" asp-page="CompanyForm">@Localizer["Create new business"]</a>
     </div>
     <div class="small-12 4 medium-8 column">
 
         @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
         {
-            <div class="jsExcelImportContainer">
-                <button class="button alt jsExcelImportButton">@Localizer["Admin-import-company"]</button>
+        <div class="jsExcelImportContainer fileUpload">
+            <button class="button alt jsExcelImportButton">@Localizer["Import businesses from excel"]</button>
 
-                <div class="jsExcelImportTarget">
-                    <form method="post" enctype="multipart/form-data">
-                        @Html.EditorFor(x => x.ExcelFile, "File")
-
-                        <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
-                    </form>
+            <div class="jsExcelImportTarget">
+                <div class="row collapse">
+                    <div class="large-3 medium-4 columns end">
+                        <form method="post" enctype="multipart/form-data">
+                            @Html.EditorFor(x => x.ExcelFile, "File")
+                            <button type="submit" class="button upload" asp-page-handler="ExcelImport">@Localizer["Import businesses from excel"]</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </div>
+                }
+
+
+                <hr />
+
+        </div>
+
+        @if (Model.ImportTotalCount > 0)
+        {
+            @Model.ImportIOkCount <span>@Localizer["ok"]</span><br />
+            @Model.ImportExistCount <span>@Localizer["dubelletter"]</span><br />
+            @Model.ImportTotalCount <span>@Localizer["total"]</span><br />
         }
-    </div>
-</div>
 
-@if (Model.ImportTotalCount > 0)
-{
-    @Model.ImportIOkCount <span>@Localizer["Admin-import-company-ok"]</span><br/>
-    @Model.ImportExistCount <span>@Localizer["Admin-import-company-exist"]</span><br />
-    @Model.ImportTotalCount <span>@Localizer["Admin-import-company-total"]</span><br />
-}
+        <form method="post">
+            <table class="table jsCompanyTableSort">
+                <caption>
+                    <h2>@Localizer["Manage businesses"]</h2>
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+                        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.CorporateIdentityNumber)</th>
 
-<form method="post">
-    <table class="table jsCompanyTableSort">
-        <caption>
-            <h2>@Localizer["Admin-company-h1"]</h2>
-        </caption>
-        <thead>
-            <tr>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.CorporateIdentityNumber)</th>
+                        <th scope="col">@Localizer["Contact"]</th>
+                        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Email)</th>
+                        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Phone)</th>
+                        <th scope="col">@Localizer["Self-inspection"]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CompanyList)
+                    {
+                        var contactPerson = item.ContactPersonList.FirstOrDefault();
 
-                <th scope="col">@Localizer["Admin-contact-name"]</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Email)</th>
-                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ContactPersonList.SingleOrDefault().Phone)</th>
-                <th scope="col">@Localizer["TH-controll-name"]</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.CompanyList)
-            {
-                var contactPerson = item.ContactPersonList.FirstOrDefault();
+                        <tr>
+                            <td class="clickable-td">
+                                <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.Name</a>
+                            </td>
+                            <td class="clickable-td">
+                                @item.CorporateIdentityNumber
+                            </td>
 
-                <tr>
-                    <td class="clickable-td">
-                        <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.Name</a>
-                    </td>
-                    <td class="clickable-td">
-                        @item.CorporateIdentityNumber
-                    </td>
+                            <td class="clickable-td">
+                                @contactPerson?.Name
+                            </td>
 
-                    <td class="clickable-td">
-                        @contactPerson?.Name
-                    </td>
+                            <td class="clickable-td">
+                                @contactPerson?.Email
+                            </td>
 
-                    <td class="clickable-td">
-                        @contactPerson?.Email
-                    </td>
+                            <td class="clickable-td">
+                                @contactPerson?.PhoneCountryCode
+                                @contactPerson?.Phone
+                            </td>
+                            <td>
+                                @if (item.DeclarationList.Count > 0)
+                                {
+                                    <span class="hide">Ja</span>
+                                }
+                                else
+                                {
+                                    <a class="button small add" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Create self-control"]</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
 
-                    <td class="clickable-td">
-                        @contactPerson?.PhoneCountryCode
-                        @contactPerson?.Phone
-                    </td>
-                    <td>
-                        @if (item.DeclarationList.Count > 0)
-                        {
-                            <span class="hide">Ja</span>
-                        }
-                        else
-                        {
-                            <a class="button small add" asp-page="DeclarationForm" asp-route-companyId="@item.Id">@Localizer["Admin-new-declaration"]</a>
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</form>
-
-@section Scripts {
-    @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
+        }

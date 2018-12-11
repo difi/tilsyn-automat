@@ -117,39 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Admin-company-h1" xml:space="preserve">
+  <data name="Manage businesses" xml:space="preserve">
     <value>Administrere virksomheter</value>
   </data>
-  <data name="Admin-company-h2" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Admin-contact-name" xml:space="preserve">
+  <data name="Contact" xml:space="preserve">
     <value>Kontaktperson</value>
   </data>
-  <data name="Admin-import-company" xml:space="preserve">
+  <data name="Import businesses from excel" xml:space="preserve">
     <value>Importer virksomheter fra excel</value>
   </data>
-  <data name="Admin-import-company-middleText" xml:space="preserve">
-    <value>virksomheter importert av</value>
-  </data>
-  
-  <data name="Admin-import-company-ok" xml:space="preserve">
+  <data name="ok" xml:space="preserve">
     <value>ok</value>
   </data>
-  <data name="Admin-import-company-exist" xml:space="preserve">
+  <data name="dubelletter" xml:space="preserve">
     <value>dubelletter</value>
   </data>
-  <data name="Admin-import-company-total" xml:space="preserve">
+  <data name="total" xml:space="preserve">
     <value>totalt</value>
   </data>
-  
-  <data name="Admin-new-company" xml:space="preserve">
+  <data name="Create new business" xml:space="preserve">
     <value>Opprett ny virksomhet</value>
   </data>
-  <data name="Admin-new-declaration" xml:space="preserve">
+  <data name="Create self-control" xml:space="preserve">
     <value>Opprett egenkontroll</value>
   </data>
-  <data name="TH-controll-name" xml:space="preserve">
+  <data name="Self-inspection" xml:space="preserve">
     <value>Egenkontroll</value>
   </data>
 </root>

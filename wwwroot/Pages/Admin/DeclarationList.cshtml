@@ -4,95 +4,95 @@
     ViewData["Title"] = "DeclarationList";
 }
 
-<h1>@Localizer["DeclarationList-header-h2"]</h1>
+<h1>@Localizer["Self-inspection"]</h1>
 
 <form method="post">
 
     @*<div class="row">
-        <div class="small-12 column">
-            <h3>@Localizer["DeclarationList-filter-header"]</h3>
-        </div>
-    </div>*@
+            <div class="small-12 column">
+                <h3>@Localizer["Filter self-controls"]</h3>
+            </div>
+        </div>*@
 
     @*<div class="row">
-        <div class="small-12 column">
-            <div class="filter-wrapper">
-                <fieldset>
-                    <legend>@Localizer["DeclarationList-filter-legend"]</legend>
-                </fieldset>
+            <div class="small-12 column">
+                <div class="filter-wrapper">
+                    <fieldset>
+                        <legend>@Localizer["Date submitted"]</legend>
+                    </fieldset>
 
 
 
-                <div class="row">
+                    <div class="row">
 
-                    <div class="small-3 column">
-                        <div class="row">
-                            <div class="small-6 column">
-                                <label for="alt1">
-                                    @Localizer["DeclarationList-filter-label-from"]
-                                </label>
-                                <input id="alt1" type="text" />
+                        <div class="small-3 column">
+                            <div class="row">
+                                <div class="small-6 column">
+                                    <label for="alt1">
+                                        @Localizer["From"]
+                                    </label>
+                                    <input id="alt1" type="text" />
+                                </div>
+                                <div class="small-6 column">
+                                    <label for="alt2">
+                                        @Localizer["To"]
+                                    </label>
+                                    <input id="alt2" type="text" />
+                                </div>
                             </div>
-                            <div class="small-6 column">
-                                <label for="alt2">
-                                    @Localizer["DeclarationList-filter-label-to"]
-                                </label>
-                                <input id="alt2" type="text" />
+
+                        </div>
+
+                        <div class="small-6 column">
+                            <div class="row">
+                                <div class="small-6 column">
+                                    <label for="alt3">
+                                        @Localizer["Status of self-control"]
+                                    </label>
+                                    <select id="alt3">
+                                        <option>Alle</option>
+                                        <option>?</option>
+                                    </select>
+                                </div>
+                                <div class="small-6 column">
+                                    <label for="alt3">
+                                        @Localizer["Status of supervision"]
+                                    </label>
+                                    <select id="alt4">
+                                        <option>Alle</option>
+                                        <option>?</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                    </div>
+                        <div class="small-3 column">
 
-                    <div class="small-6 column">
-                        <div class="row">
-                            <div class="small-6 column">
-                                <label for="alt3">
-                                    @Localizer["DeclarationList-filter-label-status-1"]
-                                </label>
-                                <select id="alt3">
-                                    <option>Alle</option>
-                                    <option>?</option>
-                                </select>
+                            <div class="row collapse">
+                                <div class="small-6 column">
+                                    <br />
+                                    <button class="button">@Localizer["Filter"]</button>
+                                </div>
+                                <div class="small-6 column">
+                                    <br />
+                                    <button class="button alt">@Localizer["Show all"]</button>
+                                </div>
                             </div>
-                            <div class="small-6 column">
-                                <label for="alt3">
-                                    @Localizer["DeclarationList-filter-label-status-2"]
-                                </label>
-                                <select id="alt4">
-                                    <option>Alle</option>
-                                    <option>?</option>
-                                </select>
-                            </div>
+
                         </div>
-                    </div>
 
-                    <div class="small-3 column">
-
-                        <div class="row collapse">
-                            <div class="small-6 column">
-                                <br />
-                                <button class="button">@Localizer["DeclarationList-filter-button"]</button>
-                            </div>
-                            <div class="small-6 column">
-                                <br />
-                                <button class="button alt">@Localizer["DeclarationList-filter-button-view-all"]</button>
-                            </div>
-                        </div>  
-                        
                     </div>
 
                 </div>
-
             </div>
-        </div>
-    </div>*@
+        </div>*@
 
     <div class="row">
         <div class="small-6 column">
-            <h3>@Model.ViewCount @Localizer["DeclarationList-header-h3"]  @Localizer["DeclarationList-of-total"] @Model.TotalCount</h3>
+            <h3>@Model.ViewCount @Localizer["Self-inspections"]  @Localizer["of total"] @Model.TotalCount</h3>
         </div>
         <div class="small-6 text-right column">
-            <button class="button export-all" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["DeclarationList-eksport-all"]</button>
+            <button class="button export-all" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["Export all"]</button>
         </div>
     </div>
 
@@ -105,11 +105,11 @@
             <tr>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)</th>
-                <th scope="col">@Localizer["DeclarationList-user"]</th>
+                <th scope="col">@Localizer["Executive officer"]</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)</th>
-                <th scope="col">Status for egenkontroll</th>
-                <th scope="col">Status for tilsyn</th>
+                <th scope="col">@Localizer["Status of self-control"]</th>
+                <th scope="col">@Localizer["Status of supervision"]</th>
                 <th class="sorter-false" scope="col"></th>
             </tr>
         </thead>
@@ -149,7 +149,7 @@
                     </td>
 
                     <td>
-                        <button class="button export" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id"><span class="show-for-sr">@Localizer["DeclarationList-eksport"]</span></button>
+                        <button class="button export" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id"><span class="show-for-sr">@Localizer["Export"]</span></button>
                     </td>
                 </tr>
             }

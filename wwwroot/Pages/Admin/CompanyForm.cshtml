@@ -16,7 +16,7 @@
         <fieldset>
 
             <legend>
-                @Localizer["Admin-clients-legend-basic-info"]
+                @Localizer["Basic Info"]
             </legend>
             <div class="row">
                 <div class="small-12 medium-4 end columns">
@@ -61,7 +61,7 @@
 
         <fieldset>
             <legend>
-                @Localizer["Admin-clients-legend-postal-address"]
+                @Localizer["User Postal Address"]
             </legend>
 
             <div class="row">
@@ -88,7 +88,7 @@
 
         <fieldset>
             <legend>
-                @Localizer["Admin-clients-legend-location-address"]
+                @Localizer["Location Address"]
             </legend>
 
             <div class="row">
@@ -114,7 +114,7 @@
 
         <fieldset>
             <legend>
-                @Localizer["Admin-clients-legend-business-addressd"]
+                @Localizer["Business Address"]
             </legend>
 
             <div class="row">
@@ -140,7 +140,7 @@
 
         <fieldset>
             <legend>
-                @Localizer["Admin-clients-legend-contactPerson"]
+                @Localizer["Contact Person Business"]
             </legend>
 
             <div class="row">
@@ -173,7 +173,7 @@
 
         <fieldset>
             <legend>
-                @Localizer["Admin-clients-legend-industryGroup"]
+                @Localizer["Industry Group"]
             </legend>
 
             <div class="row">
@@ -200,7 +200,7 @@
 
         <fieldset>
             <legend>
-                @Localizer["Admin-clients-legend-institutionalSectorCode"]
+                @Localizer["Institutional Sector Code"]
             </legend>
 
             <div class="row">
@@ -221,7 +221,7 @@
         @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
         {
             <fieldset>
-                <legend>@Localizer["Admin-clients-legend-usercode"]</legend>
+                <legend>@Localizer["User"]</legend>
 
                 <ul class="listing-border">
                     @foreach (var user in Model.CompanyItemForm.UserList)
@@ -232,7 +232,7 @@
                                     <span class="listing-social-security-number">@user.UserItem.SocialSecurityNumber</span>
                                 </div>
                                 <div class="small-6 text-right column">
-                                    <button class="button small delete" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Admin-clients-usercode-delete"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
+                                    <button class="button small delete" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Remove Link"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
                                 </div>
                             </div>
                         </li>
@@ -250,19 +250,19 @@
                 <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
                 @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
-                    <input class="button large" type="submit" value="@Localizer["Admin-clients-update"]" />
+                    <input class="button large" type="submit" value="@Localizer["Save"]" />
                 }
                 else
                 {
-                    <input class="button large" type="submit" value="@Localizer["Admin-clients-new-declaration"]" asp-route-type="declaration" />
-                    <input class="button large" type="submit" value="@Localizer["Admin-clients-new-client"]" asp-route-type="add" />
+                    <input class="button large" type="submit" value="@Localizer["New Declaration"]" asp-route-type="declaration" />
+                    <input class="button large" type="submit" value="@Localizer["New Client"]" asp-route-type="add" />
                 }
 
             </div>
             <div class="small-12 medium-4 text-right column">
                 @if (Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
-                    <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Admin-clients-delete"]</button>
+                    <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Delete Business"]</button>
                 }
 
             </div>

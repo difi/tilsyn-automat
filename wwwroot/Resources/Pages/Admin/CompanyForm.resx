@@ -117,46 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Admin-clients-delete" xml:space="preserve">
-    <value>Slett virksomhet</value>
-  </data>
-  <data name="Admin-clients-legend-basic-info" xml:space="preserve">
+  <data name="Basic Info" xml:space="preserve">
     <value>Grunduppgifter</value>
   </data>
-  <data name="Admin-clients-legend-business-addressd" xml:space="preserve">
+  <data name="Business Address" xml:space="preserve">
     <value>Forretningsadresse</value>
-  </data>
-  <data name="Admin-clients-legend-contactPerson" xml:space="preserve">
-    <value>Kontaktperson virksomhet</value>
-  </data>
-  <data name="Admin-clients-legend-industryGroup" xml:space="preserve">
-    <value>Næringsgruppe</value>
-  </data>
-  <data name="Admin-clients-legend-institutionalSectorCode" xml:space="preserve">
-    <value>Institusjonell sektorkode</value>
-  </data>
-  <data name="Admin-clients-legend-location-address" xml:space="preserve">
-    <value>Beliggenhetsadresse</value>
-  </data>
-  <data name="Admin-clients-legend-postal-address" xml:space="preserve">
-    <value>Postadresse</value>
-  </data>
-  <data name="Admin-clients-legend-usercode" xml:space="preserve">
-    <value>Brukere</value>
-  </data>
-  <data name="Admin-clients-new-client" xml:space="preserve">
-    <value>Opprett virksomhet</value>
-  </data>
-  <data name="Admin-clients-new-declaration" xml:space="preserve">
-    <value>Opprett egenkontroll</value>
-  </data>
-  <data name="Admin-clients-update" xml:space="preserve">
-    <value>Lagre</value>
-  </data>
-  <data name="Admin-clients-usercode-delete" xml:space="preserve">
-    <value>Fjern kobling</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
+  </data>
+  <data name="Contact Person Business" xml:space="preserve">
+    <value>Kontaktperson virksomhet</value>
+  </data>
+  <data name="Delete Business" xml:space="preserve">
+    <value>Slett virksomhet</value>
+  </data>
+  <data name="Industry Group" xml:space="preserve">
+    <value>Næringsgruppe</value>
+  </data>
+  <data name="Institutional Sector Code" xml:space="preserve">
+    <value>Institusjonell sektorkode</value>
+  </data>
+  <data name="Location Address" xml:space="preserve">
+    <value>Beliggenhetsadresse</value>
+  </data>
+  <data name="New Client" xml:space="preserve">
+    <value>Opprett virksomhet</value>
+  </data>
+  <data name="New Declaration" xml:space="preserve">
+    <value>Opprett egenkontroll</value>
+  </data>
+  <data name="Remove Link" xml:space="preserve">
+    <value>Fjern kobling</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lagre</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Brukere</value>
+  </data>
+  <data name="User Postal Address" xml:space="preserve">
+    <value>Postadresse</value>
   </data>
 </root>
