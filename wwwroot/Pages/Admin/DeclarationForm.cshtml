@@ -9,114 +9,150 @@
 {
     <h1>@Model.DeclarationItemForm.Company.Name</h1>
 
-    <div class="form-wrapper">
-
-        <h2>@(Model.DeclarationItemForm?.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll")</h2>
-
-        <form method="post">
-            <div asp-validation-summary="All"></div>
-
-            <div class="row">
-                <div class="small-12 medium-6 end columns">
-                    @Html.HiddenFor(x => x.DeclarationItemForm.Id)
-                    @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
-                    @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
-                </div>
+    <div class="jsDeclarationListToggleCardContainer">
+        <div class="row medium-uncollapse">
+            <div class="small-12 medium-12 columns">
+                <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> @(Model.DeclarationItemForm?.Id != Guid.Empty ? "Oppdater egenkontroll" : "Opprette egenkontroll")</button></h2>
             </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-12 columns">
+                <div class="jsDeclarationListToggleCardTarget">
+                    <div class="card declaration-list-info">
+                        <form method="post">
+                            <div asp-validation-summary="All"></div>
 
-            <div class="row">
-                <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.DeclarationItemForm.CaseNumber, "TextBox")
-                </div>
-            </div>
+                            <div class="row">
+                                <div class="small-12 medium-6 end columns">
+                                    @Html.HiddenFor(x => x.DeclarationItemForm.Id)
+                                    @Html.HiddenFor(x => x.DeclarationItemForm.CompanyItemId)
+                                    @Html.EditorFor(x => x.DeclarationItemForm.Name, "TextBox")
+                                </div>
+                            </div>
 
-            <div class="row">
-                <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
-                </div>
-            </div>
+                            <div class="row">
+                                <div class="small-12 medium-4 end columns">
+                                    @Html.EditorFor(x => x.DeclarationItemForm.CaseNumber, "TextBox")
+                                </div>
+                            </div>
 
-            @if (Model.DeclarationItemForm.Id != Guid.Empty)
-            {
-                <div class="row">
-                    <div class="small-12 medium-6 end columns">
-                        @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new {list = Model.SelectStatusList})
+                            <div class="row">
+                                <div class="small-12 medium-4 end columns">
+                                    @Html.EditorFor(x => x.DeclarationItemForm.DeadlineDate, "DateTime")
+                                </div>
+                            </div>
+
+                            @if (Model.DeclarationItemForm.Id != Guid.Empty)
+                            {
+                                <div class="row">
+                                    <div class="small-12 medium-6 end columns">
+                                        @Html.EditorFor(x => x.DeclarationItemForm.StatusId, "DropdownListInt", new { list = Model.SelectStatusList })
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="small-12 medium-6 end columns">
+                                    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new { list = Model.SelectPurposeOfTest })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="small-12 medium-6 end columns">
+                                    @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new { list = Model.SelectUserList })
+                                </div>
+                            </div>
+
+                            <div style="display: none;">
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
+                                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
+                            </div>
+
+                            <br /><br />
+
+                            <div class="row collapse align-bottom">
+                                <div class="small-12 column">
+                                    @if (Model.DeclarationItemForm.Id != Guid.Empty)
+                                    {
+                                        <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
+
+                                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save" />
+
+                                    }
+                                    else
+                                    {
+                                        <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
+
+                                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save" />
+
+                                    }
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
-            }
-
-            <div class="row">
-                <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.PurposeOfTestId, "DropdownListInt", new {list = Model.SelectPurposeOfTest})
-                </div>
             </div>
-
-            <div class="row">
-                <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.DeclarationItemForm.UserItemId, "DropdownListGuid", new {list = Model.SelectUserList})
-                </div>
-            </div>
-
-            <div style="display: none;">
-                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfTest, "DisplayValueList")
-                @Html.EditorFor(x => x.DeclarationItemForm.DeclarationTestItem.TypeOfMachine, "DisplayValueList")
-            </div>
-
-            <br/><br/>
-
-            <div class="row collapse align-bottom">
-                <div class="small-12 column">
-                    @if (Model.DeclarationItemForm.Id != Guid.Empty)
-                    {
-                        <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
-
-                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save"/>
-
-                    }
-                    else
-                    {
-                        <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-
-                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save"/>
-
-                    }
-                </div>
-            </div>
-
-        </form>
+        </div>
     </div>
+
+
+    <br />
+
+    <div class="jsDeclarationListToggleCardContainer">
+        <div class="row medium-uncollapse">
+            <div class="small-12 medium-12 columns">
+                <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> Vis virksamhetsinformasjon</button></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-12 columns">
+                <div class="jsDeclarationListToggleCardTarget">
+                    <div class="card declaration-list-info">
+                        Utfall: Brudd/Samsvar/Ikke-forekomst/Ikke testbar<br />
+                        Formulering på utfall: Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Det henger ikke gjenstander over kundens betjeningsområde.
+                        Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Betjeningsområdet skal være uten hindringer
+                        Standard: CEN/TS 15291:2006
+                        Kapittel: D.6.2 User operating space
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     if (Model.DeclarationItemForm?.Status?.Id > 2)
     {
         var mainIndex = 1;
 
         <div class="row column">
-            <div class="small-12 medium-12 columns">
+            <div class="small-12 medium-6 columns">
                 <h1>@Localizer["Summary"]</h1>
             </div>
 
-            @*<div class="small-7 medium-10 columns text-right">
-                <div class="row align-middle">
-                    <div class="small-8 medium-9 columns">
-                        <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
-                    </div>
-                    <div class="small-4 medium-3 columns">
-                        <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
-                            <div class="status-done">@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)%</div>
+            <div class="small-12 medium-6 columns text-right">
+                    <div class="row align-middle">
+                        <div class="small-8 medium-9 columns">
+                            <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
+                        </div>
+                        <div class="small-4 medium-3 columns">
+                            <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
+                                <div class="status-done">@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)%</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>*@
         </div>
 
         if (Model.DeclarationItemForm.DeclarationTestItem.HaveMachine)
         {
-            @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = Model.AllDoneStep1})
+            @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = Model.AllDoneStep1 })
 
             foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
             {
                 mainIndex++;
-                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = true})
+                @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = true })
             }
         }
         else
