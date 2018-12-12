@@ -5,12 +5,16 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -23,6 +27,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
         public DeclarationItem LocalizationItem { get; set; }
+
+        [BindProperty]
+        public FilterModel FilterModel { get; set; }
+
+        [BindProperty]
+        [Display(Name = "Välj status")]
+        public List<SelectListItem> SelectStatusList { get; set; }
 
         public int ViewCount { get; set; }
 
@@ -39,24 +50,69 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
-
-                if (result.Succeeded)
+                if (await CreateLists())
                 {
-                    DeclarationList = result.Data;
+                    var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
 
-                    ViewCount = DeclarationList.Count;
-                    TotalCount = DeclarationList.Count;
-                }
-                else
-                {
-                    await errorHandler.View(this, null, result.Exception);
+                    if (result.Succeeded)
+                    {
+                        DeclarationList = result.Data;
+
+                        ViewCount = DeclarationList.Count;
+                        TotalCount = DeclarationList.Count;
+
+                        FilterModel = new FilterModel
+                        {
+                            FromDate = DateTime.Now.Date,
+                            ToDate = DateTime.Now.Date.AddMonths(1)
+                        };
+                    }
+                    else
+                    {
+                        await errorHandler.View(this, null, result.Exception);
+                    }
                 }
             }
             catch (Exception exception)
             {
                 await errorHandler.Log(this, null, exception);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostFilterAsync()
+        {
+            try
+            {
+                if (await CreateLists())
+                {
+                    var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Status1 + "/" + FilterModel.Status2);
+
+                    if (result.Succeeded)
+                    {
+                        DeclarationList = result.Data;
+
+                        ViewCount = DeclarationList.Count;
+                        TotalCount = DeclarationList.Count;
+
+                        return Page();
+                    }
+
+                    return await errorHandler.View(this, OnGetAsync(), result.Exception);
+                }
+
+                return null;
+            }
+            catch (Exception exception)
+            {
+                return await errorHandler.Log(this, OnGetAsync(), exception);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostViewAllAsync()
+        {
+            return await errorHandler.View(this, OnGetAsync());
         }
 
         [HttpPost]
@@ -101,6 +157,27 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 return await errorHandler.Log(this, OnGetAsync(), exception);
             }
+        }
+
+        private async Task<bool> CreateLists()
+        {
+            var typeOfStatuses = await apiHttpClient.Get<List<ValueListTypeOfStatus>>("/api/ValueList/GetAllTypeOfStatus");
+
+            if (!typeOfStatuses.Succeeded)
+            {
+                await errorHandler.View(this, null, typeOfStatuses.Exception);
+
+                return false;
+            }
+
+            SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.TextAdmin} - {x.TextCompany} ({x.Text})",
+                Selected = false
+            }).ToList();
+
+            return true;
         }
 
         private static byte[] GenerateExcel(IEnumerable<DeclarationItem> list)

@@ -14,6 +14,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult<T> GetAll<T>() where T : List<DeclarationItem>;
 
+        ApiResult<T> GetByFilter<T>(FilterModel filterModel) where T : List<DeclarationItem>;
+
         ApiResult<T> GetForCompany<T>(Guid id) where T : List<DeclarationItem>;
 
         ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>;

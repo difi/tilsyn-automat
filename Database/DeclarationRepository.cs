@@ -118,6 +118,26 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
+        public ApiResult<T> GetByFilter<T>(FilterModel filterModel) where T : List<DeclarationItem>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var all = GetAll<T>().Data;
+                var filterdList = all.Where(x => x.StatusId == filterModel.Status1 && x.DeadlineDate > filterModel.FromDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59) && x.DeadlineDate < filterModel.ToDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59)).ToList();
+
+                result.Data = (T) filterdList;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
         public ApiResult<T> GetForCompany<T>(Guid id) where T : List<DeclarationItem>
         {
             var result = new ApiResult<T>();
