@@ -26,12 +26,17 @@
                         <div class="profile-area">
                             <div class="row collapse">
 
-                                <div class="small-12 medium-12 columns">
-                                    <button class="jsProfileTrigger toggle-profile-button button plus">
-                                        <span class="profile-first-letter" aria-hidden="true">@nameClaim?.Value</span>
-                                        <span class="profile-name hide-for-small-only">@nameClaim?.Value</span><br />
-                                        <span class="profile-number hide-for-small-only">@Localizer["Case processor"]</span>
-                                        <span class="toggle-profile-icon"><span class="show-for-sr"> - @Localizer["View log out"]</span></span>
+                                <div class="small-12 medium-12 text-right columns">
+                                    <button class="jsProfileTrigger toggle-profile-button button">
+                                        <span class="profile-first-letter">@nameClaim?.Value</span>
+
+                                        <span class="profile-area-text-wrapper hide-for-small-only">
+                                            <span class="profile-name ">@nameClaim?.Value</span><br />
+                                            <span class="profile-title">@Localizer["Case processor"]</span>
+                                        </span>
+                                        
+                                        <span class="profile-icon"><span class="show-for-sr"> - @Localizer["View log out"]</span></span>
+
                                     </button>
                                 </div>
                             </div>

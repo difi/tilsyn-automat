@@ -292,29 +292,81 @@ button, .button, input[type="button"], input[type="submit"] {
         text-align: right;
         font-weight: bold;
         background-color: transparent;
-        padding: 0.75rem 2rem 1rem 10px;
-        margin-bottom: 0;
+        padding: 0.6em 20px 0.6em 1.25em;
+        margin: 8px 0 0 0;
         color: $dark-blue-grey;
         font-size: 1rem;
         border-radius: 0;
         width: 100%;
-        position: relative;
-        top: 21px;
+
+        .profile-first-letter {
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            background-color: $purple;
+            border-radius: 1000px;
+            padding-top: 5px;
+            text-align: center;
+            font-family: $sofiapro;
+            margin-right: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            font-size: 0;
+
+            &.declaration {
+                background-color: $dark-blue-grey;
+            }
+
+            &:first-letter {
+                font-size: 21px;
+                color: $color-white;
+                text-transform: uppercase;
+                font-weight: normal;
+            }
+        }
+
+        .profile-area-text-wrapper {
+            display: inline-block;
+            padding: 0 0.5rem;
+            min-height: 44px;
+            position: relative;
+            vertical-align: top;
+        }
+
+        .profile-icon {
+            background-image: url("/css/cssimg/icons-sprite.svg");
+            background-repeat: no-repeat;
+            background-position: 100% -2098px;
+            width: 16px;
+            height: 10px;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            margin-left: 6px;
+            margin-top: 8px;
+        }
+
 
         &[aria-expanded="false"] {
-            .toggle-profile-icon {
-                top: 21px;
-                transform: rotate(-45deg);
-                transition: transform 200ms ease;
+            .profile-icon {
+                transform: rotate(0deg);
+                transition: transform 300ms ease;
             }
         }
 
         &[aria-expanded="true"] {
-            .toggle-profile-icon {
-                transform: rotate(-225deg);
-                top: 31px;
-                transition: transform 200ms ease;
+            .profile-icon {
+                transform: rotate(180deg);
+                transition: transform 300ms ease;
             }
+        }
+
+        .profile-title {
+            font-weight: normal;
+        }
+
+        .profile-name {
+            max-width: 100px;
         }
 
         .toggle-header-number {
@@ -325,18 +377,6 @@ button, .button, input[type="button"], input[type="submit"] {
             display: inline-block;
             text-align: center;
             line-height: 1.15;
-        }
-
-        .toggle-profile-icon {
-            border: 3px solid $dark-blue-grey;
-            border-top-color: transparent;
-            border-right-color: transparent;
-            width: 15px;
-            height: 15px;
-            display: inline-block;
-            transform: rotate(-45deg);
-            position: absolute;
-            right: 5px;
         }
     }
 

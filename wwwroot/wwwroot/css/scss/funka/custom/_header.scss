@@ -36,35 +36,6 @@ header {
         padding: 2rem 0 1rem 0;
     }
 
-    .profile-number {
-        font-weight: normal;
-    }
-
-    .profile-name {
-        max-width: 100px;
-    }
-
-    .profile-first-letter {
-        width: 40px;
-        height: 40px;
-        display: inline-block;
-        background-color: $dark-blue-grey;
-        border-radius: 1000px;
-        padding-top: 3px;
-        text-align: center;
-        font-family: $sofiapro;
-        color: transparent;
-        font-size: 0;
-        margin-right: 0.5rem;
-        top: 10px;
-        position: relative;
-
-        &:first-letter {
-            font-size: 21px;
-            color: $color-white;
-        }
-    }
-
     .toggle-profile-button {
         // Button is in button.scss
     }
