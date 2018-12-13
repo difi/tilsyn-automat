@@ -66,12 +66,20 @@ h1 {
 
 h2 {
     margin: 16px 0 10px 0;
-    clear:both;
+    clear: both;
     line-height: 1.1;
+
+
 }
 
- h3, h4 {
+h3, h4 {
     margin: 0;
+
+    &.summary-header {
+        display: inline-block;
+        margin-right: 2rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .start {

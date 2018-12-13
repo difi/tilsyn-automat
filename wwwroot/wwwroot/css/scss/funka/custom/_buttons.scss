@@ -102,18 +102,17 @@ button, .button, input[type="button"], input[type="submit"] {
     }
 
     &.export-all {
-        font-size: 15px;
-        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -689px no-repeat;
+        background-image: url("/css/cssimg/icons-sprite.svg");
+        background-repeat: no-repeat;
+        background-position: 5px -687px;
         margin-bottom: 0;
         margin-right: 8px;
-        padding-right: 2rem;
-        text-decoration: underline;
-        color: $light-navy;
+        padding-left: 2.5rem;
 
         &:hover,
         &:focus,
         &:active {
-            background-color: $color-white;
+            //background-color: $color-white;
         }
     }
 
