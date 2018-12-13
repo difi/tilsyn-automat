@@ -68,6 +68,7 @@ namespace Difi.Sjalvdeklaration.wwwroot
             services.AddScoped<ILogRepository, LogRepository>();
             services.AddScoped<IApiHttpClient, ApiHttpClient>();
             services.AddScoped<IErrorHandler, ErrorHandler>();
+            services.AddScoped<IExcelGenerator, ExcelGenerator>();
 
             services.AddDistributedMemoryCache();
 
