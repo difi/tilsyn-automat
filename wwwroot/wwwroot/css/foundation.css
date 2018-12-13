@@ -4468,6 +4468,45 @@ div div .tablesorter-default a {
 
 /* GLOBAL
 --------------------------------------------------------------*/
+.positive, .negative {
+  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-size: 1.125rem;
+  padding: 1rem 0;
+  color: #515151; }
+  .positive .validation-summary-errors, .negative .validation-summary-errors {
+    border: 0;
+    margin: 0;
+    border-radius: 0;
+    background-color: transparent; }
+  .positive ul, .positive li, .negative ul, .negative li {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+  .positive ul, .negative ul {
+    padding-left: 2.5rem;
+    position: relative; }
+    .positive ul:before, .negative ul:before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      height: 30px;
+      width: 30px;
+      background-image: url("/css/cssimg/icons-sprite.svg");
+      background-repeat: no-repeat;
+      background-position: 0 -1892px;
+      top: 0;
+      left: 0; }
+
+.positive {
+  background-color: #B4F0E7; }
+  .positive ul:before {
+    background-position: 0 -1892px; }
+
+.negative {
+  background-color: #FFD1D1; }
+  .negative ul:before {
+    background-position: 0 -1995px; }
+
 .info-wrapper {
   border-left-width: 7px;
   border-left-style: solid;

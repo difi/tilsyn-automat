@@ -4,19 +4,20 @@
 
 @if (errorString != null)
 {
-    <div class="row">
-        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <br />
-            <div class="errorOnThis">
-                <b class="h3">@Localizer["Error"]</b><br/>
-                
-                <p>
-                    @Localizer["An error has occurred and logged. Contact your system administrator for more information."]
-                </p>
-                
-                <p>
-                    <b>@Localizer["Error message:"]</b> @errorString
-                </p>
+
+    <div class="negative" role="alert">
+        <div class="row">
+            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <div class="validation-summary-errors">
+                    <ul>
+                        <li>@Localizer["Error"]</li>
+                        <li> @Localizer["An error has occurred and logged. Contact your system administrator for more information."]</li>
+                    </ul>
+                    <p>
+                        @Localizer["Error message:"]: @errorString
+                    </p>
+                </div>
+
             </div>
         </div>
     </div>

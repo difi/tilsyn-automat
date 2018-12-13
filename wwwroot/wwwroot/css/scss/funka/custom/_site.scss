@@ -30,11 +30,65 @@
 
 /* GLOBAL
 --------------------------------------------------------------*/
+.positive, .negative {
+    font-family: $sofiapro;
+    font-size: rem-calc(map-deep-get($header-styles, medium, h5, font-size));
+    padding: 1rem 0;
+    color: $feedback-text;
 
+    .validation-summary-errors {
+        border: 0;
+        margin: 0;
+        border-radius: 0;
+        background-color: transparent;
+    }
 
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul {
+        padding-left: 2.5rem;
+        position: relative;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            background-image: url("/css/cssimg/icons-sprite.svg");
+            background-repeat: no-repeat;
+            background-position: 0 -1892px;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+.positive {
+    background-color: $feedback-green;
+
+    ul {
+        &:before {
+            background-position: 0 -1892px;
+        }
+    }
+}
+
+.negative {
+    background-color: $feedback-red;
+
+    ul {
+        &:before {
+            background-position: 0 -1995px;
+        }
+    }
+}
 
 main {
-
 }
 
 
