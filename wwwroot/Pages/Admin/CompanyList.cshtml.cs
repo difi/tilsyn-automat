@@ -142,37 +142,38 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 CompanyItem = new CompanyItem
                 {
                     Id = companyId,
-                    Name = dataRow["Virksomhet - Navn"].ToString(),
-                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"].ToString(),
                     Code = dataRow["Virksomhet - Pinkode"].ToString(),
+                    ExternalId = dataRow["Virksomhet - Virksomhet ID (tilsynets datamodell)"].ToString(),
+                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"].ToString(),
+                    OwenerCorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"].ToString(),
+                    Name = dataRow["Virksomhet - Virksomhet"].ToString(),
 
-                    MailingAddressStreet = dataRow["Postadresse - Adresse gate"].ToString(),
-                    MailingAddressZip = dataRow["Postadresse - Adresse postnr"].ToString(),
-                    MailingAddressCity = dataRow["Postadresse - Adresse poststed"].ToString(),
+                    MailingAddressStreet = dataRow["Virksomhet - MailingAddress - Gatenavn og nummer"].ToString(),
+                    MailingAddressZip = dataRow["Virksomhet - MailingAddress - Postnummer"].ToString(),
+                    MailingAddressCity = dataRow["Virksomhet - MailingAddress - Sted"].ToString(),
 
-                    BusinessAddressStreet = dataRow["Beliggenhetsadresse - Adresse gate"].ToString(),
-                    BusinessAddressZip = dataRow["Beliggenhetsadresse - Adresse postnr"].ToString(),
-                    BusinessAddressCity = dataRow["Beliggenhetsadresse - Adresse poststed"].ToString(),
+                    LocationAddressStreet = dataRow["Virksomhet - LocationAddress - Gatenavn og nummer"].ToString(),
+                    LocationAddressZip = dataRow["Virksomhet - LocationAddress - Postnummer"].ToString(),
+                    LocationAddressCity = dataRow["Virksomhet - LocationAddress - Sted"].ToString(),
 
-                    LocationAddressStreet = dataRow["Forretningsadresse - Adresse gate"].ToString(),
-                    LocationAddressZip = dataRow["Forretningsadresse - Adresse postnr"].ToString(),
-                    LocationAddressCity = dataRow["Forretningsadresse - Adresse poststed"].ToString(),
+                    BusinessAddressStreet = dataRow["Virksomhet - BusinessAddress - Gatenavn og nummer"].ToString(),
+                    BusinessAddressZip = dataRow["Virksomhet - BusinessAddress - Postnummer"].ToString(),
+                    BusinessAddressCity = dataRow["Virksomhet - BusinessAddress - Sted"].ToString(),
 
-                    IndustryGroupCode = dataRow["Næringsgruppe - Kode"].ToString(),
-                    IndustryGroupDescription = dataRow["Næringsgruppe - Beskrivelse"].ToString(),
-                    IndustryGroupAggregated = dataRow["Næringsgruppe - Aggregert"].ToString(),
+                    IndustryGroupCode = dataRow["Virksomhet - IndustryGroup - Kode"].ToString(),
+                    IndustryGroupDescription = dataRow["Virksomhet - IndustryGroup - Beskrivelse"].ToString(),
+                    IndustryGroupAggregated = dataRow["Virksomhet - IndustryGroup - Aggregert"].ToString(),
 
-                    InstitutionalSectorCode = dataRow["Institusjonell sektorkode - Kode"].ToString(),
-                    InstitutionalSectorDescription = dataRow["Institusjonell sektorkode - Beskrivelse"].ToString(),
+                    InstitutionalSectorCode = dataRow["Virksomhet - InstitutionalSector - Kode"].ToString(),
+                    InstitutionalSectorDescription = dataRow["Virksomhet - InstitutionalSector - Beskrivelse"].ToString(),
 
-                    OwenerCorporateIdentityNumber = string.Empty
                 },
                 ContactPersonItem = new ContactPersonItem
                 {
                     Id = Guid.NewGuid(),
                     Name = dataRow["Kontaktperson - Navn"].ToString(),
-                    Email = dataRow["Kontaktperson - Epostadresse"].ToString(),
-                    PhoneCountryCode = dataRow["Kontaktperson - Telefonnummer Landskode"].ToString(),
+                    Email = dataRow["Kontaktperson - E-postadresse"].ToString(),
+                    PhoneCountryCode = dataRow["Kontaktperson - Landskode"].ToString(),
                     Phone = dataRow["Kontaktperson - Telefonnummer"].ToString(),
                     CompanyItemId = companyId,
                 }
@@ -185,25 +186,31 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 excelRow.CompanyItem.Code = random.Next(1000, 9999).ToString();
             }
 
-            if (!string.IsNullOrEmpty(dataRow["Automat - Navn"].ToString()))
+            if (!string.IsNullOrEmpty(dataRow["Egenkontroll - Navn på egenkontroll"].ToString()))
             {
                 excelRow.DeclarationItem = new DeclarationItem
                 {
                     Id = declarationItemId,
                     CompanyItemId = companyId,
-                    UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
-                    Name = dataRow["Automat - Navn"].ToString(),
+                    Name = dataRow["Egenkontroll - Navn på egenkontroll"].ToString(),
+                    CaseNumber = dataRow["Egenkontroll - Saksnummer"].ToString(),
                     CreatedDate = DateTime.Now,
-                    DeadlineDate = DateTime.Now.Date.AddDays(14).AddMinutes(-1),
-                    StatusId = (int)DeclarationStatus.Created,
+                    StatusId = (int) DeclarationStatus.Created,
+                    UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
+                    DeadlineDate = !string.IsNullOrEmpty(dataRow["Egenkontroll - Frist for innsending"].ToString()) ? Convert.ToDateTime(dataRow["Egenkontroll - Frist for innsending"].ToString()) : DateTime.Now.Date.AddDays(14).AddMinutes(-1),
                     DeclarationTestItem = new DeclarationTestItem
                     {
                         Id = declarationItemId,
                         TypeOfMachine = valueListTypeOfMachine.Single(x => x.Id == 1),
                         TypeOfTest = valueListTypeOfTest.Single(x => x.Id == 1),
-                        PurposeOfTestId = valueListPurposeOfTest.Single(x => x.Id == 2).Id
+                        PurposeOfTestId = !string.IsNullOrEmpty(dataRow["Egenkontroll - Formål med test"].ToString()) ? valueListPurposeOfTest.Single(x => x.Text == dataRow["Egenkontroll - Formål med test"].ToString()).Id : valueListPurposeOfTest.Single(x => x.Id == 2).Id
                     }
                 };
+
+                if (!string.IsNullOrEmpty(dataRow["Saksbehandler - Navn"].ToString()))
+                {
+                    excelRow.DeclarationItem.UserName = dataRow["Saksbehandler - Navn"].ToString();
+                }
             }
 
             return excelRow;

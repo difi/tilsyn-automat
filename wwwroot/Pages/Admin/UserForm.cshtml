@@ -70,7 +70,7 @@
                         <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save"/>
                     </div>
                     <div class="small-12 medium-4 text-right column">
-                        <button class="button delete" type="submit" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Delete user"]</button>
+                        <button class="button delete" type="submit" onclick="return confirm('@Localizer["Are you sure you want to delete this user?"]');" asp-page-handler="RemoveUser" asp-route-id="@Model.UserItemForm.Id">@Localizer["Delete user"]</button>
                     </div>
                 }
                 else

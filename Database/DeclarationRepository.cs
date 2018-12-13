@@ -260,6 +260,16 @@ namespace Difi.Sjalvdeklaration.Database
                     });
                 }
 
+                if (!String.IsNullOrEmpty(declarationItem.UserName))
+                {
+                    var user = dbContext.UserList.SingleOrDefault(x => x.Name == declarationItem.UserName);
+
+                    if (user != null)
+                    {
+                        declarationItem.UserItemId = user.Id;
+                    }
+                }
+
                 dbContext.DeclarationList.Add(declarationItem);
                 dbContext.SaveChanges();
 

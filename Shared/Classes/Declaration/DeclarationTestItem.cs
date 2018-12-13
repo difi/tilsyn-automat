@@ -17,7 +17,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public int StatusCount { get; set; }
 
-        [ExcelExport]
         [Display(Name = "Purpose of test")]
         public int PurposeOfTestId { get; set; }
 
@@ -34,6 +33,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public ValueListTypeOfTest TypeOfTest { get; set; }
 
         [ExcelExport]
+        [Display(Name = "Purpose of test")]
         public ValueListPurposeOfTest PurposeOfTest { get; set; }
 
         [ExcelExport]

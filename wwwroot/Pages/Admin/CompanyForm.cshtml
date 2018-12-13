@@ -262,7 +262,7 @@
             <div class="small-12 medium-4 text-right column">
                 @if (Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
-                    <button class="button delete" type="submit" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Delete Business"]</button>
+                    <button class="button delete" type="submit" onclick="return confirm('@Localizer["Are you sure you want to delete this company?"]');" asp-page-handler="RemoveCompany" asp-route-id="@Model.CompanyItemForm.Id">@Localizer["Delete Business"]</button>
                 }
 
             </div>

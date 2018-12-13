@@ -23,6 +23,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [BindProperty]
         public UserItem UserItemForm { get; set; }
 
+        [BindProperty]
         [Display(Name = "Select roles")]
         public List<SelectListItem> SelectRoleList { get; set; }
 

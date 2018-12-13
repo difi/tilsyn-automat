@@ -165,4 +165,7 @@
   <data name="User Postal Address" xml:space="preserve">
     <value />
   </data>
+  <data name="Are you sure you want to delete this company?" xml:space="preserve">
+    <value />
+  </data>
 </root>
