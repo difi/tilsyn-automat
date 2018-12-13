@@ -12,19 +12,24 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Business
 {
     public class ExcelGenerator: IExcelGenerator
     {
+        private readonly IApiHttpClient apiHttpClient;
         private readonly IStringLocalizer<DeclarationItem> localizerDeclarationItem;
         private readonly IStringLocalizer<DeclarationTestItem> localizerDeclarationTestItem;
         private readonly IStringLocalizer<CompanyItem> localizerCompanyItem;
         private readonly IStringLocalizer<UserItem> localizerUserItem;
         private readonly IStringLocalizer<ContactPersonItem> localizerContactPersonItem;
 
-        public ExcelGenerator(IStringLocalizer<DeclarationItem> localizerDeclarationItem, IStringLocalizer<DeclarationTestItem> localizerDeclarationTestItem, IStringLocalizer<CompanyItem> localizerCompanyItem, IStringLocalizer<UserItem> localizerUserItem, IStringLocalizer<ContactPersonItem> localizerContactPersonItem)
+        public ExcelGenerator(IApiHttpClient apiHttpClient, IStringLocalizer<DeclarationItem> localizerDeclarationItem, IStringLocalizer<DeclarationTestItem> localizerDeclarationTestItem, IStringLocalizer<CompanyItem> localizerCompanyItem, IStringLocalizer<UserItem> localizerUserItem, IStringLocalizer<ContactPersonItem> localizerContactPersonItem)
         {
+            this.apiHttpClient = apiHttpClient;
             this.localizerDeclarationItem = localizerDeclarationItem;
             this.localizerDeclarationTestItem = localizerDeclarationTestItem;
             this.localizerCompanyItem = localizerCompanyItem;
@@ -32,18 +37,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             this.localizerContactPersonItem = localizerContactPersonItem;
         }
 
-        public byte[] GenerateExcel(IEnumerable<DeclarationItem> list)
+        public byte[] GenerateExcel(IEnumerable<DeclarationItem> declarationList)
         {
-            var dataTable = GetDataTable(list);
-
-            //var dataTable = BuildDataTable<DeclarationItem>(list.ToList());
+            var dataTable = GetDataTable(declarationList.ToList());
 
             using (var pck = new ExcelPackage())
             {
                 var excelWorksheet = pck.Workbook.Worksheets.Add("Data");
                 excelWorksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
 
-                using (var excelRange = excelWorksheet.Cells["A1:AX1"])
+                using (var excelRange = excelWorksheet.Cells["A1:BQ1"])
                 {
                     excelRange.Style.Font.Bold = true;
                     excelRange.Style.Font.Size = excelRange.Style.Font.Size + 2;
@@ -52,7 +55,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                     excelRange.Style.Font.Color.SetColor(System.Drawing.Color.White);
                 }
 
-                using (var excelRange = excelWorksheet.Cells["A1:AX"])
+                using (var excelRange = excelWorksheet.Cells["A1:BQ100"])
                 {
                     excelRange.AutoFitColumns();
                 }
@@ -61,15 +64,21 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             }
         }
 
-        private DataTable GetDataTable(IEnumerable<DeclarationItem> declarationItems)
+        private DataTable GetDataTable(IReadOnlyCollection<DeclarationItem> declarationItems)
         {
             var dataTable = new DataTable();
+            var indicatorList = declarationItems.First().IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder).ToList();
 
             AddHeaders<DeclarationItem>(dataTable, "Egenkontroll", localizerDeclarationItem, out var count1);
             AddHeaders<DeclarationTestItem>(dataTable, "Egenkontroll", localizerDeclarationTestItem, out var count2);
             AddHeaders<CompanyItem>(dataTable, "Virksomhet", localizerCompanyItem, out var count3);
             AddHeaders<ContactPersonItem>(dataTable, "Kontaktperson", localizerContactPersonItem, out var count4);
             AddHeaders<UserItem>(dataTable, "Saksbehandler", localizerUserItem, out var count5);
+
+            foreach (var indicatorGroup in indicatorList)
+            {
+                AddOutcomeHeader(dataTable, indicatorGroup.IndicatorItem);
+            }
 
             var propertyListDeclarationItem = typeof(DeclarationItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
             var propertyListDeclarationTestItem = typeof(DeclarationTestItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
@@ -87,10 +96,40 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                 GetValues(count4, count1 + count2 + count3, propertyListContactPersonItem, item.Company.ContactPersonList.First(), values);
                 GetValues(count5, count1 + count2 + count3 + count4, propertyListUserItem, item.User, values);
 
+                var result = apiHttpClient.Get<List<OutcomeData>>("/api/Declaration/GetOutcomeDataList/" + item.Id).Result;
+
                 dataTable.Rows.Add(values);
+
+                var row = dataTable.Rows[dataTable.Rows.Count-1];
+
+                if (result.Succeeded && result.Data != null && result.Data.Any())
+                {
+                    foreach (var indicatorGroup in indicatorList)
+                    {
+                        var data = result.Data.SingleOrDefault(x => x.IndicatorItemId == indicatorGroup.IndicatorItemId);
+
+                        if (data != null)
+                        {
+                            row[indicatorGroup.IndicatorItem.Name + " - Klar"] = data.AllDone;
+                            row[indicatorGroup.IndicatorItem.Name + " - Result"] = data.Result.Text;
+                            row[indicatorGroup.IndicatorItem.Name + " - Result text"] = data.ResultText;
+                            row[indicatorGroup.IndicatorItem.Name + " - Formulering på utfall"] = data.IndicatorOutcomeItem.Language.OutcomeText;
+                            row[indicatorGroup.IndicatorItem.Name + " - Krav"] = data.RuleDataList.First().Rule.Requirement.Language.Description;
+                        }
+                    }
+                }
             }
 
             return dataTable;
+        }
+
+        private static void AddOutcomeHeader(DataTable dataTable, IndicatorItem indicatorItem)
+        {
+            dataTable.Columns.Add(indicatorItem.Name + " - Klar");
+            dataTable.Columns.Add(indicatorItem.Name + " - Result");
+            dataTable.Columns.Add(indicatorItem.Name + " - Result text");
+            dataTable.Columns.Add(indicatorItem.Name + " - Krav");
+            dataTable.Columns.Add(indicatorItem.Name + " - Formulering på utfall");
         }
 
         private static void GetValues(int currentCount, int totalCount, IReadOnlyList<PropertyInfo> propertyList, object item, IList<object> values)
@@ -140,10 +179,5 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                 count++;
             }
         }
-    }
-
-    public interface IExcelGenerator
-    {
-        byte[] GenerateExcel(IEnumerable<DeclarationItem> list);
     }
 }

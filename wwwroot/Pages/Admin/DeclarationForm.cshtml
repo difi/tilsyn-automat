@@ -76,8 +76,6 @@
                                     {
                                         <a class="button cancel" asp-page="/Admin/DeclarationList">@Localizer["Cancel"]</a>
                                         <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="save" />
-
-                                        <input class="button large alt export-all" type="submit" value="@Localizer["Export to Excel"]" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-handler="exportdeclaration" />
                                     }
                                     else
                                     {
@@ -153,6 +151,10 @@
                 mainIndex++;
                 @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = true })
             }
+
+            <form method="post">
+                <input class="button large alt export-all" type="submit" value="@Localizer["Export to Excel"]" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-handler="exportdeclaration" />
+            </form>
         }
         else
         {

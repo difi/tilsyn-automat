@@ -673,7 +673,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("6876174d-2e2c-484b-a9a7-14cb63359a30"),
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem113.Id,
-                Question = "Beskriv hindringene i kundens betjeningsområde.",
+                Question = "Beskriv hindringene i kundens betjeningsområde:",
             };
 
             var answerItem121 = new AnswerItem

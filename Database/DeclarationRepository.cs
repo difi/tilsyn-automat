@@ -30,7 +30,6 @@ namespace Difi.Sjalvdeklaration.Database
         {
         }
 
-
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
         {
             var result = new ApiResult<T>();
@@ -327,6 +326,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
             var result = new ApiResult();
             var testGroupItemList = new List<TestGroupItem>();
+            var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
 
             foreach (var declarationIndicatorGroup in dbContext.DeclarationList.Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem).ThenInclude(x=>x.IndicatorList).Single(x => x.Id == declarationItemId).IndicatorList.OrderBy(x => x.TestGroupOrder))
             {
@@ -401,11 +401,32 @@ namespace Difi.Sjalvdeklaration.Database
                     outcomeData.AllDone = allDone;
 
                     var answerDataString = String.Empty;
+                    var resultString = String.Empty;
 
                     foreach (var ruleData in outcomeData.RuleDataList)
                     {
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
+                            if (!String.IsNullOrEmpty(answerData.String))
+                            {
+                                if (!String.IsNullOrEmpty(resultString))
+                                {
+                                    resultString += ", ";
+                                }
+
+                                resultString += answerLanguageList.Single(x => x.AnswerItemId == answerData.AnswerItemId).Question + ": " + answerData.String;
+                            }
+
+                            if (answerData.Int>0)
+                            {
+                                if (!String.IsNullOrEmpty(resultString))
+                                {
+                                    resultString += ", ";
+                                }
+
+                                resultString += answerLanguageList.Single(x => x.AnswerItemId == answerData.AnswerItemId).Question + ": " + answerData.Int;
+                            }
+
                             if (answerData.ResultId == (int) TypeOfResult.Ok || answerData.ResultId == (int) TypeOfResult.Fail)
                             {
                                 if (!String.IsNullOrEmpty(answerDataString))
@@ -417,6 +438,8 @@ namespace Difi.Sjalvdeklaration.Database
                             }
                         }
                     }
+
+                    outcomeData.ResultText = resultString;
 
                     var match = dbContext.IndicatorOutcomeList.SingleOrDefault(x => x.IndicatorItemId == outcomeData.IndicatorItemId && (x.ResultString1 == answerDataString || x.ResultString2 == answerDataString));
 
