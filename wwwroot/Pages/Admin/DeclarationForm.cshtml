@@ -109,14 +109,20 @@
             <div class="small-12 medium-12 columns">
                 <div class="jsDeclarationListToggleCardTarget">
                     <div class="card declaration-list-info">
-                        Some text
+                        @Html.EditorFor(x => x.DeclarationItemForm.Company.Code, "TextBox", new { readOnly = true })
+                        @Html.EditorFor(x => x.DeclarationItemForm.Company.CorporateIdentityNumber, "TextBox", new { readOnly = true })
+
+                        @{ var contactPerson = Model.DeclarationItemForm.Company.ContactPersonList.FirstOrDefault(); }
+                        
+                        @Html.EditorFor(x => contactPerson.Name, "TextBox", new { readOnly = true })
+                        @Html.EditorFor(x => contactPerson.Email, "TextBox", new { readOnly = true })
+                        @Html.EditorFor(x => contactPerson.PhoneCountryCode, "TextBox", new { readOnly = true })
+                        @Html.EditorFor(x => contactPerson.Phone, "TextBox", new { readOnly = true })
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     if (Model.DeclarationItemForm?.Status?.Id > 2)
     {
