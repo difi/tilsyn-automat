@@ -7,8 +7,8 @@
 <h1>@Localizer["Self-inspection"]</h1>
 
 <form method="post">
-    
-    @Html.HiddenFor(x=>x.TotalCount)
+
+    @Html.HiddenFor(x => x.TotalCount)
 
     <div class="row">
         <div class="small-12 column">
@@ -69,14 +69,14 @@
         <h3>@Model.ViewCount @Localizer["Self-inspections"]  @Localizer["of total"] @Model.TotalCount</h3>
     </div>
     <div class="small-6 text-right column">
-        <form method="post">        
+        <form method="post">
             <button class="button export-all" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["Export all"]</button>
         </form>
     </div>
 </div>
 
 
-<table class="table jsNormalTableSort">
+<table class="responsive-table table jsNormalTableSort">
     <caption>
         <h2>@Localizer["DeclarationList-header-h2"]</h2>
     </caption>
@@ -98,19 +98,19 @@
             var contactPerson = item.Company.ContactPersonList.FirstOrDefault();
 
             <tr>
-                <td class="clickable-td">
+                <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Name)">
                     <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
                 </td>
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)">
                     @item.Company.Name
                 </td>
-                <td class="clickable-td">
+                <td data-th="@Localizer["Executive officer"]">
                     @item.User.Name
                 </td>
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)">
                     @item.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
                 </td>
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)">
                     @if (item.SentInDate != DateTime.MinValue)
                     {
                         @item.SentInDate.ToString("dd.MM.yyyy HH:mm")
@@ -120,14 +120,14 @@
                         <span>-</span>
                     }
                 </td>
-                <td class="clickable-td">
+                <td data-th="@Localizer["Status of self-control"]">
                     @item.Status.TextCompany
                 </td>
-                <td class="clickable-td">
+                <td data-th="@Localizer["Status of supervision"]">
                     @item.Status.TextAdmin
                 </td>
 
-                <td>
+                <td data-th="Export">
                     <form method="post">
                         <button class="button export" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id"><span class="show-for-sr">@Localizer["Export"]</span></button>
                     </form>
