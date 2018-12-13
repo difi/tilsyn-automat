@@ -227,7 +227,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 if (GetByCorporateIdentityNumber<CompanyItem>(excelRow.CompanyItem.CorporateIdentityNumber).Data != null)
                 {
-                    result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", excelRow.CompanyItem.CorporateIdentityNumber]);
+                    result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", excelRow.CompanyItem.CorporateIdentityNumber], new Exception("exist"));
 
                     return result;
                 }
