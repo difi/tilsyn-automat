@@ -20,6 +20,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using ValueListTypeOfMachine = Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfMachine;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -292,6 +293,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             AddHeaders<UserItem>(dataTable, "Saksbehandler", localizerUserItem, out var count5);
 
             var props1 = typeof(DeclarationItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var props2 = typeof(DeclarationTestItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var props3 = typeof(CompanyItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var props4 = typeof(ContactPersonItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var props5 = typeof(UserItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
 
             foreach (var item in declarationItems)
             {
@@ -299,80 +304,46 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 for (var col = 0; col < count1; col++)
                 {
-                    values[col] = props1[col].GetValue(item, null);
-                }
+                    var value = props1[col].GetValue(item, null);
 
-                var props2 = item.DeclarationTestItem.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+                    if (value != null)
+                    {
+                        if (value.GetType() == typeof(ValueList))
+                        {
+                            var test = (ValueList) value;
+                            values[col] = test.Text;
+                        }
+                        else
+                        {
+                            values[col] = value;
+                        }
+                    }
+                }
 
                 for (var col = 0; col < count2; col++)
                 {
-                    values[count2] = props2[col].GetValue(item, null);
+                    values[count1 + col] = props2[col].GetValue(item.DeclarationTestItem, null);
+                }
+
+                for (var col = 0; col < count3; col++)
+                {
+                    values[count1 + count2 + col] = props3[col].GetValue(item.Company, null);
+                }
+
+                for (var col = 0; col < count4; col++)
+                {
+                    values[count1 + count2+ count3 + col] = props4[col].GetValue(item.Company.ContactPersonList.First(), null);
+                }
+
+                for (var col = 0; col < count5; col++)
+                {
+                    values[count1 + count2 + count3 + count4 + col] = props5[col].GetValue(item.User, null);
                 }
 
                 dataTable.Rows.Add(values);
             }
 
             return dataTable;
-
-            //foreach (var declarationItem in declarationItems)
-            //{
-            //    var dataRow = dataTable.NewRow();
-
-            //    dataRow["Automat - Navn"] = declarationItem.Name;
-            //    dataRow["Frist for innsending"] = declarationItem.DeadlineDate;
-            //    dataRow["Dato sendt inn"] = declarationItem.SentInDate;
-            //    dataRow["Status for egenkontroll"] = declarationItem.Status.TextAdmin;
-            //    dataRow["Status for tillsyn"] = declarationItem.Status.TextCompany;
-
-            //    dataRow["TypeOfMachine"] = declarationItem.DeclarationTestItem.TypeOfMachine.Text;
-            //    dataRow["TypeOfTest"] = declarationItem.DeclarationTestItem.TypeOfTest.Text;
-
-            //    dataRow["Virksomhet - Pinkode"] = declarationItem.Company.Code;
-            //    dataRow["Virksomhet - ID (tilsynets datamodell)"] = declarationItem.Company.CorporateIdentityNumber;
-            //    dataRow["Virksomhet - Organisasjonsnummer"] = declarationItem.Company.CorporateIdentityNumber;
-            //    dataRow["Virksomhet - Navn"] = declarationItem.Company.Name;
-            //    dataRow["Virksomhet - Endret navn"] = declarationItem.Company.CustomName;
-
-            //    dataRow["Postadresse - Adresse gate"] = declarationItem.Company.MailingAddressStreet;
-            //    dataRow["Postadresse - Adresse postnr"] = declarationItem.Company.MailingAddressZip;
-            //    dataRow["Postadresse - Adresse poststed"] = declarationItem.Company.MailingAddressCity;
-
-            //    dataRow["Beliggenhetsadresse - Adresse gate"] = declarationItem.Company.BusinessAddressStreet;
-            //    dataRow["Beliggenhetsadresse - Adresse postnr"] = declarationItem.Company.BusinessAddressZip;
-            //    dataRow["Beliggenhetsadresse - Adresse poststed"] = declarationItem.Company.BusinessAddressCity;
-
-            //    dataRow["Forretningsadresse - Adresse gate"] = declarationItem.Company.LocationAddressStreet;
-            //    dataRow["Forretningsadresse - Adresse postnr"] = declarationItem.Company.LocationAddressZip;
-            //    dataRow["Forretningsadresse - Adresse poststed"] = declarationItem.Company.LocationAddressCity;
-
-            //    dataRow["Næringsgruppe - Kode"] = declarationItem.Company.IndustryGroupCode;
-            //    dataRow["Næringsgruppe - Beskrivelse"] = declarationItem.Company.IndustryGroupDescription;
-            //    dataRow["Næringsgruppe - Aggregert"] = declarationItem.Company.IndustryGroupAggregated;
-
-            //    dataRow["Institusjonell sektorkode - Kode"] = declarationItem.Company.InstitutionalSectorCode;
-            //    dataRow["Institusjonell sektorkode - Beskrivelse"] = declarationItem.Company.InstitutionalSectorDescription;
-
-            //    if (declarationItem.Company.ContactPersonList != null && declarationItem.Company.ContactPersonList.Any())
-            //    {
-            //        dataRow["Kontaktperson - Navn"] = declarationItem.Company.ContactPersonList[0]?.Name;
-            //        dataRow["Kontaktperson - Epostadresse"] = declarationItem.Company.ContactPersonList[0]?.Email;
-            //        dataRow["Kontaktperson - Telefonnummer Landskode"] = declarationItem.Company.ContactPersonList[0]?.PhoneCountryCode;
-            //        dataRow["Kontaktperson - Telefonnummer"] = declarationItem.Company.ContactPersonList[0]?.Phone;
-            //    }
-
-            //    if (declarationItem.User != null)
-            //    {
-            //        dataRow["Saksbehandler - Navn"] = declarationItem.User.Name;
-            //        dataRow["Saksbehandler - Epostadresse"] = declarationItem.User.Email;
-            //        dataRow["Saksbehandler - Telefonnummer Landskode"] = declarationItem.User.PhoneCountryCode;
-            //        dataRow["Saksbehandler - Telefonnummer"] = declarationItem.User.Phone;
-            //        dataRow["Saksbehandler - Title"] = declarationItem.User.Title;
-            //    }
-
-            //    dataTable.Rows.Add(dataRow);
-            //}
-
-            //return dataTable;
         }
 
         private static void AddHeaders<T>(DataTable dataTable, string groupName, IStringLocalizer stringLocalizer, out int count)
@@ -388,7 +359,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     continue;
                 }
 
-                var extraHeader = string.IsNullOrEmpty(excelExportAttribute.ExtraHeader) ? string.Empty : " - " + excelExportAttribute.ExtraHeader + " - ";
+                var extraHeader = string.IsNullOrEmpty(excelExportAttribute.ExtraHeader) ? string.Empty : excelExportAttribute.ExtraHeader + " - ";
                 var displayAttribute = propertyInfo.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().SingleOrDefault();
 
                 dataTable.Columns.Add(groupName + " - " + extraHeader + (displayAttribute != null ? stringLocalizer[displayAttribute.Name] : propertyInfo.Name));
