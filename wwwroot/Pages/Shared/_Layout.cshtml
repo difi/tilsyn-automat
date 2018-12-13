@@ -17,7 +17,7 @@
 </head>
 <body>
 
-@*<div role="alert" asp-validation-summary="All"></div>*@
+@{ await Html.RenderPartialAsync("Shared/_Error", new { });}
 
 @RenderBody()
 

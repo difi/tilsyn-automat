@@ -119,6 +119,9 @@
     <Content Update="Pages\AzureHandler.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\EditorTemplates\Date.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\_Error.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

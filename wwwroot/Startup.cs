@@ -107,7 +107,6 @@ namespace Difi.Sjalvdeklaration.wwwroot
 
             var supportedCultures = new[]
             {
-                new CultureInfo("en-US"),
                 new CultureInfo("nb-NO"),
                 new CultureInfo("nn-NO"),
             };

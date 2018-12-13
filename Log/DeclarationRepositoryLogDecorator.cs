@@ -50,6 +50,18 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
+        public ApiResult<T> GetByFilter<T>(FilterModel filterModel) where T : List<DeclarationItem>
+        {
+            var result = inner.GetByFilter<T>(filterModel);
+
+            if (!result.Succeeded)
+            {
+                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), filterModel, null,  result.Data));
+            }
+
+            return result;
+        }
+
         public ApiResult<T> GetForCompany<T>(Guid id) where T : List<DeclarationItem>
         {
             var result = inner.GetForCompany<T>(id);

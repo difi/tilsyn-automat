@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -34,10 +34,17 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("GetAll")]
-        public ApiResult<List<LogItem>> GetAll()
+        [Route("GetByFilter/{fromDate}/{toDate}/{succeeded}")]
+        public ApiResult<List<LogItem>> GetByFilter(long fromDate, long toDate, int succeeded)
         {
-            return logRepository.GetAll<List<LogItem>>();
+            var filterModel = new FilterModel
+            {
+                FromDate = new DateTime(fromDate),
+                ToDate = new DateTime(toDate),
+                Succeeded = succeeded,
+            };
+
+            return logRepository.GetByFilter<List<LogItem>>(filterModel);
         }
     }
 }

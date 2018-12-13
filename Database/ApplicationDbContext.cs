@@ -619,7 +619,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("db55a19e-7f42-4176-921d-4a09698f727a"),
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem112.Id,
-                Question = "Ta bilde",
+                Question = "Bekreft med bilde",
             };
 
             var answerItem113 = new AnswerItem
@@ -711,7 +711,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("6c73f84c-a2d5-43ac-a5fe-793d0c5672cc"),
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem124.Id,
-                Question = "Ta bilde",
+                Question = "Bekreft med bilde",
             };
 
             var answerItem211 = new AnswerItem
@@ -786,7 +786,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("6e68729a-50e9-4844-a791-43e2eb21fad0"),
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem214.Id,
-                Question = "Ta bilde",
+                Question = "Bekreft med bilde",
             };
 
 
@@ -822,7 +822,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("ec0e3dd2-bd43-4e44-a118-51b86b80d77f"),
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem312.Id,
-                Question = "Ta bilde",
+                Question = "Bekreft med bilde",
             };
 
             var answerItem313 = new AnswerItem
@@ -917,7 +917,7 @@ namespace Difi.Sjalvdeklaration.Database
                 Id = Guid.Parse("2e2e8b32-c7c4-4ffa-b6b7-275a82e5b6af"),
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem413.Id,
-                Question = "Ta bilde",
+                Question = "Bekreft med bilde",
             };
 
             modelBuilder.Entity<LanguageItem>().HasData(language1, language2);

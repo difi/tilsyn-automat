@@ -9,6 +9,56 @@
 
 <br />
 
+<form method="post">
+    <div class="row">
+        <div class="small-12 column">
+            <h3>@Localizer["Filter loglist"]</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 column">
+            <div class="filter-wrapper">
+         
+
+                <div class="row">
+                    <div class="small-3 column">
+                        <div class="row">
+                            <div class="small-6 column">
+                                @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
+                            </div>
+                            <div class="small-6 column">
+                                @Html.EditorFor(x => x.FilterModel.ToDate, "Date")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="small-6 column">
+                        <div class="row">
+                            <div class="small-6 column">
+                                @Html.EditorFor(x => x.FilterModel.Succeeded, "DropdownListInt", new { list = Model.SelectSucceededList })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="small-3 column">
+                        <div class="row collapse">
+                            <div class="small-6 column">
+                                <br />
+                                <button class="button" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
+                            </div>
+                            <div class="small-6 column">
+                                <br />
+                                <button class="button" type="submit" asp-page-handler="ViewAll">@Localizer["Show all"]</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 @if (Model.LogList != null)
 {
     <table class="responsive-table table jsLogTableSort">

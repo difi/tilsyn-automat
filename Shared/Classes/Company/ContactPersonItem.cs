@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Attributes;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {
@@ -8,17 +9,21 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
     {
         public Guid Id { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Email")]
-        public String Email { get; set; }
+        public string Email { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Country code")]
-        public String PhoneCountryCode { get; set; }
+        public string PhoneCountryCode { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Phone")]
-        public String Phone { get; set; }
+        public string Phone { get; set; }
 
         public Guid CompanyItemId { get; set; }
     }

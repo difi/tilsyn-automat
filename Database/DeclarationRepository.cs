@@ -30,6 +30,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
         }
 
+
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
         {
             var result = new ApiResult<T>();
@@ -90,7 +91,6 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
-
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
         {
             var result = new ApiResult<T>();
@@ -108,6 +108,31 @@ namespace Difi.Sjalvdeklaration.Database
                     .AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T) list;
+                result.Succeeded = true;
+            }
+            catch (Exception exception)
+            {
+                result.Exception = exception;
+            }
+
+            return result;
+        }
+
+        public ApiResult<T> GetByFilter<T>(FilterModel filterModel) where T : List<DeclarationItem>
+        {
+            var result = new ApiResult<T>();
+
+            try
+            {
+                var all = GetAll<T>().Data;
+                var filterdList = all.Where(x=>x.DeadlineDate > filterModel.FromDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59) && x.DeadlineDate < filterModel.ToDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59)).ToList();
+
+                if (filterModel.Status1 > 0)
+                {
+                    filterdList = filterdList.Where(x => x.StatusId == filterModel.Status1).ToList();
+                }
+
+                result.Data = (T) filterdList;
                 result.Succeeded = true;
             }
             catch (Exception exception)
