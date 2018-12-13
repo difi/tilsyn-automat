@@ -21,7 +21,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes;
-using ValueListTypeOfMachine = Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfMachine;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -30,11 +30,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     {
         private readonly IErrorHandler errorHandler;
         private readonly IStringLocalizer<DeclarationListModel> localizer;
-        private readonly IStringLocalizer<DeclarationItem> localizerDeclarationItem;
-        private readonly IStringLocalizer<DeclarationTestItem> localizerDeclarationTestItem;
-        private readonly IStringLocalizer<CompanyItem> localizerCompanyItem;
-        private readonly IStringLocalizer<UserItem> localizerUserItem;
-        private readonly IStringLocalizer<ContactPersonItem> localizerContactPersonItem;
+        private readonly IExcelGenerator excelGenerator;
+
         private readonly IApiHttpClient apiHttpClient;
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
@@ -51,16 +48,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [BindProperty]
         public int TotalCount { get; set; }
 
-        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<DeclarationListModel> localizer, IStringLocalizer<DeclarationItem> localizerDeclarationItem, IStringLocalizer<DeclarationTestItem> localizerDeclarationTestItem, IStringLocalizer<CompanyItem> localizerCompanyItem, IStringLocalizer<UserItem> localizerUserItem, IStringLocalizer<ContactPersonItem> localizerContactPersonItem)
+        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<DeclarationListModel> localizer, IExcelGenerator excelGenerator)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
             this.localizer = localizer;
-            this.localizerDeclarationItem = localizerDeclarationItem;
-            this.localizerDeclarationTestItem = localizerDeclarationTestItem;
-            this.localizerCompanyItem = localizerCompanyItem;
-            this.localizerUserItem = localizerUserItem;
-            this.localizerContactPersonItem = localizerContactPersonItem;
+            this.excelGenerator = excelGenerator;
         }
 
         [HttpGet]
@@ -140,7 +133,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (result.Succeeded)
                 {
-                    var data = GenerateExcel(new List<DeclarationItem> { result.Data });
+                    var data = excelGenerator.GenerateExcel(new List<DeclarationItem> { result.Data });
 
                     return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{result.Data.Name} ({DateTime.Now.GetAsFileName()}).xlsx");
                 }
@@ -162,7 +155,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (result.Succeeded)
                 {
-                    var data = GenerateExcel(result.Data);
+                    var data = excelGenerator.GenerateExcel(result.Data);
 
                     return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"Alla ({DateTime.Now.GetAsFileName()}).xlsx");
                 }
@@ -202,165 +195,5 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             return true;
         }
 
-        private byte[] GenerateExcel(IEnumerable<DeclarationItem> list)
-        {
-            var dataTable = GetDataTable(list);
-
-            //var dataTable = BuildDataTable<DeclarationItem>(list.ToList());
-
-            using (var pck = new ExcelPackage())
-            {
-                var excelWorksheet = pck.Workbook.Worksheets.Add("Data");
-                excelWorksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
-
-                using (var excelRange = excelWorksheet.Cells["A1:AX1"])
-                {
-                    excelRange.Style.Font.Bold = true;
-                    excelRange.Style.Font.Size = excelRange.Style.Font.Size + 2;
-                    excelRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    excelRange.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(79, 129, 189));
-                    excelRange.Style.Font.Color.SetColor(System.Drawing.Color.White);
-                }
-
-                using (var excelRange = excelWorksheet.Cells["A1:AX"])
-                {
-                    excelRange.AutoFitColumns();
-                }
-
-                return pck.GetAsByteArray();
-            }
-        }
-
-        public DataTable BuildDataTable<T>(IList<T> data)
-        {
-            //Get properties
-            var props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            //.Where(p => !p.GetGetMethod().IsVirtual && !p.GetGetMethod().IsFinal).ToArray(); //Hides virtual properties
-
-            //Get column headers
-            var headers = new string[props.Length];
-            var colCount = 0;
-
-            foreach (var prop in props)
-            {
-                var isDisplayNameAttributeDefined = Attribute.IsDefined(prop, typeof(DisplayNameAttribute));
-
-                if (isDisplayNameAttributeDefined)
-                {
-                    var dna = (DisplayNameAttribute)Attribute.GetCustomAttribute(prop, typeof(DisplayNameAttribute));
-
-                    if (dna != null)
-                    {
-                        headers[colCount] = dna.DisplayName;
-                    }
-                }
-                else
-                {
-                    headers[colCount] = prop.Name;
-                }
-
-                colCount++;
-            }
-
-            var dataTable = new DataTable(typeof(T).Name);
-
-            foreach (var header in headers)
-            {
-                dataTable.Columns.Add(header);
-            }
-
-            foreach (var item in data)
-            {
-                var values = new object[props.Length];
-                for (var col = 0; col < props.Length; col++)
-                {
-                    values[col] = props[col].GetValue(item, null);
-                }
-
-                dataTable.Rows.Add(values);
-            }
-
-            return dataTable;
-        }
-
-        private DataTable GetDataTable(IEnumerable<DeclarationItem> declarationItems)
-        {
-            var dataTable = new DataTable();
-
-            AddHeaders<DeclarationItem>(dataTable, "Egenkontroll", localizerDeclarationItem, out var count1);
-            AddHeaders<DeclarationTestItem>(dataTable, "Egenkontroll", localizerDeclarationTestItem, out var count2);
-            AddHeaders<CompanyItem>(dataTable, "Virksomhet", localizerCompanyItem, out var count3);
-            AddHeaders<ContactPersonItem>(dataTable, "Kontaktperson", localizerContactPersonItem, out var count4);
-            AddHeaders<UserItem>(dataTable, "Saksbehandler", localizerUserItem, out var count5);
-
-            var propertyListDeclarationItem = typeof(DeclarationItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var propertyListDeclarationTestItem = typeof(DeclarationTestItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var propertyListCompanyItem= typeof(CompanyItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var propertyListContactPersonItem = typeof(ContactPersonItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var propertyListUserItem = typeof(UserItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-
-            foreach (var item in declarationItems)
-            {
-                var values = new object[count1 + count2 + count3 + count4 + count5];
-
-                GetValues(count1, 0, propertyListDeclarationItem, item, values);
-                GetValues(count2, count1, propertyListDeclarationTestItem, item.DeclarationTestItem, values);
-                GetValues(count3, count1+count2, propertyListCompanyItem, item.Company, values);
-                GetValues(count4, count1 + count2+count3, propertyListContactPersonItem, item.Company.ContactPersonList.First(), values);
-                GetValues(count5, count1 + count2 + count3 + count4, propertyListUserItem, item.User, values);
-
-                dataTable.Rows.Add(values);
-            }
-
-            return dataTable;
-        }
-
-        private static void GetValues(int currentCount, int totalCount, IReadOnlyList<PropertyInfo> propertyList, object item, IList<object> values)
-        {
-            for (var col = 0; col < currentCount; col++)
-            {
-                var value = propertyList[col].GetValue(item, null);
-
-                if (value != null)
-                {
-                    if (value.GetType().BaseType == typeof(ValueList))
-                    {
-                        var test = (ValueList) value;
-                        values[col+ totalCount] = test.Text;
-                    }
-                    else if(value.GetType() == typeof(ImageItem))
-                    {
-                        var test = (ImageItem)value;
-                        values[col + totalCount] = test.Container + "/" + test.Name;
-                    }
-                    else
-                    {
-                        values[col + totalCount] = value;
-                    }
-                }
-            }
-        }
-
-        private static void AddHeaders<T>(DataTable dataTable, string groupName, IStringLocalizer stringLocalizer, out int count)
-        {
-            count = 0;
-
-            foreach (var propertyInfo in typeof(T).GetProperties())
-            {
-                var excelExportAttribute = propertyInfo.GetCustomAttributes(typeof(ExcelExportAttribute), true).Cast<ExcelExportAttribute>().SingleOrDefault();
-
-                if (excelExportAttribute == null)
-                {
-                    continue;
-                }
-
-                var extraHeader = string.IsNullOrEmpty(excelExportAttribute.ExtraHeader) ? string.Empty : excelExportAttribute.ExtraHeader + " - ";
-                var displayAttribute = propertyInfo.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().SingleOrDefault();
-
-                dataTable.Columns.Add(groupName + " - " + extraHeader + (displayAttribute != null ? stringLocalizer[displayAttribute.Name] : propertyInfo.Name));
-
-                count++;
-            }
-        }
     }
 }
