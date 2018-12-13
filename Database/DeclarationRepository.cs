@@ -44,6 +44,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.Status)
                     .Include(x => x.IndicatorList).ThenInclude(x=>x.TestGroupItem)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.PurposeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image1)
@@ -102,9 +103,16 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.Company).ThenInclude(x => x.UserList)
                     .Include(x => x.User)
                     .Include(x => x.Status)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.PurposeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image1)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image2)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
                     .AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T) list;

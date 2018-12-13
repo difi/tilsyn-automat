@@ -13,12 +13,12 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public Guid Id { get; set; }
 
         [ExcelExport]
-        [Display(Name = "Business ID (Supervisory Data Model)")]
-        public string ExternalId { get; set; }
-
-        [ExcelExport]
         [Display(Name = "Pin code")]
         public string Code { get; set; }
+
+        [ExcelExport]
+        [Display(Name = "Business ID (Supervisory Data Model)")]
+        public string ExternalId { get; set; }
 
         [ExcelExport]
         [Display(Name = "Organization number")]
@@ -32,6 +32,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name - required field")]
         public string Name { get; set; }
+
+        [Display(Name = "Changed business name")]
+        public string CustomName { get; set; }
 
         [ExcelExport("MailingAddress")]
         [Display(Name = "Street name and number")]
@@ -88,9 +91,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [ExcelExport("InstitutionalSector")]
         [Display(Name = "Description")]
         public string InstitutionalSectorDescription { get; set; }
-
-        [Display(Name = "Changed business name")]
-        public string CustomName { get; set; }
 
         [ExcelExport("CustomAdress")]
         [Display(Name = "Street name and number")]
