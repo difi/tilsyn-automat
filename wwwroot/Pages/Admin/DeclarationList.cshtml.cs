@@ -182,7 +182,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
-                Text = $"{x.TextCompany} ({x.Text})",
+                Text = $"{x.TextAdmin} ({x.Text})",
                 Selected = false
             }).ToList();
 
@@ -194,6 +194,5 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             return true;
         }
-
     }
 }
