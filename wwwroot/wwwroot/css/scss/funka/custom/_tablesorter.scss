@@ -29,6 +29,13 @@ div {
                 text-decoration: underline;
                 display: inline-block;
                 line-height: 17px;
+                font-size: 15px;
+
+                &.std-link {
+                    font-size: 14px;
+                    font-family: $body-font-family;
+                    font-weight: normal;
+                }
             }
         }
     }

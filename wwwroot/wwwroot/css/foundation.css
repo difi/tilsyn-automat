@@ -4328,7 +4328,12 @@ div .tablesorter-default {
       color: #17667c;
       text-decoration: underline;
       display: inline-block;
-      line-height: 17px; }
+      line-height: 17px;
+      font-size: 15px; }
+      div .tablesorter-default .clickable-td a.std-link {
+        font-size: 14px;
+        font-family: "Open Sans", Helvetica, Arial, sans-serif;
+        font-weight: normal; }
 
 div .tablesorter-default th, div .tablesorter-default thead td {
   font-weight: 700;
