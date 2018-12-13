@@ -120,7 +120,16 @@
   <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
+  <data name="Export to Excel" xml:space="preserve">
+    <value>Eksporter til Excel</value>
+  </data>
+  <data name="Missing machine" xml:space="preserve">
+    <value>Manglende automat</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Lagre</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Oppsummering</value>
   </data>
 </root>
