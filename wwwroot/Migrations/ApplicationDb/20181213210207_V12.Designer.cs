@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181213210207_V12")]
+    partial class V12
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -392,15 +394,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = new Guid("4edceffe-eb77-4ca0-a498-24be5372d333"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 5, ResultString1 = "2,1,1", ResultString2 = "2,1,1,1" },
                         new { Id = new Guid("6cd1b621-12e6-4a03-bd6e-a7c8b39de251"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 6, ResultString1 = "2,2,2,2" },
                         new { Id = new Guid("30f07a36-ff0b-4692-b7bf-0f2d8dee923a"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, ResultString1 = "1,1", ResultString2 = "1,1,1" },
-                        new { Id = new Guid("ae869b09-090d-459b-827c-4d61a1578478"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 2, ResultString1 = "2,2,2" },
-                        new { Id = new Guid("c11dcd56-0aaa-4253-8565-34132b640f15"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 3, ResultString1 = "1" },
-                        new { Id = new Guid("e5a123b7-f2d4-4d25-b6d7-544c3b7c63b8"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 1, ResultString1 = "1,1,1" },
-                        new { Id = new Guid("85d5b052-1f22-449d-b0a3-2883593ace54"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 2, ResultString1 = "1,1,2" },
-                        new { Id = new Guid("d0ab6b63-c6c9-4a4f-81b0-5be0a4497278"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 3, ResultString1 = "1,2,1" },
-                        new { Id = new Guid("402f1644-36d0-4ad5-853b-aee2f4bfbf75"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 4, ResultString1 = "1,2,2" },
-                        new { Id = new Guid("54d4cb13-a006-4a8b-9fdb-89a01a9b9040"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 5, ResultString1 = "2" },
-                        new { Id = new Guid("043ccfc1-ff23-43f3-a130-3d399638f24f"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 1, ResultString1 = "1", ResultString2 = "1,1" },
-                        new { Id = new Guid("8d69236d-8940-417e-aab6-d41d74539ef2"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 2, ResultString1 = "2,2" }
+                        new { Id = new Guid("ae869b09-090d-459b-827c-4d61a1578478"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, ResultString1 = "2,2,2" },
+                        new { Id = new Guid("c11dcd56-0aaa-4253-8565-34132b640f15"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, ResultString1 = "1" }
                     );
                 });
 
@@ -512,14 +507,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = new Guid("174f9a3a-a5b9-4e00-8fcb-f3d9b8fd215e"), IndicatorOutcomeItemId = new Guid("6cd1b621-12e6-4a03-bd6e-a7c8b39de251"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen og gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet." },
                         new { Id = new Guid("541fde0f-502e-4e6f-82f1-aca378d76b60"), IndicatorOutcomeItemId = new Guid("30f07a36-ff0b-4692-b7bf-0f2d8dee923a"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det er minst 150 cm mellom betalingsterminalene." },
                         new { Id = new Guid("6b3a3de6-d6ff-45a4-8061-6e62d6970747"), IndicatorOutcomeItemId = new Guid("ae869b09-090d-459b-827c-4d61a1578478"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalene står for tett." },
-                        new { Id = new Guid("8bb7a824-82ca-4fbc-bb33-151a38b0a054"), IndicatorOutcomeItemId = new Guid("c11dcd56-0aaa-4253-8565-34132b640f15"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen står ikke på rett linje ved siden av en annen betalingsterminal." },
-                        new { Id = new Guid("20308d8f-c099-436a-bf7b-f91a2fac0376"), IndicatorOutcomeItemId = new Guid("e5a123b7-f2d4-4d25-b6d7-544c3b7c63b8"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes et skilt som viser hvor kunden skal betale varene sine. Skiltet er synlig på avstand utenfor kundens betjeningsområde og plassert over området der kunden skal betale varene sine." },
-                        new { Id = new Guid("1b27cdd4-a34b-486c-a5ff-684afa4579e7"), IndicatorOutcomeItemId = new Guid("85d5b052-1f22-449d-b0a3-2883593ace54"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde." },
-                        new { Id = new Guid("8b2343e2-a121-4247-8b19-318d0d42984c"), IndicatorOutcomeItemId = new Guid("d0ab6b63-c6c9-4a4f-81b0-5be0a4497278"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Skilt er ikke plassert over området der kunden skal betale varene sine." },
-                        new { Id = new Guid("2595a239-44fc-4837-9aee-c6dd9f46d71c"), IndicatorOutcomeItemId = new Guid("402f1644-36d0-4ad5-853b-aee2f4bfbf75"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde. Skilt er ikke plassert over området der kunden skal betale varene sine." },
-                        new { Id = new Guid("f6d58cdf-cafa-4892-a847-1a70fa2dd4e2"), IndicatorOutcomeItemId = new Guid("54d4cb13-a006-4a8b-9fdb-89a01a9b9040"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes ikke et skilt som viser hvor kunden skal betale." },
-                        new { Id = new Guid("c80f2711-1229-48d5-a15d-eb790d00f7f2"), IndicatorOutcomeItemId = new Guid("043ccfc1-ff23-43f3-a130-3d399638f24f"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen er mellom 75 og 130 cm over gulvet." },
-                        new { Id = new Guid("840d94f6-0c3c-47d8-bcfd-7d4a148eec06"), IndicatorOutcomeItemId = new Guid("8d69236d-8940-417e-aab6-d41d74539ef2"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen er ikke mellom 75 og 130 cm over gulvet." }
+                        new { Id = new Guid("8bb7a824-82ca-4fbc-bb33-151a38b0a054"), IndicatorOutcomeItemId = new Guid("c11dcd56-0aaa-4253-8565-34132b640f15"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen står ikke på rett linje ved siden av en annen betalingsterminal." }
                     );
                 });
 

@@ -5,6 +5,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
@@ -60,7 +61,13 @@ namespace Difi.Sjalvdeklaration.Database
 
         public DbSet<RequirementItem> RequirementList { get; set; }
 
+        public DbSet<RequirementItemLanguage> RequirementLanguageList { get; set; }
+
         public DbSet<IndicatorItem> IndicatorList { get; set; }
+
+        public DbSet<IndicatorOutcomeItem> IndicatorOutcomeList { get; set; }
+
+        public DbSet<IndicatorOutcomeItemLanguage> IndicatorOutcomeLanguageList { get; set; }
 
         public DbSet<ChapterItem> ChapterList { get; set; }
 
@@ -444,29 +451,59 @@ namespace Difi.Sjalvdeklaration.Database
             var requirementItem1 = new RequirementItem
             {
                 Id = Guid.Parse("875e76b5-c926-43a0-8738-c4f41c7a0b8b"),
-                Description = "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.",
                 IndicatorItemId = indicatorItem1.Id
+            };
+
+            var requirementItemLanguage1 = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("0290478b-5818-437b-9097-7fbeaf3433a2"),
+                Description = "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.",
+                RequirementItemId = requirementItem1.Id,
+                LanguageItemId = language1.Id,
             };
 
             var requirementItem2 = new RequirementItem
             {
                 Id = Guid.Parse("c65786bb-1b93-4153-b88c-935cc2a7ab60"),
-                Description = "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.",
                 IndicatorItemId = indicatorItem2.Id
             };
+
+            var requirementItemLanguage2 = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("b9247a56-97d9-4aeb-ad1d-224c1d410eaf"),
+                Description = "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.",
+                RequirementItemId = requirementItem2.Id,
+                LanguageItemId = language1.Id
+            };
+
 
             var requirementItem3 = new RequirementItem
             {
                 Id = Guid.Parse("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"),
-                Description = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.",
-                IndicatorItemId = indicatorItem3.Id
+                IndicatorItemId = indicatorItem3.Id,
             };
+
+            var requirementItemLanguage3 = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("5c873d77-9c1e-4c6f-82b6-83fdd77e892a"),
+                Description = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.",
+                RequirementItemId = requirementItem3.Id,
+                LanguageItemId = language1.Id
+            };
+
 
             var requirementItem4 = new RequirementItem
             {
                 Id = Guid.Parse("e503322b-ed77-4b69-adc4-eca19b6eb97d"),
-                Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.",
                 IndicatorItemId = indicatorItem4.Id
+            };
+
+            var requirementItemLanguage4 = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("5ec84619-9cd3-4ee8-adad-9e55d04482d7"),
+                Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.",
+                RequirementItemId = requirementItem4.Id,
+                LanguageItemId = language1.Id
             };
 
             var indicatorTestGroup1 = new IndicatorTestGroup
@@ -920,14 +957,277 @@ namespace Difi.Sjalvdeklaration.Database
                 Question = "Bekreft med bilde",
             };
 
+            var indicatorOutcomeItem11 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("0025bb09-6dfe-4069-ae6b-27cb28ba8300"),
+                IndicatorItemId = indicatorItem1.Id,
+                Order = 1,
+                ResultString1 = "1,1"
+            };
+
+            var indicatorOutcomeItem12 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("d438e931-f57c-4a5c-bb5c-3e3a66824827"),
+                IndicatorItemId = indicatorItem1.Id,
+                Order = 2,
+                ResultString1 = "1,1,1",
+                ResultString2 = "1,1,1,1"
+            };
+
+            var indicatorOutcomeItem13 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("d18a7bce-556c-45cc-87d7-c765261166d5"),
+                IndicatorItemId = indicatorItem1.Id,
+                Order = 3,
+                ResultString1 = "1,2,2,2"
+            };
+
+            var indicatorOutcomeItem14 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("a9b2bb20-7240-4a93-ba1a-ae270e8679f1"),
+                IndicatorItemId = indicatorItem1.Id,
+                Order = 4,
+                ResultString1 = "2,1"
+            };
+
+            var indicatorOutcomeItem15 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("4edceffe-eb77-4ca0-a498-24be5372d333"),
+                IndicatorItemId = indicatorItem1.Id,
+                Order = 5,
+                ResultString1 = "2,1,1",
+                ResultString2 = "2,1,1,1"
+            };
+
+            var indicatorOutcomeItem16 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("6cd1b621-12e6-4a03-bd6e-a7c8b39de251"),
+                IndicatorItemId = indicatorItem1.Id,
+                Order = 6,
+                ResultString1 = "2,2,2,2"
+            };
+
+            var indicatorOutcomeItemLanguage11 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("2e230687-302b-4da7-ae95-00d615f1fc2a"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem11.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Det henger ikke gjenstander over kundens betjeningsområde."
+            };
+
+            var indicatorOutcomeItemLanguage12 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("cf2e7b7c-7fdd-45d1-8140-f6c299805358"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem12.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Gjenstander som henger over kundens betjeningsområde, er minst 220 cm over gulvet."
+            };
+
+            var indicatorOutcomeItemLanguage13 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("20dc4731-c388-40f9-8c6a-45b92591f003"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem13.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet."
+            };
+
+            var indicatorOutcomeItemLanguage14 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("5631c088-146b-4df6-98a6-7a7f4e8d6331"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem14.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen. Det henger ikke gjenstander over kundens betjeningsområde."
+            };
+
+            var indicatorOutcomeItemLanguage15 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("bace523f-8d4c-4c2f-80e7-b87e2a4fb330"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem15.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen. Gjenstander som henger over kundens betjeningsområde, er minst 220 cm over gulvet."
+            };
+
+            var indicatorOutcomeItemLanguage16 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("174f9a3a-a5b9-4e00-8fcb-f3d9b8fd215e"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem16.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen og gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet."
+            };
+
+            var indicatorOutcomeItem21 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("30f07a36-ff0b-4692-b7bf-0f2d8dee923a"),
+                IndicatorItemId = indicatorItem2.Id,
+                Order = 1,
+                ResultString1 = "1,1",
+                ResultString2 = "1,1,1"
+            };
+
+            var indicatorOutcomeItem22 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("ae869b09-090d-459b-827c-4d61a1578478"),
+                IndicatorItemId = indicatorItem2.Id,
+                Order = 2,
+                ResultString1 = "2,2,2"
+            };
+
+            var indicatorOutcomeItem23 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("c11dcd56-0aaa-4253-8565-34132b640f15"),
+                IndicatorItemId = indicatorItem2.Id,
+                Order = 3,
+                ResultString1 = "1"
+            };
+
+            var indicatorOutcomeItemLanguage21 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("541fde0f-502e-4e6f-82f1-aca378d76b60"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem21.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Det er minst 150 cm mellom betalingsterminalene."
+            };
+
+            var indicatorOutcomeItemLanguage22 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("6b3a3de6-d6ff-45a4-8061-6e62d6970747"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem22.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Betalingsterminalene står for tett."
+            };
+
+            var indicatorOutcomeItemLanguage23 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("8bb7a824-82ca-4fbc-bb33-151a38b0a054"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem23.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Betalingsterminalen står ikke på rett linje ved siden av en annen betalingsterminal."
+            };
+
+            var indicatorOutcomeItem31 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("e5a123b7-f2d4-4d25-b6d7-544c3b7c63b8"),
+                IndicatorItemId = indicatorItem3.Id,
+                Order = 1,
+                ResultString1 = "1,1,1"
+            };
+
+            var indicatorOutcomeItem32 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("85d5b052-1f22-449d-b0a3-2883593ace54"),
+                IndicatorItemId = indicatorItem3.Id,
+                Order = 2,
+                ResultString1 = "1,1,2"
+            };
+
+            var indicatorOutcomeItem33 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("d0ab6b63-c6c9-4a4f-81b0-5be0a4497278"),
+                IndicatorItemId = indicatorItem3.Id,
+                Order = 3,
+                ResultString1 = "1,2,1"
+            };
+
+            var indicatorOutcomeItem34 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("402f1644-36d0-4ad5-853b-aee2f4bfbf75"),
+                IndicatorItemId = indicatorItem3.Id,
+                Order = 4,
+                ResultString1 = "1,2,2"
+            };
+
+            var indicatorOutcomeItem35 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("54d4cb13-a006-4a8b-9fdb-89a01a9b9040"),
+                IndicatorItemId = indicatorItem3.Id,
+                Order = 5,
+                ResultString1 = "2"
+            };
+
+            var indicatorOutcomeItemLanguage31 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("20308d8f-c099-436a-bf7b-f91a2fac0376"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem31.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Det finnes et skilt som viser hvor kunden skal betale varene sine. Skiltet er synlig på avstand utenfor kundens betjeningsområde og plassert over området der kunden skal betale varene sine."
+            };
+
+            var indicatorOutcomeItemLanguage32 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("1b27cdd4-a34b-486c-a5ff-684afa4579e7"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem32.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde."
+            };
+
+            var indicatorOutcomeItemLanguage33 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("8b2343e2-a121-4247-8b19-318d0d42984c"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem33.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Skilt er ikke plassert over området der kunden skal betale varene sine."
+            };
+
+            var indicatorOutcomeItemLanguage34 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("2595a239-44fc-4837-9aee-c6dd9f46d71c"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem34.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde. Skilt er ikke plassert over området der kunden skal betale varene sine."
+            };
+
+            var indicatorOutcomeItemLanguage35 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("f6d58cdf-cafa-4892-a847-1a70fa2dd4e2"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem35.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Det finnes ikke et skilt som viser hvor kunden skal betale."
+            };
+
+            var indicatorOutcomeItem41 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("043ccfc1-ff23-43f3-a130-3d399638f24f"),
+                IndicatorItemId = indicatorItem4.Id,
+                Order = 1,
+                ResultString1 = "1",
+                ResultString2 = "1,1"
+            };
+
+            var indicatorOutcomeItem42 = new IndicatorOutcomeItem
+            {
+                Id = Guid.Parse("8d69236d-8940-417e-aab6-d41d74539ef2"),
+                IndicatorItemId = indicatorItem4.Id,
+                Order = 2,
+                ResultString1 = "2,2"
+            };
+
+            var indicatorOutcomeItemLanguage41 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("c80f2711-1229-48d5-a15d-eb790d00f7f2"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem41.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Betalingsterminalen er mellom 75 og 130 cm over gulvet."
+            };
+
+            var indicatorOutcomeItemLanguage42 = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("840d94f6-0c3c-47d8-bcfd-7d4a148eec06"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem42.Id,
+                LanguageItemId = language1.Id,
+                OutcomeText = "Betalingsterminalen er ikke mellom 75 og 130 cm over gulvet."
+            };
+
             modelBuilder.Entity<LanguageItem>().HasData(language1, language2);
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
             modelBuilder.Entity<TestGroupItemLanguage>().HasData(testGroupItemLanguage1, testGroupItemLanguage2, testGroupItemLanguage3);
             modelBuilder.Entity<StandardItem>().HasData(standardItem1);
             modelBuilder.Entity<ChapterItem>().HasData(chapterItem11, chapterItem12, chapterItem21, chapterItem31, chapterItem41);
             modelBuilder.Entity<IndicatorItem>().HasData(indicatorItem1, indicatorItem2, indicatorItem3, indicatorItem4);
+            modelBuilder.Entity<IndicatorOutcomeItem>().HasData(indicatorOutcomeItem11, indicatorOutcomeItem12, indicatorOutcomeItem13, indicatorOutcomeItem14, indicatorOutcomeItem15, indicatorOutcomeItem16, indicatorOutcomeItem21, indicatorOutcomeItem22, indicatorOutcomeItem23, indicatorOutcomeItem31, indicatorOutcomeItem32, indicatorOutcomeItem33, indicatorOutcomeItem34, indicatorOutcomeItem35, indicatorOutcomeItem41, indicatorOutcomeItem42);
+            modelBuilder.Entity<IndicatorOutcomeItemLanguage>().HasData(indicatorOutcomeItemLanguage11, indicatorOutcomeItemLanguage12, indicatorOutcomeItemLanguage13, indicatorOutcomeItemLanguage14, indicatorOutcomeItemLanguage15, indicatorOutcomeItemLanguage16, indicatorOutcomeItemLanguage21, indicatorOutcomeItemLanguage22, indicatorOutcomeItemLanguage23, indicatorOutcomeItemLanguage31, indicatorOutcomeItemLanguage32, indicatorOutcomeItemLanguage33, indicatorOutcomeItemLanguage34, indicatorOutcomeItemLanguage35, indicatorOutcomeItemLanguage41, indicatorOutcomeItemLanguage42);
             modelBuilder.Entity<IndicatorTestGroup>().HasData(indicatorTestGroup1, indicatorTestGroup2, indicatorTestGroup3, indicatorTestGroup4);
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
+            modelBuilder.Entity<RequirementItemLanguage>().HasData(requirementItemLanguage1, requirementItemLanguage2, requirementItemLanguage3, requirementItemLanguage4);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem11, ruleItem12, ruleItem21, ruleItem31, ruleItem41);
             modelBuilder.Entity<RuleItemLanguage>().HasData(ruleItemLanguage11, ruleItemLanguage12, ruleItemLanguage21, ruleItemLanguage31, ruleItemLanguage41);
             modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem124, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem214, answerItem311, answerItem312, answerItem313, answerItem314, answerItem411, answerItem412, answerItem413);

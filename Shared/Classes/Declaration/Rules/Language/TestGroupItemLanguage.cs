@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
+namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language
 {
     public class TestGroupItemLanguage
     {

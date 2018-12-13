@@ -58,36 +58,36 @@
 
                                             if (lastAnswerData != null && answerItem != null)
                                             {
-                                                if (lastAnswerData.ResultId == (int) TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
                                                 {
-                                                    if (answerData.ResultId == (int) TypeOfResult.NotTestable)
+                                                    if (answerData.ResultId == (int)TypeOfResult.NotTestable)
                                                     {
                                                         viewAnswerItem = false;
                                                     }
                                                 }
 
-                                                if (lastAnswerData.ResultId == (int) TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                if (lastAnswerData.ResultId == (int)TypeOfResult.NotTestable && answerItem.LinkedParentFailedId != Guid.Empty)
                                                 {
-                                                    if (answerData.ResultId == (int) TypeOfResult.NotTestable)
+                                                    if (answerData.ResultId == (int)TypeOfResult.NotTestable)
                                                     {
                                                         viewAnswerItem = false;
                                                     }
                                                 }
 
-                                                if (lastAnswerData.ResultId == (int) TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                if (lastAnswerData.ResultId == (int)TypeOfResult.Ok && answerItem.LinkedParentFailedId != Guid.Empty)
                                                 {
-                                                    if (answerData.ResultId == (int) TypeOfResult.NotTested)
+                                                    if (answerData.ResultId == (int)TypeOfResult.NotTested)
                                                     {
                                                         viewAnswerItem = false;
                                                     }
                                                 }
 
-                                                if (lastAnswerData.ResultId == (int) TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
+                                                if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentFailedId != Guid.Empty)
                                                 {
                                                     viewAnswerItem = false;
                                                 }
 
-                                                if (lastAnswerData.ResultId == (int) TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                                if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
                                                 {
                                                     viewAnswerItem = false;
                                                 }
@@ -98,24 +98,24 @@
                                             if (viewAnswerItem)
                                             {
 
-                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.String)
+                                                if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.String, "AnswerString", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, viewResult = viewResult})
+                                                    @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = answerItem.Language.Question, orderText, result = answerData.Result, viewResult })
                                                 }
 
-                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Bool)
+                                                if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Bool)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText, viewResult = viewResult })
+                                                    @Html.DisplayFor(x => answerData.Bool, "AnswerBool", new { text = answerItem.Language.Question, orderText, result = answerData.Result, trueText = answerItem.Language.BoolTrueText, falseText = answerItem.Language.BoolFalseText, viewResult = viewResult })
                                                 }
 
-                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Int)
+                                                if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Int)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.Int, "AnswerInt", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, viewResult = viewResult })
+                                                    @Html.DisplayFor(x => answerData.Int, "AnswerInt", new { text = answerItem.Language.Question, orderText, result = answerData.Result, viewResult })
                                                 }
 
-                                                if (answerItem.TypeOfAnswer.Id == (int) TypeOfAnswer.Image)
+                                                if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.Image)
                                                 {
-                                                    @Html.DisplayFor(x => answerData.Image, "AnswerImage", new {text = @answerItem.Language.Question, orderText = orderText, result = answerData.Result, viewResult = viewResult })
+                                                    @Html.DisplayFor(x => answerData.Image, "AnswerImage", new { text = answerItem.Language.Question, orderText, result = answerData.Result, viewResult })
                                                 }
                                             }
 
@@ -124,6 +124,27 @@
                                     </div>
                                 </div>
                             }
+                        }
+
+                        if (viewResult)
+                        {
+                            <div class="errorOnThis">
+                                @if (outcomeData.IndicatorOutcomeItem != null)
+                                {
+
+                                    <span>Utfall: @outcomeData.Result.Text<br /></span>
+                                    <span>Formulering på utfall: @outcomeData.IndicatorOutcomeItem.Language.OutcomeText<br /></span>
+                                }
+
+                                <span>@outcomeData.RuleDataList.First().Rule.Requirement.Language.Description<br /></span>
+
+                                @foreach (var ruleData in outcomeData.RuleDataList)
+                                {
+                                    <span>Kapittel: @ruleData.Rule.Chapter.ChapterNumber @ruleData.Rule.Chapter.ChapterHeading<br /></span>
+                                }
+
+                                <span>Standard: @outcomeData.RuleDataList.First().Rule.Chapter.Standard.Standard<br /></span>
+                            </div>
                         }
                     }
                 }

@@ -13,6 +13,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 
         public Guid IndicatorItemId { get; set; }
 
+        public Guid? IndicatorOutcomeItemId { get; set; }
+
         public Guid DeclarationTestItemId { get; set; }
 
         [ForeignKey("ValueListTypeOfResult")]
@@ -25,6 +27,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
         public string ResultText { get; set; }
 
         public IndicatorItem Indicator { get; set; }
+
+        public IndicatorOutcomeItem IndicatorOutcomeItem { get; set; }
 
         public ICollection<RuleData> RuleDataList { get; set; }
     }

@@ -189,13 +189,35 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var list = dbContext.OutcomeData
                     .Include(x => x.Result)
+                    .Include(x=>x.IndicatorOutcomeItem)
                     .Include(x => x.Indicator).ThenInclude(x => x.TestGroupList)
+                    .Include(x => x.Indicator).ThenInclude(x=>x.RuleList).ThenInclude(x=>x.Chapter).ThenInclude(x=>x.Standard)
+                    .Include(x => x.Indicator).ThenInclude(x => x.RuleList).ThenInclude(x => x.Requirement)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.AnswerItem)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Image)
                     .AsNoTracking().Where(x => x.DeclarationTestItemId == id).ToList();
+
+                var indicatorOutcomeLanguageList = dbContext.IndicatorOutcomeLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+                var requirementLanguageList = dbContext.RequirementLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+
+                foreach (var outcomeData in list)
+                {
+                    if (outcomeData.IndicatorOutcomeItem != null)
+                    {
+                        outcomeData.IndicatorOutcomeItem.Language = indicatorOutcomeLanguageList.SingleOrDefault(x => x.IndicatorOutcomeItemId == outcomeData.IndicatorOutcomeItemId);
+                    }
+
+                    foreach (var ruleItem in outcomeData.Indicator.RuleList)
+                    {
+                        if (ruleItem != null)
+                        {
+                            ruleItem.Requirement.Language = requirementLanguageList.SingleOrDefault(x => x.RequirementItemId == ruleItem.RequirementItemId);
+                        }
+                    }
+                }
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -378,6 +400,31 @@ namespace Difi.Sjalvdeklaration.Database
 
                     outcomeData.AllDone = allDone;
 
+                    var answerDataString = String.Empty;
+
+                    foreach (var ruleData in outcomeData.RuleDataList)
+                    {
+                        foreach (var answerData in ruleData.AnswerDataList)
+                        {
+                            if (answerData.ResultId == (int) TypeOfResult.Ok || answerData.ResultId == (int) TypeOfResult.Fail)
+                            {
+                                if (!String.IsNullOrEmpty(answerDataString))
+                                {
+                                    answerDataString += ",";
+                                }
+
+                                answerDataString += answerData.ResultId;
+                            }
+                        }
+                    }
+
+                    var match = dbContext.IndicatorOutcomeList.SingleOrDefault(x => x.IndicatorItemId == outcomeData.IndicatorItemId && (x.ResultString1 == answerDataString || x.ResultString2 == answerDataString));
+
+                    if (match != null)
+                    {
+                        outcomeData.IndicatorOutcomeItemId = match.Id;
+                    }
+
                     dbContext.OutcomeData.Add(outcomeData);
                 }
 
@@ -417,7 +464,6 @@ namespace Difi.Sjalvdeklaration.Database
             try
             {
                 var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).ThenInclude(x => x.OutcomeDataList).SingleOrDefault(x => x.Id == id);
-                var finishedStatusList = dbContext.VlFinishedStatusList;
 
                 if (dbItem == null)
                 {

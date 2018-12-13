@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
