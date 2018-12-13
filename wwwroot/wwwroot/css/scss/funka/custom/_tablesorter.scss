@@ -36,6 +36,13 @@ div {
                     font-family: $body-font-family;
                     font-weight: normal;
                 }
+
+                &.icon {
+                    padding: 2px 0 2px 1.2rem;
+                    background-image: url("/css/cssimg/icons-sprite.svg");
+                    background-position: 0 -1794px;
+                    background-repeat: no-repeat;
+                }
             }
         }
     }
@@ -57,7 +64,7 @@ div {
     .tablesorter-default .header, .tablesorter-default .tablesorter-header {
         div {
             background-image: url("/css/cssimg/icons-sprite.svg");
-            background-position: 100% -792px;
+            background-position: 100% -793px;
             background-repeat: no-repeat;
             cursor: pointer;
             white-space: normal;
@@ -87,13 +94,13 @@ div {
     .tablesorter-default thead .tablesorter-headerAsc,
     .tablesorter-default thead .tablesorter-headerSortUp {
         div {
-            background-position: 100% -890px;
+            background-position: 100% -891px;
         }
     }
 
     .tablesorter-default thead .headerSortDown, .tablesorter-default thead .tablesorter-headerDesc, .tablesorter-default thead .tablesorter-headerSortDown {
         div {
-            background-position: 100% -990px;
+            background-position: 100% -991px;
         }
     }
 

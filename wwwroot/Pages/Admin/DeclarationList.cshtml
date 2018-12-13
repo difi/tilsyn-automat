@@ -87,7 +87,7 @@
 
             <tr>
                 <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Name)">
-                    <a asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
+                    <a class="icon" asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
                 </td>
                 <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)">
                     <a class="std-link" asp-page="/Admin/CompanyForm" asp-route-id="@item.Company.Id" asp-route-companyId="@item.Company.Id">@item.Company.Name</a>

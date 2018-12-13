@@ -3422,6 +3422,8 @@ a.button:hover, a.button:focus {
     padding-left: 1.6rem; }
     .label.status-4:before {
       background-color: #B4F0E7; }
+    .label.status-4.finished-2:before {
+      background-color: #FFD1D1; }
   .label.status-6, .label.status-7 {
     padding-left: 1.6rem; }
     .label.status-6:before, .label.status-7:before {
@@ -4334,6 +4336,11 @@ div .tablesorter-default {
         font-size: 14px;
         font-family: "Open Sans", Helvetica, Arial, sans-serif;
         font-weight: normal; }
+      div .tablesorter-default .clickable-td a.icon {
+        padding: 2px 0 2px 1.2rem;
+        background-image: url("/css/cssimg/icons-sprite.svg");
+        background-position: 0 -1794px;
+        background-repeat: no-repeat; }
 
 div .tablesorter-default th, div .tablesorter-default thead td {
   font-weight: 700;
@@ -4349,7 +4356,7 @@ div .tablesorter-default tfoot td, div .tablesorter-default tfoot th {
 
 div .tablesorter-default .header div, div .tablesorter-default .tablesorter-header div {
   background-image: url("/css/cssimg/icons-sprite.svg");
-  background-position: 100% -792px;
+  background-position: 100% -793px;
   background-repeat: no-repeat;
   cursor: pointer;
   white-space: normal;
@@ -4368,10 +4375,10 @@ div .tablesorter-default thead .tablesorter-headerSortDown div {
 div .tablesorter-default thead .headerSortUp div,
 div .tablesorter-default thead .tablesorter-headerAsc div,
 div .tablesorter-default thead .tablesorter-headerSortUp div {
-  background-position: 100% -890px; }
+  background-position: 100% -891px; }
 
 div .tablesorter-default thead .headerSortDown div, div .tablesorter-default thead .tablesorter-headerDesc div, div .tablesorter-default thead .tablesorter-headerSortDown div {
-  background-position: 100% -990px; }
+  background-position: 100% -991px; }
 
 div .tablesorter-default thead .sorter-false div {
   background-image: none;
