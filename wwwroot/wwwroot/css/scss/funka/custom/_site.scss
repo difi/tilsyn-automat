@@ -367,10 +367,6 @@ img {
 }
 
 
-
-
-
-
 /* Page specific code
 --------------------------------------------------------------*/
 //--------------------------------------------------------------*/
@@ -381,7 +377,6 @@ img {
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
 }
-    // LARGE SCREEN
+// LARGE SCREEN
 @include breakpoint(large) {
-
 }

@@ -4307,6 +4307,9 @@ div .tablesorter-default {
     vertical-align: middle; }
     div .tablesorter-default .clickable-td:hover {
       cursor: pointer; }
+      div .tablesorter-default .clickable-td:hover a {
+        color: #458596;
+        text-decoration: none; }
     div .tablesorter-default .clickable-td a {
       font-family: "sofia-pro", Helvetica, Arial, sans-serif;
       font-weight: bold;
@@ -4314,8 +4317,6 @@ div .tablesorter-default {
       text-decoration: underline;
       display: inline-block;
       line-height: 17px; }
-  div .tablesorter-default tbody tr:hover {
-    background-color: #F3F7F8; }
 
 div .tablesorter-default th, div .tablesorter-default thead td {
   font-weight: 700;
@@ -4367,6 +4368,65 @@ div .tablesorter-default td {
 div tbody tr:nth-child(2n) {
   border-bottom: 0;
   background-color: transparent; }
+
+div div .tablesorter-default a {
+  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: #17667c;
+  text-decoration: underline;
+  display: inline-block;
+  line-height: 17px; }
+
+@media screen and (max-width: 767px) {
+  div table.responsive-table {
+    display: block;
+    width: 100%; }
+    div table.responsive-table th[scope="col"] {
+      clip: rect(0px, 0px, 0px, 0px);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px; }
+    div table.responsive-table tbody {
+      display: block;
+      width: 100%; }
+    div table.responsive-table thead {
+      display: none; }
+    div table.responsive-table tr,
+    div table.responsive-table th,
+    div table.responsive-table td {
+      display: block;
+      padding: 0; }
+    div table.responsive-table tr {
+      border: none;
+      margin: 0 0 1em 0;
+      padding: 0.5rem 0.5rem;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-bottom: 2rem;
+      border: 0;
+      border-radius: 3px;
+      box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.09);
+      overflow: hidden;
+      color: #303132; }
+      div table.responsive-table tr:nth-child(even) {
+        background-color: #fff; }
+    div table.responsive-table td {
+      padding: 0.75em 0.25em 0.75em 0.25em;
+      border-bottom: 1px solid #ccc;
+      text-align: right; }
+      div table.responsive-table td:before {
+        font-weight: bold;
+        display: inline-block;
+        content: attr(data-th);
+        float: left;
+        margin-right: 0.5em;
+        font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+      div table.responsive-table td:last-child {
+        padding-bottom: 0;
+        border: 0; } }
 
 /* Template specific code
 --------------------------------------------------------------*/

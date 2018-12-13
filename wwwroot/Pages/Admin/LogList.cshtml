@@ -61,7 +61,7 @@
 
 @if (Model.LogList != null)
 {
-    <table class="table jsLogTableSort">
+    <table class="responsive-table table jsLogTableSort">
         <caption>
             <h2>@Localizer["Log list"]</h2>
         </caption>
@@ -78,24 +78,24 @@
         @foreach (var item in Model.LogList)
         {
             <tr>
-                <td class="clickable-td">
+                <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Created)">
                     <span class="hide">@item.Created.Ticks</span>
                     <a asp-page="LogView" asp-route-id="@item.Id">@item.Created.ToString("dd.MM.yyyy HH:mm")</a>
                 </td>
 
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Class)">
                     @item.Class.Replace("LogDecorator", String.Empty)
                 </td>
 
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Function)">
                     @item.Function
                 </td>
 
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.UserId)">
                     @item.UserItem.Name
                 </td>
 
-                <td class="clickable-td">
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)">
                     @(item.ResultSucceeded ? Localizer["Yes"] : Localizer["No"])
                 </td>
             </tr>
