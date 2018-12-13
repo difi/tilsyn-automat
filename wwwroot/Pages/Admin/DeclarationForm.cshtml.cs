@@ -16,6 +16,8 @@ using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using Difi.Sjalvdeklaration.Shared.Extensions;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -23,6 +25,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     public class DeclarationFormModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
+        private readonly IExcelGenerator excelGenerator;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -48,10 +51,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public List<ValueListTypeOfTest> ValueListTypeOfTest { get; set; }
 
-        public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IExcelGenerator excelGenerator)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.excelGenerator = excelGenerator;
         }
 
         [HttpGet]
@@ -140,6 +144,28 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             catch (Exception exception)
             {
                 return await errorHandler.Log(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), exception, DeclarationItemForm);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostExportDeclarationAsync(string id)
+        {
+            try
+            {
+                var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + Guid.Parse(id));
+
+                if (result.Succeeded)
+                {
+                    var data = excelGenerator.GenerateExcel(new List<DeclarationItem> { result.Data });
+
+                    return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{result.Data.Name} ({DateTime.Now.GetAsFileName()}).xlsx");
+                }
+
+                return await errorHandler.View(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), result.Exception);
+            }
+            catch (Exception exception)
+            {
+                return await errorHandler.Log(this, OnGetAsync(DeclarationItemForm.Id, DeclarationItemForm.CompanyItemId), exception, id);
             }
         }
 
@@ -256,7 +282,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
-                Text = $"{x.TextCompany} ({x.Text})",
+                Text = $"{x.TextAdmin} ({x.Text})",
                 Selected = false
             }).ToList();
 

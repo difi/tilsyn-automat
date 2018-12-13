@@ -1,27 +1,17 @@
-﻿using Difi.Sjalvdeklaration.Shared.Attributes;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Extensions;
+using Difi.Sjalvdeklaration.wwwroot.Business;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -125,28 +115,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostExportDeclarationAsync(string id)
-        {
-            try
-            {
-                var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + Guid.Parse(id));
-
-                if (result.Succeeded)
-                {
-                    var data = excelGenerator.GenerateExcel(new List<DeclarationItem> { result.Data });
-
-                    return File(data, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"{result.Data.Name} ({DateTime.Now.GetAsFileName()}).xlsx");
-                }
-
-                return await errorHandler.View(this, OnGetAsync(), result.Exception);
-            }
-            catch (Exception exception)
-            {
-                return await errorHandler.Log(this, OnGetAsync(), exception, id);
-            }
-        }
-
-        [HttpPost]
         public async Task<IActionResult> OnPostExportDeclarationListAsync()
         {
             try
@@ -182,7 +150,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
-                Text = $"{x.TextCompany} ({x.Text})",
+                Text = $"{x.TextAdmin} ({x.Text})",
                 Selected = false
             }).ToList();
 
@@ -194,6 +162,5 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
             return true;
         }
-
     }
 }
