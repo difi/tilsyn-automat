@@ -48,8 +48,8 @@ namespace Difi.Sjalvdeklaration.Api
         }
 
         [HttpGet]
-        [Route("GetByFilter/{fromDate}/{toDate}/{status1}/{status2}")]
-        public ApiResult<List<DeclarationItem>> GetByFilter(long fromDate, long toDate, int status1, int status2)
+        [Route("GetByFilter/{fromDate}/{toDate}/{status}")]
+        public ApiResult<List<DeclarationItem>> GetByFilter(long fromDate, long toDate, int status)
         {
             HandleRequest();
 
@@ -57,8 +57,7 @@ namespace Difi.Sjalvdeklaration.Api
             {
                 FromDate = new DateTime(fromDate),
                 ToDate = new DateTime(toDate),
-                Status1 = status1,
-                Status2 = status2
+                Status = status,
             };
 
             return declarationRepository.GetByFilter<List<DeclarationItem>>(filterModel);

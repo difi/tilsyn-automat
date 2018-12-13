@@ -13,9 +13,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [Display(Name = "To Date")]
         public DateTime ToDate { get; set; }
 
-        public int Status1 { get; set; }
-
-        public int Status2 { get; set; }
+        public int Status { get; set; }
 
         public int Succeeded { get; set; }
     }
