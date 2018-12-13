@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
@@ -32,13 +31,6 @@ namespace Difi.Sjalvdeklaration.Api
         public ApiResult<LogItem> Get(Guid id)
         {
             return logRepository.Get<LogItem>(id);
-        }
-
-        [HttpGet]
-        [Route("GetAll")]
-        public ApiResult<List<LogItem>> GetAll()
-        {
-            return logRepository.GetAll<List<LogItem>>();
         }
 
         [HttpGet]

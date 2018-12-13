@@ -9,6 +9,6 @@ namespace Difi.Sjalvdeklaration.Shared.Attributes
             Value = value;
         }
 
-        public String Value { get; set; }
+        public string Value { get; set; }
     }
 }

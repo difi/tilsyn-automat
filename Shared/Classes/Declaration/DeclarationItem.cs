@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Difi.Sjalvdeklaration.Shared.Attributes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
@@ -21,26 +22,33 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         [ForeignKey("ValueListTypeOfStatus")]
         [Display(Name = "Status")]
-        public Int32 StatusId { get; set; }
+        public int StatusId { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name is required")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Case number")]
-        public String CaseNumber { get; set; }
+        public string CaseNumber { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Created date")]
         public DateTime CreatedDate { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Deadline date")]
         [Required(ErrorMessage = "Deadline for submission is required")]
         [DataType(DataType.Date)]
         public DateTime DeadlineDate { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Sent in date")]
         public DateTime SentInDate { get; set; }
 
+        [ExcelExport]
+        [Display(Name = "Status")]
         public ValueListTypeOfStatus Status { get; set; }
 
         public CompanyItem Company { get; set; }

@@ -111,7 +111,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             FilterModel = new FilterModel
             {
-                FromDate = DateTime.Now.Date.AddDays(-14),
+                FromDate = DateTime.Now.Date.AddDays(-7),
                 ToDate = DateTime.Now.Date,
                 Succeeded = 0
             };

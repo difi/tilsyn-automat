@@ -11,37 +11,43 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         [Required]
         public Guid Id { get; set; }
 
-        public String Token { get; set; }
+        public string Token { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name is required")]
         [AutoComplete("name")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Social security number")]
         [Required(ErrorMessage = "Social security number is required")]
         [AutoComplete("off")]
-        public String SocialSecurityNumber { get; set; }
+        public string SocialSecurityNumber { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required")]
         [AutoComplete("email ")]
-        public String Email { get; set; }
+        public string Email { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Country code")]
         [Required(ErrorMessage = "Country code is required")]
         [AutoComplete("tel-country-code")]
-        public String PhoneCountryCode { get; set; }
+        public string PhoneCountryCode { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Phone")]
         [Required(ErrorMessage = "Phone is required")]
         [AutoComplete("tel")]
-        public String Phone { get; set; }
+        public string Phone { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Position in Difi")]
         [Required(ErrorMessage = "Position in Difi is required")]
         [AutoComplete("organization-title")]
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         public DateTime Created { get; set; }
 

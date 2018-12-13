@@ -75,7 +75,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.LogList.AsNoTracking().OrderByDescending(x => x.Created).Take(100).ToList();
+                var list = dbContext.LogList.AsNoTracking().OrderByDescending(x => x.Created).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

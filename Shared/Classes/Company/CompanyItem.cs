@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Difi.Sjalvdeklaration.Shared.Attributes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 
@@ -11,75 +12,97 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
     {
         public Guid Id { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Business ID (Supervisory Data Model)")]
-        public String ExternalId { get; set; }
+        public string ExternalId { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Pin code")]
-        public String Code { get; set; }
+        public string Code { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Organization number")]
-        public String CorporateIdentityNumber { get; set; }
+        public string CorporateIdentityNumber { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Organization number of the owner organization")]
-        public String OwenerCorporateIdentityNumber { get; set; }
+        public string OwenerCorporateIdentityNumber { get; set; }
 
+        [ExcelExport]
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name - required field")]
-        public String Name { get; set; }
+        public string Name { get; set; }
 
+        [ExcelExport("MailingAddress")]
         [Display(Name = "Street name and number")]
-        public String MailingAddressStreet { get; set; }
+        public string MailingAddressStreet { get; set; }
 
+        [ExcelExport("MailingAddress")]
         [Display(Name = "ZIP code")]
-        public String MailingAddressZip { get; set; }
+        public string MailingAddressZip { get; set; }
 
+        [ExcelExport("MailingAddress")]
         [Display(Name = "City")]
-        public String MailingAddressCity { get; set; }
+        public string MailingAddressCity { get; set; }
 
+        [ExcelExport("LocationAddress")]
         [Display(Name = "Street name and number")]
-        public String LocationAddressStreet { get; set; }
+        public string LocationAddressStreet { get; set; }
 
+        [ExcelExport("LocationAddress")]
         [Display(Name = "ZIP code")]
-        public String LocationAddressZip { get; set; }
+        public string LocationAddressZip { get; set; }
 
+        [ExcelExport("LocationAddress")]
         [Display(Name = "City")]
-        public String LocationAddressCity { get; set; }
+        public string LocationAddressCity { get; set; }
 
+        [ExcelExport("BusinessAddress")]
         [Display(Name = "Street name and number")]
-        public String BusinessAddressStreet { get; set; }
+        public string BusinessAddressStreet { get; set; }
 
+        [ExcelExport("BusinessAddress")]
         [Display(Name = "ZIP code")]
-        public String BusinessAddressZip { get; set; }
+        public string BusinessAddressZip { get; set; }
 
+        [ExcelExport("BusinessAddress")]
         [Display(Name = "City")]
-        public String BusinessAddressCity { get; set; }
+        public string BusinessAddressCity { get; set; }
 
+        [ExcelExport("IndustryGroup")]
         [Display(Name = "Code")]
-        public String IndustryGroupCode { get; set; }
+        public string IndustryGroupCode { get; set; }
 
+        [ExcelExport("IndustryGroup")]
         [Display(Name = "Description")]
-        public String IndustryGroupDescription { get; set; }
+        public string IndustryGroupDescription { get; set; }
 
+        [ExcelExport("IndustryGroup")]
         [Display(Name = "Aggregated")]
-        public String IndustryGroupAggregated { get; set; }
+        public string IndustryGroupAggregated { get; set; }
 
+        [ExcelExport("InstitutionalSector")]
         [Display(Name = "Code")]
-        public String InstitutionalSectorCode { get; set; }
+        public string InstitutionalSectorCode { get; set; }
 
+        [ExcelExport("InstitutionalSector")]
         [Display(Name = "Description")]
-        public String InstitutionalSectorDescription { get; set; }
+        public string InstitutionalSectorDescription { get; set; }
 
         [Display(Name = "Changed business name")]
-        public String CustomName { get; set; }
+        public string CustomName { get; set; }
 
+        [ExcelExport("CustomAdress")]
         [Display(Name = "Street name and number")]
-        public String CustomAddressStreet { get; set; }
+        public string CustomAddressStreet { get; set; }
 
+        [ExcelExport("CustomAdress")]
         [Display(Name = "ZIP code")]
-        public String CustomAddressZip { get; set; }
+        public string CustomAddressZip { get; set; }
 
+        [ExcelExport("CustomAdress")]
         [Display(Name = "City")]
-        public String CustomAddressCity { get; set; }
+        public string CustomAddressCity { get; set; }
 
         public ICollection<UserCompany> UserList { get; set; }
 
