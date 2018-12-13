@@ -25,16 +25,13 @@
                     <div class="jsProfileContainer profile-wrapper admin">
                         <div class="profile-area">
                             <div class="row collapse">
-                                <div class="small-7 medium-6 text-right columns">
-                                    <div class="profile-first-letter">
-                                        @nameClaim?.Value
-                                    </div>
-                                </div>
-                                <div class="small-5 medium-6 columns">
+
+                                <div class="small-12 medium-12 columns">
                                     <button class="jsProfileTrigger toggle-profile-button button plus">
+                                        <span class="profile-first-letter" aria-hidden="true">@nameClaim?.Value</span>
                                         <span class="profile-name hide-for-small-only">@nameClaim?.Value</span><br />
                                         <span class="profile-number hide-for-small-only">@Localizer["Case processor"]</span>
-                                        <span class="toggle-profile-icon"><span class="show-for-sr">  - @Localizer["View log out"]</span></span>
+                                        <span class="toggle-profile-icon"><span class="show-for-sr"> - @Localizer["View log out"]</span></span>
                                     </button>
                                 </div>
                             </div>

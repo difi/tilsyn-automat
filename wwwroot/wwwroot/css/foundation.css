@@ -3831,8 +3831,7 @@ header {
   header .logo {
     margin: 13px 0 0 -130px; }
   header .profile-wrapper .profile-first-letter {
-    background-color: #8f6693;
-    margin-top: 14px; }
+    background-color: #8f6693; }
   header .profile-info-area {
     text-align: right;
     padding: 2rem 0 1rem 0; }
@@ -3851,7 +3850,9 @@ header {
     font-family: "sofia-pro", Helvetica, Arial, sans-serif;
     color: transparent;
     font-size: 0;
-    margin-top: 8px; }
+    margin-right: 0.5rem;
+    top: 10px;
+    position: relative; }
     header .profile-first-letter:first-letter {
       font-size: 21px;
       color: #fff; }
@@ -4189,19 +4190,20 @@ button, .button, input[type="button"], input[type="submit"] {
     font-weight: bold;
     background-color: transparent;
     padding: 0.75rem 2rem 1rem 10px;
-    margin-bottom: 25px;
+    margin-bottom: 0;
     color: #1f3f43;
     font-size: 1rem;
     border-radius: 0;
     width: 100%;
-    position: relative; }
+    position: relative;
+    top: 21px; }
     button.toggle-profile-button[aria-expanded="false"] .toggle-profile-icon, .button.toggle-profile-button[aria-expanded="false"] .toggle-profile-icon, input[type="button"].toggle-profile-button[aria-expanded="false"] .toggle-profile-icon, input[type="submit"].toggle-profile-button[aria-expanded="false"] .toggle-profile-icon {
-      top: 16px;
+      top: 21px;
       transform: rotate(-45deg);
       transition: transform 200ms ease; }
     button.toggle-profile-button[aria-expanded="true"] .toggle-profile-icon, .button.toggle-profile-button[aria-expanded="true"] .toggle-profile-icon, input[type="button"].toggle-profile-button[aria-expanded="true"] .toggle-profile-icon, input[type="submit"].toggle-profile-button[aria-expanded="true"] .toggle-profile-icon {
       transform: rotate(-225deg);
-      top: 22px;
+      top: 31px;
       transition: transform 200ms ease; }
     button.toggle-profile-button .toggle-header-number, .button.toggle-profile-button .toggle-header-number, input[type="button"].toggle-profile-button .toggle-header-number, input[type="submit"].toggle-profile-button .toggle-header-number {
       border: 1px solid #1f3f43;
@@ -4212,11 +4214,11 @@ button, .button, input[type="button"], input[type="submit"] {
       text-align: center;
       line-height: 1.15; }
     button.toggle-profile-button .toggle-profile-icon, .button.toggle-profile-button .toggle-profile-icon, input[type="button"].toggle-profile-button .toggle-profile-icon, input[type="submit"].toggle-profile-button .toggle-profile-icon {
-      border: 2px solid #1f3f43;
+      border: 3px solid #1f3f43;
       border-top-color: transparent;
       border-right-color: transparent;
-      width: 14px;
-      height: 14px;
+      width: 15px;
+      height: 15px;
       display: inline-block;
       transform: rotate(-45deg);
       position: absolute;
@@ -4336,6 +4338,9 @@ div .tablesorter-default {
         font-size: 14px;
         font-family: "Open Sans", Helvetica, Arial, sans-serif;
         font-weight: normal; }
+      div .tablesorter-default .clickable-td a.button {
+        color: #fff;
+        text-decoration: none; }
       div .tablesorter-default .clickable-td a.icon {
         padding: 2px 0 2px 1.2rem;
         background-image: url("/css/cssimg/icons-sprite.svg");

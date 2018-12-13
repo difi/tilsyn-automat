@@ -293,16 +293,17 @@ button, .button, input[type="button"], input[type="submit"] {
         font-weight: bold;
         background-color: transparent;
         padding: 0.75rem 2rem 1rem 10px;
-        margin-bottom: 25px;
+        margin-bottom: 0;
         color: $dark-blue-grey;
         font-size: 1rem;
         border-radius: 0;
         width: 100%;
         position: relative;
+        top: 21px;
 
         &[aria-expanded="false"] {
             .toggle-profile-icon {
-                top: 16px;
+                top: 21px;
                 transform: rotate(-45deg);
                 transition: transform 200ms ease;
             }
@@ -311,7 +312,7 @@ button, .button, input[type="button"], input[type="submit"] {
         &[aria-expanded="true"] {
             .toggle-profile-icon {
                 transform: rotate(-225deg);
-                top: 22px;
+                top: 31px;
                 transition: transform 200ms ease;
             }
         }
@@ -327,11 +328,11 @@ button, .button, input[type="button"], input[type="submit"] {
         }
 
         .toggle-profile-icon {
-            border: 2px solid $dark-blue-grey;
+            border: 3px solid $dark-blue-grey;
             border-top-color: transparent;
             border-right-color: transparent;
-            width: 14px;
-            height: 14px;
+            width: 15px;
+            height: 15px;
             display: inline-block;
             transform: rotate(-45deg);
             position: absolute;

@@ -37,6 +37,11 @@ div {
                     font-weight: normal;
                 }
 
+                &.button {
+                    color: $color-white;
+                    text-decoration: none;
+                }
+
                 &.icon {
                     padding: 2px 0 2px 1.2rem;
                     background-image: url("/css/cssimg/icons-sprite.svg");
