@@ -20,11 +20,11 @@
         <div class="small-12 column">
             <div class="filter-wrapper">
                 <fieldset>
-                    <legend>@Localizer["Date submitted"]</legend>
+                    <legend class="filter-view-legend">@Localizer["Date submitted"]</legend>
                 </fieldset>
 
                 <div class="row">
-                    <div class="small-12 medium-3 column">
+                    <div class="small-12 medium-4 column">
                         <div class="row">
                             <div class="small-6 column">
                                 @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
@@ -35,26 +35,19 @@
                         </div>
                     </div>
 
-                    <div class="small-12 medium-6 column">
-                        <div class="row">
-                            <div class="small-6 column">
-                                @Html.EditorFor(x => x.FilterModel.Status1, "DropdownListInt", new { list = Model.SelectStatusList })
-                            </div>
-                            <div class="small-6 column">
-                                @Html.EditorFor(x => x.FilterModel.Status2, "DropdownListInt", new { list = Model.SelectStatusList })
-                            </div>
-                        </div>
+                    <div class="small-12 medium-4 column">
+                        @Html.EditorFor(x => x.FilterModel.Status1, "DropdownListInt", new { list = Model.SelectStatusList })
                     </div>
 
-                    <div class="small-12 medium-3 column">
+                    <div class="small-12 medium-4 column">
                         <div class="row collapse">
                             <div class="small-6 column">
                                 <br />
-                                <button class="button" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
+                                <button class="button large" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
                             </div>
                             <div class="small-6 column">
                                 <br />
-                                <button class="button alt" type="submit" asp-page-handler="ViewAll">@Localizer["Show all"]</button>
+                                <button class="button large alt" type="submit" asp-page-handler="ViewAll">@Localizer["Show all"]</button>
                             </div>
                         </div>
                     </div>
@@ -84,9 +77,7 @@
             <th scope="col">@Localizer["Executive officer"]</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)</th>
-            <th scope="col">@Localizer["Status of self-control"]</th>
             <th scope="col">@Localizer["Status of supervision"]</th>
-            <th class="sorter-false" scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -117,18 +108,13 @@
                         <span>-</span>
                     }
                 </td>
-                <td data-th="@Localizer["Status of self-control"]">
-                    @item.Status.TextCompany
-                </td>
                 <td data-th="@Localizer["Status of supervision"]">
-                    @item.Status.TextAdmin
+                    <span class="label">@item.Status.TextAdmin</span>
+                    <span class="label alert"> @item.Status.TextAdmin </span>
+                    <span class="label warning"> @item.Status.TextAdmin </span>
+                    <span class="label"> @item.Status.TextAdmin </span>
                 </td>
 
-                <td data-th="Export">
-                    <form method="post">
-                        <button class="button export" type="submit" asp-page-handler="ExportDeclaration" asp-route-id="@item.Id"><span class="show-for-sr">@Localizer["Export"]</span></button>
-                    </form>
-                </td>
             </tr>
         }
     </tbody>

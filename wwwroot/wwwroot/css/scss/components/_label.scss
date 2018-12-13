@@ -48,17 +48,31 @@ $label-radius: $global-radius !default;
 }
 
 @mixin foundation-label {
-  .label {
-    @include label;
+    .label {
+        @include label;
+        position: relative;
+        padding-left: 1.5rem;
+        &:before {
+            content: "";
+            position: absolute;
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border: 1px solid #858585;
+            background-color: yellow;
+            border-radius: 100px;
+            top: 7px;
+            left: 0.4rem;
+        }
 
-    background: $label-background;
-    color: $label-color;
+        background: $label-background;
+        color: $label-color;
 
-    @each $name, $color in $label-palette {
-      &.#{$name} {
-        background: $color;
-        color: color-pick-contrast($color, ($label-color, $label-color-alt));
-      }
+        @each $name, $color in $label-palette {
+            &.#{$name} {
+                //background: $color;
+                //color: color-pick-contrast($color, ($label-color, $label-color-alt));
+            }
+        }
     }
-  }
 }

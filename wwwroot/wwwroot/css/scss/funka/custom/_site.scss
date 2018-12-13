@@ -345,6 +345,11 @@ img {
     padding: 1rem;
     margin: 1rem 0 2rem 0;
 
+    .filter-view-legend {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
     legend, label {
         font-family: $body-font-family;
         font-weight: normal;
