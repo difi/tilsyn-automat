@@ -3835,27 +3835,6 @@ header {
   header .profile-info-area {
     text-align: right;
     padding: 2rem 0 1rem 0; }
-  header .profile-number {
-    font-weight: normal; }
-  header .profile-name {
-    max-width: 100px; }
-  header .profile-first-letter {
-    width: 40px;
-    height: 40px;
-    display: inline-block;
-    background-color: #1f3f43;
-    border-radius: 1000px;
-    padding-top: 3px;
-    text-align: center;
-    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
-    color: transparent;
-    font-size: 0;
-    margin-right: 0.5rem;
-    top: 10px;
-    position: relative; }
-    header .profile-first-letter:first-letter {
-      font-size: 21px;
-      color: #fff; }
 
 .status-text {
   font-size: 17px;
@@ -4189,22 +4168,59 @@ button, .button, input[type="button"], input[type="submit"] {
     text-align: right;
     font-weight: bold;
     background-color: transparent;
-    padding: 0.75rem 2rem 1rem 10px;
-    margin-bottom: 0;
+    padding: 0.6em 20px 0.6em 1.25em;
+    margin: 8px 0 0 0;
     color: #1f3f43;
     font-size: 1rem;
     border-radius: 0;
-    width: 100%;
-    position: relative;
-    top: 21px; }
-    button.toggle-profile-button[aria-expanded="false"] .toggle-profile-icon, .button.toggle-profile-button[aria-expanded="false"] .toggle-profile-icon, input[type="button"].toggle-profile-button[aria-expanded="false"] .toggle-profile-icon, input[type="submit"].toggle-profile-button[aria-expanded="false"] .toggle-profile-icon {
-      top: 21px;
-      transform: rotate(-45deg);
-      transition: transform 200ms ease; }
-    button.toggle-profile-button[aria-expanded="true"] .toggle-profile-icon, .button.toggle-profile-button[aria-expanded="true"] .toggle-profile-icon, input[type="button"].toggle-profile-button[aria-expanded="true"] .toggle-profile-icon, input[type="submit"].toggle-profile-button[aria-expanded="true"] .toggle-profile-icon {
-      transform: rotate(-225deg);
-      top: 31px;
-      transition: transform 200ms ease; }
+    width: 100%; }
+    button.toggle-profile-button .profile-first-letter, .button.toggle-profile-button .profile-first-letter, input[type="button"].toggle-profile-button .profile-first-letter, input[type="submit"].toggle-profile-button .profile-first-letter {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      background-color: #8f6693;
+      border-radius: 1000px;
+      padding-top: 5px;
+      text-align: center;
+      font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+      margin-right: 0.75rem;
+      position: relative;
+      overflow: hidden;
+      font-size: 0; }
+      button.toggle-profile-button .profile-first-letter.declaration, .button.toggle-profile-button .profile-first-letter.declaration, input[type="button"].toggle-profile-button .profile-first-letter.declaration, input[type="submit"].toggle-profile-button .profile-first-letter.declaration {
+        background-color: #1f3f43; }
+      button.toggle-profile-button .profile-first-letter:first-letter, .button.toggle-profile-button .profile-first-letter:first-letter, input[type="button"].toggle-profile-button .profile-first-letter:first-letter, input[type="submit"].toggle-profile-button .profile-first-letter:first-letter {
+        font-size: 21px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: normal; }
+    button.toggle-profile-button .profile-area-text-wrapper, .button.toggle-profile-button .profile-area-text-wrapper, input[type="button"].toggle-profile-button .profile-area-text-wrapper, input[type="submit"].toggle-profile-button .profile-area-text-wrapper {
+      display: inline-block;
+      padding: 0 0.5rem;
+      min-height: 44px;
+      position: relative;
+      vertical-align: top; }
+    button.toggle-profile-button .profile-icon, .button.toggle-profile-button .profile-icon, input[type="button"].toggle-profile-button .profile-icon, input[type="submit"].toggle-profile-button .profile-icon {
+      background-image: url("/css/cssimg/icons-sprite.svg");
+      background-repeat: no-repeat;
+      background-position: 100% -2098px;
+      width: 16px;
+      height: 10px;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      margin-left: 6px;
+      margin-top: 8px; }
+    button.toggle-profile-button[aria-expanded="false"] .profile-icon, .button.toggle-profile-button[aria-expanded="false"] .profile-icon, input[type="button"].toggle-profile-button[aria-expanded="false"] .profile-icon, input[type="submit"].toggle-profile-button[aria-expanded="false"] .profile-icon {
+      transform: rotate(0deg);
+      transition: transform 300ms ease; }
+    button.toggle-profile-button[aria-expanded="true"] .profile-icon, .button.toggle-profile-button[aria-expanded="true"] .profile-icon, input[type="button"].toggle-profile-button[aria-expanded="true"] .profile-icon, input[type="submit"].toggle-profile-button[aria-expanded="true"] .profile-icon {
+      transform: rotate(180deg);
+      transition: transform 300ms ease; }
+    button.toggle-profile-button .profile-title, .button.toggle-profile-button .profile-title, input[type="button"].toggle-profile-button .profile-title, input[type="submit"].toggle-profile-button .profile-title {
+      font-weight: normal; }
+    button.toggle-profile-button .profile-name, .button.toggle-profile-button .profile-name, input[type="button"].toggle-profile-button .profile-name, input[type="submit"].toggle-profile-button .profile-name {
+      max-width: 100px; }
     button.toggle-profile-button .toggle-header-number, .button.toggle-profile-button .toggle-header-number, input[type="button"].toggle-profile-button .toggle-header-number, input[type="submit"].toggle-profile-button .toggle-header-number {
       border: 1px solid #1f3f43;
       border-radius: 100px;
@@ -4213,16 +4229,6 @@ button, .button, input[type="button"], input[type="submit"] {
       display: inline-block;
       text-align: center;
       line-height: 1.15; }
-    button.toggle-profile-button .toggle-profile-icon, .button.toggle-profile-button .toggle-profile-icon, input[type="button"].toggle-profile-button .toggle-profile-icon, input[type="submit"].toggle-profile-button .toggle-profile-icon {
-      border: 3px solid #1f3f43;
-      border-top-color: transparent;
-      border-right-color: transparent;
-      width: 15px;
-      height: 15px;
-      display: inline-block;
-      transform: rotate(-45deg);
-      position: absolute;
-      right: 5px; }
   button.upload-photo, .button.upload-photo, input[type="button"].upload-photo, input[type="submit"].upload-photo {
     font-size: 17px; }
     button.upload-photo span, .button.upload-photo span, input[type="button"].upload-photo span, input[type="submit"].upload-photo span {
