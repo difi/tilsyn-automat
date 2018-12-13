@@ -16,7 +16,7 @@
 
     if (ViewData["readOnly"]!=null)
     {
-        readyOnly = (bool) ViewData["readOnly"];
+        readyOnly = (bool)ViewData["readOnly"];
     }
 }
 
@@ -28,7 +28,7 @@
 
     @if (readyOnly)
     {
-        @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), autocomplete = autoComplete, @readonly = readyOnly })
+        @Html.TextBoxFor(m => m, new { data_label = Html.DisplayNameFor(m => m), autocomplete = autoComplete, @readonly = "readonly" })
     }
     else
     {

@@ -4,20 +4,23 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationThanksModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
+        private readonly IStringLocalizer<DeclarationThanksModel> localizer;
         private readonly IApiHttpClient apiHttpClient;
 
         public DeclarationItem DeclarationItemForm { get; set; }
 
-        public DeclarationThanksModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public DeclarationThanksModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<DeclarationThanksModel> localizer)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.localizer = localizer;
         }
 
         [HttpGet]
@@ -29,6 +32,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
+                    ViewData.Add("Done", localizer["Self-control sent in"]);
+
                     DeclarationItemForm = result.Data;
                 }
                 else

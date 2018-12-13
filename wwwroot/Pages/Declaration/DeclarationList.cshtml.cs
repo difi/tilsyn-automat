@@ -10,12 +10,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class DeclarationListModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
+        private readonly IStringLocalizer<DeclarationListModel> localizer;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -25,10 +27,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
 
-        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<DeclarationListModel> localizer)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.localizer = localizer;
         }
 
         [HttpGet]
@@ -111,7 +114,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("/Declaration/DeclarationList");
+                    ViewData.Add("Done", localizer["Business information have been updated"]);
+
+                    return await errorHandler.View(this, OnGetAsync());
                 }
 
                 return await errorHandler.View(this, OnGetAsync(), result.Exception);
