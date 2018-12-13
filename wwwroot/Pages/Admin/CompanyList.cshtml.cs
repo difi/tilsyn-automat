@@ -39,12 +39,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Excel file")]
         public IFormFile ExcelFile { get; set; }
 
-        public int ImportTotalCount { get; set; }
-
-        public int ImportExistCount { get; set; }
-
-        public int ImportIOkCount { get; set; }
-
         public CompanyListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
         {
             this.apiHttpClient = apiHttpClient;
@@ -83,8 +77,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return await errorHandler.View(this, OnGetAsync(), new Exception("Du måste ladda upp en excelfil!"));
                 }
 
-                ImportIOkCount = 0;
-                ImportTotalCount = 0;
+                var importTotaltCount = 0;
+                var importOkCount = 0;
+                var importFailCount = 0;
+                var importExistCount = 0;
 
                 var package = new ExcelPackage(ExcelFile.OpenReadStream());
 
@@ -96,20 +92,34 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 foreach (DataRow dataRow in dataTable.Rows)
                 {
-                    ImportTotalCount++;
+                    importTotaltCount++;
+
                     var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
 
                     if (result.Succeeded)
                     {
-                        ImportIOkCount++;
+                        importOkCount++;
                     }
                     else
                     {
-                        if (result.Exception.Message.Contains("already exist"))
+                        if (result.Exception.InnerException != null && result.Exception.InnerException.Message == "exist")
                         {
-                            ImportExistCount++;
+                            importExistCount++;
+                        }
+                        else
+                        {
+                            importFailCount++;
                         }
                     }
+                }
+
+                if (importExistCount == 0 && importFailCount == 0)
+                {
+                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades.");
+                }
+                else
+                {
+                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})");
                 }
 
                 await OnGetAsync();

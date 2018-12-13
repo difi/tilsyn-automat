@@ -122,6 +122,9 @@
     <Content Update="Pages\Shared\EditorTemplates\Date.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Shared\_Done.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Shared\_Error.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

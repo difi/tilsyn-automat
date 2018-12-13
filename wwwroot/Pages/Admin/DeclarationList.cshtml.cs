@@ -1,4 +1,7 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+﻿using Difi.Sjalvdeklaration.Shared.Attributes;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
@@ -10,21 +13,13 @@ using Microsoft.Extensions.Localization;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Resources;
-using System.Threading;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Attributes;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.User;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -286,7 +281,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             return dataTable;
         }
 
-
         private DataTable GetDataTable(IEnumerable<DeclarationItem> declarationItems)
         {
             var dataTable = new DataTable();
@@ -298,7 +292,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             AddHeaders<UserItem>(dataTable, "Saksbehandler", localizerUserItem, out var count5);
 
             var props1 = typeof(DeclarationItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            
 
             foreach (var item in declarationItems)
             {

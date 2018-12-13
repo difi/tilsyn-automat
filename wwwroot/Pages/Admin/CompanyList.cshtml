@@ -32,29 +32,9 @@
                     </div>
                 </div>
             </div>
-
-            @*<div class="jsExcelImportContainer">
-                    <button class="button alt jsExcelImportButton">@Localizer["Admin-import-company"]</button>
-
-                    <div class="jsExcelImportTarget">
-                        <form method="post" enctype="multipart/form-data">
-                            @Html.EditorFor(x => x.ExcelFile, "File")
-
-                            <button type="submit" class="button" asp-page-handler="ExcelImport">@Localizer["Admin-import-company"]</button>
-                        </form>
-                    </div>
-                </div>*@
         }
-
-
     </div>
 
-    @if (Model.ImportTotalCount > 0)
-    {
-        @Model.ImportIOkCount <span>@Localizer["ok"]</span><br />
-        @Model.ImportExistCount <span>@Localizer["dubelletter"]</span><br />
-        @Model.ImportTotalCount <span>@Localizer["total"]</span><br />
-    }
     <div class="small-12 columns">
         <form method="post">
             <div class="row columns">
