@@ -15,6 +15,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -22,6 +23,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     public class DeclarationListModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
+        private readonly IStringLocalizer<DeclarationListModel> localizer;
         private readonly IApiHttpClient apiHttpClient;
 
         public IList<DeclarationItem> DeclarationList { get; private set; }
@@ -31,18 +33,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [BindProperty]
         public FilterModel FilterModel { get; set; }
 
-        [BindProperty]
-        [Display(Name = "Välj status")]
         public List<SelectListItem> SelectStatusList { get; set; }
 
         public int ViewCount { get; set; }
 
+        [BindProperty]
         public int TotalCount { get; set; }
 
-        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public DeclarationListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<DeclarationListModel> localizer)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.localizer = localizer;
         }
 
         [HttpGet]
@@ -91,9 +93,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     if (result.Succeeded)
                     {
                         DeclarationList = result.Data;
-
                         ViewCount = DeclarationList.Count;
-                        TotalCount = DeclarationList.Count;
 
                         return Page();
                     }
@@ -177,6 +177,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 Selected = false
             }).ToList();
 
+            SelectStatusList.Insert(0, new SelectListItem
+            {
+                Value = "0",
+                Text = localizer["All"]
+            });
+        
             return true;
         }
 
