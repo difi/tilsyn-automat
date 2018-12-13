@@ -123,6 +123,7 @@ button, .button, input[type="button"], input[type="submit"] {
         padding-left: 2rem;
         padding-right: 2rem;
         margin-bottom: 0;
+        color: $color-white;
 
         &.small {
             background-position: 7px -192px;

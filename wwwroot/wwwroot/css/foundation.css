@@ -3393,29 +3393,27 @@ a.button:hover, a.button:focus {
 
 .label {
   display: inline-block;
-  padding: 0.33333rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 13px;
+  font-size: 14px;
   line-height: 1;
   white-space: nowrap;
   cursor: default;
-  background: #458596;
-  color: #fff; }
-  .label.primary {
-    background: #458596;
-    color: #000; }
-  .label.secondary {
-    background: #cce5ef;
-    color: #000; }
-  .label.success {
-    background: #3adb76;
-    color: #000; }
-  .label.warning {
-    background: #ffae00;
-    color: #000; }
-  .label.alert {
-    background: #ffded9;
-    color: #000; }
+  position: relative;
+  padding-left: 1.5rem;
+  background: #fff;
+  color: #303132; }
+  .label:before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border: 1px solid #858585;
+    background-color: yellow;
+    border-radius: 100px;
+    top: 7px;
+    left: 0.4rem; }
 
 table {
   border-collapse: collapse;
@@ -4068,7 +4066,8 @@ button, .button, input[type="button"], input[type="submit"] {
     background-position: 10px -185px;
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    color: #fff; }
     button.add.small, .button.add.small, input[type="button"].add.small, input[type="submit"].add.small {
       background-position: 7px -192px;
       padding-left: 27px; }
@@ -4633,6 +4632,9 @@ img.full-width-image {
   background-color: #fff;
   padding: 1rem;
   margin: 1rem 0 2rem 0; }
+  .filter-wrapper .filter-view-legend {
+    font-size: 1rem;
+    margin-bottom: 0.2rem; }
   .filter-wrapper legend, .filter-wrapper label {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: normal; }
