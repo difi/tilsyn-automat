@@ -24,7 +24,7 @@
                 </fieldset>
 
                 <div class="row">
-                    <div class="small-3 column">
+                    <div class="small-12 medium-3 column">
                         <div class="row">
                             <div class="small-6 column">
                                 @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
@@ -35,7 +35,7 @@
                         </div>
                     </div>
 
-                    <div class="small-6 column">
+                    <div class="small-12 medium-6 column">
                         <div class="row">
                             <div class="small-6 column">
                                 @Html.EditorFor(x => x.FilterModel.Status1, "DropdownListInt", new { list = Model.SelectStatusList })
@@ -46,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="small-3 column">
+                    <div class="small-12 medium-3 column">
                         <div class="row collapse">
                             <div class="small-6 column">
                                 <br />
@@ -54,7 +54,7 @@
                             </div>
                             <div class="small-6 column">
                                 <br />
-                                <button class="button" type="submit" asp-page-handler="ViewAll">@Localizer["Show all"]</button>
+                                <button class="button alt" type="submit" asp-page-handler="ViewAll">@Localizer["Show all"]</button>
                             </div>
                         </div>
                     </div>
@@ -65,16 +65,13 @@
 </form>
 
 <div class="row">
-    <div class="small-6 column">
-        <h3>@Model.ViewCount @Localizer["Self-inspections"]  @Localizer["of total"] @Model.TotalCount</h3>
-    </div>
-    <div class="small-6 text-right column">
+    <div class="small-12 column">
         <form method="post">
-            <button class="button export-all" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["Export all"]</button>
+            <h3 class="summary-header">@Model.ViewCount @Localizer["Self-inspections"]  @Localizer["of total"] @Model.TotalCount</h3>
+            <button class="button alt export-all" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["Export all"]</button>
         </form>
     </div>
 </div>
-
 
 <table class="responsive-table table jsNormalTableSort">
     <caption>

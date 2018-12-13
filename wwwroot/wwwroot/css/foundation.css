@@ -2789,7 +2789,7 @@ select {
   font-weight: normal;
   line-height: 1.5;
   color: #000;
-  background: url("/css/cssimg/icons-sprite.svg") #fff no-repeat 100% 10px;
+  background: url("/css/cssimg/icons-sprite.svg") #fff no-repeat 100% 16px;
   -moz-appearance: none;
   -webkit-appearance: none;
   padding-right: 1.5rem;
@@ -3728,6 +3728,10 @@ h2 {
 
 h3, h4 {
   margin: 0; }
+  h3.summary-header, h4.summary-header {
+    display: inline-block;
+    margin-right: 2rem;
+    margin-bottom: 0.5rem; }
 
 .start {
   max-width: 600px;
@@ -4052,15 +4056,12 @@ button, .button, input[type="button"], input[type="submit"] {
     button.export:hover, button.export:focus, button.export:active, .button.export:hover, .button.export:focus, .button.export:active, input[type="button"].export:hover, input[type="button"].export:focus, input[type="button"].export:active, input[type="submit"].export:hover, input[type="submit"].export:focus, input[type="submit"].export:active {
       background-color: #fff; }
   button.export-all, .button.export-all, input[type="button"].export-all, input[type="submit"].export-all {
-    font-size: 15px;
-    background: url("/css/cssimg/icons-sprite.svg") transparent 100% -689px no-repeat;
+    background-image: url("/css/cssimg/icons-sprite.svg");
+    background-repeat: no-repeat;
+    background-position: 5px -687px;
     margin-bottom: 0;
     margin-right: 8px;
-    padding-right: 2rem;
-    text-decoration: underline;
-    color: #17667c; }
-    button.export-all:hover, button.export-all:focus, button.export-all:active, .button.export-all:hover, .button.export-all:focus, .button.export-all:active, input[type="button"].export-all:hover, input[type="button"].export-all:focus, input[type="button"].export-all:active, input[type="submit"].export-all:hover, input[type="submit"].export-all:focus, input[type="submit"].export-all:active {
-      background-color: #fff; }
+    padding-left: 2.5rem; }
   button.add, .button.add, input[type="button"].add, input[type="submit"].add {
     background-image: url("/css/cssimg/icons-sprite.svg");
     background-repeat: no-repeat;

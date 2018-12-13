@@ -37,7 +37,7 @@ $select-radius: $global-radius !default;
 
     @if $select-triangle-color != transparent {
         //@include background-triangle($select-triangle-color);
-        background: url("/css/cssimg/icons-sprite.svg") #fff no-repeat 100% 10px;
+        background: url("/css/cssimg/icons-sprite.svg") #fff no-repeat 100% 16px;
         -moz-appearance: none;
         -webkit-appearance: none;
         padding-#{$global-right}: ($form-spacing * 1.5);
