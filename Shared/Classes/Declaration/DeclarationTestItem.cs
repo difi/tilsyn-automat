@@ -39,7 +39,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [ExcelExport]
         public ValueListTypeOfSupplierAndVersion SupplierAndVersion { get; set; }
 
-        [ExcelExport]
         [ForeignKey("ValueListTypeOfSupplierAndVersion")]
         [Display(Name = "Choose from the list which manufacturer and model payment terminal you should check", Description = "Difi needs to know which payment terminal you check and submit information about.")]
         public int? SupplierAndVersionId { get; set; }
@@ -53,10 +52,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public string DescriptionInText { get; set; }
 
         [ExcelExport]
-        [Display(Name = "Deviation or Notice")]
-        public ValueListFinishedStatus FinishedStatus { get; set; }
-
-        [ExcelExport]
         [Display(Name = "Take a survey of the payment terminal to register information about. The image will show where the payment terminal is located", Description = "The image should show where the payment terminal is located. The image should show the entire payment terminal and the area in front of the terminal.")]
         public ImageItem Image1 { get; set; }
 
@@ -67,6 +62,10 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         public ImageItem Image2 { get; set; }
 
         public Guid? Image2Id { get; set; }
+
+        [ExcelExport]
+        [Display(Name = "Deviation or Notice")]
+        public ValueListFinishedStatus FinishedStatus { get; set; }
 
         public DeclarationItem DeclarationItem { get; set; }
 

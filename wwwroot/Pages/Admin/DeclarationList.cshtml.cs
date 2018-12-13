@@ -20,6 +20,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using ValueListTypeOfMachine = Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfMachine;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
@@ -292,58 +293,52 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             AddHeaders<ContactPersonItem>(dataTable, "Kontaktperson", localizerContactPersonItem, out var count4);
             AddHeaders<UserItem>(dataTable, "Saksbehandler", localizerUserItem, out var count5);
 
-            var props1 = typeof(DeclarationItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var props2 = typeof(DeclarationTestItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var props3 = typeof(CompanyItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var props4 = typeof(ContactPersonItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
-            var props5 = typeof(UserItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var propertyListDeclarationItem = typeof(DeclarationItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var propertyListDeclarationTestItem = typeof(DeclarationTestItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var propertyListCompanyItem= typeof(CompanyItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var propertyListContactPersonItem = typeof(ContactPersonItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
+            var propertyListUserItem = typeof(UserItem).GetProperties(BindingFlags.Public | BindingFlags.Instance).Where(x => x.CustomAttributes.Count(y => y.AttributeType == typeof(ExcelExportAttribute)) == 1).ToArray();
 
             foreach (var item in declarationItems)
             {
                 var values = new object[count1 + count2 + count3 + count4 + count5];
 
-                for (var col = 0; col < count1; col++)
-                {
-                    var value = props1[col].GetValue(item, null);
-
-                    if (value != null)
-                    {
-                        if (value.GetType() == typeof(ValueList))
-                        {
-                            var test = (ValueList) value;
-                            values[col] = test.Text;
-                        }
-                        else
-                        {
-                            values[col] = value;
-                        }
-                    }
-                }
-
-                for (var col = 0; col < count2; col++)
-                {
-                    values[count1 + col] = props2[col].GetValue(item.DeclarationTestItem, null);
-                }
-
-                for (var col = 0; col < count3; col++)
-                {
-                    values[count1 + count2 + col] = props3[col].GetValue(item.Company, null);
-                }
-
-                for (var col = 0; col < count4; col++)
-                {
-                    values[count1 + count2+ count3 + col] = props4[col].GetValue(item.Company.ContactPersonList.First(), null);
-                }
-
-                for (var col = 0; col < count5; col++)
-                {
-                    values[count1 + count2 + count3 + count4 + col] = props5[col].GetValue(item.User, null);
-                }
+                GetValues(count1, 0, propertyListDeclarationItem, item, values);
+                GetValues(count2, count1, propertyListDeclarationTestItem, item.DeclarationTestItem, values);
+                GetValues(count3, count1+count2, propertyListCompanyItem, item.Company, values);
+                GetValues(count4, count1 + count2+count3, propertyListContactPersonItem, item.Company.ContactPersonList.First(), values);
+                GetValues(count5, count1 + count2 + count3 + count4, propertyListUserItem, item.User, values);
 
                 dataTable.Rows.Add(values);
             }
 
             return dataTable;
+        }
+
+        private static void GetValues(int currentCount, int totalCount, IReadOnlyList<PropertyInfo> propertyList, object item, IList<object> values)
+        {
+            for (var col = 0; col < currentCount; col++)
+            {
+                var value = propertyList[col].GetValue(item, null);
+
+                if (value != null)
+                {
+                    if (value.GetType().BaseType == typeof(ValueList))
+                    {
+                        var test = (ValueList) value;
+                        values[col+ totalCount] = test.Text;
+                    }
+                    else if(value.GetType() == typeof(ImageItem))
+                    {
+                        var test = (ImageItem)value;
+                        values[col + totalCount] = test.Container + "/" + test.Name;
+                    }
+                    else
+                    {
+                        values[col + totalCount] = value;
+                    }
+                }
+            }
         }
 
         private static void AddHeaders<T>(DataTable dataTable, string groupName, IStringLocalizer stringLocalizer, out int count)
