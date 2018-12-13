@@ -11,50 +11,50 @@
 
 @if (Model.UserList!=null) { 
 
-<table class="table jsNormalTableSort">
+<table class="responsive-table table jsCompanyTableSort">
     <caption>
         <h2>@Localizer["Users"]</h2>
     </caption>
     <thead>
-    <tr>
-        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
-        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)</th>
-        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Email)</th>
-        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Phone)</th>
-        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Title)</th>
-        <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.RoleList)</th>
-    </tr>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Email)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Phone)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Title)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.RoleList)</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.UserList)
-    {
-        <tr>
-            <td class="clickable-td">
-                <a asp-page="UserForm" asp-route-id="@item.Id">@item.Name</a>
-            </td>
+        @foreach (var item in Model.UserList)
+        {
+            <tr>
+                <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Name)">
+                    <a asp-page="UserForm" asp-route-id="@item.Id">@item.Name</a>
+                </td>
 
-            <td class="clickable-td">
-                @item.SocialSecurityNumber
-            </td>
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.SocialSecurityNumber)">
+                    @item.SocialSecurityNumber
+                </td>
 
-            <td class="clickable-td">
-                @item.Email
-            </td>
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Email)">
+                    @item.Email
+                </td>
 
-            <td class="clickable-td">
-                @item.PhoneCountryCode
-                @item.Phone
-            </td>
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Phone)">
+                    @item.PhoneCountryCode
+                    @item.Phone
+                </td>
 
-            <td class="clickable-td">
-                @item.Title
-            </td>
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Title)">
+                    @item.Title
+                </td>
 
-            <td class="clickable-td">
-                @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
-            </td>
-        </tr>
-    }
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.RoleList)">
+                    @item.RoleList.Select(x => x.RoleItem).Aggregate(" ", (current, roleItem) => current + ", " + roleItem.Name).Replace(" , ", "")
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 }
