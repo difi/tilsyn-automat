@@ -34,6 +34,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ContactPersonItem.nb-NO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\FilterModel.nb-NO.resx">
+      <LastGenOutput>AddLinkToCompanyModel.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Classes\Declaration\FilterModel.nn-NO.resx">
+      <LastGenOutput>AddLinkToCompanyModel.nb-NO.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Classes\Declaration\AddLinkToCompanyModel.nn-NO.resx">
       <LastGenOutput>AddLinkToCompanyModel.nb-NO.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>

@@ -104,7 +104,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 if (await CreateLists())
                 {
-                    var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Status1 + "/" + FilterModel.Status2);
+                    var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Status);
 
                     if (result.Succeeded)
                     {
@@ -189,7 +189,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
-                Text = $"{x.TextAdmin} - {x.TextCompany} ({x.Text})",
+                Text = $"{x.TextCompany} ({x.Text})",
                 Selected = false
             }).ToList();
 

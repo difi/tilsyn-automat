@@ -138,9 +138,9 @@ namespace Difi.Sjalvdeklaration.Database
                 var all = GetAll<T>().Data;
                 var filterdList = all.Where(x=>x.DeadlineDate > filterModel.FromDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59) && x.DeadlineDate < filterModel.ToDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59)).ToList();
 
-                if (filterModel.Status1 > 0)
+                if (filterModel.Status > 0)
                 {
-                    filterdList = filterdList.Where(x => x.StatusId == filterModel.Status1).ToList();
+                    filterdList = filterdList.Where(x => x.StatusId == filterModel.Status).ToList();
                 }
 
                 result.Data = (T) filterdList;
