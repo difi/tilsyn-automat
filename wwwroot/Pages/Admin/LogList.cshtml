@@ -10,9 +10,6 @@
 <br />
 
 <form method="post">
-
-    @Html.HiddenFor(x => x.TotalCount)
-
     <div class="row">
         <div class="small-12 column">
             <h3>@Localizer["Filter loglist"]</h3>
@@ -39,7 +36,7 @@
                     <div class="small-6 column">
                         <div class="row">
                             <div class="small-6 column">
-                                @Html.EditorFor(x => x.FilterModel.Status1, "DropdownListInt", new { list = Model.SelectSucceededList })
+                                @Html.EditorFor(x => x.FilterModel.Succeeded, "DropdownListInt", new { list = Model.SelectSucceededList })
                             </div>
                         </div>
                     </div>

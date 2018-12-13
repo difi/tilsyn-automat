@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
@@ -33,8 +32,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [BindProperty]
         public FilterModel FilterModel { get; set; }
 
-        public Int32 TotalCount { get; set; }
-
         public LogListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<LogListModel> localizer)
         {
             this.apiHttpClient = apiHttpClient;
@@ -47,19 +44,33 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
+                FilterModel = new FilterModel
+                {
+                    FromDate = DateTime.Now.Date.AddDays(-14),
+                    ToDate = DateTime.Now.Date,
+                    Succeeded = 2
+                };
+
+                await OnPostFilterAsync();
+            }
+            catch (Exception exception)
+            {
+                await errorHandler.Log(this, null, exception);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostFilterAsync()
+        {
+            try
+            {
                 CreateLists();
 
-                var resultLog = await apiHttpClient.Get<List<LogItem>>("/api/Log/GetAll");
+                var resultLog = await apiHttpClient.Get<List<LogItem>>("/api/Log/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Succeeded);
                 var resultUser = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAll");
 
                 if (resultLog.Succeeded && resultUser.Succeeded)
                 {
-                    FilterModel = new FilterModel
-                    {
-                        FromDate = DateTime.Now.Date,
-                        ToDate = DateTime.Now.Date.AddMonths(1)
-                    };
-
                     LogList = resultLog.Data;
                     UserList = resultUser.Data;
 
@@ -83,17 +94,29 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                         logItem.UserItem = user ?? unkonwnUser;
                     }
-                }
-                else
-                {
-                    await errorHandler.View(this, null, !resultLog.Succeeded ? resultLog.Exception : resultUser.Exception);
+
+                    return Page();
                 }
 
+                return await errorHandler.View(this, null, !resultLog.Succeeded ? resultLog.Exception : resultUser.Exception);
             }
             catch (Exception exception)
             {
-                await errorHandler.Log(this, null, exception);
+                return await errorHandler.Log(this, OnGetAsync(), exception);
             }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostViewAllAsync()
+        {
+            FilterModel = new FilterModel
+            {
+                FromDate = DateTime.Now.Date.AddDays(-14),
+                ToDate = DateTime.Now.Date,
+                Succeeded = 0
+            };
+
+            return await OnPostFilterAsync();
         }
 
         private void CreateLists()
