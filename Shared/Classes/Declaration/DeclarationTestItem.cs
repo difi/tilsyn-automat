@@ -67,6 +67,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
         [Display(Name = "Deviation or Notice")]
         public ValueListFinishedStatus FinishedStatus { get; set; }
 
+        [ForeignKey("ValueListFinishedStatus")]
+        public int? FinishedStatusId { get; set; }
+
         public DeclarationItem DeclarationItem { get; set; }
 
         public List<OutcomeData> OutcomeDataList { get; set; }

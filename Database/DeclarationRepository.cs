@@ -47,6 +47,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.PurposeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.FinishedStatus)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image1)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image2)
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
@@ -92,6 +93,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
+
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
         {
             var result = new ApiResult<T>();
@@ -108,6 +110,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.PurposeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
+                    .Include(x => x.DeclarationTestItem).ThenInclude(x => x.FinishedStatus)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image1)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.Image2)
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.AnswerList).ThenInclude(x => x.TypeOfAnswer)
@@ -413,13 +416,15 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var dbItem = dbContext.DeclarationList.SingleOrDefault(x => x.Id == id);
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).ThenInclude(x => x.OutcomeDataList).SingleOrDefault(x => x.Id == id);
+                var finishedStatusList = dbContext.VlFinishedStatusList;
 
                 if (dbItem == null)
                 {
                     throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", id]);
                 }
 
+                dbItem.DeclarationTestItem.FinishedStatusId = dbItem.DeclarationTestItem.OutcomeDataList.All(x => x.ResultId == 1) ? 1 : 2;
                 dbItem.StatusId = (int)DeclarationStatus.SentIn;
                 dbItem.SentInDate = DateTime.Now;
 
