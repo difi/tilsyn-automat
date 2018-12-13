@@ -3400,7 +3400,6 @@ a.button:hover, a.button:focus {
   white-space: nowrap;
   cursor: default;
   position: relative;
-  padding-left: 1.5rem;
   background: #fff;
   color: #303132; }
   .label:before {
@@ -3410,10 +3409,23 @@ a.button:hover, a.button:focus {
     width: 13px;
     height: 13px;
     border: 1px solid #858585;
-    background-color: yellow;
     border-radius: 100px;
     top: 7px;
     left: 0.4rem; }
+  .label.status-1 {
+    padding-left: 1.6rem; }
+    .label.status-1:before {
+      background-color: #FFE677; }
+  .label.status-2:before, .label.status-3:before, .label.status-5:before {
+    display: none; }
+  .label.status-4 {
+    padding-left: 1.6rem; }
+    .label.status-4:before {
+      background-color: #B4F0E7; }
+  .label.status-6, .label.status-7 {
+    padding-left: 1.6rem; }
+    .label.status-6:before, .label.status-7:before {
+      background-color: #FFD1D1; }
 
 table {
   border-collapse: collapse;

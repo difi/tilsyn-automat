@@ -51,7 +51,9 @@ $label-radius: $global-radius !default;
     .label {
         @include label;
         position: relative;
-        padding-left: 1.5rem;
+        background: $label-background;
+        color: $label-color;
+
         &:before {
             content: "";
             position: absolute;
@@ -59,14 +61,44 @@ $label-radius: $global-radius !default;
             width: 13px;
             height: 13px;
             border: 1px solid #858585;
-            background-color: yellow;
             border-radius: 100px;
             top: 7px;
             left: 0.4rem;
         }
 
-        background: $label-background;
-        color: $label-color;
+        &.status-1 {
+            padding-left: 1.6rem;
+
+            &:before {
+                background-color: #FFE677;
+            }
+        }
+
+        &.status-2,
+        &.status-3,
+        &.status-5 {
+
+            &:before {
+                display: none;
+            }
+        }
+
+        &.status-4 {
+            padding-left: 1.6rem;
+
+            &:before {
+                background-color: #B4F0E7;
+            }
+        }
+
+        &.status-6,
+        &.status-7 {
+            padding-left: 1.6rem;
+
+            &:before {
+                background-color: #FFD1D1;
+            }
+        }
 
         @each $name, $color in $label-palette {
             &.#{$name} {
