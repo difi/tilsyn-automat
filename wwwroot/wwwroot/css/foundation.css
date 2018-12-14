@@ -4508,6 +4508,13 @@ div div .tablesorter-default a {
       top: 0;
       left: 0; }
 
+.info-message {
+  border-radius: 6px;
+  background-color: #D0E2E7;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  max-width: 550px; }
+
 .choose-lang .button, .choose-lang .alt {
   margin-bottom: 1rem; }
 
