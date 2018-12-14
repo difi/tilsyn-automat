@@ -9,6 +9,11 @@
     ViewData["Title"] = "Start";
 }
 <main class="start">
+    
+    <form method="post">
+        <input type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
+        <input type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
+    </form>
 
     <div class="row">
         <div class="small-12 columns">
@@ -25,7 +30,6 @@
     <p class="text-center">
         Hvordan får jeg påloggingsopplysninger?<br />
         <a style="text-decoration: underline;" href="#">Kontakt oss</a>
-
     </p>
 
     <h1>
@@ -35,7 +39,7 @@
         For å sikre at nettløsninger og automater kan brukes av alle, fører Difi tilsyn med virksomheter. I 2019 skal vi kontrollere betalingsterminaler gjennom egenkontroll. Det betyr at det er virksomheten selv som tester, registrerer og sender inn opplysninger om sine betalingsterminaler til Difi.
         <br /><br />
     </p>
-
+    
 
     <h2>
         Digital egenkontroll av kravene til universell utforming av betalingsterminal
