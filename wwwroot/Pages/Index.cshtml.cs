@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
@@ -25,7 +24,17 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         [HttpPost]
         public IActionResult OnPostSetLanguage(string culture)
         {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)});
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                    IsEssential = true, 
+                    Path = "/",
+                    HttpOnly = false
+                }
+            );
 
             return RedirectToPage("/Index");
         }

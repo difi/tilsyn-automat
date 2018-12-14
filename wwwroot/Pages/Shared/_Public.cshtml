@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Globalization
+@{
     Layout = "_Layout.cshtml";
 }
 
@@ -7,6 +8,20 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="logo">
                 <img alt="Difi" src="~/images/difi-logo.svg" />
+
+
+                <form method="post">
+                    @if (CultureInfo.CurrentCulture.Name == "nb-NO")
+                    {
+                        <input type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
+                        <input class="alt" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
+                    }
+                    else
+                    {
+                        <input class="alt" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
+                        <input type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
+                    }
+                </form>
             </div>
         </div>
     </div>
