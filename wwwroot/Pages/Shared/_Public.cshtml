@@ -6,28 +6,36 @@
 <header>
     <div class="row">
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-            <div class="logo">
-                <img alt="Difi" src="~/images/difi-logo.svg" />
 
-                <div class="jsChangeLanguageContainer">
-                    <button class="jsToggleChangeLanguageButton">Endre språk</button>
-
-                    <div class="jsChangeLanguageToggleTarget"> 
-                        <form method="post">
-                            @if (CultureInfo.CurrentCulture.Name == "nb-NO")
-                            {
-                                <input type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk"/>
-                                <input class="alt" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål"/>
-                            }
-                            else
-                            {
-                                <input class="alt" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk"/>
-                                <input type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål"/>
-                            }
-                        </form>
+            <div class="row">
+                <div class="small-12 medium-6 columns">
+                    <div class="logo">
+                        <img alt="Difi" src="~/images/difi-logo.svg" />
                     </div>
                 </div>
+                <div class="small-12 medium-6 text-right columns">
+                    <div class="jsChangeLanguageContainer choose-lang">
+                        <br />
+                            <button class="alt button jsToggleChangeLanguageButton">Endre språk</button>
+
+                            <div class="jsChangeLanguageToggleTarget">
+                                <form method="post">
+                                    @if (CultureInfo.CurrentCulture.Name == "nb-NO")
+                                    {
+                                        <input class="button" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
+                                        <input class="button" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
+                                    }
+                                    else
+                                    {
+                                        <input class="button" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
+                                        <input class="button" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
+                                    }
+                                </form>
+                            </div>
+                        </div>
+                </div>
             </div>
+
         </div>
     </div>
 </header>

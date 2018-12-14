@@ -4508,6 +4508,9 @@ div div .tablesorter-default a {
       top: 0;
       left: 0; }
 
+.choose-lang .button, .choose-lang .alt {
+  margin-bottom: 1rem; }
+
 .positive {
   background-color: #B4F0E7; }
   .positive ul:before {

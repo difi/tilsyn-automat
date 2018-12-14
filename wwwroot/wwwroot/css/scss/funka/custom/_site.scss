@@ -68,6 +68,12 @@
     }
 }
 
+.choose-lang {
+    .button, .alt {
+    margin-bottom: 1rem;
+    }
+}
+
 .positive {
     background-color: $feedback-green;
 
