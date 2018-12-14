@@ -152,17 +152,17 @@
     {
         var mainIndex = 1;
 
-        <div class="row column">
+        <div class="row column declaration-summary-header">
             <div class="small-12 medium-6 columns">
                 <h1>@Localizer["Summary"]</h1>
             </div>
 
             <div class="small-12 medium-6 columns text-right">
                 <div class="row align-middle">
-                    <div class="small-8 medium-9 columns">
-                        <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span>> @Model.DeclarationItemForm.Status.TextCompany</span>
+                    <div class="small-9 medium-10 columns">
+                        <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span> @Model.DeclarationItemForm.Status.TextCompany</span>
                     </div>
-                    <div class="small-4 medium-3 columns">
+                    <div class="small-3 medium-2 columns">
                         <div class="status status-@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)">
                             <div class="status-done">@(Model.DeclarationItemForm.DeclarationTestItem.StatusCount * 25)%</div>
                         </div>

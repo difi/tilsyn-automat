@@ -4520,6 +4520,12 @@ div div .tablesorter-default a {
 .choose-lang .button, .choose-lang .alt {
   margin-bottom: 1rem; }
 
+.declaration-summary-header {
+  padding-top: 2rem;
+  padding-bottom: 1rem; }
+  .declaration-summary-header h1 {
+    margin: 0; }
+
 .positive {
   background-color: #B4F0E7; }
   .positive ul:before {

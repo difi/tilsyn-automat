@@ -94,6 +94,17 @@
     }
 }
 
+.declaration-summary-header {
+
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+
+    h1 {
+        margin: 0;
+    }
+}
+
+
 .positive {
     background-color: $feedback-green;
 
