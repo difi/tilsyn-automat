@@ -410,16 +410,16 @@ namespace Difi.Sjalvdeklaration.Database
 
                     outcomeData.AllDone = allDone;
 
-                    var answerDataString = String.Empty;
-                    var resultString = String.Empty;
+                    var answerDataString = string.Empty;
+                    var resultString = string.Empty;
 
                     foreach (var ruleData in outcomeData.RuleDataList)
                     {
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            if (!String.IsNullOrEmpty(answerData.String))
+                            if (!string.IsNullOrEmpty(answerData.String))
                             {
-                                if (!String.IsNullOrEmpty(resultString))
+                                if (!string.IsNullOrEmpty(resultString))
                                 {
                                     resultString += ", ";
                                 }
@@ -429,7 +429,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                             if (answerData.Int>0)
                             {
-                                if (!String.IsNullOrEmpty(resultString))
+                                if (!string.IsNullOrEmpty(resultString))
                                 {
                                     resultString += ", ";
                                 }
@@ -439,7 +439,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                             if (answerData.ResultId == (int) TypeOfResult.Ok || answerData.ResultId == (int) TypeOfResult.Fail)
                             {
-                                if (!String.IsNullOrEmpty(answerDataString))
+                                if (!string.IsNullOrEmpty(answerDataString))
                                 {
                                     answerDataString += ",";
                                 }
@@ -579,9 +579,9 @@ namespace Difi.Sjalvdeklaration.Database
 
             if (answerItem.LinkedParentFailedId != Guid.Empty)
             {
-                var parent = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
+                var parentFailed = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
 
-                if (parent.ResultId == (int) TypeOfResult.Ok)
+                if (parentFailed.ResultId == (int) TypeOfResult.Ok)
                 {
                     answerData.String = string.Empty;
                     answerData.Int = null;
@@ -591,7 +591,32 @@ namespace Difi.Sjalvdeklaration.Database
                     return TypeOfResult.NotTestable;
                 }
 
-                if (parent.ResultId == (int)TypeOfResult.NotTestable)
+                if (parentFailed.ResultId == (int)TypeOfResult.NotTestable)
+                {
+                    answerData.String = string.Empty;
+                    answerData.Int = null;
+                    answerData.Bool = null;
+                    answerData.ImageId = null;
+
+                    return TypeOfResult.NotTestable;
+                }
+            }
+
+            if (answerItem.LinkedParentCorrectId != Guid.Empty)
+            {
+                var parentCorrect = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentCorrectId);
+
+                if (parentCorrect.ResultId == (int)TypeOfResult.Fail)
+                {
+                    answerData.String = string.Empty;
+                    answerData.Int = null;
+                    answerData.Bool = null;
+                    answerData.ImageId = null;
+
+                    return TypeOfResult.NotTestable;
+                }
+
+                if (parentCorrect.ResultId == (int)TypeOfResult.NotTestable)
                 {
                     answerData.String = string.Empty;
                     answerData.Int = null;

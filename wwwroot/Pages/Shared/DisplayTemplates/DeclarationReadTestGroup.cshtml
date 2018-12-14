@@ -123,28 +123,22 @@
                                         }
                                     </div>
                                 </div>
+
+                                if (viewResult)
+                                {
+                                    <div class="info-message">
+                                        @if (outcomeData.IndicatorOutcomeItem != null)
+                                        {
+                                            <span>Utfall: @outcomeData.Result.Text<br /></span>
+                                            <span>Formulering på utfall: @outcomeData.IndicatorOutcomeItem.Language.OutcomeText<br /></span>
+                                        }
+
+                                        <span>@ruleData.Rule.Requirement.Language.Description<br /></span>
+                                        <span>Kapittel: @ruleData.Rule.Chapter.ChapterNumber @ruleData.Rule.Chapter.ChapterHeading<br /></span>
+                                        <span>Standard: @outcomeData.RuleDataList.First().Rule.Chapter.Standard.Standard<br /></span>
+                                    </div>
+                                }
                             }
-                        }
-
-                        if (viewResult)
-                        {
-                            <div class="info-message">
-                                @if (outcomeData.IndicatorOutcomeItem != null)
-                                {
-
-                                    <span>Utfall: @outcomeData.Result.Text<br /></span>
-                                    <span>Formulering på utfall: @outcomeData.IndicatorOutcomeItem.Language.OutcomeText<br /></span>
-                                }
-
-                                <span>@outcomeData.RuleDataList.First().Rule.Requirement.Language.Description<br /></span>
-
-                                @foreach (var ruleData in outcomeData.RuleDataList)
-                                {
-                                    <span>Kapittel: @ruleData.Rule.Chapter.ChapterNumber @ruleData.Rule.Chapter.ChapterHeading<br /></span>
-                                }
-
-                                <span>Standard: @outcomeData.RuleDataList.First().Rule.Chapter.Standard.Standard<br /></span>
-                            </div>
                         }
                     }
                 }

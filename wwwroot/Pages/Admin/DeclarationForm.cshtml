@@ -91,7 +91,6 @@
         </div>
     </div>
 
-
     <br />
 
     <div class="jsDeclarationListToggleCardContainer">
@@ -118,6 +117,11 @@
             </div>
         </div>
     </div>
+
+    <br />
+    <form method="post">
+        <input class="button alt export-all" type="submit" value="@Localizer["Export to Excel"]" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-handler="exportdeclaration" />
+    </form>
 
     if (Model.DeclarationItemForm?.Status?.Id > 2)
     {
@@ -151,10 +155,6 @@
                 mainIndex++;
                 @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = true })
             }
-
-            <form method="post">
-                <input class="button large alt export-all" type="submit" value="@Localizer["Export to Excel"]" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-handler="exportdeclaration" />
-            </form>
         }
         else
         {

@@ -1,4 +1,5 @@
 ﻿@page
+@using Difi.Sjalvdeklaration.Shared.Enum
 @model DeclarationListModel
 @{
     ViewData["Title"] = Localizer["Self-inspection"];
@@ -96,9 +97,11 @@
                     @item.User.Name
                 </td>
                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.DeadlineDate)">
+                    <span class="hide">@item.DeadlineDate.Ticks</span>
                     @item.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
                 </td>
                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.SentInDate)">
+                    <span class="hide">@item.SentInDate.Ticks</span>
                     @if (item.SentInDate != DateTime.MinValue)
                     {
                         @item.SentInDate.ToString("dd.MM.yyyy HH:mm")
@@ -109,7 +112,21 @@
                     }
                 </td>
                 <td data-th="@Localizer["Status of supervision"]">
-                    <span class="label status-@item.Status.Id finished-@item.DeclarationTestItem.FinishedStatusId">@item.Status.TextAdmin (@item.Status.Text)</span>
+                    <span class="label status-@item.Status.Id finished-@item.DeclarationTestItem.FinishedStatusId">
+                        @item.Status.TextAdmin
+                        @if (item.StatusId == (int) DeclarationStatus.SentIn)
+                        {
+                            if (item.DeclarationTestItem.FinishedStatusId == 1)
+                            {
+                                <span>samsvar</span>
+                            }
+
+                            if (item.DeclarationTestItem.FinishedStatusId == 2)
+                            {
+                                <span>brudd</span>
+                            }
+                        }
+                    </span>
                 </td>
             </tr>
         }
