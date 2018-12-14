@@ -67,4 +67,15 @@
             $target.slideToggle("300", function () { });
         }
     });
+
+    var changeLanguageToggle = new funkanu.ariatoggle({
+        container: ".jsChangeLanguageContainer",
+        triggerSelector: ".jsToggleChangeLanguageButton",
+        target: function ($elem) {
+            return $elem.parents(".jsChangeLanguageContainer").find('.jsChangeLanguageToggleTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
 });
