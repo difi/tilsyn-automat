@@ -4515,6 +4515,11 @@ div div .tablesorter-default a {
   margin: 0 0 1rem 0;
   max-width: 550px; }
 
+.info-messages img {
+  border: 1px dashed #618285;
+  padding: 6px;
+  border-radius: 3px; }
+
 .choose-lang .button, .choose-lang .alt {
   margin-bottom: 1rem; }
 
