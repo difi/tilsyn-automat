@@ -85,6 +85,43 @@ h3, h4 {
 .start {
     max-width: 600px;
     margin: 0 auto;
+
+    .button.small {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+.view-top-part {
+    position: relative;
+    margin-bottom:3rem;
+
+    &[aria-hidden=true] {
+        display: block !important;
+        height: 75px;
+        overflow: hidden;
+
+        &:after {
+            position: absolute;
+            content: "";
+            left: 0px;
+            top: 0px;
+            height: 100%;
+            width: 100%;
+            // background: linear-gradient(transparent, gray);
+            background: linear-gradient(to top, rgba(231,239,241,1), rgba(231,239,241,0));
+        }
+    }
+
+    &[aria-hidden=false] {
+        display: block !important;
+        height: auto;
+    }
+}
+
+.minus-margin {
+    margin-top: -2rem;
+    margin-bottom: 2rem;
 }
 
 .start, .the-end {

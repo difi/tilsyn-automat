@@ -78,4 +78,15 @@
             $target.slideToggle("300", function () { });
         }
     });
+
+    var viewStartInfo = new funkanu.ariatoggle({
+        container: ".jsViewStartInfoContainer",
+        triggerSelector: ".jsToggleViewStartInfoButton",
+        target: function ($elem) {
+            return $elem.parents(".jsViewStartInfoContainer").find('.jsViewStartInfoToggleTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
 });

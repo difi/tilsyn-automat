@@ -420,7 +420,39 @@ button, .button, input[type="button"], input[type="submit"] {
         margin-top: 2rem;
         margin-bottom: 0;
     }
+
+    &.choose-lang-test {
+        position: relative;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #618285;
+            border-radius: 100px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 input[type=button], input[type=submit], button {
     &.tabbed {

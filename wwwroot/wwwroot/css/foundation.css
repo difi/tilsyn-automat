@@ -2850,7 +2850,7 @@ select {
   .button.tiny {
     font-size: 13px; }
   .button.small {
-    font-size: 15px; }
+    font-size: 16px; }
   .button.large {
     font-size: 22px; }
   .button.expanded {
@@ -3748,6 +3748,32 @@ h3, h4 {
 .start {
   max-width: 600px;
   margin: 0 auto; }
+  .start .button.small {
+    padding-left: 3rem;
+    padding-right: 3rem; }
+
+.view-top-part {
+  position: relative;
+  margin-bottom: 3rem; }
+  .view-top-part[aria-hidden=true] {
+    display: block !important;
+    height: 75px;
+    overflow: hidden; }
+    .view-top-part[aria-hidden=true]:after {
+      position: absolute;
+      content: "";
+      left: 0px;
+      top: 0px;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to top, #e7eff1, rgba(231, 239, 241, 0)); }
+  .view-top-part[aria-hidden=false] {
+    display: block !important;
+    height: auto; }
+
+.minus-margin {
+  margin-top: -2rem;
+  margin-bottom: 2rem; }
 
 .start, .the-end {
   max-width: 600px;
@@ -4016,7 +4042,7 @@ button, .button, input[type="button"], input[type="submit"] {
     font-size: 13px; }
   button.small, .button.small, input[type="button"].small, input[type="submit"].small {
     padding: 0.4em 1em 0.5em 1em;
-    font-size: 15px; }
+    font-size: 16px; }
   button.large, .button.large, input[type="button"].large, input[type="submit"].large {
     padding: 0.8em 2.5em;
     font-size: 22px;
@@ -4253,6 +4279,18 @@ button, .button, input[type="button"], input[type="submit"] {
     min-width: 60%;
     margin-top: 2rem;
     margin-bottom: 0; }
+  button.choose-lang-test, .button.choose-lang-test, input[type="button"].choose-lang-test, input[type="submit"].choose-lang-test {
+    position: relative; }
+    button.choose-lang-test:before, .button.choose-lang-test:before, input[type="button"].choose-lang-test:before, input[type="submit"].choose-lang-test:before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #618285;
+      border-radius: 100px;
+      position: absolute;
+      top: 10px;
+      left: 10px; }
 
 input[type=button].tabbed, input[type=submit].tabbed, button.tabbed {
   outline: 2px solid #458596; }
@@ -4517,7 +4555,7 @@ div div .tablesorter-default a {
   padding: 6px;
   border-radius: 3px; }
 
-.choose-lang .button, .choose-lang .alt {
+.choose-lang-wrapper .button, .choose-lang-wrapper .alt {
   margin-bottom: 1rem; }
 
 .declaration-summary-header {
