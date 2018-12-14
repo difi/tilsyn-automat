@@ -1,6 +1,11 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +17,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared.Classes.Company;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
-using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
-using Difi.Sjalvdeklaration.Shared.Extensions;
-using Difi.Sjalvdeklaration.wwwroot.Business;
+using Difi.Sjalvdeklaration.Shared.Enum;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -51,6 +51,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
         public List<ValueListTypeOfTest> ValueListTypeOfTest { get; set; }
 
+        public List<ValueListTypeOfStatus> ValueListTypeOfStatus { get; set; }
+
         public DeclarationFormModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IExcelGenerator excelGenerator)
         {
             this.apiHttpClient = apiHttpClient;
@@ -74,6 +76,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                             DeclarationItemForm = result.Data;
 
                             await GetOutcomeDataList(id);
+
+                            FilterStatusList();
                         }
                         else
                         {
@@ -111,6 +115,55 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 await errorHandler.Log(this, null, exception, id, companyId);
             }
+        }
+
+        private void FilterStatusList()
+        {
+            var declarationStatus = (DeclarationStatus)DeclarationItemForm.StatusId;
+            var statusList = new List<ValueListTypeOfStatus>();
+
+            switch (declarationStatus)
+            {
+                case DeclarationStatus.Created:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 1));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 2));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
+                    break;
+                case DeclarationStatus.Sent:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 2));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 3));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
+                    break;
+                case DeclarationStatus.Started:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 3));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 4));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
+                    break;
+                case DeclarationStatus.SentIn:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 4));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 5));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 6));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
+                    break;
+                case DeclarationStatus.Return:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 5));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 4));
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
+                    break;
+                case DeclarationStatus.Finished:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 6));
+                    break;
+                case DeclarationStatus.Canceled:
+                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
+                    break;
+            }
+
+            SelectStatusList = statusList.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.TextAdmin} ({x.Text})",
+                Selected = false
+            }).ToList();
         }
 
         [HttpPost]
@@ -278,14 +331,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 Selected = false
             }).ToList();
 
-
-            SelectStatusList = typeOfStatuses.Data.Select(x => new SelectListItem
-            {
-                Value = x.Id.ToString(),
-                Text = $"{x.TextAdmin} ({x.Text})",
-                Selected = false
-            }).ToList();
-
+            ValueListTypeOfStatus = typeOfStatuses.Data;
 
             SelectPurposeOfTest = purposeOfTest.Data.Select(x => new SelectListItem
             {
