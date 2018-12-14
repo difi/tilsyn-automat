@@ -36,11 +36,17 @@
     padding: 1rem 0;
     color: $feedback-text;
 
-    .validation-summary-errors {
+    .feedback-summary {
         border: 0;
         margin: 0;
         border-radius: 0;
         background-color: transparent;
+
+        p {
+            padding-left: 2.25rem;
+            font-size: 14px;
+            font-family: $body-font-family;
+        }
     }
 
     ul, li {
@@ -50,7 +56,7 @@
     }
 
     ul {
-        padding-left: 2.5rem;
+        padding-left: 2.25rem;
         position: relative;
 
         &:before {

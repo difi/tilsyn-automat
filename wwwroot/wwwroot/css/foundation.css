@@ -4041,13 +4041,6 @@ button, .button, input[type="button"], input[type="submit"] {
     button.delete.small, .button.delete.small, input[type="button"].delete.small, input[type="submit"].delete.small {
       background-position: 15px -1289px; }
   button.export, .button.export, input[type="button"].export, input[type="submit"].export {
-    background: url("/css/cssimg/icons-sprite.svg") transparent 100% -696px no-repeat;
-    width: 28px;
-    margin-bottom: 0;
-    height: 28px; }
-    button.export:hover, button.export:focus, button.export:active, .button.export:hover, .button.export:focus, .button.export:active, input[type="button"].export:hover, input[type="button"].export:focus, input[type="button"].export:active, input[type="submit"].export:hover, input[type="submit"].export:focus, input[type="submit"].export:active {
-      background-color: #fff; }
-  button.export-all, .button.export-all, input[type="button"].export-all, input[type="submit"].export-all {
     background-image: url("/css/cssimg/icons-sprite.svg");
     background-repeat: no-repeat;
     background-position: 5px -687px;
@@ -4484,17 +4477,21 @@ div div .tablesorter-default a {
   font-size: 1.125rem;
   padding: 1rem 0;
   color: #515151; }
-  .positive .validation-summary-errors, .negative .validation-summary-errors {
+  .positive .feedback-summary, .negative .feedback-summary {
     border: 0;
     margin: 0;
     border-radius: 0;
     background-color: transparent; }
+    .positive .feedback-summary p, .negative .feedback-summary p {
+      padding-left: 2.25rem;
+      font-size: 14px;
+      font-family: "Open Sans", Helvetica, Arial, sans-serif; }
   .positive ul, .positive li, .negative ul, .negative li {
     margin: 0;
     padding: 0;
     list-style: none; }
   .positive ul, .negative ul {
-    padding-left: 2.5rem;
+    padding-left: 2.25rem;
     position: relative; }
     .positive ul:before, .negative ul:before {
       content: "";

@@ -104,15 +104,44 @@
             <div class="small-12 medium-12 columns">
                 <div class="jsDeclarationListToggleCardTarget">
                     <div class="card declaration-list-info">
-                        @Html.EditorFor(x => x.DeclarationItemForm.Company.Code, "TextBox", new { readOnly = true })
-                        @Html.EditorFor(x => x.DeclarationItemForm.Company.CorporateIdentityNumber, "TextBox", new { readOnly = true })
+                        <div class="row">
+                            <div class="small-12 medium-4 end columns">
+                                @Html.EditorFor(x => x.DeclarationItemForm.Company.Code, "TextBox", new { readOnly = true })
+                            </div>
+                        </div>
 
-                        @{ var contactPerson = Model.DeclarationItemForm.Company.ContactPersonList.FirstOrDefault(); }
+                        <div class="row">
+                            <div class="small-12 medium-4 end columns">
+                                @Html.EditorFor(x => x.DeclarationItemForm.Company.CorporateIdentityNumber, "TextBox", new { readOnly = true })
+                            </div>
+                        </div>
 
-                        @Html.EditorFor(x => contactPerson.Name, "TextBox", new { readOnly = true })
-                        @Html.EditorFor(x => contactPerson.Email, "TextBox", new { readOnly = true })
-                        @Html.EditorFor(x => contactPerson.PhoneCountryCode, "TextBox", new { readOnly = true })
-                        @Html.EditorFor(x => contactPerson.Phone, "TextBox", new { readOnly = true })
+                        <div class="row">
+                            <div class="small-12 medium-6 end columns">
+                                @{ var contactPerson = Model.DeclarationItemForm.Company.ContactPersonList.FirstOrDefault(); }
+
+                                @Html.EditorFor(x => contactPerson.Name, "TextBox", new { readOnly = true })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="small-12 medium-6 end columns">
+                                @Html.EditorFor(x => contactPerson.Email, "TextBox", new { readOnly = true })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="small-12 medium-4 end columns">
+                                @Html.EditorFor(x => contactPerson.PhoneCountryCode, "TextBox", new { readOnly = true })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="small-12 medium-4 end columns">
+                                @Html.EditorFor(x => contactPerson.Phone, "TextBox", new { readOnly = true })
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -153,8 +182,9 @@
             }
 
             <form method="post">
-                <input class="button large alt export-all" type="submit" value="@Localizer["Export to Excel"]" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-handler="exportdeclaration" />
+                <input class="button alt export" type="submit" value="@Localizer["Export to Excel"]" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-handler="exportdeclaration" />
             </form>
+            <br /><br />
         }
         else
         {
