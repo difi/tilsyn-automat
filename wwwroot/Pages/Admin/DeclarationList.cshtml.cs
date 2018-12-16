@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -64,8 +65,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                         FilterModel = new FilterModel
                         {
                             FromDate = DateTime.Now.Date,
-                            ToDate = DateTime.Now.Date.AddMonths(1)
+                            ToDate = DateTime.Now.Date.AddMonths(1),
+                            Status = 0
                         };
+
+                        ViewData.Add("ViewAll", true);
                     }
                     else
                     {
@@ -86,6 +90,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             {
                 if (await CreateLists())
                 {
+                    ViewData.Add("ViewAll", false);
                     var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Status);
 
                     if (result.Succeeded)
@@ -118,7 +123,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         {
             try
             {
-                var result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
+                ApiResult<List<DeclarationItem>> result;
+
+                if (Convert.ToBoolean(Request.Form["ViewAll"]))
+                {
+                    result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetAll");
+                }
+                else
+                {
+                    result = await apiHttpClient.Get<List<DeclarationItem>>("/api/Declaration/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Status);
+                }
 
                 if (result.Succeeded)
                 {

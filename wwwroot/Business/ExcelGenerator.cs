@@ -113,7 +113,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                             row[indicatorGroup.IndicatorItem.Name + " - Klar"] = data.AllDone;
                             row[indicatorGroup.IndicatorItem.Name + " - Result"] = data.Result.Text;
                             row[indicatorGroup.IndicatorItem.Name + " - Result text"] = data.ResultText;
-                            row[indicatorGroup.IndicatorItem.Name + " - Formulering på utfall"] = data.IndicatorOutcomeItem.Language.OutcomeText;
+                            row[indicatorGroup.IndicatorItem.Name + " - Formulering på utfall"] = data.IndicatorOutcomeItem?.Language.OutcomeText;
                             row[indicatorGroup.IndicatorItem.Name + " - Krav"] = data.RuleDataList.First().Rule.Requirement.Language.Description;
                         }
                     }
