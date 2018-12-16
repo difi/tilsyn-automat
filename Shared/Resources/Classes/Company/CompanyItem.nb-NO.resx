@@ -144,8 +144,14 @@
   <data name="Organization number" xml:space="preserve">
     <value>Organisasjonsnummer</value>
   </data>
+  <data name="Organization number must have nine numbers" xml:space="preserve">
+    <value>Organisasjonsnummer må ha ni tall</value>
+  </data>
   <data name="Organization number of the owner organization" xml:space="preserve">
     <value>Organisasjonsnummer på hovedorgansasjonen</value>
+  </data>
+  <data name="Organization number of the owner organization must have nine numbers" xml:space="preserve">
+    <value>Organisasjonsnummer på hovedorgansasjonen må ha ni tall</value>
   </data>
   <data name="Pin code" xml:space="preserve">
     <value>Pinkode</value>

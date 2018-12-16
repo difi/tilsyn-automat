@@ -121,7 +121,7 @@
                                         <br />
 
                                         <fieldset>
-                                            <legend>@(string.IsNullOrEmpty(Model.CompanyItem.OwenerCorporateIdentityNumber) ? Localizer["Business Address"] : Localizer["Location Address"])</legend>
+                                            <legend>@(Model.CompanyItem.OwenerCorporateIdentityNumber!=null && Model.CompanyItem.OwenerCorporateIdentityNumber>0) ? Localizer["Business Address"] : Localizer["Location Address"])</legend>
 
                                             <div class="row">
                                                 <div class="small-12 medium-6 end columns">

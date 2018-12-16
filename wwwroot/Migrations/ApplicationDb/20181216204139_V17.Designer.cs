@@ -4,14 +4,16 @@ using Difi.Sjalvdeklaration.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181216204139_V17")]
+    partial class V17
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("Code");
 
-                    b.Property<long?>("CorporateIdentityNumber");
+                    b.Property<int?>("CorporateIdentityNumber");
 
                     b.Property<string>("CustomAddressCity");
 
@@ -69,7 +71,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<long?>("OwenerCorporateIdentityNumber");
+                    b.Property<int?>("OwenerCorporateIdentityNumber");
 
                     b.HasKey("Id");
 
@@ -823,7 +825,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<string>("PhoneCountryCode")
                         .IsRequired();
 
-                    b.Property<long?>("SocialSecurityNumber")
+                    b.Property<string>("SocialSecurityNumber")
                         .IsRequired();
 
                     b.Property<string>("Title")
@@ -836,8 +838,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserList");
 
                     b.HasData(
-                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", PhoneCountryCode = "0047", SocialSecurityNumber = 12089400420L, Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", PhoneCountryCode = "0047", SocialSecurityNumber = 12089400269L, Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                     );
                 });
 

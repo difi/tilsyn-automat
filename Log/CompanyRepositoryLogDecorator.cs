@@ -38,7 +38,7 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
-        public ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem
+        public ApiResult<T> GetByCorporateIdentityNumber<T>(long corporateIdentityNumber) where T : CompanyItem
         {
             var result = inner.GetByCorporateIdentityNumber<T>(corporateIdentityNumber);
 

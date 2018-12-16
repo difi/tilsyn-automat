@@ -19,6 +19,11 @@
         }
     });
 
+    $("input[type='number']").numericInput({
+        allowNegative: false,
+        allowFloat: false
+    });
+
     $('.jsLogTableSort').tablesorter({
         widgets: ['zebra', 'columns'],
         usNumberFormat: false,

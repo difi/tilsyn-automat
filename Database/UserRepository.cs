@@ -116,7 +116,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult<T> Login<T>(string token, string socialSecurityNumber) where T : UserItem
+        public ApiResult<T> Login<T>(string token, long socialSecurityNumber) where T : UserItem
         {
             var result = new ApiResult<T>();
 

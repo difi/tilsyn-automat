@@ -188,7 +188,7 @@ namespace Difi.Sjalvdeklaration.Database
             var user1 = new UserItem
             {
                 Id = Guid.Parse("27e6f983-d5c8-4a18-a7f9-977c410e17f0"),
-                SocialSecurityNumber = "12089400420",
+                SocialSecurityNumber = 12089400420,
                 Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=",
                 Name = "Martin Swartling",
                 Email = "martin@difi.no",
@@ -201,7 +201,7 @@ namespace Difi.Sjalvdeklaration.Database
             var user2 = new UserItem
             {
                 Id = Guid.Parse("3812f52e-55a0-48d0-9a9c-54147c2fe90c"),
-                SocialSecurityNumber = "12089400269",
+                SocialSecurityNumber = 12089400269,
                 Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=",
                 Name = "Thea Sneve",
                 Email = "thea@difi.no",

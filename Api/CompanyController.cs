@@ -30,7 +30,7 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("GetByCorporateIdentityNumber/{corporateIdentityNumber}")]
-        public ApiResult<CompanyItem> GetByCorporateIdentityNumber(string corporateIdentityNumber)
+        public ApiResult<CompanyItem> GetByCorporateIdentityNumber(int corporateIdentityNumber)
         {
             HandleRequest();
 

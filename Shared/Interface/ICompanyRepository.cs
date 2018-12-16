@@ -12,7 +12,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult<T> Get<T>(Guid id) where T : CompanyItem;
 
-        ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem;
+        ApiResult<T> GetByCorporateIdentityNumber<T>(long corporateIdentityNumber) where T : CompanyItem;
 
         ApiResult<T> GetAll<T>() where T : List<CompanyItem>;
 

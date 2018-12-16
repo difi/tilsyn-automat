@@ -22,11 +22,13 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 
         [ExcelExport]
         [Display(Name = "Organization number")]
-        public string CorporateIdentityNumber { get; set; }
+        [RegularExpression("\\d{9}", ErrorMessage = "Organization number must have nine numbers")]
+        public long? CorporateIdentityNumber { get; set; }
 
         [ExcelExport]
         [Display(Name = "Organization number of the owner organization")]
-        public string OwenerCorporateIdentityNumber { get; set; }
+        [RegularExpression("\\d{9}", ErrorMessage = "Organization number of the owner organization must have nine numbers")]
+        public long? OwenerCorporateIdentityNumber { get; set; }
 
         [ExcelExport]
         [Display(Name = "Name")]

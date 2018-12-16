@@ -54,7 +54,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult<T> GetByCorporateIdentityNumber<T>(string corporateIdentityNumber) where T : CompanyItem
+        public ApiResult<T> GetByCorporateIdentityNumber<T>(long corporateIdentityNumber) where T : CompanyItem
         {
             var result = new ApiResult<T>();
 
@@ -104,7 +104,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
             var result = new ApiResult();
 
-            if (GetByCorporateIdentityNumber<CompanyItem>(companyItem.CorporateIdentityNumber).Data != null)
+            if (companyItem.CorporateIdentityNumber != null && GetByCorporateIdentityNumber<CompanyItem>(companyItem.CorporateIdentityNumber.Value).Data != null)
             {
                 return result;
             }
@@ -225,7 +225,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                if (GetByCorporateIdentityNumber<CompanyItem>(excelRow.CompanyItem.CorporateIdentityNumber).Data != null)
+                if (excelRow.CompanyItem.CorporateIdentityNumber != null && GetByCorporateIdentityNumber<CompanyItem>(excelRow.CompanyItem.CorporateIdentityNumber.Value).Data != null)
                 {
                     result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", excelRow.CompanyItem.CorporateIdentityNumber], new Exception("exist"));
 

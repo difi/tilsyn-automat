@@ -56,7 +56,7 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpGet]
         [Route("Login/{token}/{socialSecurityNumber}")]
-        public ApiResult<UserItem> Login(string token, string socialSecurityNumber)
+        public ApiResult<UserItem> Login(string token, long socialSecurityNumber)
         {
             HandleRequest();
 

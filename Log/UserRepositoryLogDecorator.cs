@@ -74,7 +74,7 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
-        public ApiResult<T> Login<T>(string token, string socialSecurityNumber) where T : UserItem
+        public ApiResult<T> Login<T>(string token, long socialSecurityNumber) where T : UserItem
         {
             var result = inner.Login<T>(token, socialSecurityNumber);
 

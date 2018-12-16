@@ -144,8 +144,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Id = companyId,
                     Code = dataRow["Virksomhet - Pinkode"].ToString(),
                     ExternalId = dataRow["Virksomhet - Virksomhet ID (tilsynets datamodell)"].ToString(),
-                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"].ToString(),
-                    OwenerCorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"].ToString(),
+                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"] != null ? Convert.ToInt32(dataRow["Virksomhet - Organisasjonsnummer"]) : new int?(),
+                    OwenerCorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"] != null ? Convert.ToInt32(dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"]) : new int?(),
                     Name = dataRow["Virksomhet - Virksomhet"].ToString(),
 
                     MailingAddressStreet = dataRow["Virksomhet - MailingAddress - Gatenavn og nummer"].ToString(),
@@ -195,7 +195,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Name = dataRow["Egenkontroll - Navn på egenkontroll"].ToString(),
                     CaseNumber = dataRow["Egenkontroll - Saksnummer"].ToString(),
                     CreatedDate = DateTime.Now,
-                    StatusId = (int) DeclarationStatus.Created,
+                    StatusId = (int)DeclarationStatus.Created,
                     UserItemId = Guid.Parse(User.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value),
                     DeadlineDate = !string.IsNullOrEmpty(dataRow["Egenkontroll - Frist for innsending"].ToString()) ? Convert.ToDateTime(dataRow["Egenkontroll - Frist for innsending"].ToString()) : DateTime.Now.Date.AddDays(14).AddMinutes(-1),
                     DeclarationTestItem = new DeclarationTestItem

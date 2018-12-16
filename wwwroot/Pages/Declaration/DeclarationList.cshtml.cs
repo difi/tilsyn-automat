@@ -59,7 +59,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                         if (string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet))
                         {
-                            if (string.IsNullOrEmpty(CompanyItem.OwenerCorporateIdentityNumber))
+                            if (CompanyItem.OwenerCorporateIdentityNumber!=null && CompanyItem.OwenerCorporateIdentityNumber>0)
                             {
                                 CompanyCustomItem.CustomAddressStreet = CompanyItem.LocationAddressStreet;
                                 CompanyCustomItem.CustomAddressZip = CompanyItem.LocationAddressZip;
