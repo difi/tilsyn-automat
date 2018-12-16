@@ -5,7 +5,7 @@
         var type = $(this).data("type");
         var id = $(this).data("id");
         var bool = $(this).data("bool").toLowerCase();
-        
+
         if (type === "bool") {
             $(this).find("input:checked").each(function () {
                 if ($(this).val() === bool) {
@@ -87,6 +87,7 @@
             },
             multiple: false,
             validation: {
+                acceptFiles: "image/*",
                 allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
             },
             debug: true
