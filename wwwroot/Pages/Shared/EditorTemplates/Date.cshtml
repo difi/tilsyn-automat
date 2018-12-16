@@ -1,4 +1,18 @@
-﻿@model DateTime
+﻿@using System.Globalization
+@model DateTime
+
+@{
+    var minDate = new DateTime(2018, 1, 1);
+
+    if (Model < minDate)
+    {
+        minDate = Model.Date;
+    }
+
+    var currentDateString = Model.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+    var minDateString = minDate.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+    var maxDateString = minDate.AddYears(10).Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+}
 
 <div class="form-field">
     <label for="@Html.IdForModel()">
@@ -6,5 +20,5 @@
         @Html.ValidationMessageFor(m => m)
     </label>
 
-    @Html.TextBoxFor(m => m, "{0:yyyy-MM-dd}", new { data_label = Html.DisplayNameFor(m => m), type = "date" })
+    @Html.TextBoxFor(m => m, currentDateString, new { data_label = Html.DisplayNameFor(m => m), type = "date", min = minDateString, max = maxDateString })
 </div>

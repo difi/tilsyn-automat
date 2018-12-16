@@ -2,7 +2,16 @@
 @model DateTime
 
 @{
-    var currentDateTime = Model.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
+    var minDate = DateTime.Now.Date;
+
+    if (Model < minDate)
+    {
+        minDate = Model.Date;
+    }
+
+    var currentDateTimeString = Model.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
+    var minDateTimeString = minDate.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
+    var maxDateTimeString = DateTime.Now.AddYears(5).Date.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
 }
 
 <div class="form-field">
@@ -11,5 +20,5 @@
         @Html.ValidationMessageFor(m => m)
     </label>
 
-    @Html.TextBoxFor(m => m, currentDateTime, new { data_label = Html.DisplayNameFor(m => m), type = "datetime-local" })
+    @Html.TextBoxFor(m => m, currentDateTimeString, new { data_label = Html.DisplayNameFor(m => m), type = "datetime-local", min = minDateTimeString, max = maxDateTimeString })
 </div>
