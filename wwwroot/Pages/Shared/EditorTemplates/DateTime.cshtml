@@ -1,4 +1,9 @@
-﻿@model DateTime
+﻿@using System.Globalization
+@model DateTime
+
+@{
+    var currentDateTime = Model.ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
+}
 
 <div class="form-field">
     <label for="@Html.IdForModel()">
@@ -6,5 +11,5 @@
         @Html.ValidationMessageFor(m => m)
     </label>
 
-    @Html.TextBoxFor(m => m, "{0:yyyy-MM-ddTHH:mm}", new { data_label = Html.DisplayNameFor(m => m), type = "datetime-local" })
+    @Html.TextBoxFor(m => m, currentDateTime, new { data_label = Html.DisplayNameFor(m => m), type = "datetime-local" })
 </div>
