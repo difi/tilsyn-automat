@@ -156,7 +156,7 @@
   <data name="Social security number is required" xml:space="preserve">
     <value>Personnummer er påkrevd</value>
   </data>
-  <data name="Social security number must have nine numbers" xml:space="preserve">
-    <value>Personnummer må ha ni tall</value>
+  <data name="Social security number must have eleven numbers" xml:space="preserve">
+    <value>Personnummer må ha elleve tall</value>
   </data>
 </root>

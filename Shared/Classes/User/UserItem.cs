@@ -22,7 +22,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         [ExcelExport]
         [Display(Name = "Social security number")]
         [Required(ErrorMessage = "Social security number is required")]
-        [RegularExpression("\\d{9}", ErrorMessage = "Social security number must have nine numbers")]
+        [RegularExpression("\\d{11}", ErrorMessage = "Social security number must have eleven numbers")]
         [AutoComplete("off")]
         public long? SocialSecurityNumber { get; set; }
 

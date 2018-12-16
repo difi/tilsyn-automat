@@ -112,7 +112,7 @@
 
                         <div class="row">
                             <div class="small-12 medium-4 end columns">
-                                @Html.EditorFor(x => x.DeclarationItemForm.Company.CorporateIdentityNumber, "TextBox", new { readOnly = true })
+                                @Html.EditorFor(x => x.DeclarationItemForm.Company.CorporateIdentityNumber, "TextBoxNumber", new { readOnly = true })
                             </div>
                         </div>
 
@@ -196,7 +196,6 @@
         }
     }
 }
-
 
 @section Scripts {
     @{ await Html.RenderPartialAsync("Shared/_ValidationScriptsPartial");}
