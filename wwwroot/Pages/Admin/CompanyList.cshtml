@@ -14,25 +14,20 @@
         <a class="button add" asp-page="CompanyForm">@Localizer["Create new business"]</a>
     </div>
     <div class="small-12 medium-8 column">
+        <div class="jsExcelImportContainer fileUpload">
+            <button class="button alt jsExcelImportButton">@Localizer["Import businesses from excel"]</button>
 
-        @if ((await AuthorizationService.AuthorizeAsync(User, "Administrator")).Succeeded)
-        {
-
-            <div class="jsExcelImportContainer fileUpload">
-                <button class="button alt jsExcelImportButton">@Localizer["Import businesses from excel"]</button>
-
-                <div class="jsExcelImportTarget">
-                    <div class="row">
-                        <div class="small-12 columns end">
-                            <form method="post" enctype="multipart/form-data">
-                                @Html.EditorFor(x => x.ExcelFile, "File")
-                                <button type="submit" class="button upload" asp-page-handler="ExcelImport">@Localizer["Import businesses from excel"]</button>
-                            </form>
-                        </div>
+            <div class="jsExcelImportTarget">
+                <div class="row">
+                    <div class="small-12 columns end">
+                        <form method="post" enctype="multipart/form-data">
+                            @Html.EditorFor(x => x.ExcelFile, "File")
+                            <button type="submit" class="button upload" asp-page-handler="ExcelImport">@Localizer["Import businesses from excel"]</button>
+                        </form>
                     </div>
                 </div>
             </div>
-        }
+        </div>
     </div>
 
     <div class="small-12 columns">
