@@ -62,7 +62,11 @@
     <div class="small-12 column">
         <form method="post">
             <h3 class="summary-header">@Model.ViewCount @Localizer["Self-inspections"]  @Localizer["of total"] @Model.TotalCount</h3>
-            <button class="button alt export" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["Export all"]</button>
+            
+            @if (Model.TotalCount > 0)
+            {
+                <button class="button alt export" type="submit" asp-page-handler="ExportDeclarationList">@Localizer["Export all"]</button>
+            }
         </form>
     </div>
 </div>

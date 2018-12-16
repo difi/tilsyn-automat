@@ -144,8 +144,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     Id = companyId,
                     Code = dataRow["Virksomhet - Pinkode"].ToString(),
                     ExternalId = dataRow["Virksomhet - Virksomhet ID (tilsynets datamodell)"].ToString(),
-                    CorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer"] != null ? Convert.ToInt32(dataRow["Virksomhet - Organisasjonsnummer"]) : new int?(),
-                    OwenerCorporateIdentityNumber = dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"] != null ? Convert.ToInt32(dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"]) : new int?(),
                     Name = dataRow["Virksomhet - Virksomhet"].ToString(),
 
                     MailingAddressStreet = dataRow["Virksomhet - MailingAddress - Gatenavn og nummer"].ToString(),
@@ -178,6 +176,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     CompanyItemId = companyId,
                 }
             };
+
+            if (!String.IsNullOrEmpty(dataRow["Virksomhet - Organisasjonsnummer"]?.ToString()))
+            {
+                excelRow.CompanyItem.CorporateIdentityNumber = Convert.ToInt32(dataRow["Virksomhet - Organisasjonsnummer"]);
+            }
+
+            if (!String.IsNullOrEmpty(dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"]?.ToString()))
+            {
+                excelRow.CompanyItem.OwenerCorporateIdentityNumber = Convert.ToInt32(dataRow["Virksomhet - Organisasjonsnummer på hovedorgansasjonen"]);
+            }
 
             if (string.IsNullOrEmpty(excelRow.CompanyItem.Code))
             {
