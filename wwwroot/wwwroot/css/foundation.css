@@ -4298,6 +4298,13 @@ input[type=button].tabbed, input[type=submit].tabbed, button.tabbed {
 a.tabbed, input[type=text].tabbed, input[type=number].tabbed, textarea.tabbed, select.tabbed {
   outline: 2px solid #458596; }
 
+.qq-upload-button-focus .upload-photo {
+  background-color: #3b7180;
+  outline: 2px solid #458596; }
+
+input[type=file].tabbed + button {
+  outline: 2px solid #458596; }
+
 .fileUploadArea {
   /*background-color: #f8f8f8;
     padding: 0.5rem 1rem 0 1rem;

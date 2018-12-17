@@ -96,4 +96,12 @@
             $target.slideToggle("300", function () { });
         }
     });
+
+    //Set .tabbed on button instead of input when input type=file is tabbed
+    if ($.fn.numericInput) {
+        $("input[type='number']").numericInput({
+            allowNegative: false,
+            allowFloat: false
+        });
+    }
 });
