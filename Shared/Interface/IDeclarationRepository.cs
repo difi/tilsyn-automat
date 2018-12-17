@@ -24,7 +24,7 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult Update(DeclarationItem declarationItem);
 
-        ApiResult Save(Guid declarationItemId, DeclarationTestItem declarationTestItem);
+        ApiResult<T> Save<T>(Guid declarationItemId, DeclarationTestItem declarationTestItem) where T : DeclarationSaveResult;
 
         ApiResult SendIn(Guid id);
 

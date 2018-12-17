@@ -95,11 +95,11 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("Save")]
-        public ApiResult Save(DeclarationSave declarationSave)
+        public ApiResult<DeclarationSaveResult> Save(DeclarationSave declarationSave)
         {
             HandleRequest();
 
-            return declarationRepository.Save(declarationSave.Id, declarationSave.DeclarationTestItem);
+            return declarationRepository.Save<DeclarationSaveResult>(declarationSave.Id, declarationSave.DeclarationTestItem);
         }
 
         [HttpGet]
@@ -122,18 +122,18 @@ namespace Difi.Sjalvdeklaration.Api
 
         [HttpPost]
         [Route("AutoSave/{id}")]
-        public int AutoSave(Guid id, [FromBody]IDictionary<string, string> data, List<DeclarationIndicatorGroup> indicatorList)
+        public ApiResult<DeclarationSaveResult> AutoSave(Guid id, [FromBody]IDictionary<string, string> data, List<DeclarationIndicatorGroup> indicatorList)
         {
             var declarationItem = declarationRepository.Get<DeclarationItem>(id).Data;
             var declarationTestItem = new DeclarationTestHelper().CreateDeclarationTestItem(data, id, declarationItem.IndicatorList);
 
-            Save(new DeclarationSave
+            var result = Save(new DeclarationSave
             {
                 Id = id,
                 DeclarationTestItem = declarationTestItem
             });
 
-            return 0;
+            return result;
         }
 
         private void HandleRequest()

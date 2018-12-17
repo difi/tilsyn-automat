@@ -38,7 +38,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
             var blobUri = Request.Query["bloburi"];
             var method = Request.Query["_method"];
 
-            ConfigureCors(new CloudStorageAccount(accountAndKey, true));
+            //ConfigureCors(new CloudStorageAccount(accountAndKey, true));
 
             var sas = GetSasForBlob(accountAndKey, blobUri, method);
             var buffer = Encoding.UTF8.GetBytes(sas);

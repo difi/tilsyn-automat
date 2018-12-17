@@ -6,10 +6,10 @@ using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Enum;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -41,7 +41,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.Company).ThenInclude(x => x.UserList)
                     .Include(x => x.User)
                     .Include(x => x.Status)
-                    .Include(x => x.IndicatorList).ThenInclude(x=>x.TestGroupItem)
+                    .Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.PurposeOfTest)
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.TypeOfMachine)
@@ -53,7 +53,6 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter)
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
                     .AsNoTracking().SingleOrDefault(x => x.Id == id);
-
 
                 if (item != null)
                 {
@@ -117,7 +116,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
                     .AsNoTracking().OrderBy(x => x.Name).ToList();
 
-                result.Data = (T) list;
+                result.Data = (T)list;
                 result.Succeeded = true;
             }
             catch (Exception exception)
@@ -135,14 +134,14 @@ namespace Difi.Sjalvdeklaration.Database
             try
             {
                 var all = GetAll<T>().Data;
-                var filterdList = all.Where(x=>x.DeadlineDate > filterModel.FromDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59) && x.DeadlineDate < filterModel.ToDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59)).ToList();
+                var filterdList = all.Where(x => x.DeadlineDate > filterModel.FromDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59) && x.DeadlineDate < filterModel.ToDate.Date.AddHours(23).AddMinutes(59).AddSeconds(59)).ToList();
 
                 if (filterModel.Status > 0)
                 {
                     filterdList = filterdList.Where(x => x.StatusId == filterModel.Status).ToList();
                 }
 
-                result.Data = (T) filterdList;
+                result.Data = (T)filterdList;
                 result.Succeeded = true;
             }
             catch (Exception exception)
@@ -188,9 +187,9 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var list = dbContext.OutcomeData
                     .Include(x => x.Result)
-                    .Include(x=>x.IndicatorOutcomeItem)
+                    .Include(x => x.IndicatorOutcomeItem)
                     .Include(x => x.Indicator).ThenInclude(x => x.TestGroupList)
-                    .Include(x => x.Indicator).ThenInclude(x=>x.RuleList).ThenInclude(x=>x.Chapter).ThenInclude(x=>x.Standard)
+                    .Include(x => x.Indicator).ThenInclude(x => x.RuleList).ThenInclude(x => x.Chapter).ThenInclude(x => x.Standard)
                     .Include(x => x.Indicator).ThenInclude(x => x.RuleList).ThenInclude(x => x.Requirement)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Result)
                     .Include(x => x.RuleDataList).ThenInclude(x => x.Rule)
@@ -332,13 +331,20 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult Save(Guid declarationItemId, DeclarationTestItem declarationTestItem)
+        public ApiResult<T> Save<T>(Guid declarationItemId, DeclarationTestItem declarationTestItem) where T: DeclarationSaveResult
         {
-            var result = new ApiResult();
+            var result = new ApiResult<T>
+            {
+                Data = (T) new DeclarationSaveResult
+                {
+                    StausCount =  0
+                }
+            };
+
             var testGroupItemList = new List<TestGroupItem>();
             var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
 
-            foreach (var declarationIndicatorGroup in dbContext.DeclarationList.Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem).ThenInclude(x=>x.IndicatorList).Single(x => x.Id == declarationItemId).IndicatorList.OrderBy(x => x.TestGroupOrder))
+            foreach (var declarationIndicatorGroup in dbContext.DeclarationList.Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.IndicatorList).Single(x => x.Id == declarationItemId).IndicatorList.OrderBy(x => x.TestGroupOrder))
             {
                 if (testGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
                 {
@@ -357,46 +363,46 @@ namespace Difi.Sjalvdeklaration.Database
                 {
                     var allDone = true;
 
-                    outcomeData.ResultId = (int) TypeOfResult.NotTested;
+                    outcomeData.ResultId = (int)TypeOfResult.NotTested;
 
                     foreach (var ruleData in outcomeData.RuleDataList)
                     {
-                        ruleData.ResultId = (int) TypeOfResult.NotTested;
+                        ruleData.ResultId = (int)TypeOfResult.NotTested;
 
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            answerData.ResultId = (int) GetResultId(answerData, ruleData);
+                            answerData.ResultId = (int)GetResultId(answerData, ruleData);
 
                             UpdateParent(ruleData, answerData);
                         }
 
-                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
                         {
-                            ruleData.ResultId = (int) TypeOfResult.Fail;
+                            ruleData.ResultId = (int)TypeOfResult.Fail;
                         }
                         else
                         {
-                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.Ok))
+                            if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Ok))
                             {
-                                ruleData.ResultId = (int) TypeOfResult.Ok;
+                                ruleData.ResultId = (int)TypeOfResult.Ok;
                             }
                         }
 
-                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int) TypeOfResult.NotTested))
+                        if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.NotTested))
                         {
                             allDone = false;
                         }
                     }
 
-                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Fail))
+                    if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
                     {
-                        outcomeData.ResultId = (int) TypeOfResult.Fail;
+                        outcomeData.ResultId = (int)TypeOfResult.Fail;
                     }
                     else
                     {
-                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int) TypeOfResult.Ok))
+                        if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Ok))
                         {
-                            outcomeData.ResultId = (int) TypeOfResult.Ok;
+                            outcomeData.ResultId = (int)TypeOfResult.Ok;
                         }
                     }
 
@@ -427,7 +433,7 @@ namespace Difi.Sjalvdeklaration.Database
                                 resultString += answerLanguageList.Single(x => x.AnswerItemId == answerData.AnswerItemId).Question + ": " + answerData.String;
                             }
 
-                            if (answerData.Int>0)
+                            if (answerData.Int > 0)
                             {
                                 if (!string.IsNullOrEmpty(resultString))
                                 {
@@ -437,7 +443,7 @@ namespace Difi.Sjalvdeklaration.Database
                                 resultString += answerLanguageList.Single(x => x.AnswerItemId == answerData.AnswerItemId).Question + ": " + answerData.Int;
                             }
 
-                            if (answerData.ResultId == (int) TypeOfResult.Ok || answerData.ResultId == (int) TypeOfResult.Fail)
+                            if (answerData.ResultId == (int)TypeOfResult.Ok || answerData.ResultId == (int)TypeOfResult.Fail)
                             {
                                 if (!string.IsNullOrEmpty(answerDataString))
                                 {
@@ -461,8 +467,8 @@ namespace Difi.Sjalvdeklaration.Database
                     dbContext.OutcomeData.Add(outcomeData);
                 }
 
-                var dbItem = dbContext.DeclarationList.Include(x=>x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
-                dbItem.StatusId = (int) DeclarationStatus.Started;
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
+                dbItem.StatusId = (int)DeclarationStatus.Started;
                 dbItem.DeclarationTestItem.StatusCount = testGroupItemList.Count(x => x.AllDone);
 
                 dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;
@@ -478,6 +484,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbContext.SaveChanges();
 
+                result.Data.StausCount = dbItem.DeclarationTestItem.StatusCount;
                 result.Succeeded = true;
                 result.Id = dbItem.Id;
             }
@@ -538,7 +545,7 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (haveMachine == false)
                 {
-                    dbItem.StatusId = (int) DeclarationStatus.SentIn;
+                    dbItem.StatusId = (int)DeclarationStatus.SentIn;
                     dbItem.SentInDate = DateTime.Now;
                 }
 
@@ -581,7 +588,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var parentFailed = ruleData.AnswerDataList.Single(x => x.AnswerItemId == answerItem.LinkedParentFailedId);
 
-                if (parentFailed.ResultId == (int) TypeOfResult.Ok)
+                if (parentFailed.ResultId == (int)TypeOfResult.Ok)
                 {
                     answerData.String = string.Empty;
                     answerData.Int = null;
