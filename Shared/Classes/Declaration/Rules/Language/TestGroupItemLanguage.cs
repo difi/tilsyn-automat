@@ -2,6 +2,7 @@
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language
 {
+    [Serializable]
     public class TestGroupItemLanguage
     {
         public Guid Id { get; set; }

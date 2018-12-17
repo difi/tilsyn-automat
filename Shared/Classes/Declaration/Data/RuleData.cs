@@ -5,6 +5,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 {
+    [Serializable]
     public class RuleData
     {
         public Guid Id { get; set; }

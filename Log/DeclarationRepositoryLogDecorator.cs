@@ -108,11 +108,13 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
-        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList, DeclarationTestItem declarationTestItem)
+        public ApiResult Save(Guid declarationItemId, DeclarationTestItem declarationTestItem)
         {
-            var result = inner.Save(declarationItemId, outcomeDataList, declarationTestItem);
+            var beforeSave = declarationTestItem.DeepClone();
 
-            logRepository.Add(new LogItem(userId, result, declarationItemId, outcomeDataList));
+            var result = inner.Save(declarationItemId, declarationTestItem);
+
+            logRepository.Add(new LogItem(userId, result, declarationItemId, beforeSave));
 
             return result;
         }

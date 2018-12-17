@@ -3,8 +3,11 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Declaration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -96,7 +99,7 @@ namespace Difi.Sjalvdeklaration.Api
         {
             HandleRequest();
 
-            return declarationRepository.Save(declarationSave.Id, declarationSave.OutcomeDataList, declarationSave.DeclarationTestItem);
+            return declarationRepository.Save(declarationSave.Id, declarationSave.DeclarationTestItem);
         }
 
         [HttpGet]
@@ -115,6 +118,22 @@ namespace Difi.Sjalvdeklaration.Api
             HandleRequest();
 
             return declarationRepository.HaveMachine(id, haveMachine);
+        }
+
+        [HttpPost]
+        [Route("AutoSave/{id}")]
+        public int AutoSave(Guid id, [FromBody]IDictionary<string, string> data, List<DeclarationIndicatorGroup> indicatorList)
+        {
+            var declarationItem = declarationRepository.Get<DeclarationItem>(id).Data;
+            var declarationTestItem = new DeclarationTestHelper().CreateDeclarationTestItem(data, id, declarationItem.IndicatorList);
+
+            Save(new DeclarationSave
+            {
+                Id = id,
+                DeclarationTestItem = declarationTestItem
+            });
+
+            return 0;
         }
 
         private void HandleRequest()

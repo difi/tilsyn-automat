@@ -7,6 +7,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
+    [Serializable]
     public class AnswerItem
     {
         public Guid Id { get; set; }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Shared.Attributes;
+using System;
 using System.ComponentModel.DataAnnotations;
-using Difi.Sjalvdeklaration.Shared.Attributes;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {

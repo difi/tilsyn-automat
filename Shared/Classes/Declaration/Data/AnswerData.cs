@@ -1,9 +1,10 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using System;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 {
+    [Serializable]
     public class AnswerData
     {
         public Guid Id { get; set; }

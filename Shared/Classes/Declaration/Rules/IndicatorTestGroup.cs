@@ -2,6 +2,7 @@
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
+    [Serializable]
     public class IndicatorTestGroup
     {
         public Guid IndicatorItemId { get; set; }

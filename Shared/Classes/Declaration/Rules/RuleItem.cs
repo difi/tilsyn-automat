@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
+    [Serializable]
     public class RuleItem
     {
         public Guid Id { get; set; }

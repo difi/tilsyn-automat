@@ -2,6 +2,7 @@ using System;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language
 {
+    [Serializable]
     public class AnswerItemLanguage
     {
         public Guid Id { get; set; }

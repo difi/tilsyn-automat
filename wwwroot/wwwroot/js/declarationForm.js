@@ -1,4 +1,50 @@
 ﻿$(function () {
+
+    $("#ButtonAutoSave").click(function(e) {
+        e.preventDefault();
+
+        var list = {};
+
+        $(".jsCard input[type='hidden']").each(function () {
+            list[$(this).attr("name")] = $(this).val();
+        });
+
+        $(".jsCard select").each(function() {
+            list[$(this).attr("name")] = $(this).val();
+        });
+
+        $(".jsCard textarea").each(function () {
+            list[$(this).attr("name")] = $(this).val();
+        });
+
+        $(".jsCard input[type='text']").each(function () {
+            list[$(this).attr("name")] = $(this).val();
+        });
+
+        $(".jsCard input[type='radio']:checked").each(function() {
+            list[$(this).attr("name")] = $(this).val();
+        });
+
+        console.log(list);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/Declaration/AutoSave/" + $("#DeclarationForm").data("id"),
+            data: JSON.stringify(list),
+            dataType: "json",
+            contentType: 'application/json',
+            beforeSend: setHeader,
+            success: function (result) {
+                console.log(result);
+            }
+        });
+
+        function setHeader(xhr) {
+            xhr.setRequestHeader("UserGuid", $("#DeclarationForm").data("userid"));
+        }
+    });
+
+
     $('[data-hide="True"]').hide();
 
     $(".jsAnswerItem").change(function () {

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Difi.Sjalvdeklaration.Shared.Attributes;
+﻿using Difi.Sjalvdeklaration.Shared.Attributes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {
@@ -111,6 +111,5 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public ICollection<DeclarationItem> DeclarationList { get; set; }
 
         public List<ContactPersonItem> ContactPersonList { get; set; }
-
     }
 }

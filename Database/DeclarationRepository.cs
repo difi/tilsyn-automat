@@ -332,7 +332,7 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult Save(Guid declarationItemId, List<OutcomeData> outcomeDataList, DeclarationTestItem declarationTestItem)
+        public ApiResult Save(Guid declarationItemId, DeclarationTestItem declarationTestItem)
         {
             var result = new ApiResult();
             var testGroupItemList = new List<TestGroupItem>();
@@ -353,7 +353,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 dbContext.OutcomeData.RemoveRange(dbContext.OutcomeData.Where(x => x.DeclarationTestItemId == declarationItemId));
 
-                foreach (var outcomeData in outcomeDataList)
+                foreach (var outcomeData in declarationTestItem.OutcomeDataList)
                 {
                     var allDone = true;
 

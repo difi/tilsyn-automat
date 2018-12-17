@@ -1,5 +1,5 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using System;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 {

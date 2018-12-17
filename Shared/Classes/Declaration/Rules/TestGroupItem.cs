@@ -5,6 +5,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
 {
+    [Serializable]
     public class TestGroupItem
     {
         public Guid Id { get; set; }

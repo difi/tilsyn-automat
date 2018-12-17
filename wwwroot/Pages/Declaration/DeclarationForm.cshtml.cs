@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
+using Difi.Sjalvdeklaration.Shared.Declaration;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
@@ -86,53 +88,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     await errorHandler.View(this, OnGetAsync(Guid.Parse(id)), resultDeclaration.Exception);
                 }
 
-                var declarationTestItem = new DeclarationTestItem
-                {
-                    Id = DeclarationItemForm.Id,
-                    SupplierAndVersionId = GetAnswerFromFormInt("answer_int_supplierandversion"),
-                    SupplierAndVersionOther = GetAnswerFromFormString("answer_string_testitem_supplierandversionother"),
-                    DescriptionInText = GetAnswerFromFormString("answer_string_testitem_descriptionintext"),
-                    Image1Id = GetAnswerFromFormImage("answer_image_testitem_image1"),
-                    Image2Id = GetAnswerFromFormImage("answer_image_testitem_image2")
-                };
+                var formData = Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, string>(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value);
+                var declarationTestItem = new DeclarationTestHelper().CreateDeclarationTestItem(formData, DeclarationItemForm.Id, DeclarationItemForm.IndicatorList);
 
-                var outcomeDataList = new List<OutcomeData>();
-
-                foreach (var declarationTestGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder).ThenBy(x => x.IndicatorInTestGroupOrder))
-                {
-                    var indicator = declarationTestGroup.IndicatorItem;
-
-                    var outcomeData = new OutcomeData
-                    {
-                        Id = Guid.NewGuid(),
-                        IndicatorItemId = indicator.Id,
-                        RuleDataList = new List<RuleData>(),
-                        DeclarationTestItemId = DeclarationItemForm.DeclarationTestItem.Id
-                    };
-
-                    foreach (var ruleItem in indicator.RuleList.OrderBy(x => x.Order))
-                    {
-                        outcomeData.RuleDataList.Add(new RuleData
-                        {
-                            Id = Guid.NewGuid(),
-                            RuleItemId = ruleItem.Id,
-                            AnswerDataList = ruleItem.AnswerList.OrderBy(x=>x.Order).Select(x => new AnswerData
-                            {
-                                Id = Guid.NewGuid(),
-                                AnswerItemId = x.Id,
-                                TypeOfAnswerId = x.TypeOfAnswerId,
-                                String = GetAnswerFromFormString($"answer_string_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
-                                Bool = GetAnswerFromFormBool($"answer_bool_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
-                                Int = GetAnswerFromFormInt($"answer_int_{indicator.Id}_{ruleItem.Id}_{x.Id}"),
-                                ImageId = GetAnswerFromFormImage($"answer_image_{indicator.Id}_{ruleItem.Id}_{x.Id}")
-                            }).ToList()
-                        });
-                    }
-
-                    outcomeDataList.Add(outcomeData);
-                }
-
-                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, OutcomeDataList = outcomeDataList, DeclarationTestItem = declarationTestItem });
+                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, DeclarationTestItem = declarationTestItem });
 
                 if (result.Succeeded)
                 {
@@ -205,34 +164,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             }).ToList();
 
             return true;
-        }
-
-        private Guid? GetAnswerFromFormImage(string idString)
-        {
-            var formValue = Request.Form[idString].ToString();
-
-            return !string.IsNullOrEmpty(formValue) ? Guid.Parse(formValue) : (Guid?) null;
-        }
-
-        private string GetAnswerFromFormString(string idString)
-        {
-            var formValue = Request.Form[idString].ToString();
-
-            return !string.IsNullOrEmpty(formValue) ? formValue : string.Empty;
-        }
-
-        private int? GetAnswerFromFormInt(string idString)
-        {
-            var formValue = Request.Form[idString].ToString();
-
-            return !string.IsNullOrEmpty(formValue) ? (int?) Convert.ToInt32(formValue) : null;
-        }
-
-        private bool? GetAnswerFromFormBool(string idString)
-        {
-            var formValue = Request.Form[idString].ToString();
-
-            return !string.IsNullOrEmpty(formValue) ? (bool?) Convert.ToBoolean(formValue) : null;
         }
     }
 }

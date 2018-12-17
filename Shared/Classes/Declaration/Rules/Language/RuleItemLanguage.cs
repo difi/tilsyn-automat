@@ -1,7 +1,8 @@
 ﻿using System;
 
-namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules
+namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language
 {
+    [Serializable]
     public class RuleItemLanguage
     {
         public Guid Id { get; set; }

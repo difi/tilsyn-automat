@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard
 {
+    [Serializable]
     public class StandardItem
     {
         public Guid Id { get; set; }
