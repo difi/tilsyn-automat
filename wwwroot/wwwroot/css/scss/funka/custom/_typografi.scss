@@ -94,12 +94,13 @@ h3, h4 {
 
 .view-top-part {
     position: relative;
-    margin-bottom:3rem;
+    margin-bottom: 3rem;
 
     &[aria-hidden=true] {
         display: block !important;
         height: 75px;
         overflow: hidden;
+        transition: all 1000ms;
 
         &:after {
             position: absolute;
@@ -111,11 +112,21 @@ h3, h4 {
             // background: linear-gradient(transparent, gray);
             background: linear-gradient(to top, rgba(231,239,241,1), rgba(231,239,241,0));
         }
+
+        & + div {
+            transition: all 500ms;
+        }
     }
 
     &[aria-hidden=false] {
         display: block !important;
         height: auto;
+        transition: all 1000ms;
+
+        & + div {
+            opacity: 0;
+            transition: all 500ms;
+        }
     }
 }
 

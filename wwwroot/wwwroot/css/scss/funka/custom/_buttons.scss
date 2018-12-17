@@ -420,23 +420,41 @@ button, .button, input[type="button"], input[type="submit"] {
         margin-top: 2rem;
         margin-bottom: 0;
     }
+}
 
-    &.choose-lang-test {
+header {
+    .choose-lang {
         position: relative;
+        display: inline-block;
 
         &:before {
             content: "";
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 1px solid #618285;
             border-radius: 100px;
             position: absolute;
             top: 10px;
-            left: 10px;
+            left: 5px;
+            background: $ice-blue;
+            border: 1px solid $grey-blue;
+            width: 24px;
+            height: 24px;
+        }
+
+        &.active {
+            &:before {
+                background-color: $grey-blue;
+                box-shadow: inset 0 0 0 4px $ice-blue;
+            }
+        }
+
+        .button {
+            background-color: transparent;
+            border: 0;
+            padding: 0.4em 0em 0.4em 2em;
         }
     }
 }
+
 
 
 
