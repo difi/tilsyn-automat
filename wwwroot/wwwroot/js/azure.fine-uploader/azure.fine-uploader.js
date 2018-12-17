@@ -5969,6 +5969,7 @@
                     $("#old_answer_image_" + uploadId).hide();
 
                     $("#answer_image_" + uploadId).val(dbId);
+                    AutoSave();
 
                     promise.success(qq.extend(parsedResponse, successIndicator));
                 }

@@ -18,8 +18,8 @@
                             <span class="status-text"><strong>@Localizer["Status"]</strong><span class="show-for-small-only"><br /></span> @Model.Status.TextCompany</span>
                         </div>
                         <div class="small-4 medium-3 columns">
-                            <div class="status status-@(Model.DeclarationTestItem.StatusCount * 25)">
-                                <div class="status-done">@(Model.DeclarationTestItem.StatusCount * 25)%</div>
+                            <div id="jsStatus" class="status status-@(Model.DeclarationTestItem.StatusCount * 25)">
+                                <div id="jsStatusText" class="status-done">@(Model.DeclarationTestItem.StatusCount * 25)%</div>
                             </div>
                         </div>
                     </div>
