@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Difi.Sjalvdeklaration.wwwroot.Migrations
+namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181207070404_V1")]
+    [Migration("20181217091427_V1")]
     partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,20 +26,15 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BusinessAddressCity")
-                        .IsRequired();
+                    b.Property<string>("BusinessAddressCity");
 
-                    b.Property<string>("BusinessAddressStreet")
-                        .IsRequired();
+                    b.Property<string>("BusinessAddressStreet");
 
-                    b.Property<string>("BusinessAddressZip")
-                        .IsRequired();
+                    b.Property<string>("BusinessAddressZip");
 
-                    b.Property<string>("Code")
-                        .IsRequired();
+                    b.Property<string>("Code");
 
-                    b.Property<string>("CorporateIdentityNumber")
-                        .IsRequired();
+                    b.Property<long?>("CorporateIdentityNumber");
 
                     b.Property<string>("CustomAddressCity");
 
@@ -51,43 +46,32 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<string>("ExternalId");
 
-                    b.Property<string>("IndustryGroupAggregated")
-                        .IsRequired();
+                    b.Property<string>("IndustryGroupAggregated");
 
-                    b.Property<string>("IndustryGroupCode")
-                        .IsRequired();
+                    b.Property<string>("IndustryGroupCode");
 
-                    b.Property<string>("IndustryGroupDescription")
-                        .IsRequired();
+                    b.Property<string>("IndustryGroupDescription");
 
-                    b.Property<string>("InstitutionalSectorCode")
-                        .IsRequired();
+                    b.Property<string>("InstitutionalSectorCode");
 
-                    b.Property<string>("InstitutionalSectorDescription")
-                        .IsRequired();
+                    b.Property<string>("InstitutionalSectorDescription");
 
-                    b.Property<string>("LocationAddressCity")
-                        .IsRequired();
+                    b.Property<string>("LocationAddressCity");
 
-                    b.Property<string>("LocationAddressStreet")
-                        .IsRequired();
+                    b.Property<string>("LocationAddressStreet");
 
-                    b.Property<string>("LocationAddressZip")
-                        .IsRequired();
+                    b.Property<string>("LocationAddressZip");
 
-                    b.Property<string>("MailingAddressCity")
-                        .IsRequired();
+                    b.Property<string>("MailingAddressCity");
 
-                    b.Property<string>("MailingAddressStreet")
-                        .IsRequired();
+                    b.Property<string>("MailingAddressStreet");
 
-                    b.Property<string>("MailingAddressZip")
-                        .IsRequired();
+                    b.Property<string>("MailingAddressZip");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<string>("OwenerCorporateIdentityNumber");
+                    b.Property<long?>("OwenerCorporateIdentityNumber");
 
                     b.HasKey("Id");
 
@@ -101,17 +85,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid>("CompanyItemId");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
-                    b.Property<string>("Phone")
-                        .IsRequired();
+                    b.Property<string>("Phone");
 
-                    b.Property<string>("PhoneCountryCode")
-                        .IsRequired();
+                    b.Property<string>("PhoneCountryCode");
 
                     b.HasKey("Id");
 
@@ -167,6 +147,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
 
                     b.Property<Guid>("IndicatorItemId");
 
+                    b.Property<Guid?>("IndicatorOutcomeItemId");
+
                     b.Property<int>("ResultId");
 
                     b.Property<string>("ResultText");
@@ -176,6 +158,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasIndex("DeclarationTestItemId");
 
                     b.HasIndex("IndicatorItemId");
+
+                    b.HasIndex("IndicatorOutcomeItemId");
 
                     b.HasIndex("ResultId");
 
@@ -341,51 +325,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItemLanguage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("AnswerItemId");
-
-                    b.Property<string>("BoolFalseText");
-
-                    b.Property<string>("BoolTrueText");
-
-                    b.Property<Guid>("LanguageItemId");
-
-                    b.Property<string>("Question");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AnswerItemId");
-
-                    b.HasIndex("LanguageItemId");
-
-                    b.ToTable("AnswerLanguageList");
-
-                    b.HasData(
-                        new { Id = new Guid("2583fbbf-12a3-475d-b610-41b5ad0327c1"), AnswerItemId = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Finnes det hindringer i kundens betjeningsområde?" },
-                        new { Id = new Guid("db55a19e-7f42-4176-921d-4a09698f727a"), AnswerItemId = new Guid("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" },
-                        new { Id = new Guid("6876174d-2e2c-484b-a9a7-14cb63359a30"), AnswerItemId = new Guid("d7b40e3c-e7fa-44e5-b44f-750759c971cc"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Beskriv hindringene i kundens betjeningsområde." },
-                        new { Id = new Guid("6c73f84c-a2d5-43ac-a5fe-793d0c5672cc"), AnswerItemId = new Guid("8a12d92b-8a6a-44e7-9517-74331a4c2483"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" },
-                        new { Id = new Guid("3ec18f01-3e59-4cb1-b4b3-75e0af67ac2f"), AnswerItemId = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Henger det gjenstander over kundens betjeningsområde?" },
-                        new { Id = new Guid("1670250d-7f81-4fd0-90a2-d9a8df97df8a"), AnswerItemId = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), BoolFalseText = "0-219 cm, ", BoolTrueText = "220 cm eller mer", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?" },
-                        new { Id = new Guid("4b1e6cba-160c-4adb-a6cf-0736f1d585c2"), AnswerItemId = new Guid("5544b740-0b5f-400c-b7b2-7e6472d4160b"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Mål i cm" },
-                        new { Id = new Guid("7c632541-119a-4dd5-b501-e0ba7e2caff2"), AnswerItemId = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?" },
-                        new { Id = new Guid("b760e91c-81f5-4de9-82c2-3747c23dbf9d"), AnswerItemId = new Guid("89fd2205-1047-403d-a5bd-f70a1de2f247"), BoolFalseText = "0-149 cm, ", BoolTrueText = "150 cm eller mer", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm er det mellom betalingsterminalene?" },
-                        new { Id = new Guid("cb3bfb9a-b373-4264-9add-3f4ec562c402"), AnswerItemId = new Guid("78b8d910-c0bb-4467-acbe-1320f51fe658"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Mål i cm" },
-                        new { Id = new Guid("6e68729a-50e9-4844-a791-43e2eb21fad0"), AnswerItemId = new Guid("13d6d530-e533-4510-9a66-8b862899dbdf"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" },
-                        new { Id = new Guid("463efa96-5c19-4945-8bac-100a2b4c6916"), AnswerItemId = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Finnes det et skilt som viser hvor kunden skal betale varene sine?" },
-                        new { Id = new Guid("ec0e3dd2-bd43-4e44-a118-51b86b80d77f"), AnswerItemId = new Guid("c4870935-ee11-4557-a9c3-aca678c17565"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" },
-                        new { Id = new Guid("14b18d90-1b1f-4628-b15e-edc9afe5a0a1"), AnswerItemId = new Guid("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Er skiltet plassert over området der kunden skal betale varene sine?" },
-                        new { Id = new Guid("0ed22f35-94ec-46d1-9aad-615f91bbb1b0"), AnswerItemId = new Guid("f69c1e45-99d8-4293-a242-c5ed9e126e99"), BoolFalseText = "Nej", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?" },
-                        new { Id = new Guid("8da3f1e2-4ed3-4957-b94d-797ed932ec73"), AnswerItemId = new Guid("f98f67e5-cf6a-4afe-8998-3132640f9d70"), BoolFalseText = "Annat, ", BoolTrueText = "Mellom 75cm og 130cm over gulvet", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?" },
-                        new { Id = new Guid("f94c4896-806c-4ce1-b6a3-ebf090ee9789"), AnswerItemId = new Guid("9aea071e-7263-4b2e-8cd7-5193fbbe5b77"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Mål i cm" },
-                        new { Id = new Guid("2e2e8b32-c7c4-4ffa-b6b7-275a82e5b6af"), AnswerItemId = new Guid("438787f3-b33b-489c-b5a8-2f046a634dea"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Ta bilde" }
-                    );
-                });
-
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationIndicatorGroup", b =>
                 {
                     b.Property<Guid>("DeclarationItemId");
@@ -428,6 +367,45 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorOutcomeItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("IndicatorItemId");
+
+                    b.Property<int>("Order");
+
+                    b.Property<string>("ResultString1");
+
+                    b.Property<string>("ResultString2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IndicatorItemId");
+
+                    b.ToTable("IndicatorOutcomeList");
+
+                    b.HasData(
+                        new { Id = new Guid("0025bb09-6dfe-4069-ae6b-27cb28ba8300"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 1, ResultString1 = "1,1" },
+                        new { Id = new Guid("d438e931-f57c-4a5c-bb5c-3e3a66824827"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 2, ResultString1 = "1,1,1", ResultString2 = "1,1,1,1" },
+                        new { Id = new Guid("d18a7bce-556c-45cc-87d7-c765261166d5"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 3, ResultString1 = "1,2,2,2" },
+                        new { Id = new Guid("a9b2bb20-7240-4a93-ba1a-ae270e8679f1"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 4, ResultString1 = "2,1" },
+                        new { Id = new Guid("4edceffe-eb77-4ca0-a498-24be5372d333"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 5, ResultString1 = "2,1,1", ResultString2 = "2,1,1,1" },
+                        new { Id = new Guid("6cd1b621-12e6-4a03-bd6e-a7c8b39de251"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9"), Order = 6, ResultString1 = "2,2,2,2" },
+                        new { Id = new Guid("30f07a36-ff0b-4692-b7bf-0f2d8dee923a"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, ResultString1 = "1,1", ResultString2 = "1,1,1" },
+                        new { Id = new Guid("ae869b09-090d-459b-827c-4d61a1578478"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 2, ResultString1 = "2,2,2" },
+                        new { Id = new Guid("c11dcd56-0aaa-4253-8565-34132b640f15"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 3, ResultString1 = "1" },
+                        new { Id = new Guid("e5a123b7-f2d4-4d25-b6d7-544c3b7c63b8"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 1, ResultString1 = "1,1,1" },
+                        new { Id = new Guid("85d5b052-1f22-449d-b0a3-2883593ace54"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 2, ResultString1 = "1,1,2" },
+                        new { Id = new Guid("d0ab6b63-c6c9-4a4f-81b0-5be0a4497278"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 3, ResultString1 = "1,2,1" },
+                        new { Id = new Guid("402f1644-36d0-4ad5-853b-aee2f4bfbf75"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 4, ResultString1 = "1,2,2" },
+                        new { Id = new Guid("54d4cb13-a006-4a8b-9fdb-89a01a9b9040"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 5, ResultString1 = "2" },
+                        new { Id = new Guid("043ccfc1-ff23-43f3-a130-3d399638f24f"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 1, ResultString1 = "1", ResultString2 = "1,1" },
+                        new { Id = new Guid("8d69236d-8940-417e-aab6-d41d74539ef2"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 2, ResultString1 = "2,2" }
+                    );
+                });
+
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorTestGroup", b =>
                 {
                     b.Property<Guid>("TestGroupItemId");
@@ -463,12 +441,175 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("IndicatorUserPrerequisite");
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", b =>
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.AnswerItemLanguage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AnswerItemId");
+
+                    b.Property<string>("BoolFalseText");
+
+                    b.Property<string>("BoolTrueText");
+
+                    b.Property<Guid>("LanguageItemId");
+
+                    b.Property<string>("Question");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerItemId");
+
+                    b.HasIndex("LanguageItemId");
+
+                    b.ToTable("AnswerLanguageList");
+
+                    b.HasData(
+                        new { Id = new Guid("2583fbbf-12a3-475d-b610-41b5ad0327c1"), AnswerItemId = new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), BoolFalseText = "Nei", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Finnes det hindringer i kundens betjeningsområde?" },
+                        new { Id = new Guid("db55a19e-7f42-4176-921d-4a09698f727a"), AnswerItemId = new Guid("6912d4a0-b73b-4ecc-9fa8-49e1fd356635"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Bekreft med bilde" },
+                        new { Id = new Guid("6876174d-2e2c-484b-a9a7-14cb63359a30"), AnswerItemId = new Guid("d7b40e3c-e7fa-44e5-b44f-750759c971cc"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Beskriv hindringene i kundens betjeningsområde:" },
+                        new { Id = new Guid("6c73f84c-a2d5-43ac-a5fe-793d0c5672cc"), AnswerItemId = new Guid("8a12d92b-8a6a-44e7-9517-74331a4c2483"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Bekreft med bilde" },
+                        new { Id = new Guid("3ec18f01-3e59-4cb1-b4b3-75e0af67ac2f"), AnswerItemId = new Guid("a1964762-5c8f-40bb-a22d-c907149079d4"), BoolFalseText = "Nei", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Henger det gjenstander over kundens betjeningsområde?" },
+                        new { Id = new Guid("1670250d-7f81-4fd0-90a2-d9a8df97df8a"), AnswerItemId = new Guid("bf459d05-702d-47d7-a5b7-19f8b3fb67c9"), BoolFalseText = "0-219 cm, ", BoolTrueText = "220 cm eller mer", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?" },
+                        new { Id = new Guid("4b1e6cba-160c-4adb-a6cf-0736f1d585c2"), AnswerItemId = new Guid("5544b740-0b5f-400c-b7b2-7e6472d4160b"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Mål i cm" },
+                        new { Id = new Guid("7c632541-119a-4dd5-b501-e0ba7e2caff2"), AnswerItemId = new Guid("202d20e0-61df-4a7c-8287-104e3b439f64"), BoolFalseText = "Nei", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?" },
+                        new { Id = new Guid("b760e91c-81f5-4de9-82c2-3747c23dbf9d"), AnswerItemId = new Guid("89fd2205-1047-403d-a5bd-f70a1de2f247"), BoolFalseText = "0-149 cm, ", BoolTrueText = "150 cm eller mer", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm er det mellom betalingsterminalene?" },
+                        new { Id = new Guid("cb3bfb9a-b373-4264-9add-3f4ec562c402"), AnswerItemId = new Guid("78b8d910-c0bb-4467-acbe-1320f51fe658"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Mål i cm" },
+                        new { Id = new Guid("6e68729a-50e9-4844-a791-43e2eb21fad0"), AnswerItemId = new Guid("13d6d530-e533-4510-9a66-8b862899dbdf"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Bekreft med bilde" },
+                        new { Id = new Guid("463efa96-5c19-4945-8bac-100a2b4c6916"), AnswerItemId = new Guid("d8611e84-0f00-4d75-bcab-cbf127fb68b5"), BoolFalseText = "Nei", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Finnes det et skilt som viser hvor kunden skal betale varene sine?" },
+                        new { Id = new Guid("ec0e3dd2-bd43-4e44-a118-51b86b80d77f"), AnswerItemId = new Guid("c4870935-ee11-4557-a9c3-aca678c17565"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Bekreft med bilde" },
+                        new { Id = new Guid("14b18d90-1b1f-4628-b15e-edc9afe5a0a1"), AnswerItemId = new Guid("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"), BoolFalseText = "Nei", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Er skiltet plassert over området der kunden skal betale varene sine?" },
+                        new { Id = new Guid("0ed22f35-94ec-46d1-9aad-615f91bbb1b0"), AnswerItemId = new Guid("f69c1e45-99d8-4293-a242-c5ed9e126e99"), BoolFalseText = "Nei", BoolTrueText = "Ja", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Er skiltet synlig på avstand utenfor kundens betjeningsområde?" },
+                        new { Id = new Guid("8da3f1e2-4ed3-4957-b94d-797ed932ec73"), AnswerItemId = new Guid("f98f67e5-cf6a-4afe-8998-3132640f9d70"), BoolFalseText = "Annat, ", BoolTrueText = "Mellom 75cm og 130cm over gulvet", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?" },
+                        new { Id = new Guid("f94c4896-806c-4ce1-b6a3-ebf090ee9789"), AnswerItemId = new Guid("9aea071e-7263-4b2e-8cd7-5193fbbe5b77"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Mål i cm" },
+                        new { Id = new Guid("2e2e8b32-c7c4-4ffa-b6b7-275a82e5b6af"), AnswerItemId = new Guid("438787f3-b33b-489c-b5a8-2f046a634dea"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Question = "Bekreft med bilde" }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.IndicatorOutcomeItemLanguage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("IndicatorOutcomeItemId");
+
+                    b.Property<Guid>("LanguageItemId");
+
+                    b.Property<string>("OutcomeText");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IndicatorOutcomeItemId");
+
+                    b.HasIndex("LanguageItemId");
+
+                    b.ToTable("IndicatorOutcomeLanguageList");
+
+                    b.HasData(
+                        new { Id = new Guid("2e230687-302b-4da7-ae95-00d615f1fc2a"), IndicatorOutcomeItemId = new Guid("0025bb09-6dfe-4069-ae6b-27cb28ba8300"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Det henger ikke gjenstander over kundens betjeningsområde." },
+                        new { Id = new Guid("cf2e7b7c-7fdd-45d1-8140-f6c299805358"), IndicatorOutcomeItemId = new Guid("d438e931-f57c-4a5c-bb5c-3e3a66824827"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Gjenstander som henger over kundens betjeningsområde, er minst 220 cm over gulvet." },
+                        new { Id = new Guid("20dc4731-c388-40f9-8c6a-45b92591f003"), IndicatorOutcomeItemId = new Guid("d18a7bce-556c-45cc-87d7-c765261166d5"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet." },
+                        new { Id = new Guid("5631c088-146b-4df6-98a6-7a7f4e8d6331"), IndicatorOutcomeItemId = new Guid("a9b2bb20-7240-4a93-ba1a-ae270e8679f1"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen. Det henger ikke gjenstander over kundens betjeningsområde." },
+                        new { Id = new Guid("bace523f-8d4c-4c2f-80e7-b87e2a4fb330"), IndicatorOutcomeItemId = new Guid("4edceffe-eb77-4ca0-a498-24be5372d333"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen. Gjenstander som henger over kundens betjeningsområde, er minst 220 cm over gulvet." },
+                        new { Id = new Guid("174f9a3a-a5b9-4e00-8fcb-f3d9b8fd215e"), IndicatorOutcomeItemId = new Guid("6cd1b621-12e6-4a03-bd6e-a7c8b39de251"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen og gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet." },
+                        new { Id = new Guid("541fde0f-502e-4e6f-82f1-aca378d76b60"), IndicatorOutcomeItemId = new Guid("30f07a36-ff0b-4692-b7bf-0f2d8dee923a"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det er minst 150 cm mellom betalingsterminalene." },
+                        new { Id = new Guid("6b3a3de6-d6ff-45a4-8061-6e62d6970747"), IndicatorOutcomeItemId = new Guid("ae869b09-090d-459b-827c-4d61a1578478"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalene står for tett." },
+                        new { Id = new Guid("8bb7a824-82ca-4fbc-bb33-151a38b0a054"), IndicatorOutcomeItemId = new Guid("c11dcd56-0aaa-4253-8565-34132b640f15"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen står ikke på rett linje ved siden av en annen betalingsterminal." },
+                        new { Id = new Guid("20308d8f-c099-436a-bf7b-f91a2fac0376"), IndicatorOutcomeItemId = new Guid("e5a123b7-f2d4-4d25-b6d7-544c3b7c63b8"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes et skilt som viser hvor kunden skal betale varene sine. Skiltet er synlig på avstand utenfor kundens betjeningsområde og plassert over området der kunden skal betale varene sine." },
+                        new { Id = new Guid("1b27cdd4-a34b-486c-a5ff-684afa4579e7"), IndicatorOutcomeItemId = new Guid("85d5b052-1f22-449d-b0a3-2883593ace54"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde." },
+                        new { Id = new Guid("8b2343e2-a121-4247-8b19-318d0d42984c"), IndicatorOutcomeItemId = new Guid("d0ab6b63-c6c9-4a4f-81b0-5be0a4497278"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Skilt er ikke plassert over området der kunden skal betale varene sine." },
+                        new { Id = new Guid("2595a239-44fc-4837-9aee-c6dd9f46d71c"), IndicatorOutcomeItemId = new Guid("402f1644-36d0-4ad5-853b-aee2f4bfbf75"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde. Skilt er ikke plassert over området der kunden skal betale varene sine." },
+                        new { Id = new Guid("f6d58cdf-cafa-4892-a847-1a70fa2dd4e2"), IndicatorOutcomeItemId = new Guid("54d4cb13-a006-4a8b-9fdb-89a01a9b9040"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Det finnes ikke et skilt som viser hvor kunden skal betale." },
+                        new { Id = new Guid("c80f2711-1229-48d5-a15d-eb790d00f7f2"), IndicatorOutcomeItemId = new Guid("043ccfc1-ff23-43f3-a130-3d399638f24f"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen er mellom 75 og 130 cm over gulvet." },
+                        new { Id = new Guid("840d94f6-0c3c-47d8-bcfd-7d4a148eec06"), IndicatorOutcomeItemId = new Guid("8d69236d-8940-417e-aab6-d41d74539ef2"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), OutcomeText = "Betalingsterminalen er ikke mellom 75 og 130 cm over gulvet." }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.RequirementItemLanguage", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
+
+                    b.Property<Guid>("LanguageItemId");
+
+                    b.Property<Guid>("RequirementItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageItemId");
+
+                    b.HasIndex("RequirementItemId");
+
+                    b.ToTable("RequirementLanguageList");
+
+                    b.HasData(
+                        new { Id = new Guid("0290478b-5818-437b-9097-7fbeaf3433a2"), Description = "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RequirementItemId = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b") },
+                        new { Id = new Guid("b9247a56-97d9-4aeb-ad1d-224c1d410eaf"), Description = "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RequirementItemId = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60") },
+                        new { Id = new Guid("5c873d77-9c1e-4c6f-82b6-83fdd77e892a"), Description = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RequirementItemId = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a") },
+                        new { Id = new Guid("5ec84619-9cd3-4ee8-adad-9e55d04482d7"), Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d") }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.RuleItemLanguage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("HelpText");
+
+                    b.Property<Guid>("LanguageItemId");
+
+                    b.Property<Guid>("RuleItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageItemId");
+
+                    b.HasIndex("RuleItemId");
+
+                    b.ToTable("RuleLanguageList");
+
+                    b.HasData(
+                        new { Id = new Guid("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Illustrasjon' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09") },
+                        new { Id = new Guid("804438bd-ac67-40ff-9168-6814ea843242"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8") },
+                        new { Id = new Guid("e369820b-ebcd-488e-9216-477d363f18ed"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57") },
+                        new { Id = new Guid("55294d7b-6af0-4399-8a5c-776aa13e3a29"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b") },
+                        new { Id = new Guid("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5") }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.TestGroupItemLanguage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("LanguageItemId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<Guid>("TestGroupItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageItemId");
+
+                    b.HasIndex("TestGroupItemId");
+
+                    b.ToTable("TestGroupLanguageList");
+
+                    b.HasData(
+                        new { Id = new Guid("d7f6c8de-9435-4c39-bd19-9642eca25e65"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Name = "Betjeningsområde", TestGroupItemId = new Guid("aec1869a-30f8-403c-b909-df115173f009") },
+                        new { Id = new Guid("2b1d1f9a-1c00-43f5-b8f1-f598d146bc77"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Name = "Skilt", TestGroupItemId = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb") },
+                        new { Id = new Guid("3b00207c-83a8-49a8-a65e-503b63cc73b1"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Name = "Betjeningshøyde", TestGroupItemId = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6") }
+                    );
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<Guid>("IndicatorItemId");
 
@@ -477,10 +618,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("RequirementList");
 
                     b.HasData(
-                        new { Id = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), Description = "Krav 3.1 Betjeningsområdet foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal ikke være hindringer i betjeningsområdet.", IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9") },
-                        new { Id = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), Description = "Krav 3.5 Dersom to eller flere automater står ved siden av hverandre, skal det være minst 150 centimeter fra midten av automaten til midten av neste automat.", IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e") },
-                        new { Id = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), Description = "Krav 1.3 Skilt skal plasseres over betalingsterminalen.", IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c") },
-                        new { Id = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.", IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53") }
+                        new { Id = new Guid("875e76b5-c926-43a0-8738-c4f41c7a0b8b"), IndicatorItemId = new Guid("692627b2-53bc-43f2-900d-44a40a21e7e9") },
+                        new { Id = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e") },
+                        new { Id = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c") },
+                        new { Id = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53") }
                     );
                 });
 
@@ -530,34 +671,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), ChapterItemId = new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, RequirementItemId = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
                         new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 1, RequirementItemId = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
                         new { Id = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), ChapterItemId = new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") }
-                    );
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItemLanguage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("HelpText");
-
-                    b.Property<Guid>("LanguageItemId");
-
-                    b.Property<Guid>("RuleItemId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageItemId");
-
-                    b.HasIndex("RuleItemId");
-
-                    b.ToTable("RuleLanguageList");
-
-                    b.HasData(
-                        new { Id = new Guid("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' width='400' alt='Illustrasjon' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' width='400' alt='Illustrasjon' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09") },
-                        new { Id = new Guid("804438bd-ac67-40ff-9168-6814ea843242"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' width='400' alt='Illustrasjon' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8") },
-                        new { Id = new Guid("e369820b-ebcd-488e-9216-477d363f18ed"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' width='400' alt='Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57") },
-                        new { Id = new Guid("55294d7b-6af0-4399-8a5c-776aa13e3a29"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' width='400' alt='Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b") },
-                        new { Id = new Guid("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' width='400' alt='Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5") }
                     );
                 });
 
@@ -620,32 +733,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = new Guid("aec1869a-30f8-403c-b909-df115173f009"), Order = 1 },
                         new { Id = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"), Order = 2 },
                         new { Id = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"), Order = 3 }
-                    );
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItemLanguage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("LanguageItemId");
-
-                    b.Property<string>("Name");
-
-                    b.Property<Guid>("TestGroupItemId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageItemId");
-
-                    b.HasIndex("TestGroupItemId");
-
-                    b.ToTable("TestGroupLanguageList");
-
-                    b.HasData(
-                        new { Id = new Guid("d7f6c8de-9435-4c39-bd19-9642eca25e65"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Name = "Betjeningsområde", TestGroupItemId = new Guid("aec1869a-30f8-403c-b909-df115173f009") },
-                        new { Id = new Guid("2b1d1f9a-1c00-43f5-b8f1-f598d146bc77"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Name = "Skilt", TestGroupItemId = new Guid("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb") },
-                        new { Id = new Guid("3b00207c-83a8-49a8-a65e-503b63cc73b1"), LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), Name = "Betjeningshøyde", TestGroupItemId = new Guid("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6") }
                     );
                 });
 
@@ -738,7 +825,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.Property<string>("PhoneCountryCode")
                         .IsRequired();
 
-                    b.Property<string>("SocialSecurityNumber")
+                    b.Property<long?>("SocialSecurityNumber")
                         .IsRequired();
 
                     b.Property<string>("Title")
@@ -751,8 +838,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.ToTable("UserList");
 
                     b.HasData(
-                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400420", Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
-                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", PhoneCountryCode = "0047", SocialSecurityNumber = "12089400269", Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
+                        new { Id = new Guid("27e6f983-d5c8-4a18-a7f9-977c410e17f0"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "martin@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Martin Swartling", Phone = "912345678", PhoneCountryCode = "0047", SocialSecurityNumber = 12089400420L, Title = "Avdelingssjef", Token = "fqgADdXVzSgBdjIGl1KloQWjN-qGPN66S1h8EiBtg3g=" },
+                        new { Id = new Guid("3812f52e-55a0-48d0-9a9c-54147c2fe90c"), Created = new DateTime(2018, 12, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), Email = "thea@difi.no", LastOnline = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), Name = "Thea Sneve", Phone = "712345678", PhoneCountryCode = "0047", SocialSecurityNumber = 12089400269L, Title = "Handläggare", Token = "72og6NuGTB95NqnWN4Mj2IF_pVgodGv_qZ1F8c8u77c=" }
                     );
                 });
 
@@ -895,7 +982,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = 1, Text = "Opprettet", TextAdmin = "Opprettet", TextCompany = "Ikke påbegynt" },
                         new { Id = 2, Text = "Varslet", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt" },
                         new { Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt" },
-                        new { Id = 4, Text = "Fullført", TextAdmin = "Pågår", TextCompany = "Fullført" },
+                        new { Id = 4, Text = "Fullført", TextAdmin = "Fullført", TextCompany = "Fullført" },
                         new { Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Sendt tilbake for korreksjon" },
                         new { Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført" },
                         new { Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst" }
@@ -1035,6 +1122,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .HasForeignKey("IndicatorItemId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorOutcomeItem", "IndicatorOutcomeItem")
+                        .WithMany()
+                        .HasForeignKey("IndicatorOutcomeItemId");
+
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListTypeOfResult", "Result")
                         .WithMany("OutcomeDataList")
                         .HasForeignKey("ResultId")
@@ -1127,19 +1218,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItemLanguage", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItem", "AnswerItem")
-                        .WithMany()
-                        .HasForeignKey("AnswerItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
-                        .WithMany()
-                        .HasForeignKey("LanguageItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.DeclarationIndicatorGroup", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.DeclarationItem", "DeclarationItem")
@@ -1155,6 +1233,14 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
                         .WithMany()
                         .HasForeignKey("TestGroupItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorOutcomeItem", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorItem", "IndicatorItem")
+                        .WithMany()
+                        .HasForeignKey("IndicatorItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1181,6 +1267,71 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.ValueList.ValueListUserPrerequisite", "ValueListUserPrerequisite")
                         .WithMany()
                         .HasForeignKey("ValueListUserPrerequisiteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.AnswerItemLanguage", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.AnswerItem", "AnswerItem")
+                        .WithMany()
+                        .HasForeignKey("AnswerItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
+                        .WithMany()
+                        .HasForeignKey("LanguageItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.IndicatorOutcomeItemLanguage", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.IndicatorOutcomeItem", "IndicatorOutcomeItem")
+                        .WithMany()
+                        .HasForeignKey("IndicatorOutcomeItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
+                        .WithMany()
+                        .HasForeignKey("LanguageItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.RequirementItemLanguage", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
+                        .WithMany()
+                        .HasForeignKey("LanguageItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RequirementItem", "RequirementItem")
+                        .WithMany()
+                        .HasForeignKey("RequirementItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.RuleItemLanguage", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
+                        .WithMany()
+                        .HasForeignKey("LanguageItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "RuleItem")
+                        .WithMany()
+                        .HasForeignKey("RuleItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.TestGroupItemLanguage", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
+                        .WithMany()
+                        .HasForeignKey("LanguageItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
+                        .WithMany()
+                        .HasForeignKey("TestGroupItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1220,37 +1371,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItemLanguage", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
-                        .WithMany()
-                        .HasForeignKey("LanguageItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "RuleItem")
-                        .WithMany()
-                        .HasForeignKey("RuleItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.ChapterItem", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.StandardItem", "Standard")
                         .WithMany()
                         .HasForeignKey("StandardItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItemLanguage", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
-                        .WithMany()
-                        .HasForeignKey("LanguageItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.TestGroupItem", "TestGroupItem")
-                        .WithMany()
-                        .HasForeignKey("TestGroupItemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

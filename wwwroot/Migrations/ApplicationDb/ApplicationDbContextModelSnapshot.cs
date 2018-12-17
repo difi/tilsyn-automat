@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Difi.Sjalvdeklaration.wwwroot.Migrations
+namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -550,6 +550,34 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                     );
                 });
 
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.RuleItemLanguage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("HelpText");
+
+                    b.Property<Guid>("LanguageItemId");
+
+                    b.Property<Guid>("RuleItemId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageItemId");
+
+                    b.HasIndex("RuleItemId");
+
+                    b.ToTable("RuleLanguageList");
+
+                    b.HasData(
+                        new { Id = new Guid("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Illustrasjon' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09") },
+                        new { Id = new Guid("804438bd-ac67-40ff-9168-6814ea843242"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8") },
+                        new { Id = new Guid("e369820b-ebcd-488e-9216-477d363f18ed"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57") },
+                        new { Id = new Guid("55294d7b-6af0-4399-8a5c-776aa13e3a29"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b") },
+                        new { Id = new Guid("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5") }
+                    );
+                });
+
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.TestGroupItemLanguage", b =>
                 {
                     b.Property<Guid>("Id")
@@ -641,34 +669,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         new { Id = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57"), ChapterItemId = new Guid("5f5abe28-1a74-4242-acc8-4b881ee4973a"), IndicatorItemId = new Guid("6b4bf385-9174-4634-bc9e-bfbdab98586e"), Order = 1, RequirementItemId = new Guid("c65786bb-1b93-4153-b88c-935cc2a7ab60"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
                         new { Id = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b"), ChapterItemId = new Guid("75468cd0-478b-45e9-8a8e-51b0e574fb3b"), IndicatorItemId = new Guid("c52eb3bc-6464-4dc9-b9f3-eb975e2a012c"), Order = 1, RequirementItemId = new Guid("aebd662d-9dd5-4a27-88d5-19d6c5e12e5a"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") },
                         new { Id = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5"), ChapterItemId = new Guid("6c0f12f8-0a91-4849-b18f-2af735017fcd"), IndicatorItemId = new Guid("5b2a0a78-039f-4173-bf9e-1ca0060d1c53"), Order = 1, RequirementItemId = new Guid("e503322b-ed77-4b69-adc4-eca19b6eb97d"), StandardItemId = new Guid("7851b33f-4cec-405c-8533-53cf7a6832e2") }
-                    );
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItemLanguage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("HelpText");
-
-                    b.Property<Guid>("LanguageItemId");
-
-                    b.Property<Guid>("RuleItemId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LanguageItemId");
-
-                    b.HasIndex("RuleItemId");
-
-                    b.ToTable("RuleLanguageList");
-
-                    b.HasData(
-                        new { Id = new Guid("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Illustrasjon' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09") },
-                        new { Id = new Guid("804438bd-ac67-40ff-9168-6814ea843242"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8") },
-                        new { Id = new Guid("e369820b-ebcd-488e-9216-477d363f18ed"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57") },
-                        new { Id = new Guid("55294d7b-6af0-4399-8a5c-776aa13e3a29"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b") },
-                        new { Id = new Guid("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"), HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>", LanguageItemId = new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), RuleItemId = new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5") }
                     );
                 });
 
@@ -1307,6 +1307,19 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.RuleItemLanguage", b =>
+                {
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
+                        .WithMany()
+                        .HasForeignKey("LanguageItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "RuleItem")
+                        .WithMany()
+                        .HasForeignKey("RuleItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Language.TestGroupItemLanguage", b =>
                 {
                     b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
@@ -1354,19 +1367,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations
                         .WithMany("RuleList")
                         .HasForeignKey("StandardItemId")
                         .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItemLanguage", b =>
-                {
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.LanguageItem", "LanguageItem")
-                        .WithMany()
-                        .HasForeignKey("LanguageItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.RuleItem", "RuleItem")
-                        .WithMany()
-                        .HasForeignKey("RuleItemId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard.ChapterItem", b =>
