@@ -12,40 +12,59 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
     {
         public LogItem(Stopwatch stopwatch, Guid userId, ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
         {
-            stopwatch.Stop();
-
-            Id = Guid.NewGuid();
-            Created = DateTime.Now;
-
-            Function = callerFunctionName;
-
-            if (callerFileName != null)
+            try
             {
-                Class = callerFileName;
+                stopwatch.Stop();
 
-                if (callerFileName.Contains("\\"))
+                Id = Guid.NewGuid();
+                Created = DateTime.Now;
+
+                Function = callerFunctionName;
+
+                if (callerFileName != null)
                 {
-                    Class = callerFileName.Remove(0, callerFileName.LastIndexOf('\\') + 1)
-                        .Replace(".cshtml", string.Empty)
-                        .Replace(".cs", string.Empty)
-                        .Replace("LogDecorator", string.Empty);
+                    Class = callerFileName;
+
+                    if (callerFileName.Contains("\\"))
+                    {
+                        Class = callerFileName.Remove(0, callerFileName.LastIndexOf('\\') + 1)
+                            .Replace(".cshtml", string.Empty)
+                            .Replace(".cs", string.Empty)
+                            .Replace("LogDecorator", string.Empty);
+                    }
                 }
+
+                UserId = userId;
+
+                if (apiResult != null)
+                {
+                    ResultSucceeded = apiResult.Succeeded;
+                    ResultId = apiResult.Id;
+                    ResultException = apiResult.Exception?.AsJsonString();
+                }
+
+                CallParameter1 = callParameter1?.AsJsonString();
+                CallParameter2 = callParameter2?.AsJsonString();
+                ResultString = resultString?.AsJsonString();
+
+                Time = stopwatch.ElapsedMilliseconds;
             }
-
-            UserId = userId;
-
-            if (apiResult != null)
+            catch (Exception exception)
             {
-                ResultSucceeded = apiResult.Succeeded;
-                ResultId = apiResult.Id;
-                ResultException = apiResult.Exception?.AsJsonString();
+                Id = Guid.NewGuid();
+                Created = DateTime.Now;
+
+                Function = "LogItem";
+                Class = "LogItem";
+
+                UserId = Guid.Empty;
+
+                ResultSucceeded = false;
+                ResultId = Guid.Empty;
+                ResultException = exception.AsJsonString();
+
+                Time = stopwatch.ElapsedMilliseconds;
             }
-
-            CallParameter1 = callParameter1?.AsJsonString();
-            CallParameter2 = callParameter2?.AsJsonString();
-            ResultString = resultString?.AsJsonString();
-
-            Time = stopwatch.ElapsedMilliseconds;
         }
 
         public LogItem()
