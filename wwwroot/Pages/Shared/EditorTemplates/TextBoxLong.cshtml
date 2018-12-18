@@ -1,6 +1,6 @@
 ﻿@using Difi.Sjalvdeklaration.Shared.Attributes
 @using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata
-@model string
+@model long?
 
 @{
     var autoCompleteAttribute = (AutoCompleteAttribute)((DefaultModelMetadata)ViewData.ModelMetadata).Attributes.Attributes.SingleOrDefault(x => x is AutoCompleteAttribute);

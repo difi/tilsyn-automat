@@ -123,6 +123,12 @@
   <data name="Four-digit code is required" xml:space="preserve">
     <value>Firesifret kode er påkrevd</value>
   </data>
+  <data name="Four-digit code must have four numbers" xml:space="preserve">
+    <value>Firesifret kode må ha fire tall</value>
+  </data>
+  <data name="Organization number must have nine numbers" xml:space="preserve">
+    <value>Organisasjonsnummer må ha ni tall</value>
+  </data>
   <data name="Organization number of your business" xml:space="preserve">
     <value>Organisasjonsnummer til din virksomhet</value>
   </data>

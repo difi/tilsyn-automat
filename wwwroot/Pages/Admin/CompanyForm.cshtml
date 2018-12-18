@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="small-12 medium-4 end columns">
                     @Html.HiddenFor(x => x.CompanyItemForm.Id)
-                    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBox")
+                    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBoxNumber")
                 </div>
             </div>
 
@@ -33,13 +33,13 @@
 
             <div class="row">
                 <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBoxNumber")
+                    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBoxLong")
                 </div>
             </div>
 
             <div class="row">
                 <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBoxNumber")
+                    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBoxLong")
                 </div>
             </div>
 
@@ -157,13 +157,13 @@
 
             <div class="row">
                 <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBox")
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBoxNumber")
                 </div>
             </div>
 
             <div class="row">
                 <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBoxNumber")
                 </div>
             </div>
 
