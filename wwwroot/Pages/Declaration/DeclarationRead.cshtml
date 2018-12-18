@@ -16,6 +16,12 @@
     <main>
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                
+                
+                <h2 class="h1">@Localizer["Oppsummering"]</h2>
+                <p>
+                    @Localizer["For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene"]
+                </p>
 
                 @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = @Model.AllDoneStep1})
 
@@ -49,10 +55,11 @@
                         }
                     </div>
 
-                    @*<div class="small-12 columns">
-                        <br/>
-                        <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                    </div>*@
+                @*<div class="small-12 columns">
+        <br/>
+        <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+    </div>*@
+
                 </div>
                 <br/><br/>
             </div>

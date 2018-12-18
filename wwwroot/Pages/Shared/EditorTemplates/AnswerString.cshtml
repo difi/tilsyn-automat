@@ -57,15 +57,25 @@
         }
     </label>
 
-    <div class="card-divider @paddingCardDivider">
+    <div class="card-divider-no-padding @paddingCardDivider">
 
-        @if (what == "textarea")
-        {
-            <textarea id="@name" name="@name">@value</textarea>
-        }
-        else
-        {
-            <input type="text" id="@name" name="@name" value="@value" />
-        }
+        <div class="row">
+            <div class="small-10 columns">
+                <div class="collapse row">
+                    <div class="small-10 medium-11 columns medium-offset-1 small-offset-2">
+                        @if (what == "textarea")
+                        {
+                            <textarea id="@name" name="@name">@value</textarea>
+                        }
+                        else
+                        {
+                            <input type="text" id="@name" name="@name" value="@value" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>

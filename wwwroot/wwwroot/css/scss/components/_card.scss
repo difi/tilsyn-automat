@@ -111,7 +111,7 @@ $card-margin-bottom: $global-margin !default;
         @include card-container;
     }
 
-    .card-divider {
+    .card-divider, .card-divider-no-padding {
         @include card-divider;
 
         &.tightup-card-divider-top {
@@ -126,6 +126,10 @@ $card-margin-bottom: $global-margin !default;
             padding-bottom: 0;
             padding-top: 0;
         }
+    }
+
+    .card-divider-no-padding {
+        padding: 0;
     }
 
     .card-section {

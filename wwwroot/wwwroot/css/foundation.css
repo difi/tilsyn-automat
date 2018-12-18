@@ -3144,17 +3144,20 @@ a.button:hover, a.button:focus {
   .card > :last-child {
     margin-bottom: 0; }
 
-.card-divider {
+.card-divider, .card-divider-no-padding {
   padding: 1rem; }
-  .card-divider > :last-child {
+  .card-divider > :last-child, .card-divider-no-padding > :last-child {
     margin-bottom: 0; }
-  .card-divider.tightup-card-divider-top {
+  .card-divider.tightup-card-divider-top, .card-divider-no-padding.tightup-card-divider-top {
     padding-top: 8px; }
-  .card-divider.tightup-card-divider-tight-top {
+  .card-divider.tightup-card-divider-tight-top, .card-divider-no-padding.tightup-card-divider-tight-top {
     padding-top: 5px; }
-  .card-divider.tightup-card-divider-bottom {
+  .card-divider.tightup-card-divider-bottom, .card-divider-no-padding.tightup-card-divider-bottom {
     padding-bottom: 0;
     padding-top: 0; }
+
+.card-divider-no-padding {
+  padding: 0; }
 
 .card-section {
   flex: 1 0 auto;
@@ -4179,17 +4182,17 @@ button, .button, input[type="button"], input[type="submit"] {
       width: 48px;
       height: 48px;
       display: inline-block;
-      margin-left: 6px;
+      margin-right: 1rem;
       position: relative;
-      float: right;
+      float: left;
       top: -7px; }
       button.toogle-header-button .header-status-icon.isDone-True, button.toogle-header-button .header-status-icon.isDone-False, button.toogle-header-button-alt .header-status-icon.isDone-True, button.toogle-header-button-alt .header-status-icon.isDone-False, .button.toogle-header-button .header-status-icon.isDone-True, .button.toogle-header-button .header-status-icon.isDone-False, .button.toogle-header-button-alt .header-status-icon.isDone-True, .button.toogle-header-button-alt .header-status-icon.isDone-False, input[type="button"].toogle-header-button .header-status-icon.isDone-True, input[type="button"].toogle-header-button .header-status-icon.isDone-False, input[type="button"].toogle-header-button-alt .header-status-icon.isDone-True, input[type="button"].toogle-header-button-alt .header-status-icon.isDone-False, input[type="submit"].toogle-header-button .header-status-icon.isDone-True, input[type="submit"].toogle-header-button .header-status-icon.isDone-False, input[type="submit"].toogle-header-button-alt .header-status-icon.isDone-True, input[type="submit"].toogle-header-button-alt .header-status-icon.isDone-False {
         background-image: url("/css/cssimg/icons-sprite.svg");
         background-repeat: no-repeat; }
       button.toogle-header-button .header-status-icon.isDone-True, button.toogle-header-button-alt .header-status-icon.isDone-True, .button.toogle-header-button .header-status-icon.isDone-True, .button.toogle-header-button-alt .header-status-icon.isDone-True, input[type="button"].toogle-header-button .header-status-icon.isDone-True, input[type="button"].toogle-header-button-alt .header-status-icon.isDone-True, input[type="submit"].toogle-header-button .header-status-icon.isDone-True, input[type="submit"].toogle-header-button-alt .header-status-icon.isDone-True {
-        background-position: 1px -1498px; }
+        background-position: 0 -1498px; }
       button.toogle-header-button .header-status-icon.isDone-False, button.toogle-header-button-alt .header-status-icon.isDone-False, .button.toogle-header-button .header-status-icon.isDone-False, .button.toogle-header-button-alt .header-status-icon.isDone-False, input[type="button"].toogle-header-button .header-status-icon.isDone-False, input[type="button"].toogle-header-button-alt .header-status-icon.isDone-False, input[type="submit"].toogle-header-button .header-status-icon.isDone-False, input[type="submit"].toogle-header-button-alt .header-status-icon.isDone-False {
-        background-position: 0px -1398px; }
+        background-position: 0 -1398px; }
   button.toogle-header-button-alt, .button.toogle-header-button-alt, input[type="button"].toogle-header-button-alt, input[type="submit"].toogle-header-button-alt {
     background-color: #E7DDE7;
     padding-left: 28px;

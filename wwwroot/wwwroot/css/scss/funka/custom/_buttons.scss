@@ -247,9 +247,9 @@ button, .button, input[type="button"], input[type="submit"] {
             width: 48px;
             height: 48px;
             display: inline-block;
-            margin-left: 6px;
+            margin-right: 1rem;
             position: relative;
-            float: right;
+            float: left;
             top: -7px;
 
             &.isDone-True, &.isDone-False {
@@ -258,11 +258,11 @@ button, .button, input[type="button"], input[type="submit"] {
             }
 
             &.isDone-True {
-                background-position: 1px -1498px;
+                background-position: 0 -1498px;
             }
 
             &.isDone-False {
-                background-position: 0px -1398px;
+                background-position: 0 -1398px;
             }
         }
     }
