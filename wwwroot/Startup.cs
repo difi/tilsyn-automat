@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using Difi.Sjalvdeklaration.Database;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Difi.Sjalvdeklaration.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Difi.Sjalvdeklaration.wwwroot.Business;

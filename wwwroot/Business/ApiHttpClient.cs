@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -114,7 +115,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                 Succeeded = false
             };
 
-            var logItem = new LogItem(userId, apiResult, callParameter1, callParameter2, null, callerFunctionName, callerFileName);
+            var logItem = new LogItem(new Stopwatch(), userId, apiResult, callParameter1, callParameter2, null, callerFunctionName, callerFileName);
 
             var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + "/api/Log/Add", logItem.AsJsonStringContent());
 

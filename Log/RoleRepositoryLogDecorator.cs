@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
@@ -13,11 +14,14 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly IRoleRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly Stopwatch stopwatch = new Stopwatch();
 
         public RoleRepositoryLogDecorator(IRoleRepository inner, ILogRepository logRepository)
         {
             this.inner = inner;
             this.logRepository = logRepository;
+
+            stopwatch.Start();
         }
 
         public void SetCurrentUser(Guid id)
@@ -32,7 +36,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;

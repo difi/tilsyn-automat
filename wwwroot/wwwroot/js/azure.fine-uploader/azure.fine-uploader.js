@@ -5660,7 +5660,7 @@
                 }
                 return id;
             },
-            _deleteBlob: function(relatedToCancel, id) {
+            _deleteBlob: function (relatedToCancel, id) {
                 var self = this, deleteBlobSasUri = {}, blobUriStore = {
                     get: function(id) {
                         return self._endpointStore.get(id) + "/" + self.getBlobName(id);
@@ -5696,6 +5696,14 @@
                                 qq.azure.util.parseAzureError(xhrOrXdr.responseText, qq.bind(self.log, self));
                             }
                         }
+
+                        var hidden = $("[qq-button-id='" + self._defaultButtonId + "']").closest(".jsUpload").find("input[type='hidden']");
+                        hidden.val("");
+
+                        console.log("Removed image for " + hidden.attr("id"));
+
+                        AutoSave();
+
                         if (relatedToCancel) {
                             qq.FineUploaderBasic.prototype._onCancel.call(self, id, self.getName(id));
                             self.log("Deleted uncommitted blob chunks for " + id);
@@ -5962,9 +5970,9 @@
                     options.log("Upload success was acknowledged by the server.");
 
                     var dbId = parsedResponse.id;
-                    var uploadId = xhrOrXdr.responseURL.substr(xhrOrXdr.responseURL.lastIndexOf("?id=") + 4);
+                    var uploadId = options.endpoint.substr(options.endpoint.lastIndexOf("?id=") + 4);
 
-                    options.log("DatabaseId: " + dbId + " - UploadId: " + uploadId);
+                    options.log("DatabaseId: " + dbId + " - uploadId: " + uploadId);
 
                     $("#old_answer_image_" + uploadId).hide();
 

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -468,7 +469,12 @@ namespace Difi.Sjalvdeklaration.Database
                 }
 
                 var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
-                dbItem.StatusId = (int)DeclarationStatus.Started;
+
+                if (dbItem.StatusId == (int) DeclarationStatus.Sent || dbItem.StatusId == (int) DeclarationStatus.Created)
+                {
+                    dbItem.StatusId = (int) DeclarationStatus.Started;
+                }
+
                 dbItem.DeclarationTestItem.StatusCount = testGroupItemList.Count(x => x.AllDone);
 
                 dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;

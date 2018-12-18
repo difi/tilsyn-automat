@@ -126,4 +126,7 @@
   <data name="Company with id: {0} doesn't exist." xml:space="preserve">
     <value>Virksamhet med id: {0} eksisterer ikke.</value>
   </data>
+  <data name="No active declarations exist for company:  {0}" xml:space="preserve">
+    <value>Det finnes ingen aktive egenkontroll for virksamhet: {0}</value>
+  </data>
 </root>
