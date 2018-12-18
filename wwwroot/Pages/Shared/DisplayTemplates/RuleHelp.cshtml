@@ -28,7 +28,9 @@
         </div>
 
         <div class="card-help-text">
-            @Html.Raw(Model.Language.HelpText)
+            <div class="max-width">
+                @Html.Raw(Model.Language.HelpText)
+            </div>
         </div>
     </div>
 }

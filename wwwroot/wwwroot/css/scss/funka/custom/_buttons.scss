@@ -69,6 +69,11 @@ button, .button, input[type="button"], input[type="submit"] {
         background-color: $alt-button-bg-color;
         color: $alt-button-color;
         vertical-align: bottom;
+
+        &:hover,
+        &:focus {
+            background-color: darken($alt-button-bg-color, 6%);
+        }
     }
 
     &.cancel {
@@ -200,7 +205,7 @@ button, .button, input[type="button"], input[type="submit"] {
 
         &[aria-expanded="false"] {
             .toggle-header-icon {
-                top: 7px;
+                top: 4px;
                 transform: rotate(-45deg);
                 transition: transform 200ms ease;
             }
@@ -209,7 +214,7 @@ button, .button, input[type="button"], input[type="submit"] {
         &[aria-expanded="true"] {
             .toggle-header-icon {
                 transform: rotate(-225deg);
-                top: 13px;
+                top: 12px;
                 transition: transform 200ms ease;
             }
         }
