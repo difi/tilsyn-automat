@@ -130,22 +130,22 @@
     Tilsynsrapporten er et offentlig dokument og endelig rapport vil bli publisert på nettstedet vårt uu.difi.no.
 &lt;/p&gt;</value>
   </data>
-  <data name="Back" xml:space="preserve">
-    <value>Tilbake til oversikten</value>
-  </data>
   <data name="Deadline" xml:space="preserve">
     <value>Frist</value>
   </data>
   <data name="Print" xml:space="preserve">
     <value>Skriv ut bekreftelse</value>
   </data>
-  <data name="Return to the summary" xml:space="preserve">
-    <value>TIllbaka til oppsummeringen</value>
-  </data>
   <data name="Submitted" xml:space="preserve">
     <value>Innsendt</value>
   </data>
   <data name="Thank you for your answers" xml:space="preserve">
     <value>Takk for din besvarelse</value>
+  </data>
+  <data name="To overview" xml:space="preserve">
+    <value>Til oversikten</value>
+  </data>
+  <data name="To summary" xml:space="preserve">
+    <value>Til oppsummeringen</value>
   </data>
 </root>
