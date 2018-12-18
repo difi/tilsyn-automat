@@ -315,6 +315,8 @@ namespace Difi.Sjalvdeklaration.Database
                         {
                             dbContext.Remove(userCompany);
                         }
+
+                        companyItem.Code = string.Empty;
                     }
                 }
 
