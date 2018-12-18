@@ -4151,12 +4151,12 @@ button, .button, input[type="button"], input[type="submit"] {
     button.toogle-header-button.isDone-True, button.toogle-header-button.isDone-False, button.toogle-header-button-alt.isDone-True, button.toogle-header-button-alt.isDone-False, .button.toogle-header-button.isDone-True, .button.toogle-header-button.isDone-False, .button.toogle-header-button-alt.isDone-True, .button.toogle-header-button-alt.isDone-False, input[type="button"].toogle-header-button.isDone-True, input[type="button"].toogle-header-button.isDone-False, input[type="button"].toogle-header-button-alt.isDone-True, input[type="button"].toogle-header-button-alt.isDone-False, input[type="submit"].toogle-header-button.isDone-True, input[type="submit"].toogle-header-button.isDone-False, input[type="submit"].toogle-header-button-alt.isDone-True, input[type="submit"].toogle-header-button-alt.isDone-False {
       padding: 1.5rem 12px 0.5rem 10px; }
     button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon {
-      top: 4px;
+      top: 1px;
       transform: rotate(-45deg);
       transition: transform 200ms ease; }
     button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="true"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="true"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="true"] .toggle-header-icon {
       transform: rotate(-225deg);
-      top: 12px;
+      top: 11px;
       transition: transform 200ms ease; }
     button.toogle-header-button .toggle-header-number, button.toogle-header-button-alt .toggle-header-number, .button.toogle-header-button .toggle-header-number, .button.toogle-header-button-alt .toggle-header-number, input[type="button"].toogle-header-button .toggle-header-number, input[type="button"].toogle-header-button-alt .toggle-header-number, input[type="submit"].toogle-header-button .toggle-header-number, input[type="submit"].toogle-header-button-alt .toggle-header-number {
       border: 1px solid #1f3f43;
@@ -4167,11 +4167,11 @@ button, .button, input[type="button"], input[type="submit"] {
       text-align: center;
       line-height: 1.15; }
     button.toogle-header-button .toggle-header-icon, button.toogle-header-button-alt .toggle-header-icon, .button.toogle-header-button .toggle-header-icon, .button.toogle-header-button-alt .toggle-header-icon, input[type="button"].toogle-header-button .toggle-header-icon, input[type="button"].toogle-header-button-alt .toggle-header-icon, input[type="submit"].toogle-header-button .toggle-header-icon, input[type="submit"].toogle-header-button-alt .toggle-header-icon {
-      border: 3px solid #1f3f43;
+      border: 4px solid #1f3f43;
       border-top-color: transparent;
       border-right-color: transparent;
-      width: 14px;
-      height: 14px;
+      width: 18px;
+      height: 18px;
       display: inline-block;
       transform: rotate(-45deg);
       margin-left: 6px;
@@ -4275,11 +4275,15 @@ button, .button, input[type="button"], input[type="submit"] {
       background: url("/css/cssimg/icons-sprite.svg") transparent 0 -404px no-repeat;
       vertical-align: text-bottom; }
   button.card-help-button, .button.card-help-button, input[type="button"].card-help-button, input[type="submit"].card-help-button {
-    background: url("/css/cssimg/icons-sprite.svg") transparent 100% -491px no-repeat;
-    width: 40px;
-    margin-bottom: 0;
-    height: 40px;
-    padding-right: 0.5rem; }
+    /*background: url("/css/cssimg/icons-sprite.svg") transparent 100% -491px no-repeat;*/
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #458596;
+    margin: 12px 12px 0 0;
+    padding: 4px 16px;
+    line-height: 1.2;
+    text-align: center; }
   button.card-help-close-button, .button.card-help-close-button, input[type="button"].card-help-close-button, input[type="submit"].card-help-close-button {
     background: url("/css/cssimg/icons-sprite.svg") transparent 100% -591px no-repeat;
     width: 40px;
@@ -4818,6 +4822,10 @@ img.full-width-image {
 
 .date-deadline {
   background-position: 0 -1700px; }
+
+.send-info-wrapper {
+  background-color: #FFD1D1;
+  padding: 1rem; }
 
 /* Page specific code
 --------------------------------------------------------------*/
