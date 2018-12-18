@@ -14,17 +14,6 @@
         <span class="legend-text">
             @orderText @text
         </span>
-
-        @*@if (viewResult)
-            {
-                <span>
-                    @if (result != null)
-                    {
-                        @result.Text
-                    }
-                </span>
-            }*@
-
     </label>
 
     <div>
@@ -32,7 +21,16 @@
         {
             var image1 = Model.Container + "/" + Model.Blob;
 
-            <img src="@image1" alt="" width="200" />
+            if (viewResult)
+            {
+                <a target="_blank" href="@image1">
+                    <img src="@image1" alt="" width="200"/>
+                </a>
+            }
+            else
+            {
+                <img src="@image1" alt="" width="200" />
+            }
         }
         else
         {
