@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
+    [Authorize(Roles = "Virksomhet")]
     public class DeclarationStartModel : PageModel
     {
         private readonly IErrorHandler errorHandler;

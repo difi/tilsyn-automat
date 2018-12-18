@@ -99,7 +99,8 @@
                 acceptFiles: "image/*",
                 allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
             },
-            debug: true
+            debug: true,
+            title: "Bekreft med bilde"
         });
     });
 
@@ -107,7 +108,7 @@
         e.preventDefault();
         var id = $(this).data("id");
 
-        console.log(id);
+        console.log("Removed image for " + id);
 
         $("#" + id).val("");
         $("#old_" + id).hide();

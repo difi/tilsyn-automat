@@ -273,11 +273,21 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                dbContext.UserCompanyList.Add(userCompanyItem);
-                dbContext.SaveChanges();
+                var declarationList = dbContext.DeclarationList.Where(x => x.CompanyItemId == userCompanyItem.CompanyItemId && x.StatusId < 6);
 
-                result.Id = userCompanyItem.CompanyItemId;
-                result.Succeeded = true;
+                if (declarationList.Any())
+                {
+                    dbContext.UserCompanyList.Add(userCompanyItem);
+                    dbContext.SaveChanges();
+
+                    result.Id = userCompanyItem.CompanyItemId;
+                    result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = new Exception(localizer["No active declarations exist for company:  {0}", userCompanyItem.CompanyItemId]);
+                    result.Succeeded = false;
+                }
             }
             catch (Exception exception)
             {

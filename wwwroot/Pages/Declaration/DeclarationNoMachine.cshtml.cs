@@ -1,13 +1,18 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
+    [Authorize(Roles = "Virksomhet")]
     public class DeclarationNoMachineModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
@@ -26,6 +31,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
+                var resultUser = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);
+                if (!resultUser.Succeeded || resultUser.Data.CompanyList == null || !resultUser.Data.CompanyList.Any())
+                {
+                    Response.Redirect("/");
+                }
+
                 var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
 
                 if (result.Succeeded)

@@ -10,10 +10,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
+    [Authorize(Roles = "Virksomhet")]
     public class DeclarationListModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
@@ -86,7 +88,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     }
                     else
                     {
-                        Response.Redirect("/Declaration/CompanyLink");
+                        Response.Redirect("/");
                     }
                 }
                 else

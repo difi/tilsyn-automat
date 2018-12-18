@@ -7,17 +7,21 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
+using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Declaration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Primitives;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
+    [Authorize(Roles = "Virksomhet")]
     public class DeclarationFormModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
@@ -50,6 +54,12 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         {
             try
             {
+                var resultUser = await apiHttpClient.Get<UserItem>("/api/User/GetByToken/" + User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value);
+                if (!resultUser.Succeeded || resultUser.Data.CompanyList == null || !resultUser.Data.CompanyList.Any())
+                {
+                    Response.Redirect("/");
+                }
+
                 if (await CreateLists())
                 {
                     var result = await apiHttpClient.Get<DeclarationItem>("/api/Declaration/Get/" + id);
