@@ -3,11 +3,18 @@
 
 @{
     ViewData["Title"] = Model.DeclarationItemForm?.Company.Name;
+
+    var companyName = Model.DeclarationItemForm?.Company.Name;
+
+    if (!string.IsNullOrEmpty(Model.DeclarationItemForm?.Company.CustomName))
+    {
+        companyName = Model.DeclarationItemForm?.Company.CustomName;
+    }
 }
 
 @if (Model.DeclarationItemForm != null)
 {
-    <h1>@Model.DeclarationItemForm.Company.Name</h1>
+    <h1>@companyName</h1>
 
     <div class="jsDeclarationListToggleCardContainer">
         <div class="row medium-uncollapse">

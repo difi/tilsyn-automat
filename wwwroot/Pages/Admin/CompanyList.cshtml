@@ -54,9 +54,16 @@
                         {
                             var contactPerson = item.ContactPersonList.FirstOrDefault();
 
+                            var companyName = item.Name;
+
+                            if (!string.IsNullOrEmpty(item.CustomName))
+                            {
+                                companyName = item.CustomName;
+                            }
+
                             <tr>
                                 <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Name)">
-                                    <a asp-page="CompanyForm" asp-route-id="@item.Id">@item.Name</a>
+                                    <a asp-page="CompanyForm" asp-route-id="@item.Id">@companyName</a>
                                 </td>
                                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.CorporateIdentityNumber)">
                                     @item.CorporateIdentityNumber
