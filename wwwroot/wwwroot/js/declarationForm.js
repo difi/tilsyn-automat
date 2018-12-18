@@ -14,8 +14,6 @@
         var bool = $(this).data("bool").toLowerCase();
 
         if (type === "bool") {
-            AutoSave();
-
             $(this).find("input:checked").each(function () {
                 if ($(this).val() === bool) {
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').slideDown("fast");
@@ -35,6 +33,14 @@
                     $(this).parent().find(".jsNextAnswerItemPlaceHolder").find("input").focus();
                 }
             });
+
+            AutoSave();
+        }
+    });
+
+    $(".jsAnswerItem input[type='number']").keypress(function (e) {
+        if (e.key >= 0 && e.key <= 9) {
+            $(this).closest(".jsRadioNo").find("input[type='radio']").prop("checked", true);
         }
     });
 
@@ -171,6 +177,10 @@ function AutoSave() {
     });
 
     $(".jsCard input[type='text']").each(function () {
+        list[$(this).attr("name")] = $(this).val();
+    });
+
+    $(".jsCard input[type='number']").each(function () {
         list[$(this).attr("name")] = $(this).val();
     });
 

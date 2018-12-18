@@ -275,6 +275,7 @@ namespace Difi.Sjalvdeklaration.Database
             try
             {
                 var declarationList = dbContext.DeclarationList.Where(x => x.CompanyItemId == userCompanyItem.CompanyItemId && x.StatusId < 6);
+                var companyItem = dbContext.CompanyList.SingleOrDefault(x => x.Id == userCompanyItem.CompanyItemId);
 
                 if (declarationList.Any())
                 {
@@ -286,7 +287,7 @@ namespace Difi.Sjalvdeklaration.Database
                 }
                 else
                 {
-                    result.Exception = new Exception(localizer["No active declarations exist for company:  {0}", userCompanyItem.CompanyItemId]);
+                    result.Exception = companyItem == null ? new Exception(localizer["No active declarations exist for company"]) : new Exception(localizer["No active declarations exist for {0}", companyItem.Name]);
                     result.Succeeded = false;
                 }
             }

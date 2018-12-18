@@ -61,7 +61,7 @@
 
     <div class="card-divider @paddingCardDivider">
         <ul class="listing">
-            <li class="radio">
+            <li class="radio jsRadio jsRadioYes">
                 @if (value != null && value == true)
                 {
                     <input type="radio" id="@idTrue" name="@name" value="true" checked="checked" />
@@ -76,7 +76,7 @@
                 </label>
             </li>
 
-            <li class="radio">
+            <li class="radio jsRadioNo">
                 @if (value != null && value == false)
                 {
                     <input type="radio" id="@idFalse" name="@name" value="false" checked="checked" />
