@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
@@ -14,11 +15,14 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly ICompanyRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly Stopwatch stopwatch = new Stopwatch();
 
         public CompanyRepositoryLogDecorator(ICompanyRepository inner, ILogRepository logRepository)
         {
             this.inner = inner;
             this.logRepository = logRepository;
+
+            stopwatch.Start();
         }
 
         public void SetCurrentUser(Guid id)
@@ -32,7 +36,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), id, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), id, null, result.Data));
             }
 
             return result;
@@ -44,7 +48,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), corporateIdentityNumber, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), corporateIdentityNumber, null, result.Data));
             }
 
             return result;
@@ -56,7 +60,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;
@@ -68,7 +72,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Add(companyItem);
 
-            logRepository.Add(new LogItem(userId, result, companyItemBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, companyItemBefore));
 
             return result;
         }
@@ -79,7 +83,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Update(companyItem);
 
-            logRepository.Add(new LogItem(userId, result, companyItemBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, companyItemBefore));
 
             return result;
         }
@@ -88,7 +92,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.Remove(id);
 
-            logRepository.Add(new LogItem(userId, result, id));
+            logRepository.Add(new LogItem(stopwatch, userId, result, id));
 
             return result;
         }
@@ -99,7 +103,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.ExcelImport(excelRow);
 
-            logRepository.Add(new LogItem(userId, result, excelRowBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, excelRowBefore));
 
             return result;
         }
@@ -110,7 +114,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.AddLink(userCompanyItem);
 
-            logRepository.Add(new LogItem(userId, result, userCompanyItemBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, userCompanyItemBefore));
 
             return result;
         }
@@ -121,7 +125,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.RemoveLink(userCompanyItem);
 
-            logRepository.Add(new LogItem(userId, result, userCompanyItemBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, userCompanyItemBefore));
 
             return result;
         }
@@ -132,7 +136,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.UpdateCustom(companyCustomItem);
 
-            logRepository.Add(new LogItem(userId, result, companyCustomItemBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, companyCustomItemBefore));
 
             return result;
         }

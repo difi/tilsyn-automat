@@ -11,9 +11,9 @@ using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Microsoft.EntityFrameworkCore;
 
-namespace Difi.Sjalvdeklaration.Database
+namespace Difi.Sjalvdeklaration.Database.DbContext
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public DbSet<UserRole> UserRoleList { get; set; }
 

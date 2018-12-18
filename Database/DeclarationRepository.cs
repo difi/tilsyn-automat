@@ -10,6 +10,7 @@ using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 
 namespace Difi.Sjalvdeklaration.Database
 {

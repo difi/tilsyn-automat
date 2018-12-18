@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -103,7 +104,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.Any(r => r.RoleItem.IsAdminRole)).AsNoTracking().OrderBy(x => x.Name).ToList();
+                var list = dbContext.UserList.Include(x => x.RoleList).ThenInclude(x => x.RoleItem).AsNoTracking().Where(rl => rl.RoleList.All(r => r.RoleItem.Name != "Virksomhet")).AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -197,6 +198,7 @@ namespace Difi.Sjalvdeklaration.Database
                     {
                         result.Succeeded = false;
                         result.Id = userItemInDb.Id;
+                        result.Exception = new Exception(localizer["A user with social security number: {0} already exist.", userItem.SocialSecurityNumber]);
 
                         return result;
                     }

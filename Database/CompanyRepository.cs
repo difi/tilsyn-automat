@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
@@ -13,11 +14,14 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly IValueListRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly Stopwatch stopwatch = new Stopwatch();
 
         public void SetCurrentUser(Guid id)
         {
             userId = id;
             inner.SetCurrentUser(id);
+
+            stopwatch.Start(); 
         }
 
         public ValueListRepositoryLogDecorator(IValueListRepository inner, ILogRepository logRepository)
@@ -32,7 +36,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;
@@ -44,7 +48,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;
@@ -56,7 +60,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;
@@ -68,7 +72,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;
@@ -80,7 +84,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded)
             {
-                logRepository.Add(new LogItem(userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;

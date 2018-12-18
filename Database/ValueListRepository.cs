@@ -4,6 +4,7 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace Difi.Sjalvdeklaration.Database

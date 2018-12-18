@@ -66,13 +66,14 @@
             <h2>@Localizer["Log list"]</h2>
         </caption>
         <thead>
-        <tr>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Created)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Class)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Function)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.UserId)</th>
-            <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</th>
-        </tr>
+            <tr>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Created)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Class)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Function)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.UserId)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Time)</th>
+            </tr>
         </thead>
         <tbody>
         @foreach (var item in Model.LogList)
@@ -97,6 +98,10 @@
 
                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)">
                     @(item.ResultSucceeded ? Localizer["Yes"] : Localizer["No"])
+                </td>
+                
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Time)">
+                    @item.Time
                 </td>
             </tr>
         }
