@@ -104,4 +104,16 @@
             allowFloat: false
         });
     }
+
+    // Copy of code from declarationForm.js
+    var questionReadToggle = new funkanu.ariatoggle({
+        container: ".jsToggleCardReadContainer",
+        triggerSelector: ".jsToggleCardReadButton",
+        target: function ($elem) {
+            return $elem.parents(".jsToggleCardReadContainer").find('.jsToggleCardReadTarget');
+        },
+        toggleAction: function ($target) {
+            $target.slideToggle("300", function () { });
+        }
+    });
 });

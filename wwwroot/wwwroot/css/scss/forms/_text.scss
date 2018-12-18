@@ -150,6 +150,16 @@ $form-button-radius: $global-radius !default;
             cursor: $input-cursor-disabled;
             border-color: #E1E4E6;
             box-shadow: none;
+
+            &:hover, &:focus {
+                background-color: transparent;
+            }
+
+            &.tabbed {
+                &:hover, &:focus {
+                    //outline: 2px solid lighten(#E1E4E6,5%);
+                }
+            }
         }
     }
     // Reset styles on button-like inputs
