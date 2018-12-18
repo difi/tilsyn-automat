@@ -161,7 +161,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
             SelectStatusList = statusList.Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
-                Text = $"{x.TextAdmin} ({x.Text})",
+                Text = $"{x.Text}",
                 Selected = false
             }).ToList();
         }

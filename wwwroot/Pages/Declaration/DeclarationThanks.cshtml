@@ -41,6 +41,8 @@
     <div class="the-end">
         <div class="row hide-for-print">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+                <a asp-page="/Declaration/DeclarationRead" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Return to the summary"]</a>
+                <br /><br />
                 <a asp-page="/Declaration/DeclarationList" class="button large" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Back"]</a>
                 <br /><br />
                 <button class="button print jsPrintButton" type="submit" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>

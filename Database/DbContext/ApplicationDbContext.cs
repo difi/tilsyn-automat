@@ -328,7 +328,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 new ValueListPurposeOfTest {Id = 1, Text = "Pilotmåling"},
                 new ValueListPurposeOfTest {Id = 2, Text = "Tilsyn"},
-                new ValueListPurposeOfTest {Id = 3, Text = "Statysmåling"},
+                new ValueListPurposeOfTest {Id = 3, Text = "Statusmåling"}
             }.ToArray());
 
             var standardItem1 = new StandardItem

@@ -118,7 +118,7 @@
                 </td>
                 <td data-th="@Localizer["Status of supervision"]">
                     <span class="label status-@item.Status.Id finished-@item.DeclarationTestItem.FinishedStatusId">
-                        @item.Status.TextAdmin
+                        @item.Status.Text
                         @if (item.StatusId == (int)DeclarationStatus.SentIn)
                         {
                             if (item.DeclarationTestItem.FinishedStatusId == 1)
