@@ -64,7 +64,13 @@
                     <div class="jsToggleCardContainer">
                         <div class="row medium-uncollapse">
                             <div class="small-12 medium-12 columns">
-                                <h2 class="h2-toggle"><button class="toogle-header-button jsToggleCardButton">@mainIndex. @Localizer["Machine"] <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Machine"]</span></span> </button></h2>
+                                <h2 class="h2-toggle">
+                                    <button class="toogle-header-button jsToggleCardButton">
+                                        <span class="header-status-icon isDone-@Model.AllDoneStep1 hide-for-print"></span>
+                                        @mainIndex. @Localizer["Machine"]
+                                        <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Machine"]</span></span>
+                                    </button>
+                                </h2>
                             </div>
                         </div>
 
@@ -105,7 +111,13 @@
                         <div class="jsToggleCardContainer">
                             <div class="row medium-uncollapse">
                                 <div class="small-12 medium-12 columns">
-                                    <h2 class="h2-toggle"><button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton">@mainIndex. @declarationIndicatorGroup.Language.Name <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @declarationIndicatorGroup.Language.Name</span></span> </button></h2>
+                                    <h2 class="h2-toggle">
+                                        <button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton">
+                                            <span class="header-status-icon isDone-@declarationIndicatorGroup.AllDone hide-for-print"></span>
+                                            @mainIndex. @declarationIndicatorGroup.Language.Name 
+                                            <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @declarationIndicatorGroup.Language.Name</span></span>
+                                        </button>
+                                    </h2>
                                 </div>
                             </div>
 
