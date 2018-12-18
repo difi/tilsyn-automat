@@ -241,6 +241,9 @@
                                     else if (item.Status.Id == (int)DeclarationStatus.Started || item.Status.Id == (int)DeclarationStatus.Return)
                                     {
                                         <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
+                                    } else if (item.Status.Id == (int)DeclarationStatus.SentIn)
+                                    {
+                                        <a asp-page="/Declaration/DeclarationRead" class="button update" asp-route-id="@item.Id">@Localizer["To summary"]</a>
                                     }
                                 </div>
                             </div>

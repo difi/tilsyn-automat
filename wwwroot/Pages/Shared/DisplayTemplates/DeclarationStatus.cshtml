@@ -9,7 +9,10 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
             <div class="row column">
                 <div class="small-5 medium-2 columns hide-for-print">
-                    <a class="button white back" href="@backUrl">@Localizer["Go back"]</a>
+                    @if (!string.IsNullOrEmpty(backUrl.ToString()))
+                    {
+                        <a class="button white back" href="@backUrl">@Localizer["Go back"]</a>
+                    }
                 </div>
 
                 <div class="small-7 medium-push-6 medium-4 columns text-right hide-for-print">

@@ -11,27 +11,33 @@
 
 @if (Model.DeclarationItemForm != null)
 {
-    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new {backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id})
-
+    if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Return)
+    {
+        @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id })
+    }
+    else
+    {
+        @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
+    }
     <main>
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-                
-                
+
+
                 <h2 class="h1">@Localizer["Oppsummering"]</h2>
                 <p>
                     @Localizer["For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene"]
                 </p>
 
-                @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = @Model.AllDoneStep1})
+                @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = Model.AllDoneStep1 })
 
                 @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
                 {
                     mainIndex++;
-                    @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = false})
+                    @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = false })
                 }
 
-                <br/>
+                <br />
 
                 <div class="row collapse align-bottom hide-for-print">
                     @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount != 4)
@@ -41,27 +47,30 @@
                         </div>
                     }
 
-                    <div class="small-12 columns">
-                        @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
-                        {
-                            <form method="post">
+                    @if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Return)
+                    {
+                        <div class="small-12 columns">
+                            @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
+                            {
+                                <form method="post">
+                                    <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
+                                    <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Submit"]</button>
+                                </form>
+                            }
+                            else
+                            {
                                 <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
-                                <button class="button large" type="submit" asp-page-handler="SendIn" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Submit"]</button>
-                            </form>
-                        }
-                        else
-                        {
-                            <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
-                        }
-                    </div>
+                            }
+                        </div>
+                    }
 
-                @*<div class="small-12 columns">
-        <br/>
-        <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-    </div>*@
+                    @*<div class="small-12 columns">
+                            <br/>
+                            <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
+                        </div>*@
 
                 </div>
-                <br/><br/>
+                <br /><br />
             </div>
         </div>
     </main>

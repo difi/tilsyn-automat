@@ -14,6 +14,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Declaration;
+using Difi.Sjalvdeklaration.Shared.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         public string StorageAccountName { get; set; }
 
         public string StorageContainer { get; set; }
+
+        public bool AllDoneStep1 { get; set; }
 
         [BindProperty]
         [Display(Name = "Välj")]
@@ -67,6 +70,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     if (result.Succeeded)
                     {
                         DeclarationItemForm = result.Data;
+
+                        if (DeclarationItemForm.Status.Id == (int)DeclarationStatus.SentIn)
+                        {
+                            Response.Redirect("/Declaration/DeclarationList");
+                        }
 
                         await GetOutcomeDataList(id);
                     }
@@ -126,13 +134,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 return false;
             }
 
+            AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
+
             TestGroupItemList = new List<TestGroupItem>();
 
             foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
             {
                 if (TestGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
                 {
-                    TestGroupItemList.Add(declarationIndicatorGroup.TestGroupItem);
+                    var item = declarationIndicatorGroup.TestGroupItem;
+                    item.AllDone = true;
+
+                    TestGroupItemList.Add(item);
                 }
             }
 
@@ -145,9 +158,22 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
             {
                 foreach (var data in result.Data)
                 {
-                    if (data.IndicatorItemId == item.IndicatorItem.Id)
+                    if (data.IndicatorItemId != item.IndicatorItem.Id)
                     {
-                        item.IndicatorItem.OutcomeData = data;
+                        continue;
+                    }
+
+                    item.IndicatorItem.OutcomeData = data;
+
+                    if (data.AllDone)
+                    {
+                        continue;
+                    }
+
+                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
+                    {
+                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
+                        testGroup.AllDone = false;
                     }
                 }
             }

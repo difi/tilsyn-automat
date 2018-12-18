@@ -93,28 +93,28 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 return true;
             }
 
-                foreach (var item in DeclarationItemForm.IndicatorList)
+            foreach (var item in DeclarationItemForm.IndicatorList)
+            {
+                foreach (var data in result.Data)
                 {
-                    foreach (var data in result.Data)
+                    if (data.IndicatorItemId != item.IndicatorItem.Id)
                     {
-                        if (data.IndicatorItemId != item.IndicatorItem.Id)
-                        {
-                            continue;
-                        }
-
-                        item.IndicatorItem.OutcomeData = data;
-
-                        if (data.AllDone)
-                        {
-                            continue;
-                        }
-
-                        foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
-                        {
-                            var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
-                            testGroup.AllDone = false;
-                        }
+                        continue;
                     }
+
+                    item.IndicatorItem.OutcomeData = data;
+
+                    if (data.AllDone)
+                    {
+                        continue;
+                    }
+
+                    foreach (var indicatorTestGroup in data.Indicator.TestGroupList)
+                    {
+                        var testGroup = TestGroupItemList.Single(x => x.Id == indicatorTestGroup.TestGroupItemId);
+                        testGroup.AllDone = false;
+                    }
+                }
             }
 
             return true;

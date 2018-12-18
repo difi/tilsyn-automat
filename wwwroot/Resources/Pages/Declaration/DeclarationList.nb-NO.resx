@@ -156,6 +156,9 @@
   <data name="Submitted" xml:space="preserve">
     <value>Innsendt</value>
   </data>
+  <data name="To summary" xml:space="preserve">
+    <value>Gå till oppsumeringen</value>
+  </data>
   <data name="View log out" xml:space="preserve">
     <value>Vis logg ut</value>
   </data>
