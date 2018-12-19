@@ -233,14 +233,14 @@
                                     </div>
                                 </div>
                                 <div class="card-section text-center medium-uncentered">
-                                    @if (item.DeclarationTestItem.HaveMachine == false || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
+                                    @if ((item.DeclarationTestItem.HaveMachine == false && item.Status.Id<4) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
                                     {
                                         <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
                                     }
                                     else if (item.Status.Id == (int)DeclarationStatus.Started || item.Status.Id == (int)DeclarationStatus.Return)
                                     {
                                         <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
-                                    } else if (item.Status.Id == (int)DeclarationStatus.SentIn)
+                                    } else if (item.Status.Id == (int)DeclarationStatus.SentIn && item.DeclarationTestItem.HaveMachine)
                                     {
                                         <a asp-page="/Declaration/DeclarationRead" class="button update" asp-route-id="@item.Id">@Localizer["To summary"]</a>
                                     }
