@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene" xml:space="preserve">
-    <value>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene.</value>
+  <data name="Bekreft opplysningene du har registert ved å trykke på send inn knappen." xml:space="preserve">
+    <value>Bekreft opplysningene du har registert ved å trykke på send inn knappen.</value>
   </data>
   <data name="Go back and change" xml:space="preserve">
     <value>Gå tilbake og endre</value>
