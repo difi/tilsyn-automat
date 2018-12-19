@@ -55,24 +55,28 @@
         list-style: none;
     }
 
-    ul {
-        padding-left: 2.25rem;
-        position: relative;
-
-        &:before {
-            content: "";
+    li {
+        span {
+            padding-left: 2rem;
+            position: relative;
             display: inline-block;
-            position: absolute;
-            height: 30px;
-            width: 30px;
-            background-image: url("/css/cssimg/icons-sprite.svg");
-            background-repeat: no-repeat;
-            background-position: 0 -1892px;
-            top: 0;
-            left: 0;
+
+            &:before {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                background-image: url("/css/cssimg/icons-sprite.svg");
+                background-repeat: no-repeat;
+                background-position: 0 -1892px;
+                top: 0;
+                left: 0;
+            }
         }
     }
 }
+
 
 .info-message {
     border-radius: 6px;
@@ -108,8 +112,8 @@
 .positive {
     background-color: $feedback-green;
 
-    ul {
-        &:before {
+    li {
+        span::before {
             background-position: 0 -1892px;
         }
     }
@@ -118,8 +122,8 @@
 .negative {
     background-color: $feedback-red;
 
-    ul {
-        &:before {
+    li {
+        span::before {
             background-position: 0 -1995px;
         }
     }

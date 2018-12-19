@@ -4567,10 +4567,11 @@ div div .tablesorter-default a {
     margin: 0;
     padding: 0;
     list-style: none; }
-  .positive ul, .negative ul {
-    padding-left: 2.25rem;
-    position: relative; }
-    .positive ul:before, .negative ul:before {
+  .positive li span, .negative li span {
+    padding-left: 2rem;
+    position: relative;
+    display: inline-block; }
+    .positive li span:before, .negative li span:before {
       content: "";
       display: inline-block;
       position: absolute;
@@ -4605,12 +4606,12 @@ div div .tablesorter-default a {
 
 .positive {
   background-color: #B4F0E7; }
-  .positive ul:before {
+  .positive li span::before {
     background-position: 0 -1892px; }
 
 .negative {
   background-color: #FFD1D1; }
-  .negative ul:before {
+  .negative li span::before {
     background-position: 0 -1995px; }
 
 .info-wrapper {
