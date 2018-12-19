@@ -69,7 +69,7 @@ $global-font-size: 16px;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #458596,
+  primary: #2E7589,
   secondary: #cce5ef,
   success: #3adb76,
   warning: #ffae00,
@@ -173,7 +173,7 @@ $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
 $hr-width: 100%;
-$hr-border: 1px solid #458596;
+$hr-border: 1px solid #2E7589;
 $hr-margin: rem-calc(16) auto;
 $list-lineheight: 1.6;
 $list-margin-bottom: $paragraph-margin-bottom;
