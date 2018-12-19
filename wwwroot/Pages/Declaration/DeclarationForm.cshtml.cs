@@ -151,6 +151,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
             if (!result.Data.Any())
             {
+                foreach (var item in TestGroupItemList)
+                {
+                    item.AllDone = false;
+                }
+
                 return true;
             }
 
