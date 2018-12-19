@@ -201,11 +201,28 @@ function AutoSave() {
                     .removeClass("status-75").removeClass("status-100").addClass("status-" + result.data.stausCount*25);
 
                 $("#jsStatusText").text(result.data.stausCount * 25 + "%");
+
+                $("#jsStep1Header").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True")
+                    .addClass("isDone-" + toUpperCaseFirst(result.data.step1Done + ""));
+
+                $(".jsHeader").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True");
+
+                $.each(result.data.outcomeData, function (i, obj) {
+                    console.log(obj.indicatorItemId);
+                    console.log($(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']"));
+
+                    $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsStatusIcon").addClass("isDone-" + toUpperCaseFirst(obj.allDone + ""));
+
+                });
             }
         }
     });
 
     function setHeader(xhr) {
         xhr.setRequestHeader("UserGuid", $("#DeclarationForm").data("userid"));
+    }
+
+    function toUpperCaseFirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 }

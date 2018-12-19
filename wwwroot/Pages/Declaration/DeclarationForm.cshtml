@@ -63,8 +63,8 @@
                         <div class="row medium-uncollapse">
                             <div class="small-12 medium-12 columns">
                                 <h2 class="h2-toggle">
-                                    <button class="toogle-header-button jsToggleCardButton">
-                                        <span class="header-status-icon isDone-@Model.AllDoneStep1 hide-for-print"></span>
+                                    <button id="jsStep1Header" class="toogle-header-button jsToggleCardButton">
+                                        <span class="jsStatusIcon header-status-icon isDone-@Model.AllDoneStep1 hide-for-print"></span>
                                         @mainIndex. @Localizer["Machine"]
                                         <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Machine"]</span></span>
                                     </button>
@@ -110,8 +110,8 @@
                             <div class="row medium-uncollapse">
                                 <div class="small-12 medium-12 columns">
                                     <h2 class="h2-toggle">
-                                        <button data-id="@declarationIndicatorGroup.Id" class="toogle-header-button jsToggleCardButton">
-                                            <span class="header-status-icon isDone-@declarationIndicatorGroup.AllDone hide-for-print"></span>
+                                        <button data-id="@declarationIndicatorGroup.Id" class="jsHeader toogle-header-button jsToggleCardButton">
+                                            <span class="jsStatusIcon header-status-icon isDone-@declarationIndicatorGroup.AllDone hide-for-print"></span>
                                             @mainIndex. @declarationIndicatorGroup.Language.Name 
                                             <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @declarationIndicatorGroup.Language.Name</span></span>
                                         </button>
@@ -128,7 +128,6 @@
                                             var indicatorItem = item.IndicatorItem;
                                             var outcomeData = indicatorItem.OutcomeData;
 
-
                                             foreach (var ruleItem in indicatorItem.RuleList.OrderBy(x => x.Order))
                                             {
                                                 RuleData ruleData = null;
@@ -141,7 +140,7 @@
                                                 var firstQuestion = true;
                                                 subIndex++;
 
-                                                <div class="card jsCard">
+                                                <div class="card jsCard" data-indicator-id="@indicatorItem.Id">
                                                     <div class="jsRuleItem" id="@ruleItem.Id">
                                                         @foreach (var answerItem in ruleItem.AnswerList.OrderBy(x => x.Order))
                                                         {

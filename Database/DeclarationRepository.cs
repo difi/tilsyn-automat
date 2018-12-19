@@ -340,7 +340,9 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Data = (T) new DeclarationSaveResult
                 {
-                    StausCount =  0
+                    StausCount =  0,
+                    Step1Done = false,
+                    OutcomeData = new List<OutcomeData>()
                 }
             };
 
@@ -468,6 +470,14 @@ namespace Difi.Sjalvdeklaration.Database
                     }
 
                     dbContext.OutcomeData.Add(outcomeData);
+
+                    result.Data.OutcomeData.Add(new OutcomeData
+                    {
+                        Id = outcomeData.Id,
+                        IndicatorItemId = outcomeData.IndicatorItemId,
+                        DeclarationTestItemId = outcomeData.DeclarationTestItemId,
+                        AllDone = outcomeData.AllDone
+                    });
                 }
 
                 var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
@@ -488,6 +498,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (dbItem.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(dbItem.DeclarationTestItem.DescriptionInText) && dbItem.DeclarationTestItem.Image1Id != null && dbItem.DeclarationTestItem.Image2Id != null)
                 {
                     dbItem.DeclarationTestItem.StatusCount++;
+                    result.Data.Step1Done = true;
                 }
 
                 dbContext.SaveChanges();
