@@ -75,6 +75,8 @@
         }
     });
 
+    $(".jsClickIfFirst").click();
+
     var changeLanguageToggle = new funkanu.ariatoggle({
         container: ".jsChangeLanguageContainer",
         triggerSelector: ".jsToggleChangeLanguageButton",

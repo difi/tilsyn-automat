@@ -10,16 +10,22 @@
     {
         companyName = Model.DeclarationItemForm?.Company.CustomName;
     }
+
+    var extraClass = "";
+    if (Model.DeclarationItemForm.Id == Guid.Empty)
+    {
+        extraClass = "jsClickIfFirst";
+    }
 }
 
-@if (Model.DeclarationItemForm != null)
+    @if (Model.DeclarationItemForm != null)
 {
     <h1>@companyName</h1>
 
     <div class="jsDeclarationListToggleCardContainer">
         <div class="row medium-uncollapse">
             <div class="small-12 medium-12 columns">
-                <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> @(Model.DeclarationItemForm?.Id != Guid.Empty ? "Administrer egenkontroll" : "Opprette egenkontroll")</button></h2>
+                <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton @extraClass"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> @(Model.DeclarationItemForm?.Id != Guid.Empty ? "Administrer egenkontroll" : "Opprette egenkontroll")</button></h2>
             </div>
         </div>
         <div class="row">
