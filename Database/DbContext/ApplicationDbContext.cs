@@ -918,7 +918,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 AnswerItemId = answerItem411.Id,
                 Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
                 BoolTrueText = "Mellom 75cm og 130cm over gulvet",
-                BoolFalseText = "Annat, ",
+                BoolFalseText = "Annet, ",
             };
 
             var answerItem412 = new AnswerItem
