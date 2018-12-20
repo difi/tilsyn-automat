@@ -384,35 +384,16 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
-    &.card-help-button {
-        /*background: url("/css/cssimg/icons-sprite.svg") transparent 100% -491px no-repeat;*/
+    &.card-help-button,
+    &.card-help-close-button {
         color: $color-white;
         border-radius: 4px;
         font-size: 14px;
         background-color: $dirty-blue;
-        //width: 40px;
         margin: 12px 12px 0 0;
-        //height: 40px;
         padding: 4px 16px;
         line-height: 1.2;
         text-align: center;
-
-
-        &[aria-expanded=true] {
-            //background-position: 100% -591px;
-        }
-
-        &[aria-expanded=false] {
-            //background-position: 100% -491px;
-        }
-    }
-
-    &.card-help-close-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -591px no-repeat;
-        width: 40px;
-        margin-bottom: 0;
-        height: 40px;
-        padding-right: 1rem;
     }
 
     &.card-help-button,
