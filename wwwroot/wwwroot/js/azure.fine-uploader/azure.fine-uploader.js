@@ -2547,8 +2547,8 @@
                     return fileOrBlobName;
                 },
                 text: {
-                    defaultResponseError: "Upload failure reason unknown",
-                    fileInputTitle: "file input",
+                    defaultResponseError: "Last opp feil ukjent",
+                    fileInputTitle: "Bekreft med bilde",
                     sizeSymbols: [ "kB", "MB", "GB", "TB", "PB", "EB" ]
                 },
                 deleteFile: {
