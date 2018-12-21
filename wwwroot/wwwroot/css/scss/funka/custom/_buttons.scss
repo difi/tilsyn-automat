@@ -191,7 +191,8 @@ button, .button, input[type="button"], input[type="submit"] {
         text-align: left;
         font-weight: bold;
         background-color: $light-blue-grey;
-        padding: 1rem 12px 1rem 10px;
+        //padding: 1rem 12px 1rem 10px;
+        padding: 1.3rem 12px 0.3rem 10px;
         margin-bottom: 20px;
         color: $dark-blue-grey;
         font-size: 20px;
@@ -200,7 +201,7 @@ button, .button, input[type="button"], input[type="submit"] {
 
         &.isDone-True,
         &.isDone-False {
-            padding: 1.5rem 12px 0.5rem 10px;
+            //padding: 1.3rem 12px 0.3rem 10px;
         }
 
         &[aria-expanded="false"] {

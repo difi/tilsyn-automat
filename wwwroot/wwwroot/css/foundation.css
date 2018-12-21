@@ -4142,14 +4142,12 @@ button, .button, input[type="button"], input[type="submit"] {
     text-align: left;
     font-weight: bold;
     background-color: #b5d2db;
-    padding: 1rem 12px 1rem 10px;
+    padding: 1.3rem 12px 0.3rem 10px;
     margin-bottom: 20px;
     color: #1f3f43;
     font-size: 20px;
     border-radius: 0;
     width: 100%; }
-    button.toogle-header-button.isDone-True, button.toogle-header-button.isDone-False, button.toogle-header-button-alt.isDone-True, button.toogle-header-button-alt.isDone-False, .button.toogle-header-button.isDone-True, .button.toogle-header-button.isDone-False, .button.toogle-header-button-alt.isDone-True, .button.toogle-header-button-alt.isDone-False, input[type="button"].toogle-header-button.isDone-True, input[type="button"].toogle-header-button.isDone-False, input[type="button"].toogle-header-button-alt.isDone-True, input[type="button"].toogle-header-button-alt.isDone-False, input[type="submit"].toogle-header-button.isDone-True, input[type="submit"].toogle-header-button.isDone-False, input[type="submit"].toogle-header-button-alt.isDone-True, input[type="submit"].toogle-header-button-alt.isDone-False {
-      padding: 1.5rem 12px 0.5rem 10px; }
     button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button[aria-expanded="false"] .toggle-header-icon, .button.toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="button"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button[aria-expanded="false"] .toggle-header-icon, input[type="submit"].toogle-header-button-alt[aria-expanded="false"] .toggle-header-icon {
       top: 1px;
       transform: rotate(-45deg);
