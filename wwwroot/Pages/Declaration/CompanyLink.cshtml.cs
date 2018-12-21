@@ -1,21 +1,22 @@
-﻿using System;
-using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.wwwroot.Business;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
     public class CompanyLinkModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
+        private readonly IStringLocalizer<CompanyLinkModel> localizer;
         private readonly IApiHttpClient apiHttpClient;
 
         [BindProperty]
@@ -23,10 +24,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
         public bool ViewError { get; set; }
 
-        public CompanyLinkModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public CompanyLinkModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<CompanyLinkModel> localizer)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.localizer = localizer;
         }
 
         [HttpPost]
@@ -60,8 +62,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                     return await errorHandler.View(this, null, result.Exception);
                 }
 
-                ViewError = true;
-                return await errorHandler.View(this, null);
+                return await errorHandler.View(this, null, new Exception(localizer["There is no self-inspection available for the organization number you provided. Or you have entered the wrong organization number or PIN code."]));
             }
             catch (Exception exception)
             {

@@ -13,7 +13,7 @@
                         <li><span> @Localizer["An error has occurred and logged. Contact your system administrator for more information."]</span></li>
                     </ul>
                     <p>
-                        @Localizer["Error message:"] @errorString
+                        @Localizer["Error message:"] @Html.Raw(errorString)
                     </p>
                 </div>
 

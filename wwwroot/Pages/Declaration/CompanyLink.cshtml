@@ -31,13 +31,6 @@
                     @Localizer["When you log in for the first time, you must enter the organization number of the business and the four-digit code specified in the Authority notification received by Difi email."]
                 </p>
 
-                @if (Model.ViewError)
-                {
-                    <div class="errorOnThis">
-                        @Localizer["The organization number and pin code do not match."]
-                    </div>
-                }
-
                 <div asp-validation-summary="All"></div>
 
                 @Html.EditorFor(x => x.AddLinkToCompany.CorporateIdentityNumber, "TextBoxNumber")
