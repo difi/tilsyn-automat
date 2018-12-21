@@ -107,7 +107,12 @@ namespace Difi.Sjalvdeklaration.Database
 
             if (companyItem.CorporateIdentityNumber != null && GetByCorporateIdentityNumber<CompanyItem>(companyItem.CorporateIdentityNumber.Value).Data != null)
             {
+                result.Succeeded = false;
+                result.Id = companyItem.Id;
+                result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", companyItem.CorporateIdentityNumber]);
+
                 return result;
+
             }
 
             try
