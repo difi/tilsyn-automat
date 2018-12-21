@@ -5,12 +5,12 @@
 @model Difi.Sjalvdeklaration.Shared.Classes.ImageItem
 
 @{
-    var name = ViewData["id"];
+    var id = ViewData["id"];
     var text = ViewData["text"] ?? Html.DisplayNameFor(m => m);
     var orderText = ViewData["orderText"];
     var firstQuestion = (bool)ViewData["firstQuestion"];
-    var uploadId = name.ToString().Replace("answer_image_", "");
-    var oldId = "old_" + name;
+    var uploadId = id.ToString().Replace("answer_image_", "");
+    var oldId = "old_" + id;
     var answerDataId = "";
     var ruleItem = (RuleItem)ViewData["ruleItem"] ?? new RuleItem { Language = new RuleItemLanguage { HelpText = Html.DescriptionFor(model => model).ToString() } };
     var viewHelp = !string.IsNullOrEmpty(ruleItem?.Language.HelpText);
@@ -25,7 +25,7 @@
     <fieldset>
     @if (firstQuestion)
     {
-        <legend class="legend" for="@name">
+        <legend class="legend" for="@id">
             <span class="collapse row">
                 <span class="small-10 columns">
                     <span class="collapse row">
@@ -61,15 +61,20 @@
                     <ul class="listing qq-upload-list-selector qq-upload-list">
                         <li>
                             <img src="@image" alt="" width="114"/>
-                            <button class="link-button jsButtonRemoveImage" data-id="@name">Fjern bilde</button>
+                            <button class="link-button jsButtonRemoveImage" data-id="@id">Fjern bilde</button>
                         </li>
                     </ul>
                 </div>
             </div>
+
+            <div class="uploader hide" id="@uploadId"></div>
+        }
+        else
+        {
+            <div class="uploader" id="@uploadId"></div>
         }
 
-        <div class="uploader" id="@uploadId"></div>
-        <input type="hidden" name="@name" id="@name" value="@answerDataId"/>
+        <input type="hidden" name="@id" id="@id" value="@answerDataId"/>
     </div>
     </fieldset>
 </div>

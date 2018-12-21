@@ -105,7 +105,7 @@
                 acceptFiles: "image/*",
                 allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
             },
-            debug: true,
+            debug: false,
             title: "Bekreft med bilde"
         });
     });
@@ -118,6 +118,8 @@
 
         $("#" + id).val("");
         $("#old_" + id).hide();
+
+        $("#" + id.replace("answer_image_", "")).removeClass("hide");
 
         AutoSave();
     });

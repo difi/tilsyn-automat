@@ -150,4 +150,7 @@
   <data name="Summary" xml:space="preserve">
     <value>Oppsummering</value>
   </data>
+  <data name="Uploading..." xml:space="preserve">
+    <value>Laster opp ...</value>
+  </data>
 </root>
