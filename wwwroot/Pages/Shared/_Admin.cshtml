@@ -10,6 +10,7 @@
 
     var activePage = Context.Request.Path.ToString().Replace("/Admin/", "").Replace("Form", "").Replace("List", "").Replace("View", ""); ;
     var nameClaim = HttpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name);
+    var roleClaims = HttpContextAccessor.HttpContext?.User?.Claims.Where(x => x.Type == ClaimTypes.Role);
 }
 
 <header>
@@ -32,7 +33,15 @@
 
                                         <span class="profile-area-text-wrapper hide-for-small-only">
                                             <span class="profile-name ">@nameClaim?.Value</span><br />
-                                            <span class="profile-title">@Localizer["Case processor"]</span>
+                                            <span class="profile-title">
+                                                @if (roleClaims != null)
+                                                {
+                                                    foreach (var role in roleClaims)
+                                                    {
+                                                        @role.Value<br />
+                                                    }
+                                                }
+                                            </span>
                                         </span>
                                         
                                         <span class="profile-icon"><span class="show-for-sr"> - @Localizer["View log out"]</span></span>
