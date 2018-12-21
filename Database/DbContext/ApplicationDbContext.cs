@@ -319,7 +319,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 new ValueListTypeOfStatus {Id = 2, Text = "Varslet", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt"},
                 new ValueListTypeOfStatus {Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt"},
                 new ValueListTypeOfStatus {Id = 4, Text = "Fullført", TextAdmin = "Fullført", TextCompany = "Fullført"},
-                new ValueListTypeOfStatus {Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Fullføringer pågår"},
+                new ValueListTypeOfStatus {Id = 5, Text = "Åpen for korreksjon", TextAdmin = "Pågår", TextCompany = "Åpen for korreksjon"},
                 new ValueListTypeOfStatus {Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført"},
                 new ValueListTypeOfStatus {Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst"}
             }.ToArray());
