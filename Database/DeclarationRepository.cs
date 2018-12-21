@@ -10,6 +10,7 @@ using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -314,6 +315,8 @@ namespace Difi.Sjalvdeklaration.Database
                         {
                             dbContext.Remove(userCompany);
                         }
+
+                        companyItem.Code = string.Empty;
                     }
                 }
 
@@ -337,7 +340,9 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 Data = (T) new DeclarationSaveResult
                 {
-                    StausCount =  0
+                    StausCount =  0,
+                    Step1Done = false,
+                    OutcomeData = new List<OutcomeData>()
                 }
             };
 
@@ -465,10 +470,23 @@ namespace Difi.Sjalvdeklaration.Database
                     }
 
                     dbContext.OutcomeData.Add(outcomeData);
+
+                    result.Data.OutcomeData.Add(new OutcomeData
+                    {
+                        Id = outcomeData.Id,
+                        IndicatorItemId = outcomeData.IndicatorItemId,
+                        DeclarationTestItemId = outcomeData.DeclarationTestItemId,
+                        AllDone = outcomeData.AllDone
+                    });
                 }
 
                 var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
-                dbItem.StatusId = (int)DeclarationStatus.Started;
+
+                if (dbItem.StatusId == (int) DeclarationStatus.Sent || dbItem.StatusId == (int) DeclarationStatus.Created)
+                {
+                    dbItem.StatusId = (int) DeclarationStatus.Started;
+                }
+
                 dbItem.DeclarationTestItem.StatusCount = testGroupItemList.Count(x => x.AllDone);
 
                 dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;
@@ -480,6 +498,7 @@ namespace Difi.Sjalvdeklaration.Database
                 if (dbItem.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(dbItem.DeclarationTestItem.DescriptionInText) && dbItem.DeclarationTestItem.Image1Id != null && dbItem.DeclarationTestItem.Image2Id != null)
                 {
                     dbItem.DeclarationTestItem.StatusCount++;
+                    result.Data.Step1Done = true;
                 }
 
                 dbContext.SaveChanges();

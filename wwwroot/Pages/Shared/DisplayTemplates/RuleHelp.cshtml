@@ -21,14 +21,16 @@
                     </span>
                 </span>
 
-                <span class="small-2 columns text-right">Stäng
-                    <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="true"><span class="show-for-sr">@Localizer["Close help"]</span></button>
+                <span class="small-2 columns text-right">
+                    <button class="card-help-close-button jsToggleHelpButton" aria-controls="" aria-expanded="true"><span>Lukk</span><span class="show-for-sr">@Localizer["Close help"]</span></button>
                 </span>
             </span>
         </div>
 
         <div class="card-help-text">
-            @Html.Raw(Model.Language.HelpText)
+            <div class="max-width">
+                @Html.Raw(Model.Language.HelpText)
+            </div>
         </div>
     </div>
 }

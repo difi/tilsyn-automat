@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -273,11 +274,22 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                dbContext.UserCompanyList.Add(userCompanyItem);
-                dbContext.SaveChanges();
+                var declarationList = dbContext.DeclarationList.Where(x => x.CompanyItemId == userCompanyItem.CompanyItemId && x.StatusId < 6);
+                var companyItem = dbContext.CompanyList.SingleOrDefault(x => x.Id == userCompanyItem.CompanyItemId);
 
-                result.Id = userCompanyItem.CompanyItemId;
-                result.Succeeded = true;
+                if (declarationList.Any())
+                {
+                    dbContext.UserCompanyList.Add(userCompanyItem);
+                    dbContext.SaveChanges();
+
+                    result.Id = userCompanyItem.CompanyItemId;
+                    result.Succeeded = true;
+                }
+                else
+                {
+                    result.Exception = companyItem == null ? new Exception(localizer["No active declarations exist for company"]) : new Exception(localizer["No active declarations exist for {0}", companyItem.Name]);
+                    result.Succeeded = false;
+                }
             }
             catch (Exception exception)
             {

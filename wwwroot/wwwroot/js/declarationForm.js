@@ -14,8 +14,6 @@
         var bool = $(this).data("bool").toLowerCase();
 
         if (type === "bool") {
-            AutoSave();
-
             $(this).find("input:checked").each(function () {
                 if ($(this).val() === bool) {
                     $('[data-hide="True"][data-LinkedParentCorrectId="' + id + '"]').slideDown("fast");
@@ -35,6 +33,14 @@
                     $(this).parent().find(".jsNextAnswerItemPlaceHolder").find("input").focus();
                 }
             });
+
+            AutoSave();
+        }
+    });
+
+    $(".jsAnswerItem input[type='number']").keypress(function (e) {
+        if (e.key >= 0 && e.key <= 9) {
+            $(this).closest(".jsRadioNo").find("input[type='radio']").prop("checked", true);
         }
     });
 
@@ -99,7 +105,8 @@
                 acceptFiles: "image/*",
                 allowedExtensions: ['jpeg', 'jpg', 'png', 'gif']
             },
-            debug: true
+            debug: true,
+            title: "Bekreft med bilde"
         });
     });
 
@@ -107,7 +114,7 @@
         e.preventDefault();
         var id = $(this).data("id");
 
-        console.log(id);
+        console.log("Removed image for " + id);
 
         $("#" + id).val("");
         $("#old_" + id).hide();
@@ -173,6 +180,10 @@ function AutoSave() {
         list[$(this).attr("name")] = $(this).val();
     });
 
+    $(".jsCard input[type='number']").each(function () {
+        list[$(this).attr("name")] = $(this).val();
+    });
+
     $(".jsCard input[type='radio']:checked").each(function () {
         list[$(this).attr("name")] = $(this).val();
     });
@@ -190,11 +201,28 @@ function AutoSave() {
                     .removeClass("status-75").removeClass("status-100").addClass("status-" + result.data.stausCount*25);
 
                 $("#jsStatusText").text(result.data.stausCount * 25 + "%");
+
+                $("#jsStep1Header").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True")
+                    .addClass("isDone-" + toUpperCaseFirst(result.data.step1Done + ""));
+
+                $(".jsHeader").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True");
+
+                $.each(result.data.outcomeData, function (i, obj) {
+                    console.log(obj.indicatorItemId);
+                    console.log($(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']"));
+
+                    $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsStatusIcon").addClass("isDone-" + toUpperCaseFirst(obj.allDone + ""));
+
+                });
             }
         }
     });
 
     function setHeader(xhr) {
         xhr.setRequestHeader("UserGuid", $("#DeclarationForm").data("userid"));
+    }
+
+    function toUpperCaseFirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 }

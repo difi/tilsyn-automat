@@ -1,4 +1,5 @@
 ﻿using System;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Interface;
 

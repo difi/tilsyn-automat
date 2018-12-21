@@ -8,31 +8,53 @@
         <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
             <div class="row">
-                <div class="small-12 medium-6 columns">
+                <div class="small-6 medium-6 columns">
                     <div class="logo">
                         <img alt="Difi" src="~/images/difi-logo.svg" />
                     </div>
                 </div>
-                <div class="small-12 medium-6 text-right columns">
-                    <div class="jsChangeLanguageContainer choose-lang-wrapper">
-                        <br />
-                            <button class="alt button jsToggleChangeLanguageButton">Endre språk</button>
+                <div class="small-6 medium-6 text-right columns">
 
-                            <div class="jsChangeLanguageToggleTarget">
-                                <form method="post">
-                                    @if (CultureInfo.CurrentCulture.Name == "nb-NO")
-                                    {
-                                        <input class="button choose-lang" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
-                                        <input class="button choose-lang" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
-                                    }
-                                    else
-                                    {
-                                        <input class="butto choose-langn" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" />
-                                        <input class="button choose-lang" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" />
-                                    }
-                                </form>
+
+                    <div class="jsChangeLanguageContainer profile-wrapper">
+                        <div class="row collapse">
+                            <div class="small-12 medium-12 text-right columns">
+                                <button class="jsToggleChangeLanguageButton toggle-profile-button button">
+
+                                    <span class="profile-area-text-wrapper">
+                                        <span class="profile-name ">Endre språk</span>
+                                    </span>
+
+                                    <span class="profile-icon"></span>
+
+                                </button>
                             </div>
                         </div>
+
+                        <div class="jsChangeLanguageToggleTarget" aria-hidden="true">
+                            <form method="post">
+                                @if (CultureInfo.CurrentCulture.Name == "nb-NO")
+                                {
+                                    <div>
+                                        <span class="choose-lang"><input class="button alt" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="choose-lang active"><input class="button alt" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" /></span>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <span class="choose-lang active"><input class="button alt" type="submit" asp-route-culture="nn-NO" asp-route-handler="setlanguage" value="Nynorsk" /></span>
+                                    </div>
+                                    <div>
+                                        <span class="choose-lang"><input class="button alt" type="submit" asp-route-culture="nb-NO" asp-route-handler="setlanguage" value="Bokmål" /></span>
+                                    </div>
+                                }
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

@@ -11,9 +11,9 @@ using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Microsoft.EntityFrameworkCore;
 
-namespace Difi.Sjalvdeklaration.Database
+namespace Difi.Sjalvdeklaration.Database.DbContext
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public DbSet<UserRole> UserRoleList { get; set; }
 
@@ -319,7 +319,7 @@ namespace Difi.Sjalvdeklaration.Database
                 new ValueListTypeOfStatus {Id = 2, Text = "Varslet", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt"},
                 new ValueListTypeOfStatus {Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt"},
                 new ValueListTypeOfStatus {Id = 4, Text = "Fullført", TextAdmin = "Fullført", TextCompany = "Fullført"},
-                new ValueListTypeOfStatus {Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Sendt tilbake for korreksjon"},
+                new ValueListTypeOfStatus {Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Fullføringer pågår"},
                 new ValueListTypeOfStatus {Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført"},
                 new ValueListTypeOfStatus {Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst"}
             }.ToArray());
@@ -328,7 +328,7 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 new ValueListPurposeOfTest {Id = 1, Text = "Pilotmåling"},
                 new ValueListPurposeOfTest {Id = 2, Text = "Tilsyn"},
-                new ValueListPurposeOfTest {Id = 3, Text = "Statysmåling"},
+                new ValueListPurposeOfTest {Id = 3, Text = "Statusmåling"}
             }.ToArray());
 
             var standardItem1 = new StandardItem
@@ -918,7 +918,7 @@ namespace Difi.Sjalvdeklaration.Database
                 AnswerItemId = answerItem411.Id,
                 Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
                 BoolTrueText = "Mellom 75cm og 130cm over gulvet",
-                BoolFalseText = "Annat, ",
+                BoolFalseText = "Annet, ",
             };
 
             var answerItem412 = new AnswerItem

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Extensions;
@@ -11,11 +12,14 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly IImageRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly Stopwatch stopwatch = new Stopwatch();
 
         public ImageRepositoryLogDecorator(IImageRepository inner, ILogRepository logRepository)
         {
             this.inner = inner;
             this.logRepository = logRepository;
+
+            stopwatch.Start();
         }
 
         public ApiResult Add(ImageItem imageItem)
@@ -24,7 +28,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Add(imageItemBefore);
 
-            logRepository.Add(new LogItem(userId, result, imageItemBefore));
+            logRepository.Add(new LogItem(stopwatch, userId, result, imageItemBefore));
 
             return result;
         }

@@ -5,7 +5,7 @@
 // We use these to control button text styles.
 
 // We use these to controls background-color. Alert and success colors is in forms.scss
-$button-bgColor-std:                    #458596;
+$button-bgColor-std:                    #2E7589;
 $button-bgColor-white:					$color-white;
 
 
@@ -69,6 +69,11 @@ button, .button, input[type="button"], input[type="submit"] {
         background-color: $alt-button-bg-color;
         color: $alt-button-color;
         vertical-align: bottom;
+
+        &:hover,
+        &:focus {
+            background-color: darken($alt-button-bg-color, 6%);
+        }
     }
 
     &.cancel {
@@ -186,7 +191,8 @@ button, .button, input[type="button"], input[type="submit"] {
         text-align: left;
         font-weight: bold;
         background-color: $light-blue-grey;
-        padding: 1rem 12px 1rem 10px;
+        //padding: 1rem 12px 1rem 10px;
+        padding: 1.3rem 12px 0.3rem 10px;
         margin-bottom: 20px;
         color: $dark-blue-grey;
         font-size: 20px;
@@ -195,12 +201,12 @@ button, .button, input[type="button"], input[type="submit"] {
 
         &.isDone-True,
         &.isDone-False {
-            padding: 1.5rem 12px 0.5rem 10px;
+            //padding: 1.3rem 12px 0.3rem 10px;
         }
 
         &[aria-expanded="false"] {
             .toggle-header-icon {
-                top: 7px;
+                top: 1px;
                 transform: rotate(-45deg);
                 transition: transform 200ms ease;
             }
@@ -209,7 +215,7 @@ button, .button, input[type="button"], input[type="submit"] {
         &[aria-expanded="true"] {
             .toggle-header-icon {
                 transform: rotate(-225deg);
-                top: 13px;
+                top: 11px;
                 transition: transform 200ms ease;
             }
         }
@@ -225,11 +231,11 @@ button, .button, input[type="button"], input[type="submit"] {
         }
 
         .toggle-header-icon {
-            border: 3px solid $dark-blue-grey;
+            border: 4px solid $dark-blue-grey;
             border-top-color: transparent;
             border-right-color: transparent;
-            width: 14px;
-            height: 14px;
+            width: 18px;
+            height: 18px;
             display: inline-block;
             transform: rotate(-45deg);
             margin-left: 6px;
@@ -242,9 +248,9 @@ button, .button, input[type="button"], input[type="submit"] {
             width: 48px;
             height: 48px;
             display: inline-block;
-            margin-left: 6px;
+            margin-right: 1rem;
             position: relative;
-            float: right;
+            float: left;
             top: -7px;
 
             &.isDone-True, &.isDone-False {
@@ -253,11 +259,11 @@ button, .button, input[type="button"], input[type="submit"] {
             }
 
             &.isDone-True {
-                background-position: 1px -1498px;
+                background-position: 0 -1498px;
             }
 
             &.isDone-False {
-                background-position: 0px -1398px;
+                background-position: 0 -1398px;
             }
         }
     }
@@ -379,28 +385,16 @@ button, .button, input[type="button"], input[type="submit"] {
         }
     }
 
-    &.card-help-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -491px no-repeat;
-        width: 40px;
-        margin-bottom: 0;
-        height: 40px;
-        padding-right: 0.5rem;
-
-        &[aria-expanded=true] {
-            //background-position: 100% -591px;
-        }
-
-        &[aria-expanded=false] {
-            //background-position: 100% -491px;
-        }
-    }
-
+    &.card-help-button,
     &.card-help-close-button {
-        background: url("/css/cssimg/icons-sprite.svg") transparent 100% -591px no-repeat;
-        width: 40px;
-        margin-bottom: 0;
-        height: 40px;
-        padding-right: 1rem;
+        color: $color-white;
+        border-radius: 4px;
+        font-size: 14px;
+        background-color: $dirty-blue;
+        margin: 12px 12px 0 0;
+        padding: 4px 16px;
+        line-height: 1.2;
+        text-align: center;
     }
 
     &.card-help-button,
@@ -420,23 +414,41 @@ button, .button, input[type="button"], input[type="submit"] {
         margin-top: 2rem;
         margin-bottom: 0;
     }
+}
 
-    &.choose-lang-test {
+header {
+    .choose-lang {
         position: relative;
+        display: inline-block;
 
         &:before {
             content: "";
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 1px solid #618285;
             border-radius: 100px;
             position: absolute;
             top: 10px;
-            left: 10px;
+            left: 5px;
+            background: $ice-blue;
+            border: 1px solid $grey-blue;
+            width: 24px;
+            height: 24px;
+        }
+
+        &.active {
+            &:before {
+                background-color: $grey-blue;
+                box-shadow: inset 0 0 0 4px $ice-blue;
+            }
+        }
+
+        .button {
+            background-color: transparent;
+            border: 0;
+            padding: 0.4em 0em 0.4em 2em;
         }
     }
 }
+
 
 
 

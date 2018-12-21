@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181217091427_V1")]
-    partial class V1
+    [Migration("20181218085005_V2")]
+    partial class V2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -984,7 +984,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                         new { Id = 2, Text = "Varslet", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt" },
                         new { Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt" },
                         new { Id = 4, Text = "Fullført", TextAdmin = "Fullført", TextCompany = "Fullført" },
-                        new { Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Sendt tilbake for korreksjon" },
+                        new { Id = 5, Text = "Sendt tilbake", TextAdmin = "Pågår", TextCompany = "Fullføringer pågår" },
                         new { Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført" },
                         new { Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst" }
                     );

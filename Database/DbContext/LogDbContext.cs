@@ -1,10 +1,9 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Classes.Log;
+﻿using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Microsoft.EntityFrameworkCore;
 
-namespace Difi.Sjalvdeklaration.Database
+namespace Difi.Sjalvdeklaration.Database.DbContext
 {
-    public class LogDbContext : DbContext
+    public class LogDbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public DbSet<LogItem> LogList { get; set; }
 

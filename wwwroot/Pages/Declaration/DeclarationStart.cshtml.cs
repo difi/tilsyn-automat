@@ -2,12 +2,15 @@
 using System.Threading.Tasks;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Enum;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 {
+    [Authorize(Roles = "Virksomhet")]
     public class DeclarationStartModel : PageModel
     {
         private readonly IErrorHandler errorHandler;
@@ -31,6 +34,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 if (result.Succeeded)
                 {
                     DeclarationItemForm = result.Data;
+
+                    if (DeclarationItemForm.Status.Id == (int)DeclarationStatus.SentIn)
+                    {
+                        Response.Redirect("/Declaration/DeclarationList");
+                    }
                 }
                 else
                 {

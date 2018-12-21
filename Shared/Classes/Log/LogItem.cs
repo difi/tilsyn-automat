@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Extensions;
@@ -9,38 +10,61 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
 {
     public class LogItem
     {
-        public LogItem(Guid userId, ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
+        public LogItem(Stopwatch stopwatch, Guid userId, ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
         {
-            Id = Guid.NewGuid();
-            Created = DateTime.Now;
-
-            Function = callerFunctionName;
-
-            if (callerFileName != null)
+            try
             {
-                Class = callerFileName;
+                stopwatch.Stop();
 
-                if (callerFileName.Contains("\\"))
+                Id = Guid.NewGuid();
+                Created = DateTime.Now;
+
+                Function = callerFunctionName;
+
+                if (callerFileName != null)
                 {
-                    Class = callerFileName.Remove(0, callerFileName.LastIndexOf('\\') + 1)
-                        .Replace(".cshtml", string.Empty)
-                        .Replace(".cs", string.Empty)
-                        .Replace("LogDecorator", string.Empty);
+                    Class = callerFileName;
+
+                    if (callerFileName.Contains("\\"))
+                    {
+                        Class = callerFileName.Remove(0, callerFileName.LastIndexOf('\\') + 1)
+                            .Replace(".cshtml", string.Empty)
+                            .Replace(".cs", string.Empty)
+                            .Replace("LogDecorator", string.Empty);
+                    }
                 }
+
+                UserId = userId;
+
+                if (apiResult != null)
+                {
+                    ResultSucceeded = apiResult.Succeeded;
+                    ResultId = apiResult.Id;
+                    ResultException = apiResult.Exception?.AsJsonString();
+                }
+
+                CallParameter1 = callParameter1?.AsJsonString();
+                CallParameter2 = callParameter2?.AsJsonString();
+                ResultString = resultString?.AsJsonString();
+
+                Time = stopwatch.ElapsedMilliseconds;
             }
-
-            UserId = userId;
-
-            if (apiResult != null)
+            catch (Exception exception)
             {
-                ResultSucceeded = apiResult.Succeeded;
-                ResultId = apiResult.Id;
-                ResultException = apiResult.Exception?.AsJsonString();
-            }
+                Id = Guid.NewGuid();
+                Created = DateTime.Now;
 
-            CallParameter1 = callParameter1?.AsJsonString();
-            CallParameter2 = callParameter2?.AsJsonString();
-            ResultString = resultString?.AsJsonString();
+                Function = "LogItem";
+                Class = "LogItem";
+
+                UserId = Guid.Empty;
+
+                ResultSucceeded = false;
+                ResultId = Guid.Empty;
+                ResultException = exception.AsJsonString();
+
+                Time = stopwatch.ElapsedMilliseconds;
+            }
         }
 
         public LogItem()
@@ -56,16 +80,16 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
         public DateTime Created { get; set; }
 
         [Display(Name = "Section")]
-        public String Class { get; set; }
+        public string Class { get; set; }
 
         [Display(Name = "Function")]
-        public String Function { get; set; }
+        public string Function { get; set; }
 
         [Display(Name = "Call parameter 1")]
-        public String CallParameter1 { get; set; }
+        public string CallParameter1 { get; set; }
 
         [Display(Name = "Call parameter 2")]
-        public String CallParameter2 { get; set; }
+        public string CallParameter2 { get; set; }
 
         [Display(Name = "Result succeeded")]
         public bool ResultSucceeded { get; set; }
@@ -74,10 +98,13 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
         public Guid ResultId { get; set; }
 
         [Display(Name = "Result text")]
-        public String ResultString { get; set; }
+        public string ResultString { get; set; }
 
         [Display(Name = "Result error")]
-        public String ResultException { get; set; }
+        public string ResultException { get; set; }
+
+        [Display(Name = "Time")]
+        public long Time { get; set; }
 
         [NotMapped]
         public UserItem UserItem { get; set; }

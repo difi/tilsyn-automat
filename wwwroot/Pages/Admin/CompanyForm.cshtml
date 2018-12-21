@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="small-12 medium-4 end columns">
                     @Html.HiddenFor(x => x.CompanyItemForm.Id)
-                    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBox")
+                    @Html.EditorFor(x => x.CompanyItemForm.Code, "TextBoxNumber")
                 </div>
             </div>
 
@@ -33,13 +33,13 @@
 
             <div class="row">
                 <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBoxNumber")
+                    @Html.EditorFor(x => x.CompanyItemForm.CorporateIdentityNumber, "TextBoxLong")
                 </div>
             </div>
 
             <div class="row">
                 <div class="small-12 medium-6 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBoxNumber")
+                    @Html.EditorFor(x => x.CompanyItemForm.OwenerCorporateIdentityNumber, "TextBoxLong")
                 </div>
             </div>
 
@@ -136,6 +136,32 @@
             </div>
         </fieldset>
 
+    <br />
+
+        <fieldset>
+            <legend>
+                @Localizer["Changed Address"]
+            </legend>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.CustomAddressStreet, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-4 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.CustomAddressZip, "TextBox")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-12 medium-6 end columns">
+                    @Html.EditorFor(x => x.CompanyItemForm.CustomAddressCity, "TextBox")
+                </div>
+            </div>
+        </fieldset>
+
         <br />
 
         <fieldset>
@@ -157,13 +183,13 @@
 
             <div class="row">
                 <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBox")
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].PhoneCountryCode, "TextBoxNumber")
                 </div>
             </div>
 
             <div class="row">
                 <div class="small-12 medium-4 end columns">
-                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBox")
+                    @Html.EditorFor(x => x.CompanyItemForm.ContactPersonList[0].Phone, "TextBoxNumber")
                 </div>
             </div>
 
@@ -218,7 +244,7 @@
         </fieldset>
         <br />
 
-        @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
+        @if (Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty && Model.CompanyItemForm.UserList.Any())
         {
             <fieldset>
                 <legend>@Localizer["User"]</legend>
@@ -248,7 +274,7 @@
 
             <div class="@colCount">
                 <a class="button cancel" asp-page="/Admin/CompanyList">@Localizer["Cancel"]</a>
-                @if (Model.CompanyItemForm!=null && Model.CompanyItemForm.Id != Guid.Empty)
+                @if (Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty)
                 {
                     <input class="button large" type="submit" asp-route-handler="save" value="@Localizer["Save"]" />
                 }

@@ -4,46 +4,33 @@
 @{
     var text = ViewData["text"] ?? Html.DisplayNameFor(m => m);
     var orderText = ViewData["orderText"];
-    var result = (ValueListTypeOfResult) ViewData["result"];
+    var result = (ValueListTypeOfResult)ViewData["result"];
     var viewResult = (bool)ViewData["viewResult"];
 }
 
-<div class="form-field">
+<div class="card-divider">
     <label class="legend">
-        <span class="collapse row">
-            <span class="small-10 columns">
-                <span class="collapse row">
-                    <span class="small-2 medium-1 columns">
-                        <span class="legend-number">@orderText</span>
-                    </span>
-                    <span class="small-10 medium-11 columns">
-                        <span class="legend-text">
-                            @text
-                        </span>
-                    </span>
-                </span>
-            </span>
-            
-            <span class="small-2 columns">
-                @*@if (viewResult)
-                {
-                    <span>
-                        @if (result != null)
-                        {
-                            @result.Text
-                        }
-                    </span>
-                }*@
-            </span>
+
+        <span class="legend-text">
+            @orderText @text
         </span>
     </label>
 
-    <div class="card-divider">
+    <div>
         @if (Model != null)
         {
             var image1 = Model.Container + "/" + Model.Blob;
 
-            <img src="@image1" alt="" width="200"/>
+            if (viewResult)
+            {
+                <a target="_blank" href="@image1">
+                    <img src="@image1" alt="" width="200"/>
+                </a>
+            }
+            else
+            {
+                <img src="@image1" alt="" width="200" />
+            }
         }
         else
         {

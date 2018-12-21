@@ -3,6 +3,7 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Database.DbContext;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,6 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 dbContext.LogList.Add(logItem);
                 dbContext.SaveChanges();
-
 
                 result.Succeeded = true;
                 result.Id = logItem.Id;

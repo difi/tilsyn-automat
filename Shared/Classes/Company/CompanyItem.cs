@@ -14,6 +14,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 
         [ExcelExport]
         [Display(Name = "Pin code")]
+        [RegularExpression("\\d{4}", ErrorMessage = "Pin code must have four numbers")]
         public string Code { get; set; }
 
         [ExcelExport]
@@ -32,7 +33,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 
         [ExcelExport]
         [Display(Name = "Name")]
-        [Required(ErrorMessage = "Name - required field")]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
         [Display(Name = "Changed business name")]

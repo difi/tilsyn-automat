@@ -10,37 +10,25 @@
     var viewResult = (bool)ViewData["viewResult"];
 }
 
-<div class="form-field">
+<div class="card-divider">
     <label class="legend">
-        <span class="collapse row">
-            <span class="small-10 columns">
-                <span class="collapse row">
-                    <span class="small-2 medium-1 columns">
-                        <span class="legend-number">@orderText</span>
-                    </span>
-                    <span class="small-10 medium-11 columns">
-                        <span class="legend-text">
-                            @text
-                        </span>
-                    </span>
-                </span>
-            </span>
 
-            <span class="small-2 columns">
-                @if (viewResult)
+        <span class="legend-text">
+            @orderText @text
+        </span>
+
+        @if (viewResult)
+        {
+            <span>
+                @if (result != null)
                 {
-                    <span>
-                        @if (result != null)
-                        {
-                            @result.Text
-                        }
-                    </span>
+                    @result.Text
                 }
             </span>
-        </span>
-    </label>
+        }
 
-    <div class="card-divider">
+    </label>
+    <div>
         @if (Model != null)
         {
             @(Model.Value ? trueText : falseText)

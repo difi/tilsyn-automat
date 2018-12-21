@@ -156,6 +156,9 @@
   <data name="Pin code" xml:space="preserve">
     <value>Pinkode</value>
   </data>
+  <data name="Pin code must have four numbers" xml:space="preserve">
+    <value>Pinkode må ha fyre tall</value>
+  </data>
   <data name="Street name and number" xml:space="preserve">
     <value>Gatenavn og nummer</value>
   </data>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A user with social security number: {0} already exist." xml:space="preserve">
+    <value>En bruker med personnummer: {0} finnes allerede.</value>
+  </data>
   <data name="User with id: {0} doesn't exist." xml:space="preserve">
     <value>Bruker med id: {0} finnes ikke.</value>
   </data>

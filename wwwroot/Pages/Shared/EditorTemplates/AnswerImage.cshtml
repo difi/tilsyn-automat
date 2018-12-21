@@ -43,14 +43,14 @@
                 <span class="small-2 columns text-right">
                     @if (viewHelp)
                     {
-                        <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span class="show-for-sr">Vis hjelp</span></button>
+                        <button class="card-help-button jsToggleHelpButton" aria-controls="" aria-expanded="false"><span>Info</span></button>
                     }
                 </span>
             </span>
         </legend>
     }
 
-    <div class="card-divider text-center medium-text-left">
+    <div class="card-divider text-center medium-text-left jsUpload">
         @if (Model != null)
         {
             answerDataId = Model.Id.ToString();

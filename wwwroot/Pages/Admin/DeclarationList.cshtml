@@ -89,14 +89,19 @@
     <tbody>
         @foreach (var item in Model.DeclarationList)
         {
-            var contactPerson = item.Company.ContactPersonList.FirstOrDefault();
+            var companyName = item.Company.Name;
+
+            if (!string.IsNullOrEmpty(item.Company.CustomName))
+            {
+                companyName = item.Company.CustomName;
+            }
 
             <tr>
                 <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Name)">
                     <a class="icon" asp-page="/Admin/DeclarationForm" asp-route-id="@item.Id" asp-route-companyId="@item.Company.Id">@item.Name</a>
                 </td>
-                <td class="clickable-td" data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)">
-                    <a class="std-link" asp-page="/Admin/CompanyForm" asp-route-id="@item.Company.Id" asp-route-companyId="@item.Company.Id">@item.Company.Name</a>
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Company.Name)">
+                    <a class="std-link" asp-page="/Admin/CompanyForm" asp-route-id="@item.Company.Id" asp-route-companyId="@item.Company.Id">@companyName</a>
                 </td>
                 <td data-th="@Localizer["Executive officer"]">
                     @item.User.Name
@@ -118,7 +123,7 @@
                 </td>
                 <td data-th="@Localizer["Status of supervision"]">
                     <span class="label status-@item.Status.Id finished-@item.DeclarationTestItem.FinishedStatusId">
-                        @item.Status.TextAdmin
+                        @item.Status.Text
                         @if (item.StatusId == (int)DeclarationStatus.SentIn)
                         {
                             if (item.DeclarationTestItem.FinishedStatusId == 1)
