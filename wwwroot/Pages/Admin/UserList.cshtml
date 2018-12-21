@@ -9,6 +9,10 @@
 
 <br />
 
+<form method="post">
+    <a class="button add icon" asp-page="UserForm">@Localizer["Create new internal users"]</a>
+</form>
+
 @if (Model.UserList!=null) { 
 
 <table class="responsive-table table jsCompanyTableSort">
@@ -58,7 +62,3 @@
     </tbody>
 </table>
 }
-
-<form method="post">
-    <a class="button add icon" asp-page="UserForm">@Localizer["Create new internal users"]</a>
-</form>
