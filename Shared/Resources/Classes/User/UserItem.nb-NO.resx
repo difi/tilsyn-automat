@@ -159,4 +159,7 @@
   <data name="Social security number must have eleven numbers" xml:space="preserve">
     <value>Personnummer må ha elleve tall</value>
   </data>
+  <data name="You need to type a correct email address" xml:space="preserve">
+    <value>Du må skrive inn en korrekt e-postadresse</value>
+  </data>
 </root>

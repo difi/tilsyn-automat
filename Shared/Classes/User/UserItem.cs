@@ -29,6 +29,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.User
         [ExcelExport]
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required")]
+        [RegularExpression("[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "You need to type a correct email address")]
         [AutoComplete("email ")]
         public string Email { get; set; }
 
