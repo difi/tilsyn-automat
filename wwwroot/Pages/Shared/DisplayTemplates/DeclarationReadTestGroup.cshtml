@@ -21,11 +21,11 @@
                     <span class="header-status-icon isDone-@Model.AllDone hide-for-print">
                         @if (Model.AllDone)
                         {
-                        <span class="show-for-sr"> är besvarad och är klar att sändas in</span>
+                            <span class="show-for-sr">@Localizer["is completely answered"]</span>
                         }
                         else
                         {
-                            <span class="show-for-sr">saknar uppgifter för att kunna sändas in</span>
+                            <span class="show-for-sr">@Localizer["is not completely answered"]</span>
                         }
                     </span>
                     <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Automaten"]</span></span>
