@@ -63,6 +63,18 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [Display(Name = "City")]
         public string LocationAddressCity { get; set; }
 
+        [ExcelExport("CustomLocationAdress")]
+        [Display(Name = "Street name and number")]
+        public string CustomLocationAddressStreet { get; set; }
+
+        [ExcelExport("CustomLocationAdress")]
+        [Display(Name = "ZIP code")]
+        public string CustomLocationAddressZip { get; set; }
+
+        [ExcelExport("CustomLocationAdress")]
+        [Display(Name = "City")]
+        public string CustomLocationAddressCity { get; set; }
+
         [ExcelExport("BusinessAddress")]
         [Display(Name = "Street name and number")]
         public string BusinessAddressStreet { get; set; }
@@ -74,6 +86,18 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [ExcelExport("BusinessAddress")]
         [Display(Name = "City")]
         public string BusinessAddressCity { get; set; }
+
+        [ExcelExport("CustomBusinessAdress")]
+        [Display(Name = "Street name and number")]
+        public string CustomBusinessAddressStreet { get; set; }
+
+        [ExcelExport("CustomBusinessAdress")]
+        [Display(Name = "ZIP code")]
+        public string CustomBusinessAddressZip { get; set; }
+
+        [ExcelExport("CustomBusinessAdress")]
+        [Display(Name = "City")]
+        public string CustomBusinessAddressCity { get; set; }
 
         [ExcelExport("IndustryGroup")]
         [Display(Name = "Code")]
@@ -94,18 +118,6 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [ExcelExport("InstitutionalSector")]
         [Display(Name = "Description")]
         public string InstitutionalSectorDescription { get; set; }
-
-        [ExcelExport("CustomAdress")]
-        [Display(Name = "Street name and number")]
-        public string CustomAddressStreet { get; set; }
-
-        [ExcelExport("CustomAdress")]
-        [Display(Name = "ZIP code")]
-        public string CustomAddressZip { get; set; }
-
-        [ExcelExport("CustomAdress")]
-        [Display(Name = "City")]
-        public string CustomAddressCity { get; set; }
 
         public ICollection<UserCompany> UserList { get; set; }
 

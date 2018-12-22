@@ -157,13 +157,17 @@ namespace Difi.Sjalvdeklaration.Database
                 dbItem.LocationAddressZip = companyItem.LocationAddressZip;
                 dbItem.LocationAddressCity = companyItem.LocationAddressCity;
 
+                dbItem.CustomLocationAddressStreet = companyItem.CustomLocationAddressStreet;
+                dbItem.CustomLocationAddressZip = companyItem.CustomLocationAddressZip;
+                dbItem.CustomLocationAddressCity = companyItem.CustomLocationAddressCity;
+
                 dbItem.BusinessAddressStreet = companyItem.BusinessAddressStreet;
                 dbItem.BusinessAddressZip = companyItem.BusinessAddressZip;
                 dbItem.BusinessAddressCity = companyItem.BusinessAddressCity;
 
-                dbItem.CustomAddressStreet = companyItem.CustomAddressStreet;
-                dbItem.CustomAddressZip = companyItem.CustomAddressZip;
-                dbItem.CustomAddressCity = companyItem.CustomAddressCity;
+                dbItem.CustomBusinessAddressStreet = companyItem.CustomBusinessAddressStreet;
+                dbItem.CustomBusinessAddressZip = companyItem.CustomBusinessAddressZip;
+                dbItem.CustomBusinessAddressCity = companyItem.CustomBusinessAddressCity;
 
                 dbItem.IndustryGroupCode = companyItem.IndustryGroupCode;
                 dbItem.IndustryGroupDescription = companyItem.IndustryGroupDescription;
@@ -341,9 +345,13 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbItem.CustomName = companyCustomItem.CustomName;
 
-                dbItem.CustomAddressStreet = companyCustomItem.CustomAddressStreet;
-                dbItem.CustomAddressZip = companyCustomItem.CustomAddressZip;
-                dbItem.CustomAddressCity = companyCustomItem.CustomAddressCity;
+                dbItem.CustomBusinessAddressStreet = companyCustomItem.CustomBusinessAddressStreet;
+                dbItem.CustomBusinessAddressZip = companyCustomItem.CustomBusinessAddressZip;
+                dbItem.CustomBusinessAddressCity = companyCustomItem.CustomBusinessAddressCity;
+
+                dbItem.CustomLocationAddressStreet = companyCustomItem.CustomLocationAddressStreet;
+                dbItem.CustomLocationAddressZip = companyCustomItem.CustomLocationAddressZip;
+                dbItem.CustomLocationAddressCity = companyCustomItem.CustomLocationAddressCity;
 
                 dbContext.SaveChanges();
 

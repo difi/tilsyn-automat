@@ -54,24 +54,30 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                         {
                             CompanyItemId = CompanyItem.Id,
                             CustomName = string.IsNullOrEmpty(CompanyItem.CustomName) ? CompanyItem.Name : CompanyItem.CustomName,
-                            CustomAddressStreet = CompanyItem.CustomAddressStreet,
-                            CustomAddressZip = CompanyItem.CustomAddressZip,
-                            CustomAddressCity = CompanyItem.CustomAddressCity,
+                            CustomBusinessAddressStreet = CompanyItem.CustomBusinessAddressStreet,
+                            CustomBusinessAddressZip = CompanyItem.CustomBusinessAddressZip,
+                            CustomBusinessAddressCity = CompanyItem.CustomBusinessAddressCity,
+                            CustomLocationAddressStreet = CompanyItem.CustomLocationAddressStreet,
+                            CustomLocationAddressZip = CompanyItem.CustomLocationAddressZip,
+                            CustomLocationAddressCity = CompanyItem.CustomLocationAddressCity,
                         };
 
-                        if (string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomAddressStreet))
+                        if (CompanyItem.OwenerCorporateIdentityNumber != null && CompanyItem.OwenerCorporateIdentityNumber > 0)
                         {
-                            if (CompanyItem.OwenerCorporateIdentityNumber!=null && CompanyItem.OwenerCorporateIdentityNumber>0)
+                            if (string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressStreet))
                             {
-                                CompanyCustomItem.CustomAddressStreet = CompanyItem.LocationAddressStreet;
-                                CompanyCustomItem.CustomAddressZip = CompanyItem.LocationAddressZip;
-                                CompanyCustomItem.CustomAddressCity = CompanyItem.LocationAddressCity;
+                                CompanyCustomItem.CustomBusinessAddressStreet = CompanyItem.BusinessAddressStreet;
+                                CompanyCustomItem.CustomBusinessAddressZip = CompanyItem.BusinessAddressZip;
+                                CompanyCustomItem.CustomBusinessAddressCity = CompanyItem.BusinessAddressCity;
                             }
-                            else
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(CompanyCustomItem.CustomLocationAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomLocationAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomLocationAddressStreet))
                             {
-                                CompanyCustomItem.CustomAddressStreet = CompanyItem.BusinessAddressStreet;
-                                CompanyCustomItem.CustomAddressZip = CompanyItem.BusinessAddressZip;
-                                CompanyCustomItem.CustomAddressCity = CompanyItem.BusinessAddressCity;
+                                CompanyCustomItem.CustomLocationAddressStreet = CompanyItem.LocationAddressStreet;
+                                CompanyCustomItem.CustomLocationAddressZip = CompanyItem.LocationAddressZip;
+                                CompanyCustomItem.CustomLocationAddressCity = CompanyItem.LocationAddressCity;
                             }
                         }
 

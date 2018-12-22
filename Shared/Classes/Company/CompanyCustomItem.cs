@@ -12,12 +12,21 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string CustomName { get; set; }
 
         [Display(Name = "Street name and number")]
-        public string CustomAddressStreet { get; set; }
+        public string CustomBusinessAddressStreet { get; set; }
 
         [Display(Name = "ZIP code")]
-        public string CustomAddressZip { get; set; }
+        public string CustomBusinessAddressZip { get; set; }
 
         [Display(Name = "City")]
-        public string CustomAddressCity { get; set; }
+        public string CustomBusinessAddressCity { get; set; }
+
+        [Display(Name = "Street name and number")]
+        public string CustomLocationAddressStreet { get; set; }
+
+        [Display(Name = "ZIP code")]
+        public string CustomLocationAddressZip { get; set; }
+
+        [Display(Name = "City")]
+        public string CustomLocationAddressCity { get; set; }
     }
 }
