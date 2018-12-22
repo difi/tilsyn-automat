@@ -1,5 +1,3 @@
-using System;
-using System.Globalization;
 using Difi.Sjalvdeklaration.Database;
 using Difi.Sjalvdeklaration.Database.DbContext;
 using Difi.Sjalvdeklaration.Log;
@@ -16,7 +14,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+using System;
+using System.Globalization;
 
 namespace Difi.Sjalvdeklaration.wwwroot
 {
@@ -66,22 +65,25 @@ namespace Difi.Sjalvdeklaration.wwwroot
                 .AddDataAnnotationsLocalization();
 
             services.AddScoped<IUserRepository, UserRepository>();
-            services.Decorate<IUserRepository, UserRepositoryLogDecorator>();
-
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.Decorate<ICompanyRepository, CompanyRepositoryLogDecorator>();
-
             services.AddScoped<IDeclarationRepository, DeclarationRepository>();
-            services.Decorate<IDeclarationRepository, DeclarationRepositoryLogDecorator>();
-
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.Decorate<IRoleRepository, RoleRepositoryLogDecorator>();
-
             services.AddScoped<IValueListRepository, ValueListRepository>();
-            services.Decorate<IValueListRepository, ValueListRepositoryLogDecorator>();
+
+            if (Convert.ToBoolean(Configuration["Log:Active"]))
+            {
+                services.Decorate<IUserRepository, UserRepositoryLogDecorator>();
+                services.Decorate<ICompanyRepository, CompanyRepositoryLogDecorator>();
+                services.Decorate<IDeclarationRepository, DeclarationRepositoryLogDecorator>();
+                services.Decorate<IRoleRepository, RoleRepositoryLogDecorator>();
+                services.Decorate<IValueListRepository, ValueListRepositoryLogDecorator>();
+            }
 
             services.AddScoped<IImageRepository, ImageRepository>();
-            services.Decorate<IImageRepository, ImageRepositoryLogDecorator>();
+            if (Convert.ToBoolean(Configuration["Log:Active"]))
+            {
+                services.Decorate<IImageRepository, ImageRepositoryLogDecorator>();
+            }
 
             services.AddScoped<ILogRepository, LogRepository>();
             services.AddScoped<IApiHttpClient, ApiHttpClient>();

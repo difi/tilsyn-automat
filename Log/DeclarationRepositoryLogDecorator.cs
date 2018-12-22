@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Log
 {
@@ -15,12 +16,19 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly IDeclarationRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly IConfiguration configuration;
         private readonly Stopwatch stopwatch = new Stopwatch();
 
-        public DeclarationRepositoryLogDecorator(IDeclarationRepository inner, ILogRepository logRepository)
+        private bool LogGetSucceeded => Convert.ToBoolean(configuration["Log:LogGetSucceeded"]);
+        private bool LogChangeSucceeded => Convert.ToBoolean(configuration["Log:LogChangeSucceeded"]);
+        private bool LogError => Convert.ToBoolean(configuration["Log:LogError"]);
+        private int LogLongTime => Convert.ToInt32(configuration["Log:LogLongTime"]);
+
+        public DeclarationRepositoryLogDecorator(IDeclarationRepository inner, ILogRepository logRepository, IConfiguration configuration)
         {
             this.inner = inner;
             this.logRepository = logRepository;
+            this.configuration = configuration;
 
             stopwatch.Start();
         }
@@ -34,7 +42,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.Get<T>(id);
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), id, null, result.Data));
             }
@@ -46,7 +54,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetAll<T>();
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
@@ -58,7 +66,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetByFilter<T>(filterModel);
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), filterModel, null,  result.Data));
             }
@@ -70,7 +78,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetForCompany<T>(id);
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), id, null, result.Data));
             }
@@ -82,7 +90,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetOutcomeDataList<T>(id);
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), id, null, result.Data));
             }
@@ -96,7 +104,10 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Add(declarationItem);
 
-            logRepository.Add(new LogItem(stopwatch, userId, result, declarationItemBefore));
+            if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
+            {
+                logRepository.Add(new LogItem(stopwatch, userId, result, declarationItemBefore));
+            }
 
             return result;
         }
@@ -107,7 +118,10 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Update(declarationItem);
 
-            logRepository.Add(new LogItem(stopwatch, userId, result, declarationItemBefore));
+            if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
+            {
+                logRepository.Add(new LogItem(stopwatch, userId, result, declarationItemBefore));
+            }
 
             return result;
         }
@@ -118,7 +132,10 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Save<T>(declarationItemId, declarationTestItem);
 
-            logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), declarationItemId, beforeSave));
+            if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
+            {
+                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), declarationItemId, beforeSave));
+            }
 
             return result;
         }
@@ -127,7 +144,10 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.SendIn(id);
 
-            logRepository.Add(new LogItem(stopwatch, userId, result, id));
+            if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
+            {
+                logRepository.Add(new LogItem(stopwatch, userId, result, id));
+            }
 
             return result;
         }
@@ -136,7 +156,10 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.HaveMachine(id, haveMachine);
 
-            logRepository.Add(new LogItem(stopwatch, userId, result, id, haveMachine));
+            if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
+            {
+                logRepository.Add(new LogItem(stopwatch, userId, result, id, haveMachine));
+            }
 
             return result;
         }

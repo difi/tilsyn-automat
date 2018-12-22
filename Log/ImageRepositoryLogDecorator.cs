@@ -4,6 +4,7 @@ using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Log
 {
@@ -12,12 +13,19 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly IImageRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly IConfiguration configuration;
         private readonly Stopwatch stopwatch = new Stopwatch();
 
-        public ImageRepositoryLogDecorator(IImageRepository inner, ILogRepository logRepository)
+        private bool LogGetSucceeded => Convert.ToBoolean(configuration["Log:LogGetSucceeded"]);
+        private bool LogChangeSucceeded => Convert.ToBoolean(configuration["Log:LogChangeSucceeded"]);
+        private bool LogError => Convert.ToBoolean(configuration["Log:LogError"]);
+        private int LogLongTime => Convert.ToInt32(configuration["Log:LogLongTime"]);
+
+        public ImageRepositoryLogDecorator(IImageRepository inner, ILogRepository logRepository, IConfiguration configuration)
         {
             this.inner = inner;
             this.logRepository = logRepository;
+            this.configuration = configuration;
 
             stopwatch.Start();
         }
@@ -28,7 +36,10 @@ namespace Difi.Sjalvdeklaration.Log
 
             var result = inner.Add(imageItemBefore);
 
-            logRepository.Add(new LogItem(stopwatch, userId, result, imageItemBefore));
+            if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
+            {
+                logRepository.Add(new LogItem(stopwatch, userId, result, imageItemBefore));
+            }
 
             return result;
         }

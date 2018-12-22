@@ -6,6 +6,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Log
 {
@@ -14,7 +15,14 @@ namespace Difi.Sjalvdeklaration.Log
         private Guid userId;
         private readonly IValueListRepository inner;
         private readonly ILogRepository logRepository;
+        private readonly IConfiguration configuration;
         private readonly Stopwatch stopwatch = new Stopwatch();
+
+        private bool LogGetSucceeded => Convert.ToBoolean(configuration["Log:LogGetSucceeded"]);
+        private bool LogChangeSucceeded => Convert.ToBoolean(configuration["Log:LogChangeSucceeded"]);
+        private bool LogError => Convert.ToBoolean(configuration["Log:LogError"]);
+        private int LogLongTime => Convert.ToInt32(configuration["Log:LogLongTime"]);
+
 
         public void SetCurrentUser(Guid id)
         {
@@ -24,17 +32,18 @@ namespace Difi.Sjalvdeklaration.Log
             stopwatch.Start(); 
         }
 
-        public ValueListRepositoryLogDecorator(IValueListRepository inner, ILogRepository logRepository)
+        public ValueListRepositoryLogDecorator(IValueListRepository inner, ILogRepository logRepository, IConfiguration configuration)
         {
             this.inner = inner;
             this.logRepository = logRepository;
+            this.configuration = configuration;
         }
 
         public ApiResult<T> GetAllTypeOfMachine<T>() where T : List<ValueListTypeOfMachine>
         {
             var result = inner.GetAllTypeOfMachine<T>();
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
@@ -46,7 +55,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetAllTypeOfTest<T>();
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
@@ -58,7 +67,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetAllTypeOfSupplierAndVersion<T>();
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
@@ -70,7 +79,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetAllTypeOfStatus<T>();
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
@@ -82,7 +91,7 @@ namespace Difi.Sjalvdeklaration.Log
         {
             var result = inner.GetAllPurposeOfTest<T>();
 
-            if (!result.Succeeded)
+            if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
                 logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
             }
