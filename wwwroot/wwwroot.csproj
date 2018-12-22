@@ -23,6 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\ApplicationDb\20181222201057_v5.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20181222201057_v5.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\compilerconfig.json" />
     <Content Remove="wwwroot\compilerconfig.json.defaults" />
     <Content Remove="wwwroot\css\scss\forms\_fieldset.css" />
