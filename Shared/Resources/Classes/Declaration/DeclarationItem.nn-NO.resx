@@ -118,30 +118,30 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Case number" xml:space="preserve">
-    <value />
+    <value>Saksnummer</value>
   </data>
 	<data name="Case processor" xml:space="preserve">
-    <value />
+    <value>Saksbehandlar</value>
   </data>
 	<data name="Created date" xml:space="preserve">
-    <value />
+    <value>Oppretta dato</value>
   </data>
 	<data name="Deadline date" xml:space="preserve">
-    <value />
+    <value>Frist for innsending</value>
   </data>
 	<data name="Deadline for submission is required" xml:space="preserve">
-    <value />
+    <value>Frist for innsending er påkravd</value>
   </data>
 	<data name="Name" xml:space="preserve">
-    <value />
+    <value>Namn på eigenkontroll</value>
   </data>
 	<data name="Name is required" xml:space="preserve">
-    <value />
+    <value>Namn på eigenkontroll er påkravd</value>
   </data>
 	<data name="Sent in date" xml:space="preserve">
-    <value />
+    <value>Dato sendt inn</value>
   </data>
 	<data name="Status" xml:space="preserve">
-    <value />
+    <value>Framdrifta til verksemda</value>
   </data>
 </root>
