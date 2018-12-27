@@ -127,7 +127,7 @@
     <value>Ja</value>
   </data>
 	<data name="Filter" xml:space="preserve">
-    <value />
+    <value>Filter</value>
   </data>
 	<data name="Reset" xml:space="preserve">
     <value />

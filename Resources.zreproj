@@ -116,7 +116,7 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="Shared\Resources\Classes\Declaration\FilterModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\FilterModel.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="Shared\Resources\Classes\Declaration\FilterModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\Shared\Resources\Classes\Declaration\FilterModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
@@ -163,7 +163,7 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="e15026c4-78dc-4885-9801-aea185748e2b" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Admin\DeclarationListModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\DeclarationListModel.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
       </remarks>
@@ -174,7 +174,7 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="7cd735b5-7765-47b0-9d7c-b1ebc7641ea7">
+    <fileGroup name="" projectFolderUniqueID="1cf9bb64-92d0-40c1-8e53-19da2b6c6aa8" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="7cd735b5-7765-47b0-9d7c-b1ebc7641ea7">
       <file filePath="wwwroot\Resources\Pages\Admin\LogListModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogListModel.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Admin\LogListModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Admin\LogListModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
@@ -210,7 +210,7 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Declaration\CompanyLinkModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\CompanyLinkModel.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Declaration\CompanyLinkModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\CompanyLinkModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
@@ -228,7 +228,7 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationListModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationListModel.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationListModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationListModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
@@ -258,31 +258,31 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationThanksModel.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationThanksModel.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Declaration\DeclarationThanksModel.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Declaration\DeclarationThanksModel.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerBool.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerBool.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerBool.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerBool.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerImage.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerImage.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerImage.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerImage.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerInt.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerInt.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerInt.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerInt.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerString.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerString.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerString.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\AnswerString.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
@@ -294,7 +294,7 @@ Kind regards</globalSetting>
       <remarks>
       </remarks>
     </fileGroup>
-    <fileGroup name="" projectFolderUniqueID="00000000-0000-0000-0000-000000000000" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
+    <fileGroup name="" projectFolderUniqueID="02030aa0-6a31-4c79-baf2-27f2a58b7856" orderPosition="0" ignoreDuringExportAndImport="False" uniqueID="00000000-0000-0000-0000-000000000000">
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadTestGroup.nb-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadTestGroup.nb-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <file filePath="wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadTestGroup.nn-NO.resx" absoluteFilePath="C:\EpiServer\Sites\tilsyn-automat\wwwroot\Resources\Pages\Shared\DisplayTemplates\DeclarationReadTestGroup.nn-NO.resx" uniqueID="00000000-0000-0000-0000-000000000000" />
       <remarks>
