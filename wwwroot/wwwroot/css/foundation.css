@@ -3871,7 +3871,7 @@ header {
     background-color: transparent;
     margin-top: 1.5rem; }
   header .logo {
-    margin: 13px 0 0 -130px; }
+    margin: 13px 0 0 0; }
   header .profile-wrapper .profile-first-letter {
     background-color: #8f6693; }
   header .profile-info-area {
@@ -4716,8 +4716,9 @@ div div .tablesorter-default a {
 .card .card-help-text {
   padding: 1.1rem;
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.09); }
-  .card .card-help-text img {
-    max-width: 400px; }
+  @media print, screen and (min-width: 48em) {
+    .card .card-help-text img {
+      max-width: 400px; } }
 
 .card .max-width {
   max-width: 43rem; }
@@ -4819,20 +4820,17 @@ img.full-width-image {
   background-color: #FFD1D1;
   padding: 1rem; }
   .send-info-wrapper .error {
-      display: inline-block;
-      position: relative;
-      height: 30px;
-      width: 40px;
-      background-image: url("/css/cssimg/icons-sprite.svg");
-      background-repeat: no-repeat;
-      background-position: 0 -1995px;
-      top: 7px;
-  }
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 40px;
+    background-image: url("/css/cssimg/icons-sprite.svg");
+    background-repeat: no-repeat;
+    background-position: 0 -1995px;
+    top: 7px; }
 
 .card-divider .send-info-wrapper {
-    padding-top: 0.5rem;
-}
-
+  padding-top: 0.5rem; }
 
 /* Page specific code
 --------------------------------------------------------------*/

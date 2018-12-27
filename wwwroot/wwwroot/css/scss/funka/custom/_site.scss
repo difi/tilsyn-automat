@@ -85,6 +85,7 @@
     margin: 0 0 1rem 0;
     max-width: 550px;
 }
+
 .info-messages {
     img {
         border: 1px dashed $grey-blue;
@@ -92,6 +93,7 @@
         border-radius: 3px;
     }
 }
+
 .choose-lang-wrapper {
     .button, .alt {
         margin-bottom: 1rem;
@@ -99,7 +101,6 @@
 }
 
 .declaration-summary-header {
-
     padding-top: 2rem;
     padding-bottom: 1rem;
 
@@ -304,8 +305,10 @@ main {
         padding: 1.1rem;
         box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.09);
 
-        img {
-            max-width: 400px;
+        @media print, screen and (min-width: 48em) {
+            img {
+                max-width: 400px;
+            }
         }
     }
 
@@ -437,7 +440,6 @@ img {
         max-width: none !important;
     }
 }
-
 // FILTER
 .filter-wrapper {
     background-color: $color-white;
@@ -489,7 +491,6 @@ img {
 .card-divider .send-info-wrapper {
     padding-top: 0.5rem;
 }
-
 /* Page specific code
 --------------------------------------------------------------*/
 //--------------------------------------------------------------*/
