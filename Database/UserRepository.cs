@@ -247,6 +247,16 @@ namespace Difi.Sjalvdeklaration.Database
                     throw new InvalidOperationException(localizer["User with id: {0} doesn't exist.", userItem.Id]);
                 }
 
+                var userItemInDb = dbContext.UserList.SingleOrDefault(x => x.SocialSecurityNumber == userItem.SocialSecurityNumber && x.Id != userItem.Id);
+                if (userItemInDb != null)
+                {
+                    result.Succeeded = false;
+                    result.Id = userItemInDb.Id;
+                    result.Exception = new Exception(localizer["A user with social security number: {0} already exist.", userItem.SocialSecurityNumber]);
+
+                    return result;
+                }
+
                 dbItem.Name = userItem.Name;
                 dbItem.SocialSecurityNumber = userItem.SocialSecurityNumber;
                 dbItem.Email = userItem.Email;

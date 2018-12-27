@@ -105,14 +105,17 @@ namespace Difi.Sjalvdeklaration.Database
         {
             var result = new ApiResult();
 
-            if (companyItem.CorporateIdentityNumber != null && GetByCorporateIdentityNumber<CompanyItem>(companyItem.CorporateIdentityNumber.Value).Data != null)
+            if (companyItem.CorporateIdentityNumber != null && companyItem.CorporateIdentityNumber > 0)
             {
-                result.Succeeded = false;
-                result.Id = companyItem.Id;
-                result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", companyItem.CorporateIdentityNumber]);
+                var companyItemInDb = dbContext.CompanyList.SingleOrDefault(x => x.CorporateIdentityNumber == companyItem.CorporateIdentityNumber);
+                if (companyItemInDb != null)
+                {
+                    result.Succeeded = false;
+                    result.Id = companyItemInDb.Id;
+                    result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", companyItem.CorporateIdentityNumber]);
 
-                return result;
-
+                    return result;
+                }
             }
 
             try
@@ -140,6 +143,19 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
+                if (companyItem.CorporateIdentityNumber != null && companyItem.CorporateIdentityNumber > 0)
+                {
+                    var companyItemInDb = dbContext.CompanyList.SingleOrDefault(x => x.CorporateIdentityNumber == companyItem.CorporateIdentityNumber && x.Id != companyItem.Id);
+                    if (companyItemInDb != null)
+                    {
+                        result.Succeeded = false;
+                        result.Id = companyItemInDb.Id;
+                        result.Exception = new Exception(localizer["A company with corporate identity number: {0} already exist.", companyItem.CorporateIdentityNumber]);
+
+                        return result;
+                    }
+                }
+
                 var dbItem = dbContext.CompanyList.Single(x => x.Id == companyItem.Id);
 
                 dbItem.Code = companyItem.Code;
