@@ -484,13 +484,13 @@ namespace Difi.Sjalvdeklaration.Database
 
                 dbItem.DeclarationTestItem.StatusCount = testGroupItemList.Count(x => x.AllDone);
 
-                dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId;
+                dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId == 1 ? null : declarationTestItem.SupplierAndVersionId;
                 dbItem.DeclarationTestItem.SupplierAndVersionOther = declarationTestItem.SupplierAndVersionOther;
                 dbItem.DeclarationTestItem.DescriptionInText = declarationTestItem.DescriptionInText;
                 dbItem.DeclarationTestItem.Image1Id = declarationTestItem.Image1Id;
                 dbItem.DeclarationTestItem.Image2Id = declarationTestItem.Image2Id;
 
-                if (dbItem.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(dbItem.DeclarationTestItem.DescriptionInText) && dbItem.DeclarationTestItem.Image1Id != null && dbItem.DeclarationTestItem.Image2Id != null)
+                if (dbItem.DeclarationTestItem.SupplierAndVersionId != null && dbItem.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(dbItem.DeclarationTestItem.DescriptionInText) && dbItem.DeclarationTestItem.Image1Id != null && dbItem.DeclarationTestItem.Image2Id != null)
                 {
                     dbItem.DeclarationTestItem.StatusCount++;
                     result.Data.Step1Done = true;

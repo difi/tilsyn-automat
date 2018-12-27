@@ -38,7 +38,7 @@
                 <div class="card jsCard transparent">
                     @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", orderText = "1.1", viewResult = false })
 
-                    @if (Model.DeclarationTestItem.SupplierAndVersion.Id == 99999)
+                    @if (Model.DeclarationTestItem.SupplierAndVersion?.Id == 99999)
                     {
                         @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1", viewResult = false })
                     }

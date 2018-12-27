@@ -25,6 +25,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\ApplicationDb\20181222201057_v5.cs" />
     <Compile Remove="Migrations\ApplicationDb\20181222201057_v5.Designer.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20181227213424_V7.cs" />
+    <Compile Remove="Migrations\ApplicationDb\20181227213424_V7.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

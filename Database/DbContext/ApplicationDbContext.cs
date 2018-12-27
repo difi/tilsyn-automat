@@ -249,7 +249,8 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
 
             modelBuilder.Entity<ValueListTypeOfSupplierAndVersion>().HasData(new List<ValueListTypeOfSupplierAndVersion>
             {
-                new ValueListTypeOfSupplierAndVersion {Id = 1, Text = "Vet ikke"},
+                new ValueListTypeOfSupplierAndVersion {Id = 1, Text = "Velg betalingsterminal"},
+                new ValueListTypeOfSupplierAndVersion {Id = 100, Text = "Vet ikke"},
                 new ValueListTypeOfSupplierAndVersion {Id = 200, Text = "Ingenico iCT250"},
                 new ValueListTypeOfSupplierAndVersion {Id = 300, Text = "Ingenico iCT250E"},
                 new ValueListTypeOfSupplierAndVersion {Id = 400, Text = "Ingenico iCT250r"},
