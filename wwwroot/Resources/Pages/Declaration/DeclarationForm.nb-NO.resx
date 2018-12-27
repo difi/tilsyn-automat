@@ -135,8 +135,9 @@
   <data name="Good to know" xml:space="preserve">
     <value>Godt å vite</value>
   </data>
-  <data name="It takes about 15 minutes and your answers will be saved automatically. You need tape measure or thumb and camera." xml:space="preserve">
-    <value>Det tar omtrent 15 minutter og dine svar lagres automatisk. Du trenger målebånd eller tommestokk og kamera.</value>
+  <data name="It takes about 15 minutes and your answers are automatically saved. You need a tape measure or an inch and a camera. &lt;br/&gt; &lt;br/&gt;In order to submit your own check, you must first answer all the questions and add all photos." xml:space="preserve">
+    <value>Det tar omtrent 15 minutter og dine svar lagres automatisk. Du trenger målebånd eller tommestokk og kamera.&lt;br/&gt;&lt;br/&gt;
+For å kunne sende inn egenkontrollen, må du først svare på alle spørsmålene og legge til alle bilder.</value>
   </data>
   <data name="Machine" xml:space="preserve">
     <value>Automaten</value>
