@@ -123,9 +123,6 @@
   <data name="Go back and change" xml:space="preserve">
     <value>Gå tilbake og endre</value>
   </data>
-  <data name="In order to submit, you must first complete the self-control by answering all the questions." xml:space="preserve">
-    <value>For å kunne sende inn, må du først svare på alle spørsmålene</value>
-  </data>
   <data name="Oppsummering" xml:space="preserve">
     <value>Oppsummering</value>
   </data>
@@ -134,5 +131,8 @@
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Send inn</value>
+  </data>
+  <data name="To submit, you must first answer all questions and add all photos" xml:space="preserve">
+    <value>For å kunne sende inn, må du først svare på alle spørsmålene og legge til alle bilder</value>
   </data>
 </root>
