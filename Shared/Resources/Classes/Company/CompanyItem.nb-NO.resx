@@ -165,4 +165,7 @@
   <data name="ZIP code" xml:space="preserve">
     <value>Postnummer</value>
   </data>
+  <data name="ZIP Code must have 4 to 5 numbers" xml:space="preserve">
+    <value>Postnummer må ha 4 til 5 tall</value>
+  </data>
 </root>

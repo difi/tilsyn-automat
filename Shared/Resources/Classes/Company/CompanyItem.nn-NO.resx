@@ -156,4 +156,7 @@
   <data name="ZIP code" xml:space="preserve">
     <value />
   </data>
+  <data name="ZIP Code must have 4 to 5 numbers" xml:space="preserve">
+    <value />
+  </data>
 </root>

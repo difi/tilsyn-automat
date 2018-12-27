@@ -15,6 +15,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string CustomBusinessAddressStreet { get; set; }
 
         [Display(Name = "ZIP code")]
+        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         public string CustomBusinessAddressZip { get; set; }
 
         [Display(Name = "City")]
@@ -24,6 +25,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string CustomLocationAddressStreet { get; set; }
 
         [Display(Name = "ZIP code")]
+        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         public string CustomLocationAddressZip { get; set; }
 
         [Display(Name = "City")]
