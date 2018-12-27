@@ -22,23 +22,33 @@
     <main>
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-                <h2 class="h1">@Localizer["Oppsummering"]</h2>
-                @if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Return)
-                {
-                    <p>
-                        @Localizer["Confirm the information you have registered by pressing the submit button."]
-                    </p>
-                }
+                
+                <div class="info-wrapper">
+                    <div class="row">
+                        <div class="small-12 columns">
+                            <h2>@Localizer["Oppsummering"]</h2>
+                        </div>
+                        <div class="small-12 medium-12 end columns">
+                            @if (Model.DeclarationItemForm.Status.Id == (int) DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int) DeclarationStatus.Return)
+                            {
+                                @Localizer["Confirm the information you have registered by pressing the submit button."]
+                            }
+                        </div>
+                        <br>
+                    </div>
+                </div>                
+                
+                <br />
 
-                @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new { mainIndex, allDone = Model.AllDoneStep1 })
+                @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationReadStep1", new {mainIndex, allDone = Model.AllDoneStep1})
 
                 @foreach (var declarationIndicatorGroup in Model.TestGroupItemList)
                 {
                     mainIndex++;
-                    @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new { mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = false })
+                    @Html.DisplayFor(x => declarationIndicatorGroup, "DeclarationReadTestGroup", new {mainIndex, declarationItem = Model.DeclarationItemForm, viewResult = false})
                 }
 
-                <br />
+                <hr/>
 
                 <div class="row collapse align-bottom hide-for-print">
                     @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount != 4)
@@ -48,7 +58,7 @@
                         </div>
                     }
 
-                    @if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Return)
+                    @if (Model.DeclarationItemForm.Status.Id == (int) DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int) DeclarationStatus.Return)
                     {
                         <div class="small-12 columns">
                             @if (Model.DeclarationItemForm.DeclarationTestItem.StatusCount == 4)
@@ -60,6 +70,7 @@
                             }
                             else
                             {
+                                <button class="button large" disabled="disabled" type="submit">@Localizer["Submit"]</button>
                                 <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
                             }
                         </div>
@@ -68,10 +79,8 @@
                     @*<div class="small-12 columns">
                             <br/>
                             <button class="button print jsPrintButton" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Print"]</button>
-                        </div>*@
-
-                </div>
-                <br /><br />
+                        </div>*@</div>
+                <br/><br/>
             </div>
         </div>
     </main>

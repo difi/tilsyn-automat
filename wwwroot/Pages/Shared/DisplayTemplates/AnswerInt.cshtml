@@ -26,7 +26,16 @@
         }
 
     </label>
-    <div>
-        @Model
-    </div>
+    @if (Model > 0)
+    {
+        <div>
+            @Model
+        </div>
+    }
+    else
+    {
+        <div class="small-12 columns">
+            <p class="send-info-wrapper"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
+        </div>
+    }
 </div>

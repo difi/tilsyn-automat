@@ -473,8 +473,22 @@ img {
 .send-info-wrapper {
     background-color: $color-error;
     padding: 1rem;
+
+    .error {
+        display: inline-block;
+        position: relative;
+        height: 30px;
+        width: 40px;
+        background-image: url("/css/cssimg/icons-sprite.svg");
+        background-repeat: no-repeat;
+        background-position: 0 -1995px;
+        top: 7px;
+    }
 }
 
+.card-divider .send-info-wrapper {
+    padding-top: 0.5rem;
+}
 
 /* Page specific code
 --------------------------------------------------------------*/

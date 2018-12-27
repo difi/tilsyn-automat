@@ -28,10 +28,16 @@
         }
 
     </label>
-    <div>
-        @if (Model != null)
-        {
+    @if (Model != null)
+    {
+        <div>
             @(Model.Value ? trueText : falseText)
-        }
-    </div>
+        </div>
+    }
+    else
+    {
+        <div class="small-12 columns">
+            <p class="send-info-wrapper"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
+        </div>
+    }
 </div>

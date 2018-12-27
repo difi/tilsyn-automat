@@ -9,32 +9,35 @@
 }
 
 <div class="card-divider">
-    <label class="legend">
+    @if (Model != null)
+    {
+        <label class="legend">
 
-        <span class="legend-text">
-            @orderText @text
-        </span>
-    </label>
+            <span class="legend-text">
+                @orderText @text
+            </span>
+        </label>
+        <div>
+            @{
+                var image1 = Model.Container + "/" + Model.Blob;
+            }
 
-    <div>
-        @if (Model != null)
-        {
-            var image1 = Model.Container + "/" + Model.Blob;
-
-            if (viewResult)
+            @if (viewResult)
             {
                 <a target="_blank" href="@image1">
-                    <img src="@image1" alt="" width="200"/>
+                    <img src="@image1" alt="" width="200" />
                 </a>
             }
             else
             {
                 <img src="@image1" alt="" width="200" />
             }
-        }
-        else
-        {
-            <img src="/images/image_missing.png" width="75" alt="Bilde mangler" />
-        }
-    </div>
+        </div>
+    }
+    else
+    {
+        <div class="small-12 columns">
+            <p class="send-info-wrapper"><span class="error"></span>@Localizer["Here you need to upload a picture."]</p>
+        </div>
+    }
 </div>
