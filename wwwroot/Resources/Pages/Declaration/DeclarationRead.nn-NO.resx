@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Bekreft opplysningene du har registert ved å trykke på send inn knappen." xml:space="preserve">
+  <data name="Confirm the information you have registered by pressing the submit button." xml:space="preserve">
     <value />
   </data>
   <data name="Go back and change" xml:space="preserve">
