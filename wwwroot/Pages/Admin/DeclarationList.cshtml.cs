@@ -115,7 +115,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [HttpPost]
         public async Task<IActionResult> OnPostViewAllAsync()
         {
-            return await errorHandler.View(this, OnGetAsync());
+            return RedirectToPage("/Admin/DeclarationList");
+
+            //return await errorHandler.View(this, OnGetAsync());
         }
 
         [HttpPost]

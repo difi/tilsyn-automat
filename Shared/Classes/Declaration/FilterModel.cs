@@ -15,6 +15,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
 
         public int Status { get; set; }
 
+        [Display(Name = "Succeeded")]
         public int Succeeded { get; set; }
     }
 }

@@ -144,6 +144,9 @@
   <data name="Section" xml:space="preserve">
     <value>Seksjon</value>
   </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tid</value>
+  </data>
   <data name="User" xml:space="preserve">
     <value>Bruker</value>
   </data>

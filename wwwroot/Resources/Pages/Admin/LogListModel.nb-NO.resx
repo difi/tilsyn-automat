@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="From date" xml:space="preserve">
-    <value>Fra</value>
+  <data name="No" xml:space="preserve">
+    <value>Nei</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
-  <data name="Succeeded" xml:space="preserve">
-    <value>Resultat lyktes</value>
+  <data name="Not logged in" xml:space="preserve">
+    <value>Ikke logget inn</value>
   </data>
-  <data name="To date" xml:space="preserve">
-    <value>Til</value>
+  <data name="Unknown" xml:space="preserve">
+    <value>Ukjent</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
   </data>
 </root>

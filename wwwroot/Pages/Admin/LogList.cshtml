@@ -22,7 +22,7 @@
          
 
                 <div class="row">
-                    <div class="small-3 column">
+                    <div class="small-12 medium-4 column">
                         <div class="row">
                             <div class="small-6 column">
                                 @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
@@ -33,23 +33,19 @@
                         </div>
                     </div>
 
-                    <div class="small-6 column">
-                        <div class="row">
-                            <div class="small-6 column">
-                                @Html.EditorFor(x => x.FilterModel.Succeeded, "DropdownListInt", new { list = Model.SelectSucceededList })
-                            </div>
-                        </div>
+                    <div class="small-12 medium-4 column">
+                        @Html.EditorFor(x => x.FilterModel.Succeeded, "DropdownListInt", new { list = Model.SelectSucceededList })
                     </div>
 
-                    <div class="small-3 column">
+                    <div class="small-12 medium-4 column">
                         <div class="row collapse">
                             <div class="small-6 column">
                                 <br />
-                                <button class="button" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
+                                <button class="button large" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
                             </div>
                             <div class="small-6 column">
                                 <br />
-                                <button class="button" type="submit" asp-page-handler="ViewAll">@Localizer["Show all"]</button>
+                                <button class="button large alt" type="submit" asp-page-handler="ViewAll">@Localizer["Reset"]</button>
                             </div>
                         </div>
                     </div>
@@ -101,7 +97,7 @@
                 </td>
                 
                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.Time)">
-                    @item.Time
+                    @item.Time ms
                 </td>
             </tr>
         }

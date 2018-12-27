@@ -159,4 +159,7 @@
   <data name="To" xml:space="preserve">
     <value>Til</value>
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Fjern filtre</value>
+  </data>
 </root>

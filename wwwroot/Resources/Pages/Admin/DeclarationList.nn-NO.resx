@@ -159,4 +159,7 @@
   <data name="To" xml:space="preserve">
     <value />
   </data>
+  <data name="Reset" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

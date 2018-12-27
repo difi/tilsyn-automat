@@ -77,13 +77,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     var noUser = new UserItem
                     {
                         Id = Guid.Empty,
-                        Name = "Ej inloggad"
+                        Name = localizer["Not logged in"]
                     };
 
                     var unkonwnUser = new UserItem
                     {
                         Id = Guid.NewGuid(),
-                        Name = "Okänd"
+                        Name = localizer["Unknown"]
                     };
 
                     UserList.Add(noUser);
@@ -109,14 +109,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [HttpPost]
         public async Task<IActionResult> OnPostViewAllAsync()
         {
-            FilterModel = new FilterModel
-            {
-                FromDate = DateTime.Now.Date.AddDays(-7),
-                ToDate = DateTime.Now.Date,
-                Succeeded = 0
-            };
-
-            return await OnPostFilterAsync();
+            return RedirectToPage("/Admin/LogList");
         }
 
         private void CreateLists()
