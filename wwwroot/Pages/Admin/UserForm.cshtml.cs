@@ -46,7 +46,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     {
                         Value = x.Id.ToString(),
                         Text = x.Name,
-                        Selected = false
+                        Selected = x.Name == "Saksbehandler"
                     }).ToList();
                 }
                 else
