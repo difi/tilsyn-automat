@@ -46,7 +46,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                 var excelWorksheet = pck.Workbook.Worksheets.Add("Data");
                 excelWorksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
 
-                using (var excelRange = excelWorksheet.Cells["A1:BQ1"])
+                using (var excelRange = excelWorksheet.Cells["A1:BS1"])
                 {
                     excelRange.Style.Font.Bold = true;
                     excelRange.Style.Font.Size = excelRange.Style.Font.Size + 2;
@@ -55,7 +55,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                     excelRange.Style.Font.Color.SetColor(System.Drawing.Color.White);
                 }
 
-                using (var excelRange = excelWorksheet.Cells["A1:BQ100"])
+                using (var excelRange = excelWorksheet.Cells["A1:BS100"])
                 {
                     excelRange.AutoFitColumns();
                 }
