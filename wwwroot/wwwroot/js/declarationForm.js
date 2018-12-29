@@ -192,7 +192,7 @@ function AutoSave() {
 
     $.ajax({
         type: "POST",
-        url: "/api/Declaration/AutoSave/" + $("#DeclarationForm").data("id"),
+        url: "/api/Declaration/AutoSave/" + $("#DeclarationForm").data("id") + "/" + $("#DeclarationForm").data("companyid"),
         data: JSON.stringify(list),
         dataType: "json",
         contentType: 'application/json',

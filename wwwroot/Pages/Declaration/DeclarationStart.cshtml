@@ -31,7 +31,7 @@
                 <hr/>
 
                 <form method="post">
-                    <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Ok, now I would like will start!"]</button>
+                    <button class="button update large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-companyid="@Model.DeclarationItemForm.CompanyItemId">@Localizer["Ok, now I would like will start!"]</button>
                 </form>
             </div>
         </div>

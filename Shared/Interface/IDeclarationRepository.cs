@@ -24,10 +24,10 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult Update(DeclarationItem declarationItem);
 
-        ApiResult<T> Save<T>(Guid declarationItemId, DeclarationTestItem declarationTestItem) where T : DeclarationSaveResult;
+        ApiResult<T> Save<T>(Guid declarationItemId, Guid companyItemId, DeclarationTestItem declarationTestItem) where T : DeclarationSaveResult;
 
-        ApiResult SendIn(Guid id);
+        ApiResult SendIn(Guid declarationItemId, Guid companyItemId);
 
-        ApiResult HaveMachine(Guid id, bool haveMachine);
+        ApiResult HaveMachine(Guid declarationItemId, Guid companyItemId, bool haveMachine);
     }
 }

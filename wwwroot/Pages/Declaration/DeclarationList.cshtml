@@ -260,7 +260,7 @@
                                     </div>
                                 </div>
                                 <div class="card-section text-center medium-uncentered">
-                                    @if ((item.DeclarationTestItem.HaveMachine == false && item.Status.Id<4) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
+                                    @if ((item.DeclarationTestItem.HaveMachine == false && (item.Status.Id<4 || item.Status.Id == 5)) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
                                     {
                                         <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
                                     }

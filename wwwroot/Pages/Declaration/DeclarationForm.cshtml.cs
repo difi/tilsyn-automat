@@ -109,7 +109,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
                 var formData = Request.Form.ToDictionary<KeyValuePair<string, StringValues>, string, string>(keyValuePair => keyValuePair.Key, keyValuePair => keyValuePair.Value);
                 var declarationTestItem = new DeclarationTestHelper().CreateDeclarationTestItem(formData, DeclarationItemForm.Id, DeclarationItemForm.IndicatorList);
 
-                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, DeclarationTestItem = declarationTestItem });
+                var result = await apiHttpClient.Post<ApiResult>("/api/Declaration/Save/", new DeclarationSave {Id = DeclarationItemForm.Id, CompanyId = DeclarationItemForm.CompanyItemId, DeclarationTestItem = declarationTestItem });
 
                 if (result.Succeeded)
                 {

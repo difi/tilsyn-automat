@@ -7,6 +7,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Declaration
     {
         public Guid Id { get; set; }
 
+        public Guid CompanyId { get; set; }
+
         public DeclarationTestItem DeclarationTestItem { get; set; }
     }
 }

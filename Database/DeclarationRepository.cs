@@ -9,13 +9,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Difi.Sjalvdeklaration.Database.DbContext;
+using Difi.Sjalvdeklaration.Shared;
+using Z.EntityFramework.Plus;
 
 namespace Difi.Sjalvdeklaration.Database
 {
     public class DeclarationRepository : IDeclarationRepository
     {
+        
         private readonly ApplicationDbContext dbContext;
         private readonly IUserRepository userRepository;
         private readonly IStringLocalizer<DeclarationRepository> localizer;
@@ -334,8 +338,26 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult<T> Save<T>(Guid declarationItemId, DeclarationTestItem declarationTestItem) where T: DeclarationSaveResult
+        public ApiResult<T> Save<T>(Guid declarationItemId, Guid companyItemId, DeclarationTestItem declarationTestItem) where T: DeclarationSaveResult
         {
+            var stopWatch1 = new Stopwatch();
+            var stopWatch2 = new Stopwatch();
+            var stopWatch3 = new Stopwatch();
+            var stopWatch31 = new Stopwatch();
+            var stopWatch311 = new Stopwatch();
+            var stopWatch312 = new Stopwatch();
+            var stopWatch313 = new Stopwatch();
+            var stopWatch32 = new Stopwatch();
+            var stopWatch33 = new Stopwatch();
+            var stopWatch34 = new Stopwatch();
+            var stopWatch35 = new Stopwatch();
+            var stopWatch36 = new Stopwatch();
+            var stopWatch37 = new Stopwatch();
+            var stopWatch38 = new Stopwatch();
+            var stopWatch4 = new Stopwatch();
+            var stopWatch5 = new Stopwatch();
+            var stopWatch6 = new Stopwatch();
+
             var result = new ApiResult<T>
             {
                 Data = (T) new DeclarationSaveResult
@@ -346,9 +368,13 @@ namespace Difi.Sjalvdeklaration.Database
                 }
             };
 
+            stopWatch1.Start();
+            var outComeList = new List<OutcomeData>();
             var testGroupItemList = new List<TestGroupItem>();
-            var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
-
+            var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO").FromCache().ToList();
+            var answerList = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().FromCache().ToList();
+            var indicatorOutcomeList = dbContext.IndicatorOutcomeList.FromCache().ToList();
+;
             foreach (var declarationIndicatorGroup in dbContext.DeclarationList.Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.IndicatorList).Single(x => x.Id == declarationItemId).IndicatorList.OrderBy(x => x.TestGroupOrder))
             {
                 if (testGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
@@ -359,28 +385,34 @@ namespace Difi.Sjalvdeklaration.Database
                     testGroupItemList.Add(item);
                 }
             }
+            stopWatch1.Stop();
 
             try
             {
-                dbContext.OutcomeData.RemoveRange(dbContext.OutcomeData.Where(x => x.DeclarationTestItemId == declarationItemId));
-
+                stopWatch3.Start();
                 foreach (var outcomeData in declarationTestItem.OutcomeDataList)
                 {
                     var allDone = true;
 
                     outcomeData.ResultId = (int)TypeOfResult.NotTested;
 
+                    stopWatch31.Start();
                     foreach (var ruleData in outcomeData.RuleDataList)
                     {
                         ruleData.ResultId = (int)TypeOfResult.NotTested;
 
                         foreach (var answerData in ruleData.AnswerDataList)
                         {
-                            answerData.ResultId = (int)GetResultId(answerData, ruleData);
+                            stopWatch311.Start();
+                            answerData.ResultId = (int)GetResultId(answerData, ruleData, answerList);
+                            stopWatch311.Stop();
 
-                            UpdateParent(ruleData, answerData);
+                            stopWatch312.Start();
+                            UpdateParent(ruleData, answerData, answerList);
+                            stopWatch312.Stop();
                         }
 
+                        stopWatch313.Start();
                         if (ruleData.AnswerDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
                         {
                             ruleData.ResultId = (int)TypeOfResult.Fail;
@@ -397,8 +429,11 @@ namespace Difi.Sjalvdeklaration.Database
                         {
                             allDone = false;
                         }
+                        stopWatch313.Stop();
                     }
+                    stopWatch31.Stop();
 
+                    stopWatch32.Start();
                     if (outcomeData.RuleDataList.Any(x => x.ResultId == (int)TypeOfResult.Fail))
                     {
                         outcomeData.ResultId = (int)TypeOfResult.Fail;
@@ -410,20 +445,26 @@ namespace Difi.Sjalvdeklaration.Database
                             outcomeData.ResultId = (int)TypeOfResult.Ok;
                         }
                     }
+                    stopWatch32.Stop();
 
-                    var indicatorItem = dbContext.IndicatorList.Include(x => x.TestGroupList).Single(x => x.Id == outcomeData.IndicatorItemId);
+                    stopWatch33.Start();
+                    var indicatorItem = dbContext.IndicatorList.Include(x => x.TestGroupList).FromCache().Single(x => x.Id == outcomeData.IndicatorItemId);
                     var listItem = testGroupItemList.Single(x => x.IndicatorList.Any(y => y.IndicatorItemId == indicatorItem.Id));
+                    stopWatch33.Stop();
 
+                    stopWatch34.Start();
                     if (listItem.AllDone)
                     {
                         listItem.AllDone = allDone;
                     }
+                    stopWatch34.Stop();
 
                     outcomeData.AllDone = allDone;
 
                     var answerDataString = string.Empty;
                     var resultString = string.Empty;
 
+                    stopWatch35.Start();
                     foreach (var ruleData in outcomeData.RuleDataList)
                     {
                         foreach (var answerData in ruleData.AnswerDataList)
@@ -459,18 +500,24 @@ namespace Difi.Sjalvdeklaration.Database
                             }
                         }
                     }
+                    stopWatch35.Stop();
 
                     outcomeData.ResultText = resultString;
 
-                    var match = dbContext.IndicatorOutcomeList.SingleOrDefault(x => x.IndicatorItemId == outcomeData.IndicatorItemId && (x.ResultString1 == answerDataString || x.ResultString2 == answerDataString));
+                    stopWatch36.Start();
+                    var match = indicatorOutcomeList.SingleOrDefault(x => x.IndicatorItemId == outcomeData.IndicatorItemId && (x.ResultString1 == answerDataString || x.ResultString2 == answerDataString));
+                    stopWatch36.Stop();
 
                     if (match != null)
                     {
                         outcomeData.IndicatorOutcomeItemId = match.Id;
                     }
 
-                    dbContext.OutcomeData.Add(outcomeData);
+                    stopWatch37.Start();
+                    outComeList.Add(outcomeData);
+                    stopWatch37.Stop();
 
+                    stopWatch38.Start();
                     result.Data.OutcomeData.Add(new OutcomeData
                     {
                         Id = outcomeData.Id,
@@ -478,10 +525,15 @@ namespace Difi.Sjalvdeklaration.Database
                         DeclarationTestItemId = outcomeData.DeclarationTestItemId,
                         AllDone = outcomeData.AllDone
                     });
+                    stopWatch38.Stop();
                 }
+                stopWatch3.Stop();
 
+                stopWatch4.Start();
                 var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).Single(x => x.Id == declarationItemId);
+                stopWatch4.Stop();
 
+                stopWatch5.Start();
                 dbItem.DeclarationTestItem.StatusCount = testGroupItemList.Count(x => x.AllDone);
 
                 dbItem.DeclarationTestItem.SupplierAndVersionId = declarationTestItem.SupplierAndVersionId == 1 ? null : declarationTestItem.SupplierAndVersionId;
@@ -495,8 +547,25 @@ namespace Difi.Sjalvdeklaration.Database
                     dbItem.DeclarationTestItem.StatusCount++;
                     result.Data.Step1Done = true;
                 }
+                stopWatch5.Stop();
 
-                dbContext.SaveChanges();
+                lock (SaveLock.SaveLockObject)
+                {
+                    stopWatch2.Start();
+                    dbContext.OutcomeData.RemoveRange(dbContext.OutcomeData.Where(x => x.DeclarationTestItemId == declarationItemId));
+                    stopWatch2.Stop();
+
+                    stopWatch37.Start();
+                    foreach (var outcomeData in outComeList)
+                    {
+                        dbContext.OutcomeData.Add(outcomeData);
+                    }
+                    stopWatch37.Stop();
+
+                    stopWatch6.Start();
+                    dbContext.SaveChanges();
+                    stopWatch6.Stop();
+                }
 
                 result.Data.StausCount = dbItem.DeclarationTestItem.StatusCount;
                 result.Succeeded = true;
@@ -511,17 +580,17 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult SendIn(Guid id)
+        public ApiResult SendIn(Guid declarationItemId, Guid companyItemId)
         {
             var result = new ApiResult();
 
             try
             {
-                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).ThenInclude(x => x.OutcomeDataList).SingleOrDefault(x => x.Id == id);
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).ThenInclude(x => x.OutcomeDataList).SingleOrDefault(x => x.Id == declarationItemId);
 
                 if (dbItem == null)
                 {
-                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", id]);
+                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", declarationItemId]);
                 }
 
                 dbItem.DeclarationTestItem.FinishedStatusId = dbItem.DeclarationTestItem.OutcomeDataList.All(x => x.ResultId == 1) ? 1 : 2;
@@ -542,17 +611,17 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult HaveMachine(Guid id, bool haveMachine)
+        public ApiResult HaveMachine(Guid declarationItemId, Guid companyItemId, bool haveMachine)
         {
             var result = new ApiResult();
 
             try
             {
-                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).SingleOrDefault(x => x.Id == id);
+                var dbItem = dbContext.DeclarationList.Include(x => x.DeclarationTestItem).SingleOrDefault(x => x.Id == declarationItemId);
 
                 if (dbItem == null)
                 {
-                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", id]);
+                    throw new InvalidOperationException(localizer["Declaration with id: {0} doesn't exist.", declarationItemId]);
                 }
 
                 if (dbItem.StatusId == (int)DeclarationStatus.Sent || dbItem.StatusId == (int)DeclarationStatus.Created)
@@ -582,9 +651,9 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        private void UpdateParent(RuleData ruleData, AnswerData answerData)
+        private static void UpdateParent(RuleData ruleData, AnswerData answerData, List<AnswerItem> answerList)
         {
-            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
+            var answerItem = answerList.Single(x => x.Id == answerData.AnswerItemId);
 
             if (answerData.ResultId == (int)TypeOfResult.Ok || answerData.ResultId == (int)TypeOfResult.Fail)
             {
@@ -594,14 +663,14 @@ namespace Difi.Sjalvdeklaration.Database
 
                     item.ResultId = answerData.ResultId;
 
-                    UpdateParent(ruleData, item);
+                    UpdateParent(ruleData, item, answerList);
                 }
             }
         }
 
-        private TypeOfResult GetResultId(AnswerData answerData, RuleData ruleData)
+        private static TypeOfResult GetResultId(AnswerData answerData, RuleData ruleData, IEnumerable<AnswerItem> answerList)
         {
-            var answerItem = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().Single(x => x.Id == answerData.AnswerItemId);
+            var answerItem = answerList.Single(x => x.Id == answerData.AnswerItemId);
 
             if (answerItem.LinkedParentFailedId != Guid.Empty)
             {

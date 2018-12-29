@@ -126,11 +126,11 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
-        public ApiResult<T> Save<T>(Guid declarationItemId, DeclarationTestItem declarationTestItem) where T : DeclarationSaveResult
+        public ApiResult<T> Save<T>(Guid declarationItemId, Guid companyId, DeclarationTestItem declarationTestItem) where T : DeclarationSaveResult
         {
             var beforeSave = declarationTestItem.DeepClone();
 
-            var result = inner.Save<T>(declarationItemId, declarationTestItem);
+            var result = inner.Save<T>(declarationItemId, companyId, declarationTestItem);
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
@@ -140,25 +140,25 @@ namespace Difi.Sjalvdeklaration.Log
             return result;
         }
 
-        public ApiResult SendIn(Guid id)
+        public ApiResult SendIn(Guid declarationItemId, Guid companyId)
         {
-            var result = inner.SendIn(id);
+            var result = inner.SendIn(declarationItemId, companyId);
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, id));
+                logRepository.Add(new LogItem(stopwatch, userId, result, declarationItemId));
             }
 
             return result;
         }
 
-        public ApiResult HaveMachine(Guid id, bool haveMachine)
+        public ApiResult HaveMachine(Guid declarationItemId, Guid companyId, bool haveMachine)
         {
-            var result = inner.HaveMachine(id, haveMachine);
+            var result = inner.HaveMachine(declarationItemId, companyId, haveMachine);
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, id, haveMachine));
+                logRepository.Add(new LogItem(stopwatch, userId, result, declarationItemId, haveMachine));
             }
 
             return result;

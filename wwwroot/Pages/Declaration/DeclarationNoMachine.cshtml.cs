@@ -61,11 +61,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostUpdateHaveMachineAsync(string id)
+        public async Task<IActionResult> OnPostUpdateHaveMachineAsync(string id, string companyId)
         {
             try
             {
-                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/HaveMachine/" + id + "/" + false);
+                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/HaveMachine/" + id + "/" + companyId + "/" + false);
 
                 if (result.Succeeded)
                 {

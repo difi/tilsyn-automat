@@ -3,7 +3,6 @@ using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
@@ -99,30 +98,30 @@ namespace Difi.Sjalvdeklaration.Api
         {
             HandleRequest();
 
-            return declarationRepository.Save<DeclarationSaveResult>(declarationSave.Id, declarationSave.DeclarationTestItem);
+            return declarationRepository.Save<DeclarationSaveResult>(declarationSave.Id, declarationSave.CompanyId, declarationSave.DeclarationTestItem);
         }
 
         [HttpGet]
-        [Route("SendIn/{id}")]
-        public ApiResult SendIn(Guid id)
+        [Route("SendIn/{id}/{companyId}")]
+        public ApiResult SendIn(Guid id, Guid companyId)
         {
             HandleRequest();
 
-            return declarationRepository.SendIn(id);
+            return declarationRepository.SendIn(id, companyId);
         }
 
         [HttpGet]
-        [Route("HaveMachine/{id}/{haveMachine}")]
-        public ApiResult HaveMachine(Guid id, bool haveMachine)
+        [Route("HaveMachine/{id}/{companyId}/{haveMachine}")]
+        public ApiResult HaveMachine(Guid id, Guid companyId, bool haveMachine)
         {
             HandleRequest();
 
-            return declarationRepository.HaveMachine(id, haveMachine);
+            return declarationRepository.HaveMachine(id, companyId, haveMachine);
         }
 
         [HttpPost]
-        [Route("AutoSave/{id}")]
-        public ApiResult<DeclarationSaveResult> AutoSave(Guid id, [FromBody]IDictionary<string, string> data, List<DeclarationIndicatorGroup> indicatorList)
+        [Route("AutoSave/{id}/{companyId}")]
+        public ApiResult<DeclarationSaveResult> AutoSave(Guid id, Guid companyId, [FromBody]IDictionary<string, string> data, List<DeclarationIndicatorGroup> indicatorList)
         {
             var declarationItem = declarationRepository.Get<DeclarationItem>(id).Data;
             var declarationTestItem = new DeclarationTestHelper().CreateDeclarationTestItem(data, id, declarationItem.IndicatorList);
@@ -130,6 +129,7 @@ namespace Difi.Sjalvdeklaration.Api
             var result = Save(new DeclarationSave
             {
                 Id = id,
+                CompanyId = companyId,
                 DeclarationTestItem = declarationTestItem
             });
 

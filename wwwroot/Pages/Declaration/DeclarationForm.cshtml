@@ -37,7 +37,7 @@
     @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl })
 
     <main>
-        <form method="post" id="DeclarationForm" data-id="@Model.DeclarationItemForm.Id" data-userid="@userId">
+        <form method="post" id="DeclarationForm" data-id="@Model.DeclarationItemForm.Id" data-companyid="@Model.DeclarationItemForm.CompanyItemId" data-userid="@userId">
             <div class="row">
                 <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 

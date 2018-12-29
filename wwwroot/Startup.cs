@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
+using Cache;
 
 namespace Difi.Sjalvdeklaration.wwwroot
 {
@@ -79,6 +80,8 @@ namespace Difi.Sjalvdeklaration.wwwroot
                 services.Decorate<IValueListRepository, ValueListRepositoryLogDecorator>();
             }
 
+            services.Decorate<IDeclarationRepository, DeclarationRepositoryCacheDecorator>();
+
             services.AddScoped<IImageRepository, ImageRepository>();
             if (Convert.ToBoolean(Configuration["Log:Active"]))
             {
@@ -112,6 +115,8 @@ namespace Difi.Sjalvdeklaration.wwwroot
             {
                 options.AddPolicy("Administrator", policy => policy.RequireRole("Administrator"));
             });
+
+            services.AddMemoryCache();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

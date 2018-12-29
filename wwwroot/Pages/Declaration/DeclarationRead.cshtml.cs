@@ -121,11 +121,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
         }
 
         [HttpPost]
-        public async Task<IActionResult> OnPostSendInAsync(string id)
+        public async Task<IActionResult> OnPostSendInAsync(string id, string companyid)
         {
             try
             {
-                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/SendIn/" + id);
+                var result = await apiHttpClient.Get<ApiResult>("/api/Declaration/SendIn/" + id + "/" + companyid);
 
                 if (result.Succeeded)
                 {
