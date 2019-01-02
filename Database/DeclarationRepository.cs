@@ -19,7 +19,7 @@ namespace Difi.Sjalvdeklaration.Database
 {
     public class DeclarationRepository : IDeclarationRepository
     {
-        
+        private string currentLang;
         private readonly ApplicationDbContext dbContext;
         private readonly IUserRepository userRepository;
         private readonly IStringLocalizer<DeclarationRepository> localizer;
@@ -31,8 +31,13 @@ namespace Difi.Sjalvdeklaration.Database
             this.localizer = localizer;
         }
 
-        public void SetCurrentUser(Guid parse)
+        public void SetCurrentUser(Guid userGuid)
         {
+        }
+
+        public void SetCurrentLang(string lang)
+        {
+            currentLang = lang;
         }
 
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
@@ -61,9 +66,9 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (item != null)
                 {
-                    var testGroupLanguageList = dbContext.TestGroupLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
-                    var ruleLanguageList = dbContext.RuleLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
-                    var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+                    var testGroupLanguageList = dbContext.TestGroupLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
+                    var ruleLanguageList = dbContext.RuleLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
+                    var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
 
                     foreach (var declarationIndicatorGroup in item.IndicatorList)
                     {
@@ -203,8 +208,8 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.RuleDataList).ThenInclude(x => x.AnswerDataList).ThenInclude(x => x.Image)
                     .AsNoTracking().Where(x => x.DeclarationTestItemId == id).ToList();
 
-                var indicatorOutcomeLanguageList = dbContext.IndicatorOutcomeLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
-                var requirementLanguageList = dbContext.RequirementLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO");
+                var indicatorOutcomeLanguageList = dbContext.IndicatorOutcomeLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
+                var requirementLanguageList = dbContext.RequirementLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
 
                 foreach (var outcomeData in list)
                 {
@@ -371,7 +376,7 @@ namespace Difi.Sjalvdeklaration.Database
             stopWatch1.Start();
             var outComeList = new List<OutcomeData>();
             var testGroupItemList = new List<TestGroupItem>();
-            var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == "nb-NO").FromCache().ToList();
+            var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang).FromCache().ToList();
             var answerList = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().FromCache().ToList();
             var indicatorOutcomeList = dbContext.IndicatorOutcomeList.FromCache().ToList();
 ;

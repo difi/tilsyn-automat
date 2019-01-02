@@ -8,7 +8,9 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 {
     public interface IDeclarationRepository
     {
-        void SetCurrentUser(Guid parse);
+        void SetCurrentUser(Guid userGuid);
+
+        void SetCurrentLang(String lang);
 
         ApiResult<T> Get<T>(Guid id) where T : DeclarationItem;
 

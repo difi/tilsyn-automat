@@ -139,6 +139,7 @@ namespace Difi.Sjalvdeklaration.Api
         private void HandleRequest()
         {
             declarationRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
+            declarationRepository.SetCurrentLang(Request.Headers["Lang"]);
         }
     }
 }

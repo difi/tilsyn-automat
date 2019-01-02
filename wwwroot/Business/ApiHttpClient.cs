@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +8,6 @@ using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Difi.Sjalvdeklaration.Shared;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Extensions;
@@ -39,7 +39,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
         public async Task<ApiResult<T>> Get<T>(string url)
         {
-            AddUserGuid();
+            AddUserGuidAndLang();
 
             httpClient.DefaultRequestHeaders.Remove("Authorization");
 
@@ -62,7 +62,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
         public async Task<T> Post<T>(string url, object jsonObject)
         {
-            AddUserGuid();
+            AddUserGuidAndLang();
 
             httpClient.DefaultRequestHeaders.Remove("Authorization");
 
@@ -130,7 +130,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             httpClient.DefaultRequestHeaders.Add("Authorization", $"{authorizationType} {authorizationKey}");
         }
 
-        private void AddUserGuid()
+        private void AddUserGuidAndLang()
         {
             var userId = Guid.Empty;
             var claims = httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.PrimarySid);
@@ -142,6 +142,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             httpClient.DefaultRequestHeaders.Remove("UserGuid");
             httpClient.DefaultRequestHeaders.Add("UserGuid", userId.ToString());
+
+            httpClient.DefaultRequestHeaders.Remove("Lang");
+            httpClient.DefaultRequestHeaders.Add("Lang", CultureInfo.CurrentCulture.Name);
         }
     }
 }

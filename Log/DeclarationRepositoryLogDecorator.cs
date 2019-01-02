@@ -33,9 +33,15 @@ namespace Difi.Sjalvdeklaration.Log
             stopwatch.Start();
         }
 
-        public void SetCurrentUser(Guid id)
+        public void SetCurrentUser(Guid userGuid)
         {
-            userId = id;
+            userId = userGuid;
+            inner.SetCurrentUser(userGuid);
+        }
+
+        public void SetCurrentLang(string lang)
+        {
+            inner.SetCurrentLang(lang);
         }
 
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem

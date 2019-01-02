@@ -10,6 +10,7 @@ namespace Cache
 {
     public class DeclarationRepositoryCacheDecorator: IDeclarationRepository
     {
+        private string currentLang;
         private readonly IMemoryCache cache;
         private readonly IDeclarationRepository inner;
 
@@ -19,13 +20,20 @@ namespace Cache
             this.inner = inner;
         }
 
-        public void SetCurrentUser(Guid parse)
+        public void SetCurrentUser(Guid userGuid)
         {
+            inner.SetCurrentUser(userGuid);
+        }
+
+        public void SetCurrentLang(string lang)
+        {
+            currentLang = lang;
+            inner.SetCurrentLang(lang);
         }
 
         public ApiResult<T> Get<T>(Guid id) where T : DeclarationItem
         {
-            return cache.GetOrCreate("Declaration_Get_" + id, entry =>
+            return cache.GetOrCreate("Declaration_Get_" + currentLang + "_" + id, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromMinutes(60);
                 return inner.Get<T>(id);
@@ -34,7 +42,7 @@ namespace Cache
 
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
         {
-            return cache.GetOrCreate("Declaration_GetAll", entry =>
+            return cache.GetOrCreate("Declaration_GetAll" + currentLang, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromMinutes(60);
                 return inner.GetAll<T>();
@@ -48,7 +56,7 @@ namespace Cache
 
         public ApiResult<T> GetForCompany<T>(Guid id) where T : List<DeclarationItem>
         {
-            return cache.GetOrCreate("Declaration_GetForCompany_" + id, entry =>
+            return cache.GetOrCreate("Declaration_GetForCompany_" + currentLang + "_" + id, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromMinutes(60);
                 return inner.GetForCompany<T>(id);
@@ -57,7 +65,7 @@ namespace Cache
 
         public ApiResult<T> GetOutcomeDataList<T>(Guid id) where T : List<OutcomeData>
         {
-            return cache.GetOrCreate("Declaration_GetOutcomeDataList_" + id, entry =>
+            return cache.GetOrCreate("Declaration_GetOutcomeDataList_" + currentLang + "_" + id, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromMinutes(60);
                 return inner.GetOutcomeDataList<T>(id);
@@ -101,10 +109,10 @@ namespace Cache
 
         private void ClearCache(Guid declarationItemid, Guid companyItemId)
         {
-            cache.Remove("Declaration_Get_" + declarationItemid);
-            cache.Remove("Declaration_GetAll");
-            cache.Remove("Declaration_GetOutcomeDataList_" + declarationItemid);
-            cache.Remove("Declaration_GetForCompany_" + companyItemId);
+            cache.Remove("Declaration_Get_" + currentLang + "_" + declarationItemid);
+            cache.Remove("Declaration_GetAll" + currentLang);
+            cache.Remove("Declaration_GetOutcomeDataList_" + currentLang + "_" + declarationItemid);
+            cache.Remove("Declaration_GetForCompany_" + currentLang + "_" + companyItemId);
         }
     }
 }
