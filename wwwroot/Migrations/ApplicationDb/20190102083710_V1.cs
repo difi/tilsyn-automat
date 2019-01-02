@@ -25,17 +25,20 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                     LocationAddressStreet = table.Column<string>(nullable: true),
                     LocationAddressZip = table.Column<string>(nullable: true),
                     LocationAddressCity = table.Column<string>(nullable: true),
+                    CustomLocationAddressStreet = table.Column<string>(nullable: true),
+                    CustomLocationAddressZip = table.Column<string>(nullable: true),
+                    CustomLocationAddressCity = table.Column<string>(nullable: true),
                     BusinessAddressStreet = table.Column<string>(nullable: true),
                     BusinessAddressZip = table.Column<string>(nullable: true),
                     BusinessAddressCity = table.Column<string>(nullable: true),
+                    CustomBusinessAddressStreet = table.Column<string>(nullable: true),
+                    CustomBusinessAddressZip = table.Column<string>(nullable: true),
+                    CustomBusinessAddressCity = table.Column<string>(nullable: true),
                     IndustryGroupCode = table.Column<string>(nullable: true),
                     IndustryGroupDescription = table.Column<string>(nullable: true),
                     IndustryGroupAggregated = table.Column<string>(nullable: true),
                     InstitutionalSectorCode = table.Column<string>(nullable: true),
-                    InstitutionalSectorDescription = table.Column<string>(nullable: true),
-                    CustomAddressStreet = table.Column<string>(nullable: true),
-                    CustomAddressZip = table.Column<string>(nullable: true),
-                    CustomAddressCity = table.Column<string>(nullable: true)
+                    InstitutionalSectorDescription = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1004,7 +1007,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 {
                     { 1, "Pilotmåling" },
                     { 2, "Tilsyn" },
-                    { 3, "Statysmåling" }
+                    { 3, "Statusmåling" }
                 });
 
             migrationBuilder.InsertData(
@@ -1049,11 +1052,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 {
                     { 7, "Avlyst", "Avlyst", "Avlyst" },
                     { 6, "Avsluttet", "Avsluttet", "Fullført" },
-                    { 5, "Sendt tilbake", "Pågår", "Sendt tilbake for korreksjon" },
+                    { 5, "Åpen for korreksjon", "Pågår", "Åpen for korreksjon" },
+                    { 4, "Fullført", "Fullført", "Fullført" },
                     { 3, "Påbegynt", "Pågår", "Påbegynt" },
                     { 2, "Varslet", "Pågår", "Ikke påbegynt" },
-                    { 1, "Opprettet", "Opprettet", "Ikke påbegynt" },
-                    { 4, "Fullført", "Fullført", "Fullført" }
+                    { 1, "Opprettet", "Opprettet", "Ikke påbegynt" }
                 });
 
             migrationBuilder.InsertData(
@@ -1061,30 +1064,31 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 1800, "Verifone VX 680" },
                     { 99999, "Annet" },
                     { 2300, "Verifone Yomani XR" },
                     { 2200, "Verifone Xenteo ECO" },
                     { 2100, "Verifone VX 820 Duet" },
                     { 2000, "Verifone VX 820" },
                     { 1900, "Verifone VX 690" },
-                    { 1700, "Verifone VX 520 C" },
+                    { 1800, "Verifone VX 680" },
                     { 1600, "SumUp Air" },
                     { 1500, "iZettle Reader" },
-                    { 1300, "Ingenico iWL251" },
                     { 1400, "Ingenico iWL252" },
-                    { 1100, "Ingenico iWL250B " },
-                    { 1, "Vet ikke" },
-                    { 200, "Ingenico iCT250" },
+                    { 1300, "Ingenico iWL251" },
                     { 1200, "Ingenico iWL250G" },
-                    { 400, "Ingenico iCT250r" },
-                    { 500, "Ingenico iPP350" },
-                    { 300, "Ingenico iCT250E" },
-                    { 700, "Ingenico iSMP" },
-                    { 800, "Ingenico isMP4" },
-                    { 900, "Ingenico iUP" },
+                    { 1700, "Verifone VX 520 C" },
                     { 1000, "Ingenico iWL250" },
-                    { 600, "Ingenico iSelf" }
+                    { 900, "Ingenico iUP" },
+                    { 800, "Ingenico isMP4" },
+                    { 700, "Ingenico iSMP" },
+                    { 600, "Ingenico iSelf" },
+                    { 500, "Ingenico iPP350" },
+                    { 400, "Ingenico iCT250r" },
+                    { 300, "Ingenico iCT250E" },
+                    { 200, "Ingenico iCT250" },
+                    { 100, "Vet ikke" },
+                    { 1, "Velg betalingsterminal" },
+                    { 1100, "Ingenico iWL250B " }
                 });
 
             migrationBuilder.InsertData(
@@ -1092,9 +1096,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
+                    { 3, "Applikasjon" },
                     { 1, "Automat" },
-                    { 2, "Webside" },
-                    { 3, "Applikasjon" }
+                    { 2, "Webside" }
                 });
 
             migrationBuilder.InsertData(
@@ -1102,16 +1106,16 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "Text" },
                 values: new object[,]
                 {
-                    { 7, "Nedsett kognisjon" },
-                    { 9, "Fotosensitivitet/anfall" },
-                    { 8, "Nedsett motorikk" },
-                    { 6, "Nedsett høyrsel/tunghøyrde" },
                     { 10, "Fysisk størrelse" },
-                    { 4, "Døvblinde" },
-                    { 3, "Fargeblinde" },
-                    { 2, "Svaksynte" },
                     { 1, "Blinde" },
+                    { 2, "Svaksynte" },
+                    { 3, "Fargeblinde" },
+                    { 4, "Døvblinde" },
                     { 5, "Døve" },
+                    { 6, "Nedsett høyrsel/tunghøyrde" },
+                    { 7, "Nedsett kognisjon" },
+                    { 8, "Nedsett motorikk" },
+                    { 9, "Fotosensitivitet/anfall" },
                     { 11, "Redusert taktil sensibilitet" }
                 });
 
@@ -1257,11 +1261,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 columns: new[] { "Id", "HelpText", "LanguageItemId", "RuleItemId" },
                 values: new object[,]
                 {
-                    { new Guid("804438bd-ac67-40ff-9168-6814ea843242"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8") },
-                    { new Guid("e369820b-ebcd-488e-9216-477d363f18ed"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57") },
-                    { new Guid("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Illustrasjon' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09") },
-                    { new Guid("55294d7b-6af0-4399-8a5c-776aa13e3a29"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b") },
-                    { new Guid("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5") }
+                    { new Guid("804438bd-ac67-40ff-9168-6814ea843242"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Gjenstander over betjeningsområdet. Illustrasjon.' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("b64cac7e-6525-49e8-9112-0238e1588ed8") },
+                    { new Guid("e369820b-ebcd-488e-9216-477d363f18ed"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Krav på avstand mellom betalingsautomater. Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("0d6c763e-e0f6-4049-adeb-ae9429262b57") },
+                    { new Guid("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Avstander i kundens betjeningsområde. Illustrasjon.' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Kundens betjeningsområde foran betalingsautomaten. Illustrasjon.' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("eb160c6c-3a9e-4dff-93df-577d9eab4e09") },
+                    { new Guid("55294d7b-6af0-4399-8a5c-776aa13e3a29"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Skilt over betalingsområdet. Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("832e0843-cab3-4dbc-9799-974e283fcc0b") },
+                    { new Guid("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"), "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Høyden på betjeningskomponenter. Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), new Guid("5b3af04b-f6c6-4425-a22f-c2e7479839a5") }
                 });
 
             migrationBuilder.InsertData(
@@ -1270,7 +1274,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Migrations.ApplicationDb
                 values: new object[,]
                 {
                     { new Guid("2583fbbf-12a3-475d-b610-41b5ad0327c1"), new Guid("02d2db89-3717-48e1-883e-8e526bf6c727"), "Nei", "Ja", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), "Finnes det hindringer i kundens betjeningsområde?" },
-                    { new Guid("8da3f1e2-4ed3-4957-b94d-797ed932ec73"), new Guid("f98f67e5-cf6a-4afe-8998-3132640f9d70"), "Annat, ", "Mellom 75cm og 130cm over gulvet", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?" },
+                    { new Guid("8da3f1e2-4ed3-4957-b94d-797ed932ec73"), new Guid("f98f67e5-cf6a-4afe-8998-3132640f9d70"), "Annet, ", "Mellom 75cm og 130cm over gulvet", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?" },
                     { new Guid("0ed22f35-94ec-46d1-9aad-615f91bbb1b0"), new Guid("f69c1e45-99d8-4293-a242-c5ed9e126e99"), "Nei", "Ja", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), "Er skiltet synlig på avstand utenfor kundens betjeningsområde?" },
                     { new Guid("14b18d90-1b1f-4628-b15e-edc9afe5a0a1"), new Guid("9a51cc68-857e-4822-ac81-0ec3ebe7bf43"), "Nei", "Ja", new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), "Er skiltet plassert over området der kunden skal betale varene sine?" },
                     { new Guid("ec0e3dd2-bd43-4e44-a118-51b86b80d77f"), new Guid("c4870935-ee11-4557-a9c3-aca678c17565"), null, null, new Guid("8e25e2bf-e135-49b0-8c25-2c46d489d5e9"), "Bekreft med bilde" },
