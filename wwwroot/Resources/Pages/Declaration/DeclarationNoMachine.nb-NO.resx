@@ -121,10 +121,10 @@
     <value>Avbryt</value>
   </data>
   <data name="I have no payment terminal" xml:space="preserve">
-    <value>Jeg har ingen betalingsterminal</value>
+    <value>Har ikke betalingsterminal</value>
   </data>
   <data name="No machine text" xml:space="preserve">
-    <value>Takk for at du tok deg tid til å svare på egenkontrollen. Denne egenkontrollen gjelder for virksomheter som benytter betalingsterminaler mot kundene sine. Trykk på knappen under for å bekrefte at du ikke benytter betalingsterminaler. Egenkontrollen for betalingsterminaler blir da avsluttet.</value>
+    <value>Takk for at du tok deg tid til å svare på egenkontrollen. Denne egenkontrollen gjelder for virksomheter som benytter betalingsterminaler. Trykk på knappen under for å bekrefte at du ikke bruker betalingsterminaler. Egenkontrollen for betalingsterminaler blir da avsluttet.</value>
   </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>

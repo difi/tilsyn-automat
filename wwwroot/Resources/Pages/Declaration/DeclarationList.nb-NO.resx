@@ -162,4 +162,7 @@
   <data name="View log out" xml:space="preserve">
     <value>Vis logg ut</value>
   </data>
+  <data name="The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself." xml:space="preserve">
+    <value>Informasjonen om virksomheten er hentet fra Brønnøysundregistrene. Du kan informere oss om endret navn og besøksadresse i denne løsningen, men dersom det er feil bør du selv melde fra til &lt;a style="text-decoration: underline;" href="https://www.brreg.no/" target="_blank"&gt;Brønnøysundregistrene&lt;/a&gt;.</value>
+  </data>
 </root>

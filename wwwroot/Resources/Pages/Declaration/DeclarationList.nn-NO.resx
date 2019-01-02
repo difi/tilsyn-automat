@@ -159,4 +159,8 @@
 	<data name="View log out" xml:space="preserve">
     <value>Vis logg ut</value>
   </data>
+  <data name="The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself." xml:space="preserve">
+    <value>The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself.</value>
+    <comment>The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself.</comment>
+  </data>
 </root>
