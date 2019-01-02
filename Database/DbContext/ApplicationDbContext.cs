@@ -393,6 +393,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 TestGroupItemId = testGroup1.Id
             };
 
+            var testGroupItemLanguage1Nn = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("a6287d57-476c-4676-9d93-435a4e2f4195"),
+                Name = "Beteningsområde",
+                LanguageItemId = language2.Id,
+                TestGroupItemId = testGroup1.Id
+            };
+
             var testGroup2 = new TestGroupItem
             {
                 Id = Guid.Parse("b6c22ac9-d775-4dfd-ac8e-b4ca565ea3fb"),
@@ -407,6 +415,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 TestGroupItemId = testGroup2.Id
             };
 
+            var testGroupItemLanguage2Nn = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("98fff1d6-1b62-4de8-9b0c-7c107bd04dfb"),
+                Name = "Skilt",
+                LanguageItemId = language2.Id,
+                TestGroupItemId = testGroup2.Id
+            };
+
             var testGroup3 = new TestGroupItem
             {
                 Id = Guid.Parse("9aae6bc9-4b60-405c-81a7-ec142d8c1ca6"),
@@ -418,6 +434,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("3b00207c-83a8-49a8-a65e-503b63cc73b1"),
                 Name = "Betjeningshøyde",
                 LanguageItemId = language1.Id,
+                TestGroupItemId = testGroup3.Id
+            };
+
+            var testGroupItemLanguage3Nn = new TestGroupItemLanguage
+            {
+                Id = Guid.Parse("18b44c34-20b1-4999-8170-8814493f8fc0"),
+                Name = "Beteningshøgde",
+                LanguageItemId = language2.Id,
                 TestGroupItemId = testGroup3.Id
             };
 
@@ -463,6 +487,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language1.Id,
             };
 
+            var requirementItemLanguage1Nn = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("49cd54b9-d1d5-4f06-9186-20e3de25a7af"),
+                Description = "Krav 3.1 Beteningsområde framføre betalingsterminalen skal vere minst 150 x 150 centimeter. Beteningsområde skal vere utan hindringar.",
+                RequirementItemId = requirementItem1.Id,
+                LanguageItemId = language2.Id,
+            };
+
             var requirementItem2 = new RequirementItem
             {
                 Id = Guid.Parse("c65786bb-1b93-4153-b88c-935cc2a7ab60"),
@@ -477,6 +509,13 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language1.Id
             };
 
+            var requirementItemLanguage2Nn = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("d283278d-a276-4001-99fd-faab0a7dbb5d"),
+                Description = "Krav 3.5 Dersom to eller fleire automatar står ved sida av kvarandre, skal det vere minst 150 centimeter frå midten av automaten til midten av neste automat.",
+                RequirementItemId = requirementItem2.Id,
+                LanguageItemId = language2.Id
+            };
 
             var requirementItem3 = new RequirementItem
             {
@@ -492,6 +531,13 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language1.Id
             };
 
+            var requirementItemLanguage3Nn = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("6ac22f59-843c-4b3b-a1c6-aa4bd95bc779"),
+                Description = "Krav 1.3 Skilt skal plasserast over betalingsterminalen.",
+                RequirementItemId = requirementItem3.Id,
+                LanguageItemId = language2.Id
+            };
 
             var requirementItem4 = new RequirementItem
             {
@@ -505,6 +551,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Description = "Krav 4.2: Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.",
                 RequirementItemId = requirementItem4.Id,
                 LanguageItemId = language1.Id
+            };
+
+            var requirementItemLanguage4Nn = new RequirementItemLanguage
+            {
+                Id = Guid.Parse("74555409-91a1-4b81-97ec-76e005909a5e"),
+                Description = "Krav 4.2: Høgda på beteningskomponentar som skjerm og tastatur skal vere mellom 75 centimeter og 130 centimeter over golvet. ",
+                RequirementItemId = requirementItem4.Id,
+                LanguageItemId = language2.Id
             };
 
             var indicatorTestGroup1 = new IndicatorTestGroup
@@ -684,6 +738,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 BoolFalseText = "Nei",
             };
 
+            var answerItemLanguage111Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("b552415f-6d7a-4900-b177-2628b234cce2"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem111.Id,
+                Question = "Finst det hindringar i beteningsområdet til kunden?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nei",
+            };
+
             var answerItem112 = new AnswerItem
             {
                 Order = 3,
@@ -696,6 +760,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 Id = Guid.Parse("db55a19e-7f42-4176-921d-4a09698f727a"),
                 LanguageItemId = language1.Id,
+                AnswerItemId = answerItem112.Id,
+                Question = "Bekreft med bilde",
+            };
+
+            var answerItemLanguage112Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("d61c82e8-a3a1-444f-bb63-ef34ba4b720e"),
+                LanguageItemId = language2.Id,
                 AnswerItemId = answerItem112.Id,
                 Question = "Bekreft med bilde",
             };
@@ -717,6 +789,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Question = "Beskriv hindringene i kundens betjeningsområde:",
             };
 
+            var answerItemLanguage113Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("eef618a0-e5bf-483a-8c10-fac1c04aa6be"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem113.Id,
+                Question = "Beskriv hindringane i beteningsområdet til kunden.",
+            };
+
             var answerItem121 = new AnswerItem
             {
                 Order = 1,
@@ -732,6 +812,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem121.Id,
                 Question = "Henger det gjenstander over kundens betjeningsområde?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nei",
+            };
+
+            var answerItemLanguage121Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("28550bd9-fcba-4a39-be91-d2a6331a26e9"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem121.Id,
+                Question = "Heng det gjenstandar over beteningsområdet til kunden?",
                 BoolTrueText = "Ja",
                 BoolFalseText = "Nei",
             };
@@ -753,7 +843,17 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 AnswerItemId = answerItem122.Id,
                 Question = "Hvor mange cm over gulvet henger den laveste gjenstanden i kundens betjeningsområde?",
                 BoolTrueText = "220 cm eller mer",
-                BoolFalseText = "0-219 cm, ",
+                BoolFalseText = "0-219 cm, "
+            };
+
+            var answerItemLanguage122Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("d7d086fb-99a8-42b6-8200-338a85d886a1"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem122.Id,
+                Question = "Kor mange cm over golvet heng den lågaste gjenstanden i beteningsområdet til kunden?",
+                BoolTrueText = "220 cm eller mer",
+                BoolFalseText = "0-219 cm, "
             };
 
             var answerItem123 = new AnswerItem
@@ -776,6 +876,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Question = "Mål i cm",
             };
 
+            var answerItemLanguage123Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("2a0296f1-7ed5-4e38-97b4-defba4439b69"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem123.Id,
+                Question = "Mål i cm",
+            };
+
             var answerItem124 = new AnswerItem
             {
                 Order = 4,
@@ -788,6 +896,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 Id = Guid.Parse("6c73f84c-a2d5-43ac-a5fe-793d0c5672cc"),
                 LanguageItemId = language1.Id,
+                AnswerItemId = answerItem124.Id,
+                Question = "Bekreft med bilde",
+            };
+
+            var answerItemLanguage124Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("93a705e1-5c90-4a6f-a03d-c2e3c449e4a6"),
+                LanguageItemId = language2.Id,
                 AnswerItemId = answerItem124.Id,
                 Question = "Bekreft med bilde",
             };
@@ -807,6 +923,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem211.Id,
                 Question = "Står betalingsterminalen ved siden av en annen betalingsterminal, på rett linje?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nei",
+            };
+
+            var answerItemLanguage211Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("d28ac0ea-244d-478a-9ba2-efb51deb9b90"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem211.Id,
+                Question = "Står betalingsterminalen ved sidan av ein annan betalingsterminal, på rett linje?",
                 BoolTrueText = "Ja",
                 BoolFalseText = "Nei",
             };
@@ -831,6 +957,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 BoolFalseText = "0-149 cm, ",
             };
 
+            var answerItemLanguage212Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("844733d7-44b6-4813-b8a6-8ed36012e1a4"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem212.Id,
+                Question = "Kor mange cm er det mellom betalingsterminalane?",
+                BoolTrueText = "150 cm eller mer",
+                BoolFalseText = "0-149 cm, ",
+            };
+
             var answerItem213 = new AnswerItem
             {
                 Order = 3,
@@ -851,6 +987,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Question = "Mål i cm",
             };
 
+            var answerItemLanguage213Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("21aebbf3-e13d-4fff-a2e2-23e2ac613c29"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem213.Id,
+                Question = "Mål i cm",
+            };
+
             var answerItem214 = new AnswerItem
             {
                 Order = 4,
@@ -867,6 +1011,13 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Question = "Bekreft med bilde",
             };
 
+            var answerItemLanguage214Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("dde428e6-e13b-4140-860b-b185661d8dc6"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem214.Id,
+                Question = "Bekreft med bilde",
+            };
 
             var answerItem311 = new AnswerItem
             {
@@ -887,6 +1038,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 BoolFalseText = "Nei",
             };
 
+            var answerItemLanguage311Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("ed52107e-359a-4c71-b44e-1ea9a0052917"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem311.Id,
+                Question = "Finst det eit skilt som viser kvar kunden skal betale varene sine?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nei",
+            };
+
             var answerItem312 = new AnswerItem
             {
                 Order = 4,
@@ -899,6 +1060,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 Id = Guid.Parse("ec0e3dd2-bd43-4e44-a118-51b86b80d77f"),
                 LanguageItemId = language1.Id,
+                AnswerItemId = answerItem312.Id,
+                Question = "Bekreft med bilde",
+            };
+
+            var answerItemLanguage312Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("8db67b5c-e3b1-4053-a66a-3499c54a545d"),
+                LanguageItemId = language2.Id,
                 AnswerItemId = answerItem312.Id,
                 Question = "Bekreft med bilde",
             };
@@ -917,6 +1086,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 Id = Guid.Parse("14b18d90-1b1f-4628-b15e-edc9afe5a0a1"),
                 LanguageItemId = language1.Id,
+                AnswerItemId = answerItem313.Id,
+                Question = "Er skiltet plassert over området der kunden skal betale varene sine?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nei",
+            };
+
+            var answerItemLanguage313Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("5bf1b010-1ad3-4b16-899d-d71463e5b3b7"),
+                LanguageItemId = language2.Id,
                 AnswerItemId = answerItem313.Id,
                 Question = "Er skiltet plassert over området der kunden skal betale varene sine?",
                 BoolTrueText = "Ja",
@@ -943,6 +1122,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 BoolFalseText = "Nei",
             };
 
+            var answerItemLanguage314Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("9241ebd9-5d9d-4646-9531-f52e047ef3f1"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem314.Id,
+                Question = "Er skiltet synleg på avstand utanfor beteningsområdet til kunden?",
+                BoolTrueText = "Ja",
+                BoolFalseText = "Nei",
+            };
+
             var answerItem411 = new AnswerItem
             {
                 Order = 1,
@@ -958,6 +1147,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language1.Id,
                 AnswerItemId = answerItem411.Id,
                 Question = "Hvor mange cm er det fra gulvet og opp til betalingsterminalen?",
+                BoolTrueText = "Mellom 75cm og 130cm over gulvet",
+                BoolFalseText = "Annet, ",
+            };
+
+            var answerItemLanguage411Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("fd3d3290-b415-495d-8c38-bf6c6fb2a679"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem411.Id,
+                Question = "Kor mange cm er det frå golvet og opp til betalingsterminalen?",
                 BoolTrueText = "Mellom 75cm og 130cm over gulvet",
                 BoolFalseText = "Annet, ",
             };
@@ -982,6 +1181,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Question = "Mål i cm",
             };
 
+            var answerItemLanguage412Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("e08eadf6-9f65-4af4-a202-12e24eba3a13"),
+                LanguageItemId = language2.Id,
+                AnswerItemId = answerItem412.Id,
+                Question = "Mål i cm",
+            };
+
             var answerItem413 = new AnswerItem
             {
                 Order = 3,
@@ -994,6 +1201,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 Id = Guid.Parse("2e2e8b32-c7c4-4ffa-b6b7-275a82e5b6af"),
                 LanguageItemId = language1.Id,
+                AnswerItemId = answerItem413.Id,
+                Question = "Bekreft med bilde",
+            };
+
+            var answerItemLanguage413Nn = new AnswerItemLanguage
+            {
+                Id = Guid.Parse("dbf5bc8b-de37-4c68-8219-f2785d832eb3"),
+                LanguageItemId = language2.Id,
                 AnswerItemId = answerItem413.Id,
                 Question = "Bekreft med bilde",
             };
@@ -1056,12 +1271,28 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Det henger ikke gjenstander over kundens betjeningsområde."
             };
 
+            var indicatorOutcomeItemLanguage11Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("880a21aa-fb0f-41e6-b627-f40db33a4b71"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem11.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Beteningsområde til kunden framføre betalingsterminalen er utan hindringar. Det heng ikkje gjenstandar over beteningsområde til kunden."
+            };
+
             var indicatorOutcomeItemLanguage12 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("cf2e7b7c-7fdd-45d1-8140-f6c299805358"),
                 IndicatorOutcomeItemId = indicatorOutcomeItem12.Id,
                 LanguageItemId = language1.Id,
                 OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Gjenstander som henger over kundens betjeningsområde, er minst 220 cm over gulvet."
+            };
+
+            var indicatorOutcomeItemLanguage12Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("6a198dba-d09e-43b3-bd79-8b1733b93912"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem12.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Beteningsområde til kunden framføre betalingsterminalen er utan hindringar. Gjenstandar som heng over beteningsområde til kunden, er minst 220 cm over golvet."
             };
 
             var indicatorOutcomeItemLanguage13 = new IndicatorOutcomeItemLanguage
@@ -1072,12 +1303,28 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Kundens betjeningsområde foran betalingsterminalen er uten hindringer. Gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet."
             };
 
+            var indicatorOutcomeItemLanguage13Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("1d35bc8d-0e41-4532-83ec-c0e7f66406f8"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem13.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Beteningsområde til kunden framføre betalingsterminalen er utan hindringar. Gjenstandar som heng over beteningsområde til kunden, er lågare enn 220 cm over golvet."
+            };
+
             var indicatorOutcomeItemLanguage14 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("5631c088-146b-4df6-98a6-7a7f4e8d6331"),
                 IndicatorOutcomeItemId = indicatorOutcomeItem14.Id,
                 LanguageItemId = language1.Id,
                 OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen. Det henger ikke gjenstander over kundens betjeningsområde."
+            };
+
+            var indicatorOutcomeItemLanguage14Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("db731f0f-830c-48d9-ae42-2583d3c1583e"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem14.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Det finst hindringar i beteningsområde til kunden framføre betalingsterminalen. Det heng ikkje gjenstandar over beteningsområde til kunden."
             };
 
             var indicatorOutcomeItemLanguage15 = new IndicatorOutcomeItemLanguage
@@ -1088,12 +1335,28 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen. Gjenstander som henger over kundens betjeningsområde, er minst 220 cm over gulvet."
             };
 
+            var indicatorOutcomeItemLanguage15Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("7d583641-4a2d-465c-ac49-98f67198be7f"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem15.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Det finst hindringar i beteningsområde til kunden framføre betalingsterminalen. Gjenstandar som heng over beteningsområde til kunden, er minst 220 cm over golvet."
+            };
+
             var indicatorOutcomeItemLanguage16 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("174f9a3a-a5b9-4e00-8fcb-f3d9b8fd215e"),
                 IndicatorOutcomeItemId = indicatorOutcomeItem16.Id,
                 LanguageItemId = language1.Id,
                 OutcomeText = "Det finnes hindringer i kundens betjeningsområde foran betalingsterminalen og gjenstander som henger over kundens betjeningsområde, er lavere enn 220 cm over gulvet."
+            };
+
+            var indicatorOutcomeItemLanguage16Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("cf89bc22-6e6d-4877-b82b-2c77eedc02ca"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem16.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Det finst hindringar i beteningsområde til kunden framføre betalingsterminalen og gjenstandar som heng over beteningsområde til kunden, er lågare enn 220 cm over golvet."
             };
 
             var indicatorOutcomeItem21 = new IndicatorOutcomeItem
@@ -1129,6 +1392,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Det er minst 150 cm mellom betalingsterminalene."
             };
 
+            var indicatorOutcomeItemLanguage21Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("e365b040-2025-4ca0-a91b-957857b00717"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem21.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Det er minst 150 cm mellom betalingsterminalane."
+            };
+
             var indicatorOutcomeItemLanguage22 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("6b3a3de6-d6ff-45a4-8061-6e62d6970747"),
@@ -1137,12 +1408,28 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Betalingsterminalene står for tett."
             };
 
+            var indicatorOutcomeItemLanguage22Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("f98ea509-68e5-4a18-92c0-ce0b3ce58073"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem22.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Betalingsterminalane står for tett."
+            };
+
             var indicatorOutcomeItemLanguage23 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("8bb7a824-82ca-4fbc-bb33-151a38b0a054"),
                 IndicatorOutcomeItemId = indicatorOutcomeItem23.Id,
                 LanguageItemId = language1.Id,
                 OutcomeText = "Betalingsterminalen står ikke på rett linje ved siden av en annen betalingsterminal."
+            };
+
+            var indicatorOutcomeItemLanguage23Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("dd35032d-653e-4117-8146-3e19a478f573"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem23.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Betalingsterminalen står ikkje på rett linje ved sida av ein annan betalingsterminal."
             };
 
             var indicatorOutcomeItem31 = new IndicatorOutcomeItem
@@ -1193,12 +1480,28 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Det finnes et skilt som viser hvor kunden skal betale varene sine. Skiltet er synlig på avstand utenfor kundens betjeningsområde og plassert over området der kunden skal betale varene sine."
             };
 
+            var indicatorOutcomeItemLanguage31Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("8361fd23-d73a-489a-89b7-212d87377b5a"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem31.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Det finst eit skilt som viser kvar kunden skal betale varene sine. Skiltet er synleg på avstand utanfor beteningsområde til kunden og plassert over området der kunden skal betale varene sine."
+            };
+
             var indicatorOutcomeItemLanguage32 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("1b27cdd4-a34b-486c-a5ff-684afa4579e7"),
                 IndicatorOutcomeItemId = indicatorOutcomeItem32.Id,
                 LanguageItemId = language1.Id,
                 OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde."
+            };
+
+            var indicatorOutcomeItemLanguage32Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("6859b4be-dd97-4c59-8c69-618fd03fd528"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem32.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikkje synleg på avstand utanfor beteningsområde til kunden."
             };
 
             var indicatorOutcomeItemLanguage33 = new IndicatorOutcomeItemLanguage
@@ -1209,6 +1512,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Skilt er ikke plassert over området der kunden skal betale varene sine."
             };
 
+            var indicatorOutcomeItemLanguage33Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("4c1c8046-ad7e-4c0d-920f-a3d52e8fedb6"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem33.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Skilt er ikkje plassert over området der kunden skal betale varene sine."
+            };
+
             var indicatorOutcomeItemLanguage34 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("2595a239-44fc-4837-9aee-c6dd9f46d71c"),
@@ -1217,12 +1528,28 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikke synlig på avstand utenfor kundens betjeningsområde. Skilt er ikke plassert over området der kunden skal betale varene sine."
             };
 
+            var indicatorOutcomeItemLanguage34Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("53328236-d9ed-4194-9520-9278dafe0f01"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem34.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Skilt til området der kunden skal betale varene sine, er ikkje synleg på avstand utanfor beteningsområde til kunden."
+            };
+
             var indicatorOutcomeItemLanguage35 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("f6d58cdf-cafa-4892-a847-1a70fa2dd4e2"),
                 IndicatorOutcomeItemId = indicatorOutcomeItem35.Id,
                 LanguageItemId = language1.Id,
                 OutcomeText = "Det finnes ikke et skilt som viser hvor kunden skal betale."
+            };
+
+            var indicatorOutcomeItemLanguage35Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("77a7707b-293d-41b9-b657-886acfe53275"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem35.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Det finst ikkje eit skilt som viser kvar kunden skal betale."
             };
 
             var indicatorOutcomeItem41 = new IndicatorOutcomeItem
@@ -1250,6 +1577,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Betalingsterminalen er mellom 75 og 130 cm over gulvet."
             };
 
+            var indicatorOutcomeItemLanguage41Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("a9665f46-40d8-42b9-b2cf-317e929a9122"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem41.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Betalingsterminalen er mellom 75 og 130 cm over golvet."
+            };
+
             var indicatorOutcomeItemLanguage42 = new IndicatorOutcomeItemLanguage
             {
                 Id = Guid.Parse("840d94f6-0c3c-47d8-bcfd-7d4a148eec06"),
@@ -1258,21 +1593,29 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 OutcomeText = "Betalingsterminalen er ikke mellom 75 og 130 cm over gulvet."
             };
 
+            var indicatorOutcomeItemLanguage42Nn = new IndicatorOutcomeItemLanguage
+            {
+                Id = Guid.Parse("5d415407-52e3-410b-8b88-aa999dae169c"),
+                IndicatorOutcomeItemId = indicatorOutcomeItem42.Id,
+                LanguageItemId = language2.Id,
+                OutcomeText = "Betalingsterminalen er ikkje mellom 75 og 130 cm over golvet."
+            };
+
             modelBuilder.Entity<LanguageItem>().HasData(language1, language2);
             modelBuilder.Entity<TestGroupItem>().HasData(testGroup1, testGroup2, testGroup3);
-            modelBuilder.Entity<TestGroupItemLanguage>().HasData(testGroupItemLanguage1, testGroupItemLanguage2, testGroupItemLanguage3);
+            modelBuilder.Entity<TestGroupItemLanguage>().HasData(testGroupItemLanguage1, testGroupItemLanguage2, testGroupItemLanguage3, testGroupItemLanguage1Nn, testGroupItemLanguage2Nn, testGroupItemLanguage3Nn);
             modelBuilder.Entity<StandardItem>().HasData(standardItem1);
             modelBuilder.Entity<ChapterItem>().HasData(chapterItem11, chapterItem12, chapterItem21, chapterItem31, chapterItem41);
             modelBuilder.Entity<IndicatorItem>().HasData(indicatorItem1, indicatorItem2, indicatorItem3, indicatorItem4);
             modelBuilder.Entity<IndicatorOutcomeItem>().HasData(indicatorOutcomeItem11, indicatorOutcomeItem12, indicatorOutcomeItem13, indicatorOutcomeItem14, indicatorOutcomeItem15, indicatorOutcomeItem16, indicatorOutcomeItem21, indicatorOutcomeItem22, indicatorOutcomeItem23, indicatorOutcomeItem31, indicatorOutcomeItem32, indicatorOutcomeItem33, indicatorOutcomeItem34, indicatorOutcomeItem35, indicatorOutcomeItem41, indicatorOutcomeItem42);
-            modelBuilder.Entity<IndicatorOutcomeItemLanguage>().HasData(indicatorOutcomeItemLanguage11, indicatorOutcomeItemLanguage12, indicatorOutcomeItemLanguage13, indicatorOutcomeItemLanguage14, indicatorOutcomeItemLanguage15, indicatorOutcomeItemLanguage16, indicatorOutcomeItemLanguage21, indicatorOutcomeItemLanguage22, indicatorOutcomeItemLanguage23, indicatorOutcomeItemLanguage31, indicatorOutcomeItemLanguage32, indicatorOutcomeItemLanguage33, indicatorOutcomeItemLanguage34, indicatorOutcomeItemLanguage35, indicatorOutcomeItemLanguage41, indicatorOutcomeItemLanguage42);
+            modelBuilder.Entity<IndicatorOutcomeItemLanguage>().HasData(indicatorOutcomeItemLanguage11, indicatorOutcomeItemLanguage12, indicatorOutcomeItemLanguage13, indicatorOutcomeItemLanguage14, indicatorOutcomeItemLanguage15, indicatorOutcomeItemLanguage16, indicatorOutcomeItemLanguage21, indicatorOutcomeItemLanguage22, indicatorOutcomeItemLanguage23, indicatorOutcomeItemLanguage31, indicatorOutcomeItemLanguage32, indicatorOutcomeItemLanguage33, indicatorOutcomeItemLanguage34, indicatorOutcomeItemLanguage35, indicatorOutcomeItemLanguage41, indicatorOutcomeItemLanguage42, indicatorOutcomeItemLanguage11Nn, indicatorOutcomeItemLanguage12Nn, indicatorOutcomeItemLanguage13Nn, indicatorOutcomeItemLanguage14Nn, indicatorOutcomeItemLanguage15Nn, indicatorOutcomeItemLanguage16Nn, indicatorOutcomeItemLanguage21Nn, indicatorOutcomeItemLanguage22Nn, indicatorOutcomeItemLanguage23Nn, indicatorOutcomeItemLanguage31Nn, indicatorOutcomeItemLanguage32Nn, indicatorOutcomeItemLanguage33Nn, indicatorOutcomeItemLanguage34Nn, indicatorOutcomeItemLanguage35Nn, indicatorOutcomeItemLanguage41Nn, indicatorOutcomeItemLanguage42Nn);
             modelBuilder.Entity<IndicatorTestGroup>().HasData(indicatorTestGroup1, indicatorTestGroup2, indicatorTestGroup3, indicatorTestGroup4);
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
-            modelBuilder.Entity<RequirementItemLanguage>().HasData(requirementItemLanguage1, requirementItemLanguage2, requirementItemLanguage3, requirementItemLanguage4);
+            modelBuilder.Entity<RequirementItemLanguage>().HasData(requirementItemLanguage1, requirementItemLanguage2, requirementItemLanguage3, requirementItemLanguage4, requirementItemLanguage1Nn, requirementItemLanguage2Nn, requirementItemLanguage3Nn, requirementItemLanguage4Nn);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem11, ruleItem12, ruleItem21, ruleItem31, ruleItem41);
             modelBuilder.Entity<RuleItemLanguage>().HasData(ruleItemLanguage11, ruleItemLanguage12, ruleItemLanguage21, ruleItemLanguage31, ruleItemLanguage41, ruleItemLanguage11Nn, ruleItemLanguage12Nn, ruleItemLanguage21Nn, ruleItemLanguage31Nn, ruleItemLanguage41Nn);
             modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem124, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem214, answerItem311, answerItem312, answerItem313, answerItem314, answerItem411, answerItem412, answerItem413);
-            modelBuilder.Entity<AnswerItemLanguage>().HasData(answerItemLanguage111, answerItemLanguage112, answerItemLanguage113, answerItemLanguage124, answerItemLanguage121, answerItemLanguage122, answerItemLanguage123, answerItemLanguage211, answerItemLanguage212, answerItemLanguage213, answerItemLanguage214, answerItemLanguage311, answerItemLanguage312, answerItemLanguage313, answerItemLanguage314, answerItemLanguage411, answerItemLanguage412, answerItemLanguage413);
+            modelBuilder.Entity<AnswerItemLanguage>().HasData(answerItemLanguage111, answerItemLanguage112, answerItemLanguage113, answerItemLanguage124, answerItemLanguage121, answerItemLanguage122, answerItemLanguage123, answerItemLanguage211, answerItemLanguage212, answerItemLanguage213, answerItemLanguage214, answerItemLanguage311, answerItemLanguage312, answerItemLanguage313, answerItemLanguage314, answerItemLanguage411, answerItemLanguage412, answerItemLanguage413, answerItemLanguage111Nn, answerItemLanguage112Nn, answerItemLanguage113Nn, answerItemLanguage124Nn, answerItemLanguage121Nn, answerItemLanguage122Nn, answerItemLanguage123Nn, answerItemLanguage211Nn, answerItemLanguage212Nn, answerItemLanguage213Nn, answerItemLanguage214Nn, answerItemLanguage311Nn, answerItemLanguage312Nn, answerItemLanguage313Nn, answerItemLanguage314Nn, answerItemLanguage411Nn, answerItemLanguage412Nn, answerItemLanguage413Nn);
 
             base.OnModelCreating(modelBuilder);
         }
