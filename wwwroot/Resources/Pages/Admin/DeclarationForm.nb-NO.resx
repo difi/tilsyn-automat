@@ -132,4 +132,7 @@
   <data name="Summary" xml:space="preserve">
     <value>Oppsummering</value>
   </data>
+  <data name="View business information" xml:space="preserve">
+    <value>Vis virksomhetsinformasjon</value>
+  </data>
 </root>
