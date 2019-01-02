@@ -548,8 +548,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             var ruleItemLanguage11 = new RuleItemLanguage
             {
                 Id = Guid.Parse("6ae15ad1-51c2-4d8f-817d-7acf925c5de9"),
-                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Avstander i kundens betjeningsområde. Illustrasjon.' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine.<br />Illustrasjonen viser kundens betjeningsområde for betalingsterminalen. Det er et krav at dette området skal være minst 150 x 150 cm og uten hindringer.<br />Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.<br /></p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Kundens betjeningsområde foran betalingsautomaten. Illustrasjon.' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>",
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Avstander i kundens betjeningsområde. Illustrasjon.' /><p>Kundens betjeningsområde er plassen foran betalingsterminalen, der kundene står når de bruker betalingsterminalen for å betale varene sine, som vist i illustrasjonen over.</p><p>Du skal nå måle opp kundens betjeningsområde i form av et kvadrat. Hensikten med å måle opp området er at du skal få en bedre forståelse av hva du skal sjekke i egenkontrollen.</p><ul><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot venstre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 75 cm mot høyre</li><li>Mål fra kassen/disken. Start på punktet midt foran betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Kundens betjeningsområde foran betalingsautomaten. Illustrasjon.' /><h3>Krav:</h3><p>Kundens betjeningsområde foran betalingsterminalen skal være minst 150 x 150 centimeter. Det skal være uten hindringer.</p><h3>Hensikt:</h3><p>Formålet er at rullestolbrukere kan komme frem til betalingsterminalen og snu rullestolen om det trengs. Hindringer gjør det vanskelig for kunden å komme frem til og bruke betalingsterminalen. En hindring er for eksempel varehyller, stolper, vegger, søppelbøtter, skilt eller benker.</p><p>Om der er mulig, skal du ta bort hindringer i kundens betjeningsområde før du svarer på spørsmålet.</p></div>",
                 LanguageItemId = language1.Id,
+                RuleItemId = ruleItem11.Id
+            };
+
+            var ruleItemLanguage11Nn = new RuleItemLanguage
+            {
+                Id = Guid.Parse("578dad2b-fa8c-4091-bcf3-336bf9fc5999"),
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/01.png' alt='Avstander i kundens betjeningsområde. Illustrasjon.' /><p>Beteningsområdet til kunden er plassen framføre betalingsterminalen, der kundane står når dei brukar betalingsterminalen for å betale varene sine, som vist i illustrasjonen over.</p><p>Du skal no måle opp beteningsområdet til kunden i form av eit kvadrat. Formålet med å måle opp området er at du skal få ei betre forståing av kva du skal sjekke i eigenkontrollen.</p><ul><li>Mål frå kassen/disken. Start på punktet midt framføre betalingsterminalen og mål 75 cm mot venstre</li><li>Mål frå kassen/disken. Start på punktet midt framføre betalingsterminalen og mål 75 cm mot høgre</li><li>Mål frå kassen/disken. Start på punktet midt framføre betalingsterminalen og mål 150 cm ut i lokalet</li></ul></div><div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/11.png' alt='Kundens betjeningsområde foran betalingsautomaten. Illustrasjon.' /><h3>Krav:</h3><p><p>Beteningsområdet til kunden framføre betalingsterminalen skal vere minst 150 x 150 centimeter. Det skal vere utan hindringar.</p><h3>Formål:</h3><p>Formålet er at rullestolbrukarar kan kome fram til betalingsterminalen og snu rullestolen om det trengst. Hindringar gjer det vanskeleg for kunden å kome fram til og bruke betalingsterminalen. Ei hindring er for eksempel varehyller, stolpar, veggar, søppelbøtter, skilt eller benkar.</p><p>Dersom det er mogleg, skal du ta bort hindringar i beteningsområdet til kunden før du svarar på spørsmålet.</p></div>",
+                LanguageItemId = language2.Id,
                 RuleItemId = ruleItem11.Id
             };
 
@@ -566,8 +574,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             var ruleItemLanguage12 = new RuleItemLanguage
             {
                 Id = Guid.Parse("804438bd-ac67-40ff-9168-6814ea843242"),
-                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Gjenstander over betjeningsområdet. Illustrasjon.' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Hindringer kan også henge ned fra taket, som for eksempel skilt, plakater og lamper. Det gjør det vanskelig for høye kunder å komme frem til og bruke betalingsterminalen.</p></div>",
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Gjenstander over betjeningsområdet. Illustrasjon.' /><h3>Krav:</h3><p>Det skal ikke henge gjenstander lavere enn 220 cm ned i kundens betjeningsområde.</p><h3>Hensikt:</h3><p>Formålet er at høye kunder lett skal komme frem til og bruke betalingsterminalen. En hindring er for eksempel l skilt, plakater og lamper som henger ned fra taket.</p></div>",
                 LanguageItemId = language1.Id,
+                RuleItemId = ruleItem12.Id
+            };
+
+            var ruleItemLanguage12Nn = new RuleItemLanguage
+            {
+                Id = Guid.Parse("74eb4727-2bd8-4031-aa84-6d2f31411ea7"),
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/12.png' alt='Gjenstander over betjeningsområdet. Illustrasjon.' /><h3>Krav:</h3><p>Det skal ikkje henge gjenstandar lågare enn 220 cm ned i beteningsområdet til kunden.</p><h3>Formål:</h3><p>Formålet er at høge kundar lett skal kome fram til og bruke betalingsterminalen. Ei hindring er for eksempel skilt, plakatar og lamper som heng ned frå taket.</p></div>",
+                LanguageItemId = language2.Id,
                 RuleItemId = ruleItem12.Id
             };
 
@@ -584,8 +600,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             var ruleItemLanguage21 = new RuleItemLanguage
             {
                 Id = Guid.Parse("e369820b-ebcd-488e-9216-477d363f18ed"),
-                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Krav på avstand mellom betalingsautomater. Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, mål avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.<br /></p></div>",
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Krav på avstand mellom betalingsautomater. Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller flere betalingsterminaler står ved siden av hverandre på rett linje, skal det være minst 150 centimeter fra midten av betalingsterminalen til midten av neste betalingsterminal. NB Kravet gjelder ikke der betalingsterminalene står overfor hverandre.</p><h3>Hensikt: </h3><p>Formålet er at betalingsterminaler som står ved siden av hverandre, kan brukes samtidig, og at kundene som skal betale varene sine, kan komme seg bort uten å forstyrre hverandre.<br />Dersom det er flere betalingsterminaler som står ved siden av hverandre på rett linje, skal du måle avstanden til den nærmeste.<br />Utgangspunktet for målingen er midt foran på betalingsterminalen.</p></div>",
                 LanguageItemId = language1.Id,
+                RuleItemId = ruleItem21.Id
+            };
+
+            var ruleItemLanguage21Nn = new RuleItemLanguage
+            {
+                Id = Guid.Parse("63b58e58-cf92-4f17-b5e4-99a799d5d979"),
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/21.png' alt='Krav på avstand mellom betalingsautomater. Illustrasjon' /><h3>Krav: </h3><p>Dersom to eller fleire betalingsterminalar står ved sidan av kvarandre på rett linje, skal det vere minst 150 centimeter frå midten av betalingsterminalen til midten av neste betalingsterminal. NB: Kravet gjeld ikkje der betalingsterminalane står overfor kvarandre.</p><h3>Formål:</h3><p>Formålet er at betalingsterminalar som står ved sida av kvarandre, kan brukast samtidig, og at kundane som skal betale varene sine, kan kome seg bort utan å forstyrre kvarandre.<br />Dersom det er fleire betalingsterminalar som står ved sidan av kvarandre på rett linje, skal du måle avstanden til den nærmaste.<br />Utgangspunktet for målinga er midt framme på betalingsterminalen.</p></div>",
+                LanguageItemId = language2.Id,
                 RuleItemId = ruleItem21.Id
             };
 
@@ -602,8 +626,16 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             var ruleItemLanguage31 = new RuleItemLanguage
             {
                 Id = Guid.Parse("55294d7b-6af0-4399-8a5c-776aa13e3a29"),
-                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Skilt over betalingsområdet. Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er<br /></p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>",
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Skilt over betalingsområdet. Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasseres over betalingsterminalen. Skiltet skal være synlig på avstand, utenfor kundens betjeningsområde.</p><h3>Hensikt: </h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal være plassert over området der kunden skal betale varene sine. Det kan for eksempel være over kassen eller disken der betalingsterminalen står.<br />Eksempler på tekst på skilt er</p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontanter</li><li>Nummer på kassen</li></ul></div>",
                 LanguageItemId = language1.Id,
+                RuleItemId = ruleItem31.Id
+            };
+
+            var ruleItemLanguage31Nn = new RuleItemLanguage
+            {
+                Id = Guid.Parse("3217ae5f-047d-44c9-8615-be563b296639"),
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/31.png' alt='Skilt over betalingsområdet. Illustrasjon' /><h3>Krav:</h3><p>Skiltet skal plasserast over betalingsterminalen. Skiltet skal vere synleg på avstand, utanfor beteningsområdet til kunden.</p><h3>Formål:</h3><p>Formålet er at kunden lett skal finne fram til betalingsterminalen.<br />Skiltet skal vere plassert over området der kunden skal betale varene sine. Det kan for eksempel vere over kassa eller disken der betalingsterminalen står.<br />Eksempel på tekst på skilt er</p><ul><li>Kasse</li><li>Betal her</li><li>Kort og kontantar</li><li>Nummer på kassa</li></ul></div>",
+                LanguageItemId = language2.Id,
                 RuleItemId = ruleItem31.Id
             };
 
@@ -622,6 +654,14 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("d8c7e031-b2eb-4906-8c4d-c1d5f3266bbc"),
                 HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Høyden på betjeningskomponenter. Illustrasjon' /><h3>Krav: </h3><p>Høyden på betjeningskomponenter som skjerm og tastatur skal være mellom 75 centimeter og 130 centimeter over gulvet.</p><h3>Hensikt:</h3><p>Formålet er at betalingsterminalen skal være enkel å nå og bruke, både for kunder som står og kunder som sitter, f.eks. rullestolbrukere.<br />Dersom du kan justere høyden på betalingsterminalen, skal du flytte den til mellom 75 og 130 cm over gulvet før du måler.<br />Utgangspunktet for målingen er midt på betalingsterminalen.</p></div>",
                 LanguageItemId = language1.Id,
+                RuleItemId = ruleItem41.Id
+            };
+
+            var ruleItemLanguage41Nn = new RuleItemLanguage
+            {
+                Id = Guid.Parse("9f7dff24-12db-40b9-9803-9f9af82058d1"),
+                HelpText = "<div class='xlarge-6 large-6 small-12 small-centered text-center end columns'></div><div class='medium-11 medium-centered small-12 columns'><img src='/images/illustrations/41.png' alt='Høyden på betjeningskomponenter. Illustrasjon' /><h3>Krav: </h3><p>Høgda på beteningskomponentar som skjerm og tastatur skal vere mellom 75 centimeter og 130 centimeter over golvet.</p><h3>Formål:</h3><p>Formålet er at betalingsterminalen skal vere enkel å nå og bruke, både for kundar som står og kundar som sit, f.eks. rullestolbrukarar.<br />Dersom du kan justere høgda på betalingsterminalen, skal du flytte han til mellom 75 og 130 cm over golvet før du måler.<br />Utgangspunktet for målinga er midt på betalingsterminalen.</p></div>",
+                LanguageItemId = language2.Id,
                 RuleItemId = ruleItem41.Id
             };
 
@@ -1230,7 +1270,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             modelBuilder.Entity<RequirementItem>().HasData(requirementItem1, requirementItem2, requirementItem3, requirementItem4);
             modelBuilder.Entity<RequirementItemLanguage>().HasData(requirementItemLanguage1, requirementItemLanguage2, requirementItemLanguage3, requirementItemLanguage4);
             modelBuilder.Entity<RuleItem>().HasData(ruleItem11, ruleItem12, ruleItem21, ruleItem31, ruleItem41);
-            modelBuilder.Entity<RuleItemLanguage>().HasData(ruleItemLanguage11, ruleItemLanguage12, ruleItemLanguage21, ruleItemLanguage31, ruleItemLanguage41);
+            modelBuilder.Entity<RuleItemLanguage>().HasData(ruleItemLanguage11, ruleItemLanguage12, ruleItemLanguage21, ruleItemLanguage31, ruleItemLanguage41, ruleItemLanguage11Nn, ruleItemLanguage12Nn, ruleItemLanguage21Nn, ruleItemLanguage31Nn, ruleItemLanguage41Nn);
             modelBuilder.Entity<AnswerItem>().HasData(answerItem111, answerItem112, answerItem113, answerItem124, answerItem121, answerItem122, answerItem123, answerItem211, answerItem212, answerItem213, answerItem214, answerItem311, answerItem312, answerItem313, answerItem314, answerItem411, answerItem412, answerItem413);
             modelBuilder.Entity<AnswerItemLanguage>().HasData(answerItemLanguage111, answerItemLanguage112, answerItemLanguage113, answerItemLanguage124, answerItemLanguage121, answerItemLanguage122, answerItemLanguage123, answerItemLanguage211, answerItemLanguage212, answerItemLanguage213, answerItemLanguage214, answerItemLanguage311, answerItemLanguage312, answerItemLanguage313, answerItemLanguage314, answerItemLanguage411, answerItemLanguage412, answerItemLanguage413);
 

@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Choose from the list which manufacturer and model payment terminal you should check" xml:space="preserve">
-    <value>Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere</value>
+    <value>Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.</value>
   </data>
   <data name="Describe which payment terminal you choose to control" xml:space="preserve">
-    <value>Beskriv hvilken betalingsterminal du velger å kontrollere</value>
+    <value>Beskriv hvilken betalingsterminal du velger å kontrollere.</value>
   </data>
   <data name="Deviation or Notice" xml:space="preserve">
     <value>Avvik eller merknad</value>
@@ -133,7 +133,7 @@
     <value>Har en automat</value>
   </data>
   <data name="Here you can, for example, type where the payment terminal is located. &lt;br /&gt; Examples are cash register 1, closest to the the entrance / exit, to the left of the the entrance / exit." xml:space="preserve">
-    <value>Her kan du for eksempel skrive hvor betalingsterminalen er plassert. &lt;br /&gt;Eksempler er kasse 1, nærmest inngangen/utgangen, den til venstre for Inngangen/utgangen.</value>
+    <value>Her kan du for eksempel skrive hvor betalingsterminalen er plassert.&lt;br /&gt;Eksempler er kasse 1, nærmest inngangen/utgangen, den til venstre for Inngangen/utgangen.</value>
   </data>
   <data name="Manufacturer and name of automat" xml:space="preserve">
     <value>Produsent og navn på automat</value>
@@ -142,10 +142,10 @@
     <value>Formål med test</value>
   </data>
   <data name="Take a close-up of the payment terminal you are going to register information about" xml:space="preserve">
-    <value>Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om</value>
+    <value>Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om</value>
   </data>
   <data name="Take a survey of the payment terminal to register information about. The image will show where the payment terminal is located" xml:space="preserve">
-    <value>Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om. Bildet skal vise hvor betalingsterminalen er plassert</value>
+    <value>Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.</value>
   </data>
   <data name="The image should show where the payment terminal is located. The image should show the entire payment terminal and the area in front of the terminal." xml:space="preserve">
     <value>Bildet skal vise hvor betalingsterminalen er plassert. Bildet skal vise hele betalingsterminalen og området foran terminalen.</value>
