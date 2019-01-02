@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,105 +59,102 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="1.1" xml:space="preserve">
-    <value>Vel frå lista kva produsent og modell betalingsterminal du skal kontrollere</value>
-  </data>
-  <data name="Choose from the list which manufacturer and model payment terminal you should check" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Choose from the list which manufacturer and model payment terminal you should check" xml:space="preserve">
     <value>Vel frå lista kva produsent og modell betalingsterminal du skal kontrollere.</value>
   </data>
-  <data name="Describe which payment terminal you choose to control" xml:space="preserve">
+	<data name="Describe which payment terminal you choose to control" xml:space="preserve">
     <value>Beskriv kva for ein betalingsterminal du vel å kontrollere.</value>
   </data>
-  <data name="Deviation or Notice" xml:space="preserve">
+	<data name="Deviation or Notice" xml:space="preserve">
     <value>Avvik eller merknader</value>
   </data>
-  <data name="Difi needs to know which payment terminal you check and submit information about." xml:space="preserve">
+	<data name="Difi needs to know which payment terminal you check and submit information about." xml:space="preserve">
     <value>Difi treng å vite kva slags betalingsterminal du kontrollerer og sender inn opplysningar om.</value>
   </data>
-  <data name="Has a machine" xml:space="preserve">
+	<data name="Has a machine" xml:space="preserve">
     <value>Har ein automat</value>
   </data>
-  <data name="Here you can, for example, type where the payment terminal is located. &lt;br /&gt; Examples are cash register 1, closest to the the entrance / exit, to the left of the the entrance / exit." xml:space="preserve">
+	<data name="Here you can, for example, type where the payment terminal is located. &lt;br /&gt; Examples are cash register 1, closest to the the entrance / exit, to the left of the the entrance / exit." xml:space="preserve">
     <value>Her kan du for eksempel skrive kvar betalingsterminalen er plassert. &lt;br/&gt;
 Eksempel er kasse 1, nærmast inngangen/utgangen, den til venstre for inngangen/utgangen.</value>
   </data>
-  <data name="Manufacturer and name of automat" xml:space="preserve">
+	<data name="Manufacturer and name of automat" xml:space="preserve">
     <value>Produsent og namn på automaten</value>
   </data>
-  <data name="Purpose of test" xml:space="preserve">
+	<data name="Purpose of test" xml:space="preserve">
     <value>Formål med testen</value>
   </data>
-  <data name="Take a close-up of the payment terminal you are going to register information about" xml:space="preserve">
+	<data name="Take a close-up of the payment terminal you are going to register information about" xml:space="preserve">
     <value>Ta eit nærbilde av betalingsterminalen du skal registrere opplysningar om.</value>
   </data>
-  <data name="Take a survey of the payment terminal to register information about. The image will show where the payment terminal is located" xml:space="preserve">
+	<data name="Take a survey of the payment terminal to register information about. The image will show where the payment terminal is located" xml:space="preserve">
     <value>Ta eit oversiktsbilde av betalingsterminalen du skal registrere opplysningar om.</value>
   </data>
-  <data name="The image should show where the payment terminal is located. The image should show the entire payment terminal and the area in front of the terminal." xml:space="preserve">
+	<data name="The image should show where the payment terminal is located. The image should show the entire payment terminal and the area in front of the terminal." xml:space="preserve">
     <value>Bildet skal vise kvar betalingsterminalen er plassert. Bildet skal vise heile betalingsterminalen og området framføre terminalen.</value>
   </data>
-  <data name="Type of machine" xml:space="preserve">
+	<data name="Type of machine" xml:space="preserve">
     <value>Type automat</value>
   </data>
-  <data name="Type of test" xml:space="preserve">
+	<data name="Type of test" xml:space="preserve">
     <value>Type ikt-løysing</value>
   </data>
 </root>

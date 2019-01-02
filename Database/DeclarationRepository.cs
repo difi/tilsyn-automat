@@ -66,9 +66,9 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (item != null)
                 {
-                    var testGroupLanguageList = dbContext.TestGroupLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
-                    var ruleLanguageList = dbContext.RuleLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
-                    var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang);
+                    var testGroupLanguageList = dbContext.TestGroupLanguageList.Include(x => x.LanguageItem).FromCache().Where(x => x.LanguageItem.Name == currentLang).ToList();
+                    var ruleLanguageList = dbContext.RuleLanguageList.Include(x => x.LanguageItem).FromCache().Where(x => x.LanguageItem.Name == currentLang).ToList();
+                    var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).FromCache().Where(x => x.LanguageItem.Name == currentLang).ToList();
 
                     foreach (var declarationIndicatorGroup in item.IndicatorList)
                     {

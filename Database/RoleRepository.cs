@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Difi.Sjalvdeklaration.Database.DbContext;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Z.EntityFramework.Plus;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -29,7 +30,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.RoleList.Include(x => x.UserList).OrderBy(x => x.Name).AsNoTracking().ToList();
+                var list = dbContext.RoleList.Include(x => x.UserList).OrderBy(x => x.Name).AsNoTracking().FromCache().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;

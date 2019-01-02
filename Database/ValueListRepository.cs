@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Difi.Sjalvdeklaration.Database.DbContext;
 using Microsoft.EntityFrameworkCore;
+using Z.EntityFramework.Plus;
 
 namespace Difi.Sjalvdeklaration.Database
 {
@@ -29,7 +30,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfMachineList.AsNoTracking().OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfMachineList.AsNoTracking().OrderBy(x => x.Text).FromCache().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -48,7 +49,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfTestList.AsNoTracking().OrderBy(x => x.Text).ToList();
+                var list = dbContext.VlTypeOfTestList.AsNoTracking().OrderBy(x => x.Text).FromCache().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -67,7 +68,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfSupplierAndVersionList.AsNoTracking().OrderBy(x => x.Id).ToList();
+                var list = dbContext.VlTypeOfSupplierAndVersionList.AsNoTracking().OrderBy(x => x.Id).FromCache().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -86,7 +87,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlTypeOfStatus.AsNoTracking().OrderBy(x => x.Id).ToList();
+                var list = dbContext.VlTypeOfStatus.AsNoTracking().OrderBy(x => x.Id).FromCache().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -105,7 +106,7 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
-                var list = dbContext.VlPurposeOfTest.AsNoTracking().OrderBy(x => x.Id).ToList();
+                var list = dbContext.VlPurposeOfTest.AsNoTracking().OrderBy(x => x.Id).FromCache().ToList();
 
                 result.Data = (T)list;
                 result.Succeeded = true;
