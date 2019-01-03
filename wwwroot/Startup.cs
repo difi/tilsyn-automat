@@ -16,7 +16,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
+using System.IO;
+using System.Reflection;
 using Cache;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Difi.Sjalvdeklaration.wwwroot
 {
@@ -117,6 +120,15 @@ namespace Difi.Sjalvdeklaration.wwwroot
             });
 
             services.AddMemoryCache();
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info { Title = "Difi - Egenkontroll", Version = "v1" });
+                options.OperationFilter<ApiHeaderOperationFilter>();
+
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, "Difi.Sjalvdeklaration.Api.xml");
+                options.IncludeXmlComments(xmlPath);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -149,6 +161,13 @@ namespace Difi.Sjalvdeklaration.wwwroot
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Difi - Egenkontroll V1");
+            });
+
             app.UseMvc();
         }
     }

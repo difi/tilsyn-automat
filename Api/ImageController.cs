@@ -6,8 +6,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class ImageController : ControllerBase
     {
         private readonly IImageRepository imageRepository;

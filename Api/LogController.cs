@@ -9,8 +9,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class LogController : ControllerBase
     {
         private readonly ILogRepository logRepository;
@@ -20,15 +21,6 @@ namespace Difi.Sjalvdeklaration.Api
         {
             this.logRepository = logRepository;
             this.configuration = configuration;
-        }
-
-        [HttpPost]
-        [Route("Add")]
-        public ApiResult Add(LogItem logItem)
-        {
-            HandleRequest();
-
-            return logRepository.Add(logItem);
         }
 
         [HttpGet]
@@ -54,6 +46,15 @@ namespace Difi.Sjalvdeklaration.Api
             };
 
             return logRepository.GetByFilter<List<LogItem>>(filterModel);
+        }
+
+        [HttpPost]
+        [Route("Add")]
+        public ApiResult Add(LogItem logItem)
+        {
+            HandleRequest();
+
+            return logRepository.Add(logItem);
         }
 
         private void HandleRequest()

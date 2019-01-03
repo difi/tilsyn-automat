@@ -8,7 +8,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
+    [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class ValueListController : ControllerBase
     {
         private readonly IValueListRepository valueListRepository;

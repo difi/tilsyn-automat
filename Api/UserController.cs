@@ -8,8 +8,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
@@ -66,6 +67,15 @@ namespace Difi.Sjalvdeklaration.Api
             return userRepository.Login<UserItem>(token, socialSecurityNumber);
         }
 
+        [HttpGet]
+        [Route("Remove/{id}")]
+        public ApiResult Remove(string id)
+        {
+            HandleRequest();
+
+            return userRepository.Remove(Guid.Parse(id));
+        }
+
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(UserAddItem addUserObject)
@@ -82,15 +92,6 @@ namespace Difi.Sjalvdeklaration.Api
             HandleRequest();
 
             return userRepository.Update(addUserObject.UserItem, addUserObject.RoleList);
-        }
-
-        [HttpGet]
-        [Route("Remove/{id}")]
-        public ApiResult Remove(string id)
-        {
-            HandleRequest();
-
-            return userRepository.Remove(Guid.Parse(id));
         }
 
         private void HandleRequest()

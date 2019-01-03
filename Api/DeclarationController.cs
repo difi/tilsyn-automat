@@ -11,8 +11,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class DeclarationController : ControllerBase
 
     {
@@ -77,6 +78,24 @@ namespace Difi.Sjalvdeklaration.Api
             return declarationRepository.GetOutcomeDataList<List<OutcomeData>>(id);
         }
 
+        [HttpGet]
+        [Route("SendIn/{id}/{companyId}")]
+        public ApiResult SendIn(Guid id, Guid companyId)
+        {
+            HandleRequest();
+
+            return declarationRepository.SendIn(id, companyId);
+        }
+
+        [HttpGet]
+        [Route("HaveMachine/{id}/{companyId}/{haveMachine}")]
+        public ApiResult HaveMachine(Guid id, Guid companyId, bool haveMachine)
+        {
+            HandleRequest();
+
+            return declarationRepository.HaveMachine(id, companyId, haveMachine);
+        }
+
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(DeclarationItem declarationItem)
@@ -102,24 +121,6 @@ namespace Difi.Sjalvdeklaration.Api
             HandleRequest();
 
             return declarationRepository.Save<DeclarationSaveResult>(declarationSave.Id, declarationSave.CompanyId, declarationSave.DeclarationTestItem);
-        }
-
-        [HttpGet]
-        [Route("SendIn/{id}/{companyId}")]
-        public ApiResult SendIn(Guid id, Guid companyId)
-        {
-            HandleRequest();
-
-            return declarationRepository.SendIn(id, companyId);
-        }
-
-        [HttpGet]
-        [Route("HaveMachine/{id}/{companyId}/{haveMachine}")]
-        public ApiResult HaveMachine(Guid id, Guid companyId, bool haveMachine)
-        {
-            HandleRequest();
-
-            return declarationRepository.HaveMachine(id, companyId, haveMachine);
         }
 
         [HttpPost]
