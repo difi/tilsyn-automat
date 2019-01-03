@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -12,10 +13,12 @@ namespace Difi.Sjalvdeklaration.Api
     public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
+        private readonly IConfiguration configuration;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository, IConfiguration configuration)
         {
             this.userRepository = userRepository;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -92,6 +95,11 @@ namespace Difi.Sjalvdeklaration.Api
 
         private void HandleRequest()
         {
+            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
+            {
+                throw new Exception("Wrong ApiKey!");
+            }
+
             userRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }

@@ -4,6 +4,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -11,10 +12,12 @@ namespace Difi.Sjalvdeklaration.Api
     public class ValueListController : ControllerBase
     {
         private readonly IValueListRepository valueListRepository;
+        private readonly IConfiguration configuration;
 
-        public ValueListController(IValueListRepository valueListRepository)
+        public ValueListController(IValueListRepository valueListRepository, IConfiguration configuration)
         {
             this.valueListRepository = valueListRepository;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -64,8 +67,12 @@ namespace Difi.Sjalvdeklaration.Api
 
         private void HandleRequest()
         {
+            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
+            {
+                throw new Exception("Wrong ApiKey!");
+            }
+
             valueListRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
-
     }
 }

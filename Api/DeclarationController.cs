@@ -7,6 +7,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
 using Difi.Sjalvdeklaration.Shared.Declaration;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -16,10 +17,12 @@ namespace Difi.Sjalvdeklaration.Api
 
     {
         private readonly IDeclarationRepository declarationRepository;
+        private readonly IConfiguration configuration;
 
-        public DeclarationController(IDeclarationRepository declarationRepository)
+        public DeclarationController(IDeclarationRepository declarationRepository, IConfiguration configuration)
         {
             this.declarationRepository = declarationRepository;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -123,6 +126,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("AutoSave/{id}/{companyId}")]
         public ApiResult<DeclarationSaveResult> AutoSave(Guid id, Guid companyId, [FromBody]IDictionary<string, string> data, List<DeclarationIndicatorGroup> indicatorList)
         {
+            Request.Headers.Add("ApiKey", configuration["Api:Key"]);
+
+            HandleRequest();
+
             var declarationItem = declarationRepository.Get<DeclarationItem>(id).Data;
             var declarationTestItem = new DeclarationTestHelper().CreateDeclarationTestItem(data, id, declarationItem.IndicatorList);
 
@@ -138,6 +145,11 @@ namespace Difi.Sjalvdeklaration.Api
 
         private void HandleRequest()
         {
+            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
+            {
+                throw new Exception("Wrong ApiKey!");
+            }
+
             declarationRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
             declarationRepository.SetCurrentLang(Request.Headers["Lang"]);
         }

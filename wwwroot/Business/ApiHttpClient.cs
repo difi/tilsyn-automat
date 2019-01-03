@@ -39,9 +39,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
         public async Task<ApiResult<T>> Get<T>(string url)
         {
-            AddUserGuidAndLang();
-
-            httpClient.DefaultRequestHeaders.Remove("Authorization");
+            AddHeaders();
 
             var responseMessage = await httpClient.GetAsync(configuration["ApiBaseUrl"] + url);
 
@@ -62,9 +60,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
         public async Task<T> Post<T>(string url, object jsonObject)
         {
-            AddUserGuidAndLang();
-
-            httpClient.DefaultRequestHeaders.Remove("Authorization");
+            AddHeaders();
 
             var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + url, jsonObject.AsJsonStringContent());
 
@@ -81,6 +77,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
         public async Task<T> PostWithAuthorization<T>(string url, string authorizationType, string authorizationKey, StringContent stringContent)
         {
             httpClient.DefaultRequestHeaders.Remove("UserGuid");
+            httpClient.DefaultRequestHeaders.Remove("Lang");
+            httpClient.DefaultRequestHeaders.Remove("ApiKey");
             httpClient.DefaultRequestHeaders.Remove("Authorization");
 
             AddAuthorization(authorizationType, authorizationKey);
@@ -99,7 +97,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
         public async void LogError(Exception exception, object callParameter1 = null, object callParameter2 = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
         {
-            httpClient.DefaultRequestHeaders.Remove("Authorization");
+            AddHeaders();
 
             var userId = Guid.Empty;
             var claims = httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.PrimarySid);
@@ -130,8 +128,10 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
             httpClient.DefaultRequestHeaders.Add("Authorization", $"{authorizationType} {authorizationKey}");
         }
 
-        private void AddUserGuidAndLang()
+        private void AddHeaders()
         {
+            httpClient.DefaultRequestHeaders.Remove("Authorization");
+
             var userId = Guid.Empty;
             var claims = httpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.PrimarySid);
 
@@ -145,6 +145,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             httpClient.DefaultRequestHeaders.Remove("Lang");
             httpClient.DefaultRequestHeaders.Add("Lang", CultureInfo.CurrentCulture.Name);
+
+            httpClient.DefaultRequestHeaders.Remove("ApiKey");
+            httpClient.DefaultRequestHeaders.Add("ApiKey", configuration["Api:Key"]);
         }
     }
 }

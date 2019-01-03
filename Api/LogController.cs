@@ -5,6 +5,7 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -13,16 +14,20 @@ namespace Difi.Sjalvdeklaration.Api
     public class LogController : ControllerBase
     {
         private readonly ILogRepository logRepository;
+        private readonly IConfiguration configuration;
 
-        public LogController(ILogRepository logRepository)
+        public LogController(ILogRepository logRepository, IConfiguration configuration)
         {
             this.logRepository = logRepository;
+            this.configuration = configuration;
         }
 
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(LogItem logItem)
         {
+            HandleRequest();
+
             return logRepository.Add(logItem);
         }
 
@@ -30,6 +35,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Get/{id}")]
         public ApiResult<LogItem> Get(Guid id)
         {
+            HandleRequest();
+
             return logRepository.Get<LogItem>(id);
         }
 
@@ -37,6 +44,8 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetByFilter/{fromDate}/{toDate}/{succeeded}")]
         public ApiResult<List<LogItem>> GetByFilter(long fromDate, long toDate, int succeeded)
         {
+            HandleRequest();
+
             var filterModel = new FilterModel
             {
                 FromDate = new DateTime(fromDate),
@@ -45,6 +54,14 @@ namespace Difi.Sjalvdeklaration.Api
             };
 
             return logRepository.GetByFilter<List<LogItem>>(filterModel);
+        }
+
+        private void HandleRequest()
+        {
+            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
+            {
+                throw new Exception("Wrong ApiKey!");
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -10,10 +11,12 @@ namespace Difi.Sjalvdeklaration.Api
     public class ImageController : ControllerBase
     {
         private readonly IImageRepository imageRepository;
+        private readonly IConfiguration configuration;
 
-        public ImageController(IImageRepository imageRepository)
+        public ImageController(IImageRepository imageRepository, IConfiguration configuration)
         {
             this.imageRepository = imageRepository;
+            this.configuration = configuration;
         }
 
         [HttpPost]
@@ -27,6 +30,11 @@ namespace Difi.Sjalvdeklaration.Api
 
         private void HandleRequest()
         {
+            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
+            {
+                throw new Exception("Wrong ApiKey!");
+            }
+
             imageRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }

@@ -222,6 +222,7 @@ function AutoSave() {
 
     function setHeader(xhr) {
         xhr.setRequestHeader("UserGuid", $("#DeclarationForm").data("userid"));
+        xhr.setRequestHeader("Lang", $("#DeclarationForm").data("lang"));
     }
 
     function toUpperCaseFirst(string) {

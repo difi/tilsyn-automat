@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Microsoft.Extensions.Configuration;
 
 namespace Difi.Sjalvdeklaration.Api
 {
@@ -13,10 +14,12 @@ namespace Difi.Sjalvdeklaration.Api
     public class CompanyController : ControllerBase
     {
         private readonly ICompanyRepository companyRepository;
+        private readonly IConfiguration configuration;
 
-        public CompanyController(ICompanyRepository companyRepository)
+        public CompanyController(ICompanyRepository companyRepository, IConfiguration configuration)
         {
             this.companyRepository = companyRepository;
+            this.configuration = configuration;
         }
 
         [HttpGet]
@@ -111,6 +114,11 @@ namespace Difi.Sjalvdeklaration.Api
 
         private void HandleRequest()
         {
+            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
+            {
+                throw new Exception("Wrong ApiKey!");
+            }
+
             companyRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }
