@@ -133,6 +133,6 @@
     <value>Send inn</value>
   </data>
   <data name="To submit, you must first answer all questions and add all photos" xml:space="preserve">
-    <value>For å kunne sende inn, må du først svare på alle spørsmålene og legge til alle bilder</value>
+    <value>For å kunne sende inn, må du først fullføre egenkontrollen ved å svare på alle spørsmålene og legge til alle bilder.</value>
   </data>
 </root>
