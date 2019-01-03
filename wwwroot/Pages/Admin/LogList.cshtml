@@ -55,7 +55,7 @@
     </div>
 </form>
 
-@if (Model.LogList != null)
+@if (Model.LogList != null && Model.UserList!=null && Model.CompanyList!=null)
 {
     <table class="responsive-table table jsLogTableSort">
         <caption>
@@ -67,6 +67,7 @@
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Class)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Function)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.UserId)</th>
+                <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.CompanyId)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</th>
                 <th scope="col">@Html.DisplayNameFor(x => x.LocalizationItem.Time)</th>
             </tr>
@@ -90,6 +91,10 @@
 
                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.UserId)">
                     @item.UserItem.Name
+                </td>
+                
+                <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.CompanyId)">
+                    @item.CompanyItem.Name
                 </td>
 
                 <td data-th="@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)">

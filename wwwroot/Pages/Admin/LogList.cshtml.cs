@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
@@ -24,6 +25,8 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         public List<LogItem> LogList { get; set; }
 
         public List<UserItem> UserList { get; set; }
+
+        public List<CompanyItem> CompanyList { get; set; }
 
         public LogItem LocalizationItem { get; set; }
 
@@ -68,17 +71,25 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 var resultLog = await apiHttpClient.Get<List<LogItem>>("/api/Log/GetByFilter/" + FilterModel.FromDate.Ticks + "/" + FilterModel.ToDate.Ticks + "/" + FilterModel.Succeeded);
                 var resultUser = await apiHttpClient.Get<List<UserItem>>("/api/User/GetAll");
+                var resultCompany = await apiHttpClient.Get<List<CompanyItem>>("/api/Company/GetAll");
 
-                if (resultLog.Succeeded && resultUser.Succeeded)
+                if (resultLog.Succeeded && resultUser.Succeeded && resultCompany.Succeeded)
                 {
                     LogList = resultLog.Data;
                     UserList = resultUser.Data;
+                    CompanyList = resultCompany.Data;
 
-                    var noUser = new UserItem
+                    UserList.Add(new UserItem
                     {
                         Id = Guid.Empty,
                         Name = localizer["Not logged in"]
-                    };
+                    });
+
+                    CompanyList.Add(new CompanyItem
+                    {
+                        Id = Guid.Empty,
+                        Name = ""
+                    });
 
                     var unkonwnUser = new UserItem
                     {
@@ -86,23 +97,31 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                         Name = localizer["Unknown"]
                     };
 
-                    UserList.Add(noUser);
+                    var unkonwnCompany = new CompanyItem()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = localizer["Unknown"]
+                    };
 
                     foreach (var logItem in LogList)
                     {
                         var user = UserList.SingleOrDefault(x => x.Id == logItem.UserId);
 
                         logItem.UserItem = user ?? unkonwnUser;
+
+                        var company = CompanyList.SingleOrDefault(x => x.Id == logItem.CompanyId);
+
+                        logItem.CompanyItem = company ?? unkonwnCompany;
                     }
 
                     return Page();
                 }
 
-                return await errorHandler.View(this, null, !resultLog.Succeeded ? resultLog.Exception : resultUser.Exception);
+                return await errorHandler.View(this, null, !resultLog.Succeeded ? resultLog.Exception : !resultUser.Succeeded ? resultUser.Exception : resultCompany.Exception);
             }
             catch (Exception exception)
             {
-                return await errorHandler.Log(this, OnGetAsync(), exception);
+                return await errorHandler.Log(this, null, exception);
             }
         }
 

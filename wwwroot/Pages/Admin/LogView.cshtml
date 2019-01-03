@@ -22,6 +22,9 @@
 
             <dt>@Html.DisplayNameFor(x => x.LocalizationItem.UserId) @Html.DisplayNameFor(x => x.LocalizationUserItem.Name)</dt>
             <dd>@Model.UserItem?.Name</dd>
+            
+            <dt>@Html.DisplayNameFor(x => x.LocalizationItem.CompanyId)</dt>
+            <dd>@Model.CompanyItem?.Name</dd>
 
             <dt>@Html.DisplayNameFor(x => x.LocalizationItem.ResultSucceeded)</dt>
             <dd>@(Model.LogItem.ResultSucceeded ? "Ja" : "Nei")</dd>

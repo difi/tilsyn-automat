@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 
@@ -10,7 +11,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
 {
     public class LogItem
     {
-        public LogItem(Stopwatch stopwatch, Guid userId, ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
+        public LogItem(Stopwatch stopwatch, Guid userId, Guid companyId, ApiResult apiResult = null, object callParameter1 = null, object callParameter2 = null, object resultString = null, [CallerMemberName] string callerFunctionName = null, [CallerFilePath] string callerFileName = null)
         {
             try
             {
@@ -35,6 +36,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
                 }
 
                 UserId = userId;
+                CompanyId = companyId;
 
                 if (apiResult != null)
                 {
@@ -76,6 +78,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
         [Display(Name = "User")]
         public Guid UserId { get; set; }
 
+        [Display(Name = "Company")]
+        public Guid CompanyId { get; set; }
+
         [Display(Name = "Created date")]
         public DateTime Created { get; set; }
 
@@ -108,5 +113,8 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Log
 
         [NotMapped]
         public UserItem UserItem { get; set; }
+
+        [NotMapped]
+        public CompanyItem CompanyItem { get; set; }
     }
 }

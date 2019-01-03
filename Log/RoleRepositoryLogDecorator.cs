@@ -45,7 +45,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, Guid.Empty, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;

@@ -38,7 +38,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, imageItemBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, Guid.Empty, result, imageItemBefore));
             }
 
             return result;

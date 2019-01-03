@@ -44,7 +44,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds> LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), id, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, id, result.GetApiResutlt(), id, null, result.Data));
             }
 
             return result;
@@ -56,7 +56,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), corporateIdentityNumber, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, Guid.Empty, result.GetApiResutlt(), corporateIdentityNumber, null, result.Data));
             }
 
             return result;
@@ -68,7 +68,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogGetSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result.GetApiResutlt(), null, null, result.Data));
+                logRepository.Add(new LogItem(stopwatch, userId, Guid.Empty, result.GetApiResutlt(), null, null, result.Data));
             }
 
             return result;
@@ -82,7 +82,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, companyItemBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, companyItem.Id, result, companyItemBefore));
             }
 
             return result;
@@ -96,7 +96,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, companyItemBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, companyItem.Id, result, companyItemBefore));
             }
 
             return result;
@@ -108,7 +108,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, id));
+                logRepository.Add(new LogItem(stopwatch, userId, id, result, id));
             }
 
             return result;
@@ -122,7 +122,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, excelRowBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, Guid.Empty, result, excelRowBefore));
             }
 
             return result;
@@ -136,7 +136,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, userCompanyItemBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, userCompanyItem.CompanyItemId, result, userCompanyItemBefore));
             }
 
             return result;
@@ -150,7 +150,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, userCompanyItemBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, userCompanyItem.CompanyItemId, result, userCompanyItemBefore));
             }
 
             return result;
@@ -164,7 +164,7 @@ namespace Difi.Sjalvdeklaration.Log
 
             if (!result.Succeeded && LogError || result.Succeeded && LogChangeSucceeded || stopwatch.ElapsedMilliseconds > LogLongTime)
             {
-                logRepository.Add(new LogItem(stopwatch, userId, result, companyCustomItemBefore));
+                logRepository.Add(new LogItem(stopwatch, userId, companyCustomItem.CompanyItemId, result, companyCustomItemBefore));
             }
 
             return result;

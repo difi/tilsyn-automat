@@ -113,7 +113,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                 Succeeded = false
             };
 
-            var logItem = new LogItem(new Stopwatch(), userId, apiResult, callParameter1, callParameter2, null, callerFunctionName, callerFileName);
+            var logItem = new LogItem(new Stopwatch(), userId, Guid.Empty, apiResult, callParameter1, callParameter2, null, callerFunctionName, callerFileName);
 
             var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + "/api/Log/Add", logItem.AsJsonStringContent());
 
