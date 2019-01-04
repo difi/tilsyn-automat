@@ -100,9 +100,22 @@
                                                     viewAnswerItem = false;
                                                 }
 
-                                                if (lastAnswerData.ResultId == (int)TypeOfResult.NotTested && answerItem.LinkedParentCorrectId != Guid.Empty)
+                                                if (answerItem.LinkedParentCorrectId != Guid.Empty)
                                                 {
-                                                    viewAnswerItem = false;
+                                                    var parent = ruleData.AnswerDataList.SingleOrDefault(x => x.AnswerItem.Id == answerItem.LinkedParentCorrectId);
+
+                                                    if (parent != null)
+                                                    {
+                                                        if (parent.ResultId == (int) TypeOfResult.Fail)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+
+                                                        if (parent.ResultId == (int) TypeOfResult.NotTested)
+                                                        {
+                                                            viewAnswerItem = false;
+                                                        }
+                                                    }
                                                 }
                                             }
 
@@ -110,7 +123,6 @@
 
                                             if (viewAnswerItem)
                                             {
-
                                                 if (answerItem.TypeOfAnswer.Id == (int)TypeOfAnswer.String)
                                                 {
                                                     @Html.DisplayFor(x => answerData.String, "AnswerString", new { text = answerItem.Language.Question, orderText, result = answerData.Result, viewResult })
