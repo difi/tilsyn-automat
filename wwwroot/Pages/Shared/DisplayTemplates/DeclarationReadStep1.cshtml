@@ -36,24 +36,24 @@
         <div class="small-12 medium-11 medium-centered columns">
             <div class="jsToggleCardReadTarget">
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = "Velg fra listen hvilken produsent og modell betalingsterminal du skal kontrollere.", orderText = "1.1", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = Html.DisplayNameFor(x => x.DeclarationTestItem.SupplierAndVersionId), orderText = "1.1", viewResult = false })
 
                     @if (Model.DeclarationTestItem.SupplierAndVersion?.Id == 99999)
                     {
-                        @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { text = "Produsent og navn på automat.", orderText = "1.1", viewResult = false })
+                        @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { orderText = "1.1", viewResult = false })
                     }
                 </div>
 
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.DescriptionInText, "AnswerString", new { text = "Beskriv hvilken betalingsterminal du velger å kontrollere.", orderText = "1.2", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.DescriptionInText, "AnswerString", new { orderText = "1.2", viewResult = false })
                 </div>
 
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.Image1, "AnswerImage", new { text = "Ta et oversiktsbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.3", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.Image1, "AnswerImage", new { orderText = "1.3", viewResult = false })
                 </div>
 
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.Image2, "AnswerImage", new { text = "Ta et nærbilde av betalingsterminalen du skal registrere opplysninger om.", orderText = "1.4", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.Image2, "AnswerImage", new { orderText = "1.4", viewResult = false })
                 </div>
             </div>
         </div>
