@@ -16,15 +16,14 @@
 
                     @if (allDone)
                     {
-                    <span class="show-for-sr">@Localizer["is completely answered"]</span>
+                        <span class="show-for-sr">@Localizer["is completely answered"]</span>
                     }
                     else
                     {
-                    <span class="show-for-sr">@Localizer["is not completely answered"]</span>
+                        <span class="show-for-sr">@Localizer["is not completely answered"]</span>
                     }
 
                     <span class="header-status-icon isDone-@allDone hide-for-print">
-
                     </span>
 
                     <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Automaten"]</span></span>
@@ -41,7 +40,7 @@
 
                     @if (Model.DeclarationTestItem.SupplierAndVersion?.Id == 99999)
                     {
-                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { orderText = "1.1", viewResult = viewResult })
+                        @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { orderText = "1.1", viewResult = viewResult })
                     }
                 </div>
 

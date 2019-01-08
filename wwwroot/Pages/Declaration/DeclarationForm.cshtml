@@ -54,7 +54,20 @@
                                 <h2 class="h2-toggle">
                                     <button id="jsStep1Header" class="toogle-header-button jsToggleCardButton">
                                         <span class="jsStatusIcon header-status-icon isDone-@Model.AllDoneStep1 hide-for-print"></span>
+
                                         @mainIndex. @Localizer["Machine"]
+
+                                        @if (Model.AllDoneStep1)
+                                        {
+                                            <span class="jsAllDone show-for-sr">@Localizer["is completely answered"]</span>
+                                            <span class="jsNotDone show-for-sr hide">@Localizer["is not completely answered"]</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="jsAllDone show-for-sr hide">@Localizer["is completely answered"]</span>
+                                            <span class="jsNotDone show-for-sr">@Localizer["is not completely answered"]</span>
+                                        }
+
                                         <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Machine"]</span></span>
                                     </button>
                                 </h2>
@@ -102,6 +115,18 @@
                                         <button data-id="@declarationIndicatorGroup.Id" class="jsHeader toogle-header-button jsToggleCardButton">
                                             <span class="jsStatusIcon header-status-icon isDone-@declarationIndicatorGroup.AllDone hide-for-print"></span>
                                             @mainIndex. @declarationIndicatorGroup.Language.Name
+
+                                            @if (declarationIndicatorGroup.AllDone)
+                                            {
+                                                <span class="jsAllDone show-for-sr">@Localizer["is completely answered"]</span>
+                                                <span class="jsNotDone show-for-sr hide">@Localizer["is not completely answered"]</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="jsAllDone show-for-sr hide">@Localizer["is completely answered"]</span>
+                                                <span class="jsNotDone show-for-sr">@Localizer["is not completely answered"]</span>
+                                            }
+
                                             <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @declarationIndicatorGroup.Language.Name</span></span>
                                         </button>
                                     </h2>

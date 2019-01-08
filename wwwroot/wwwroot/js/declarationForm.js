@@ -199,13 +199,20 @@ function AutoSave() {
         beforeSend: setHeader,
         success: function (result) {
             if (result.succeeded) {
-                $("#jsStatus").removeClass("status-0").removeClass("status-25").removeClass("status-50")
-                    .removeClass("status-75").removeClass("status-100").addClass("status-" + result.data.stausCount*25);
+                $("#jsStatus").removeClass("status-0").removeClass("status-25").removeClass("status-50").removeClass("status-75").removeClass("status-100").addClass("status-" + result.data.stausCount*25);
 
                 $("#jsStatusText").text(result.data.stausCount * 25 + "%");
 
-                $("#jsStep1Header").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True")
-                    .addClass("isDone-" + toUpperCaseFirst(result.data.step1Done + ""));
+                $("#jsStep1Header").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True").addClass("isDone-" + toUpperCaseFirst(result.data.step1Done + ""));
+
+                if (result.data.step1Done) {
+                    $("#jsStep1Header").find(".jsAllDone").removeClass("hide");
+                    $("#jsStep1Header").find(".jsNotDone").addClass("hide");
+                } else {
+                    $("#jsStep1Header").find(".jsAllDone").addClass("hide");
+                    $("#jsStep1Header").find(".jsNotDone").removeClass("hide");
+                }
+
 
                 $(".jsHeader").find(".jsStatusIcon").removeClass("isDone-False").removeClass("isDone-True");
 
@@ -215,6 +222,13 @@ function AutoSave() {
 
                     $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsStatusIcon").addClass("isDone-" + toUpperCaseFirst(obj.allDone + ""));
 
+                    if (obj.allDone) {
+                        $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsAllDone").removeClass("hide");
+                        $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsNotDone").addClass("hide");
+                    } else {
+                        $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsAllDone").addClass("hide");
+                        $(".jsCard[data-indicator-id='" + obj.indicatorItemId + "']").closest(".jsToggleCardContainer").find(".jsHeader").find(".jsNotDone").removeClass("hide");
+                    }
                 });
             }
         }
