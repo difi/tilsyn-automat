@@ -145,9 +145,12 @@ button, .button, input[type="button"], input[type="submit"] {
     &.back {
         background-image: url("/css/cssimg/icons-sprite.svg");
         background-repeat: no-repeat;
-        background-position: 4px -1086px;
-        padding: 0.4em 0.75em 0.4em 2em;
-        width: 105px;
+        background-position: 3px -1087px;
+        padding: 0.5em 0.75em 0.5em 1.5em;
+        width: 120px;
+        white-space: nowrap;
+        font-size: 15px;
+        margin-top: 3px;
     }
 
     &.black {
