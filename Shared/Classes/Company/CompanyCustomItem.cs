@@ -9,6 +9,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public Guid CompanyItemId { get; set; }
 
         [Display(Name = "Name of business")]
+        [Required(ErrorMessage = "Name is required")]
         public string CustomName { get; set; }
 
         [Display(Name = "Street name and number")]

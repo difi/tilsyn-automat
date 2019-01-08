@@ -1,5 +1,4 @@
 ﻿@page
-@using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data
 @using Difi.Sjalvdeklaration.Shared.Enum
 @model wwwroot.Pages.Declaration.DeclarationReadModel
 
@@ -11,14 +10,8 @@
 
 @if (Model.DeclarationItemForm != null)
 {
-    if (Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm.Status.Id == (int)DeclarationStatus.Return)
-    {
-        @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationForm?id=" + Model.DeclarationItemForm.Id })
-    }
-    else
-    {
-        @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
-    }
+
+    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
     <main>
         <div class="row">
             <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
@@ -70,8 +63,8 @@
                             }
                             else
                             {
+                                <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
                         <button class="button large" disabled="disabled" type="submit">@Localizer["Submit"]</button>
-                        <a asp-page="/Declaration/DeclarationForm" class="button alt" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Go back and change"]</a>
                             }
                     </div>
                     }

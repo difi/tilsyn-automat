@@ -148,7 +148,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
                     else if (value.GetType() == typeof(ImageItem))
                     {
                         var test = (ImageItem)value;
-                        values[col + totalCount] = test.Container + "/" + test.Name;
+                        values[col + totalCount] = test.Container + "/" + test.Blob;
                     }
                     else
                     {

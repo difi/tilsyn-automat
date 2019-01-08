@@ -297,7 +297,7 @@
                                     <span class="listing-social-security-number">@user.UserItem.SocialSecurityNumber</span>
                                 </div>
                                 <div class="small-6 text-right column">
-                                    <button class="button small delete" type="submit" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Remove Link"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
+                                    <button class="button small delete" type="submit" onclick="return confirm('@Localizer["Are you sure you want to remove this link?"]');" asp-page-handler="RemoveLink" asp-route-id="@user.UserItemId">@Localizer["Remove Link"] <span class="show-for-sr">@user.UserItem.SocialSecurityNumber</span></button>
                                 </div>
                             </div>
                         </li>
@@ -306,7 +306,7 @@
             </fieldset>
         }
         <br />
-        <div class="row collapse align-bottom">
+        <div class="row collapse align-bottom"> 
             @{
                 var colCount = Model.CompanyItemForm != null && Model.CompanyItemForm.Id != Guid.Empty ? "small-12 medium-8" : "small-12 medium-12";
             }

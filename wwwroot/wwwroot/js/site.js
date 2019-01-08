@@ -20,10 +20,14 @@
     });
 
     if ($.fn.numericInput) {
-        $("input[type='number']").numericInput({
-            allowNegative: false,
-            allowFloat: false
-        });
+        try {
+            $("input[type='number']:not([readonly])").numericInput({
+                allowNegative: false,
+                allowFloat: false
+            });
+        } catch (error) {
+            //
+        }
     }
 
     $('.jsLogTableSort').tablesorter({
