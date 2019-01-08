@@ -99,14 +99,6 @@
         }
     });
 
-    //Set .tabbed on button instead of input when input type=file is tabbed
-    if ($.fn.numericInput) {
-        $("input[type='number']").numericInput({
-            allowNegative: false,
-            allowFloat: false
-        });
-    }
-
     // Copy of code from declarationForm.js
     var questionReadToggle = new funkanu.ariatoggle({
         container: ".jsToggleCardReadContainer",
