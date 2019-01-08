@@ -118,7 +118,7 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="Date submitted" xml:space="preserve">
-    <value>Dato sendt inn</value>
+    <value>Dato frist for innsending</value>
   </data>
 	<data name="Executive officer" xml:space="preserve">
     <value>Saksbehandlar</value>
