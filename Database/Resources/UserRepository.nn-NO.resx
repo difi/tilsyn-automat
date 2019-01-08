@@ -129,4 +129,7 @@
 	<data name="User with token: {0} doesn't exist." xml:space="preserve">
 		<value>Brukar med token: {0} finst ikkje.</value>
 	</data>
+	<data name="A user with social security number: {0} already exist." xml:space="preserve">
+		<value>Ein brukar med personnummer: {0} finst allereie.</value>
+	</data>
 </root>

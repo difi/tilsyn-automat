@@ -129,4 +129,7 @@
 	<data name="Phone" xml:space="preserve">
     <value>Telefonnummer</value>
   </data>
+	<data name="You need to type a correct email address" xml:space="preserve">
+		<value>Du må skrive inn ei korrekt e-postadresse.</value>
+	</data>
 </root>

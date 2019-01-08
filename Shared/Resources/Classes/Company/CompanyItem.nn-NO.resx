@@ -159,4 +159,13 @@
 	<data name="ZIP Code must have 4 to 5 numbers" xml:space="preserve">
     <value />
   </data>
+	<data name="Organization number must have nine numbers" xml:space="preserve">
+		<value>Organisasjonsnummer må ha 9 tal.</value>
+	</data>
+	<data name="Organization number of the owner organization must have nine numbers" xml:space="preserve">
+		<value>Organisasjonsnummer på overordna einheit må ha 9 tal.</value>
+	</data>
+	<data name="Pin code must have four numbers" xml:space="preserve">
+		<value>PIN-kode må ha 4 tal.</value>
+	</data>
 </root>

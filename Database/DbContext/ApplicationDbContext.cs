@@ -769,7 +769,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("d61c82e8-a3a1-444f-bb63-ef34ba4b720e"),
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem112.Id,
-                Question = "Bekreft med bilde",
+                Question = "Stadfest med bilde",
             };
 
             var answerItem113 = new AnswerItem
@@ -852,7 +852,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem122.Id,
                 Question = "Kor mange cm over golvet heng den lågaste gjenstanden i beteningsområdet til kunden?",
-                BoolTrueText = "220 cm eller mer",
+                BoolTrueText = "220 cm eller meir",
                 BoolFalseText = "0-219 cm, "
             };
 
@@ -905,7 +905,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("93a705e1-5c90-4a6f-a03d-c2e3c449e4a6"),
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem124.Id,
-                Question = "Bekreft med bilde",
+                Question = "Stadfest med bilde",
             };
 
             var answerItem211 = new AnswerItem
@@ -963,7 +963,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem212.Id,
                 Question = "Kor mange cm er det mellom betalingsterminalane?",
-                BoolTrueText = "150 cm eller mer",
+                BoolTrueText = "150 cm eller meir",
                 BoolFalseText = "0-149 cm, ",
             };
 
@@ -1016,7 +1016,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("dde428e6-e13b-4140-860b-b185661d8dc6"),
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem214.Id,
-                Question = "Bekreft med bilde",
+                Question = "Stadfest med bilde",
             };
 
             var answerItem311 = new AnswerItem
@@ -1069,7 +1069,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("8db67b5c-e3b1-4053-a66a-3499c54a545d"),
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem312.Id,
-                Question = "Bekreft med bilde",
+                Question = "Stadfest med bilde",
             };
 
             var answerItem313 = new AnswerItem
@@ -1157,8 +1157,8 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem411.Id,
                 Question = "Kor mange cm er det frå golvet og opp til betalingsterminalen?",
-                BoolTrueText = "Mellom 75cm og 130cm over gulvet",
-                BoolFalseText = "Annet, ",
+                BoolTrueText = "Mellom 75 cm og 130 cm over golvet",
+                BoolFalseText = "Anna, ",
             };
 
             var answerItem412 = new AnswerItem
@@ -1210,7 +1210,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Id = Guid.Parse("dbf5bc8b-de37-4c68-8219-f2785d832eb3"),
                 LanguageItemId = language2.Id,
                 AnswerItemId = answerItem413.Id,
-                Question = "Bekreft med bilde",
+                Question = "Stadfest med bilde",
             };
 
             var indicatorOutcomeItem11 = new IndicatorOutcomeItem

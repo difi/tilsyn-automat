@@ -129,4 +129,10 @@
 	<data name="The organization number of your business is required" xml:space="preserve">
     <value>Organisasjonsnummeret til verksemda di er påkravd</value>
   </data>
+	<data name="Four-digit code must have four numbers" xml:space="preserve">
+		<value>Firesifra kode må ha 4 tal.</value>
+	</data>
+	<data name="Organization number must have nine numbers" xml:space="preserve">
+		<value>Organisasjonsnummer må ha 9 tal.</value>
+	</data>
 </root>

@@ -118,6 +118,6 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="There is no self-inspection available for the organization number you provided. Or you have entered the wrong organization number or PIN code." xml:space="preserve">
-    <value />
+    <value>Det finst ingen eigenkontroll tilgjengeleg for organisasjonsnummeret du har oppgitt.&lt;br /&gt;Eller så har du oppgitt feil organisasjonsnummer eller PIN-kode.</value>
   </data>
 </root>

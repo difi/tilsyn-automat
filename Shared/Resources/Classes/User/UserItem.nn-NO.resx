@@ -156,4 +156,10 @@
 	<data name="Social security number is required" xml:space="preserve">
     <value>Personnummer er påkravd</value>
   </data>
+	<data name="Social security number must have eleven numbers" xml:space="preserve">
+		<value>Personnummeret må ha 11 tal.</value>
+	</data>
+	<data name="You need to type a correct email address" xml:space="preserve">
+		<value>Du må skrive inn ei korrekt e-postadresse.</value>
+	</data>
 </root>

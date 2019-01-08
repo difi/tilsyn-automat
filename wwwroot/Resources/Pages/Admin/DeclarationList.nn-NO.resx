@@ -127,7 +127,7 @@
     <value>Eksporter</value>
   </data>
 	<data name="Export all" xml:space="preserve">
-    <value>Eksporter alle</value>
+    <value>Eksporter alle i lista til Excel</value>
   </data>
 	<data name="Filter" xml:space="preserve">
     <value>Filter</value>
@@ -160,6 +160,6 @@
     <value>Til</value>
   </data>
 	<data name="Reset" xml:space="preserve">
-    <value></value>
+    <value>Fjern filter</value>
   </data>
 </root>
