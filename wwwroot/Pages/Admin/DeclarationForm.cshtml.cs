@@ -131,7 +131,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     break;
                 case DeclarationStatus.Sent:
                     statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 2));
-                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 3));
                     statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
                     break;
                 case DeclarationStatus.Started:
