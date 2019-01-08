@@ -157,7 +157,7 @@
     <value>Postnummer </value>
   </data>
 	<data name="ZIP Code must have 4 to 5 numbers" xml:space="preserve">
-    <value />
+    <value>Postnummer må ha 4 til 5 tal.</value>
   </data>
 	<data name="Organization number must have nine numbers" xml:space="preserve">
 		<value>Organisasjonsnummer må ha 9 tal.</value>
