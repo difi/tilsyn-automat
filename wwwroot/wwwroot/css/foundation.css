@@ -3436,6 +3436,8 @@ a.button:hover, a.button:focus {
   .label.status-6, .label.status-7 {
     padding-left: 1.6rem; }
     .label.status-6:before, .label.status-7:before {
+      background-color: #B4F0E7; }
+    .label.status-6.finished-2:before, .label.status-7.finished-2:before {
       background-color: #FFD1D1; }
 
 table {
