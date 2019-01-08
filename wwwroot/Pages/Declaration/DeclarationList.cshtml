@@ -73,10 +73,12 @@
                         <div class="small-12 medium-12 columns">
                             <div class="jsDeclarationListToggleCardTarget">
                                 <div class="card declaration-list-info">
-                                    
-                                    <p>
-                                        @Localizer["The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself."]
-                                    </p>
+
+                                    <div class="row">
+                                        <div class="medium-7 column">
+                                            @Localizer["The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself."]
+                                        </div>
+                                    </div>
 
                                     <div class="row column">
                                         <h2>@Localizer["Business information"]</h2>
@@ -123,7 +125,7 @@
                                         </fieldset>
 
                                         <br />
-                                        
+
                                         @if (Model.CompanyItem.OwenerCorporateIdentityNumber != null && Model.CompanyItem.OwenerCorporateIdentityNumber > 0)
                                         {
                                             <fieldset>
@@ -264,14 +266,15 @@
                                     </div>
                                 </div>
                                 <div class="card-section text-center medium-uncentered">
-                                    @if ((item.DeclarationTestItem.HaveMachine == false && (item.Status.Id<4 || item.Status.Id == 5)) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
+                                    @if ((item.DeclarationTestItem.HaveMachine == false && (item.Status.Id < 4 || item.Status.Id == 5)) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
                                     {
                                         <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
                                     }
                                     else if (item.Status.Id == (int)DeclarationStatus.Started || item.Status.Id == (int)DeclarationStatus.Return)
                                     {
                                         <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
-                                    } else if (item.Status.Id == (int)DeclarationStatus.SentIn && item.DeclarationTestItem.HaveMachine)
+                                    }
+                                    else if (item.Status.Id == (int)DeclarationStatus.SentIn && item.DeclarationTestItem.HaveMachine)
                                     {
                                         <a asp-page="/Declaration/DeclarationRead" class="button update" asp-route-id="@item.Id">@Localizer["To summary"]</a>
                                     }
