@@ -147,4 +147,7 @@
 	<data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Importer</value>
+  </data>
 </root>
