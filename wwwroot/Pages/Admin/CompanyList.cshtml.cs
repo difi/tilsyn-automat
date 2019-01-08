@@ -17,6 +17,7 @@ using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 {
@@ -25,6 +26,9 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
     {
         private readonly IApiHttpClient apiHttpClient;
         private readonly IErrorHandler errorHandler;
+        private readonly IStringLocalizer<CompanyItem> localizerCompanyItem;
+        private readonly IStringLocalizer<DeclarationItem> localizerDeclarationItem;
+        private readonly IStringLocalizer<ContactPersonItem> localizerContactPersonItem;
 
         public IList<CompanyItem> CompanyList { get; private set; }
 
@@ -39,10 +43,13 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
         [Display(Name = "Excel file")]
         public IFormFile ExcelFile { get; set; }
 
-        public CompanyListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler)
+        public CompanyListModel(IApiHttpClient apiHttpClient, IErrorHandler errorHandler, IStringLocalizer<CompanyItem> localizerCompanyItem, IStringLocalizer<DeclarationItem> localizerDeclarationItem, IStringLocalizer<ContactPersonItem> localizerContactPersonItem)
         {
             this.apiHttpClient = apiHttpClient;
             this.errorHandler = errorHandler;
+            this.localizerCompanyItem = localizerCompanyItem;
+            this.localizerDeclarationItem = localizerDeclarationItem;
+            this.localizerContactPersonItem = localizerContactPersonItem;
         }
 
         [HttpGet]
@@ -77,6 +84,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return await errorHandler.View(this, OnGetAsync(), new Exception("Du måste ladda upp en excelfil!"));
                 }
 
+                var errorText = "";
                 var importTotaltCount = 0;
                 var importOkCount = 0;
                 var importFailCount = 0;
@@ -94,30 +102,51 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     importTotaltCount++;
 
-                    var item = CreateExcelItemRow(dataRow);
-
-                    if (!string.IsNullOrEmpty(item.CompanyItem.Name))
+                    try
                     {
-                        var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", item);
+                        var excelItemRow = CreateExcelItemRow(dataRow);
 
-                        if (result.Succeeded)
+                        var isValidCompany = excelItemRow.CompanyItem.Validate(out var resultCompany);
+                        var isValidDeclaration = excelItemRow.DeclarationItem.Validate(out var resultDeclaration);
+                        var isValidContactPerson = excelItemRow.ContactPersonItem.Validate(out var resultContactPerson);
+
+                        if (isValidCompany && isValidDeclaration && isValidContactPerson)
                         {
-                            importOkCount++;
-                        }
-                        else
-                        {
-                            if (result.Exception.InnerException != null && result.Exception.InnerException.Message == "exist")
+                            var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", excelItemRow);
+
+                            if (result.Succeeded)
                             {
-                                importExistCount++;
+                                importOkCount++;
                             }
                             else
                             {
-                                importFailCount++;
+                                if (result.Exception.InnerException != null && result.Exception.InnerException.Message == "exist")
+                                {
+                                    importExistCount++;
+                                    errorText += "Rad " + importTotaltCount + ": " + "Dublett" + "<br />";
+                                }
+                                else
+                                {
+                                    importFailCount++;
+                                    errorText += "Rad " + importTotaltCount + ": " + result.Exception.InnerException?.Message + "<br />";
+                                }
                             }
                         }
+                        else
+                        {
+                            errorText += "Rad " + importTotaltCount + ": ";
+                            errorText = resultCompany.Aggregate(errorText, (current, validationResult) => current + localizerCompanyItem[validationResult.ErrorMessage] + ", ");
+                            errorText = resultDeclaration.Aggregate(errorText, (current, validationResult) => current + localizerDeclarationItem[validationResult.ErrorMessage] + ", ");
+                            errorText = resultContactPerson.Aggregate(errorText, (current, validationResult) => current + localizerContactPersonItem[validationResult.ErrorMessage] + ", ");
+                            errorText += "<br />";
+
+                            importFailCount++;
+                        }
                     }
-                    else
+                    catch (Exception exception)
                     {
+                        errorText += "Rad " + importTotaltCount + ": " + exception.Message + "<br />";
+
                         importFailCount++;
                     }
                 }
@@ -128,7 +157,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
                 else
                 {
-                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})");
+                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})<br /><small>" + errorText+ "</small>");
                 }
 
                 await OnGetAsync();

@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.IO;
 using System.Net.Http;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -21,6 +24,13 @@ namespace Difi.Sjalvdeklaration.Shared.Extensions
                 stream.Position = 0;
                 return (T)formatter.Deserialize(stream);
             }
+        }
+
+        public static bool Validate<T>(this T currentObject, out ICollection<ValidationResult> results)
+        {
+            results = new List<ValidationResult>();
+
+            return currentObject == null || Validator.TryValidateObject(currentObject, new ValidationContext(currentObject), results, true);
         }
     }
 }

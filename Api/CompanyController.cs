@@ -130,7 +130,18 @@ namespace Difi.Sjalvdeklaration.Api
                 return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
             }
 
-            return companyRepository.ExcelImport(excelItemRow);
+            try
+            {
+                return companyRepository.ExcelImport(excelItemRow);
+            }
+            catch (Exception exception)
+            {
+                return new ApiResult
+                {
+                    Exception = exception,
+                    Succeeded = false
+                };
+            }
         }
 
         [HttpPost]

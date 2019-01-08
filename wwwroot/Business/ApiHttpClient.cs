@@ -66,7 +66,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             if (!responseMessage.IsSuccessStatusCode)
             {
-                throw new Exception(responseMessage.Content.ToString());
+                string text;
+
+                try
+                {
+                    text = responseMessage.Content.ReadAsStringAsync().Result;
+                }
+                catch
+                {
+                    text = responseMessage.ReasonPhrase;
+                }
+
+                throw new Exception(text);
             }
 
             var responseData = responseMessage.Content.ReadAsStringAsync().Result;
@@ -87,7 +98,18 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             if (!responseMessage.IsSuccessStatusCode)
             {
-                throw new Exception(responseMessage.Content.ToString());
+                string text;
+
+                try
+                {
+                    text = responseMessage.Content.ReadAsStringAsync().Result;
+                }
+                catch
+                {
+                    text = responseMessage.ReasonPhrase;
+                }
+
+                throw new Exception(text);
             }
 
             var responseData = responseMessage.Content.ReadAsStringAsync().Result;
@@ -117,10 +139,20 @@ namespace Difi.Sjalvdeklaration.wwwroot.Business
 
             var responseMessage = await httpClient.PostAsync(configuration["ApiBaseUrl"] + "/api/Log/Add", logItem.AsJsonStringContent());
 
-            if (!responseMessage.IsSuccessStatusCode)
+            if (responseMessage.IsSuccessStatusCode) return;
+
+            string text;
+
+            try
             {
-                throw new Exception(responseMessage.Content.ToString());
+                text = responseMessage.Content.ReadAsStringAsync().Result;
             }
+            catch
+            {
+                text = responseMessage.ReasonPhrase;
+            }
+
+            throw new Exception(text);
         }
 
         private void AddAuthorization(string authorizationType, string authorizationKey)

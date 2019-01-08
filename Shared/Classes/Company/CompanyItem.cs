@@ -35,6 +35,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         [ExcelExport]
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Name is required")]
+        [RegularExpression(".+", ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
         [Display(Name = "Changed business name")]
