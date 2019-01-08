@@ -30,7 +30,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Get/{id}")]
         public ApiResult<DeclarationItem> Get(Guid id)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult<DeclarationItem> { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.Get<DeclarationItem>(id);
         }
@@ -39,7 +42,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetAll")]
         public ApiResult<List<DeclarationItem>> GetAll()
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult<List<DeclarationItem>> { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.GetAll<List<DeclarationItem>>();
         }
@@ -48,7 +54,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetForCompany/{id}")]
         public ApiResult<List<DeclarationItem>> GetForCompany(Guid id)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult<List<DeclarationItem>> { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.GetForCompany<List<DeclarationItem>>(id);
         }
@@ -57,7 +66,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetByFilter/{fromDate}/{toDate}/{status}")]
         public ApiResult<List<DeclarationItem>> GetByFilter(long fromDate, long toDate, int status)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult<List<DeclarationItem>> { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             var filterModel = new FilterModel
             {
@@ -73,7 +85,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetOutcomeDataList/{id}")]
         public ApiResult<List<OutcomeData>> GetOutcomeDataList(Guid id)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult<List<OutcomeData>> { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.GetOutcomeDataList<List<OutcomeData>>(id);
         }
@@ -82,7 +97,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("SendIn/{id}/{companyId}")]
         public ApiResult SendIn(Guid id, Guid companyId)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.SendIn(id, companyId);
         }
@@ -91,7 +109,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("HaveMachine/{id}/{companyId}/{haveMachine}")]
         public ApiResult HaveMachine(Guid id, Guid companyId, bool haveMachine)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.HaveMachine(id, companyId, haveMachine);
         }
@@ -100,7 +121,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Add")]
         public ApiResult Add(DeclarationItem declarationItem)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.Add(declarationItem);
         }
@@ -109,8 +133,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Update")]
         public ApiResult Update(DeclarationItem declarationItem)
         {
-            HandleRequest();
-
+            if (!HandleRequest())
+            {
+                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
+            }
             return declarationRepository.Update(declarationItem);
         }
 
@@ -118,7 +144,10 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Save")]
         public ApiResult<DeclarationSaveResult> Save(DeclarationSave declarationSave)
         {
-            HandleRequest();
+            if (!HandleRequest())
+            {
+                return new ApiResult<DeclarationSaveResult> { Exception = new Exception("Wrong ApiKey!") };
+            }
 
             return declarationRepository.Save<DeclarationSaveResult>(declarationSave.Id, declarationSave.CompanyId, declarationSave.DeclarationTestItem);
         }
@@ -144,15 +173,17 @@ namespace Difi.Sjalvdeklaration.Api
             return result;
         }
 
-        private void HandleRequest()
+        private bool HandleRequest()
         {
             if (Request.Headers["ApiKey"] != configuration["Api:Key"])
             {
-                throw new Exception("Wrong ApiKey!");
+                return false;
             }
 
             declarationRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
             declarationRepository.SetCurrentLang(Request.Headers["Lang"]);
+
+            return true;
         }
     }
 }
