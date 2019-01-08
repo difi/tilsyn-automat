@@ -20,8 +20,8 @@
                 <form method="post">
                     <div class="row">
                         <div class="small-12 columns">
-                            <button class="button" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-companyid="@Model.DeclarationItemForm.CompanyItemId">@Localizer["Ok"]</button>
-                            <a class="button" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Cancel"]</a>
+                            <a class="button alt" asp-page="/Declaration/DeclarationStart" asp-route-id="@Model.DeclarationItemForm.Id">@Localizer["Cancel"]</a>
+                            <button class="button large" type="submit" asp-page-handler="UpdateHaveMachine" asp-route-id="@Model.DeclarationItemForm.Id" asp-route-companyid="@Model.DeclarationItemForm.CompanyItemId">@Localizer["Ok"]</button>
                         </div>
                     </div>
                 </form>

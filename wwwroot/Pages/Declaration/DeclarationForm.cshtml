@@ -12,18 +12,6 @@
     ViewData["Title"] = Model.DeclarationItemForm?.Name;
     var mainIndex = 1;
 
-    var backUrl = "";
-
-    if (Model.DeclarationItemForm?.Status.Id == (int)DeclarationStatus.Sent || Model.DeclarationItemForm?.Status.Id == (int)DeclarationStatus.Created)
-    {
-        backUrl = "/Declaration/DeclarationStart?id=" + Model.DeclarationItemForm.Id;
-    }
-
-    if (Model.DeclarationItemForm?.Status.Id == (int)DeclarationStatus.Started || Model.DeclarationItemForm?.Status.Id == (int)DeclarationStatus.Return)
-    {
-        backUrl = "/Declaration/DeclarationList";
-    }
-
     var userId = Guid.Empty;
     var claims = HttpContextAccessor.HttpContext?.User?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.PrimarySid);
 
@@ -35,7 +23,7 @@
 
 @if (Model.DeclarationItemForm != null)
 {
-    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl })
+    @Html.DisplayFor(x => x.DeclarationItemForm, "DeclarationStatus", new { backUrl = "/Declaration/DeclarationList" })
 
     <main>
         <form method="post" id="DeclarationForm" data-id="@Model.DeclarationItemForm.Id" data-companyid="@Model.DeclarationItemForm.CompanyItemId" data-userid="@userId" data-lang="@CultureInfo.CurrentCulture.Name">

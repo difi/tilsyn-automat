@@ -64,20 +64,20 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                         if (CompanyItem.OwenerCorporateIdentityNumber != null && CompanyItem.OwenerCorporateIdentityNumber > 0)
                         {
-                            if (string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressStreet))
-                            {
-                                CompanyCustomItem.CustomBusinessAddressStreet = CompanyItem.BusinessAddressStreet;
-                                CompanyCustomItem.CustomBusinessAddressZip = CompanyItem.BusinessAddressZip;
-                                CompanyCustomItem.CustomBusinessAddressCity = CompanyItem.BusinessAddressCity;
-                            }
-                        }
-                        else
-                        {
                             if (string.IsNullOrEmpty(CompanyCustomItem.CustomLocationAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomLocationAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomLocationAddressStreet))
                             {
                                 CompanyCustomItem.CustomLocationAddressStreet = CompanyItem.LocationAddressStreet;
                                 CompanyCustomItem.CustomLocationAddressZip = CompanyItem.LocationAddressZip;
                                 CompanyCustomItem.CustomLocationAddressCity = CompanyItem.LocationAddressCity;
+                            }
+                        }
+                        else
+                        {
+                            if (string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressStreet) && string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressZip) && string.IsNullOrEmpty(CompanyCustomItem.CustomBusinessAddressStreet))
+                            {
+                                CompanyCustomItem.CustomBusinessAddressStreet = CompanyItem.BusinessAddressStreet;
+                                CompanyCustomItem.CustomBusinessAddressZip = CompanyItem.BusinessAddressZip;
+                                CompanyCustomItem.CustomBusinessAddressCity = CompanyItem.BusinessAddressCity;
                             }
                         }
 
