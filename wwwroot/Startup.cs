@@ -17,7 +17,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using Cache;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -84,6 +83,7 @@ namespace Difi.Sjalvdeklaration.wwwroot
             }
 
             services.Decorate<IDeclarationRepository, DeclarationRepositoryCacheDecorator>();
+            services.Decorate<ICompanyRepository, CompanyRepositoryCacheDecorator>();
 
             services.AddScoped<IImageRepository, ImageRepository>();
             if (Convert.ToBoolean(Configuration["Log:Active"]))

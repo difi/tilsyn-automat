@@ -165,6 +165,7 @@ namespace Difi.Sjalvdeklaration.Api
             }
 
             companyRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
+            companyRepository.SetCurrentLang(Request.Headers["Lang"]);
 
             return true;
         }

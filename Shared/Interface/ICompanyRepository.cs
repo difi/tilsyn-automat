@@ -10,6 +10,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
     {
         void SetCurrentUser(Guid parse);
 
+        void SetCurrentLang(string lang);
+
         ApiResult<T> Get<T>(Guid id) where T : CompanyItem;
 
         ApiResult<T> GetByCorporateIdentityNumber<T>(long corporateIdentityNumber) where T : CompanyItem;

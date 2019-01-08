@@ -38,6 +38,11 @@ namespace Difi.Sjalvdeklaration.Log
             userId = id;
         }
 
+        public void SetCurrentLang(string lang)
+        {
+            
+        }
+
         public ApiResult<T> Get<T>(Guid id) where T : CompanyItem
         {
             var result =  inner.Get<T>(id);

@@ -94,22 +94,31 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     importTotaltCount++;
 
-                    var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", CreateExcelItemRow(dataRow));
+                    var item = CreateExcelItemRow(dataRow);
 
-                    if (result.Succeeded)
+                    if (!string.IsNullOrEmpty(item.CompanyItem.Name))
                     {
-                        importOkCount++;
-                    }
-                    else
-                    {
-                        if (result.Exception.InnerException != null && result.Exception.InnerException.Message == "exist")
+                        var result = await apiHttpClient.Post<ApiResult>("/api/Company/ExcelImport", item);
+
+                        if (result.Succeeded)
                         {
-                            importExistCount++;
+                            importOkCount++;
                         }
                         else
                         {
-                            importFailCount++;
+                            if (result.Exception.InnerException != null && result.Exception.InnerException.Message == "exist")
+                            {
+                                importExistCount++;
+                            }
+                            else
+                            {
+                                importFailCount++;
+                            }
                         }
+                    }
+                    else
+                    {
+                        importFailCount++;
                     }
                 }
 
@@ -170,7 +179,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 {
                     Id = Guid.NewGuid(),
                     Name = dataRow["Kontaktperson - Navn"].ToString(),
-                    Email = dataRow["Kontaktperson - E-postadresse"].ToString(),
+                    Email = dataRow["Kontaktperson - E-postadresse"].ToString().ToLower(),
                     PhoneCountryCode = dataRow["Kontaktperson - Landskode"].ToString(),
                     Phone = dataRow["Kontaktperson - Telefonnummer"].ToString(),
                     CompanyItemId = companyId,
