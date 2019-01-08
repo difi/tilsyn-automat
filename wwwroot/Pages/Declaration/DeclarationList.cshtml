@@ -17,273 +17,273 @@
 
 @if (Model.CompanyItem != null)
 {
-    <header>
-        <div class="row">
-            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-                <div class="row">
-                    <div class="small-8 column">
-                        <div class="logo">
-                            <img alt="Difi" src="~/images/difi-logo.svg" />
-                        </div>
+<header>
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <div class="row">
+                <div class="small-8 column">
+                    <div class="logo">
+                        <img alt="Difi" src="~/images/difi-logo.svg" />
                     </div>
-                    <div class="small-4 column">
-                        <div class="jsProfileContainer profile-wrapper">
-                            <div class="profile-area">
-                                <div class="row collapse">
-                                    <div class="small-12 medium-12 columns">
+                </div>
+                <div class="small-4 column">
+                    <div class="jsProfileContainer profile-wrapper">
+                        <div class="profile-area">
+                            <div class="row collapse">
+                                <div class="small-12 medium-12 columns">
 
-                                        <button class="jsProfileTrigger toggle-profile-button button">
-                                            <span class="profile-first-letter declaration">@companyName</span>
+                                    <button class="jsProfileTrigger toggle-profile-button button">
+                                        <span class="profile-first-letter declaration">@companyName</span>
 
-                                            <span class="profile-area-text-wrapper hide-for-small-only">
-                                                <span class="profile-name hide-for-small-only">@companyName</span><br />
-                                                <span class="profile-title hide-for-small-only"></span>
-                                            </span>
+                                        <span class="profile-area-text-wrapper hide-for-small-only">
+                                            <span class="profile-name hide-for-small-only">@companyName</span><br />
+                                            <span class="profile-title hide-for-small-only"></span>
+                                        </span>
 
-                                            <span class="profile-icon"><span class="show-for-sr"> - @Localizer["View log out"]</span></span>
-                                        </button>
-                                    </div>
+                                        <span class="profile-icon"><span class="show-for-sr"> - @Localizer["View log out"]</span></span>
+                                    </button>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
-                                <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt logout">@Localizer["Log out"]</a>
-                            </div>
+                        <div class="jsProfileToggleTarget profile-info-area" style="display: none;">
+                            <a asp-page="/LogoutHandler" asp-route-what="logout" class="button alt logout">@Localizer["Log out"]</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main>
-        <div class="row">
-            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+<main>
+    <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
 
-                <h1>@Localizer["Self control for"] @companyName</h1>
+            <h1>@Localizer["Self control for"] @companyName</h1>
 
-                <div class="jsDeclarationListToggleCardContainer">
-                    <div class="row medium-uncollapse">
-                        <div class="small-12 medium-12 columns">
-                            <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> @Localizer["Check business information"]</button></h2>
-                        </div>
+            <div class="jsDeclarationListToggleCardContainer">
+                <div class="row medium-uncollapse">
+                    <div class="small-12 medium-12 columns">
+                        <h2 class="h2-toggle"><button class="toogle-header-button-alt jsDeclarationListToggleCardButton"><span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"]</span></span> @Localizer["Check business information"]</button></h2>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="small-12 medium-12 columns">
-                            <div class="jsDeclarationListToggleCardTarget">
-                                <div class="card declaration-list-info">
-                                    
-                                    <p>
-                                        @Localizer["The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself."]
-                                    </p>
+                <div class="row">
+                    <div class="small-12 medium-12 columns">
+                        <div class="jsDeclarationListToggleCardTarget">
+                            <div class="card declaration-list-info">
 
-                                    <div class="row column">
-                                        <h2>@Localizer["Business information"]</h2>
+                                <p>
+                                    @Localizer["The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself."]
+                                </p>
+
+                                <div class="row column">
+                                    <h2>@Localizer["Business information"]</h2>
+                                </div>
+
+                                <form method="post">
+                                    @Html.HiddenFor(x => x.CompanyCustomItem.CompanyItemId)
+
+                                    <div asp-validation-summary="All"></div>
+
+                                    <div class="row">
+                                        <div class="small-12 medium-4 end columns">
+                                            @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "TextBoxLong", new { readOnly = true })
+                                        </div>
                                     </div>
 
-                                    <form method="post">
-                                        @Html.HiddenFor(x => x.CompanyCustomItem.CompanyItemId)
+                                    <div class="row">
+                                        <div class="small-12 medium-6 end columns">
+                                            @Html.EditorFor(x => x.CompanyCustomItem.CustomName, "TextBox")
+                                        </div>
+                                    </div>
 
-                                        <div asp-validation-summary="All"></div>
+                                    <fieldset>
+                                        <legend>@Localizer["Mailing address"]</legend>
+
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "TextBox", new { readOnly = true })
+                                            </div>
+                                        </div>
 
                                         <div class="row">
                                             <div class="small-12 medium-4 end columns">
-                                                @Html.EditorFor(x => x.CompanyItem.CorporateIdentityNumber, "TextBoxLong", new { readOnly = true })
+                                                @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "TextBox", new { readOnly = true })
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomName, "TextBox")
+                                                @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "TextBox", new { readOnly = true })
                                             </div>
                                         </div>
 
-                                        <fieldset>
-                                            <legend>@Localizer["Mailing address"]</legend>
+                                    </fieldset>
 
-                                            <div class="row">
-                                                <div class="small-12 medium-6 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.MailingAddressStreet, "TextBox", new { readOnly = true })
-                                                </div>
-                                            </div>
+                                    <br />
 
-                                            <div class="row">
-                                                <div class="small-12 medium-4 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.MailingAddressZip, "TextBox", new { readOnly = true })
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="small-12 medium-6 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.MailingAddressCity, "TextBox", new { readOnly = true })
-                                                </div>
-                                            </div>
-
-                                        </fieldset>
-
-                                        <br />
-                                        
-                                        @if (Model.CompanyItem.OwenerCorporateIdentityNumber != null && Model.CompanyItem.OwenerCorporateIdentityNumber > 0)
+                                    @if (Model.CompanyItem.OwenerCorporateIdentityNumber != null && Model.CompanyItem.OwenerCorporateIdentityNumber > 0)
                                         {
-                                            <fieldset>
-                                                <legend>@Localizer["Business Address"]</legend>
+                                    <fieldset>
+                                        <legend>@Localizer["Location Address"]</legend>
 
-                                                <div class="row">
-                                                    <div class="small-12 medium-6 end columns">
-                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressStreet, "TextBox")
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressStreet, "TextBox")
+                                            </div>
+                                        </div>
 
-                                                <div class="row">
-                                                    <div class="small-12 medium-6 end columns">
-                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressZip, "TextBoxNumber")
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressZip, "TextBoxNumber")
+                                            </div>
+                                        </div>
 
-                                                <div class="row">
-                                                    <div class="small-12 medium-6 end columns">
-                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressCity, "TextBox")
-                                                    </div>
-                                                </div>
-                                            </fieldset>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressCity, "TextBox")
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                         }
                                         else
                                         {
-                                            <fieldset>
-                                                <legend>@Localizer["Location Address"]</legend>
+                                    <fieldset>
+                                        <legend>@Localizer["Business Address"]</legend>
 
-                                                <div class="row">
-                                                    <div class="small-12 medium-6 end columns">
-                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressStreet, "TextBox")
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressStreet, "TextBox")
+                                            </div>
+                                        </div>
 
-                                                <div class="row">
-                                                    <div class="small-12 medium-6 end columns">
-                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressZip, "TextBoxNumber")
-                                                    </div>
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressZip, "TextBoxNumber")
+                                            </div>
+                                        </div>
 
-                                                <div class="row">
-                                                    <div class="small-12 medium-6 end columns">
-                                                        @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressCity, "TextBox")
-                                                    </div>
-                                                </div>
-                                            </fieldset>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressCity, "TextBox")
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                         }
 
-                                        <br />
+                                    <br />
 
-                                        <fieldset>
-                                            <legend>
-                                                @Localizer["Contact person business"]
-                                            </legend>
+                                    <fieldset>
+                                        <legend>
+                                            @Localizer["Contact person business"]
+                                        </legend>
 
-                                            <div class="row">
-                                                <div class="small-12 medium-6 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].Name, "TextBox", new { readOnly = true })
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].Name, "TextBox", new { readOnly = true })
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="small-12 medium-6 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].Email, "TextBox", new { readOnly = true })
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-6 end columns">
+                                                @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].Email, "TextBox", new { readOnly = true })
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="small-12 medium-4 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].PhoneCountryCode, "TextBox", new { readOnly = true })
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-4 end columns">
+                                                @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].PhoneCountryCode, "TextBox", new { readOnly = true })
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="small-12 medium-4 end columns">
-                                                    @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].Phone, "TextBox", new { readOnly = true })
-                                                </div>
+                                        <div class="row">
+                                            <div class="small-12 medium-4 end columns">
+                                                @Html.EditorFor(x => x.CompanyItem.ContactPersonList[0].Phone, "TextBox", new { readOnly = true })
                                             </div>
-                                        </fieldset>
-                                        <br />
-                                        <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="UpdateCustom" />
-                                    </form>
+                                        </div>
+                                    </fieldset>
+                                    <br />
+                                    <input class="button large" type="submit" value="@Localizer["Save"]" asp-route-handler="UpdateCustom" />
+                                </form>
 
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
-                <br />
-                <div class="row">
+        <div class="xlarge-12 large-10 small-12 large-centered xlarge-uncentered columns">
+            <br />
+            <div class="row">
 
-                    @foreach (var item in Model.DeclarationList)
+                @foreach (var item in Model.DeclarationList)
                     {
                         var done = item.Status.Id == (int)DeclarationStatus.SentIn || item.Status.Id == (int)DeclarationStatus.Finished || item.Status.Id == (int)DeclarationStatus.Canceled;
                         var color = done ? "green" : "pink";
 
-                        <div class="small-12 medium-4 columns">
-                            <div class="card @color-top">
+                <div class="small-12 medium-4 columns">
+                    <div class="card @color-top">
 
-                                <div class="card-divider">
-                                    <div class="day-counter">
-                                        @if (!done)
+                        <div class="card-divider">
+                            <div class="day-counter">
+                                @if (!done)
                                         {
-                                            <span>@Localizer["Deadline"]:</span> @item.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
+                                <span>@Localizer["Deadline"]:</span>  @item.DeadlineDate.ToString("dd.MM.yyyy HH:mm")
                                         }
                                         else
                                         {
-                                            <span>@Localizer["Submitted"]:</span> @item.SentInDate.ToString("dd.MM.yyyy HH:mm")
+                                <span>@Localizer["Submitted"]:</span>  @item.SentInDate.ToString("dd.MM.yyyy HH:mm")
                                         }
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
 
-                                <div class="card-section">
-                                    <div class="row align-middle">
-                                        <div class="small-12 medium-12 columns text-center ">
-                                            <div class="status status-@(item.DeclarationTestItem.StatusCount*25)">
-                                                <div class="status-done">@(item.DeclarationTestItem.StatusCount * 25)%</div>
-                                            </div>
-                                        </div>
-                                        <div class="small-12 medium-12 columns text-center">
-                                            <span class="status-text">@item.Status.TextCompany</span>
-                                        </div>
+                        <div class="card-section">
+                            <div class="row align-middle">
+                                <div class="small-12 medium-12 columns text-center ">
+                                    <div class="status status-@(item.DeclarationTestItem.StatusCount*25)">
+                                        <div class="status-done">@(item.DeclarationTestItem.StatusCount * 25)%</div>
                                     </div>
                                 </div>
-
-                                <div class="card-section text-center medium-uncentered">
-                                    <div class="declaration-name-type">
-                                        <span class="declaration-name">
-                                            @companyName
-                                        </span>
-                                        <span class="declaration-type">
-                                            @item.Name
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="card-section text-center medium-uncentered">
-                                    @if ((item.DeclarationTestItem.HaveMachine == false && (item.Status.Id<4 || item.Status.Id == 5)) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
-                                    {
-                                        <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
-                                    }
-                                    else if (item.Status.Id == (int)DeclarationStatus.Started || item.Status.Id == (int)DeclarationStatus.Return)
-                                    {
-                                        <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
-                                    } else if (item.Status.Id == (int)DeclarationStatus.SentIn && item.DeclarationTestItem.HaveMachine)
-                                    {
-                                        <a asp-page="/Declaration/DeclarationRead" class="button update" asp-route-id="@item.Id">@Localizer["To summary"]</a>
-                                    }
+                                <div class="small-12 medium-12 columns text-center">
+                                    <span class="status-text">@item.Status.TextCompany</span>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="card-section text-center medium-uncentered">
+                            <div class="declaration-name-type">
+                                <span class="declaration-name">
+                                    @companyName
+                                </span>
+                                <span class="declaration-type">
+                                    @item.Name
+                                </span>
+                            </div>
+                        </div>
+                        <div class="card-section text-center medium-uncentered">
+                            @if ((item.DeclarationTestItem.HaveMachine == false && (item.Status.Id<4 || item.Status.Id == 5)) || item.Status.Id == (int)DeclarationStatus.Sent || item.Status.Id == (int)DeclarationStatus.Created)
+                                    {
+                            <a asp-page="/Declaration/DeclarationStart" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
+                                    }
+                                    else if (item.Status.Id == (int)DeclarationStatus.Started || item.Status.Id == (int)DeclarationStatus.Return)
+                                    {
+                            <a asp-page="/Declaration/DeclarationForm" class="button update" asp-route-id="@item.Id">@Localizer["Open self-control"]</a>
+                                    } else if (item.Status.Id == (int)DeclarationStatus.SentIn && item.DeclarationTestItem.HaveMachine)
+                                    {
+                            <a asp-page="/Declaration/DeclarationRead" class="button update" asp-route-id="@item.Id">@Localizer["To summary"]</a>
+                                    }
+                        </div>
+                    </div>
+                </div>
                     }
 
-                </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 }
 
 @section Scripts {
