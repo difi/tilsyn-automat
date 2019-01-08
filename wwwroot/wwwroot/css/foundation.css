@@ -4817,20 +4817,25 @@ img.full-width-image {
   background-position: 0 -1700px; }
 
 .send-info-wrapper {
-  background-color: #FFD1D1;
-  padding: 1rem; }
+  background-color: #FEE9E9;
+  border: 1px solid #1F3F43;
+  border-radius: 4px;
+  padding: 1rem;
+  position: relative; }
   .send-info-wrapper .error {
     display: inline-block;
-    position: relative;
-    height: 30px;
+    position: absolute;
+    height: 40px;
     width: 40px;
     background-image: url("/css/cssimg/icons-sprite.svg");
     background-repeat: no-repeat;
-    background-position: 0 -1995px;
-    top: 7px; }
+    background-position: 0 -2198px;
+    top: 13px;
+    left: 13px; }
 
 .card-divider .send-info-wrapper {
-  padding-top: 0.5rem; }
+  padding: 1rem 1rem 1rem 3.5rem;
+  margin-top: 0.5rem; }
 
 /* Page specific code
 --------------------------------------------------------------*/
