@@ -74,9 +74,15 @@
                         <div class="jsDeclarationListToggleCardTarget">
                             <div class="card declaration-list-info">
 
-                                <p>
-                                    @Localizer["The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself."]
-                                </p>
+                                <div class="row">
+                                    <div class="medium-7 column">
+                                        <p>
+                                            @Localizer["The information about the business is taken from the Brønnøysund Register Center. You can inform us of the changed name and visit address in this solution, but if it is wrong you should report the Brønnøysund Register Center yourself."]
+                                        </p>
+                                    </div>
+                                </div>
+
+
 
                                 <div class="row column">
                                     <h2>@Localizer["Business information"]</h2>
@@ -125,53 +131,53 @@
                                     <br />
 
                                     @if (Model.CompanyItem.OwenerCorporateIdentityNumber != null && Model.CompanyItem.OwenerCorporateIdentityNumber > 0)
-                                        {
-                                    <fieldset>
-                                        <legend>@Localizer["Location Address"]</legend>
+                                    {
+                                        <fieldset>
+                                            <legend>@Localizer["Location Address"]</legend>
 
-                                        <div class="row">
-                                            <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressStreet, "TextBox")
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressStreet, "TextBox")
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressZip, "TextBoxNumber")
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressZip, "TextBoxNumber")
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressCity, "TextBox")
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomLocationAddressCity, "TextBox")
+                                                </div>
                                             </div>
-                                        </div>
-                                    </fieldset>
-                                        }
-                                        else
-                                        {
-                                    <fieldset>
-                                        <legend>@Localizer["Business Address"]</legend>
+                                        </fieldset>
+                                    }
+                                    else
+                                    {
+                                        <fieldset>
+                                            <legend>@Localizer["Business Address"]</legend>
 
-                                        <div class="row">
-                                            <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressStreet, "TextBox")
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressStreet, "TextBox")
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressZip, "TextBoxNumber")
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressZip, "TextBoxNumber")
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="small-12 medium-6 end columns">
-                                                @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressCity, "TextBox")
+                                            <div class="row">
+                                                <div class="small-12 medium-6 end columns">
+                                                    @Html.EditorFor(x => x.CompanyCustomItem.CustomBusinessAddressCity, "TextBox")
+                                                </div>
                                             </div>
-                                        </div>
-                                    </fieldset>
-                                        }
+                                        </fieldset>
+                                    }
 
                                     <br />
 
