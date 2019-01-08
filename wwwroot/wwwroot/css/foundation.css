@@ -3871,7 +3871,8 @@ header {
     background-color: transparent;
     margin-top: 1.5rem; }
   header .logo {
-    margin: 13px 0 0 0; }
+    margin: 13px 0 0 0;
+    max-width: 247px; }
   header .profile-wrapper .profile-first-letter {
     background-color: #8f6693; }
   header .profile-info-area {
@@ -3914,7 +3915,8 @@ header {
 
 @media print, screen and (min-width: 48em) {
   header .logo {
-    margin: 13px 0 0 0; } }
+    margin: 13px 0 0 0;
+    max-width: 375px; } }
 
 footer {
   background-color: #177299;
