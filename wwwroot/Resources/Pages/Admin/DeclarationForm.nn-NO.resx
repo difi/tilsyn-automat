@@ -121,18 +121,18 @@
     <value>Avbryt</value>
   </data>
 	<data name="Export to Excel" xml:space="preserve">
-    <value />
+    <value>Eksporter til Excel</value>
   </data>
 	<data name="Missing machine" xml:space="preserve">
-    <value />
+    <value>Manglande automat</value>
   </data>
 	<data name="Save" xml:space="preserve">
     <value>Lagre </value>
   </data>
 	<data name="Summary" xml:space="preserve">
-    <value />
+    <value>Oppsummering</value>
   </data>
 	<data name="View business information" xml:space="preserve">
-    <value />
+    <value>Vis verksemdsinformasjon</value>
   </data>
 </root>

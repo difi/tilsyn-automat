@@ -123,4 +123,13 @@
 	<data name="Yes" xml:space="preserve">
 		<value>Ja</value>
 	</data>
+	<data name="Not logged in" xml:space="preserve">
+		<value>Ikkje logga inn</value>
+	</data>
+	<data name="Unknown" xml:space="preserve">
+		<value>Ukjent</value>
+	</data>
+	<data name="All" xml:space="preserve">
+		<value>Alle</value>
+	</data>
 </root>

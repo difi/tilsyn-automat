@@ -130,6 +130,6 @@
     <value>Filter</value>
   </data>
 	<data name="Reset" xml:space="preserve">
-    <value />
+    <value>Fjern filter</value>
   </data>
 </root>

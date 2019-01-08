@@ -118,12 +118,12 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="An error has occurred and logged. Contact your system administrator for more information." xml:space="preserve">
-    <value>Det har skjedd ein feil. Kontakt systemadministrator for meir informasjon</value>
+    <value>Ein feil har oppstått. Kontakt uu@difi.no for meir informasjon.</value>
   </data>
 	<data name="Error" xml:space="preserve">
     <value>Feil</value>
   </data>
 	<data name="Error message:" xml:space="preserve">
-    <value>Feilmelding: </value>
+    <value>Feilmelding:</value>
   </data>
 </root>

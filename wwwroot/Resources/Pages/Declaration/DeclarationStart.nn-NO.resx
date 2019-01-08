@@ -130,6 +130,11 @@
     <value>Verksemda skal ha minst éin betalingsterminal som tilfredsstiller krava til universell utforming av ikt. Det er ein fordel om betalingsterminalen som blir mest brukt, også er universelt utforma.</value>
   </data>
 	<data name="InformationText" xml:space="preserve">
-    <value />
+    <value>Du skal no ta stilling til kva for ein betalingsterminal du skal kontrollere i denne eigenkontrollen. Vel den som er nærast til å oppfylle desse punkta: &lt;ul&gt;
+                    &lt;li&gt;Kassen er skilta, og skiltet er synleg på avstand, slik at kundane veit kor dei skal betale varene sine.&lt;/li&gt;
+                    &lt;li&gt;Området rett framfor betalingsterminalen, der kunden betalar, er utan hindringar (minst 150 x 150 cm).&lt;/li&gt;
+                    &lt;li&gt;Det er god nok avstand til neste betalingsterminal dersom det står fleire betalingsterminalar på rett linje (minst 150 cm).&lt;/li&gt;
+                    &lt;li&gt;Betalingsterminalen har ei høgde over golvet som gjer at han kan brukast både av kundar som står og sit når dei betalar (mellom 75 – 130 cm).&lt;/li&gt;
+                &lt;/ul&gt;</value>
   </data>
 </root>

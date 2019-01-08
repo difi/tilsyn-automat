@@ -118,15 +118,15 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="From date" xml:space="preserve">
-    <value />
+    <value>Frå</value>
   </data>
 	<data name="Status" xml:space="preserve">
-    <value />
+    <value>Status</value>
   </data>
 	<data name="Succeeded" xml:space="preserve">
-    <value />
+    <value>Resultat lyktes</value>
   </data>
 	<data name="To date" xml:space="preserve">
-    <value />
+    <value>Til</value>
   </data>
 </root>

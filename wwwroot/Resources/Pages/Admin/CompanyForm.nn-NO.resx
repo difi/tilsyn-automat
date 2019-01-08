@@ -166,6 +166,12 @@
     <value>Postadresse</value>
   </data>
 	<data name="Are you sure you want to delete this company?" xml:space="preserve">
-    <value />
+    <value>Er du sikker på at du vil slette denne verksemda?</value>
   </data>
+	<data name="Changed Business Address" xml:space="preserve">
+		<value>Endra forretningsadresse</value>
+	</data>
+	<data name="Changed Location Address" xml:space="preserve">
+		<value>Endra beliggenhetsadresse</value>
+	</data>
 </root>

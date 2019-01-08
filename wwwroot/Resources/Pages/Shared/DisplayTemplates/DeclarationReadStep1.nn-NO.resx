@@ -118,10 +118,10 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="is completely answered" xml:space="preserve">
-    <value />
+    <value>er fullstendig besvart</value>
   </data>
 	<data name="is not completely answered" xml:space="preserve">
-    <value />
+    <value>er ikkje fullstendig besvart</value>
   </data>
 	<data name="Machine" xml:space="preserve">
     <value>Automaten</value>

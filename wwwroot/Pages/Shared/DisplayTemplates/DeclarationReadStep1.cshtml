@@ -2,6 +2,7 @@
 
 @{
     var mainIndex = ViewData["mainIndex"];
+    var viewResult = (bool)ViewData["viewResult"];
     var allDone = (bool)ViewData["allDone"];
 }
 
@@ -12,14 +13,14 @@
             <h2 class="h2-toggle">
                 <button class="toogle-header-button isDone-@allDone jsToggleCardReadButton">
                     @mainIndex. @Localizer["Automaten"]
-                    
+
                     @if (allDone)
                     {
-                        <span class="show-for-sr">@Localizer["is completely answered"]</span>
+                    <span class="show-for-sr">@Localizer["is completely answered"]</span>
                     }
                     else
                     {
-                        <span class="show-for-sr">@Localizer["is not completely answered"]</span>
+                    <span class="show-for-sr">@Localizer["is not completely answered"]</span>
                     }
 
                     <span class="header-status-icon isDone-@allDone hide-for-print">
@@ -36,24 +37,24 @@
         <div class="small-12 medium-11 medium-centered columns">
             <div class="jsToggleCardReadTarget">
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = Html.DisplayNameFor(x => x.DeclarationTestItem.SupplierAndVersionId), orderText = "1.1", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersion.Text, "AnswerString", new { text = Html.DisplayNameFor(x => x.DeclarationTestItem.SupplierAndVersionId), orderText = "1.1", viewResult = viewResult })
 
                     @if (Model.DeclarationTestItem.SupplierAndVersion?.Id == 99999)
                     {
-                        @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { orderText = "1.1", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.SupplierAndVersionOther, "AnswerString", new { orderText = "1.1", viewResult = viewResult })
                     }
                 </div>
 
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.DescriptionInText, "AnswerString", new { orderText = "1.2", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.DescriptionInText, "AnswerString", new { orderText = "1.2", viewResult = viewResult })
                 </div>
 
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.Image1, "AnswerImage", new { orderText = "1.3", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.Image1, "AnswerImage", new { orderText = "1.3", viewResult = viewResult })
                 </div>
 
                 <div class="card jsCard transparent">
-                    @Html.DisplayFor(x => x.DeclarationTestItem.Image2, "AnswerImage", new { orderText = "1.4", viewResult = false })
+                    @Html.DisplayFor(x => x.DeclarationTestItem.Image2, "AnswerImage", new { orderText = "1.4", viewResult = viewResult })
                 </div>
             </div>
         </div>
