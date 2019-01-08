@@ -99,7 +99,10 @@
             return $elem.parents(".jsViewStartInfoContainer").find('.jsViewStartInfoToggleTarget');
         },
         toggleAction: function ($target) {
-            $target.slideToggle("300", function () { });
+            $target.slideToggle("300", function() {
+
+                $target.parents(".jsViewStartInfoContainer").find(".jsToggleViewStartInfoButton").hide();
+            });
         }
     });
 
