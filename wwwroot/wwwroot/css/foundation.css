@@ -4201,6 +4201,7 @@ button, .button, input[type="button"], input[type="submit"] {
   button.toogle-header-button-alt, .button.toogle-header-button-alt, input[type="button"].toogle-header-button-alt, input[type="submit"].toogle-header-button-alt {
     background-color: #E7DDE7;
     padding-left: 28px;
+    padding-bottom: 1.3rem;
     margin-bottom: 0;
     font-size: 16px; }
     button.toogle-header-button-alt .toggle-header-icon, .button.toogle-header-button-alt .toggle-header-icon, input[type="button"].toogle-header-button-alt .toggle-header-icon, input[type="submit"].toogle-header-button-alt .toggle-header-icon {
