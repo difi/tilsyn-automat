@@ -118,3 +118,15 @@
         }
     });
 });
+
+
+$("body").on("change", ".choose-file", function () {
+    var value = this.value;
+    if (this.value.indexOf("\\") > 0) {
+        value = value.substr(value.lastIndexOf("\\") + 1, value.length - 1);
+    }
+
+    var fileNameInText = document.getElementById('fileUploadArea');
+    fileNameInText.insertAdjacentHTML('afterend', '<div class="file-name">' + value + '</div>');
+   
+});
