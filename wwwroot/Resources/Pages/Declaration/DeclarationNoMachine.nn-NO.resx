@@ -127,6 +127,6 @@
     <value>Takk for at du tok deg tid til å svare på eigenkontrollen. Denne eigenkontrollen gjeld for verksemder som brukar betalingsterminalar. Trykk på knappen under for å stadfeste at du ikkje brukar betalingsterminalar. Eigenkontrollen for betalingsterminalar blir då avslutta.</value>
   </data>
   <data name="Ok" xml:space="preserve">
-    <value>Bekreft</value>
+    <value>Stadfest</value>
   </data>
 </root>

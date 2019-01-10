@@ -175,6 +175,6 @@
     <value>Endra beliggenhetsadresse</value>
   </data>
   <data name="Are you sure you want to remove this link?" xml:space="preserve">
-    <value />
+    <value>Er du sikker på at du vil fjerne kopla brukar?</value>
   </data>
 </root>
