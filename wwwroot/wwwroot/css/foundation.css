@@ -3799,7 +3799,8 @@ h3, h4 {
   .start h1, .the-end h1 {
     font-size: 26px; }
   .start h2, .the-end h2 {
-    font-size: 20px; }
+    font-size: 20px;
+    outline: none; }
   .start h3, .the-end h3 {
     font-size: 16px;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
