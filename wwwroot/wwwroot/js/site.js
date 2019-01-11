@@ -100,8 +100,9 @@
         },
         toggleAction: function ($target) {
             $target.slideToggle("300", function() {
-
                 $target.parents(".jsViewStartInfoContainer").find(".jsToggleViewStartInfoButton").hide();
+                $target.parents(".jsViewStartInfoContainer").find("a").removeAttr("tabindex");
+                $target.parents(".jsViewStartInfoContainer").prev().focus();
             });
         }
     });
