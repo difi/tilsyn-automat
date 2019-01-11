@@ -89,8 +89,14 @@ namespace Cache
 
         private void ClearCache(Guid companyItemId)
         {
-            cache.Remove("Declaration_GetAll" + currentLang);
-            cache.Remove("Declaration_GetForCompany_" + currentLang + "_" + companyItemId);
+            const string currentLangNb = "nb-NO";
+            const string currentLangNn = "nn-NO";
+
+            cache.Remove("Declaration_GetAll_" + currentLangNb);
+            cache.Remove("Declaration_GetForCompany_" + currentLangNb + "_" + companyItemId);
+
+            cache.Remove("Declaration_GetAll_" + currentLangNn);
+            cache.Remove("Declaration_GetForCompany_" + currentLangNn + "_" + companyItemId);
         }
     }
 }
