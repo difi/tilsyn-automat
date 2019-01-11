@@ -41,11 +41,24 @@
         margin: 0;
         border-radius: 0;
         background-color: transparent;
+    }
 
-        p {
-            padding-left: 2.25rem;
-            font-size: 14px;
-            font-family: $body-font-family;
+    .feedback-summary-header {
+        padding-left: 2rem;
+        position: relative;
+        display: inline-block;
+
+        &:before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            background-image: url("/css/cssimg/icons-sprite.svg");
+            background-repeat: no-repeat;
+            background-position: 0 -1892px;
+            top: 0;
+            left: 0;
         }
     }
 
@@ -53,30 +66,38 @@
         margin: 0;
         padding: 0;
         list-style: none;
+        font-size: 14px;
+        font-family: $body-font-family;
     }
 
     li {
-        span {
-            padding-left: 2rem;
-            position: relative;
-            display: inline-block;
+        padding: 0 0 6px 0;
+    }
 
-            &:before {
-                content: "";
-                display: inline-block;
-                position: absolute;
-                height: 30px;
-                width: 30px;
-                background-image: url("/css/cssimg/icons-sprite.svg");
-                background-repeat: no-repeat;
-                background-position: 0 -1892px;
-                top: 0;
-                left: 0;
-            }
+    ul {
+        padding-left: 2rem;
+    }
+}
+
+.positive {
+    background-color: $feedback-green;
+
+    .feedback-summary-header {
+        &:before {
+            background-position: 0 -1892px;
         }
     }
 }
 
+.negative {
+    background-color: $feedback-red;
+
+    .feedback-summary-header {
+        &:before {
+            background-position: 0 -1995px;
+        }
+    }
+}
 
 .info-message {
     border-radius: 6px;
@@ -108,31 +129,6 @@
         margin: 0;
     }
 }
-
-
-.positive {
-    background-color: $feedback-green;
-
-    li {
-        span::before {
-            background-position: 0 -1892px;
-        }
-    }
-}
-
-.negative {
-    background-color: $feedback-red;
-
-    li {
-        span::before {
-            background-position: 0 -1995px;
-        }
-    }
-}
-
-main {
-}
-
 
 .info-wrapper {
     border-left-width: 7px;
@@ -505,6 +501,8 @@ img {
 //--------------------------------------------------------------*/
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
+
+
 }
 // LARGE SCREEN
 @include breakpoint(large) {

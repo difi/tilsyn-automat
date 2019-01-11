@@ -7,16 +7,18 @@
 
     <div class="negative" role="alert">
         <div class="row">
-            <div class="xlarge-12 large-10 small-12 text-center large-centered xlarge-uncentered columns">
+            <div class="xlarge-7 large-8 medium-centered small-12 columns">
                 <div class="feedback-summary">
-                    <ul>
-                        <li><span> @Localizer["An error has occurred and logged. Contact your system administrator for more information."]</span></li>
-                    </ul>
-                    <p>
-                        @Localizer["Error message:"] @Html.Raw(errorString)
-                    </p>
+                    <div class="feedback-summary-header">
+                        @Localizer["An error has occurred and logged. Contact your system administrator for more information."]
+                    </div>
+
+                        <ul>
+                            <li>@Localizer["Error message:"] @Html.Raw(errorString)</li>
+                        </ul>
+
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 }

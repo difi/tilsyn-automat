@@ -153,11 +153,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
 
                 if (importExistCount == 0 && importFailCount == 0)
                 {
-                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades.");
+                    ViewData.Add("Done", $"<div class='feedback-summary-header'>Importen slutfördes. {importOkCount} av {importTotaltCount} importerades.</div>");
                 }
                 else
                 {
-                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})<br />" + errorText);
+                    ViewData.Add("Done", $"<div class='feedback-summary-header'>Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})</div>" + errorText);
                 }
 
                 await OnGetAsync();

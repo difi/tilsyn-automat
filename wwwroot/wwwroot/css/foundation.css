@@ -3799,7 +3799,8 @@ h3, h4 {
   .start h1, .the-end h1 {
     font-size: 26px; }
   .start h2, .the-end h2 {
-    font-size: 20px; }
+    font-size: 20px;
+    outline: none; }
   .start h3, .the-end h3 {
     font-size: 16px;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
@@ -4566,19 +4567,11 @@ div div .tablesorter-default a {
     margin: 0;
     border-radius: 0;
     background-color: transparent; }
-    .positive .feedback-summary p, .negative .feedback-summary p {
-      padding-left: 2.25rem;
-      font-size: 14px;
-      font-family: "Open Sans", Helvetica, Arial, sans-serif; }
-  .positive ul, .positive li, .negative ul, .negative li {
-    margin: 0;
-    padding: 0;
-    list-style: none; }
-  .positive li span, .negative li span {
+  .positive .feedback-summary-header, .negative .feedback-summary-header {
     padding-left: 2rem;
     position: relative;
     display: inline-block; }
-    .positive li span:before, .negative li span:before {
+    .positive .feedback-summary-header:before, .negative .feedback-summary-header:before {
       content: "";
       display: inline-block;
       position: absolute;
@@ -4589,6 +4582,26 @@ div div .tablesorter-default a {
       background-position: 0 -1892px;
       top: 0;
       left: 0; }
+  .positive ul, .positive li, .negative ul, .negative li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif; }
+  .positive li, .negative li {
+    padding: 0 0 6px 0; }
+  .positive ul, .negative ul {
+    padding-left: 2rem; }
+
+.positive {
+  background-color: #B4F0E7; }
+  .positive .feedback-summary-header:before {
+    background-position: 0 -1892px; }
+
+.negative {
+  background-color: #FFD1D1; }
+  .negative .feedback-summary-header:before {
+    background-position: 0 -1995px; }
 
 .info-message {
   border-radius: 6px;
@@ -4610,16 +4623,6 @@ div div .tablesorter-default a {
   padding-bottom: 1rem; }
   .declaration-summary-header h1 {
     margin: 0; }
-
-.positive {
-  background-color: #B4F0E7; }
-  .positive li span::before {
-    background-position: 0 -1892px; }
-
-.negative {
-  background-color: #FFD1D1; }
-  .negative li span::before {
-    background-position: 0 -1995px; }
 
 .info-wrapper {
   border-left-width: 7px;
