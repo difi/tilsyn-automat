@@ -84,7 +84,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     return await errorHandler.View(this, OnGetAsync(), new Exception("Du måste ladda upp en excelfil!"));
                 }
 
-                var errorText = "";
+                var errorText = "<ul>";
                 var importTotaltCount = 0;
                 var importOkCount = 0;
                 var importFailCount = 0;
@@ -123,29 +123,29 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                                 if (result.Exception.InnerException != null && result.Exception.InnerException.Message == "exist")
                                 {
                                     importExistCount++;
-                                    errorText += "Rad " + importTotaltCount + ": " + "Dublett" + "<br />";
+                                    errorText += "<li>Rad " + importTotaltCount + ": " + "Dublett" + "</li>";
                                 }
                                 else
                                 {
                                     importFailCount++;
-                                    errorText += "Rad " + importTotaltCount + ": " + result.Exception.InnerException?.Message + "<br />";
+                                    errorText += "<li>Rad " + importTotaltCount + ": " + result.Exception.InnerException?.Message + "</li>";
                                 }
                             }
                         }
                         else
                         {
-                            errorText += "Rad " + importTotaltCount + ": ";
+                            errorText += "<li>Rad " + importTotaltCount + ": ";
                             errorText = resultCompany.Aggregate(errorText, (current, validationResult) => current + localizerCompanyItem[validationResult.ErrorMessage] + ", ");
                             errorText = resultDeclaration.Aggregate(errorText, (current, validationResult) => current + localizerDeclarationItem[validationResult.ErrorMessage] + ", ");
                             errorText = resultContactPerson.Aggregate(errorText, (current, validationResult) => current + localizerContactPersonItem[validationResult.ErrorMessage] + ", ");
-                            errorText += "<br />";
+                            errorText += "</li>";
 
                             importFailCount++;
                         }
                     }
                     catch (Exception exception)
                     {
-                        errorText += "Rad " + importTotaltCount + ": " + exception.Message + "<br />";
+                        errorText += "<li>Rad " + importTotaltCount + ": " + exception.Message + "</li>";
 
                         importFailCount++;
                     }
@@ -157,7 +157,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                 }
                 else
                 {
-                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})<br /><small>" + errorText+ "</small>");
+                    ViewData.Add("Done", $"Importen slutfördes. {importOkCount} av {importTotaltCount} importerades. (dubletter: {importExistCount}, övriga fel: {importFailCount})<br />" + errorText);
                 }
 
                 await OnGetAsync();

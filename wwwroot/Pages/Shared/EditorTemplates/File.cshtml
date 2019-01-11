@@ -3,15 +3,14 @@
 
 <div id="fileUploadArea" class="fileUploadArea">
     <div class="fileUploadButtonsArea">
-
         <label for="@Html.IdForModel()">
             <span class="show-for-sr">@Html.DisplayNameFor(m => m) </span>
             @Html.ValidationMessageFor(m => m)
         </label>
 
-        <input class="button choose-file" asp-for="@Model" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+        <input class="button choose-file" asp-for="@Model" type="file" accept=".xlsx" />
+
         <button tabindex="-1" id="choose-file" class="button choose-file">Velg fil</button>
-
     </div>
+    <div class="jsFileName file-name"></div>
 </div>
-

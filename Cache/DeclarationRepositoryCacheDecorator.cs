@@ -42,7 +42,7 @@ namespace Cache
 
         public ApiResult<T> GetAll<T>() where T : List<DeclarationItem>
         {
-            return cache.GetOrCreate("Declaration_GetAll" + currentLang, entry =>
+            return cache.GetOrCreate("Declaration_GetAll_" + currentLang, entry =>
             {
                 entry.SlidingExpiration = TimeSpan.FromMinutes(60);
                 return inner.GetAll<T>();
@@ -110,7 +110,7 @@ namespace Cache
         private void ClearCache(Guid declarationItemid, Guid companyItemId)
         {
             cache.Remove("Declaration_Get_" + currentLang + "_" + declarationItemid);
-            cache.Remove("Declaration_GetAll" + currentLang);
+            cache.Remove("Declaration_GetAll_" + currentLang);
             cache.Remove("Declaration_GetOutcomeDataList_" + currentLang + "_" + declarationItemid);
             cache.Remove("Declaration_GetForCompany_" + currentLang + "_" + companyItemId);
         }
