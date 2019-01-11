@@ -130,13 +130,13 @@
     <value>Frist for innsending</value>
   </data>
 	<data name="Deadline for submission is required" xml:space="preserve">
-    <value>Frist for innsending er påkravd</value>
+    <value>Frist for innsending er påkrevd</value>
   </data>
 	<data name="Name" xml:space="preserve">
     <value>Namn på eigenkontroll</value>
   </data>
 	<data name="Name is required" xml:space="preserve">
-    <value>Namn på eigenkontroll er påkravd</value>
+    <value>Namn på eigenkontroll er påkrevd</value>
   </data>
 	<data name="Sent in date" xml:space="preserve">
     <value>Dato sendt inn</value>

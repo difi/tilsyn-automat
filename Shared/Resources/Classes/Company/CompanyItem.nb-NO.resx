@@ -136,10 +136,10 @@
     <value>Beskrivelse</value>
   </data>
 	<data name="Name" xml:space="preserve">
-    <value>Virksomhet</value>
+    <value>Navn på virksomhet</value>
   </data>
 	<data name="Name is required" xml:space="preserve">
-    <value>Virksomhet er påkrevd</value>
+    <value>Navn på virksomhet er påkrevd</value>
   </data>
 	<data name="Organization number" xml:space="preserve">
     <value>Organisasjonsnummer</value>
@@ -148,16 +148,16 @@
     <value>Organisasjonsnummer må ha 9 tall.</value>
   </data>
 	<data name="Organization number of the owner organization" xml:space="preserve">
-    <value>Organisasjonsnummer på hovedorgansasjonen</value>
+    <value>Organisasjonsnummer til overordnet enhet</value>
   </data>
 	<data name="Organization number of the owner organization must have nine numbers" xml:space="preserve">
     <value>Organisasjonsnummer til overordnet enhet må ha 9 tall.</value>
   </data>
 	<data name="Pin code" xml:space="preserve">
-    <value>Pinkode</value>
+    <value>PIN-kode</value>
   </data>
 	<data name="Pin code must have four numbers" xml:space="preserve">
-    <value>Pinkode må ha 4 tall.</value>
+    <value>PIN-kode må ha 4 tall.</value>
   </data>
 	<data name="Street name and number" xml:space="preserve">
     <value>Gatenavn og nummer</value>
@@ -166,6 +166,6 @@
     <value>Postnummer</value>
   </data>
 	<data name="ZIP Code must have 4 to 5 numbers" xml:space="preserve">
-    <value>Postnummer må ha 4 til 5 tall</value>
+    <value>Postnummer må ha 4 tall</value>
   </data>
 </root>

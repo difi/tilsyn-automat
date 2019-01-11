@@ -136,7 +136,7 @@
     <value>Her kan du for eksempel skrive hvor betalingsterminalen er plassert.&lt;br /&gt;Eksempler er kasse 1, nærmest inngangen/utgangen, den til venstre for Inngangen/utgangen.</value>
   </data>
 	<data name="Manufacturer and name of automat" xml:space="preserve">
-    <value>Produsent og navn på automat</value>
+    <value>Skriv inn produsentnavn og modellnummer/modellnavn på betalingsterminalen</value>
   </data>
 	<data name="Purpose of test" xml:space="preserve">
     <value>Formål med test</value>

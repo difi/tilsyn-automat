@@ -135,4 +135,7 @@
 	<data name="View log out" xml:space="preserve">
     <value>Vis logg ut</value>
   </data>
+	<data name="Case processor" xml:space="preserve">
+		<value>Saksbehandlar</value>
+	</data>
 </root>

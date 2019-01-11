@@ -46,7 +46,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string MailingAddressStreet { get; set; }
 
         [ExcelExport("MailingAddress")]
-        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
+        [RegularExpression("\\d{4}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         [Display(Name = "ZIP code")]
         public string MailingAddressZip { get; set; }
 
@@ -59,7 +59,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string LocationAddressStreet { get; set; }
 
         [ExcelExport("LocationAddress")]
-        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
+        [RegularExpression("\\d{4}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         [Display(Name = "ZIP code")]
         public string LocationAddressZip { get; set; }
 
@@ -72,7 +72,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string CustomLocationAddressStreet { get; set; }
 
         [ExcelExport("CustomLocationAdress")]
-        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
+        [RegularExpression("\\d{4}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         [Display(Name = "ZIP code")]
         public string CustomLocationAddressZip { get; set; }
 
@@ -85,7 +85,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string BusinessAddressStreet { get; set; }
 
         [ExcelExport("BusinessAddress")]
-        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
+        [RegularExpression("\\d{4}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         [Display(Name = "ZIP code")]
         public string BusinessAddressZip { get; set; }
 
@@ -98,7 +98,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
         public string CustomBusinessAddressStreet { get; set; }
 
         [ExcelExport("CustomBusinessAdress")]
-        [RegularExpression("\\d{4,5}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
+        [RegularExpression("\\d{4}", ErrorMessage = "ZIP Code must have 4 to 5 numbers")]
         [Display(Name = "ZIP code")]
         public string CustomBusinessAddressZip { get; set; }
 

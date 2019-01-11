@@ -137,7 +137,7 @@
 Eksempel er kasse 1, nærmast inngangen/utgangen, den til venstre for inngangen/utgangen.</value>
   </data>
 	<data name="Manufacturer and name of automat" xml:space="preserve">
-    <value>Produsent og namn på automaten</value>
+    <value>Skriv inn produsentnamn og modellnummer/modellnamn på betalingsterminalen</value>
   </data>
 	<data name="Purpose of test" xml:space="preserve">
     <value>Formål med testen</value>

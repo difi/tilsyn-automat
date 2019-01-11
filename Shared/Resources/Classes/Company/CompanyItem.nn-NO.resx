@@ -136,16 +136,16 @@
     <value>Beskriving</value>
   </data>
 	<data name="Name" xml:space="preserve">
-    <value>Verksemd</value>
+    <value>Namn på verksemda</value>
   </data>
 	<data name="Name is required" xml:space="preserve">
-    <value>Verksemd er påkravd</value>
+    <value>Namn på verksemda er påkrevd</value>
   </data>
 	<data name="Organization number" xml:space="preserve">
     <value>Organisasjonsnummer</value>
   </data>
 	<data name="Organization number of the owner organization" xml:space="preserve">
-    <value>Organisasjonsnummer på hovudorganisasjonen</value>
+    <value>Organisasjonsnummer på overordna einheit</value>
   </data>
 	<data name="Pin code" xml:space="preserve">
     <value>PIN-kode</value>
@@ -157,7 +157,7 @@
     <value>Postnummer </value>
   </data>
 	<data name="ZIP Code must have 4 to 5 numbers" xml:space="preserve">
-    <value>Postnummer må ha 4 til 5 tal.</value>
+    <value>Postnummer må ha 4 tal.</value>
   </data>
 	<data name="Organization number must have nine numbers" xml:space="preserve">
 		<value>Organisasjonsnummer må ha 9 tal.</value>
