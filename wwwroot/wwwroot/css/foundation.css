@@ -4858,10 +4858,6 @@ img.full-width-image {
 
 /* Page specific code
 --------------------------------------------------------------*/
-@media print, screen and (min-width: 48em) {
-  .positive li, .negative li {
-    padding: 0 0 6px 42px; } }
-
 .lt-ie9 .row {
   width: 984px;
   max-width: 100%;

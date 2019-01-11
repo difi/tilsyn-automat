@@ -502,11 +502,6 @@ img {
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
 
-    .positive, .negative {
-        li {
-            padding: 0 0 6px 42px;
-        }
-    }
 
 }
 // LARGE SCREEN
