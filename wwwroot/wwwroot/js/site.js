@@ -127,4 +127,7 @@ $("body").on("change", ".choose-file", function () {
     }
 
     $(".jsFileName").html(value);
+
+    $(".jsFileName").addClass("file-name");
+    $(".jsUploadButton").removeClass("alt");
 });
