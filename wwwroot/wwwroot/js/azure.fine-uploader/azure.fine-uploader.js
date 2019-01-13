@@ -2480,7 +2480,9 @@
                     onSessionRequestComplete: function (response, success, xhrOrXdr) { }
                 },
                 messages: {
-                    typeError: "{file} has an invalid extension. Valid extension(s): {extensions}.",
+                    //FUNKA Custom code start
+                    typeError: "#{file}",
+                    //FUNKA Custom code end
                     sizeError: "{file} is too large, maximum file size is {sizeLimit}.",
                     minSizeError: "{file} is too small, minimum file size is {minSizeLimit}.",
                     emptyError: "{file} is empty, please select files again without it.",
@@ -5990,8 +5992,10 @@
                     $("#old_answer_image_" + uploadId).hide();
 
                     $("#" + uploadId).find(".qq-upload-status").hide();
+                    $("#" + uploadId).find(".jsFileError").hide();
 
                     $("#answer_image_" + uploadId).val(dbId);
+
                     AutoSave();
                     //FUNKA Custom code end
 
@@ -7195,7 +7199,16 @@
                     return self._templating.showDialog("alert", message);
                 } else {
                     setTimeout(function () {
-                        window.alert(message);
+                        //FUNKA Custom code start
+
+                        if (message[0] === "#") {
+                            $("[qq-button-id='" + self._defaultButtonId + "']").closest(".jsUpload").find(".jsFileError").removeClass("hide").show();
+                            $("[qq-button-id='" + self._defaultButtonId + "']").closest(".jsUpload").find(".jsFileError").find(".jsFileName").text(message.substring(1, message.length));
+                        } else {
+                            window.alert(message);
+                        }
+
+                        //FUNKA Custom code end
                     }, 0);
                 }
             },
