@@ -37,6 +37,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Resources\Pages\Shared\_Public.nb-NO.resx" />
+    <EmbeddedResource Remove="Resources\Pages\Shared\_Public.nn-NO.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="form.html" />
   </ItemGroup>
 
@@ -67,6 +72,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Resources\Pages\Shared\_Public.nb-NO.resx" />
+    <None Include="Resources\Pages\Shared\_Public.nn-NO.resx" />
     <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.js" />
     <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.js.map" />
     <None Include="wwwroot\js\azure.fine-uploader\azure.fine-uploader.core.min.js" />
