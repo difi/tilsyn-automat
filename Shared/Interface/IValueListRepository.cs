@@ -9,6 +9,8 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
     {
         void SetCurrentUser(Guid id);
 
+        void SetCurrentLang(String lang);
+
         ApiResult<T> GetAllTypeOfMachine<T>() where T : List<ValueListTypeOfMachine>;
 
         ApiResult<T> GetAllTypeOfTest<T>() where T : List<ValueListTypeOfTest>;
@@ -17,5 +19,6 @@ namespace Difi.Sjalvdeklaration.Shared.Interface
 
         ApiResult<T> GetAllTypeOfStatus<T>() where T : List<ValueListTypeOfStatus>;
 
-        ApiResult<T> GetAllPurposeOfTest<T>() where T : List<ValueListPurposeOfTest>;    }
+        ApiResult<T> GetAllPurposeOfTest<T>() where T : List<ValueListPurposeOfTest>;
+    }
 }

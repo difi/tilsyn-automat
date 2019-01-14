@@ -10,5 +10,9 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.ValueList
         public Int32 Id { get; set; }
 
         public String Text { get; set; }
+
+        public String Nb { get; set; }
+
+        public String Nn { get; set; }
     }
 }

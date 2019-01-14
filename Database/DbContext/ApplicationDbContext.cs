@@ -249,8 +249,8 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
 
             modelBuilder.Entity<ValueListTypeOfSupplierAndVersion>().HasData(new List<ValueListTypeOfSupplierAndVersion>
             {
-                new ValueListTypeOfSupplierAndVersion {Id = 1, Text = "Velg betalingsterminal"},
-                new ValueListTypeOfSupplierAndVersion {Id = 100, Text = "Vet ikke"},
+                new ValueListTypeOfSupplierAndVersion {Id = 1, Nb = "Velg betalingsterminal", Nn = "Vel betalingsterminal"},
+                new ValueListTypeOfSupplierAndVersion {Id = 100, Nb = "Vet ikke", Nn = "Veit ikkje"},
                 new ValueListTypeOfSupplierAndVersion {Id = 200, Text = "Ingenico iCT250"},
                 new ValueListTypeOfSupplierAndVersion {Id = 300, Text = "Ingenico iCT250E"},
                 new ValueListTypeOfSupplierAndVersion {Id = 400, Text = "Ingenico iCT250r"},
@@ -273,7 +273,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 new ValueListTypeOfSupplierAndVersion {Id = 2100, Text = "Verifone VX 820 Duet"},
                 new ValueListTypeOfSupplierAndVersion {Id = 2200, Text = "Verifone Xenteo ECO"},
                 new ValueListTypeOfSupplierAndVersion {Id = 2300, Text = "Verifone Yomani XR"},
-                new ValueListTypeOfSupplierAndVersion {Id = 99999, Text = "Annet"},
+                new ValueListTypeOfSupplierAndVersion {Id = 99999, Nb = "Annet", Nn = "Anna"},
             }.ToArray());
 
             modelBuilder.Entity<ValueListFinishedStatus>().HasData(new List<ValueListFinishedStatus>

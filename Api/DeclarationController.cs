@@ -15,7 +15,6 @@ namespace Difi.Sjalvdeklaration.Api
     [Route("api/[controller]")]
     [Produces("application/json")]
     public class DeclarationController : ControllerBase
-
     {
         private readonly IDeclarationRepository declarationRepository;
         private readonly IConfiguration configuration;

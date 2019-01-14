@@ -19,8 +19,9 @@ namespace Difi.Sjalvdeklaration.Log
         private readonly Stopwatch stopwatch = new Stopwatch();
 
         private bool LogGetSucceeded => Convert.ToBoolean(configuration["Log:LogGetSucceeded"]);
-        private bool LogChangeSucceeded => Convert.ToBoolean(configuration["Log:LogChangeSucceeded"]);
+
         private bool LogError => Convert.ToBoolean(configuration["Log:LogError"]);
+
         private int LogLongTime => Convert.ToInt32(configuration["Log:LogLongTime"]);
 
 
@@ -30,6 +31,11 @@ namespace Difi.Sjalvdeklaration.Log
             inner.SetCurrentUser(id);
 
             stopwatch.Start(); 
+        }
+
+        public void SetCurrentLang(string lang)
+        {
+            inner.SetCurrentLang(lang);
         }
 
         public ValueListRepositoryLogDecorator(IValueListRepository inner, ILogRepository logRepository, IConfiguration configuration)

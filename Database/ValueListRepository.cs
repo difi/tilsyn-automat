@@ -12,6 +12,7 @@ namespace Difi.Sjalvdeklaration.Database
 {
     public class ValueListRepository : IValueListRepository
     {
+        private string currentLang;
         private readonly ApplicationDbContext dbContext;
 
         public ValueListRepository(ApplicationDbContext dbContext)
@@ -22,6 +23,11 @@ namespace Difi.Sjalvdeklaration.Database
         public void SetCurrentUser(Guid id)
         {
 
+        }
+
+        public void SetCurrentLang(string lang)
+        {
+            currentLang = lang;
         }
 
         public ApiResult<T> GetAllTypeOfMachine<T>() where T : List<ValueListTypeOfMachine>
@@ -69,6 +75,14 @@ namespace Difi.Sjalvdeklaration.Database
             try
             {
                 var list = dbContext.VlTypeOfSupplierAndVersionList.AsNoTracking().OrderBy(x => x.Id).FromCache().ToList();
+
+                foreach (var valueListTypeOfSupplierAndVersion in list)
+                {
+                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? valueListTypeOfSupplierAndVersion.Nb : valueListTypeOfSupplierAndVersion.Nn))
+                    {
+                        valueListTypeOfSupplierAndVersion.Text = currentLang == "nb-NO" ? valueListTypeOfSupplierAndVersion.Nb : valueListTypeOfSupplierAndVersion.Nn;
+                    }
+                }
 
                 result.Data = (T)list;
                 result.Succeeded = true;

@@ -74,6 +74,7 @@ namespace Difi.Sjalvdeklaration.Api
                 throw new Exception("Wrong ApiKey!");
             }
 
+            valueListRepository.SetCurrentLang(Request.Headers["Lang"]);
             valueListRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
         }
     }
