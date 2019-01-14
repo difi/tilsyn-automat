@@ -85,9 +85,12 @@ namespace Difi.Sjalvdeklaration.Database
                         }
                     }
 
-                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
+                    if (item.DeclarationTestItem.SupplierAndVersion != null)
                     {
-                        item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
+                        if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
+                        {
+                            item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
+                        }
                     }
 
                     result.Data = (T)item;
