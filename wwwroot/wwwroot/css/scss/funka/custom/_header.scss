@@ -19,8 +19,37 @@ header {
     }
 
     .logo {
-        margin: 13px 0 0 0;
+        margin: 15px 0 0 0;
         max-width: 247px;
+        float: left;
+
+        img {
+            float: left;
+            padding-right: 10px;
+        }
+
+        span {
+            font-family: $sofiapro;
+            font-weight: normal;
+            vertical-align: top;
+            float: left;
+
+
+            &.large-text {
+                font-size: 20px;
+                white-space: nowrap;
+                color: #335d61;
+                margin-top: -1px;
+                padding-bottom: 5px;
+                line-height: 1;
+            }
+
+            &.small-text {
+                line-height: 0.9;
+                font-size: 14px;
+                max-width: 180px;
+            }
+        }
     }
 
     .profile-wrapper {
@@ -104,8 +133,17 @@ header {
 
     header {
         .logo {
-            margin: 13px 0 0 0;
-            max-width: 375px;
+            max-width: 390px;
+
+            span {
+                &.large-text {
+                    font-size: 23px;
+                }
+
+                &.small-text {
+                    font-size: 15px;
+                }
+            }
         }
     }
 }

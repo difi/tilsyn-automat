@@ -63,6 +63,7 @@
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="wwwroot\css\fonts\webfonts\" />
+    <Folder Include="wwwroot\images\logo\" />
   </ItemGroup>
 
   <ItemGroup>
