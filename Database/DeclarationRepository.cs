@@ -131,13 +131,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.IndicatorList).ThenInclude(x => x.IndicatorItem).ThenInclude(x => x.IndicatorUserPrerequisiteList).ThenInclude(x => x.ValueListUserPrerequisite)
                     .AsNoTracking().OrderBy(x => x.Name).ToList();
 
-                foreach (var item in list)
-                {
-                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
-                    {
-                        item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
-                    }
-                }
+                AddSupplierAndVersionText<T>(list);
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -191,13 +185,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .Include(x => x.DeclarationTestItem).ThenInclude(x => x.SupplierAndVersion)
                     .AsNoTracking().Where(x => x.CompanyItemId == id).OrderBy(x => x.Name).ToList();
 
-                foreach (var item in list)
-                {
-                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
-                    {
-                        item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
-                    }
-                }
+                AddSupplierAndVersionText<T>(list);
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -729,6 +717,22 @@ namespace Difi.Sjalvdeklaration.Database
 
                 default:
                     return TypeOfResult.NotTested;
+            }
+        }
+
+        private void AddSupplierAndVersionText<T>(IEnumerable<DeclarationItem> list) where T : List<DeclarationItem>
+        {
+            foreach (var item in list)
+            {
+                if (item.DeclarationTestItem.SupplierAndVersion == null)
+                {
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
+                {
+                    item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
+                }
             }
         }
     }
