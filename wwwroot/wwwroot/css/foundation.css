@@ -2320,7 +2320,7 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: bold;
   color: inherit;
@@ -2769,7 +2769,7 @@ legend, .legend {
   margin-bottom: 0.5rem;
   font-weight: bold;
   font-size: 1.375rem;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: bold; }
 
 .fieldset {
@@ -2780,7 +2780,7 @@ legend, .legend {
     margin: 0;
     margin-left: -0.1875rem;
     padding: 0 0.1875rem;
-    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+    font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: bold; }
 
 select {
@@ -2836,7 +2836,7 @@ select {
 .button {
   display: inline-block;
   margin: 0 0 1rem 0;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   padding: 0.6em 2.5em 0.6em 2.5em;
   -webkit-appearance: none;
   border: 0;
@@ -3455,7 +3455,7 @@ table {
   thead {
     background: rgba(181, 210, 219, 0.4);
     color: #303132;
-    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+    font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
     font-size: 14px; }
   tfoot {
     background: transparent;
@@ -3727,7 +3727,7 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
   line-height: 1.35;
   color: #44303C;
   padding-top: 0.2rem;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   max-width: 36rem; }
 
 .h2-toggle {
@@ -3886,7 +3886,7 @@ header {
   font-size: 17px;
   line-height: 19px;
   display: inline-block;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif; }
 
 .status {
   width: 54px;
@@ -3900,7 +3900,7 @@ header {
   text-align: center;
   transform: rotate(-45deg);
   transition: border 800ms ease-out;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif; }
   .status .status-done {
     font-size: 15px;
     transform: rotate(45deg); }
@@ -3935,7 +3935,7 @@ footer {
     display: inline-block;
     margin: 3px 2rem 0 0; }
     .global-navigation li a {
-      font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+      font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
       padding: 4px;
       display: block;
       color: #303132;
@@ -4032,7 +4032,7 @@ button, .button, input[type="button"], input[type="submit"] {
   width: 100%;
   display: inline-block;
   margin: 0 0 1rem 0;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   padding: 0.6em 2.5em 0.6em 2.5em;
   -webkit-appearance: none;
   border: 0;
@@ -4226,7 +4226,7 @@ button, .button, input[type="button"], input[type="submit"] {
       border-radius: 1000px;
       padding-top: 5px;
       text-align: center;
-      font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+      font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
       margin-right: 0.75rem;
       position: relative;
       overflow: hidden;
@@ -4411,7 +4411,7 @@ div .tablesorter-default {
         color: #2E7589;
         text-decoration: none; }
     div .tablesorter-default .clickable-td a {
-      font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+      font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
       font-weight: bold;
       color: #17667c;
       text-decoration: underline;
@@ -4483,7 +4483,7 @@ div tbody tr:nth-child(2n) {
   background-color: transparent; }
 
 div div .tablesorter-default a {
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #17667c;
   text-decoration: underline;
@@ -4536,7 +4536,7 @@ div div .tablesorter-default a {
         content: attr(data-th);
         float: left;
         margin-right: 0.5em;
-        font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+        font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif; }
       div table.responsive-table td:last-child {
         padding-bottom: 0;
         border: 0; } }
@@ -4558,7 +4558,7 @@ div div .tablesorter-default a {
 /* GLOBAL
 --------------------------------------------------------------*/
 .positive, .negative {
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   padding: 1rem 0;
   color: #515151; }
@@ -4638,7 +4638,7 @@ div div .tablesorter-default a {
 
 .card h3 {
   font-size: 19px;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif; }
   .card h3 span {
     display: inline-block;
     width: 45px;
@@ -4667,7 +4667,7 @@ div div .tablesorter-default a {
   padding: 1rem 1.1rem; }
 
 .card.pink-top .day-counter, .card.green-top .day-counter {
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
   padding-left: 30px; }
 
@@ -4686,12 +4686,12 @@ div div .tablesorter-default a {
 .card.green-top .card-divider {
   background-color: #b4f0e7; }
   .card.green-top .card-divider .day-counter {
-    font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+    font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
     background: url("/css/cssimg/icons-sprite.svg") 0 -1195px no-repeat;
     padding-left: 30px; }
 
 .card .declaration-name-type {
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif;
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 17px; }
   .card .declaration-name-type span {
@@ -4781,7 +4781,7 @@ div div .tablesorter-default a {
   font-size: 17px;
   line-height: 19px;
   display: inline-block;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif; }
 
 .card .status {
   width: 90px;
@@ -4794,7 +4794,7 @@ div div .tablesorter-default a {
   text-align: center;
   transform: rotate(-45deg);
   transition: border 800ms ease-out;
-  font-family: "sofia-pro", Helvetica, Arial, sans-serif; }
+  font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif; }
   .card .status .status-done {
     font-size: 22px;
     transform: rotate(45deg); }
