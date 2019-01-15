@@ -4848,8 +4848,18 @@ img.full-width-image {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     font-weight: normal; }
   .filter-wrapper .button {
-    width: 90%;
-    padding: 0.4em 0em 0.5em 0em; }
+    width: 100%;
+    padding: 0.9em 0;
+    font-size: 1rem; }
+  .filter-wrapper [type='date'] {
+    padding-left: 3px;
+    padding-right: 3px; }
+  .filter-wrapper .row {
+    margin-right: -5px;
+    margin-left: -5px; }
+    .filter-wrapper .row .column, .filter-wrapper .row .columns, .filter-wrapper .row .columns {
+      padding-right: 5px;
+      padding-left: 5px; }
 
 .date-sent, .date-deadline {
   padding: 13px 55px;

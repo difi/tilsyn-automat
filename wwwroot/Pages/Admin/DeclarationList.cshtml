@@ -24,37 +24,44 @@
             <div class="filter-wrapper">
                 <fieldset>
                     <legend class="filter-view-legend">@Localizer["Date submitted"]</legend>
+
+                    <div class="row">
+                        <div class="small-12 medium-5 column">
+                            <div class="row">
+                                <div class="small-6 column">
+                                    @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
+                                </div>
+                                <div class="small-6 column">
+                                    @Html.EditorFor(x => x.FilterModel.ToDate, "Date")
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="small-12 medium-7 column">
+
+                            <div class="row">
+                                <div class="small-12 medium-4 column">
+                                    @Html.EditorFor(x => x.FilterModel.Status, "DropdownListInt", new { list = Model.SelectStatusList })
+                                </div>
+
+                                <div class="small-6 medium-4 column">
+                                    <br />
+                                    <button class="button large" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
+                                </div>
+
+                                <div class="small-6 medium-4 column">
+                                    <br />
+                                    <button class="button large alt" type="submit" asp-page-handler="ViewAll">@Localizer["Reset"]</button>
+                                </div>
+                            </div>
+                           
+                        </div>
+
+
+                    </div>
                 </fieldset>
 
-                <div class="row">
-                    <div class="small-12 medium-5 column">
-                        <div class="row">
-                            <div class="small-6 column">
-                                @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
-                            </div>
-                            <div class="small-6 column">
-                                @Html.EditorFor(x => x.FilterModel.ToDate, "Date")
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="small-12 medium-3 column">
-                        @Html.EditorFor(x => x.FilterModel.Status, "DropdownListInt", new { list = Model.SelectStatusList })
-                    </div>
-
-                    <div class="small-12 medium-4 column">
-                        <div class="row collapse">
-                            <div class="small-6 column">
-                                <br />
-                                <button class="button large" type="submit" asp-page-handler="Filter">@Localizer["Filter"]</button>
-                            </div>
-                            <div class="small-6 column">
-                                <br />
-                                <button class="button large alt" type="submit" asp-page-handler="ViewAll">@Localizer["Reset"]</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
