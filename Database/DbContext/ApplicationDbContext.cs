@@ -25,7 +25,6 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
 
         public DbSet<CompanyItem> CompanyList { get; set; }
 
-
         public DbSet<ContactPersonItem> ContactPersonList { get; set; }
 
         public DbSet<DeclarationItem> DeclarationList { get; set; }

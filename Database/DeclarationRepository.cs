@@ -334,7 +334,9 @@ namespace Difi.Sjalvdeklaration.Database
                     {
                         foreach (var userCompany in companyItem.UserList)
                         {
-                            dbContext.Remove(userCompany);
+                            var user = dbContext.UserList.SingleOrDefault(x => x.Id == userCompany.UserItemId);
+
+                            dbContext.UserList.Remove(user ?? throw new InvalidOperationException());
                         }
 
                         companyItem.Code = string.Empty;
