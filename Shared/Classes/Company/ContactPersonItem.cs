@@ -16,6 +16,7 @@ namespace Difi.Sjalvdeklaration.Shared.Classes.Company
 
         [ExcelExport]
         [RegularExpression("[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "You need to type a correct email address")]
+        [Display(Name = "Email")]
         [AutoComplete("off")]
         public string Email { get; set; }
 
