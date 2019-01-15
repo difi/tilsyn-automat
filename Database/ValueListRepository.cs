@@ -76,11 +76,11 @@ namespace Difi.Sjalvdeklaration.Database
             {
                 var list = dbContext.VlTypeOfSupplierAndVersionList.AsNoTracking().OrderBy(x => x.Id).FromCache().ToList();
 
-                foreach (var valueListTypeOfSupplierAndVersion in list)
+                foreach (var item in list)
                 {
-                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? valueListTypeOfSupplierAndVersion.Nb : valueListTypeOfSupplierAndVersion.Nn))
+                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Nb : item.Nn))
                     {
-                        valueListTypeOfSupplierAndVersion.Text = currentLang == "nb-NO" ? valueListTypeOfSupplierAndVersion.Nb : valueListTypeOfSupplierAndVersion.Nn;
+                        item.Text = currentLang == "nb-NO" ? item.Nb : item.Nn;
                     }
                 }
 
@@ -102,6 +102,19 @@ namespace Difi.Sjalvdeklaration.Database
             try
             {
                 var list = dbContext.VlTypeOfStatus.AsNoTracking().OrderBy(x => x.Id).FromCache().ToList();
+
+                foreach (var item in list)
+                {
+                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Nb : item.Nn))
+                    {
+                        item.Text = currentLang == "nb-NO" ? item.Nb : item.Nn;
+                    }
+
+                    if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.CompanyNb : item.CompanyNn))
+                    {
+                        item.TextCompany = currentLang == "nb-NO" ? item.CompanyNb : item.CompanyNn;
+                    }
+                }
 
                 result.Data = (T)list;
                 result.Succeeded = true;

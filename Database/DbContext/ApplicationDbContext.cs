@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
@@ -10,6 +8,8 @@ using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules.Standard;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Database.DbContext
 {
@@ -149,7 +149,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
 
             modelBuilder.Entity<RuleData>().HasOne(x => x.Rule).WithMany(x => x.RuleDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
 
-            modelBuilder.Entity<RuleData>().HasOne(x => x.Result).WithMany(x=>x.RuleDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
+            modelBuilder.Entity<RuleData>().HasOne(x => x.Result).WithMany(x => x.RuleDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<OutcomeData>().HasOne(x => x.Result).WithMany(x => x.OutcomeDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
             modelBuilder.Entity<AnswerData>().HasOne(x => x.Result).WithMany(x => x.AnswerDataList).Metadata.DeleteBehavior = DeleteBehavior.Restrict;
 
@@ -316,13 +316,62 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
 
             modelBuilder.Entity<ValueListTypeOfStatus>().HasData(new List<ValueListTypeOfStatus>
             {
-                new ValueListTypeOfStatus {Id = 1, Text = "Opprettet", TextAdmin = "Opprettet", TextCompany = "Ikke påbegynt"},
-                new ValueListTypeOfStatus {Id = 2, Text = "Varslet", TextAdmin = "Pågår", TextCompany = "Ikke påbegynt"},
-                new ValueListTypeOfStatus {Id = 3, Text = "Påbegynt", TextAdmin = "Pågår", TextCompany = "Påbegynt"},
-                new ValueListTypeOfStatus {Id = 4, Text = "Fullført", TextAdmin = "Fullført", TextCompany = "Fullført"},
-                new ValueListTypeOfStatus {Id = 5, Text = "Åpen for korreksjon", TextAdmin = "Pågår", TextCompany = "Åpen for korreksjon"},
-                new ValueListTypeOfStatus {Id = 6, Text = "Avsluttet", TextAdmin = "Avsluttet", TextCompany = "Fullført"},
-                new ValueListTypeOfStatus {Id = 7, Text = "Avlyst", TextAdmin = "Avlyst", TextCompany = "Avlyst"}
+                new ValueListTypeOfStatus
+                {
+                    Id = 1,
+                    Nb = "Opprettet",
+                    Nn = "Oppretta",
+                    CompanyNb = "Ikke påbegynt",
+                    CompanyNn = "Ikkje starta på"
+                },
+                new ValueListTypeOfStatus
+                {
+                    Id = 2,
+                    Nb = "Varslet",
+                    Nn = "Varsla",
+                    CompanyNb = "Ikke påbegynt",
+                    CompanyNn = "Ikkje starta på"
+                },
+                new ValueListTypeOfStatus
+                {
+                    Id = 3,
+                    Nb = "Påbegynt",
+                    Nn = "Starta på",
+                    CompanyNb = "Påbegynt",
+                    CompanyNn = "Starta på"
+                },
+                new ValueListTypeOfStatus
+                {
+                    Id = 4,
+                    Nb = "Fullført",
+                    Nn = "Fullført",
+                    CompanyNb = "Fullført",
+                    CompanyNn = "Fullført"
+                },
+                new ValueListTypeOfStatus
+                {
+                    Id = 5,
+                    Nb = "Åpen for korreksjon",
+                    Nn = "Open for korreksjon",
+                    CompanyNb = "Åpen for korreksjon",
+                    CompanyNn = "Open for korreksjon"
+                },
+                new ValueListTypeOfStatus
+                {
+                    Id = 6,
+                    Nb = "Avsluttet",
+                    Nn = "Avslutta",
+                    CompanyNb = "Fullført",
+                    CompanyNn = "Fullført"
+                },
+                new ValueListTypeOfStatus
+                {
+                    Id = 7,
+                    Nb = "Avlyst",
+                    Nn = "Avlyst",
+                    CompanyNb = "Avlyst",
+                    CompanyNn = "Avlyst"
+                }
             }.ToArray());
 
             modelBuilder.Entity<ValueListPurposeOfTest>().HasData(new List<ValueListPurposeOfTest>
@@ -382,7 +431,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             var testGroup1 = new TestGroupItem
             {
                 Id = Guid.Parse("aec1869a-30f8-403c-b909-df115173f009"),
-                Order =  1,
+                Order = 1,
             };
 
             var testGroupItemLanguage1 = new TestGroupItemLanguage
@@ -449,7 +498,7 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
             {
                 Id = Guid.Parse("692627b2-53bc-43f2-900d-44a40a21e7e9"),
                 Name = "Kundens betjeningsområde",
-                LastChanged = new DateTime(2018,11,21)
+                LastChanged = new DateTime(2018, 11, 21)
             };
 
             var indicatorItem2 = new IndicatorItem

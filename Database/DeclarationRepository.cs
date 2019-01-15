@@ -1,4 +1,6 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
+﻿using Difi.Sjalvdeklaration.Database.DbContext;
+using Difi.Sjalvdeklaration.Shared;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Rules;
@@ -9,10 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using Difi.Sjalvdeklaration.Database.DbContext;
-using Difi.Sjalvdeklaration.Shared;
 using Z.EntityFramework.Plus;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -93,6 +92,19 @@ namespace Difi.Sjalvdeklaration.Database
                         }
                     }
 
+                    if (item.Status != null)
+                    {
+                        if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn))
+                        {
+                            item.Status.Text = currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn;
+                        }
+
+                        if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn))
+                        {
+                            item.Status.TextCompany = currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn;
+                        }
+                    }
+
                     result.Data = (T)item;
                     result.Id = item.Id;
                     result.Succeeded = true;
@@ -135,6 +147,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .AsNoTracking().OrderBy(x => x.Name).ToList();
 
                 AddSupplierAndVersionText<T>(list);
+                AddStatusText<T>(list);
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -189,6 +202,7 @@ namespace Difi.Sjalvdeklaration.Database
                     .AsNoTracking().Where(x => x.CompanyItemId == id).OrderBy(x => x.Name).ToList();
 
                 AddSupplierAndVersionText<T>(list);
+                AddStatusText<T>(list);
 
                 result.Data = (T)list;
                 result.Succeeded = true;
@@ -357,13 +371,13 @@ namespace Difi.Sjalvdeklaration.Database
             return result;
         }
 
-        public ApiResult<T> Save<T>(Guid declarationItemId, Guid companyItemId, DeclarationTestItem declarationTestItem) where T: DeclarationSaveResult
+        public ApiResult<T> Save<T>(Guid declarationItemId, Guid companyItemId, DeclarationTestItem declarationTestItem) where T : DeclarationSaveResult
         {
             var result = new ApiResult<T>
             {
-                Data = (T) new DeclarationSaveResult
+                Data = (T)new DeclarationSaveResult
                 {
-                    StausCount =  0,
+                    StausCount = 0,
                     Step1Done = false,
                     OutcomeData = new List<OutcomeData>()
                 }
@@ -374,7 +388,7 @@ namespace Difi.Sjalvdeklaration.Database
             var answerLanguageList = dbContext.AnswerLanguageList.Include(x => x.LanguageItem).Where(x => x.LanguageItem.Name == currentLang).FromCache().ToList();
             var answerList = dbContext.AnswerList.Include(x => x.TypeOfAnswer).AsNoTracking().FromCache().ToList();
             var indicatorOutcomeList = dbContext.IndicatorOutcomeList.FromCache().ToList();
-;
+            ;
             foreach (var declarationIndicatorGroup in dbContext.DeclarationList.Include(x => x.IndicatorList).ThenInclude(x => x.TestGroupItem).ThenInclude(x => x.IndicatorList).Single(x => x.Id == declarationItemId).IndicatorList.OrderBy(x => x.TestGroupOrder))
             {
                 if (testGroupItemList.All(x => x.Id != declarationIndicatorGroup.TestGroupItemId))
@@ -737,6 +751,27 @@ namespace Difi.Sjalvdeklaration.Database
                 if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
                 {
                     item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
+                }
+            }
+        }
+
+        private void AddStatusText<T>(IEnumerable<DeclarationItem> list) where T : List<DeclarationItem>
+        {
+            foreach (var item in list)
+            {
+                if (item.Status == null)
+                {
+                    continue;
+                }
+
+                if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn))
+                {
+                    item.Status.Text = currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn;
+                }
+
+                if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn))
+                {
+                    item.Status.TextCompany = currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn;
                 }
             }
         }
