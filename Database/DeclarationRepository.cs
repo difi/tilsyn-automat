@@ -12,6 +12,7 @@ using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Z.EntityFramework.Plus;
 
 namespace Difi.Sjalvdeklaration.Database
@@ -84,21 +85,11 @@ namespace Difi.Sjalvdeklaration.Database
                         }
                     }
 
-                    if (item.DeclarationTestItem.SupplierAndVersion != null)
-                    {
-                        if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
-                        {
-                            item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
-                        }
-                    }
+                    UpdateValueListtText(item.DeclarationTestItem.SupplierAndVersion);
+                    UpdateValueListtText(item.Status);
 
                     if (item.Status != null)
                     {
-                        if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn))
-                        {
-                            item.Status.Text = currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn;
-                        }
-
                         if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn))
                         {
                             item.Status.TextCompany = currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn;
@@ -249,6 +240,18 @@ namespace Difi.Sjalvdeklaration.Database
                         if (ruleItem != null)
                         {
                             ruleItem.Requirement.Language = requirementLanguageList.SingleOrDefault(x => x.RequirementItemId == ruleItem.RequirementItemId);
+                        }
+                    }
+
+                    UpdateValueListtText(outcomeData.Result);
+
+                    foreach (var ruleData in outcomeData.RuleDataList)
+                    {
+                        UpdateValueListtText(ruleData.Result);
+
+                        foreach (var answerData in ruleData.AnswerDataList)
+                        {
+                            UpdateValueListtText(answerData.Result);
                         }
                     }
                 }
@@ -743,15 +746,7 @@ namespace Difi.Sjalvdeklaration.Database
         {
             foreach (var item in list)
             {
-                if (item.DeclarationTestItem.SupplierAndVersion == null)
-                {
-                    continue;
-                }
-
-                if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn))
-                {
-                    item.DeclarationTestItem.SupplierAndVersion.Text = currentLang == "nb-NO" ? item.DeclarationTestItem.SupplierAndVersion.Nb : item.DeclarationTestItem.SupplierAndVersion.Nn;
-                }
+                UpdateValueListtText(item.DeclarationTestItem.SupplierAndVersion);
             }
         }
 
@@ -764,15 +759,25 @@ namespace Difi.Sjalvdeklaration.Database
                     continue;
                 }
 
-                if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn))
-                {
-                    item.Status.Text = currentLang == "nb-NO" ? item.Status.Nb : item.Status.Nn;
-                }
+                UpdateValueListtText(item.Status);
 
                 if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn))
                 {
                     item.Status.TextCompany = currentLang == "nb-NO" ? item.Status.CompanyNb : item.Status.CompanyNn;
                 }
+            }
+        }
+
+        private void UpdateValueListtText(ValueList valueList)
+        {
+            if (valueList == null)
+            {
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(currentLang == "nb-NO" ? valueList.Nb : valueList.Nn))
+            {
+                valueList.Text = currentLang == "nb-NO" ? valueList.Nb : valueList.Nn;
             }
         }
     }

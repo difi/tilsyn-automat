@@ -162,4 +162,10 @@
   <data name="Reset" xml:space="preserve">
     <value>Fjern filtrering</value>
   </data>
+  <data name="compliance" xml:space="preserve">
+    <value>samsvar</value>
+  </data>
+  <data name="fail" xml:space="preserve">
+    <value>brudd</value>
+  </data>
 </root>

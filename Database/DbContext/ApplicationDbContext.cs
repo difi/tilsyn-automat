@@ -307,8 +307,8 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
 
             modelBuilder.Entity<ValueListTypeOfResult>().HasData(new List<ValueListTypeOfResult>
             {
-                new ValueListTypeOfResult {Id = 1, Text = "Samsvar"},
-                new ValueListTypeOfResult {Id = 2, Text = "Brudd"},
+                new ValueListTypeOfResult {Id = 1, Nb = "Samsvar", Nn = "Samsvar"},
+                new ValueListTypeOfResult {Id = 2, Nb = "Brudd", Nn = "Brot"},
                 new ValueListTypeOfResult {Id = 3, Text = "Ikke-forekomst"},
                 new ValueListTypeOfResult {Id = 4, Text = "Ikke testbar"},
                 new ValueListTypeOfResult {Id = 5, Text = "Ikke testa"}
