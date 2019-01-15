@@ -27,7 +27,7 @@
                 </fieldset>
 
                 <div class="row">
-                    <div class="small-12 medium-4 column">
+                    <div class="small-12 medium-5 column">
                         <div class="row">
                             <div class="small-6 column">
                                 @Html.EditorFor(x => x.FilterModel.FromDate, "Date")
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="small-12 medium-4 column">
+                    <div class="small-12 medium-3 column">
                         @Html.EditorFor(x => x.FilterModel.Status, "DropdownListInt", new { list = Model.SelectStatusList })
                     </div>
 

@@ -300,6 +300,7 @@
     .card-help-text {
         padding: 1.1rem;
         box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.09);
+        overflow: hidden;
 
         @media print, screen and (min-width: 48em) {
             img {
@@ -492,6 +493,9 @@ img {
     padding: 1rem 1rem 1rem 3.5rem;
     margin-top: 0.5rem;
 }
+
+
+
 /* Page specific code
 --------------------------------------------------------------*/
 //--------------------------------------------------------------*/
@@ -501,7 +505,6 @@ img {
 //--------------------------------------------------------------*/
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
-
 
 }
 // LARGE SCREEN
