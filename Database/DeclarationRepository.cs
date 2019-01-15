@@ -532,8 +532,15 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (dbItem.DeclarationTestItem.SupplierAndVersionId != null && dbItem.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(dbItem.DeclarationTestItem.DescriptionInText) && dbItem.DeclarationTestItem.Image1Id != null && dbItem.DeclarationTestItem.Image2Id != null)
                 {
-                    dbItem.DeclarationTestItem.StatusCount++;
-                    result.Data.Step1Done = true;
+                    if (dbItem.DeclarationTestItem.SupplierAndVersionId == 99999 && string.IsNullOrWhiteSpace(dbItem.DeclarationTestItem.SupplierAndVersionOther))
+                    {
+                        result.Data.Step1Done = false;
+                    }
+                    else
+                    {
+                        dbItem.DeclarationTestItem.StatusCount++;
+                        result.Data.Step1Done = true;
+                    }
                 }
 
                 lock (SaveLock.SaveLockObject)

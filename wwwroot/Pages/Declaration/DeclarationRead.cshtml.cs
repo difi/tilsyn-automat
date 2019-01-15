@@ -75,6 +75,11 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
             AllDoneStep1 = DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId > 0 && !string.IsNullOrEmpty(DeclarationItemForm.DeclarationTestItem.DescriptionInText) && DeclarationItemForm.DeclarationTestItem.Image1Id != null && DeclarationItemForm.DeclarationTestItem.Image2Id != null;
 
+            if (DeclarationItemForm.DeclarationTestItem.SupplierAndVersionId == 99999 && string.IsNullOrWhiteSpace(DeclarationItemForm.DeclarationTestItem.SupplierAndVersionOther))
+            {
+                AllDoneStep1 = false;
+            }
+
             TestGroupItemList = new List<TestGroupItem>();
 
             foreach (var declarationIndicatorGroup in DeclarationItemForm.IndicatorList.OrderBy(x => x.TestGroupOrder))
