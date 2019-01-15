@@ -135,7 +135,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     break;
                 case DeclarationStatus.Started:
                     statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 3));
-                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 4));
                     statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
                     break;
                 case DeclarationStatus.SentIn:
@@ -146,7 +145,6 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Admin
                     break;
                 case DeclarationStatus.Return:
                     statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 5));
-                    statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 4));
                     statusList.Add(ValueListTypeOfStatus.Single(x => x.Id == 7));
                     break;
                 case DeclarationStatus.Finished:
