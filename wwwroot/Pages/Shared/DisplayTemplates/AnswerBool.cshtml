@@ -8,11 +8,11 @@
     var trueText = ViewData["trueText"];
     var falseText = ViewData["falseText"];
     var viewResult = (bool)ViewData["viewResult"];
+    var id = Guid.NewGuid();
 }
 
 <div class="card-divider">
-    <label class="legend">
-
+    <label class="legend" aria-describedby="@id">
         <span class="legend-text">
             @orderText @text
         </span>
@@ -37,7 +37,7 @@
     else
     {
         <div class="small-12 columns">
-            <p class="send-info-wrapper"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
+            <p class="send-info-wrapper" id="@id"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
         </div>
     }
 </div>
