@@ -11,22 +11,29 @@
 
 <div class="card-divider">
 
-    <label class="legend" aria-describedby="@id">
-        <span class="legend-text">
-            @orderText @text
-        </span>
-    </label>
+
 
     @if (!string.IsNullOrEmpty(Model))
     {
+        <label class="legend">
+            <span class="legend-text">
+                @orderText @text
+            </span>
+        </label>
         <div>
             @Model
         </div>
     }
     else
     {
+        <label class="legend">
+            <span class="legend-text">
+                @orderText @text
+                <span class="show-for-sr">@Localizer["To complete the self-check you need to answer the question."]</span>
+            </span>
+        </label>
         <div class="small-12 columns">
-            <p class="send-info-wrapper" id="@id"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
+            <p class="send-info-wrapper" aria-hidden="true"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
         </div>
     }
 </div>

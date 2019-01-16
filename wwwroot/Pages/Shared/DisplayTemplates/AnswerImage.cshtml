@@ -36,13 +36,14 @@
     }
     else
     {
-        <label class="legend"  aria-describedby="@id">
+        <label class="legend" >
             <span class="legend-text">
                 @orderText @text
             </span>
+            <span class="show-for-sr">@Localizer["Here you need to upload a picture."]</span>
         </label>
         <div class="small-12 columns">
-            <p class="send-info-wrapper" id="@id"><span class="error"></span>@Localizer["Here you need to upload a picture."]</p>
+            <p class="send-info-wrapper" aria-hidden="true"><span class="error"></span>@Localizer["Here you need to upload a picture."]</p>
         </div>
     }
 </div>
