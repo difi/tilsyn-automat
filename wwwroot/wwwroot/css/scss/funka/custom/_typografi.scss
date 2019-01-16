@@ -239,14 +239,17 @@ tbody {
     }
 }
 
+.show-for-sr-only {
+    position: absolute;
+    top: -10000px;
+}
+
 
 //--------------------------------------------------------------*/
 // CODE ABOVE IS FOR ALL SCREENS
 // MEDIA QUERIES BELOW IS FOR MEDIUM + LARGE OR JUST LARGE
 //--------------------------------------------------------------*/
 //--------------------------------------------------------------*/
-
-
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
 
@@ -264,7 +267,6 @@ tbody {
             font-size: 32px;
         }
     }
-
     // Ingress
     .ingress {
         font-size: $ingress-font-size;

@@ -3854,6 +3854,10 @@ ul, ol {
 tbody tr button, tbody tr .button {
   margin: 3px 0; }
 
+.show-for-sr-only {
+  position: absolute;
+  top: -10000px; }
+
 @media print, screen and (min-width: 48em) {
   .start .img-wrapper img, .the-end .img-wrapper img {
     max-width: 275px; }
