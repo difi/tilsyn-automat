@@ -30,55 +30,7 @@
         }
         else
         {
-            <span class="show-for-sr">@Localizer["To complete the self-check you need to answer the question."]</span>
-        }
-    </label>
-    @if (Model > 0)
-    {
-        <div>
-            @Model
-        </div>
-    }
-    else
-    {
-        <div class="small-12 columns">
-            <p class="send-info-wrapper" aria-hidden="true"><span class="error"></span>@Localizer["To complete the self-check you need to answer the question."]</p>
-        </div>
-    }
-</div>
-@using Difi.Sjalvdeklaration.Shared.Classes.ValueList
-@model int
-
-@{
-    var text = ViewData["text"] ?? Html.DisplayNameFor(m => m);
-    var orderText = ViewData["orderText"];
-    var result = (ValueListTypeOfResult)ViewData["result"];
-    var viewResult = (bool)ViewData["viewResult"];
-    var id = Guid.NewGuid();
-}
-
-<div class="card-divider">
-    <label class="legend">
-        <span class="legend-text">
-            @orderText @text
-        </span>
-
-        @if (viewResult)
-        {
-            <span>
-                @if (result != null)
-                {
-                    @result.Text
-                }
-            </span>
-        }
-        @if (Model > 0)
-        {
-
-        }
-        else
-        {
-            <span class="show-for-sr">@Localizer["To complete the self-check you need to answer the question."]</span>
+                <span class="show-for-sr">@Localizer["To complete the self-check you need to answer the question."]</span>
         }
     </label>
     @if (Model > 0)
