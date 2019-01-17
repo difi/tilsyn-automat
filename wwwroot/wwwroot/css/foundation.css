@@ -4584,21 +4584,28 @@ div div .tablesorter-default a {
 
 /* GLOBAL
 --------------------------------------------------------------*/
-.positive, .negative {
+.positive,
+.negative {
   font-family: "sofia-pro", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   padding: 1rem 0;
   color: #515151; }
-  .positive .feedback-summary, .negative .feedback-summary {
+  .positive .feedback-summary,
+  .negative .feedback-summary {
     border: 0;
     margin: 0;
     border-radius: 0;
-    background-color: transparent; }
-  .positive .feedback-summary-header, .negative .feedback-summary-header {
-    padding-left: 2rem;
+    background-color: transparent;
+    text-align: left;
+    display: block; }
+  .positive .feedback-summary-header span,
+  .negative .feedback-summary-header span {
+    padding-left: 32px;
     position: relative;
-    display: inline-block; }
-    .positive .feedback-summary-header:before, .negative .feedback-summary-header:before {
+    display: inline-block;
+    text-align: left; }
+    .positive .feedback-summary-header span:before,
+    .negative .feedback-summary-header span:before {
       content: "";
       display: inline-block;
       position: absolute;
@@ -4609,25 +4616,32 @@ div div .tablesorter-default a {
       background-position: 0 -1892px;
       top: 0;
       left: 0; }
-  .positive ul, .positive li, .negative ul, .negative li {
+  .positive ul, .positive li,
+  .negative ul,
+  .negative li {
     margin: 0;
     padding: 0;
     list-style: none;
     font-size: 14px;
     font-family: "Open Sans", Helvetica, Arial, sans-serif; }
-  .positive li, .negative li {
-    padding: 0 0 6px 0; }
-  .positive ul, .negative ul {
-    padding-left: 2rem; }
+  .positive li,
+  .negative li {
+    padding: 0 0 6px 0;
+    text-align: left; }
+  .positive ul,
+  .negative ul {
+    text-align: left;
+    padding-left: 35px;
+    display: block; }
 
 .positive {
   background-color: #B4F0E7; }
-  .positive .feedback-summary-header:before {
+  .positive .feedback-summary-header span:before {
     background-position: 0 -1892px; }
 
 .negative {
   background-color: #FFD1D1; }
-  .negative .feedback-summary-header:before {
+  .negative .feedback-summary-header span:before {
     background-position: 0 -1995px; }
 
 .info-message {
@@ -4887,6 +4901,12 @@ img.full-width-image {
 
 /* Page specific code
 --------------------------------------------------------------*/
+@media print, screen and (min-width: 48em) {
+  .positive .feedback-summary,
+  .negative .feedback-summary {
+    text-align: center;
+    display: inline-block; } }
+
 .lt-ie9 .row {
   width: 984px;
   max-width: 100%;
