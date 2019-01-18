@@ -30,7 +30,8 @@
 
 /* GLOBAL
 --------------------------------------------------------------*/
-.positive, .negative {
+.positive,
+.negative {
     font-family: $sofiapro;
     font-size: rem-calc(map-deep-get($header-styles, medium, h5, font-size));
     padding: 1rem 0;
@@ -41,24 +42,30 @@
         margin: 0;
         border-radius: 0;
         background-color: transparent;
+        text-align: left;
+        display: block;
     }
 
-    .feedback-summary-header {
-        padding-left: 2rem;
-        position: relative;
-        display: inline-block;
 
-        &:before {
-            content: "";
+    .feedback-summary-header {
+        span {
+            padding-left: 32px;
+            position: relative;
             display: inline-block;
-            position: absolute;
-            height: 30px;
-            width: 30px;
-            background-image: url("/css/cssimg/icons-sprite.svg");
-            background-repeat: no-repeat;
-            background-position: 0 -1892px;
-            top: 0;
-            left: 0;
+            text-align: left;
+
+            &:before {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                height: 30px;
+                width: 30px;
+                background-image: url("/css/cssimg/icons-sprite.svg");
+                background-repeat: no-repeat;
+                background-position: 0 -1892px;
+                top: 0;
+                left: 0;
+            }
         }
     }
 
@@ -72,10 +79,13 @@
 
     li {
         padding: 0 0 6px 0;
+        text-align: left;
     }
 
     ul {
-        padding-left: 2rem;
+        text-align: left;
+        padding-left: 35px;
+        display: block;
     }
 }
 
@@ -83,8 +93,10 @@
     background-color: $feedback-green;
 
     .feedback-summary-header {
-        &:before {
-            background-position: 0 -1892px;
+        span {
+            &:before {
+                background-position: 0 -1892px;
+            }
         }
     }
 }
@@ -93,8 +105,10 @@
     background-color: $feedback-red;
 
     .feedback-summary-header {
-        &:before {
-            background-position: 0 -1995px;
+        span {
+            &:before {
+                background-position: 0 -1995px;
+            }
         }
     }
 }
@@ -507,9 +521,20 @@ img {
 //--------------------------------------------------------------*/
 // MEDIUM + LARGE SCREEN
 @include breakpoint(medium) {
+    .positive,
+    .negative {
+        .feedback-summary {
+            text-align: center;
+            display: inline-block;
+        }
 
-
+        .feedback-summary-header {
+            span {
+            }
+        }
+    }
 }
+
 // LARGE SCREEN
 @include breakpoint(large) {
 
