@@ -340,7 +340,8 @@ namespace Difi.Sjalvdeklaration.Database
 
                 if (dbItem != null)
                 {
-                    dbContext.UserCompanyList.Remove(dbItem);
+                    var user = dbContext.UserList.SingleOrDefault(x => x.Id == dbItem.UserItemId);
+                    dbContext.UserList.Remove(user ?? throw new InvalidOperationException());
                     dbContext.SaveChanges();
 
                     result.Id = userCompanyItem.CompanyItemId;
