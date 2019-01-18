@@ -24,8 +24,13 @@
 		var allowNegative = settings.allowNegative;
 		
 		this.keypress(function (event) {
+
 			var inputCode = event.which;
 			var currentValue = $(this).val();
+
+            if (inputCode === 13) {
+                return true;
+            }
 
 			if (inputCode > 0 && (inputCode < 48 || inputCode > 57))	// Checks the if the character code is not a digit
 			{
