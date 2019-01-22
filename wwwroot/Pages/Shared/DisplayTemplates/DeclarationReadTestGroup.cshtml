@@ -8,6 +8,11 @@
     var viewResult = (bool)ViewData["viewResult"];
     var declarationItem = (DeclarationItem)ViewData["DeclarationItem"];
     var subIndex = 0;
+
+    if (Model.IndicatorList == null)
+    {
+        Model.AllDone = false;
+    }
 }
 
 <div class="jsToggleCardReadContainer info-messages">
@@ -28,7 +33,10 @@
                             <span class="show-for-sr">@Localizer["is not completely answered"]</span>
                         }
                     </span>
-                    <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Automaten"]</span></span>
+                    @if (Model.IndicatorList != null)
+                    {
+                        <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Automaten"]</span></span>
+                    }
                 </button>
             </h2>
         </div>

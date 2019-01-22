@@ -10,8 +10,8 @@
 <form method="post">
 
     @Html.HiddenFor(x => x.TotalCount)
-    
-    <input type="hidden" value="@ViewData["ViewAll"].ToString()" name="ViewAll"/>
+
+    <input type="hidden" value="@ViewData["ViewAll"].ToString()" name="ViewAll" />
 
     <div class="row">
         <div class="small-12 column">
@@ -56,18 +56,10 @@
                                     <br />
                                     <button class="button large alt" type="submit" asp-page-handler="ViewAll">@Localizer["Reset"]</button>
                                 </div>
-                            </div>   
-
+                            </div>
                         </div>
-
-
-
                     </div>
-
-
                 </fieldset>
-
-
             </div>
         </div>
     </div>
