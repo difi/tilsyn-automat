@@ -1,0 +1,8 @@
+﻿Hej!
+
+I denna mapp finns designskisser från Invision som tagits fram i samband med utveckling. Öppna index.html för att se, längst ner till höger finns en ikon där man kan se alla sidor. 
+
+I vissa fall överensstämmer inte designen till 100% med lösningen, en hel del design gjordes direkt i implementationen i samarbete med utvecklarna.
+
+Hälsar Frida Westholm,
+Funka 20190117
