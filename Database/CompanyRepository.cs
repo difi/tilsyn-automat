@@ -227,6 +227,17 @@ namespace Difi.Sjalvdeklaration.Database
 
             try
             {
+                var userList = dbContext.UserCompanyList.Where(x => x.CompanyItemId == id);
+
+                if (userList.Any())
+                {
+                    foreach (var userCompany in userList)
+                    {
+                        var user = dbContext.UserList.SingleOrDefault(x => x.Id == userCompany.UserItemId);
+                        dbContext.UserList.Remove(user ?? throw new InvalidOperationException());
+                    }
+                }
+
                 var dbItem = dbContext.CompanyList.SingleOrDefault(x => x.Id == id);
 
                 if (dbItem == null)
