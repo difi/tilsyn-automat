@@ -1,81 +1,59 @@
-﻿using System;
+﻿using Difi.Sjalvdeklaration.Api.Base;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.ValueList;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Api
 {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class ValueListController : ControllerBase
+    public class ValueListController : ApiControllerBase
     {
         private readonly IValueListRepository valueListRepository;
-        private readonly IConfiguration configuration;
 
-        public ValueListController(IValueListRepository valueListRepository, IConfiguration configuration)
+        public ValueListController(IValueListRepository valueListRepository, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(valueListRepository, configuration, httpContextAccessor)
         {
             this.valueListRepository = valueListRepository;
-            this.configuration = configuration;
         }
 
         [HttpGet]
         [Route("GetAllTypeOfMachine")]
         public ApiResult<List<ValueListTypeOfMachine>> GetAllTypeOfMachine()
         {
-            HandleRequest();
-
-            return valueListRepository.GetAllTypeOfMachine<List<ValueListTypeOfMachine>>();
+            return HandleRequest<List<ValueListTypeOfMachine>>() ?? valueListRepository.GetAllTypeOfMachine<List<ValueListTypeOfMachine>>();
         }
 
         [HttpGet]
         [Route("GetAllTypeOfTest")]
         public ApiResult<List<ValueListTypeOfTest>> GetAllTypeOfTest()
         {
-            HandleRequest();
-
-            return valueListRepository.GetAllTypeOfTest<List<ValueListTypeOfTest>>();
+            return HandleRequest<List<ValueListTypeOfTest>>() ?? valueListRepository.GetAllTypeOfTest<List<ValueListTypeOfTest>>();
         }
 
         [HttpGet]
         [Route("GetAllTypeOfSupplierAndVersion")]
         public ApiResult<List<ValueListTypeOfSupplierAndVersion>> GetAllTypeOfSupplierAndVersion()
         {
-            HandleRequest();
-
-            return valueListRepository.GetAllTypeOfSupplierAndVersion<List<ValueListTypeOfSupplierAndVersion>>();
+            return HandleRequest<List<ValueListTypeOfSupplierAndVersion>>() ?? valueListRepository.GetAllTypeOfSupplierAndVersion<List<ValueListTypeOfSupplierAndVersion>>();
         }
 
         [HttpGet]
         [Route("GetAllTypeOfStatus")]
         public ApiResult<List<ValueListTypeOfStatus>> GetAllTypeOfStatus()
         {
-            HandleRequest();
-
-            return valueListRepository.GetAllTypeOfStatus<List<ValueListTypeOfStatus>>();
+            return HandleRequest<List<ValueListTypeOfStatus>>() ?? valueListRepository.GetAllTypeOfStatus<List<ValueListTypeOfStatus>>();
         }
 
         [HttpGet]
         [Route("GetAllPurposeOfTest")]
         public ApiResult<List<ValueListPurposeOfTest>> GetAllPurposeOfTest()
         {
-            HandleRequest();
-
-            return valueListRepository.GetAllPurposeOfTest<List<ValueListPurposeOfTest>>();
-        }
-
-        private void HandleRequest()
-        {
-            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
-            {
-                throw new Exception("Wrong ApiKey!");
-            }
-
-            valueListRepository.SetCurrentLang(Request.Headers["Lang"]);
-            valueListRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
+            return HandleRequest<List<ValueListPurposeOfTest>>() ?? valueListRepository.GetAllPurposeOfTest<List<ValueListPurposeOfTest>>();
         }
     }
 }

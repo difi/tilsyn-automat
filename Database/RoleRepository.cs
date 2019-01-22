@@ -21,7 +21,10 @@ namespace Difi.Sjalvdeklaration.Database
 
         public void SetCurrentUser(Guid parse)
         {
+        }
 
+        public void SetCurrentLang(string lang)
+        {
         }
 
         public ApiResult<T> GetAll<T>() where T : List<RoleItem>

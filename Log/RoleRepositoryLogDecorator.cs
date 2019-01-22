@@ -39,6 +39,11 @@ namespace Difi.Sjalvdeklaration.Log
             inner.SetCurrentUser(id);
         }
 
+        public void SetCurrentLang(string lang)
+        {
+            inner.SetCurrentLang(lang);
+        }
+
         public ApiResult<T> GetAll<T>() where T : List<RoleItem>
         {
             var result =  inner.GetAll<T>();

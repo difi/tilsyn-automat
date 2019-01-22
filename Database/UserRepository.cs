@@ -25,6 +25,11 @@ namespace Difi.Sjalvdeklaration.Database
         {
         }
 
+        public void SetCurrentLang(string lang)
+        {
+            
+        }
+
         public ApiResult<T> Get<T>(Guid id) where T : UserItem
         {
             var result = new ApiResult<T>();

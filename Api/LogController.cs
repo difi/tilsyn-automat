@@ -1,43 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Difi.Sjalvdeklaration.Api.Base;
 using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
 using Difi.Sjalvdeklaration.Shared.Classes.Log;
 using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Api
 {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class LogController : ControllerBase
+    public class LogController : ApiControllerBase
     {
         private readonly ILogRepository logRepository;
-        private readonly IConfiguration configuration;
 
-        public LogController(ILogRepository logRepository, IConfiguration configuration)
+        public LogController(ILogRepository logRepository, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(logRepository, configuration, httpContextAccessor)
         {
             this.logRepository = logRepository;
-            this.configuration = configuration;
         }
 
         [HttpGet]
         [Route("Get/{id}")]
         public ApiResult<LogItem> Get(Guid id)
         {
-            HandleRequest();
-
-            return logRepository.Get<LogItem>(id);
+            return HandleRequest<LogItem>() ?? logRepository.Get<LogItem>(id);
         }
 
         [HttpGet]
         [Route("GetByFilter/{fromDate}/{toDate}/{succeeded}")]
         public ApiResult<List<LogItem>> GetByFilter(long fromDate, long toDate, int succeeded)
         {
-            HandleRequest();
-
             var filterModel = new FilterModel
             {
                 FromDate = new DateTime(fromDate),
@@ -45,24 +41,14 @@ namespace Difi.Sjalvdeklaration.Api
                 Succeeded = succeeded,
             };
 
-            return logRepository.GetByFilter<List<LogItem>>(filterModel);
+            return HandleRequest<List<LogItem>>() ?? logRepository.GetByFilter<List<LogItem>>(filterModel);
         }
 
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(LogItem logItem)
         {
-            HandleRequest();
-
-            return logRepository.Add(logItem);
-        }
-
-        private void HandleRequest()
-        {
-            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
-            {
-                throw new Exception("Wrong ApiKey!");
-            }
+            return HandleRequest() ?? logRepository.Add(logItem);
         }
     }
 }

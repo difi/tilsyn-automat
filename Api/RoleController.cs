@@ -1,44 +1,31 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Interface;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Difi.Sjalvdeklaration.Api.Base;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Api
 {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class RoleController : ControllerBase
+    public class RoleController : ApiControllerBase
     {
         private readonly IRoleRepository roleRepository;
-        private readonly IConfiguration configuration;
 
-        public RoleController(IRoleRepository roleRepository, IConfiguration configuration)
+        public RoleController(IRoleRepository roleRepository, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(roleRepository, configuration, httpContextAccessor)
         {
             this.roleRepository = roleRepository;
-            this.configuration = configuration;
         }
 
         [HttpGet]
         [Route("GetAll")]
         public ApiResult<List<RoleItem>> GetAll()
         {
-            HandleRequest();
-
-            return roleRepository.GetAll<List<RoleItem>>();
-        }
-
-        private void HandleRequest()
-        {
-            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
-            {
-                throw new Exception("Wrong ApiKey!");
-            }
-
-            roleRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
+            return HandleRequest<List<RoleItem>>() ?? roleRepository.GetAll<List<RoleItem>>();
         }
     }
 }

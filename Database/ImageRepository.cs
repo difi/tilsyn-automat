@@ -41,5 +41,10 @@ namespace Difi.Sjalvdeklaration.Database
         {
             
         }
+
+        public void SetCurrentLang(string lang)
+        {
+         
+        }
     }
 }

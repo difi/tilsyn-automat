@@ -1,4 +1,5 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes.IdPorten;
+﻿using System;
+using Difi.Sjalvdeklaration.Shared.Classes.IdPorten;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using Difi.Sjalvdeklaration.Shared.Extensions;
 using Difi.Sjalvdeklaration.wwwroot.Business.Interface;
@@ -35,47 +36,63 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
 
         public void OnGet()
         {
-            var code = Request.Query["code"];
-            var key = (configuration["IdPorten:ClientId"] + ":" + configuration["IdPorten:Secret"]).AsBase64();
-            var stringContent = new StringContent("grant_type=authorization_code&redirect_uri=" + configuration["IdPorten:RedirectUrl"] + "&code=" + code, Encoding.UTF8, "application/x-www-form-urlencoded");
-
-            var result = apiHttpClient.PostWithAuthorization<IdPortenRootObject>("/token", "Basic", key, stringContent).Result;
-
-            var jwtSecurityToken = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().ReadJwtToken(result.id_token);
-
-            if (jwtSecurityToken.Payload["nonce"].ToString() == configuration["IdPorten:Nonce"])
+            try
             {
-                SocialSecurityNumber = jwtSecurityToken.Payload["pid"].ToString();
-                Token = jwtSecurityToken.Payload["sub"].ToString();
+                var code = Request.Query["code"];
+                var key = (configuration["IdPorten:ClientId"] + ":" + configuration["IdPorten:Secret"]).AsBase64();
+                var stringContent = new StringContent("grant_type=authorization_code&redirect_uri=" + configuration["IdPorten:RedirectUrl"] + "&code=" + code, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-                var userItem = apiHttpClient.Get<UserItem>("/api/User/Login/" + Token + "/" + SocialSecurityNumber).Result.Data;
+                var result = apiHttpClient.PostWithAuthorization<IdPortenRootObject>("/token", "Basic", key, stringContent).Result;
 
-                var claims = new List<Claim>
+                var jwtSecurityToken = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler().ReadJwtToken(result.id_token);
+
+                if (jwtSecurityToken.Payload["nonce"].ToString() == configuration["IdPorten:Nonce"])
                 {
-                    new Claim(ClaimTypes.PrimarySid, userItem.Id.ToString()),
-                    new Claim(ClaimTypes.NameIdentifier, userItem.Token),
-                    new Claim(ClaimTypes.Hash, result.id_token),
-                    new Claim(ClaimTypes.Name, userItem.Name + ""),
-                    new Claim(ClaimTypes.Email, userItem.Email + ""),
-                    new Claim(ClaimTypes.OtherPhone, userItem.Phone + ""),
-                    new Claim(ClaimTypes.DateOfBirth, userItem.SocialSecurityNumber + ""),
-                };
+                    SocialSecurityNumber = jwtSecurityToken.Payload["pid"].ToString();
+                    Token = jwtSecurityToken.Payload["sub"].ToString();
 
-                claims.AddRange(userItem.RoleList.Select(userRole => new Claim(ClaimTypes.Role, userRole.RoleItem.Name)));
+                    var resultLogin = apiHttpClient.Get<UserItem>("/api/User/Login/" + Token + "/" + SocialSecurityNumber).Result;
 
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var authProperties = new AuthenticationProperties();
+                    if (resultLogin.Succeeded)
+                    {
+                        var userItem = resultLogin.Data;
 
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.PrimarySid, userItem.Id.ToString()),
+                            new Claim(ClaimTypes.NameIdentifier, userItem.Token),
+                            new Claim(ClaimTypes.Hash, result.id_token),
+                            new Claim(ClaimTypes.Name, userItem.Name + ""),
+                            new Claim(ClaimTypes.Email, userItem.Email + ""),
+                            new Claim(ClaimTypes.OtherPhone, userItem.Phone + ""),
+                            new Claim(ClaimTypes.DateOfBirth, userItem.SocialSecurityNumber + ""),
+                        };
 
-                if (userItem.RoleList.Any(x => x.RoleItem.Name == "Administrator") || userItem.RoleList.Any(x => x.RoleItem.Name == "Saksbehandler"))
-                {
-                    Response.Redirect("/Admin/DeclarationList");
+                        claims.AddRange(userItem.RoleList.Select(userRole => new Claim(ClaimTypes.Role, userRole.RoleItem.Name)));
+
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var authProperties = new AuthenticationProperties();
+
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                        if (userItem.RoleList.Any(x => x.RoleItem.Name == "Administrator") || userItem.RoleList.Any(x => x.RoleItem.Name == "Saksbehandler"))
+                        {
+                            Response.Redirect("/Admin/DeclarationList");
+                        }
+                        else
+                        {
+                            Response.Redirect(userItem.CompanyList.Any() ? "/Declaration/DeclarationList" : "/Declaration/CompanyLink");
+                        }
+                    }
+                    else
+                    {
+                        errorHandler.View(this, null, resultLogin.Exception);
+                    }
                 }
-                else
-                {
-                    Response.Redirect(userItem.CompanyList.Any() ? "/Declaration/DeclarationList" : "/Declaration/CompanyLink");
-                }
+            }
+            catch (Exception exception)
+            {
+                errorHandler.Log(this, null, exception);
             }
         }
     }

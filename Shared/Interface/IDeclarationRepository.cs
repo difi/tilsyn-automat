@@ -1,17 +1,14 @@
 ﻿using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Declaration;
+using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
 using System;
 using System.Collections.Generic;
-using Difi.Sjalvdeklaration.Shared.Classes.Declaration.Data;
+using Difi.Sjalvdeklaration.Shared.Interface.Base;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
-    public interface IDeclarationRepository
+    public interface IDeclarationRepository : IBaseRepository
     {
-        void SetCurrentUser(Guid userGuid);
-
-        void SetCurrentLang(String lang);
-
         ApiResult<T> Get<T>(Guid id) where T : DeclarationItem;
 
         ApiResult<T> GetAll<T>() where T : List<DeclarationItem>;
