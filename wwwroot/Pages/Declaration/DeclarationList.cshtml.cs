@@ -122,7 +122,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    ViewData.Add("Done", localizer["Business information have been updated"]);
+                    ViewData.Add("Done", $"<div class='feedback-summary-header'><span>{localizer["Business information have been updated"]}</span></div>");
 
                     return await errorHandler.View(this, OnGetAsync());
                 }

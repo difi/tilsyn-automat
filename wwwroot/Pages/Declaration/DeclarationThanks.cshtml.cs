@@ -43,7 +43,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages.Declaration
 
                 if (result.Succeeded)
                 {
-                    ViewData.Add("Done", localizer["Self-control sent in"]);
+                    ViewData.Add("Done", $"<div class='feedback-summary-header'><span>{localizer["Self-control sent in"]}</span></div>");
 
                     DeclarationItemForm = result.Data;
                 }
