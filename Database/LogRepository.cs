@@ -112,5 +112,15 @@ namespace Difi.Sjalvdeklaration.Database
 
             return result;
         }
+
+        public void SetCurrentUser(Guid parse)
+        {
+            
+        }
+
+        public void SetCurrentLang(string lang)
+        {
+            
+        }
     }
 }

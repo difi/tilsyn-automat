@@ -2,13 +2,12 @@
 using Difi.Sjalvdeklaration.Shared.Classes.User;
 using System;
 using System.Collections.Generic;
+using Difi.Sjalvdeklaration.Shared.Interface.Base;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository
     {
-        void SetCurrentUser(Guid id);
-
         ApiResult<T> Get<T>(Guid id) where T : UserItem;
 
         ApiResult<T> GetByToken<T>(string token) where T : UserItem;

@@ -63,6 +63,11 @@ namespace Difi.Sjalvdeklaration.Log
             inner.SetCurrentUser(id);
         }
 
+        public void SetCurrentLang(string lang)
+        {
+            inner.SetCurrentLang(lang);
+        }
+
         public ApiResult<T> Get<T>(Guid id) where T : UserItem
         {
             var result = inner.Get<T>(id);

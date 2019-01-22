@@ -1,26 +1,26 @@
-﻿using Difi.Sjalvdeklaration.Shared.Classes;
-using Difi.Sjalvdeklaration.Shared.Interface;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using Difi.Sjalvdeklaration.Api.Base;
+using Difi.Sjalvdeklaration.Shared.Classes;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
 
 namespace Difi.Sjalvdeklaration.Api
 {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class CompanyController : ControllerBase
+    public class CompanyController : ApiControllerBase
     {
         private readonly ICompanyRepository companyRepository;
-        private readonly IConfiguration configuration;
 
-        public CompanyController(ICompanyRepository companyRepository, IConfiguration configuration)
+        public CompanyController(ICompanyRepository companyRepository, IConfiguration configuration, IHttpContextAccessor httpContextAccessor) : base(companyRepository, configuration, httpContextAccessor)
         {
             this.companyRepository = companyRepository;
-            this.configuration = configuration;
         }
 
         /// <summary>
@@ -32,12 +32,7 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("Get/{id}")]
         public ApiResult<CompanyItem> Get(Guid id)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult<CompanyItem> {Exception = new Exception("Wrong ApiKey!")};
-            }
-
-            return companyRepository.Get<CompanyItem>(id);
+            return HandleRequest<CompanyItem>() ?? companyRepository.Get<CompanyItem>(id);
         }
 
         /// <summary>
@@ -49,90 +44,55 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("GetByCorporateIdentityNumber/{corporateIdentityNumber}")]
         public ApiResult<CompanyItem> GetByCorporateIdentityNumber(int corporateIdentityNumber)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult<CompanyItem> { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.GetByCorporateIdentityNumber<CompanyItem>(corporateIdentityNumber);
+            return HandleRequest<CompanyItem>() ?? companyRepository.GetByCorporateIdentityNumber<CompanyItem>(corporateIdentityNumber);
         }
 
         /// <summary>
-        /// Gets all compaies in the system
+        /// Gets all companies in the system
         /// </summary>
         /// <returns>A list of company items</returns>
         [HttpGet]
         [Route("GetAll")]
         public ApiResult<List<CompanyItem>> GetAll()
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult<List<CompanyItem>> { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.GetAll<List<CompanyItem>>();
+            return HandleRequest<List<CompanyItem>>() ?? companyRepository.GetAll<List<CompanyItem>>();
         }
 
         [HttpGet]
         [Route("Remove/{id}")]
         public ApiResult Remove(string id)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.Remove(Guid.Parse(id));
+            return HandleRequest() ?? companyRepository.Remove(Guid.Parse(id));
         }
 
         [HttpPost]
         [Route("Add")]
         public ApiResult Add(CompanyItem companyItem)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.Add(companyItem);
+            return HandleRequest() ?? companyRepository.Add(companyItem);
         }
 
         [HttpPost]
         [Route("Update")]
         public ApiResult Update(CompanyItem companyItem)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.Update(companyItem);
+            return HandleRequest() ?? companyRepository.Update(companyItem);
         }
 
         [HttpPost]
         [Route("UpdateCustom")]
         public ApiResult UpdateCustom(CompanyCustomItem companyCustomItem)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.UpdateCustom(companyCustomItem);
+            return HandleRequest() ?? companyRepository.UpdateCustom(companyCustomItem);
         }
 
         [HttpPost]
         [Route("ExcelImport")]
         public ApiResult ExcelImport(ExcelItemRow excelItemRow)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
             try
             {
-                return companyRepository.ExcelImport(excelItemRow);
+                return HandleRequest() ?? companyRepository.ExcelImport(excelItemRow);
             }
             catch (Exception exception)
             {
@@ -148,37 +108,14 @@ namespace Difi.Sjalvdeklaration.Api
         [Route("AddLink")]
         public ApiResult AddLink(UserCompany userCompanyItem)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.AddLink(userCompanyItem);
+            return HandleRequest() ?? companyRepository.AddLink(userCompanyItem);
         }
 
         [HttpPost]
         [Route("RemoveLink")]
         public ApiResult RemoveLink(UserCompany userCompanyItem)
         {
-            if (!HandleRequest())
-            {
-                return new ApiResult { Exception = new Exception("Wrong ApiKey!") };
-            }
-
-            return companyRepository.RemoveLink(userCompanyItem);
-        }
-
-        private bool HandleRequest()
-        {
-            if (Request.Headers["ApiKey"] != configuration["Api:Key"])
-            {
-                return false;
-            }
-
-            companyRepository.SetCurrentUser(Guid.Parse(Request.Headers["UserGuid"]));
-            companyRepository.SetCurrentLang(Request.Headers["Lang"]);
-
-            return true;
+            return HandleRequest() ?? companyRepository.RemoveLink(userCompanyItem);
         }
     }
 }

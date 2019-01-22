@@ -3,15 +3,12 @@ using System;
 using System.Collections.Generic;
 using Difi.Sjalvdeklaration.Shared.Classes.Company;
 using Difi.Sjalvdeklaration.Shared.Classes.User;
+using Difi.Sjalvdeklaration.Shared.Interface.Base;
 
 namespace Difi.Sjalvdeklaration.Shared.Interface
 {
-    public interface ICompanyRepository
+    public interface ICompanyRepository: IBaseRepository
     {
-        void SetCurrentUser(Guid parse);
-
-        void SetCurrentLang(string lang);
-
         ApiResult<T> Get<T>(Guid id) where T : CompanyItem;
 
         ApiResult<T> GetByCorporateIdentityNumber<T>(long corporateIdentityNumber) where T : CompanyItem;

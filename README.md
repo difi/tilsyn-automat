@@ -31,5 +31,6 @@ secrets.json ska ha dessa inställningar:
   },
   "Api": {
     "Key": "{RandomString}"
+    "IpList": "{Comma-separated list}"
   }
 }
