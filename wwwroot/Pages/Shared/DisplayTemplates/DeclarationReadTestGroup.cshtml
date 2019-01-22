@@ -8,10 +8,18 @@
     var viewResult = (bool)ViewData["viewResult"];
     var declarationItem = (DeclarationItem)ViewData["DeclarationItem"];
     var subIndex = 0;
+    var zeroData = false;
 
-    if (Model.IndicatorList == null)
+    foreach (var item in declarationItem.IndicatorList.Where(x => x.TestGroupItemId == Model.Id))
     {
-        Model.AllDone = false;
+        var indicatorItem = item.IndicatorItem;
+        var outcomeData = indicatorItem.OutcomeData;
+
+        if (outcomeData == null)
+        {
+            Model.AllDone = false;
+            zeroData = true;
+        }
     }
 }
 
@@ -33,7 +41,7 @@
                             <span class="show-for-sr">@Localizer["is not completely answered"]</span>
                         }
                     </span>
-                    @if (Model.IndicatorList != null)
+                    @if (zeroData==false)
                     {
                         <span class="toggle-header-icon hide-for-print"><span class="show-for-sr">@Localizer["Show/Hide"] @Localizer["Automaten"]</span></span>
                     }
