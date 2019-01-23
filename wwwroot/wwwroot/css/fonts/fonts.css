@@ -1,0 +1,20 @@
+
+@font-face {
+    font-family: "Sofia-Pro-Light";
+    src: url('webfonts/sofia pro-desktop/fonts/sofiapro-light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Sofia-Pro-Regular";
+    src: url('webfonts/sofia pro-desktop/fonts/sofiapro-regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Sofia-Pro-Medium";
+    src: url('webfonts/sofia pro-desktop/fonts/sofiapro-medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: "Sofia-Pro-Bold";
+    src: url('webfonts/sofia pro-desktop/fonts/sofiapro-bold.otf') format('opentype');
+}

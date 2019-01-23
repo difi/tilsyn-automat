@@ -192,7 +192,7 @@ button, .button, input[type="button"], input[type="submit"] {
     &.toogle-header-button,
     &.toogle-header-button-alt {
         text-align: left;
-        font-weight: bold;
+        font-family: $sofiapro-bold;
         background-color: $light-blue-grey;
         //padding: 1rem 12px 1rem 10px;
         padding: 1.3rem 12px 0.3rem 10px;
@@ -286,7 +286,8 @@ button, .button, input[type="button"], input[type="submit"] {
 
     &.toggle-profile-button {
         text-align: right;
-        font-weight: bold;
+        font-weight: normal;
+        font-family: $sofiapro-bold;
         background-color: transparent;
         padding: 0.6em 20px 0.6em 1.25em;
         margin: 8px 0 0 0;
