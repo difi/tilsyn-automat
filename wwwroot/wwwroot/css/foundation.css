@@ -3945,7 +3945,7 @@ header {
 
 @media print, screen and (min-width: 48em) {
   header .logo {
-    max-width: 390px; }
+    max-width: 400px; }
     header .logo span.large-text {
       font-size: 24px; }
     header .logo span.small-text {
