@@ -20,7 +20,7 @@ namespace Difi.Sjalvdeklaration.wwwroot.Pages
         private readonly IErrorHandler errorHandler;
         private readonly IConfiguration configuration;
         private readonly IApiHttpClient apiHttpClient;
-        private static readonly List<string> AllowedCorsOrigins = new List<string> { "https://localhost:44343", "https://sjalvdeklaration-test.azurewebsites.net", "https://egenkontroll-test.azurewebsites.net" };
+        private static readonly List<string> AllowedCorsOrigins = new List<string> { "https://egenkontroll.difi.no", "https://difi-egen-live-app.azurewebsites.net" };
         private static readonly List<string> AllowedCorsHeaders = new List<string> { "x-ms-meta-qqfilename", "Content-Type", "x-ms-blob-type", "x-ms-blob-content-type" };
         private const CorsHttpMethods AllowedCorsMethods = CorsHttpMethods.Delete | CorsHttpMethods.Put;
         private const int AllowedCorsAgeDays = 5;

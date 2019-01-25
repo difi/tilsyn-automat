@@ -211,7 +211,20 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 Created = new DateTime(2018, 12, 01, 12, 00, 00)
             };
 
-            modelBuilder.Entity<UserItem>().HasData(user1, user2);
+            var user3 = new UserItem
+            {
+                Id = Guid.Parse("781e8896-c130-4096-b9fc-ae63e9f6fda5"),
+                SocialSecurityNumber = 19107928319,
+                Token = "Ma6zh1iAzdglm8PNAoilxzuJqNFecLp4xoNWQa1IDx8=",
+                Name = "Henrik Juhlin",
+                Email = "henrik.juhlin@funka.com",
+                PhoneCountryCode = "0046",
+                Phone = "706017546",
+                Title = "Utvecklare",
+                Created = new DateTime(2019, 01, 25, 10, 00, 00)
+            };
+
+            modelBuilder.Entity<UserItem>().HasData(user1, user2, user3);
             modelBuilder.Entity<RoleItem>().HasData(role1, role2, role3);
 
             modelBuilder.Entity<UserRole>().HasData(
@@ -229,6 +242,11 @@ namespace Difi.Sjalvdeklaration.Database.DbContext
                 {
                     UserItemId = user2.Id,
                     RoleItemId = role2.Id
+                },
+                new UserRole
+                {
+                    UserItemId = user3.Id,
+                    RoleItemId = role1.Id
                 });
 
             modelBuilder.Entity<ValueListTypeOfMachine>().HasData(new List<ValueListTypeOfMachine>
