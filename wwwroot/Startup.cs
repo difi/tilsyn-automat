@@ -43,18 +43,17 @@ namespace Difi.Sjalvdeklaration.wwwroot
 
             services.ConfigureExternalCookie(options =>
             {
-                // Other options
                 options.Cookie.SameSite = SameSiteMode.None;
             });
+
             services.ConfigureApplicationCookie(options =>
             {
-                // Other options
                 options.Cookie.SameSite = SameSiteMode.None;
             });
 
             services.AddAntiforgery(options =>
             {
-                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SameSite = SameSiteMode.Strict;
             });
 
             services.AddDbContext<ApplicationDbContext>(optionsBuilder1 => optionsBuilder1.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), optionsBuilder2 => optionsBuilder2.MigrationsAssembly("Difi.Sjalvdeklaration.wwwroot")));
@@ -62,7 +61,8 @@ namespace Difi.Sjalvdeklaration.wwwroot
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
